@@ -84,21 +84,21 @@ const navCopy: Record<
     team: 'Team',
     contact: 'Contact',
     callToAction: 'Book a strategy call',
-    tagline: 'Growth marketing, revenue design, and product storytelling for teams shipping fast.',
+    tagline: 'Multilingual brand guardians who monitor sentiment, align messaging, and deploy rapid reputation defense.',
   },
   fr: {
     services: 'Services',
     team: 'Équipe',
     contact: 'Contact',
     callToAction: 'Planifier un échange',
-    tagline: 'Marketing growth, modèles de revenus et narration produit pour les équipes ambitieuses.',
+    tagline: 'Des gardiens de marque multilingues qui surveillent le sentiment, harmonisent le discours et déploient une défense rapide.',
   },
   es: {
     services: 'Servicios',
     team: 'Equipo',
     contact: 'Contacto',
     callToAction: 'Reserva una sesión estratégica',
-    tagline: 'Marketing de crecimiento, diseño de ingresos y storytelling de producto para equipos ágiles.',
+    tagline: 'Guardianes de marca multilingües que monitorean el sentimiento, alinean el mensaje y activan una defensa rápida.',
   },
 }
 
@@ -474,6 +474,42 @@ const homeServicesCopy: Record<
   },
 }
 
+const homeHeroCopy: Record<
+  Language,
+  {
+    badge: string
+    title: (count: number) => string
+    description: string
+    emailCta: string
+    phoneCta: string
+  }
+> = {
+  en: {
+    badge: 'Traceremove · Brand Protection Agency',
+    title: (count) => `${count} multilingual response playbooks to safeguard your brand reputation.`,
+    description:
+      'We monitor your narratives, neutralize emerging threats, and keep your story trusted in every market.',
+    emailCta: 'Contact us',
+    phoneCta: 'Call us',
+  },
+  fr: {
+    badge: 'Traceremove · Agence de protection de marque',
+    title: (count) => `${count} plans de réponse multilingues pour sécuriser votre réputation.`,
+    description:
+      'Nous surveillons vos récits, neutralisons les signaux de crise et gardons votre histoire crédible sur chaque marché.',
+    emailCta: 'Contactez-nous',
+    phoneCta: 'Appelez-nous',
+  },
+  es: {
+    badge: 'Traceremove · Agencia de protección de marca',
+    title: (count) => `${count} planes de respuesta multilingües para proteger tu reputación.`,
+    description:
+      'Vigilamos la conversación, neutralizamos riesgos emergentes y mantenemos tu historia confiable en cada mercado.',
+    emailCta: 'Contáctanos',
+    phoneCta: 'Llámanos',
+  },
+}
+
 const serviceCardCta: Record<Language, string> = {
   en: 'Book this service',
   fr: 'Réserver ce service',
@@ -491,6 +527,7 @@ const HomePage = () => {
   const heroCta = navCopy[currentLanguage].callToAction
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
+  const heroCopy = homeHeroCopy[currentLanguage]
   const localizedServices = primaryServices.map((service) => ({
     key: service.key,
     accent: service.accent,
@@ -506,15 +543,15 @@ const HomePage = () => {
     <section className="home">
       <div className="home-hero">
         <div className="home-hero-copy">
-          <span className="home-badge">Traceremove · Digital Agency</span>
-          <h1>{totalPages} multilingual service blueprints engineered for momentum.</h1>
-          <p>{navCopy[currentLanguage].tagline}</p>
+          <span className="home-badge">{heroCopy.badge}</span>
+          <h1>{heroCopy.title(totalPages)}</h1>
+          <p>{heroCopy.description}</p>
           <div className="home-cta">
             <a className="button primary" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
+              {heroCopy.emailCta}
             </a>
             <a className="button secondary" href="tel:+16063022958">
-              +1 606 302 2958
+              {heroCopy.phoneCta}
             </a>
           </div>
           <div className="home-contact">
