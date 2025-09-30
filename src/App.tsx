@@ -1,4 +1,11 @@
-import { Fragment, type ReactNode, useEffect, useMemo, useState } from 'react'
+import {
+  Fragment,
+  type FormEvent,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import {
   interfaceCopy,
@@ -971,27 +978,92 @@ const footerCopy: Record<
     rights: string
     studio: string
     founder: string
+    subscribeHeading: string
+    subscribeDescription: string
+    subscribePlaceholder: string
+    subscribeCta: string
+    subscribeDisclaimer: string
+    subscribeSuccess: string
+    subscribeError: string
   }
 > = {
   en: {
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
     founder: 'Founder & CEO Artur Ziganshin',
+    subscribeHeading: 'Stay in the loop',
+    subscribeDescription: 'Subscribe for growth frameworks, launch playbooks, and studio announcements once a month.',
+    subscribePlaceholder: 'you@example.com',
+    subscribeCta: 'Subscribe',
+    subscribeDisclaimer: 'No spam — just field-tested strategies. Unsubscribe anytime.',
+    subscribeSuccess: 'Thanks! Please check your inbox to confirm your subscription.',
+    subscribeError: 'We could not process your subscription. Please try again.',
   },
   fr: {
     rights: 'Tous droits réservés.',
     studio: "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
     founder: 'Fondateur & CEO Artur Ziganshin',
+    subscribeHeading: 'Restez informé·e',
+    subscribeDescription: 'Recevez chaque mois des frameworks de croissance, des playbooks de lancement et les nouvelles du studio.',
+    subscribePlaceholder: 'vous@exemple.com',
+    subscribeCta: "S'abonner",
+    subscribeDisclaimer: 'Aucun spam — uniquement des stratégies éprouvées. Désinscription à tout moment.',
+    subscribeSuccess: 'Merci ! Consultez votre boîte mail pour confirmer votre inscription.',
+    subscribeError: "Nous n'avons pas pu valider votre inscription. Veuillez réessayer.",
   },
   es: {
     rights: 'Todos los derechos reservados.',
     studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
     founder: 'Fundador y CEO Artur Ziganshin',
+    subscribeHeading: 'Mantente al día',
+    subscribeDescription: 'Suscríbete para recibir frameworks de crecimiento, playbooks de lanzamiento y noticias del estudio cada mes.',
+    subscribePlaceholder: 'tu@ejemplo.com',
+    subscribeCta: 'Suscribirme',
+    subscribeDisclaimer: 'Sin spam: solo estrategias comprobadas. Puedes darte de baja cuando quieras.',
+    subscribeSuccess: '¡Gracias! Revisa tu correo para confirmar la suscripción.',
+    subscribeError: 'No pudimos procesar tu suscripción. Intenta nuevamente.',
   },
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = footerCopy[currentLanguage]
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [statusMessage, setStatusMessage] = useState<
+    | {
+        type: 'success' | 'error'
+        message: string
+      }
+    | null
+  >(null)
+
+  const submitSubscriptionRequest = async (address: string) => {
+    // Placeholder handler until CRM integration is wired in.
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    console.info('[Traceremove] Subscription request captured for:', address)
+  }
+
+  const handleSubscribe = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (!email.trim()) {
+      setStatusMessage({ type: 'error', message: copy.subscribeError })
+      return
+    }
+
+    try {
+      setIsSubmitting(true)
+      setStatusMessage(null)
+      await submitSubscriptionRequest(email.trim())
+      setEmail('')
+      setStatusMessage({ type: 'success', message: copy.subscribeSuccess })
+    } catch (error) {
+      console.error('Subscription error', error)
+      setStatusMessage({ type: 'error', message: copy.subscribeError })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <footer className="tr-footer">
@@ -1003,6 +1075,38 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
             <p className="tr-footer__tagline">{copy.studio}</p>
           </div>
         </div>
+        <form className="tr-footer__subscription" onSubmit={handleSubscribe}>
+          <h3>{copy.subscribeHeading}</h3>
+          <p>{copy.subscribeDescription}</p>
+          <div className="tr-footer__subscription-fields">
+            <label className="sr-only" htmlFor="tr-footer-email">
+              Email
+            </label>
+            <input
+              id="tr-footer-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder={copy.subscribePlaceholder}
+              required
+              disabled={isSubmitting}
+            />
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? '…' : copy.subscribeCta}
+            </button>
+          </div>
+          <p className="tr-footer__subscription-disclaimer">{copy.subscribeDisclaimer}</p>
+          {statusMessage ? (
+            <p
+              className={`tr-footer__subscription-message tr-footer__subscription-message--${statusMessage.type}`}
+              role={statusMessage.type === 'error' ? 'alert' : 'status'}
+            >
+              {statusMessage.message}
+            </p>
+          ) : null}
+        </form>
         <div className="tr-footer__contact">
           <a href="mailto:contact@traceremove.com">contact@traceremove.com</a>
           <a href="tel:+16063022958">+1 606 302 2958</a>
