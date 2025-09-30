@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode, useEffect, useMemo, useState } from 'react'
-import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import {
   interfaceCopy,
   languageLabels,
@@ -8,6 +8,12 @@ import {
   type Language,
   type ServicePageContent,
 } from './data/pages'
+import {
+  blogArticles,
+  getBlogArticlePath,
+  getBlogBasePath,
+  type BlogArticleTranslation,
+} from './data/blog'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -74,6 +80,7 @@ const navCopy: Record<
   {
     services: string
     team: string
+    blog: string
     contact: string
     callToAction: string
     tagline: string
@@ -82,6 +89,7 @@ const navCopy: Record<
   en: {
     services: 'Services',
     team: 'Team',
+    blog: 'Blog',
     contact: 'Contact',
     callToAction: 'Book a strategy call',
     tagline: 'Growth marketing, revenue design, and product storytelling for teams shipping fast.',
@@ -89,6 +97,7 @@ const navCopy: Record<
   fr: {
     services: 'Services',
     team: 'Équipe',
+    blog: 'Blog',
     contact: 'Contact',
     callToAction: 'Planifier un échange',
     tagline: 'Marketing growth, modèles de revenus et narration produit pour les équipes ambitieuses.',
@@ -96,6 +105,7 @@ const navCopy: Record<
   es: {
     services: 'Servicios',
     team: 'Equipo',
+    blog: 'Blog',
     contact: 'Contacto',
     callToAction: 'Reserva una sesión estratégica',
     tagline: 'Marketing de crecimiento, diseño de ingresos y storytelling de producto para equipos ágiles.',
@@ -823,6 +833,195 @@ const NotFound = () => (
   </section>
 )
 
+const blogListCopy: Record<
+  Language,
+  {
+    kicker: string
+    title: string
+    subtitle: string
+    intro: string
+    readArticle: string
+  }
+> = {
+  en: {
+    kicker: 'Traceremove Blog',
+    title: 'Journal for reputation-led teams',
+    subtitle: 'Frameworks across ORM, AI, cybersecurity, SEO, and web design.',
+    intro:
+      'Explore the operating manuals we use with clients shipping fast. Every article includes actionable workflows, checklists, and measurement rituals you can adapt today.',
+    readArticle: 'Read article',
+  },
+  fr: {
+    kicker: 'Blog Traceremove',
+    title: 'Le journal des équipes guidées par la réputation',
+    subtitle: 'Cadres sur l’ORM, l’IA, la cybersécurité, le SEO et le design web.',
+    intro:
+      'Découvrez les modes opératoires que nous activons chez nos clients. Chaque article propose workflows actionnables, checklists et rituels de mesure à adapter dès maintenant.',
+    readArticle: 'Lire l’article',
+  },
+  es: {
+    kicker: 'Blog Traceremove',
+    title: 'El journal para equipos guiados por la reputación',
+    subtitle: 'Frameworks sobre ORM, IA, ciberseguridad, SEO y diseño web.',
+    intro:
+      'Explora los manuales operativos que usamos con clientes de alto crecimiento. Cada artículo comparte workflows accionables, checklists y rituales de medición listos para adaptar.',
+    readArticle: 'Leer artículo',
+  },
+}
+
+const blogArticleCopy: Record<
+  Language,
+  {
+    backToBlog: string
+    publishedOn: string
+  }
+> = {
+  en: {
+    backToBlog: 'Back to articles',
+    publishedOn: 'Published on',
+  },
+  fr: {
+    backToBlog: 'Retour aux articles',
+    publishedOn: 'Publié le',
+  },
+  es: {
+    backToBlog: 'Volver a los artículos',
+    publishedOn: 'Publicado el',
+  },
+}
+
+const localeMap: Record<Language, string> = {
+  en: 'en-US',
+  fr: 'fr-FR',
+  es: 'es-ES',
+}
+
+const BlogPage = ({ language }: { language: Language }) => {
+  const copy = blogListCopy[language]
+  const articles = blogArticles
+    .map((article) => {
+      const translation = article.translations[language]
+      if (!translation) {
+        return undefined
+      }
+      return {
+        slug: article.slug,
+        publishedAt: article.publishedAt,
+        translation,
+      }
+    })
+    .filter((article): article is { slug: string; publishedAt: string; translation: BlogArticleTranslation } => Boolean(article))
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+
+  return (
+    <section className="blog-page">
+      <header className="blog-hero">
+        <p className="blog-hero__kicker">{copy.kicker}</p>
+        <h1>{copy.title}</h1>
+        <p className="blog-hero__subtitle">{copy.subtitle}</p>
+        <p className="blog-hero__intro">{copy.intro}</p>
+      </header>
+
+      <div className="blog-grid">
+        {articles.map((article) => {
+          const formattedDate = new Date(article.publishedAt).toLocaleDateString(localeMap[language], {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
+          return (
+            <article key={article.slug} className="blog-card">
+              <p className="blog-card__topic">{article.translation.topicLabel}</p>
+              <h2>{article.translation.title}</h2>
+              <p className="blog-card__summary">{article.translation.summary}</p>
+              <div className="blog-card__meta">
+                <span>{formattedDate}</span>
+                <span aria-hidden="true">•</span>
+                <span>{article.translation.readTime}</span>
+              </div>
+              <Link className="blog-card__link" to={getBlogArticlePath(language, article.slug)}>
+                {copy.readArticle}
+              </Link>
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
+const BlogArticlePage = ({ language }: { language: Language }) => {
+  const { slug } = useParams<{ slug: string }>()
+  const copy = blogArticleCopy[language]
+
+  if (!slug) {
+    return <NotFound />
+  }
+
+  const article = blogArticles.find((item) => item.slug === slug)
+
+  if (!article) {
+    return <NotFound />
+  }
+
+  const translation = article.translations[language]
+
+  if (!translation) {
+    return <NotFound />
+  }
+
+  const formattedDate = new Date(article.publishedAt).toLocaleDateString(localeMap[language], {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+
+  return (
+    <article className="blog-article">
+      <header className="blog-article__hero">
+        <div className="blog-article__labels">
+          <span>{translation.heroKicker}</span>
+          <span aria-hidden="true">•</span>
+          <span>{translation.topicLabel}</span>
+          <span aria-hidden="true">•</span>
+          <span>{translation.readTime}</span>
+        </div>
+        <h1>{translation.title}</h1>
+        <p className="blog-article__summary">{translation.summary}</p>
+        <p className="blog-article__meta">
+          <span>{copy.publishedOn}</span> {formattedDate}
+        </p>
+        <p className="blog-article__author">{translation.author}</p>
+        <div className="blog-article__hero-visual" role="img" aria-label={translation.heroAlt} />
+      </header>
+
+      <div className="blog-article__body">
+        {translation.body.map((section, index) => (
+          <section key={`${slug}-${section.heading ?? index}`}>
+            {section.heading ? <h2>{section.heading}</h2> : null}
+            {section.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            {section.bullets ? (
+              <ul>
+                {section.bullets.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            ) : null}
+          </section>
+        ))}
+      </div>
+
+      <footer className="blog-article__footer">
+        <Link to={getBlogBasePath(language)} className="blog-article__back">
+          ← {copy.backToBlog}
+        </Link>
+      </footer>
+    </article>
+  )
+}
+
 const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -883,6 +1082,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <NavLink className="tr-nav__link" to={getTeamPath(currentLanguage)}>
             {copy.team}
           </NavLink>
+          <NavLink className="tr-nav__link" to={getBlogBasePath(currentLanguage)}>
+            {copy.blog}
+          </NavLink>
           <a className="tr-nav__link" href="mailto:contact@traceremove.com">
             {copy.contact}
           </a>
@@ -942,6 +1144,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             <NavLink to={getTeamPath(currentLanguage)} className="tr-mobile-link">
               {copy.team}
             </NavLink>
+            <NavLink to={getBlogBasePath(currentLanguage)} className="tr-mobile-link">
+              {copy.blog}
+            </NavLink>
             <a className="tr-mobile-link" href="mailto:contact@traceremove.com">
               contact@traceremove.com
             </a>
@@ -971,22 +1176,38 @@ const footerCopy: Record<
     rights: string
     studio: string
     founder: string
+    team: string
+    blog: string
+    contact: string
+    call: string
   }
 > = {
   en: {
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
     founder: 'Founder & CEO Artur Ziganshin',
+    team: 'Team',
+    blog: 'Blog',
+    contact: 'Contact',
+    call: 'Call us',
   },
   fr: {
     rights: 'Tous droits réservés.',
     studio: "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
     founder: 'Fondateur & CEO Artur Ziganshin',
+    team: 'Équipe',
+    blog: 'Blog',
+    contact: 'Contact',
+    call: 'Appelez-nous',
   },
   es: {
     rights: 'Todos los derechos reservados.',
     studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
     founder: 'Fundador y CEO Artur Ziganshin',
+    team: 'Equipo',
+    blog: 'Blog',
+    contact: 'Contacto',
+    call: 'Llámanos',
   },
 }
 
@@ -1009,9 +1230,10 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           <p>{copy.founder}</p>
         </div>
         <div className="tr-footer__links">
-          <NavLink to={getTeamPath(currentLanguage)}>Team</NavLink>
-          <a href="mailto:contact@traceremove.com">Contact</a>
-          <a href="tel:+16063022958">Call us</a>
+          <NavLink to={getTeamPath(currentLanguage)}>{copy.team}</NavLink>
+          <NavLink to={getBlogBasePath(currentLanguage)}>{copy.blog}</NavLink>
+          <a href="mailto:contact@traceremove.com">{copy.contact}</a>
+          <a href="tel:+16063022958">{copy.call}</a>
         </div>
       </div>
       <p className="tr-footer__rights">© {new Date().getFullYear()} Traceremove. {copy.rights}</p>
@@ -1037,8 +1259,14 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="team" element={<TeamPage />} />
+        <Route path="blog" element={<BlogPage language="en" />} />
+        <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         {languages.map((language) => (
-          <Route key={language} path={`${language}/team`} element={<TeamPage />} />
+          <Fragment key={language}>
+            <Route path={`${language}/team`} element={<TeamPage />} />
+            <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
+            <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
+          </Fragment>
         ))}
         {servicePages.map((page) => (
           <Route key={page.id} path={page.path.slice(1)} element={<ServicePageView page={page} />} />
