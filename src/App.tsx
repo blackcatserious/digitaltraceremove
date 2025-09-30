@@ -965,28 +965,89 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   )
 }
 
+const socialProfiles = [
+  {
+    key: 'instagram',
+    href: 'https://www.instagram.com/traceremove',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M16.98 2H7.02A5.02 5.02 0 0 0 2 7.02v9.96A5.02 5.02 0 0 0 7.02 22h9.96A5.02 5.02 0 0 0 22 16.98V7.02A5.02 5.02 0 0 0 16.98 2Zm3.02 14.98A3.04 3.04 0 0 1 16.98 20H7.02A3.04 3.04 0 0 1 4 16.98V7.02A3.04 3.04 0 0 1 7.02 4h9.96A3.04 3.04 0 0 1 20 7.02Z"
+        />
+        <path
+          d="M12 7.35A4.65 4.65 0 1 0 16.65 12 4.66 4.66 0 0 0 12 7.35Zm0 7.29A2.64 2.64 0 1 1 14.64 12 2.64 2.64 0 0 1 12 14.64Z"
+        />
+        <circle cx="17.35" cy="6.65" r="1.1" />
+      </svg>
+    ),
+  },
+  {
+    key: 'facebook',
+    href: 'https://www.facebook.com/traceremove',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M13.46 20.75v-6.53h2.18l.33-2.53h-2.51v-1.62c0-.73.2-1.23 1.25-1.23h1.33V6.6a17.77 17.77 0 0 0-1.94-.1c-1.92 0-3.24 1.17-3.24 3.3v1.84H8.64v2.53h2.12v6.53Z"
+        />
+      </svg>
+    ),
+  },
+  {
+    key: 'medium',
+    href: 'https://medium.com/@traceremove',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 7.2a1 1 0 0 0-.57.9v7.8a1 1 0 0 0 .57.9l2.77 1.38v-12Z" />
+        <path d="M9 17.64 12.58 19a.7.7 0 0 0 .17 0 .74.74 0 0 0 .26-.06l3.99-1.58V6.59L13 5a.79.79 0 0 0-.29-.06.7.7 0 0 0-.17 0L9 6.3Z" />
+        <path d="M20 15.8V8.2a1 1 0 0 0-.64-.93l-1.36-.52v10.64l1.36-.52A1 1 0 0 0 20 15.8Z" />
+      </svg>
+    ),
+  },
+] as const
+
+type SocialProfileKey = (typeof socialProfiles)[number]['key']
+
 const footerCopy: Record<
   Language,
   {
     rights: string
     studio: string
     founder: string
+    social: Record<SocialProfileKey, string> & { listLabel: string }
   }
 > = {
   en: {
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
     founder: 'Founder & CEO Artur Ziganshin',
+    social: {
+      listLabel: 'Traceremove social platforms',
+      instagram: 'Visit Traceremove on Instagram',
+      facebook: 'Visit Traceremove on Facebook',
+      medium: 'Read Traceremove on Medium',
+    },
   },
   fr: {
     rights: 'Tous droits réservés.',
     studio: "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
     founder: 'Fondateur & CEO Artur Ziganshin',
+    social: {
+      listLabel: 'Présences sociales de Traceremove',
+      instagram: 'Découvrir Traceremove sur Instagram',
+      facebook: 'Découvrir Traceremove sur Facebook',
+      medium: 'Lire Traceremove sur Medium',
+    },
   },
   es: {
     rights: 'Todos los derechos reservados.',
     studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
     founder: 'Fundador y CEO Artur Ziganshin',
+    social: {
+      listLabel: 'Plataformas sociales de Traceremove',
+      instagram: 'Visita a Traceremove en Instagram',
+      facebook: 'Visita a Traceremove en Facebook',
+      medium: 'Lee a Traceremove en Medium',
+    },
   },
 }
 
@@ -1013,6 +1074,20 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           <a href="mailto:contact@traceremove.com">Contact</a>
           <a href="tel:+16063022958">Call us</a>
         </div>
+        <ul className="tr-footer__social" aria-label={copy.social.listLabel}>
+          {socialProfiles.map((profile) => (
+            <li key={profile.key}>
+              <a
+                href={profile.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label={copy.social[profile.key]}
+              >
+                {profile.icon}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
       <p className="tr-footer__rights">© {new Date().getFullYear()} Traceremove. {copy.rights}</p>
     </footer>
