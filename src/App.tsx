@@ -102,6 +102,12 @@ const navCopy: Record<
   },
 }
 
+const languageSummaryCopy: Record<Language, string> = {
+  en: 'Discover localized service blueprints spanning positioning, creative, and revenue ops.',
+  fr: 'Découvrez des plans de services localisés couvrant positionnement, création et opérations revenue.',
+  es: 'Descubre planos de servicio localizados que unen posicionamiento, creatividad y operaciones de revenue.',
+}
+
 const teamCopy: Record<
   Language,
   {
@@ -482,12 +488,6 @@ const serviceCardCta: Record<Language, string> = {
 
 const HomePage = () => {
   const currentLanguage = useCurrentLanguage()
-  const totalPages = servicePages.length
-  const summaries = languages.map((language) => {
-    const count = servicePages.filter((page) => page.language === language).length
-    return { language, count }
-  })
-
   const heroCta = navCopy[currentLanguage].callToAction
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
@@ -501,13 +501,18 @@ const HomePage = () => {
     bullets: service.bullets[currentLanguage],
     contactHref: `mailto:contact@traceremove.com?subject=${encodeURIComponent(service.title[currentLanguage])}`,
   }))
+  const languageSummaries = languages.map((language) => ({
+    language,
+    description: languageSummaryCopy[language],
+    primaryPagePath: navigation[language][0]?.pages[0]?.path ?? '/',
+  }))
 
   return (
     <section className="home">
       <div className="home-hero">
         <div className="home-hero-copy">
           <span className="home-badge">Traceremove · Digital Agency</span>
-          <h1>{totalPages} multilingual service blueprints engineered for momentum.</h1>
+          <h1>Multilingual service blueprints engineered for momentum.</h1>
           <p>{navCopy[currentLanguage].tagline}</p>
           <div className="home-cta">
             <a className="button primary" href="mailto:contact@traceremove.com">
@@ -560,17 +565,17 @@ const HomePage = () => {
       </section>
 
       <div className="home-grid">
-        {summaries.map(({ language, count }) => (
+        {languageSummaries.map(({ language, description, primaryPagePath }) => (
           <article key={language} className="home-card">
             <header>
               <h2>{languageLabels[language]}</h2>
-              <p>{count} tailored pages</p>
+              <p>{description}</p>
             </header>
             <p>
               Navigate all {languageLabels[language]} services, from positioning and creative systems to lifecycle
               automation. Each page outlines outcomes, investment levels, and the rituals we run with your team.
             </p>
-            <Link className="button tertiary" to={navigation[language][0]?.pages[0]?.path ?? '/'}>
+            <Link className="button tertiary" to={primaryPagePath}>
               {language === 'en' && 'Explore English services'}
               {language === 'fr' && 'Découvrir les services'}
               {language === 'es' && 'Explorar servicios'}

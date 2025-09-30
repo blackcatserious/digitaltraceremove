@@ -1147,7 +1147,7 @@ serviceConfigs.forEach((service, serviceIndex) => {
   })
 })
 
-export const servicePages: ServicePageContent[] = pagesUntrimmed.slice(0, 212)
+export const servicePages: ServicePageContent[] = pagesUntrimmed
 
 export const languages: Language[] = ['en', 'fr', 'es']
 
