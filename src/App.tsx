@@ -1,4 +1,12 @@
-import { Fragment, type ReactNode, useEffect, useMemo, useState } from 'react'
+import {
+  Fragment,
+  type ChangeEvent,
+  type FormEvent,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import {
   interfaceCopy,
@@ -74,6 +82,8 @@ const buildNavigation = () => {
 const navigation = buildNavigation()
 
 const getTeamPath = (language: Language) => (language === 'en' ? '/team' : `/${language}/team`)
+
+const getContactPath = (language: Language) => (language === 'en' ? '/contact' : `/${language}/contact`)
 
 const navCopy: Record<
   Language,
@@ -815,6 +825,242 @@ const TeamPage = () => {
   )
 }
 
+const contactCopy: Record<
+  Language,
+  {
+    kicker: string
+    title: string
+    subtitle: string
+    intro: string
+    formTitle: string
+    detailTitle: string
+    detailPoints: string[]
+    successTitle: string
+    successMessage: string
+    submit: string
+    legal: string
+    fields: {
+      name: { label: string; placeholder: string }
+      email: { label: string; placeholder: string }
+      company: { label: string; placeholder: string }
+      phone: { label: string; placeholder: string }
+      message: { label: string; placeholder: string }
+    }
+  }
+> = {
+  en: {
+    kicker: 'Contact Traceremove',
+    title: 'Design your next reputation breakthrough',
+    subtitle: 'Share your objectives and we will craft a tailored response within one business day.',
+    intro:
+      'Tell us about your roadmap, KPIs, and reputation challenges. Our multilingual team will assemble a bespoke growth and risk mitigation program.',
+    formTitle: 'Send us a note',
+    detailTitle: 'Prefer a direct line?',
+    detailPoints: [
+      'Email contact@traceremove.com for quick scoping questions and proposals.',
+      'Call +1 606 302 2958 Monday to Friday, 9am–6pm EST for immediate assistance.',
+      'Book a 30-minute strategy session to leave with a prioritised roadmap and next steps.',
+    ],
+    successTitle: 'Thanks for reaching out',
+    successMessage: 'We will review your message and respond within one business day.',
+    submit: 'Send message',
+    legal: 'By submitting this form you agree to be contacted about Traceremove services. We respect your inbox and privacy.',
+    fields: {
+      name: { label: 'Full name', placeholder: 'Jane Doe' },
+      email: { label: 'Work email', placeholder: 'jane@company.com' },
+      company: { label: 'Company or team', placeholder: 'Acme Corp' },
+      phone: { label: 'Phone (optional)', placeholder: '+1 555 555 5555' },
+      message: { label: 'How can we help?', placeholder: 'Share goals, timelines, or reputation risks…' },
+    },
+  },
+  fr: {
+    kicker: 'Contact Traceremove',
+    title: 'Imaginez votre prochaine percée de réputation',
+    subtitle: 'Partagez vos objectifs et nous vous envoyons une proposition sous 24 h.',
+    intro:
+      'Parlez-nous de votre feuille de route, de vos indicateurs clés et des défis réputationnels. Notre équipe multilingue bâtira un programme sur mesure.',
+    formTitle: 'Écrivez-nous',
+    detailTitle: 'Besoin d’un échange direct ?',
+    detailPoints: [
+      'Écrivez à contact@traceremove.com pour un cadrage rapide de votre projet.',
+      'Appelez le +1 606 302 2958 du lundi au vendredi, 9h–18h EST.',
+      'Réservez une session stratégique de 30 minutes pour repartir avec un plan priorisé.',
+    ],
+    successTitle: 'Merci pour votre message',
+    successMessage: 'Nous revenons vers vous sous un jour ouvré.',
+    submit: 'Envoyer',
+    legal: 'En envoyant ce formulaire, vous acceptez que nous vous contactions au sujet de nos services. Vos données restent confidentielles.',
+    fields: {
+      name: { label: 'Nom complet', placeholder: 'Jeanne Dupont' },
+      email: { label: 'Email professionnel', placeholder: 'jeanne@entreprise.com' },
+      company: { label: 'Entreprise ou équipe', placeholder: 'Entreprise Exemple' },
+      phone: { label: 'Téléphone (optionnel)', placeholder: '+33 6 12 34 56 78' },
+      message: { label: 'Comment pouvons-nous aider ?', placeholder: 'Partagez vos objectifs, délais ou risques réputationnels…' },
+    },
+  },
+  es: {
+    kicker: 'Contacto Traceremove',
+    title: 'Diseña tu próximo avance de reputación',
+    subtitle: 'Comparte tus objetivos y enviaremos una propuesta en menos de 24 horas.',
+    intro:
+      'Cuéntanos tu hoja de ruta, métricas clave y retos de reputación. Nuestro equipo multilingüe armará un programa hecho a medida.',
+    formTitle: 'Escríbenos',
+    detailTitle: '¿Prefieres un contacto directo?',
+    detailPoints: [
+      'Escribe a contact@traceremove.com para dudas rápidas sobre alcance y propuestas.',
+      'Llama al +1 606 302 2958 de lunes a viernes, 9h–18h EST.',
+      'Agenda una sesión estratégica de 30 minutos y obtén un plan priorizado.',
+    ],
+    successTitle: 'Gracias por escribirnos',
+    successMessage: 'Revisaremos tu mensaje y responderemos en un día hábil.',
+    submit: 'Enviar mensaje',
+    legal: 'Al enviar aceptas que te contactemos sobre los servicios de Traceremove. Protegemos tu privacidad.',
+    fields: {
+      name: { label: 'Nombre completo', placeholder: 'Ana Pérez' },
+      email: { label: 'Correo profesional', placeholder: 'ana@empresa.com' },
+      company: { label: 'Empresa o equipo', placeholder: 'Empresa Ejemplo' },
+      phone: { label: 'Teléfono (opcional)', placeholder: '+34 600 123 456' },
+      message: { label: '¿Cómo podemos ayudar?', placeholder: 'Comparte objetivos, plazos o riesgos de reputación…' },
+    },
+  },
+}
+
+const ContactPage = ({ language }: { language: Language }) => {
+  const copy = contactCopy[language]
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    message: '',
+  })
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleChange = (field: keyof typeof formData) =>
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (submitted) {
+        setSubmitted(false)
+      }
+      const value = event.target.value
+      setFormData((prev) => ({
+        ...prev,
+        [field]: value,
+      }))
+    }
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setSubmitted(true)
+    setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+  }
+
+  return (
+    <section className="contact-page">
+      <header className="contact-hero">
+        <p className="contact-kicker">{copy.kicker}</p>
+        <h1>{copy.title}</h1>
+        <p className="contact-subtitle">{copy.subtitle}</p>
+        <p className="contact-intro">{copy.intro}</p>
+      </header>
+      <div className="contact-grid">
+        <form className="contact-form" onSubmit={handleSubmit} noValidate>
+          <h2>{copy.formTitle}</h2>
+          <div className="contact-form__fields">
+            <div className="contact-field">
+              <label htmlFor="contact-name">{copy.fields.name.label}</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                placeholder={copy.fields.name.placeholder}
+                value={formData.name}
+                onChange={handleChange('name')}
+                required
+              />
+            </div>
+            <div className="contact-field">
+              <label htmlFor="contact-email">{copy.fields.email.label}</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder={copy.fields.email.placeholder}
+                value={formData.email}
+                onChange={handleChange('email')}
+                required
+              />
+            </div>
+            <div className="contact-field">
+              <label htmlFor="contact-company">{copy.fields.company.label}</label>
+              <input
+                id="contact-company"
+                name="company"
+                type="text"
+                autoComplete="organization"
+                placeholder={copy.fields.company.placeholder}
+                value={formData.company}
+                onChange={handleChange('company')}
+              />
+            </div>
+            <div className="contact-field">
+              <label htmlFor="contact-phone">{copy.fields.phone.label}</label>
+              <input
+                id="contact-phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                placeholder={copy.fields.phone.placeholder}
+                value={formData.phone}
+                onChange={handleChange('phone')}
+              />
+            </div>
+            <div className="contact-field contact-field--full">
+              <label htmlFor="contact-message">{copy.fields.message.label}</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows={5}
+                placeholder={copy.fields.message.placeholder}
+                value={formData.message}
+                onChange={handleChange('message')}
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" className="button primary contact-submit">
+            {copy.submit}
+          </button>
+          {submitted && (
+            <div className="contact-success" role="status" aria-live="polite">
+              <h3>{copy.successTitle}</h3>
+              <p>{copy.successMessage}</p>
+            </div>
+          )}
+          <p className="contact-legal">{copy.legal}</p>
+        </form>
+        <aside className="contact-details">
+          <h2>{copy.detailTitle}</h2>
+          <ul>
+            {copy.detailPoints.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+          <div className="contact-direct">
+            <a className="button primary" href="mailto:contact@traceremove.com">
+              contact@traceremove.com
+            </a>
+            <a className="button secondary" href="tel:+16063022958">
+              +1 606 302 2958
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  )
+}
+
 const NotFound = () => (
   <section className="service-page">
     <header className="service-hero">
@@ -1085,9 +1331,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <NavLink className="tr-nav__link" to={getBlogBasePath(currentLanguage)}>
             {copy.blog}
           </NavLink>
-          <a className="tr-nav__link" href="mailto:contact@traceremove.com">
+          <NavLink className="tr-nav__link" to={getContactPath(currentLanguage)}>
             {copy.contact}
-          </a>
+          </NavLink>
         </nav>
 
         <div className="tr-header__cta">
@@ -1147,6 +1393,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             <NavLink to={getBlogBasePath(currentLanguage)} className="tr-mobile-link">
               {copy.blog}
             </NavLink>
+            <NavLink to={getContactPath(currentLanguage)} className="tr-mobile-link">
+              {copy.contact}
+            </NavLink>
             <a className="tr-mobile-link" href="mailto:contact@traceremove.com">
               contact@traceremove.com
             </a>
@@ -1180,6 +1429,11 @@ const footerCopy: Record<
     blog: string
     contact: string
     call: string
+    subscribeTitle: string
+    subscribeSubtitle: string
+    subscribePlaceholder: string
+    subscribeCta: string
+    subscribeSuccess: string
   }
 > = {
   en: {
@@ -1190,6 +1444,11 @@ const footerCopy: Record<
     blog: 'Blog',
     contact: 'Contact',
     call: 'Call us',
+    subscribeTitle: 'Stay in the loop',
+    subscribeSubtitle: 'Receive frameworks, playbooks, and release notes from our growth and reputation lab.',
+    subscribePlaceholder: 'Your email address',
+    subscribeCta: 'Subscribe',
+    subscribeSuccess: 'Thanks for subscribing — check your inbox for a confirmation.',
   },
   fr: {
     rights: 'Tous droits réservés.',
@@ -1199,6 +1458,11 @@ const footerCopy: Record<
     blog: 'Blog',
     contact: 'Contact',
     call: 'Appelez-nous',
+    subscribeTitle: 'Restez informé',
+    subscribeSubtitle: 'Recevez frameworks, playbooks et notes de version de notre laboratoire growth & réputation.',
+    subscribePlaceholder: 'Votre adresse email',
+    subscribeCta: 'S’abonner',
+    subscribeSuccess: 'Merci pour votre abonnement — vérifiez votre boîte de réception pour confirmer.',
   },
   es: {
     rights: 'Todos los derechos reservados.',
@@ -1208,11 +1472,51 @@ const footerCopy: Record<
     blog: 'Blog',
     contact: 'Contacto',
     call: 'Llámanos',
+    subscribeTitle: 'Mantente al día',
+    subscribeSubtitle: 'Recibe frameworks, playbooks y notas de lanzamiento de nuestro laboratorio de crecimiento y reputación.',
+    subscribePlaceholder: 'Tu correo electrónico',
+    subscribeCta: 'Suscribirme',
+    subscribeSuccess: 'Gracias por suscribirte — revisa tu bandeja de entrada para confirmar.',
   },
+}
+
+const callWidgetCopy: Record<Language, { label: string; assist: string }> = {
+  en: { label: 'Call +1 606 302 2958', assist: 'Speak with Artur Ziganshin' },
+  fr: { label: 'Appelez +1 606 302 2958', assist: 'Échangez avec Artur Ziganshin' },
+  es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con Artur Ziganshin' },
+}
+
+const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
+  const copy = callWidgetCopy[currentLanguage]
+
+  return (
+    <a className="call-widget" href="tel:+16063022958" aria-label={`${copy.label}. ${copy.assist}`}>
+      <span className="call-widget__icon" aria-hidden="true">📞</span>
+      <span className="call-widget__text">
+        <span className="call-widget__label">{copy.label}</span>
+        <span className="call-widget__assist">{copy.assist}</span>
+      </span>
+    </a>
+  )
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = footerCopy[currentLanguage]
+  const [email, setEmail] = useState('')
+  const [subscribed, setSubscribed] = useState(false)
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setSubscribed(true)
+    setEmail('')
+  }
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (subscribed) {
+      setSubscribed(false)
+    }
+    setEmail(event.target.value)
+  }
 
   return (
     <footer className="tr-footer">
@@ -1228,11 +1532,35 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           <a href="mailto:contact@traceremove.com">contact@traceremove.com</a>
           <a href="tel:+16063022958">+1 606 302 2958</a>
           <p>{copy.founder}</p>
+          <form className="tr-footer__subscribe" onSubmit={handleSubmit} noValidate>
+            <div>
+              <h3>{copy.subscribeTitle}</h3>
+              <p>{copy.subscribeSubtitle}</p>
+            </div>
+            <div className="tr-footer__subscribe-form">
+              <input
+                type="email"
+                name="footer-email"
+                placeholder={copy.subscribePlaceholder}
+                value={email}
+                onChange={handleChange}
+                required
+              />
+              <button type="submit" className="button tertiary">
+                {copy.subscribeCta}
+              </button>
+            </div>
+            {subscribed && (
+              <p className="tr-footer__subscribe-success" role="status" aria-live="polite">
+                {copy.subscribeSuccess}
+              </p>
+            )}
+          </form>
         </div>
         <div className="tr-footer__links">
           <NavLink to={getTeamPath(currentLanguage)}>{copy.team}</NavLink>
           <NavLink to={getBlogBasePath(currentLanguage)}>{copy.blog}</NavLink>
-          <a href="mailto:contact@traceremove.com">{copy.contact}</a>
+          <NavLink to={getContactPath(currentLanguage)}>{copy.contact}</NavLink>
           <a href="tel:+16063022958">{copy.call}</a>
         </div>
       </div>
@@ -1249,6 +1577,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <Header currentLanguage={currentLanguage} />
       <main className="content">{children}</main>
       <Footer currentLanguage={currentLanguage} />
+      <CallWidget currentLanguage={currentLanguage} />
     </div>
   )
 }
@@ -1259,11 +1588,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="team" element={<TeamPage />} />
+        <Route path="contact" element={<ContactPage language="en" />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         {languages.map((language) => (
           <Fragment key={language}>
             <Route path={`${language}/team`} element={<TeamPage />} />
+            <Route path={`${language}/contact`} element={<ContactPage language={language} />} />
             <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
             <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
           </Fragment>
