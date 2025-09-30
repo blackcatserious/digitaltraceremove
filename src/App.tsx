@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode, useEffect, useMemo, useState } from 'react'
+import { Fragment, type ReactNode, useEffect, useState } from 'react'
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import {
   interfaceCopy,
@@ -66,6 +66,15 @@ const buildNavigation = () => {
 }
 
 const navigation = buildNavigation()
+
+const firstPages = languages.reduce<Record<Language, string>>((acc, language) => {
+  if (language === 'en') {
+    acc[language] = '/'
+  } else {
+    acc[language] = navigation[language]?.[0]?.pages[0]?.path ?? '/'
+  }
+  return acc
+}, { en: '/', fr: '/', es: '/' })
 
 const getTeamPath = (language: Language) => (language === 'en' ? '/team' : `/${language}/team`)
 
@@ -835,19 +844,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     setMobileOpen(false)
   }, [location.pathname])
 
-  const firstPages = useMemo(
-    () =>
-      languages.reduce<Record<Language, string>>((acc, lang) => {
-        if (lang === 'en') {
-          acc[lang] = '/'
-        } else {
-          acc[lang] = navigation[lang][0]?.pages[0]?.path ?? '/'
-        }
-        return acc
-      }, { en: '/', fr: '/', es: '/' }),
-    []
-  )
-
   return (
     <header className="tr-header">
       <div className="tr-header__inner">
@@ -992,6 +988,8 @@ const footerCopy: Record<
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = footerCopy[currentLanguage]
+  const navLabels = navCopy[currentLanguage]
+  const groups = navigation[currentLanguage] ?? []
 
   return (
     <footer className="tr-footer">
@@ -1003,15 +1001,51 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
             <p className="tr-footer__tagline">{copy.studio}</p>
           </div>
         </div>
-        <div className="tr-footer__contact">
-          <a href="mailto:contact@traceremove.com">contact@traceremove.com</a>
-          <a href="tel:+16063022958">+1 606 302 2958</a>
-          <p>{copy.founder}</p>
-        </div>
-        <div className="tr-footer__links">
-          <NavLink to={getTeamPath(currentLanguage)}>Team</NavLink>
-          <a href="mailto:contact@traceremove.com">Contact</a>
-          <a href="tel:+16063022958">Call us</a>
+        <div className="tr-footer__grid">
+          <div className="tr-footer__services" aria-label="Footer services navigation">
+            {groups.map((group) => (
+              <div key={group.serviceName} className="tr-footer__column">
+                <h3>{group.serviceName}</h3>
+                <ul>
+                  {group.pages.map((page) => (
+                    <li key={page.path}>
+                      <NavLink to={page.path}>{page.industryName}</NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="tr-footer__meta">
+            <div className="tr-footer__contact">
+              <h3>Contact</h3>
+              <NavLink to={getTeamPath(currentLanguage)}>{navLabels.team}</NavLink>
+              <a href="mailto:contact@traceremove.com">contact@traceremove.com</a>
+              <a href="tel:+16063022958">+1 606 302 2958</a>
+              <p>{copy.founder}</p>
+            </div>
+            <div className="tr-footer__languages" aria-label="Footer language switcher">
+              <h3>Languages</h3>
+              <ul className="tr-footer__language-list">
+                {languages.map((language) => {
+                  const isActive = language === currentLanguage
+                  return (
+                    <li key={language}>
+                      <NavLink
+                        to={firstPages[language]}
+                        className={`tr-footer__language ${isActive ? 'is-active' : ''}`}
+                      >
+                        <span className="tr-footer__language-icon" aria-hidden="true">
+                          {language.toUpperCase()}
+                        </span>
+                        <span>{languageLabels[language]}</span>
+                      </NavLink>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       <p className="tr-footer__rights">© {new Date().getFullYear()} Traceremove. {copy.rights}</p>
