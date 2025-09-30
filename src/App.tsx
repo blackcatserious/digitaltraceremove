@@ -888,6 +888,15 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           </a>
         </nav>
 
+        <div className="tr-header__buttons">
+          <a className="button secondary" href="mailto:contact@traceremove.com">
+            Связаться
+          </a>
+          <Link className="button ghost" to={getTeamPath(currentLanguage)}>
+            О нас
+          </Link>
+        </div>
+
         <div className="tr-header__cta">
           <a className="button ghost" href="tel:+16063022958">
             +1 606 302 2958
