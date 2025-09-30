@@ -1,34 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const MENU_ITEMS = [
+  { label: 'Contact Us', href: '#contact' },
+  { label: 'About', href: '#about' },
+  { label: 'Request Monitoring', href: '#monitoring' },
+  { label: 'Success Stories', href: '#cases' },
+  { label: 'Media About Us', href: '#media' },
+]
 
+function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+    <div className="app">
+      <header className="header">
+        <a className="brand" href="https://traceremove.com" aria-label="Traceremove home">
+          Traceremove
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+        <nav className="nav" aria-label="Main navigation">
+          <ul className="menu">
+            {MENU_ITEMS.map((item) => (
+              <li key={item.href} className="menu__item">
+                <a href={item.href} className="menu__link">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+      <main className="hero">
+        <p className="hero__eyebrow">Digital reputation management</p>
+        <h1 className="hero__title">Traceremove protects how the internet sees your brand</h1>
+        <p className="hero__subtitle">
+          Monitor every mention, counter harmful narratives, and build trust across English-, French-, and
+          Spanish-speaking markets with the multilingual team trusted by fast-growing founders.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <a className="hero__cta" href="#monitoring">
+          Request monitoring today
+        </a>
+      </main>
+    </div>
   )
 }
 
