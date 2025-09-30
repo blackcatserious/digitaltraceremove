@@ -494,6 +494,24 @@ const homeServicesCopy: Record<
   },
 }
 
+const homeHeroHeading: Record<Language, string> = {
+  en: 'Multilingual service blueprints engineered for momentum.',
+  fr: 'Des plans de services multilingues conçus pour accélérer votre momentum.',
+  es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
+}
+
+const homeFounderCopy: Record<Language, string> = {
+  en: 'Founder & CEO leading every engagement with a senior core team operating across English, French, and Spanish markets.',
+  fr: 'Fondateur et CEO pilotant chaque mission avec un noyau senior actif sur les marchés anglophone, francophone et hispanophone.',
+  es: 'Fundador y CEO que lidera cada proyecto con un núcleo senior que opera en los mercados anglófono, francófono e hispanohablante.',
+}
+
+const homeTeamLinkCopy: Record<Language, string> = {
+  en: 'Meet the team',
+  fr: "Rencontrer l'équipe",
+  es: 'Conoce al equipo',
+}
+
 const serviceCardCta: Record<Language, string> = {
   en: 'Book this service',
   fr: 'Réserver ce service',
@@ -502,15 +520,17 @@ const serviceCardCta: Record<Language, string> = {
 
 const HomePage = () => {
   const currentLanguage = useCurrentLanguage()
-  const totalPages = servicePages.length
   const summaries = languages.map((language) => {
     const count = servicePages.filter((page) => page.language === language).length
     return { language, count }
   })
 
   const heroCta = navCopy[currentLanguage].callToAction
+  const heroHeading = homeHeroHeading[currentLanguage]
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
+  const founderNote = homeFounderCopy[currentLanguage]
+  const teamLinkCopy = homeTeamLinkCopy[currentLanguage]
   const localizedServices = primaryServices.map((service) => ({
     key: service.key,
     accent: service.accent,
@@ -527,7 +547,7 @@ const HomePage = () => {
       <div className="home-hero">
         <div className="home-hero-copy">
           <span className="home-badge">Traceremove · Digital Agency</span>
-          <h1>{totalPages} multilingual service blueprints engineered for momentum.</h1>
+          <h1>{heroHeading}</h1>
           <p>{navCopy[currentLanguage].tagline}</p>
           <div className="home-cta">
             <a className="button primary" href="mailto:contact@traceremove.com">
@@ -539,11 +559,10 @@ const HomePage = () => {
           </div>
           <div className="home-contact">
             <p>
-              Founder &amp; CEO <strong>Artur Ziganshin</strong> leads every engagement with a senior core team operating
-              across English, French, and Spanish markets.
+              <strong>Artur Ziganshin</strong> — {founderNote}
             </p>
             <Link className="button ghost" to={getTeamPath(currentLanguage)}>
-              Meet the team
+              {teamLinkCopy}
             </Link>
           </div>
         </div>
@@ -1486,6 +1505,57 @@ const callWidgetCopy: Record<Language, { label: string; assist: string }> = {
   es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con Artur Ziganshin' },
 }
 
+type SocialKey = 'linkedin' | 'behance' | 'dribbble'
+
+const socialLinks: { key: SocialKey; href: string }[] = [
+  { key: 'linkedin', href: 'https://www.linkedin.com/company/traceremove' },
+  { key: 'behance', href: 'https://www.behance.net/traceremove' },
+  { key: 'dribbble', href: 'https://dribbble.com/traceremove' },
+]
+
+const footerSocialLabels: Record<Language, Record<SocialKey, string>> = {
+  en: {
+    linkedin: 'Traceremove on LinkedIn',
+    behance: 'Traceremove portfolio on Behance',
+    dribbble: 'Traceremove shots on Dribbble',
+  },
+  fr: {
+    linkedin: 'Traceremove sur LinkedIn',
+    behance: 'Portfolio Traceremove sur Behance',
+    dribbble: 'Créations Traceremove sur Dribbble',
+  },
+  es: {
+    linkedin: 'Traceremove en LinkedIn',
+    behance: 'Portafolio de Traceremove en Behance',
+    dribbble: 'Proyectos de Traceremove en Dribbble',
+  },
+}
+
+const renderSocialIcon = (key: SocialKey): JSX.Element | null => {
+  switch (key) {
+    case 'linkedin':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4.983 3.5A2.484 2.484 0 0 1 7.5 1a2.5 2.5 0 1 1-2.517 2.5Zm.184 4.25h4.667v14.75H5.167Zm6.583 0h4.48v2.017h.064c.623-1.182 2.145-2.43 4.416-2.43 4.723 0 5.6 3.11 5.6 7.157v8.006h-4.667v-7.1c0-1.694-.031-3.873-2.362-3.873-2.366 0-2.729 1.85-2.729 3.756v7.217h-4.802Z" />
+        </svg>
+      )
+    case 'behance':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4.4 5.5h4.9a4 4 0 0 1 4 3.9c0 1.6-.8 2.7-2.3 3.2 1.9.4 3 1.8 3 3.7a4.4 4.4 0 0 1-4.6 4.3H4.4Zm3 6.5h1.9a1.8 1.8 0 0 0 0-3.6H7.4Zm0 6.4h2.1a2 2 0 1 0 0-3.9H7.4Zm12-4.6c0-3.2 1.9-5.5 5-5.5 3.8 0 5 2.8 5 5.7l-.1.8h-6.8c.1 1.6.9 2.6 2.6 2.6a2.6 2.6 0 0 0 2.5-1.2l1.9 1.4a5.1 5.1 0 0 1-4.4 2.2c-3.4 0-5.7-2.2-5.7-5.9Zm2.8-1.3h4.1c-.1-1.4-.9-2.3-2-2.3-1.3 0-2 .8-2.1 2.3Zm-.7-6.2h5.6v1.7h-5.6Z" />
+        </svg>
+      )
+    case 'dribbble':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2a10 10 0 1 1-9.96 10A10 10 0 0 1 12 2Zm5.9 14.8a15.9 15.9 0 0 0-5-1.1 25 25 0 0 1 1.4 5.3 8.4 8.4 0 0 0 3.6-4.2ZM13 21.6a22.6 22.6 0 0 0-1.4-5.5c-3 .9-5.6 2.6-7.5 4.9a8.4 8.4 0 0 0 8.9.6Zm-9.4-2.5c2-2.4 4.8-4.2 8-5.1l-.1-.2a21.7 21.7 0 0 1-2.4-6.2A8.4 8.4 0 0 0 3.6 19.1Zm5-12.9a19 19 0 0 0 2.2 5.8 15.3 15.3 0 0 1 6-1.4 8.3 8.3 0 0 0-8.2-4.4ZM18 12a13 13 0 0 0-6.8 1.6l.2.4a24.1 24.1 0 0 1 1.5 5 8.4 8.4 0 0 0 5.3-7Z" />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
+
 const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = callWidgetCopy[currentLanguage]
 
@@ -1562,6 +1632,20 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           <NavLink to={getBlogBasePath(currentLanguage)}>{copy.blog}</NavLink>
           <NavLink to={getContactPath(currentLanguage)}>{copy.contact}</NavLink>
           <a href="tel:+16063022958">{copy.call}</a>
+        </div>
+        <div className="tr-footer__social">
+          {socialLinks.map(({ key, href }) => (
+            <a
+              key={key}
+              className={`tr-footer__social-link tr-footer__social-link--${key}`}
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={footerSocialLabels[currentLanguage][key]}
+            >
+              {renderSocialIcon(key)}
+            </a>
+          ))}
         </div>
       </div>
       <p className="tr-footer__rights">© {new Date().getFullYear()} Traceremove. {copy.rights}</p>
