@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode, useEffect, useMemo, useState } from 'react'
+import { Fragment, type FormEvent, type ReactNode, useEffect, useMemo, useState } from 'react'
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import {
   interfaceCopy,
@@ -99,6 +99,41 @@ const navCopy: Record<
     contact: 'Contacto',
     callToAction: 'Reserva una sesión estratégica',
     tagline: 'Marketing de crecimiento, diseño de ingresos y storytelling de producto para equipos ágiles.',
+  },
+}
+
+const heroBadgeCopy: Record<Language, string> = {
+  en: 'Traceremove · Digital Agency',
+  fr: 'Traceremove · Agence numérique',
+  es: 'Traceremove · Agencia digital',
+}
+
+const heroEmailCopy: Record<
+  Language,
+  {
+    description: string
+    placeholder: string
+    buttonLabel: string
+    note: string
+  }
+> = {
+  en: {
+    description: 'Share your email to receive a tailored action plan and timeline within one business day.',
+    placeholder: 'Enter your work email',
+    buttonLabel: 'Email the Traceremove team',
+    note: 'No spam — only a personalised blueprint for your market.',
+  },
+  fr: {
+    description: "Laissez votre email pour recevoir un plan d'action personnalisé et un échéancier sous un jour ouvré.",
+    placeholder: 'Entrez votre email professionnel',
+    buttonLabel: "Écrire à l'équipe Traceremove",
+    note: "Zéro spam — juste un blueprint sur-mesure pour votre marché.",
+  },
+  es: {
+    description: 'Comparte tu email y recibirás un plan de acción a medida con tiempos en un día hábil.',
+    placeholder: 'Introduce tu email profesional',
+    buttonLabel: 'Escribir al equipo de Traceremove',
+    note: 'Sin spam: solo un blueprint personalizado para tu mercado.',
   },
 }
 
@@ -491,6 +526,8 @@ const HomePage = () => {
   const heroCta = navCopy[currentLanguage].callToAction
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
+  const heroBadge = heroBadgeCopy[currentLanguage]
+  const heroEmailTexts = heroEmailCopy[currentLanguage]
   const localizedServices = primaryServices.map((service) => ({
     key: service.key,
     accent: service.accent,
@@ -502,29 +539,94 @@ const HomePage = () => {
     contactHref: `mailto:contact@traceremove.com?subject=${encodeURIComponent(service.title[currentLanguage])}`,
   }))
 
+  const [heroEmail, setHeroEmail] = useState('')
+
+  const handleHeroSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const trimmedEmail = heroEmail.trim()
+    if (!trimmedEmail) {
+      return
+    }
+
+    const subject = encodeURIComponent(navCopy[currentLanguage].callToAction)
+    const body = encodeURIComponent(
+      `Hi Traceremove team,\n\nI would like to discuss your services.\n\n— ${trimmedEmail}`,
+    )
+
+    if (typeof window !== 'undefined') {
+      window.location.href = `mailto:contact@traceremove.com?subject=${subject}&body=${body}`
+    }
+
+    setHeroEmail('')
+  }
+
   return (
     <section className="home">
       <div className="home-hero">
         <div className="home-hero-copy">
-          <span className="home-badge">Traceremove · Digital Agency</span>
-          <h1>{totalPages} multilingual service blueprints engineered for momentum.</h1>
-          <p>{navCopy[currentLanguage].tagline}</p>
-          <div className="home-cta">
-            <a className="button primary" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
-            </a>
-            <a className="button secondary" href="tel:+16063022958">
-              +1 606 302 2958
-            </a>
+          <div className="home-hero-atmosphere" aria-hidden="true">
+            <span className="home-hero-glow home-hero-glow--one" />
+            <span className="home-hero-glow home-hero-glow--two" />
+            <span className="home-hero-glow home-hero-glow--three" />
+            <span className="home-hero-particle home-hero-particle--one" />
+            <span className="home-hero-particle home-hero-particle--two" />
+            <span className="home-hero-particle home-hero-particle--three" />
           </div>
-          <div className="home-contact">
-            <p>
-              Founder &amp; CEO <strong>Artur Ziganshin</strong> leads every engagement with a senior core team operating
-              across English, French, and Spanish markets.
-            </p>
-            <Link className="button ghost" to={getTeamPath(currentLanguage)}>
-              Meet the team
-            </Link>
+          <div className="home-hero-copy__inner">
+            <div className="home-hero-copy__left">
+              <span className="home-hero-badge">
+                <span className="home-hero-badge__pulse" aria-hidden="true" />
+                {heroBadge}
+              </span>
+              <h1>
+                {totalPages} multilingual service blueprints engineered for momentum.
+              </h1>
+              <p>{navCopy[currentLanguage].tagline}</p>
+              <Link className="home-hero-team" to={getTeamPath(currentLanguage)}>
+                <span className="home-hero-team__label">{teamCopy[currentLanguage].title}</span>
+                <span aria-hidden="true" className="home-hero-team__arrow">
+                  →
+                </span>
+              </Link>
+            </div>
+            <div className="home-hero-copy__right">
+              <div className="home-hero-cta-card">
+                <span className="home-hero-cta-card__title">{heroCta}</span>
+                <p>{heroEmailTexts.description}</p>
+                <form className="home-hero-form" onSubmit={handleHeroSubmit}>
+                  <label className="sr-only" htmlFor="home-hero-email">
+                    {heroEmailTexts.placeholder}
+                  </label>
+                  <input
+                    id="home-hero-email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    placeholder={heroEmailTexts.placeholder}
+                    value={heroEmail}
+                    onChange={(event) => setHeroEmail(event.target.value)}
+                  />
+                  <button type="submit" aria-label={heroEmailTexts.buttonLabel}>
+                    <svg
+                      aria-hidden="true"
+                      className="home-hero-form__icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 12h14m0 0-6-6m6 6-6 6"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </form>
+                <span className="home-hero-cta-card__note">{heroEmailTexts.note}</span>
+              </div>
+            </div>
           </div>
         </div>
         <div className="home-hero-visual" aria-hidden="true">
