@@ -484,14 +484,143 @@ a {
 .home-hero-visual {
   position: relative;
   z-index: 1;
-  display: flex;
-  justify-content: center;
+  width: clamp(220px, 34vw, 400px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 30px 60px rgba(8, 18, 43, 0.45));
+  isolation: isolate;
 }
 
-.home-hero-visual img {
-  width: clamp(200px, 32vw, 360px);
-  filter: drop-shadow(0 25px 55px rgba(15, 23, 42, 0.35));
-  animation: orbit 18s linear infinite;
+.home-hero-visual > span {
+  position: absolute;
+  display: block;
+}
+
+.home-hero-visual__ring {
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.25), transparent 55%),
+    conic-gradient(from 45deg, rgba(56, 189, 248, 0.4), rgba(129, 140, 248, 0.15), rgba(56, 189, 248, 0.4));
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  backdrop-filter: blur(3px);
+  transform: rotate(0deg);
+  animation: heroRingRotate 32s linear infinite;
+}
+
+.home-hero-visual__diamond {
+  width: 58%;
+  aspect-ratio: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 28%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(14, 165, 233, 0.55));
+  box-shadow: 0 25px 45px rgba(15, 23, 42, 0.45);
+  animation: heroDiamondFloat 18s ease-in-out infinite;
+}
+
+.home-hero-visual__beam {
+  width: 18%;
+  height: 72%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.9), rgba(8, 47, 73, 0));
+  box-shadow: 0 18px 35px rgba(14, 165, 233, 0.45);
+  mix-blend-mode: screen;
+  animation: heroBeamSwing 14s ease-in-out infinite;
+}
+
+.home-hero-visual__dot {
+  width: 16%;
+  aspect-ratio: 1;
+  top: 24%;
+  left: 22%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fef3c7, #f97316 55%, rgba(194, 65, 12, 0.65));
+  box-shadow: 0 20px 40px rgba(249, 115, 22, 0.4);
+  animation: heroDotDrift 12s ease-in-out infinite;
+}
+
+.home-hero-visual__orb {
+  width: 34%;
+  aspect-ratio: 1;
+  bottom: 16%;
+  right: 12%;
+  transform: translate(50%, 50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(244, 114, 182, 0.75), rgba(59, 130, 246, 0.25));
+  box-shadow: 0 25px 60px rgba(236, 72, 153, 0.35);
+  animation: heroOrbPulse 16s ease-in-out infinite;
+}
+
+@keyframes heroRingRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes heroDiamondFloat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  }
+  50% {
+    transform: translate(-47%, -54%) rotate(45deg) scale(1.07);
+  }
+}
+
+@keyframes heroBeamSwing {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-15deg) scaleY(1);
+  }
+  50% {
+    transform: translate(-50%, -52%) rotate(18deg) scaleY(1.05);
+  }
+}
+
+@keyframes heroDotDrift {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-35%, -40%) scale(1.12);
+  }
+}
+
+@keyframes heroOrbPulse {
+  0%,
+  100% {
+    transform: translate(50%, 50%) scale(0.95);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate(45%, 45%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero::after,
+  .home-hero-visual__ring,
+  .home-hero-visual__diamond,
+  .home-hero-visual__beam,
+  .home-hero-visual__dot,
+  .home-hero-visual__orb {
+    animation: none !important;
+  }
 }
 
 .home-services {
