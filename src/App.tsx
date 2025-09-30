@@ -1025,6 +1025,16 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="app-layout">
       <Header currentLanguage={currentLanguage} />
+      <a
+        className="whatsapp-widget"
+        href="https://wa.me/16063022958"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Start a WhatsApp conversation with Traceremove"
+      >
+        <span aria-hidden="true">💬</span>
+        <span className="whatsapp-widget__label">Chat on WhatsApp</span>
+      </a>
       <main className="content">{children}</main>
       <Footer currentLanguage={currentLanguage} />
     </div>
