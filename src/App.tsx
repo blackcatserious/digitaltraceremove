@@ -482,7 +482,6 @@ const serviceCardCta: Record<Language, string> = {
 
 const HomePage = () => {
   const currentLanguage = useCurrentLanguage()
-  const totalPages = servicePages.length
   const summaries = languages.map((language) => {
     const count = servicePages.filter((page) => page.language === language).length
     return { language, count }
@@ -507,7 +506,7 @@ const HomePage = () => {
       <div className="home-hero">
         <div className="home-hero-copy">
           <span className="home-badge">Traceremove · Digital Agency</span>
-          <h1>{totalPages} multilingual service blueprints engineered for momentum.</h1>
+          <h1>Multilingual service blueprints engineered for momentum.</h1>
           <p>{navCopy[currentLanguage].tagline}</p>
           <div className="home-cta">
             <a className="button primary" href="mailto:contact@traceremove.com">
