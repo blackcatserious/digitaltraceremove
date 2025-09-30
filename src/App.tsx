@@ -971,22 +971,34 @@ const footerCopy: Record<
     rights: string
     studio: string
     founder: string
+    team: string
+    contact: string
+    callToAction: string
   }
 > = {
   en: {
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
     founder: 'Founder & CEO Artur Ziganshin',
+    team: 'Team',
+    contact: 'Contact',
+    callToAction: 'Call us',
   },
   fr: {
     rights: 'Tous droits réservés.',
     studio: "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
     founder: 'Fondateur & CEO Artur Ziganshin',
+    team: 'Équipe',
+    contact: 'Contact',
+    callToAction: 'Appelez-nous',
   },
   es: {
     rights: 'Todos los derechos reservados.',
     studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
     founder: 'Fundador y CEO Artur Ziganshin',
+    team: 'Equipo',
+    contact: 'Contacto',
+    callToAction: 'Llámanos',
   },
 }
 
@@ -1009,9 +1021,9 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           <p>{copy.founder}</p>
         </div>
         <div className="tr-footer__links">
-          <NavLink to={getTeamPath(currentLanguage)}>Team</NavLink>
-          <a href="mailto:contact@traceremove.com">Contact</a>
-          <a href="tel:+16063022958">Call us</a>
+          <NavLink to={getTeamPath(currentLanguage)}>{copy.team}</NavLink>
+          <a href="mailto:contact@traceremove.com">{copy.contact}</a>
+          <a href="tel:+16063022958">{copy.callToAction}</a>
         </div>
       </div>
       <p className="tr-footer__rights">© {new Date().getFullYear()} Traceremove. {copy.rights}</p>
