@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 * {
@@ -9,8 +9,11 @@
 body {
   margin: 0;
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  color: #0f172a;
-  background: #f1f5f9;
+  color: #e2ecff;
+  background: radial-gradient(circle at 10% 10%, #0b1220, transparent 35%),
+    radial-gradient(circle at 90% 20%, rgba(14, 116, 144, 0.55), transparent 45%),
+    linear-gradient(135deg, #020617 0%, #071426 35%, #0b1f3a 70%, #102347 100%);
+  min-height: 100vh;
 }
 
 a {
@@ -21,8 +24,27 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.15), transparent 45%),
-    radial-gradient(circle at bottom left, rgba(129, 140, 248, 0.15), transparent 50%), #f8fafc;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-layout::before,
+.app-layout::after {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent 65%);
+  filter: blur(0px);
+  animation: auroraShift 26s ease-in-out infinite;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.app-layout::after {
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.18), transparent 70%);
+  animation-duration: 32s;
+  animation-direction: reverse;
+  opacity: 0.55;
 }
 
 .content {
@@ -33,6 +55,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  position: relative;
+  z-index: 1;
 }
 
 .button {
@@ -389,6 +413,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  color: #e2ecff;
 }
 
 .home-hero {
@@ -398,19 +423,22 @@ a {
   gap: 3rem;
   padding: 3.5rem;
   border-radius: 2.5rem;
-  background: linear-gradient(140deg, rgba(37, 99, 235, 0.9), rgba(14, 165, 233, 0.85));
+  background: linear-gradient(140deg, rgba(8, 47, 73, 0.92), rgba(30, 64, 175, 0.85));
   color: #f8fafc;
-  box-shadow: 0 40px 70px rgba(15, 23, 42, 0.28);
+  box-shadow: 0 40px 70px rgba(2, 12, 35, 0.45);
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
 .home-hero::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top right, rgba(244, 114, 182, 0.35), transparent 55%);
+  background: radial-gradient(circle at top right, rgba(244, 114, 182, 0.35), transparent 55%),
+    radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.2), transparent 55%);
   pointer-events: none;
+  animation: heroPulse 18s ease-in-out infinite;
 }
 
 .home-hero-copy {
@@ -427,7 +455,7 @@ a {
   gap: 0.5rem;
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.35);
+  background: rgba(15, 23, 42, 0.4);
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -466,6 +494,156 @@ a {
   animation: orbit 18s linear infinite;
 }
 
+.home-services {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.home-services__header {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 720px;
+}
+
+.home-services__header h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
+}
+
+.home-services__header p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.82);
+}
+
+.home-services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.home-service-card {
+  --card-accent: rgba(56, 189, 248, 0.45);
+  --card-secondary: rgba(129, 140, 248, 0.4);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.65));
+  border-radius: 1.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #ecfeff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(2, 11, 33, 0.45);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.home-service-card::before {
+  content: '';
+  position: absolute;
+  inset: -40% -20% 30% -20%;
+  background: radial-gradient(circle at top, var(--card-accent), transparent 70%);
+  animation: serviceGlow 18s ease-in-out infinite;
+}
+
+.home-service-card::after {
+  content: '';
+  position: absolute;
+  inset: 30% -30% -40% -30%;
+  background: radial-gradient(circle at bottom, var(--card-secondary), transparent 75%);
+  animation: serviceGlow 22s ease-in-out infinite reverse;
+}
+
+.home-service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 55px 110px rgba(2, 11, 33, 0.55);
+}
+
+.home-service-card__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.home-service-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(226, 232, 240, 0.28);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.home-service-card__price {
+  margin: 0.25rem 0 0;
+  font-weight: 600;
+  color: rgba(224, 242, 254, 0.9);
+}
+
+.home-service-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.home-service-card ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.45;
+}
+
+.home-service-card ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(224, 242, 254, 0.7);
+  box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.35);
+}
+
+.home-service-card a.button {
+  position: relative;
+  z-index: 1;
+  align-self: flex-start;
+}
+
+.home-service-card--cyan {
+  --card-accent: rgba(6, 182, 212, 0.55);
+  --card-secondary: rgba(59, 130, 246, 0.35);
+}
+
+.home-service-card--violet {
+  --card-accent: rgba(147, 51, 234, 0.5);
+  --card-secondary: rgba(99, 102, 241, 0.4);
+}
+
+.home-service-card--emerald {
+  --card-accent: rgba(16, 185, 129, 0.5);
+  --card-secondary: rgba(74, 222, 128, 0.35);
+}
+
+.home-service-card--amber {
+  --card-accent: rgba(251, 191, 36, 0.45);
+  --card-secondary: rgba(251, 146, 60, 0.35);
+}
+
+.home-service-card--blue {
+  --card-accent: rgba(37, 99, 235, 0.55);
+  --card-secondary: rgba(14, 165, 233, 0.35);
+}
+
 .home-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -473,16 +651,17 @@ a {
 }
 
 .home-card {
-  background: white;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.6));
   border-radius: 1.75rem;
   padding: 2rem;
-  box-shadow: 0 35px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 35px 60px rgba(2, 11, 33, 0.45);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   position: relative;
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
 .home-card::before {
@@ -490,14 +669,14 @@ a {
   position: absolute;
   inset: -20% -20% auto -20%;
   height: 180px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.35), transparent 70%);
   transform: translateY(40%);
   transition: transform 0.4s ease;
 }
 
 .home-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 45px 75px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 45px 95px rgba(2, 11, 33, 0.55);
 }
 
 .home-card:hover::before {
@@ -510,14 +689,15 @@ a {
 }
 
 .home-panel {
-  background: white;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.55));
   padding: 1.75rem;
   border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 25px 55px rgba(2, 11, 33, 0.45);
   animation: float 6s ease-in-out infinite;
+  border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .home-panels {
@@ -527,12 +707,13 @@ a {
 }
 
 .home-banner {
-  background: rgba(15, 23, 42, 0.9);
+  background: linear-gradient(120deg, rgba(15, 23, 42, 0.9), rgba(30, 64, 175, 0.75));
   color: #f8fafc;
   padding: 1.25rem 1.75rem;
   border-radius: 1.5rem;
   text-align: center;
-  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 25px 60px rgba(2, 11, 33, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
 .service-page {
@@ -608,6 +789,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  color: #0f172a;
 }
 
 .service-section h2 {
@@ -663,6 +845,7 @@ a {
   position: relative;
   overflow: hidden;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  color: #0f172a;
 }
 
 .package-card::after {
@@ -712,6 +895,7 @@ a {
   border-radius: 1.5rem;
   border: 1px solid rgba(59, 130, 246, 0.15);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  color: #0f172a;
 }
 
 .process-steps li:hover {
@@ -844,6 +1028,7 @@ a {
   box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
   position: relative;
   overflow: hidden;
+  color: #0f172a;
 }
 
 .team-card::after {
@@ -899,6 +1084,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  color: #0f172a;
 }
 
 .team-culture ul {
@@ -917,6 +1103,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  color: #0f172a;
 }
 
 .team-contact-actions {
@@ -988,6 +1175,45 @@ a {
   text-align: center;
 }
 
+@keyframes auroraShift {
+  0% {
+    transform: translate3d(-12%, -8%, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(10%, 6%, 0) scale(1.18);
+  }
+  100% {
+    transform: translate3d(-12%, -8%, 0) scale(1.05);
+  }
+}
+
+@keyframes heroPulse {
+  0% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+}
+
+@keyframes serviceGlow {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.05) translate3d(6%, -6%, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
 @keyframes orbit {
   from {
     transform: rotate(0deg) scale(1);
@@ -1043,6 +1269,7 @@ a {
   }
 
   .home-grid,
+  .home-services__grid,
   .package-grid,
   .service-highlight-list,
   .metrics-list,

@@ -230,6 +230,256 @@ const teamMembers: TeamMember[] = [
   },
 ]
 
+type ServiceAccent = 'cyan' | 'violet' | 'emerald' | 'amber' | 'blue'
+
+interface PrimaryService {
+  key: string
+  accent: ServiceAccent
+  badge: Record<Language, string>
+  title: Record<Language, string>
+  description: Record<Language, string>
+  price: Record<Language, string>
+  bullets: Record<Language, string[]>
+}
+
+const primaryServices: PrimaryService[] = [
+  {
+    key: 'trace-removal',
+    accent: 'cyan',
+    badge: {
+      en: 'Trace removal',
+      fr: 'Effacement',
+      es: 'Eliminación',
+    },
+    title: {
+      en: 'Digital trace removal',
+      fr: 'Suppression d’empreinte numérique',
+      es: 'Eliminación de huella digital',
+    },
+    description: {
+      en: 'Erase damaging search results, leaked assets, and platform footprints with legal-safe takedown workflows.',
+      fr: 'Nous effaçons résultats de recherche nuisibles, fuites d’actifs et traces de plateformes via des workflows conformes.',
+      es: 'Borramos resultados nocivos, activos filtrados y rastros en plataformas con flujos de baja conformes.',
+    },
+    price: {
+      en: 'From $6,400 USD',
+      fr: 'À partir de 6 400 $ US',
+      es: 'Desde 6 400 USD',
+    },
+    bullets: {
+      en: [
+        'Crisis assessment in under 48 hours',
+        'Coordinated removals across press, forums, and clouds',
+        'Escalation pods for executives and high-risk teams',
+      ],
+      fr: [
+        'Diagnostic de crise en moins de 48 h',
+        'Suppression coordonnée presse, forums et clouds',
+        'Pods d’escalade pour dirigeants et équipes sensibles',
+      ],
+      es: [
+        'Evaluación de crisis en menos de 48 h',
+        'Eliminaciones coordinadas en prensa, foros y nubes',
+        'Pods de escalamiento para ejecutivos y equipos críticos',
+      ],
+    },
+  },
+  {
+    key: 'serm',
+    accent: 'violet',
+    badge: {
+      en: 'SERM',
+      fr: 'SERM',
+      es: 'SERM',
+    },
+    title: {
+      en: 'Search reputation management',
+      fr: 'Gestion de réputation search',
+      es: 'Gestión de reputación en buscadores',
+    },
+    description: {
+      en: 'Own every SERP pixel with always-on search monitoring, authority content, and knowledge panel optimisation.',
+      fr: 'Maîtrisez chaque pixel SERP grâce au monitoring continu, aux contenus d’autorité et à l’optimisation du knowledge panel.',
+      es: 'Control total del SERP con monitoreo continuo, contenidos de autoridad y optimización del knowledge panel.',
+    },
+    price: {
+      en: 'From $4,900 USD / month',
+      fr: 'À partir de 4 900 $ US / mois',
+      es: 'Desde 4 900 USD / mes',
+    },
+    bullets: {
+      en: [
+        'Always-on search result audits',
+        'Content seeding and knowledge panel optimisation',
+        'Monthly sentiment dashboards and alerts',
+      ],
+      fr: [
+        'Audit continu des résultats de recherche',
+        'Activation de contenus et optimisation du knowledge panel',
+        'Tableaux de bord de sentiment et alertes mensuelles',
+      ],
+      es: [
+        'Auditoría continua de resultados de búsqueda',
+        'Siembra de contenidos y optimización del knowledge panel',
+        'Dashboards de sentimiento y alertas mensuales',
+      ],
+    },
+  },
+  {
+    key: 'cyber-monitoring',
+    accent: 'emerald',
+    badge: {
+      en: 'Cyber monitoring',
+      fr: 'Cyber monitoring',
+      es: 'Ciber monitoreo',
+    },
+    title: {
+      en: 'Cybersecurity monitoring',
+      fr: 'Monitoring cybersécurité',
+      es: 'Monitoreo de ciberseguridad',
+    },
+    description: {
+      en: 'Detect breaches, leaks, and impersonations early with continuous dark web, cloud, and device intelligence.',
+      fr: 'Détectez fuites, intrusions et usurpations via une veille continue dark web, cloud et endpoints.',
+      es: 'Detecta filtraciones, brechas e impersonaciones con inteligencia continua en dark web, cloud y endpoints.',
+    },
+    price: {
+      en: 'From $7,800 USD / quarter',
+      fr: 'À partir de 7 800 $ US / trimestre',
+      es: 'Desde 7 800 USD / trimestre',
+    },
+    bullets: {
+      en: [
+        'Threat intelligence fused with brand risk scoring',
+        'Incident playbooks aligned to SOC workflows',
+        'Executive alerts with multilingual escalation',
+      ],
+      fr: [
+        'Veille de menaces couplée à un scoring de risque marque',
+        'Playbooks d’incident alignés sur vos workflows SOC',
+        'Alertes dirigeants avec escalade multilingue',
+      ],
+      es: [
+        'Inteligencia de amenazas unida a scoring de riesgo de marca',
+        'Playbooks de incidentes alineados al SOC',
+        'Alertas ejecutivas con escalamiento multilingüe',
+      ],
+    },
+  },
+  {
+    key: 'design',
+    accent: 'amber',
+    badge: {
+      en: 'Design ops',
+      fr: 'Design ops',
+      es: 'Design ops',
+    },
+    title: {
+      en: 'Product & web design systems',
+      fr: 'Systèmes de design produit & web',
+      es: 'Sistemas de diseño digital',
+    },
+    description: {
+      en: 'Prototype, test, and deploy immersive interfaces that translate trust into measurable activation.',
+      fr: 'Prototyper, tester et livrer des interfaces immersives qui convertissent la confiance en activation mesurable.',
+      es: 'Prototipamos, testeamos y lanzamos interfaces inmersivas que convierten confianza en activación medible.',
+    },
+    price: {
+      en: 'From $5,600 USD',
+      fr: 'À partir de 5 600 $ US',
+      es: 'Desde 5 600 USD',
+    },
+    bullets: {
+      en: [
+        'Research-driven UX audits and journeys',
+        'Design systems ready for dev handoff',
+        'Motion language and accessibility baked in',
+      ],
+      fr: [
+        'Audits UX et parcours guidés par la recherche',
+        'Design systems prêts pour le handoff dev',
+        'Langage motion et accessibilité intégrés',
+      ],
+      es: [
+        'Auditorías UX guiadas por research',
+        'Design systems listos para handoff dev',
+        'Lenguaje de motion y accesibilidad integrados',
+      ],
+    },
+  },
+  {
+    key: 'web-builds',
+    accent: 'blue',
+    badge: {
+      en: 'Web builds',
+      fr: 'Sites web',
+      es: 'Sitios web',
+    },
+    title: {
+      en: 'Website development sprints',
+      fr: 'Sprints de développement web',
+      es: 'Sprints de desarrollo web',
+    },
+    description: {
+      en: 'Ship multilingual, high-performance websites with pricing clarity, modular pages, and analytics baked in.',
+      fr: 'Livrez des sites multilingues haute performance avec tarification claire, pages modulaires et analytics intégrés.',
+      es: 'Lanza sitios multilingües de alto rendimiento con precios claros, páginas modulares y analytics integrados.',
+    },
+    price: {
+      en: 'From $8,900 USD',
+      fr: 'À partir de 8 900 $ US',
+      es: 'Desde 8 900 USD',
+    },
+    bullets: {
+      en: [
+        'Discovery, copy, and SEO localisation included',
+        'Component-based builds in Webflow, Next, or Shopify',
+        'Performance budgets with launch QA & training',
+      ],
+      fr: [
+        'Discovery, contenus et SEO localisé inclus',
+        'Développements modulaires Webflow, Next ou Shopify',
+        'Budgets de performance avec QA de lancement et formation',
+      ],
+      es: [
+        'Discovery, contenidos y SEO localizado incluidos',
+        'Construcciones modulares en Webflow, Next o Shopify',
+        'Presupuestos de performance con QA de lanzamiento y training',
+      ],
+    },
+  },
+]
+
+const homeServicesCopy: Record<
+  Language,
+  {
+    title: string
+    description: string
+  }
+> = {
+  en: {
+    title: 'Precision programs that protect and accelerate your brand',
+    description:
+      'Every engagement is staffed by Artur Ziganshin and a senior pod covering reputation, security, design, and engineering so you launch with confidence.',
+  },
+  fr: {
+    title: 'Des programmes précis pour protéger et accélérer votre marque',
+    description:
+      'Chaque mission est menée par Artur Ziganshin avec un pod senior couvrant réputation, sécurité, design et engineering pour lancer avec confiance.',
+  },
+  es: {
+    title: 'Programas precisos que protegen y aceleran tu marca',
+    description:
+      'Cada colaboración está liderada por Artur Ziganshin con un pod senior de reputación, seguridad, diseño y tecnología para lanzar con confianza.',
+  },
+}
+
+const serviceCardCta: Record<Language, string> = {
+  en: 'Book this service',
+  fr: 'Réserver ce service',
+  es: 'Reservar este servicio',
+}
+
 const HomePage = () => {
   const currentLanguage = useCurrentLanguage()
   const totalPages = servicePages.length
@@ -239,6 +489,18 @@ const HomePage = () => {
   })
 
   const heroCta = navCopy[currentLanguage].callToAction
+  const serviceIntro = homeServicesCopy[currentLanguage]
+  const serviceCta = serviceCardCta[currentLanguage]
+  const localizedServices = primaryServices.map((service) => ({
+    key: service.key,
+    accent: service.accent,
+    badge: service.badge[currentLanguage],
+    title: service.title[currentLanguage],
+    description: service.description[currentLanguage],
+    price: service.price[currentLanguage],
+    bullets: service.bullets[currentLanguage],
+    contactHref: `mailto:contact@traceremove.com?subject=${encodeURIComponent(service.title[currentLanguage])}`,
+  }))
 
   return (
     <section className="home">
@@ -269,6 +531,33 @@ const HomePage = () => {
           <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
         </div>
       </div>
+
+      <section className="home-services">
+        <header className="home-services__header">
+          <h2>{serviceIntro.title}</h2>
+          <p>{serviceIntro.description}</p>
+        </header>
+        <div className="home-services__grid">
+          {localizedServices.map((service) => (
+            <article key={service.key} className={`home-service-card home-service-card--${service.accent}`}>
+              <div className="home-service-card__inner">
+                <span className="home-service-card__badge">{service.badge}</span>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <p className="home-service-card__price">{service.price}</p>
+                <ul>
+                  {service.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+              <a className="button primary" href={service.contactHref}>
+                {serviceCta}
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <div className="home-grid">
         {summaries.map(({ language, count }) => (
