@@ -115,7 +115,7 @@ const teamCopy: Record<
 > = {
   en: {
     title: 'Meet the Traceremove team',
-    subtitle: 'A multilingual collective led by Founder & CEO Artur Ziganshin',
+    subtitle: 'A multilingual collective of growth strategists spanning North America and Europe',
     intro:
       'We are designers, strategists, technologists, and analysts who build compounding growth systems across North America and Europe. Our studio thrives on experimentation, data fluency, and cross-cultural empathy.',
     cultureHeading: 'How we collaborate',
@@ -128,7 +128,7 @@ const teamCopy: Record<
   },
   fr: {
     title: "Rencontrez l'équipe Traceremove",
-    subtitle: 'Un collectif multilingue dirigé par le fondateur et CEO Artur Ziganshin',
+    subtitle: 'Un collectif multilingue de stratèges de croissance entre l’Amérique du Nord et l’Europe',
     intro:
       'Nous sommes designers, stratèges, technologues et analystes. Nous bâtissons des systèmes de croissance cumulée pour l’Amérique du Nord et l’Europe, en misant sur l’expérimentation, la donnée et l’empathie interculturelle.',
     cultureHeading: 'Notre manière de travailler',
@@ -141,7 +141,7 @@ const teamCopy: Record<
   },
   es: {
     title: 'Conoce al equipo de Traceremove',
-    subtitle: 'Un colectivo multilingüe liderado por el fundador y CEO Artur Ziganshin',
+    subtitle: 'Un colectivo multilingüe de estrategas de crecimiento entre Norteamérica y Europa',
     intro:
       'Somos diseñadores, estrategas, tecnólogos y analistas que construyen sistemas de crecimiento compuesto en Norteamérica y Europa. Nuestro estudio prospera gracias a la experimentación, los datos y la empatía intercultural.',
     cultureHeading: 'Cómo colaboramos',
@@ -165,18 +165,18 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: 'Artur Ziganshin',
-    role: 'Founder & CEO',
-    location: 'Toronto · Montréal',
+    name: 'Camille Laurent',
+    role: 'Managing Partner',
+    location: 'Montréal · Remote',
     bio: {
-      en: 'Artur steers brand, lifecycle, and product GTM initiatives for venture-backed SaaS and commerce teams. He leads multilingual strategy rooms and keeps every engagement grounded in measurable impact.',
-      fr: 'Artur pilote les initiatives de marque, lifecycle et go-to-market produit pour des équipes SaaS et e-commerce financées. Il orchestre des workshops multilingues et relie chaque programme à des métriques tangibles.',
-      es: 'Artur dirige iniciativas de marca, lifecycle y go-to-market de producto para equipos SaaS y comercio respaldados por venture capital. Conduce workshops multilingües y ancla cada programa en métricas claras.',
+      en: 'Camille architects integrated reputation, product, and growth programs for scaleups navigating multilingual markets. She pairs analytical roadmaps with creative execution to unlock confident launches.',
+      fr: 'Camille orchestre des programmes intégrés de réputation, produit et croissance pour des scaleups évoluant sur des marchés multilingues. Elle associe feuilles de route analytiques et exécution créative pour sécuriser chaque lancement.',
+      es: 'Camille diseña programas integrados de reputación, producto y crecimiento para scaleups en mercados multilingües. Combina hojas de ruta analíticas con ejecución creativa para lanzar con confianza.',
     },
     focus: {
-      en: ['Strategic narrative architecture', 'Revenue operations modelling', 'Executive advisory'],
-      fr: ['Architecture narrative stratégique', 'Modélisation des opérations revenue', 'Conseil exécutif'],
-      es: ['Arquitectura narrativa estratégica', 'Modelado de revenue operations', 'Asesoría ejecutiva'],
+      en: ['Integrated go-to-market leadership', 'Multilingual positioning', 'Executive stakeholder facilitation'],
+      fr: ['Leadership go-to-market intégré', 'Positionnement multilingue', 'Facilitation des parties prenantes exécutives'],
+      es: ['Liderazgo go-to-market integrado', 'Posicionamiento multilingüe', 'Facilitación de stakeholders ejecutivos'],
     },
     color: '#38bdf8',
   },
@@ -460,17 +460,17 @@ const homeServicesCopy: Record<
   en: {
     title: 'Precision programs that protect and accelerate your brand',
     description:
-      'Every engagement is staffed by Artur Ziganshin and a senior pod covering reputation, security, design, and engineering so you launch with confidence.',
+      'Every engagement pairs senior strategists in reputation, security, design, and engineering so you launch with confidence.',
   },
   fr: {
     title: 'Des programmes précis pour protéger et accélérer votre marque',
     description:
-      'Chaque mission est menée par Artur Ziganshin avec un pod senior couvrant réputation, sécurité, design et engineering pour lancer avec confiance.',
+      'Chaque mission réunit des stratèges seniors en réputation, sécurité, design et engineering pour assurer un lancement serein.',
   },
   es: {
     title: 'Programas precisos que protegen y aceleran tu marca',
     description:
-      'Cada colaboración está liderada por Artur Ziganshin con un pod senior de reputación, seguridad, diseño y tecnología para lanzar con confianza.',
+      'Cada colaboración conecta estrategas senior en reputación, seguridad, diseño y tecnología para lanzar con confianza.',
   },
 }
 
@@ -519,8 +519,8 @@ const HomePage = () => {
           </div>
           <div className="home-contact">
             <p>
-              Founder &amp; CEO <strong>Artur Ziganshin</strong> leads every engagement with a senior core team operating
-              across English, French, and Spanish markets.
+              Our senior core team partners directly with you across English, French, and Spanish markets—no hand-offs,
+              just measurable outcomes.
             </p>
             <Link className="button ghost" to={getTeamPath(currentLanguage)}>
               Meet the team
@@ -597,7 +597,7 @@ const HomePage = () => {
         <article className="home-panel">
           <h3>Leadership-level partnership</h3>
           <p>
-            You work directly with Artur Ziganshin and our senior partners—no hand-offs, just outcomes delivered with
+            You work directly with senior partners embedded in your workflows—no hand-offs, just outcomes delivered with
             precision.
           </p>
         </article>
@@ -970,23 +970,23 @@ const footerCopy: Record<
   {
     rights: string
     studio: string
-    founder: string
+    support: string
   }
 > = {
   en: {
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
-    founder: 'Founder & CEO Artur Ziganshin',
+    support: 'Multilingual studio support across EN · FR · ES.',
   },
   fr: {
     rights: 'Tous droits réservés.',
     studio: "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
-    founder: 'Fondateur & CEO Artur Ziganshin',
+    support: 'Support studio multilingue EN · FR · ES.',
   },
   es: {
     rights: 'Todos los derechos reservados.',
     studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
-    founder: 'Fundador y CEO Artur Ziganshin',
+    support: 'Soporte de estudio multilingüe EN · FR · ES.',
   },
 }
 
@@ -1006,7 +1006,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         <div className="tr-footer__contact">
           <a href="mailto:contact@traceremove.com">contact@traceremove.com</a>
           <a href="tel:+16063022958">+1 606 302 2958</a>
-          <p>{copy.founder}</p>
+          <p>{copy.support}</p>
         </div>
         <div className="tr-footer__links">
           <NavLink to={getTeamPath(currentLanguage)}>Team</NavLink>
