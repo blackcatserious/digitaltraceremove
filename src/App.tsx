@@ -528,7 +528,11 @@ const HomePage = () => {
           </div>
         </div>
         <div className="home-hero-visual" aria-hidden="true">
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <span className="home-hero-visual__ring" />
+          <span className="home-hero-visual__diamond" />
+          <span className="home-hero-visual__beam" />
+          <span className="home-hero-visual__dot" />
+          <span className="home-hero-visual__orb" />
         </div>
       </div>
 
