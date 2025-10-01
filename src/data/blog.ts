@@ -70,7 +70,9 @@ const t = (en: string, fr: string, es: string): MultilingualText => ({ en, fr, e
 const defaultAuthor = t('Artur Ziganshin', 'Artur Ziganshin', 'Artur Ziganshin')
 const defaultReadTime = t('12 min read', 'Lecture de 12 min', 'Lectura de 12 min')
 
-const topicLabels: Record<Language, Record<BlogTopic, string>> = {
+export const blogTopics: BlogTopic[] = ['orm', 'ai', 'cybersecurity', 'seo', 'web-design']
+
+export const blogTopicLabels: Record<Language, Record<BlogTopic, string>> = {
   en: {
     orm: 'Online Reputation Management',
     ai: 'Artificial Intelligence',
@@ -229,7 +231,7 @@ const buildTranslation = (
 ): BlogArticleTranslation => ({
   title: translation.title[language],
   summary: translation.summary[language],
-  topicLabel: topicLabels[language][topic],
+      topicLabel: blogTopicLabels[language][topic],
   heroKicker: translation.heroKicker[language],
   readTime: translation.readTime[language],
   seoTitle: translation.seoTitle[language],

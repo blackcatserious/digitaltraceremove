@@ -19,9 +19,12 @@ import {
 } from './data/pages'
 import {
   blogArticles,
+  blogTopicLabels,
+  blogTopics,
   getBlogArticlePath,
   getBlogBasePath,
   type BlogArticleTranslation,
+  type BlogTopic,
 } from './data/blog'
 import './App.css'
 
@@ -1602,6 +1605,17 @@ const blogListCopy: Record<
     subtitle: string
     intro: string
     readArticle: string
+    filtersTitle: string
+    filtersDescription: string
+    topicsLabel: string
+    allTopics: string
+    searchLabel: string
+    searchPlaceholder: string
+    clearSearch: string
+    emptyTitle: string
+    emptyDescription: string
+    resetFilters: string
+    featuredLabel: string
   }
 > = {
   en: {
@@ -1611,6 +1625,18 @@ const blogListCopy: Record<
     intro:
       'Explore the operating manuals we use with clients shipping fast. Every article includes actionable workflows, checklists, and measurement rituals you can adapt today.',
     readArticle: 'Read article',
+    filtersTitle: 'Refine the insights',
+    filtersDescription:
+      'Toggle focus areas or search keywords to surface the playbooks that match your growth moment.',
+    topicsLabel: 'Filter by topic',
+    allTopics: 'All topics',
+    searchLabel: 'Search the library',
+    searchPlaceholder: 'Search articles…',
+    clearSearch: 'Clear search',
+    emptyTitle: 'No articles match yet',
+    emptyDescription: 'Try another keyword or reset the filters to explore the full library.',
+    resetFilters: 'Reset filters',
+    featuredLabel: 'Featured insight',
   },
   fr: {
     kicker: 'Blog Traceremove',
@@ -1619,6 +1645,18 @@ const blogListCopy: Record<
     intro:
       'Découvrez les modes opératoires que nous activons chez nos clients. Chaque article propose workflows actionnables, checklists et rituels de mesure à adapter dès maintenant.',
     readArticle: 'Lire l’article',
+    filtersTitle: 'Affiner les insights',
+    filtersDescription:
+      'Activez les thématiques ou recherchez des mots-clés pour faire émerger les playbooks adaptés.',
+    topicsLabel: 'Filtrer par thématique',
+    allTopics: 'Toutes les thématiques',
+    searchLabel: 'Rechercher dans la bibliothèque',
+    searchPlaceholder: 'Rechercher un article…',
+    clearSearch: 'Effacer la recherche',
+    emptyTitle: 'Aucun article ne correspond',
+    emptyDescription: 'Essayez un autre mot-clé ou réinitialisez les filtres pour parcourir toute la bibliothèque.',
+    resetFilters: 'Réinitialiser les filtres',
+    featuredLabel: 'Insight mis en avant',
   },
   es: {
     kicker: 'Blog Traceremove',
@@ -1627,6 +1665,18 @@ const blogListCopy: Record<
     intro:
       'Explora los manuales operativos que usamos con clientes de alto crecimiento. Cada artículo comparte workflows accionables, checklists y rituales de medición listos para adaptar.',
     readArticle: 'Leer artículo',
+    filtersTitle: 'Refinar los insights',
+    filtersDescription:
+      'Activa los focos o busca palabras clave para encontrar los playbooks que tu equipo necesita.',
+    topicsLabel: 'Filtrar por temática',
+    allTopics: 'Todas las temáticas',
+    searchLabel: 'Buscar en la biblioteca',
+    searchPlaceholder: 'Buscar artículos…',
+    clearSearch: 'Borrar búsqueda',
+    emptyTitle: 'Ningún artículo coincide',
+    emptyDescription: 'Prueba con otra palabra clave o restablece los filtros para explorar toda la biblioteca.',
+    resetFilters: 'Restablecer filtros',
+    featuredLabel: 'Insight destacado',
   },
 }
 
@@ -1659,20 +1709,77 @@ const localeMap: Record<Language, string> = {
 
 const BlogPage = ({ language }: { language: Language }) => {
   const copy = blogListCopy[language]
-  const articles = blogArticles
-    .map((article) => {
-      const translation = article.translations[language]
-      if (!translation) {
-        return undefined
-      }
-      return {
-        slug: article.slug,
-        publishedAt: article.publishedAt,
-        translation,
-      }
+  const [topicFilter, setTopicFilter] = useState<'all' | BlogTopic>('all')
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const topics = useMemo(
+    () =>
+      blogTopics.map((topic) => ({
+        key: topic,
+        label: blogTopicLabels[language][topic],
+      })),
+    [language]
+  )
+
+  const articles = useMemo(
+    () =>
+      blogArticles
+        .map((article) => {
+          const translation = article.translations[language]
+          if (!translation) {
+            return undefined
+          }
+          return {
+            slug: article.slug,
+            publishedAt: article.publishedAt,
+            topic: article.topic,
+            translation,
+          }
+        })
+        .filter(
+          (article):
+            article is {
+              slug: string
+              publishedAt: string
+              topic: BlogTopic
+              translation: BlogArticleTranslation
+            } => Boolean(article)
+        )
+        .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()),
+    [language]
+  )
+
+  const filteredArticles = useMemo(() => {
+    const normalizedQuery = searchTerm.trim().toLowerCase()
+    return articles.filter((article) => {
+      const matchesTopic = topicFilter === 'all' || article.topic === topicFilter
+      const matchesQuery =
+        normalizedQuery.length === 0 ||
+        [article.translation.title, article.translation.summary].some((value) =>
+          value.toLowerCase().includes(normalizedQuery)
+        )
+      return matchesTopic && matchesQuery
     })
-    .filter((article): article is { slug: string; publishedAt: string; translation: BlogArticleTranslation } => Boolean(article))
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  }, [articles, searchTerm, topicFilter])
+
+  const featuredArticle = filteredArticles[0]
+  const remainingArticles = filteredArticles.slice(1)
+
+  const formatDate = (value: string) =>
+    new Date(value).toLocaleDateString(localeMap[language], {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value)
+  }
+
+  const handleResetFilters = () => {
+    setTopicFilter('all')
+    setSearchTerm('')
+  }
 
   return (
     <section className="blog-page">
@@ -1683,30 +1790,105 @@ const BlogPage = ({ language }: { language: Language }) => {
         <p className="blog-hero__intro">{copy.intro}</p>
       </header>
 
-      <div className="blog-grid">
-        {articles.map((article) => {
-          const formattedDate = new Date(article.publishedAt).toLocaleDateString(localeMap[language], {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })
-          return (
-            <article key={article.slug} className="blog-card">
-              <p className="blog-card__topic">{article.translation.topicLabel}</p>
-              <h2>{article.translation.title}</h2>
-              <p className="blog-card__summary">{article.translation.summary}</p>
-              <div className="blog-card__meta">
-                <span>{formattedDate}</span>
-                <span aria-hidden="true">•</span>
-                <span>{article.translation.readTime}</span>
-              </div>
-              <Link className="blog-card__link" to={getBlogArticlePath(language, article.slug)}>
-                {copy.readArticle}
-              </Link>
-            </article>
-          )
-        })}
+      <div className="blog-filters" role="region" aria-label={copy.filtersTitle}>
+        <div className="blog-filters__text">
+          <h2>{copy.filtersTitle}</h2>
+          <p>{copy.filtersDescription}</p>
+        </div>
+        <div className="blog-filters__controls">
+          <div className="blog-topics" role="group" aria-label={copy.topicsLabel}>
+            <button
+              type="button"
+              className={`blog-topic-button ${topicFilter === 'all' ? 'is-active' : ''}`}
+              onClick={() => setTopicFilter('all')}
+              aria-pressed={topicFilter === 'all'}
+            >
+              {copy.allTopics}
+            </button>
+            {topics.map((topic) => (
+              <button
+                key={topic.key}
+                type="button"
+                className={`blog-topic-button ${topicFilter === topic.key ? 'is-active' : ''}`}
+                onClick={() => setTopicFilter(topic.key)}
+                aria-pressed={topicFilter === topic.key}
+              >
+                {topic.label}
+              </button>
+            ))}
+          </div>
+
+          <label className="blog-search">
+            <span>{copy.searchLabel}</span>
+            <div className="blog-search__field">
+              <input
+                type="search"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                placeholder={copy.searchPlaceholder}
+              />
+              {searchTerm ? (
+                <button type="button" onClick={() => setSearchTerm('')} aria-label={copy.clearSearch}>
+                  <span aria-hidden="true">×</span>
+                </button>
+              ) : null}
+            </div>
+          </label>
+        </div>
       </div>
+
+      {featuredArticle ? (
+        <>
+          <article className="blog-featured">
+            <span className="blog-featured__badge">{copy.featuredLabel}</span>
+            <p className="blog-featured__topic">{featuredArticle.translation.topicLabel}</p>
+            <h2>{featuredArticle.translation.title}</h2>
+            <p className="blog-featured__summary">{featuredArticle.translation.summary}</p>
+            <div className="blog-featured__meta">
+              <span>{formatDate(featuredArticle.publishedAt)}</span>
+              <span aria-hidden="true">•</span>
+              <span>{featuredArticle.translation.readTime}</span>
+            </div>
+            <Link
+              className="blog-featured__cta button primary"
+              to={getBlogArticlePath(language, featuredArticle.slug)}
+            >
+              {copy.readArticle}
+            </Link>
+            <div className="blog-featured__spark" aria-hidden="true">
+              <GrowthSpark variant="light" size="lg" />
+            </div>
+          </article>
+
+          {remainingArticles.length > 0 ? (
+            <div className="blog-grid">
+              {remainingArticles.map((article) => (
+                <article key={article.slug} className="blog-card">
+                  <p className="blog-card__topic">{article.translation.topicLabel}</p>
+                  <h2>{article.translation.title}</h2>
+                  <p className="blog-card__summary">{article.translation.summary}</p>
+                  <div className="blog-card__meta">
+                    <span>{formatDate(article.publishedAt)}</span>
+                    <span aria-hidden="true">•</span>
+                    <span>{article.translation.readTime}</span>
+                  </div>
+                  <Link className="blog-card__link" to={getBlogArticlePath(language, article.slug)}>
+                    {copy.readArticle}
+                  </Link>
+                </article>
+              ))}
+            </div>
+          ) : null}
+        </>
+      ) : (
+        <div className="blog-empty">
+          <h2>{copy.emptyTitle}</h2>
+          <p>{copy.emptyDescription}</p>
+          <button type="button" className="button secondary" onClick={handleResetFilters}>
+            {copy.resetFilters}
+          </button>
+        </div>
+      )}
     </section>
   )
 }
