@@ -1685,19 +1685,62 @@ const blogArticleCopy: Record<
   {
     backToBlog: string
     publishedOn: string
+    shareTitle: string
+    shareSubtitle: string
+    shareLinkedIn: string
+    shareTwitter: string
+    shareEmail: string
+    copyLink: string
+    copied: string
+    ctaTitle: string
+    ctaBody: string
+    ctaButton: string
   }
 > = {
   en: {
     backToBlog: 'Back to articles',
     publishedOn: 'Published on',
+    shareTitle: 'Share this playbook',
+    shareSubtitle: 'Keep your partners and operators aligned with the latest Traceremove guidance.',
+    shareLinkedIn: 'Share on LinkedIn',
+    shareTwitter: 'Post on X',
+    shareEmail: 'Send by email',
+    copyLink: 'Copy link',
+    copied: 'Link copied',
+    ctaTitle: 'Need a rapid response team?',
+    ctaBody:
+      'Bring Traceremove into your brand room to design counter-narratives, remove fake reviews, and harden search trust across markets.',
+    ctaButton: 'Book a strategy call',
   },
   fr: {
     backToBlog: 'Retour aux articles',
     publishedOn: 'Publié le',
+    shareTitle: 'Partagez ce playbook',
+    shareSubtitle: 'Gardez vos partenaires et vos équipes alignés sur les recommandations Traceremove.',
+    shareLinkedIn: 'Partager sur LinkedIn',
+    shareTwitter: 'Publier sur X',
+    shareEmail: 'Envoyer par e-mail',
+    copyLink: 'Copier le lien',
+    copied: 'Lien copié',
+    ctaTitle: 'Besoin d’une équipe de riposte?',
+    ctaBody:
+      'Invitez Traceremove à vos comités de marque pour bâtir les contre-récits, supprimer les faux avis et renforcer la confiance sur les moteurs de recherche.',
+    ctaButton: 'Planifier un échange',
   },
   es: {
     backToBlog: 'Volver a los artículos',
     publishedOn: 'Publicado el',
+    shareTitle: 'Comparte este playbook',
+    shareSubtitle: 'Mantén a tus socios y operadores alineados con las recomendaciones de Traceremove.',
+    shareLinkedIn: 'Compartir en LinkedIn',
+    shareTwitter: 'Publicar en X',
+    shareEmail: 'Enviar por correo',
+    copyLink: 'Copiar enlace',
+    copied: 'Enlace copiado',
+    ctaTitle: '¿Necesitas un equipo de respuesta rápida?',
+    ctaBody:
+      'Integra a Traceremove en tu war room para diseñar contra-narrativas, eliminar reseñas falsas y blindar la confianza en buscadores.',
+    ctaButton: 'Reserva una sesión estratégica',
   },
 }
 
@@ -1896,6 +1939,8 @@ const BlogPage = ({ language }: { language: Language }) => {
 const BlogArticlePage = ({ language }: { language: Language }) => {
   const { slug } = useParams<{ slug: string }>()
   const copy = blogArticleCopy[language]
+  const [shareUrl, setShareUrl] = useState('')
+  const [copied, setCopied] = useState(false)
 
   if (!slug) {
     return <NotFound />
@@ -1908,6 +1953,7 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   }
 
   const translation = article.translations[language]
+  const articlePath = getBlogArticlePath(language, article.slug)
 
   if (!translation) {
     return <NotFound />
@@ -1918,6 +1964,83 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
     month: 'long',
     day: 'numeric',
   })
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const url = `${window.location.origin}${articlePath}`
+      setShareUrl(url)
+    } else {
+      setShareUrl(articlePath)
+    }
+  }, [articlePath])
+
+  useEffect(() => {
+    if (!copied) {
+      return
+    }
+    const timeout = window.setTimeout(() => {
+      setCopied(false)
+    }, 3200)
+    return () => window.clearTimeout(timeout)
+  }, [copied])
+
+  const handleCopyLink = () => {
+    if (!shareUrl) {
+      return
+    }
+
+    const writeToClipboard = async () => {
+      if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(shareUrl)
+        setCopied(true)
+        return
+      }
+
+      const textarea = document.createElement('textarea')
+      textarea.value = shareUrl
+      textarea.setAttribute('readonly', '')
+      textarea.style.position = 'absolute'
+      textarea.style.left = '-9999px'
+      document.body.appendChild(textarea)
+      textarea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textarea)
+      setCopied(true)
+    }
+
+    writeToClipboard().catch(() => {
+      setCopied(false)
+    })
+  }
+
+  const handleShare = (network: 'linkedin' | 'twitter' | 'email') => {
+    if (!shareUrl || typeof window === 'undefined') {
+      return
+    }
+
+    const encodedUrl = encodeURIComponent(shareUrl)
+    const encodedTitle = encodeURIComponent(translation.title)
+    const encodedSummary = encodeURIComponent(translation.summary)
+    let url = ''
+
+    switch (network) {
+      case 'linkedin':
+        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`
+        break
+      case 'twitter':
+        url = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`
+        break
+      case 'email':
+        url = `mailto:?subject=${encodedTitle}&body=${encodedSummary}%0A%0A${encodedUrl}`
+        break
+      default:
+        break
+    }
+
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer,width=600,height=600')
+    }
+  }
 
   return (
     <article className="blog-article">
@@ -1955,6 +2078,57 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
           </section>
         ))}
       </div>
+
+      <aside className="blog-article__share" aria-labelledby="blog-article-share-heading">
+        <div className="blog-article__share-text">
+          <h2 id="blog-article-share-heading">{copy.shareTitle}</h2>
+          <p>{copy.shareSubtitle}</p>
+        </div>
+        <div className="blog-article__share-actions">
+          <button type="button" className="share-button share-button--linkedin" onClick={() => handleShare('linkedin')}>
+            <span aria-hidden="true" className="share-button__icon">
+              <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+                <path d="M5.07 3.5a1.57 1.57 0 1 1-3.14 0 1.57 1.57 0 0 1 3.14 0ZM1.92 8.34h3.16V21H1.92V8.34Zm6.05 0h3.03v1.74h.04c.42-.8 1.45-1.64 2.99-1.64 3.2 0 3.79 2.11 3.79 4.85V21h-3.16v-6.79c0-1.62-.03-3.71-2.26-3.71-2.27 0-2.62 1.77-2.62 3.6V21H7.97V8.34Z" />
+              </svg>
+            </span>
+            {copy.shareLinkedIn}
+          </button>
+          <button type="button" className="share-button share-button--twitter" onClick={() => handleShare('twitter')}>
+            <span aria-hidden="true" className="share-button__icon">
+              <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+                <path d="M20.98 4.57c-.62.28-1.28.47-1.97.56a3.45 3.45 0 0 0 1.51-1.9 6.76 6.76 0 0 1-2.17.85 3.38 3.38 0 0 0-5.78 3.08 9.6 9.6 0 0 1-6.97-3.54 3.37 3.37 0 0 0 1.05 4.5 3.33 3.33 0 0 1-1.53-.42v.04c0 1.64 1.17 3.01 2.72 3.32-.28.07-.58.11-.89.11-.22 0-.43-.02-.63-.06.43 1.32 1.66 2.28 3.13 2.3A6.79 6.79 0 0 1 3 18.4a9.56 9.56 0 0 0 5.18 1.52c6.22 0 9.63-5.18 9.63-9.67 0-.15-.01-.31-.01-.46a6.9 6.9 0 0 0 1.7-1.77Z" />
+              </svg>
+            </span>
+            {copy.shareTwitter}
+          </button>
+          <button type="button" className="share-button share-button--email" onClick={() => handleShare('email')}>
+            <span aria-hidden="true" className="share-button__icon">
+              <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+                <path d="M20.5 5h-17A1.5 1.5 0 0 0 2 6.5v11A1.5 1.5 0 0 0 3.5 19h17a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 20.5 5Zm-.37 2L12 12.47 3.87 7h16.26ZM3.5 17.5V8.54l8.04 5.15a1 1 0 0 0 1.08 0l7.88-5.05v8.86h-17Z" />
+              </svg>
+            </span>
+            {copy.shareEmail}
+          </button>
+          <button type="button" className="share-button share-button--copy" onClick={handleCopyLink}>
+            <span aria-hidden="true" className="share-button__icon">
+              <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+                <path d="M8 3.5A1.5 1.5 0 0 1 9.5 2h9A1.5 1.5 0 0 1 20 3.5v9A1.5 1.5 0 0 1 18.5 14h-9A1.5 1.5 0 0 1 8 12.5v-9Zm1.5-.5a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-9ZM5.5 6A1.5 1.5 0 0 0 4 7.5v11A1.5 1.5 0 0 0 5.5 20h11a1.5 1.5 0 0 0 1.5-1.5V16h-1v2.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H8V6H5.5Z" />
+              </svg>
+            </span>
+            {copied ? copy.copied : copy.copyLink}
+          </button>
+        </div>
+      </aside>
+
+      <section className="blog-article__cta" aria-labelledby="blog-article-cta-heading">
+        <div className="blog-article__cta-content">
+          <h2 id="blog-article-cta-heading">{copy.ctaTitle}</h2>
+          <p>{copy.ctaBody}</p>
+        </div>
+        <Link className="button primary" to={getContactPath(language)}>
+          {copy.ctaButton}
+        </Link>
+      </section>
 
       <footer className="blog-article__footer">
         <Link to={getBlogBasePath(language)} className="blog-article__back">
