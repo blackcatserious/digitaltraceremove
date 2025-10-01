@@ -83,6 +83,10 @@ const navigation = buildNavigation()
 
 const getTeamPath = (language: Language) => (language === 'en' ? '/team' : `/${language}/team`)
 
+const getPartnersPath = (language: Language) => (language === 'en' ? '/partners' : `/${language}/partners`)
+
+const getJoinPath = (language: Language) => (language === 'en' ? '/join' : `/${language}/join`)
+
 const getContactPath = (language: Language) => (language === 'en' ? '/contact' : `/${language}/contact`)
 
 const navCopy: Record<
@@ -91,34 +95,42 @@ const navCopy: Record<
     services: string
     team: string
     blog: string
+    partners: string
     contact: string
     callToAction: string
     tagline: string
+    joinUs: string
   }
 > = {
   en: {
     services: 'Services',
     team: 'Team',
     blog: 'Blog',
+    partners: 'Partners',
     contact: 'Contact',
     callToAction: 'Book a strategy call',
     tagline: 'Growth marketing, revenue design, and product storytelling for teams shipping fast.',
+    joinUs: 'Join us',
   },
   fr: {
     services: 'Services',
     team: 'Équipe',
     blog: 'Blog',
+    partners: 'Partenaires',
     contact: 'Contact',
     callToAction: 'Planifier un échange',
     tagline: 'Marketing growth, modèles de revenus et narration produit pour les équipes ambitieuses.',
+    joinUs: 'Rejoignez-nous',
   },
   es: {
     services: 'Servicios',
     team: 'Equipo',
     blog: 'Blog',
+    partners: 'Partners',
     contact: 'Contacto',
     callToAction: 'Reserva una sesión estratégica',
     tagline: 'Marketing de crecimiento, diseño de ingresos y storytelling de producto para equipos ágiles.',
+    joinUs: 'Únete',
   },
 }
 
@@ -171,6 +183,288 @@ const teamCopy: Record<
       'Paneles analíticos con insight profundo usando Looker Studio, Mixpanel y pipelines a medida.',
     ],
     contactPrompt: '¿Listo para colaborar? Escríbenos y respondemos en un día hábil.',
+  },
+}
+
+const partnersCopy: Record<
+  Language,
+  {
+    title: string
+    subtitle: string
+    description: string
+    segmentsHeading: string
+    segments: { title: string; description: string }[]
+    benefitsHeading: string
+    benefits: string[]
+    programsHeading: string
+    programs: { title: string; description: string }[]
+    ctaHeading: string
+    ctaBody: string
+  }
+> = {
+  en: {
+    title: 'Partner with Traceremove',
+    subtitle: 'Co-create go-to-market velocity across brand, demand, and product growth.',
+    description:
+      'We collaborate with agencies, venture studios, accelerators, and SaaS platforms that want a trusted growth operator to plug in quickly. Our team delivers multilingual positioning, revenue design, and experimentation so your portfolio can move faster.',
+    segmentsHeading: 'Who we partner with',
+    segments: [
+      {
+        title: 'Venture and accelerator programs',
+        description: 'Fractional marketing leadership, narrative design, and reporting frameworks for founders raising or scaling in new markets.',
+      },
+      {
+        title: 'Digital agencies and studios',
+        description: 'White-label growth strategy, CRO, and lifecycle execution that complements your creative or engineering core.',
+      },
+      {
+        title: 'SaaS and platform ecosystems',
+        description: 'Enablement assets, joint campaigns, and product education tailored to English, French, and Spanish-speaking customers.',
+      },
+    ],
+    benefitsHeading: 'Partner benefits',
+    benefits: [
+      'Multilingual delivery across English, French, and Spanish markets.',
+      'Executive-level strategy that ships with hands-on execution.',
+      'Flexible revenue models: retainers, rev-share, or co-marketing swaps.',
+      'Shared analytics to keep stakeholders aligned on impact.',
+    ],
+    programsHeading: 'Engagement programs',
+    programs: [
+      {
+        title: 'Revenue lab sprints',
+        description: '90-day engagements to stand up segmentation, offer architecture, and automated nurture flows with shared reporting.',
+      },
+      {
+        title: 'Co-marketing alliances',
+        description: 'Joint workshops, webinars, and playbooks to spotlight complementary expertise and capture qualified demand.',
+      },
+      {
+        title: 'Partner enablement',
+        description: 'Localized sales decks, onboarding journeys, and success collateral so teams can activate new offerings with confidence.',
+      },
+    ],
+    ctaHeading: 'Ready to explore a partnership?',
+    ctaBody: 'Introduce your team and goals at contact@traceremove.com — we will schedule an alignment session within two business days.',
+  },
+  fr: {
+    title: 'Collaborez avec Traceremove',
+    subtitle: 'Co-construisons votre go-to-market entre brand, demand generation et croissance produit.',
+    description:
+      "Nous accompagnons agences, fonds, accélérateurs et plateformes SaaS qui recherchent un partenaire growth fiable. L'équipe orchestre positionnement multilingue, modèles de revenus et expérimentation pour accélérer vos portefeuilles.",
+    segmentsHeading: 'Nos partenaires',
+    segments: [
+      {
+        title: 'Fonds et accélérateurs',
+        description: 'Leadership marketing fractionné, narration stratégique et frameworks de reporting pour des fondateurs en levée ou en hypercroissance.',
+      },
+      {
+        title: 'Agences et studios digitaux',
+        description: 'Stratégie growth, CRO et lifecycle en marque blanche qui complète vos pôles créatif ou technique.',
+      },
+      {
+        title: 'Écosystèmes SaaS et plateformes',
+        description: 'Assets d’activation, campagnes conjointes et éducation produit adaptés aux audiences francophones, anglophones et hispanophones.',
+      },
+    ],
+    benefitsHeading: 'Avantages partenaires',
+    benefits: [
+      'Exécution multilingue anglais, français et espagnol.',
+      'Stratégie senior qui s’accompagne d’une mise en œuvre opérationnelle.',
+      'Modèles de collaboration flexibles : retainer, partage de revenus ou co-marketing.',
+      'Tableaux de bord partagés pour piloter l’impact ensemble.',
+    ],
+    programsHeading: 'Programmes',
+    programs: [
+      {
+        title: 'Sprints revenue lab',
+        description: '90 jours pour structurer segmentation, offres et automatisation nurturing avec reporting partagé.',
+      },
+      {
+        title: 'Alliances co-marketing',
+        description: 'Workshops, webinaires et playbooks co-brandés pour capter une demande qualifiée.',
+      },
+      {
+        title: 'Enablement partenaires',
+        description: 'Decks commerciaux, parcours onboarding et contenus de succès localisés pour activer de nouvelles offres.',
+      },
+    ],
+    ctaHeading: 'Discutons de votre partenariat',
+    ctaBody: 'Présentez-nous votre structure et vos objectifs via contact@traceremove.com — réponse garantie sous deux jours ouvrés.',
+  },
+  es: {
+    title: 'Haz equipo con Traceremove',
+    subtitle: 'Impulsemos tu go-to-market combinando marca, demanda y crecimiento de producto.',
+    description:
+      'Trabajamos con agencias, fondos, aceleradoras y plataformas SaaS que necesitan un operador de growth confiable. Diseñamos posicionamiento multilingüe, modelos de ingresos y experimentos para que tu portafolio acelere.',
+    segmentsHeading: 'Socios ideales',
+    segments: [
+      {
+        title: 'Fondos y aceleradoras',
+        description: 'Liderazgo de marketing fraccional, narrativa estratégica y reporting para fundadores en ronda o expansión.',
+      },
+      {
+        title: 'Agencias y estudios digitales',
+        description: 'Estrategia de growth, CRO y lifecycle bajo tu marca para complementar capacidades creativas o técnicas.',
+      },
+      {
+        title: 'Ecosistemas SaaS y plataformas',
+        description: 'Activos de enablement, campañas conjuntas y educación de producto para audiencias en inglés, francés y español.',
+      },
+    ],
+    benefitsHeading: 'Ventajas',
+    benefits: [
+      'Entrega multilingüe en inglés, francés y español.',
+      'Estrategia ejecutiva con implementación práctica.',
+      'Modelos flexibles: retainer, revenue share o co-marketing.',
+      'Analítica compartida para alinear a todos los equipos.',
+    ],
+    programsHeading: 'Modalidades',
+    programs: [
+      {
+        title: 'Sprints de revenue lab',
+        description: '90 días para activar segmentación, arquitectura de ofertas y automatizaciones con reporting compartido.',
+      },
+      {
+        title: 'Alianzas de co-marketing',
+        description: 'Workshops, webinars y playbooks conjuntos para captar demanda calificada.',
+      },
+      {
+        title: 'Enablement para partners',
+        description: 'Presentaciones, recorridos de onboarding y contenidos de éxito localizados para activar nuevas ofertas.',
+      },
+    ],
+    ctaHeading: '¿Nos asociamos?',
+    ctaBody: 'Cuéntanos sobre tu organización en contact@traceremove.com — coordinamos una llamada en dos días hábiles.',
+  },
+}
+
+const joinCopy: Record<
+  Language,
+  {
+    title: string
+    subtitle: string
+    description: string
+    valuesHeading: string
+    values: { title: string; description: string }[]
+    rolesHeading: string
+    roles: string[]
+    perksHeading: string
+    perks: string[]
+    ctaHeading: string
+    ctaBody: string
+  }
+> = {
+  en: {
+    title: 'Join the Traceremove collective',
+    subtitle: 'Remote-first growth operators shaping reputation, revenue, and product stories.',
+    description:
+      'We are always meeting strategists, storytellers, analysts, and builders who thrive in autonomous teams. If you love shipping experiments quickly and collaborating across languages, introduce yourself.',
+    valuesHeading: 'How we work',
+    values: [
+      {
+        title: 'Outcome obsessed',
+        description: 'We design with metrics in mind and reverse-engineer every deliverable to business impact.',
+      },
+      {
+        title: 'Multilingual by default',
+        description: 'We operate across English, French, and Spanish markets, respecting regional nuance and accessibility.',
+      },
+      {
+        title: 'Craft and curiosity',
+        description: 'We merge experimentation with storytelling — from AI-assisted production to polished executive narratives.',
+      },
+    ],
+    rolesHeading: 'Focus areas we hire for',
+    roles: [
+      'Growth strategist (contract and fractional engagements)',
+      'Lifecycle marketing and CRM specialist',
+      'Brand and product copywriter with localization experience',
+      'Marketing analytics engineer (Looker Studio, Mixpanel, dbt)',
+    ],
+    perksHeading: 'What you can expect',
+    perks: [
+      'Remote-first collaboration with async rituals and quarterly in-person summits.',
+      'Project-based autonomy with access to our playbooks, research, and tooling stack.',
+      'Opportunities to lead multilingual workshops and client strategy rooms.',
+      'Transparent profit sharing on long-term retainers.',
+    ],
+    ctaHeading: 'Introduce yourself',
+    ctaBody: 'Send your portfolio, case studies, or LinkedIn to join@traceremove.com. Tell us about the markets you know best and the outcomes you love driving.',
+  },
+  fr: {
+    title: "Rejoignez le collectif Traceremove",
+    subtitle: 'Opérateurs growth remote-first, experts en réputation, revenus et narration produit.',
+    description:
+      "Nous rencontrons en continu des stratèges, créatifs, analystes et builders qui aiment l’autonomie. Si vous expédiez des expériences rapidement et collaborez en plusieurs langues, parlons-nous.",
+    valuesHeading: 'Notre culture',
+    values: [
+      {
+        title: 'Obsédés par l’impact',
+        description: 'Chaque livrable est relié à un indicateur business clair et mesurable.',
+      },
+      {
+        title: 'Multilingue par défaut',
+        description: 'Nous opérons en anglais, français et espagnol tout en respectant les spécificités locales.',
+      },
+      {
+        title: 'Curiosité et craft',
+        description: 'Nous marions expérimentation, IA et storytelling pour créer des expériences mémorables.',
+      },
+    ],
+    rolesHeading: 'Profils recherchés',
+    roles: [
+      'Stratège growth (mission ou temps partagé)',
+      'Spécialiste lifecycle & CRM',
+      'Copywriter marque & produit avec expérience en localisation',
+      'Marketing analytics engineer (Looker Studio, Mixpanel, dbt)',
+    ],
+    perksHeading: 'Ce que nous offrons',
+    perks: [
+      'Organisation remote-first avec rituels asynchrones et sommets trimestriels.',
+      'Autonomie projet avec accès à nos playbooks, recherches et stack outils.',
+      'Opportunité d’animer des workshops multilingues et des comités stratégiques.',
+      'Partage transparent des profits sur les retainers long terme.',
+    ],
+    ctaHeading: 'Envoyez votre profil',
+    ctaBody: 'Partagez portfolio, études de cas ou LinkedIn via join@traceremove.com en précisant vos marchés et vos victoires préférées.',
+  },
+  es: {
+    title: 'Únete al colectivo Traceremove',
+    subtitle: 'Operadores de growth remotos que diseñan reputación, ingresos y relatos de producto.',
+    description:
+      'Buscamos estrategas, storytellers, analistas y makers que disfruten trabajar con autonomía. Si te emociona lanzar experimentos rápidos y colaborar en varios idiomas, preséntate.',
+    valuesHeading: 'Nuestra cultura',
+    values: [
+      {
+        title: 'Obsesión por el resultado',
+        description: 'Todo entregable se conecta con métricas de negocio tangibles.',
+      },
+      {
+        title: 'Multilingües de origen',
+        description: 'Operamos en inglés, francés y español cuidando el contexto local.',
+      },
+      {
+        title: 'Curiosidad y oficio',
+        description: 'Combinamos experimentación, IA y narrativa para experiencias memorables.',
+      },
+    ],
+    rolesHeading: 'Roles que buscamos',
+    roles: [
+      'Estratega de growth (contrato o fractional)',
+      'Especialista en lifecycle marketing y CRM',
+      'Copywriter de marca y producto con localización',
+      'Ingeniero/a de analytics marketing (Looker Studio, Mixpanel, dbt)',
+    ],
+    perksHeading: 'Lo que ofrecemos',
+    perks: [
+      'Trabajo remoto-first con rituales asíncronos y encuentros trimestrales.',
+      'Autonomía en proyectos con acceso a nuestros playbooks y stack de herramientas.',
+      'Posibilidad de liderar workshops y salas estratégicas multilingües.',
+      'Revenue share transparente en retainers de larga duración.',
+    ],
+    ctaHeading: 'Preséntate',
+    ctaBody: 'Comparte tu portfolio, casos o LinkedIn en join@traceremove.com. Cuéntanos los mercados que mejor conoces y los resultados que disfrutas conseguir.',
   },
 }
 
@@ -844,6 +1138,145 @@ const TeamPage = () => {
   )
 }
 
+const PartnersPage = () => {
+  const language = useCurrentLanguage()
+  const copy = partnersCopy[language]
+
+  return (
+    <article className="partners-page">
+      <header className="partners-hero">
+        <div className="partners-hero__copy">
+          <p className="partners-kicker">Alliances</p>
+          <h1>{copy.title}</h1>
+          <p className="partners-hero__subtitle">{copy.subtitle}</p>
+          <p>{copy.description}</p>
+        </div>
+        <div className="partners-hero__card" aria-hidden="true">
+          <p className="partners-hero__tag">EN · FR · ES</p>
+          <h2>Co-create velocity</h2>
+          <p>Growth operating partners for founders, agencies, and platforms.</p>
+        </div>
+      </header>
+
+      <section className="partners-section">
+        <h2>{copy.segmentsHeading}</h2>
+        <div className="partners-grid">
+          {copy.segments.map((segment) => (
+            <article key={segment.title} className="partners-card">
+              <h3>{segment.title}</h3>
+              <p>{segment.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="partners-section">
+        <h2>{copy.benefitsHeading}</h2>
+        <ul className="partners-benefits">
+          {copy.benefits.map((benefit) => (
+            <li key={benefit}>{benefit}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="partners-section">
+        <h2>{copy.programsHeading}</h2>
+        <div className="partners-programs">
+          {copy.programs.map((program) => (
+            <article key={program.title} className="partners-program">
+              <h3>{program.title}</h3>
+              <p>{program.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="partners-cta">
+        <div>
+          <h2>{copy.ctaHeading}</h2>
+          <p>{copy.ctaBody}</p>
+        </div>
+        <div className="partners-cta__actions">
+          <a className="button primary" href="mailto:contact@traceremove.com?subject=Partnership inquiry">
+            contact@traceremove.com
+          </a>
+          <a className="button secondary" href="tel:+16063022958">
+            +1 606 302 2958
+          </a>
+        </div>
+      </section>
+    </article>
+  )
+}
+
+const JoinPage = () => {
+  const language = useCurrentLanguage()
+  const copy = joinCopy[language]
+
+  return (
+    <article className="join-page">
+      <header className="join-hero">
+        <div className="join-hero__copy">
+          <p className="join-kicker">Careers</p>
+          <h1>{copy.title}</h1>
+          <p className="join-hero__subtitle">{copy.subtitle}</p>
+          <p>{copy.description}</p>
+        </div>
+        <div className="join-hero__card" aria-hidden="true">
+          <p>Remote · Multilingual</p>
+          <h2>Build with us</h2>
+          <p>Growth designers, analysts, storytellers, and operators.</p>
+        </div>
+      </header>
+
+      <section className="join-section">
+        <h2>{copy.valuesHeading}</h2>
+        <div className="join-values">
+          {copy.values.map((value) => (
+            <article key={value.title} className="join-value">
+              <h3>{value.title}</h3>
+              <p>{value.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="join-section">
+        <h2>{copy.rolesHeading}</h2>
+        <ul className="join-roles">
+          {copy.roles.map((role) => (
+            <li key={role}>{role}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="join-section">
+        <h2>{copy.perksHeading}</h2>
+        <ul className="join-perks">
+          {copy.perks.map((perk) => (
+            <li key={perk}>{perk}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="join-cta">
+        <div>
+          <h2>{copy.ctaHeading}</h2>
+          <p>{copy.ctaBody}</p>
+        </div>
+        <div className="join-cta__actions">
+          <a className="button primary" href="mailto:join@traceremove.com">
+            join@traceremove.com
+          </a>
+          <a className="button ghost" href="https://www.linkedin.com/company/traceremove/jobs/" target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+        </div>
+      </section>
+    </article>
+  )
+}
+
 const contactCopy: Record<
   Language,
   {
@@ -1347,6 +1780,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <NavLink className="tr-nav__link" to={getTeamPath(currentLanguage)}>
             {copy.team}
           </NavLink>
+          <NavLink className="tr-nav__link" to={getPartnersPath(currentLanguage)}>
+            {copy.partners}
+          </NavLink>
           <NavLink className="tr-nav__link" to={getBlogBasePath(currentLanguage)}>
             {copy.blog}
           </NavLink>
@@ -1356,6 +1792,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
         </nav>
 
         <div className="tr-header__cta">
+          <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
+            {copy.joinUs}
+          </NavLink>
           <a className="button ghost" href="tel:+16063022958">
             +1 606 302 2958
           </a>
@@ -1409,11 +1848,17 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             <NavLink to={getTeamPath(currentLanguage)} className="tr-mobile-link">
               {copy.team}
             </NavLink>
+            <NavLink to={getPartnersPath(currentLanguage)} className="tr-mobile-link">
+              {copy.partners}
+            </NavLink>
             <NavLink to={getBlogBasePath(currentLanguage)} className="tr-mobile-link">
               {copy.blog}
             </NavLink>
             <NavLink to={getContactPath(currentLanguage)} className="tr-mobile-link">
               {copy.contact}
+            </NavLink>
+            <NavLink to={getJoinPath(currentLanguage)} className="tr-mobile-link tr-mobile-link--cta">
+              {copy.joinUs}
             </NavLink>
             <a className="tr-mobile-link" href="mailto:contact@traceremove.com">
               contact@traceremove.com
@@ -1445,9 +1890,11 @@ const footerCopy: Record<
     studio: string
     founder: string
     team: string
+    partners: string
     blog: string
     contact: string
     call: string
+    join: string
     subscribeTitle: string
     subscribeSubtitle: string
     subscribePlaceholder: string
@@ -1460,9 +1907,11 @@ const footerCopy: Record<
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
     founder: 'Founder & CEO Artur Ziganshin',
     team: 'Team',
+    partners: 'Partners',
     blog: 'Blog',
     contact: 'Contact',
     call: 'Call us',
+    join: 'Join us',
     subscribeTitle: 'Stay in the loop',
     subscribeSubtitle: 'Receive frameworks, playbooks, and release notes from our growth and reputation lab.',
     subscribePlaceholder: 'Your email address',
@@ -1474,9 +1923,11 @@ const footerCopy: Record<
     studio: "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
     founder: 'Fondateur & CEO Artur Ziganshin',
     team: 'Équipe',
+    partners: 'Partenaires',
     blog: 'Blog',
     contact: 'Contact',
     call: 'Appelez-nous',
+    join: 'Rejoignez-nous',
     subscribeTitle: 'Restez informé',
     subscribeSubtitle: 'Recevez frameworks, playbooks et notes de version de notre laboratoire growth & réputation.',
     subscribePlaceholder: 'Votre adresse email',
@@ -1488,9 +1939,11 @@ const footerCopy: Record<
     studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
     founder: 'Fundador y CEO Artur Ziganshin',
     team: 'Equipo',
+    partners: 'Partners',
     blog: 'Blog',
     contact: 'Contacto',
     call: 'Llámanos',
+    join: 'Únete',
     subscribeTitle: 'Mantente al día',
     subscribeSubtitle: 'Recibe frameworks, playbooks y notas de lanzamiento de nuestro laboratorio de crecimiento y reputación.',
     subscribePlaceholder: 'Tu correo electrónico',
@@ -1505,9 +1958,22 @@ const callWidgetCopy: Record<Language, { label: string; assist: string }> = {
   es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con Artur Ziganshin' },
 }
 
-type SocialKey = 'linkedin' | 'behance' | 'dribbble'
+type SocialKey =
+  | 'whatsapp'
+  | 'instagram'
+  | 'facebook'
+  | 'medium'
+  | 'substack'
+  | 'linkedin'
+  | 'behance'
+  | 'dribbble'
 
 const socialLinks: { key: SocialKey; href: string }[] = [
+  { key: 'whatsapp', href: 'https://wa.me/16063022958' },
+  { key: 'instagram', href: 'https://www.instagram.com/traceremove' },
+  { key: 'facebook', href: 'https://www.facebook.com/traceremove' },
+  { key: 'medium', href: 'https://medium.com/@traceremove' },
+  { key: 'substack', href: 'https://traceremove.substack.com' },
   { key: 'linkedin', href: 'https://www.linkedin.com/company/traceremove' },
   { key: 'behance', href: 'https://www.behance.net/traceremove' },
   { key: 'dribbble', href: 'https://dribbble.com/traceremove' },
@@ -1515,16 +1981,31 @@ const socialLinks: { key: SocialKey; href: string }[] = [
 
 const footerSocialLabels: Record<Language, Record<SocialKey, string>> = {
   en: {
+    whatsapp: 'Message us on WhatsApp',
+    instagram: 'Traceremove on Instagram',
+    facebook: 'Traceremove on Facebook',
+    medium: 'Traceremove on Medium',
+    substack: 'Traceremove on Substack',
     linkedin: 'Traceremove on LinkedIn',
     behance: 'Traceremove portfolio on Behance',
     dribbble: 'Traceremove shots on Dribbble',
   },
   fr: {
+    whatsapp: 'Écrivez-nous sur WhatsApp',
+    instagram: 'Traceremove sur Instagram',
+    facebook: 'Traceremove sur Facebook',
+    medium: 'Traceremove sur Medium',
+    substack: 'Traceremove sur Substack',
     linkedin: 'Traceremove sur LinkedIn',
     behance: 'Portfolio Traceremove sur Behance',
     dribbble: 'Créations Traceremove sur Dribbble',
   },
   es: {
+    whatsapp: 'Escríbenos por WhatsApp',
+    instagram: 'Traceremove en Instagram',
+    facebook: 'Traceremove en Facebook',
+    medium: 'Traceremove en Medium',
+    substack: 'Traceremove en Substack',
     linkedin: 'Traceremove en LinkedIn',
     behance: 'Portafolio de Traceremove en Behance',
     dribbble: 'Proyectos de Traceremove en Dribbble',
@@ -1537,6 +2018,36 @@ const renderSocialIcon = (key: SocialKey): JSX.Element | null => {
       return (
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M4.983 3.5A2.484 2.484 0 0 1 7.5 1a2.5 2.5 0 1 1-2.517 2.5Zm.184 4.25h4.667v14.75H5.167Zm6.583 0h4.48v2.017h.064c.623-1.182 2.145-2.43 4.416-2.43 4.723 0 5.6 3.11 5.6 7.157v8.006h-4.667v-7.1c0-1.694-.031-3.873-2.362-3.873-2.366 0-2.729 1.85-2.729 3.756v7.217h-4.802Z" />
+        </svg>
+      )
+    case 'whatsapp':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2a10 10 0 0 0-8.66 15.15L3 22l4.08-1.28A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.07-1.11l-.29-.17-2.42.76.8-2.34-.18-.3A8 8 0 1 1 12 20Zm4.33-5.1c-.24-.12-1.4-.7-1.62-.78s-.38-.12-.54.12-.62.78-.76.94-.28.18-.52.06a6.39 6.39 0 0 1-1.87-1.15 7.07 7.07 0 0 1-1.32-1.64c-.14-.24 0-.37.1-.49.1-.1.24-.28.36-.42s.16-.24.24-.4a.46.46 0 0 0 0-.42c-.06-.12-.54-1.3-.74-1.77s-.4-.4-.54-.4h-.46a.9.9 0 0 0-.66.3 2.79 2.79 0 0 0-.88 2.07 4.82 4.82 0 0 0 1 2.53A10.89 10.89 0 0 0 11 16.7a3.52 3.52 0 0 0 1.95.51 2.84 2.84 0 0 0 1.86-.6 2.19 2.19 0 0 0 .72-1.36c.06-.12 0-.18-.12-.24Z" />
+        </svg>
+      )
+    case 'instagram':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M8 2h8a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6V8a6 6 0 0 1 6-6Zm0 2a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4ZM12 7.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.25-3.5a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25Z" />
+        </svg>
+      )
+    case 'facebook':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M13.5 21.75v-7.62h2.56l.38-2.96H13.5V9a1.1 1.1 0 0 1 1.24-1.25h1.7V4.99a20.8 20.8 0 0 0-2.5-.14c-2.47 0-4.15 1.5-4.15 4.24v2.08H6.7v2.96h3.09v7.62Z" />
+        </svg>
+      )
+    case 'medium':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4 7.25a.75.75 0 0 1 .6-.73l2.88-.6a.75.75 0 0 1 .86.48l2.2 5.92 2.14-5.7a.75.75 0 0 1 .88-.47l2.78.65a.75.75 0 0 1 .57.73v10.34a.75.75 0 0 1-.57.73l-2.46.58a.75.75 0 0 1-.91-.52l-2.43-7.4-2.77 7.52a.75.75 0 0 1-.87.48l-2.88-.6A.75.75 0 0 1 4 18.48Z" />
+        </svg>
+      )
+    case 'substack':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4 5.5V3h16v2.5Zm0 2.5h16v2.5L12 14.5 4 10.5Zm0 4.5 8 4 8-4V21L12 17 4 21Z" />
         </svg>
       )
     case 'behance':
@@ -1629,8 +2140,10 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         </div>
         <div className="tr-footer__links">
           <NavLink to={getTeamPath(currentLanguage)}>{copy.team}</NavLink>
+          <NavLink to={getPartnersPath(currentLanguage)}>{copy.partners}</NavLink>
           <NavLink to={getBlogBasePath(currentLanguage)}>{copy.blog}</NavLink>
           <NavLink to={getContactPath(currentLanguage)}>{copy.contact}</NavLink>
+          <NavLink to={getJoinPath(currentLanguage)}>{copy.join}</NavLink>
           <a href="tel:+16063022958">{copy.call}</a>
         </div>
         <div className="tr-footer__social">
@@ -1672,12 +2185,16 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="team" element={<TeamPage />} />
+        <Route path="partners" element={<PartnersPage />} />
+        <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<ContactPage language="en" />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         {languages.map((language) => (
           <Fragment key={language}>
             <Route path={`${language}/team`} element={<TeamPage />} />
+            <Route path={`${language}/partners`} element={<PartnersPage />} />
+            <Route path={`${language}/join`} element={<JoinPage />} />
             <Route path={`${language}/contact`} element={<ContactPage language={language} />} />
             <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
             <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
