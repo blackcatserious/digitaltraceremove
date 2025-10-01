@@ -1732,6 +1732,19 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     setMobileOpen(false)
   }, [location.pathname])
 
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = originalOverflow
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow
+    }
+  }, [mobileOpen])
+
   const firstPages = useMemo(
     () =>
       languages.reduce<Record<Language, string>>((acc, lang) => {

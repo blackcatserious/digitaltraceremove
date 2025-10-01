@@ -345,7 +345,7 @@ a {
   pointer-events: none;
   transform: translateY(-10px);
   transition: opacity 0.35s ease, transform 0.35s ease;
-  z-index: 40;
+  z-index: 80;
   overflow-y: auto;
 }
 
@@ -2101,9 +2101,13 @@ a {
     display: flex;
   }
 
+  .tr-header__brand {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .tr-languages {
-    position: static;
-    margin-top: 1rem;
+    display: none;
   }
 
   .tr-footer__inner {
