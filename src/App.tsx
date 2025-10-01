@@ -1,5 +1,6 @@
 import {
   Fragment,
+  type CSSProperties,
   type ChangeEvent,
   type FormEvent,
   type ReactNode,
@@ -88,6 +89,61 @@ const getPartnersPath = (language: Language) => (language === 'en' ? '/partners'
 const getJoinPath = (language: Language) => (language === 'en' ? '/join' : `/${language}/join`)
 
 const getContactPath = (language: Language) => (language === 'en' ? '/contact' : `/${language}/contact`)
+
+type GrowthSparkProps = {
+  variant?: 'dark' | 'light'
+  size?: 'sm' | 'md' | 'lg'
+  className?: string
+  ariaLabel?: string
+}
+
+const growthBarSets: Record<NonNullable<GrowthSparkProps['size']>, number[]> = {
+  sm: [38, 52, 46, 68, 60],
+  md: [32, 48, 60, 74, 88, 96],
+  lg: [28, 44, 58, 76, 88, 98, 92],
+}
+
+const GrowthSpark = ({ variant = 'dark', size = 'md', className = '', ariaLabel }: GrowthSparkProps) => {
+  const bars = growthBarSets[size]
+  const step = bars.length > 1 ? 100 / (bars.length - 1) : 100
+  const points = bars
+    .map((height, index) => {
+      const x = Math.min(100, Math.max(0, index * step))
+      const y = Math.min(100, Math.max(0, 100 - height))
+      return `${x.toFixed(2)},${y.toFixed(2)}`
+    })
+    .join(' ')
+
+  const classes = ['growth-spark', `growth-spark--${variant}`, `growth-spark--${size}`]
+  if (className) {
+    classes.push(className)
+  }
+
+  return (
+    <div
+      className={classes.join(' ')}
+      {...(ariaLabel ? { role: 'img', 'aria-label': ariaLabel } : { 'aria-hidden': true })}
+    >
+      <div className="growth-spark__bars">
+        {bars.map((height, index) => (
+          <span
+            key={`${index}-${height}`}
+            className="growth-spark__bar"
+            style={
+              {
+                '--bar-height': `${height}%`,
+                '--bar-delay': `${index * 0.12}s`,
+              } as CSSProperties
+            }
+          />
+        ))}
+      </div>
+      <svg className="growth-spark__line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <polyline points={points} />
+      </svg>
+    </div>
+  )
+}
 
 const navCopy: Record<
   Language,
@@ -861,7 +917,10 @@ const HomePage = () => {
           </div>
         </div>
         <div className="home-hero-visual" aria-hidden="true">
+          <div className="home-hero-visual__field" />
           <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <GrowthSpark variant="light" size="md" className="home-hero-graph" />
+          <GrowthSpark variant="dark" size="sm" className="home-hero-graph home-hero-graph--offset" />
         </div>
       </div>
 
@@ -965,6 +1024,7 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
           </div>
         </div>
         <div className="service-hero-visual" aria-hidden="true">
+          <GrowthSpark variant="light" size="sm" className="service-hero-graph" />
           <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
         </div>
       </header>
@@ -1088,6 +1148,7 @@ const TeamPage = () => {
           <p>{copy.intro}</p>
         </div>
         <div className="team-hero-visual" aria-hidden="true">
+          <GrowthSpark variant="light" size="md" className="team-hero-graph" />
           <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
         </div>
       </header>
@@ -1152,6 +1213,7 @@ const PartnersPage = () => {
           <p>{copy.description}</p>
         </div>
         <div className="partners-hero__card" aria-hidden="true">
+          <GrowthSpark variant="light" size="sm" className="partners-hero-graph" />
           <p className="partners-hero__tag">EN · FR · ES</p>
           <h2>Co-create velocity</h2>
           <p>Growth operating partners for founders, agencies, and platforms.</p>
@@ -1223,6 +1285,7 @@ const JoinPage = () => {
           <p>{copy.description}</p>
         </div>
         <div className="join-hero__card" aria-hidden="true">
+          <GrowthSpark variant="light" size="sm" className="join-hero-graph" />
           <p>Remote · Multilingual</p>
           <h2>Build with us</h2>
           <p>Growth designers, analysts, storytellers, and operators.</p>
