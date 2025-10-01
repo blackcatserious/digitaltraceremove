@@ -49,7 +49,6 @@ interface TranslationSeed {
   title: MultilingualText
   summary: MultilingualText
   heroKicker: MultilingualText
-  readTime: MultilingualText
   seoTitle: MultilingualText
   seoDescription: MultilingualText
   author: MultilingualText
@@ -68,7 +67,44 @@ interface ArticleSeed {
 const t = (en: string, fr: string, es: string): MultilingualText => ({ en, fr, es })
 
 const defaultAuthor = t('Artur Ziganshin', 'Artur Ziganshin', 'Artur Ziganshin')
-const defaultReadTime = t('12 min read', 'Lecture de 12 min', 'Lectura de 12 min')
+
+const WORDS_PER_MINUTE = 220
+
+const stripMarkup = (value: string): string => value.replace(/<[^>]+>/g, ' ')
+
+const countWords = (value: string): number => {
+  const normalized = stripMarkup(value).replace(/[\n\r]+/g, ' ').trim()
+  if (!normalized) {
+    return 0
+  }
+  return normalized.split(/\s+/u).length
+}
+
+const computeSectionWordCount = (sections: BlogArticleSection[]): number =>
+  sections.reduce((total, section) => {
+    let sum = total
+    if (section.heading) {
+      sum += countWords(section.heading)
+    }
+    section.paragraphs.forEach((paragraph) => {
+      sum += countWords(paragraph)
+    })
+    section.bullets?.forEach((bullet) => {
+      sum += countWords(bullet)
+    })
+    return sum
+  }, 0)
+
+const formatReadTime = (language: Language, minutes: number): string => {
+  switch (language) {
+    case 'fr':
+      return `Lecture de ${minutes} min`
+    case 'es':
+      return `Lectura de ${minutes} min`
+    default:
+      return `${minutes} min read`
+  }
+}
 
 export const blogTopics: BlogTopic[] = ['orm', 'ai', 'cybersecurity', 'seo', 'web-design']
 
@@ -228,18 +264,25 @@ const buildTranslation = (
   language: Language,
   topic: BlogTopic,
   translation: TranslationSeed,
-): BlogArticleTranslation => ({
-  title: translation.title[language],
-  summary: translation.summary[language],
-      topicLabel: blogTopicLabels[language][topic],
-  heroKicker: translation.heroKicker[language],
-  readTime: translation.readTime[language],
-  seoTitle: translation.seoTitle[language],
-  seoDescription: translation.seoDescription[language],
-  author: translation.author[language],
-  heroAlt: translation.heroAlt[language],
-  body: buildBody(language, translation.bodySeed),
-})
+): BlogArticleTranslation => {
+  const body = buildBody(language, translation.bodySeed)
+  const summaryWordCount = countWords(translation.summary[language])
+  const totalWords = summaryWordCount + computeSectionWordCount(body)
+  const minutes = Math.max(3, Math.round(totalWords / WORDS_PER_MINUTE))
+
+  return {
+    title: translation.title[language],
+    summary: translation.summary[language],
+    topicLabel: blogTopicLabels[language][topic],
+    heroKicker: translation.heroKicker[language],
+    readTime: formatReadTime(language, minutes),
+    seoTitle: translation.seoTitle[language],
+    seoDescription: translation.seoDescription[language],
+    author: translation.author[language],
+    heroAlt: translation.heroAlt[language],
+    body,
+  }
+}
 
 const articleSeeds: ArticleSeed[] = [
   {
@@ -259,7 +302,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove mapea los nuevos recorridos en SERP, los activos multimedia y los relatos ejecutivos para crear una arquitectura de intención que mantiene a las marcas reguladas con autoridad.',
       ),
       heroKicker: t('Insider Playbook', "Playbook d'initiés", 'Manual de insiders'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Modern SEO Intent Architecture | Traceremove',
         'Architecture d’intention SEO moderne | Traceremove',
@@ -332,7 +374,6 @@ const articleSeeds: ArticleSeed[] = [
         'Así funciona el desk de seguridad de marca de Traceremove, donde SEO, reseñas y legal orquestan bajas, narrativa y recuperación de conversiones cuando el relato se descontrola.',
       ),
       heroKicker: t('Brand Defense Briefing', 'Briefing défense de marque', 'Informe de defensa de marca'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Brand Safety Search Command Center | Traceremove',
         'Centre de commandement SEO de sécurité de marque | Traceremove',
@@ -405,7 +446,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove demuestra la fuga de ingresos provocada por reseñas sintéticas y cómo la detección de anomalías, la verificación humana y los medios de confianza recuperan reservas y ventas.',
       ),
       heroKicker: t('Review Integrity Report', 'Rapport sur l’intégrité des avis', 'Informe de integridad de reseñas'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Fake Review Fallout and Revenue Risk | Traceremove',
         'Faux avis et risque de revenus | Traceremove',
@@ -478,7 +518,6 @@ const articleSeeds: ArticleSeed[] = [
         'Guía de campo sobre los rituales diarios, capturas visuales y puntos de contacto que los fundadores trabajan con Traceremove para adelantarse a los algoritmos.',
       ),
       heroKicker: t('Growth Lab', 'Laboratoire de croissance', 'Laboratorio de crecimiento'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Insider Brand Habits for Agile SEO | Traceremove',
         'Habitudes d’initiés pour un SEO agile | Traceremove',
@@ -551,7 +590,6 @@ const articleSeeds: ArticleSeed[] = [
         'Cómo Traceremove instala rituales de gobernanza, flujos visuales y reportes ejecutivos para que los equipos globales publiquen historias conformes y listas para search cada semana.',
       ),
       heroKicker: t('Operations Manual', 'Manuel opérationnel', 'Manual operativo'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'SEO Governance Blueprint | Traceremove',
         'Blueprint de gouvernance SEO | Traceremove',
@@ -624,7 +662,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove demuestra cómo dirección de arte, fotografía de producto y overlays de datos colaboran para que cada snippet visual, pin y tarjeta Discover genere autoridad y demanda.',
       ),
       heroKicker: t('Creative Direction', 'Direction créative', 'Dirección creativa'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Search Visual Persuasion | Traceremove',
         'Persuasion visuelle en recherche | Traceremove',
@@ -697,7 +734,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove explica el stack de monitoreo, los assets visuales y los guiones de escalamiento que evitan que las IA alucinen con su relato de marca.',
       ),
       heroKicker: t('AI & Search Briefing', 'Briefing IA & recherche', 'Informe IA & search'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'AI SEO Safeguards | Traceremove',
         'Garde-fous SEO IA | Traceremove',
@@ -770,7 +806,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove captura feedback cualitativo, fotografía documental y transcripciones de servicio para impulsar autoridad en FAQs, E-E-A-T y ecosistemas de reseñas.',
       ),
       heroKicker: t('Customer Evidence Lab', 'Lab des preuves clients', 'Laboratorio de evidencia del cliente'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Voice of Customer SEO | Traceremove',
         'SEO voix client | Traceremove',
@@ -843,7 +878,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove muestra cómo las marcas multinacionales coordinan creativos, legales y analistas para combatir reseñas falsas, SERP secuestradas y desinformación al unísono.',
       ),
       heroKicker: t('Global Strategy Dossier', 'Dossier stratégie globale', 'Dossier de estrategia global'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Global Brand Reputation Defence | Traceremove',
         'Défense de réputation globale | Traceremove',
@@ -916,7 +950,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove detalla la fotografía, la cadencia de contenido y los protocolos de crisis que mantienen a los ejecutivos visibles, confiables y listos para la supervisión del directorio.',
       ),
       heroKicker: t('Leadership Signals', 'Signaux de leadership', 'Señales de liderazgo'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Executive Personal Brand SEO | Traceremove',
         'SEO de marque personnelle exécutive | Traceremove',
@@ -989,7 +1022,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove explica los modelos de staffing, dashboards visuales y cadencias de comunicación que mantienen la calma en los resultados de búsqueda durante brechas, filtraciones y caídas.',
       ),
       heroKicker: t('Crisis Response Manual', 'Manuel de réponse de crise', 'Manual de respuesta a crisis'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Incident Response SEO War Rooms | Traceremove',
         'War rooms SEO de réponse incident | Traceremove',
@@ -1062,7 +1094,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove combina fotografía en campo, gobernanza de fichas y coreografía de respuestas a reseñas para que franquicias y redes retail conviertan la intención local en ingresos protegidos.',
       ),
       heroKicker: t('Local Presence Lab', 'Lab de présence locale', 'Laboratorio de presencia local'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Local Search Fortification | Traceremove',
         'Fortification du search local | Traceremove',
@@ -1135,7 +1166,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove muestra cómo los refresh de contenido, las actualizaciones de schema y las renovaciones visuales mantienen experiencias de búsqueda precisas a lo largo de meses y ciclos de producto.',
       ),
       heroKicker: t('Lifecycle Playbook', 'Playbook cycle de vie', 'Playbook de ciclo de vida'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'SERP Lifecycle Optimisation | Traceremove',
         'Optimisation du cycle de vie SERP | Traceremove',
@@ -1208,7 +1238,6 @@ const articleSeeds: ArticleSeed[] = [
         'El equipo forense de reseñas de Traceremove explica cómo auditar testimonios, asegurar derechos de imagen y desplegar pruebas multimedia sin riesgo regulatorio ni rechazo de clientes.',
       ),
       heroKicker: t('Trust Assurance', 'Assurance confiance', 'Garantía de confianza'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'Social Proof Integrity | Traceremove',
         'Intégrité de la preuve sociale | Traceremove',
@@ -1281,7 +1310,6 @@ const articleSeeds: ArticleSeed[] = [
         'Traceremove revela cómo las war rooms transversales alinean SEO, PR, legal, creativos y analítica para ganar cada batalla de búsqueda con narrativa intencional.',
       ),
       heroKicker: t('Command Playbook', 'Playbook de commandement', 'Playbook de comando'),
-      readTime: defaultReadTime,
       seoTitle: t(
         'SEO War Room Playbook | Traceremove',
         'Playbook war room SEO | Traceremove',
