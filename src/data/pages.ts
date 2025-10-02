@@ -774,6 +774,61 @@ const serviceConfigs: ServiceConfig[] = [
     },
     basePrice: 6700,
   },
+  {
+    key: 'brand-intelligence',
+    names: {
+      en: 'Brand Intelligence Automation',
+      fr: 'Automatisation de l’intelligence de marque',
+      es: 'Automatización de inteligencia de marca',
+    },
+    summary: {
+      en: 'We connect monitoring, takedown, and response workflows so your reputation ops stay always-on.',
+      fr: 'Nous connectons veille, retrait et réponse pour que vos opérations de réputation restent en éveil permanent.',
+      es: 'Conectamos monitorización, retirada y respuesta para mantener tus operaciones de reputación siempre activas.',
+    },
+    promise: {
+      en: 'Specialists orchestrate brand intelligence stacks, automations, and analyst rituals to neutralize threats fast.',
+      fr: 'Nos spécialistes orchestrent la stack d’intelligence de marque, les automatisations et les rituels analystes pour neutraliser rapidement les menaces.',
+      es: 'Especialistas orquestan el stack de inteligencia de marca, las automatizaciones y los rituales de analistas para neutralizar amenazas rápido.',
+    },
+    deliverables: {
+      en: [
+        'Signal architecture audit across search, social, marketplaces, and dark web monitors',
+        '24/7 alerting rules with sentiment and severity scoring',
+        'Takedown playbooks and escalation trees per channel',
+        'Automated review authenticity sweeps and response templates',
+        'Executive war-room dashboard with trending incidents',
+        'Brand defence training for support, comms, and leadership teams',
+      ],
+      fr: [
+        'Audit de l’architecture de signaux sur search, social, marketplaces et veille dark web',
+        'Règles d’alerting 24/7 avec scoring de sentiment et de sévérité',
+        'Playbooks de retrait et arbres d’escalade par canal',
+        'Contrôles automatisés d’authenticité des avis et modèles de réponse',
+        'Dashboard war room exécutif avec incidents émergents',
+        'Formation défense de marque pour support, communication et direction',
+      ],
+      es: [
+        'Auditoría de arquitectura de señales en search, social, marketplaces y monitores del dark web',
+        'Reglas de alertas 24/7 con scoring de sentimiento y severidad',
+        'Playbooks de retirada y árboles de escalamiento por canal',
+        'Barridos automatizados de autenticidad de reseñas y plantillas de respuesta',
+        'Dashboard de war room ejecutivo con incidentes en tendencia',
+        'Capacitación en defensa de marca para soporte, comunicación y liderazgo',
+      ],
+    },
+    proof: {
+      en: 'Unified signals cut response time from 48 hours to under six across support and comms.',
+      fr: 'La centralisation des signaux a réduit les temps de réponse de 48 h à moins de 6 h pour support et communication.',
+      es: 'La unificación de señales redujo los tiempos de respuesta de 48 h a menos de 6 h entre soporte y comunicaciones.',
+    },
+    metrics: {
+      en: ['Detection time to incident', 'Share of protected branded assets', 'Revenue preserved from fraud mitigation'],
+      fr: ['Délai de détection des incidents', 'Part d’actifs de marque protégés', 'Revenus préservés grâce à la lutte contre la fraude'],
+      es: ['Tiempo de detección por incidente', 'Porcentaje de activos de marca protegidos', 'Ingresos preservados por mitigación de fraude'],
+    },
+    basePrice: 8200,
+  },
 ]
 
 const industryConfigs: IndustryConfig[] = [
@@ -1147,7 +1202,7 @@ serviceConfigs.forEach((service, serviceIndex) => {
   })
 })
 
-export const servicePages: ServicePageContent[] = pagesUntrimmed.slice(0, 212)
+export const servicePages: ServicePageContent[] = pagesUntrimmed
 
 export const languages: Language[] = ['en', 'fr', 'es']
 

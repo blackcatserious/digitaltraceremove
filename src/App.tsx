@@ -159,6 +159,8 @@ const navCopy: Record<
     callToAction: string
     tagline: string
     joinUs: string
+    openMenu: string
+    closeMenu: string
   }
 > = {
   en: {
@@ -170,6 +172,8 @@ const navCopy: Record<
     callToAction: 'Book a strategy call',
     tagline: 'Growth marketing, revenue design, and product storytelling for teams shipping fast.',
     joinUs: 'Join us',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
   },
   fr: {
     services: 'Services',
@@ -180,6 +184,8 @@ const navCopy: Record<
     callToAction: 'Planifier un échange',
     tagline: 'Marketing growth, modèles de revenus et narration produit pour les équipes ambitieuses.',
     joinUs: 'Rejoignez-nous',
+    openMenu: 'Ouvrir le menu',
+    closeMenu: 'Fermer le menu',
   },
   es: {
     services: 'Servicios',
@@ -190,6 +196,8 @@ const navCopy: Record<
     callToAction: 'Reserva una sesión estratégica',
     tagline: 'Marketing de crecimiento, diseño de ingresos y storytelling de producto para equipos ágiles.',
     joinUs: 'Únete',
+    openMenu: 'Abrir menú',
+    closeMenu: 'Cerrar menú',
   },
 }
 
@@ -2164,6 +2172,24 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     }
   }, [mobileOpen])
 
+  useEffect(() => {
+    if (!mobileOpen) {
+      return
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [mobileOpen])
+
   const firstPages = useMemo(
     () =>
       languages.reduce<Record<Language, string>>((acc, lang) => {
@@ -2176,6 +2202,10 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       }, { en: '/', fr: '/', es: '/' }),
     []
   )
+
+  const handleCloseMobile = () => {
+    setMobileOpen(false)
+  }
 
   return (
     <header className="tr-header">
@@ -2191,6 +2221,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-expanded={mobileOpen}
             aria-controls="tr-mobile-menu"
+            aria-label={mobileOpen ? copy.closeMenu : copy.openMenu}
           >
             <span />
             <span />
@@ -2259,54 +2290,82 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div id="tr-mobile-menu" className={`tr-mobile-menu ${mobileOpen ? 'is-open' : ''}`}>
-        <div className="tr-mobile-menu__inner">
-          <div className="tr-mobile-section">
-            <h3>{copy.services}</h3>
-            {groups.map((group) => (
-              <Fragment key={group.serviceName}>
-                <p className="tr-mobile-group-title">{group.serviceName}</p>
-                <ul>
-                  {group.pages.map((page) => (
-                    <li key={page.path}>
-                      <NavLink to={page.path}>{page.industryName}</NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </Fragment>
-            ))}
+        <button
+          type="button"
+          className="tr-mobile-menu__backdrop"
+          aria-hidden="true"
+          tabIndex={-1}
+          onClick={handleCloseMobile}
+        />
+        <div
+          className="tr-mobile-menu__panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${copy.services} navigation`}
+        >
+          <div className="tr-mobile-menu__header">
+            <span className="tr-mobile-menu__title">Traceremove</span>
+            <button type="button" className="tr-mobile-close" aria-label={copy.closeMenu} onClick={handleCloseMobile}>
+              <span />
+              <span />
+            </button>
           </div>
-          <div className="tr-mobile-section">
-            <h3>{copy.team}</h3>
-            <NavLink to={getTeamPath(currentLanguage)} className="tr-mobile-link">
-              {copy.team}
-            </NavLink>
-            <NavLink to={getPartnersPath(currentLanguage)} className="tr-mobile-link">
-              {copy.partners}
-            </NavLink>
-            <NavLink to={getBlogBasePath(currentLanguage)} className="tr-mobile-link">
-              {copy.blog}
-            </NavLink>
-            <NavLink to={getContactPath(currentLanguage)} className="tr-mobile-link">
-              {copy.contact}
-            </NavLink>
-            <NavLink to={getJoinPath(currentLanguage)} className="tr-mobile-link tr-mobile-link--cta">
-              {copy.joinUs}
-            </NavLink>
-            <a className="tr-mobile-link" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
-            </a>
-            <a className="tr-mobile-link" href="tel:+16063022958">
-              +1 606 302 2958
-            </a>
-          </div>
-          <div className="tr-mobile-section">
-            <h3>Languages</h3>
-            <div className="tr-mobile-languages">
-              {languages.map((language) => (
-                <NavLink key={language} to={firstPages[language]} className={language === currentLanguage ? 'is-active' : undefined}>
-                  {languageLabels[language]}
-                </NavLink>
+          <div className="tr-mobile-menu__inner">
+            <div className="tr-mobile-section">
+              <h3>{copy.services}</h3>
+              {groups.map((group) => (
+                <Fragment key={group.serviceName}>
+                  <p className="tr-mobile-group-title">{group.serviceName}</p>
+                  <ul>
+                    {group.pages.map((page) => (
+                      <li key={page.path}>
+                        <NavLink to={page.path} onClick={handleCloseMobile}>
+                          {page.industryName}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                </Fragment>
               ))}
+            </div>
+            <div className="tr-mobile-section">
+              <h3>{copy.team}</h3>
+              <NavLink to={getTeamPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+                {copy.team}
+              </NavLink>
+              <NavLink to={getPartnersPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+                {copy.partners}
+              </NavLink>
+              <NavLink to={getBlogBasePath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+                {copy.blog}
+              </NavLink>
+              <NavLink to={getContactPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+                {copy.contact}
+              </NavLink>
+              <NavLink to={getJoinPath(currentLanguage)} className="tr-mobile-link tr-mobile-link--cta" onClick={handleCloseMobile}>
+                {copy.joinUs}
+              </NavLink>
+              <a className="tr-mobile-link" href="mailto:contact@traceremove.com" onClick={handleCloseMobile}>
+                contact@traceremove.com
+              </a>
+              <a className="tr-mobile-link" href="tel:+16063022958" onClick={handleCloseMobile}>
+                +1 606 302 2958
+              </a>
+            </div>
+            <div className="tr-mobile-section">
+              <h3>Languages</h3>
+              <div className="tr-mobile-languages">
+                {languages.map((language) => (
+                  <NavLink
+                    key={language}
+                    to={firstPages[language]}
+                    className={`tr-mobile-language${language === currentLanguage ? ' is-active' : ''}`}
+                    onClick={handleCloseMobile}
+                  >
+                    {languageLabels[language]}
+                  </NavLink>
+                ))}
+              </div>
             </div>
           </div>
         </div>
