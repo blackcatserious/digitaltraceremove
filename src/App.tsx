@@ -3,9 +3,11 @@ import {
   type CSSProperties,
   type ChangeEvent,
   type FormEvent,
+  type MouseEvent,
   type ReactNode,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
@@ -92,6 +94,14 @@ const getPartnersPath = (language: Language) => (language === 'en' ? '/partners'
 const getJoinPath = (language: Language) => (language === 'en' ? '/join' : `/${language}/join`)
 
 const getContactPath = (language: Language) => (language === 'en' ? '/contact' : `/${language}/contact`)
+
+const slugifyHeading = (value: string) =>
+  value
+    .normalize('NFD')
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/[\u0300-\u036f]+/g, '')
+    .toLowerCase()
+    .replace(/(^-|-$)+/g, '')
 
 type GrowthSparkProps = {
   variant?: 'dark' | 'light'
@@ -1703,6 +1713,10 @@ const blogArticleCopy: Record<
     ctaTitle: string
     ctaBody: string
     ctaButton: string
+    tocTitle: string
+    tocHint: string
+    scrollTop: string
+    progressLabel: string
   }
 > = {
   en: {
@@ -1719,6 +1733,10 @@ const blogArticleCopy: Record<
     ctaBody:
       'Bring Traceremove into your brand room to design counter-narratives, remove fake reviews, and harden search trust across markets.',
     ctaButton: 'Book a strategy call',
+    tocTitle: 'Navigate this playbook',
+    tocHint: 'Jump to any section while the growth meter tracks your read.',
+    scrollTop: 'Back to top',
+    progressLabel: 'Reading progress',
   },
   fr: {
     backToBlog: 'Retour aux articles',
@@ -1734,6 +1752,10 @@ const blogArticleCopy: Record<
     ctaBody:
       'Invitez Traceremove à vos comités de marque pour bâtir les contre-récits, supprimer les faux avis et renforcer la confiance sur les moteurs de recherche.',
     ctaButton: 'Planifier un échange',
+    tocTitle: 'Parcourir le playbook',
+    tocHint: 'Accédez à chaque chapitre pendant que l’indicateur suit votre lecture.',
+    scrollTop: 'Revenir en haut',
+    progressLabel: 'Progression de lecture',
   },
   es: {
     backToBlog: 'Volver a los artículos',
@@ -1749,6 +1771,10 @@ const blogArticleCopy: Record<
     ctaBody:
       'Integra a Traceremove en tu war room para diseñar contra-narrativas, eliminar reseñas falsas y blindar la confianza en buscadores.',
     ctaButton: 'Reserva una sesión estratégica',
+    tocTitle: 'Recorre el playbook',
+    tocHint: 'Salta a cualquier capítulo mientras el indicador sigue tu lectura.',
+    scrollTop: 'Volver arriba',
+    progressLabel: 'Progreso de lectura',
   },
 }
 
@@ -1949,6 +1975,8 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   const copy = blogArticleCopy[language]
   const [shareUrl, setShareUrl] = useState('')
   const [copied, setCopied] = useState(false)
+  const [readingProgress, setReadingProgress] = useState(0)
+  const bodyRef = useRef<HTMLDivElement | null>(null)
 
   if (!slug) {
     return <NotFound />
@@ -1967,11 +1995,37 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
     return <NotFound />
   }
 
+  const sections = useMemo(
+    () =>
+      translation.body.map((section, index) => {
+        const base = section.heading ? slugifyHeading(section.heading) : `section-${index + 1}`
+        return {
+          ...section,
+          id: `${slug}-${base}`,
+        }
+      }),
+    [slug, translation.body]
+  )
+
+  const tocSections = useMemo(() => sections.filter((section) => Boolean(section.heading)), [sections])
+  const defaultActiveSection = tocSections[0]?.id ?? sections[0]?.id ?? ''
+  const [activeSection, setActiveSection] = useState(defaultActiveSection)
+  const activeSectionRef = useRef(defaultActiveSection)
+
   const formattedDate = new Date(article.publishedAt).toLocaleDateString(localeMap[language], {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   })
+
+  useEffect(() => {
+    setActiveSection(defaultActiveSection)
+    activeSectionRef.current = defaultActiveSection
+  }, [defaultActiveSection])
+
+  useEffect(() => {
+    activeSectionRef.current = activeSection
+  }, [activeSection])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -1991,6 +2045,92 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
     }, 3200)
     return () => window.clearTimeout(timeout)
   }, [copied])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    let frameId: number | null = null
+
+    const updateScrollState = () => {
+      frameId = null
+
+      if (!sections.length) {
+        setReadingProgress(0)
+        if (activeSectionRef.current) {
+          activeSectionRef.current = ''
+          setActiveSection('')
+        }
+        return
+      }
+
+      const bodyElement = bodyRef.current
+
+      if (!bodyElement) {
+        setReadingProgress(0)
+        return
+      }
+
+      const start = bodyElement.getBoundingClientRect().top + window.scrollY
+      const viewportHeight = window.innerHeight
+      const end = start + bodyElement.scrollHeight - viewportHeight
+
+      if (end <= start) {
+        setReadingProgress(1)
+      } else {
+        const ratio = (window.scrollY - start) / (end - start)
+        const clamped = Math.min(1, Math.max(0, ratio))
+        setReadingProgress((prev) => {
+          if (Math.abs(prev - clamped) < 0.01) {
+            return prev
+          }
+          return clamped
+        })
+      }
+
+      const threshold = window.scrollY + viewportHeight * 0.28
+      let candidateId = sections[0]?.id ?? ''
+
+      for (const section of sections) {
+        const element = document.getElementById(section.id)
+        if (!element) {
+          continue
+        }
+        const elementTop = element.getBoundingClientRect().top + window.scrollY
+        if (threshold >= elementTop) {
+          candidateId = section.id
+        } else {
+          break
+        }
+      }
+
+      if (candidateId !== activeSectionRef.current) {
+        activeSectionRef.current = candidateId
+        setActiveSection(candidateId)
+      }
+    }
+
+    const requestUpdate = () => {
+      if (frameId !== null) {
+        return
+      }
+      frameId = window.requestAnimationFrame(updateScrollState)
+    }
+
+    requestUpdate()
+
+    window.addEventListener('scroll', requestUpdate, { passive: true })
+    window.addEventListener('resize', requestUpdate)
+
+    return () => {
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId)
+      }
+      window.removeEventListener('scroll', requestUpdate)
+      window.removeEventListener('resize', requestUpdate)
+    }
+  }, [sections])
 
   const handleCopyLink = () => {
     if (!shareUrl) {
@@ -2050,8 +2190,59 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
     }
   }
 
+  const handleTocLinkClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault()
+
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const target = document.getElementById(id)
+    if (!target) {
+      return
+    }
+
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
+    target.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : ('smooth' as ScrollBehavior),
+      block: 'start',
+    })
+
+    try {
+      const url = new URL(window.location.href)
+      url.hash = id
+      window.history.replaceState(null, '', url.toString())
+    } catch (error) {
+      console.warn('Unable to update URL hash', error)
+    }
+  }
+
+  const handleScrollToTop = () => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    })
+  }
+
+  const progressPercentage = Math.round(readingProgress * 100)
+
   return (
     <article className="blog-article">
+      <div
+        className="blog-article__progress"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={progressPercentage}
+        aria-label={copy.progressLabel}
+      >
+        <span className="blog-article__progress-bar" style={{ transform: `scaleX(${Math.max(0, Math.min(1, readingProgress))})` }} />
+      </div>
       <header className="blog-article__hero">
         <div className="blog-article__labels">
           <span>{translation.heroKicker}</span>
@@ -2069,17 +2260,49 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
         <div className="blog-article__hero-visual" role="img" aria-label={translation.heroAlt} />
       </header>
 
-      <div className="blog-article__body">
-        {translation.body.map((section, index) => (
-          <section key={`${slug}-${section.heading ?? index}`}>
+      {tocSections.length > 0 ? (
+        <nav className="blog-article__toc" aria-labelledby="blog-article-toc-heading">
+          <div className="blog-article__toc-header">
+            <div>
+              <h2 id="blog-article-toc-heading">{copy.tocTitle}</h2>
+              <p>{copy.tocHint}</p>
+            </div>
+            <span className="blog-article__toc-progress" aria-hidden="true">
+              {copy.progressLabel}
+              <strong>{progressPercentage}%</strong>
+            </span>
+          </div>
+          <ol className="blog-article__toc-list">
+            {tocSections.map((section) => (
+              <li key={section.id}>
+                <a
+                  href={`#${section.id}`}
+                  className={`blog-article__toc-link ${activeSection === section.id ? 'is-active' : ''}`}
+                  onClick={(event) => handleTocLinkClick(event, section.id)}
+                >
+                  <span>{section.heading}</span>
+                  <span className="blog-article__toc-indicator" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ol>
+          <button type="button" className="blog-article__toc-scrolltop" onClick={handleScrollToTop}>
+            {copy.scrollTop}
+          </button>
+        </nav>
+      ) : null}
+
+      <div className="blog-article__body" ref={bodyRef}>
+        {sections.map((section) => (
+          <section key={section.id} id={section.id} aria-label={section.heading ?? undefined}>
             {section.heading ? <h2>{section.heading}</h2> : null}
-            {section.paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+            {section.paragraphs.map((paragraph, paragraphIndex) => (
+              <p key={`${section.id}-paragraph-${paragraphIndex}`}>{paragraph}</p>
             ))}
             {section.bullets ? (
               <ul>
-                {section.bullets.map((item) => (
-                  <li key={item}>{item}</li>
+                {section.bullets.map((item, bulletIndex) => (
+                  <li key={`${section.id}-bullet-${bulletIndex}`}>{item}</li>
                 ))}
               </ul>
             ) : null}
