@@ -5141,8 +5141,23 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
     setEmail(event.target.value)
   }
 
+  const menuLinks = [
+    { to: getAboutPath(currentLanguage), label: copy.about },
+    { to: getCaseStudiesPath(currentLanguage), label: copy.caseStudies },
+    { to: getTeamPath(currentLanguage), label: copy.team },
+    { to: getPartnersPath(currentLanguage), label: copy.partners },
+    { to: getBlogBasePath(currentLanguage), label: copy.blog },
+    { to: getContactPath(currentLanguage), label: copy.contact },
+    { to: getJoinPath(currentLanguage), label: copy.join },
+  ]
+
   return (
     <footer className="tr-footer">
+      <div className="tr-footer__visuals" aria-hidden="true">
+        <span className="tr-footer__orb tr-footer__orb--one" />
+        <span className="tr-footer__orb tr-footer__orb--two" />
+        <span className="tr-footer__orb tr-footer__orb--three" />
+      </div>
       <div className="tr-footer__inner">
         <div className="tr-footer__brand">
           <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
@@ -5202,14 +5217,20 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           </div>
         </div>
         <div className="tr-footer__links">
-          <NavLink to={getAboutPath(currentLanguage)}>{copy.about}</NavLink>
-          <NavLink to={getCaseStudiesPath(currentLanguage)}>{copy.caseStudies}</NavLink>
-          <NavLink to={getTeamPath(currentLanguage)}>{copy.team}</NavLink>
-          <NavLink to={getPartnersPath(currentLanguage)}>{copy.partners}</NavLink>
-          <NavLink to={getBlogBasePath(currentLanguage)}>{copy.blog}</NavLink>
-          <NavLink to={getContactPath(currentLanguage)}>{copy.contact}</NavLink>
-          <NavLink to={getJoinPath(currentLanguage)}>{copy.join}</NavLink>
-          <a href="tel:+16063022958">{copy.call}</a>
+          {menuLinks.map(({ to, label }) => (
+            <NavLink
+              key={label}
+              to={to}
+              className={({ isActive }) =>
+                `tr-footer__menu-link${isActive ? ' tr-footer__menu-link--active' : ''}`
+              }
+            >
+              <span>{label}</span>
+            </NavLink>
+          ))}
+          <a className="tr-footer__menu-link tr-footer__menu-link--call" href="tel:+16063022958">
+            <span>{copy.call}</span>
+          </a>
         </div>
         <div className="tr-footer__legal">
           <NavLink to={getPrivacyPath(currentLanguage)}>{copy.privacy}</NavLink>
