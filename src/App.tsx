@@ -33,7 +33,10 @@ import './App.css'
 
 const useCurrentLanguage = (): Language => {
   const location = useLocation()
-  const match = languages.find((lang) => location.pathname.startsWith(`/${lang}/`))
+  const { pathname } = location
+  const match = languages.find(
+    (lang) => pathname === `/${lang}` || pathname.startsWith(`/${lang}/`)
+  )
   return match ?? 'en'
 }
 
@@ -87,6 +90,8 @@ const buildNavigation = () => {
 }
 
 const navigation = buildNavigation()
+
+const getHomePath = (language: Language) => (language === 'en' ? '/' : `/${language}`)
 
 const getTeamPath = (language: Language) => (language === 'en' ? '/team' : `/${language}/team`)
 
@@ -219,6 +224,10 @@ const navCopy: Record<
     joinUs: string
     openMenu: string
     closeMenu: string
+    home: string
+    navigationTitle: string
+    languages: string
+    languageSwitcherLabel: string
   }
 > = {
   en: {
@@ -232,6 +241,10 @@ const navCopy: Record<
     joinUs: 'Join us',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    home: 'Home',
+    navigationTitle: 'Navigate',
+    languages: 'Languages',
+    languageSwitcherLabel: 'Switch language',
   },
   fr: {
     services: 'Services',
@@ -244,6 +257,10 @@ const navCopy: Record<
     joinUs: 'Rejoignez-nous',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
+    home: 'Accueil',
+    navigationTitle: 'Navigation',
+    languages: 'Langues',
+    languageSwitcherLabel: 'Changer de langue',
   },
   es: {
     services: 'Servicios',
@@ -256,6 +273,10 @@ const navCopy: Record<
     joinUs: 'Únete',
     openMenu: 'Abrir menú',
     closeMenu: 'Cerrar menú',
+    home: 'Inicio',
+    navigationTitle: 'Navegación',
+    languages: 'Idiomas',
+    languageSwitcherLabel: 'Cambiar idioma',
   },
 }
 
@@ -2673,16 +2694,12 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     }
   }, [])
 
-  const firstPages = useMemo(
+  const languageHomes = useMemo(
     () =>
       languages.reduce<Record<Language, string>>((acc, lang) => {
-        if (lang === 'en') {
-          acc[lang] = '/'
-        } else {
-          acc[lang] = navigation[lang][0]?.pages[0]?.path ?? '/'
-        }
+        acc[lang] = getHomePath(lang)
         return acc
-      }, { en: '/', fr: '/', es: '/' }),
+      }, { en: '/', fr: '/fr', es: '/es' }),
     []
   )
 
@@ -2746,9 +2763,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           </a>
         </div>
 
-        <div className="tr-languages" aria-label="Language switcher">
+        <div className="tr-languages" aria-label={copy.languageSwitcherLabel}>
           {languages.map((language) => (
-            <NavLink key={language} to={firstPages[language]} className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}>
+            <NavLink key={language} to={languageHomes[language]} className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}>
               {languageLabels[language]}
             </NavLink>
           ))}
@@ -2812,7 +2829,10 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               ))}
             </div>
             <div className="tr-mobile-section">
-              <h3>{copy.team}</h3>
+              <h3>{copy.navigationTitle}</h3>
+              <NavLink to={getHomePath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+                {copy.home}
+              </NavLink>
               <NavLink to={getTeamPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
                 {copy.team}
               </NavLink>
@@ -2836,12 +2856,12 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               </a>
             </div>
             <div className="tr-mobile-section">
-              <h3>Languages</h3>
-              <div className="tr-mobile-languages">
+              <h3>{copy.languages}</h3>
+              <div className="tr-mobile-languages" aria-label={copy.languageSwitcherLabel}>
                 {languages.map((language) => (
                   <NavLink
                     key={language}
-                    to={firstPages[language]}
+                    to={languageHomes[language]}
                     className={`tr-mobile-language${language === currentLanguage ? ' is-active' : ''}`}
                     onClick={handleCloseMobile}
                   >
@@ -3530,6 +3550,7 @@ function App() {
         <Route path="terms" element={<LegalPage language="en" variant="terms" />} />
         {languages.map((language) => (
           <Fragment key={language}>
+            <Route path={language} element={<HomePage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
             <Route path={`${language}/join`} element={<JoinPage />} />
