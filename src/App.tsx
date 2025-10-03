@@ -3515,7 +3515,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     <header className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}>
       <div className="tr-header__inner">
         <div className="tr-header__brand">
-          <Link to="/" className="tr-logo" aria-label="Traceremove home">
+          <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
             <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
             <span>Traceremove</span>
           </Link>
@@ -4133,6 +4133,12 @@ const footerCopy: Record<
     rights: string
     studio: string
     founder: string
+    detailHeading: string
+    detailPoints: string[]
+    officeHeading: string
+    officeLocations: string[]
+    hotlineHeading: string
+    hotlineBody: string
     about: string
     team: string
     partners: string
@@ -4153,7 +4159,17 @@ const footerCopy: Record<
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
     founder: 'Founder & CEO Artur Ziganshin',
-    about: 'About',
+    detailHeading: 'Rapid protection details',
+    detailPoints: [
+      '24/7 brand protection hotline across English, French, and Spanish markets.',
+      'Real-time monitoring across search, marketplaces, and review networks.',
+      'Domain recovery desk coordinating registrars, hosts, and legal partners.',
+    ],
+    officeHeading: 'Presence hubs',
+    officeLocations: ['Montréal · North America HQ', 'Paris · EU lead desk', 'Madrid · Iberia growth pod'],
+    hotlineHeading: 'Critical escalation',
+    hotlineBody: 'Message or call +1 606 302 2958 for urgent takedowns — we respond within 60 minutes.',
+    about: 'About us',
     team: 'Team',
     partners: 'Partners',
     blog: 'Blog',
@@ -4170,8 +4186,19 @@ const footerCopy: Record<
   },
   fr: {
     rights: 'Tous droits réservés.',
-    studio: "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
+    studio:
+      "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
     founder: 'Fondateur & CEO Artur Ziganshin',
+    detailHeading: 'Détails de protection',
+    detailPoints: [
+      'Hotline brand safety 24/7 en anglais, français et espagnol.',
+      'Veille en temps réel sur les moteurs de recherche, marketplaces et plateformes d’avis.',
+      'Cellule de récupération de domaines avec registraires, hébergeurs et partenaires juridiques.',
+    ],
+    officeHeading: 'Pôles de présence',
+    officeLocations: ['Montréal · QG Amériques', 'Paris · Hub Europe', 'Madrid · Cellule Ibérie'],
+    hotlineHeading: 'Escalade critique',
+    hotlineBody: 'Écrivez ou appelez le +1 606 302 2958 pour une suppression urgente — réponse sous 60 minutes.',
     about: 'À propos',
     team: 'Équipe',
     partners: 'Partenaires',
@@ -4191,6 +4218,16 @@ const footerCopy: Record<
     rights: 'Todos los derechos reservados.',
     studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
     founder: 'Fundador y CEO Artur Ziganshin',
+    detailHeading: 'Detalles de protección',
+    detailPoints: [
+      'Línea directa de protección de marca 24/7 en inglés, francés y español.',
+      'Monitoreo en tiempo real de buscadores, marketplaces y portales de reseñas.',
+      'Mesa de recuperación de dominios con registradores, hosts y aliados legales.',
+    ],
+    officeHeading: 'Centros de presencia',
+    officeLocations: ['Montreal · HQ Norteamérica', 'París · Oficina Europa', 'Madrid · Equipo Iberia'],
+    hotlineHeading: 'Escalada crítica',
+    hotlineBody: 'Escríbenos o llama al +1 606 302 2958 para urgencias — respondemos en menos de 60 minutos.',
     about: 'Sobre nosotros',
     team: 'Equipo',
     partners: 'Partners',
@@ -4394,6 +4431,27 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
             )}
           </form>
         </div>
+        <div className="tr-footer__details">
+          <div className="tr-footer__detail">
+            <h3>{copy.detailHeading}</h3>
+            <ul>
+              {copy.detailPoints.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="tr-footer__detail">
+            <h3>{copy.officeHeading}</h3>
+            <ul>
+              {copy.officeLocations.map((location) => (
+                <li key={location}>{location}</li>
+              ))}
+            </ul>
+            <p className="tr-footer__hotline">
+              <strong>{copy.hotlineHeading}:</strong> {copy.hotlineBody}
+            </p>
+          </div>
+        </div>
         <div className="tr-footer__links">
           <NavLink to={getAboutPath(currentLanguage)}>{copy.about}</NavLink>
           <NavLink to={getTeamPath(currentLanguage)}>{copy.team}</NavLink>
@@ -4432,6 +4490,11 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="app-layout">
+      <div className="app-visuals" aria-hidden="true">
+        <span className="app-visual app-visual--one" />
+        <span className="app-visual app-visual--two" />
+        <span className="app-visual app-visual--three" />
+      </div>
       <Header currentLanguage={currentLanguage} />
       <main className="content">{children}</main>
       <Footer currentLanguage={currentLanguage} />

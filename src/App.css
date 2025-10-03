@@ -316,6 +316,52 @@ a {
   opacity: 0.55;
 }
 
+.app-visuals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.app-visual {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  filter: blur(0px);
+  animation: orbFloat 28s ease-in-out infinite;
+  background: radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.4), rgba(15, 23, 42, 0));
+}
+
+.app-visual--one {
+  width: clamp(240px, 30vw, 420px);
+  aspect-ratio: 1;
+  top: -8%;
+  left: -6%;
+  animation-duration: 32s;
+}
+
+.app-visual--two {
+  width: clamp(220px, 26vw, 380px);
+  aspect-ratio: 1;
+  bottom: -12%;
+  right: -8%;
+  animation-duration: 36s;
+  animation-direction: alternate-reverse;
+  background: radial-gradient(circle at 60% 40%, rgba(129, 140, 248, 0.38), rgba(15, 23, 42, 0));
+}
+
+.app-visual--three {
+  width: clamp(260px, 32vw, 460px);
+  aspect-ratio: 1;
+  top: 45%;
+  left: 60%;
+  animation-duration: 40s;
+  animation-delay: 4s;
+  background: radial-gradient(circle at 50% 50%, rgba(248, 113, 113, 0.28), rgba(15, 23, 42, 0));
+}
+
 .content {
   width: min(1100px, 100%);
   margin: 0 auto;
@@ -3254,6 +3300,83 @@ a {
   gap: 0.75rem;
 }
 
+.tr-footer__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.55), rgba(30, 64, 175, 0.4));
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  grid-column: span 2;
+}
+
+.tr-footer__details::after {
+  content: '';
+  position: absolute;
+  inset: -40% auto auto -30%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 70%);
+  animation: detailPulse 18s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.tr-footer__detail {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tr-footer__detail h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tr-footer__detail ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: rgba(226, 232, 240, 0.85);
+  font-size: 0.95rem;
+}
+
+.tr-footer__detail li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.tr-footer__detail li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.9), rgba(56, 189, 248, 0.6));
+  box-shadow: 0 0 18px rgba(96, 165, 250, 0.45);
+}
+
+.tr-footer__hotline {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(226, 232, 240, 0.85);
+  line-height: 1.5;
+}
+
+.tr-footer__hotline strong {
+  color: #f8fafc;
+}
+
 .tr-footer__subscribe {
   margin-top: 1.5rem;
   padding: 1.5rem;
@@ -5423,6 +5546,36 @@ a {
   }
 }
 
+@keyframes orbFloat {
+  0% {
+    transform: translate3d(0%, 0%, 0) scale(1);
+  }
+  45% {
+    transform: translate3d(6%, -4%, 0) scale(1.08);
+  }
+  70% {
+    transform: translate3d(-4%, 5%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(0%, 0%, 0) scale(1);
+  }
+}
+
+@keyframes detailPulse {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(18%, 12%, 0) scale(1.2);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.35;
+  }
+}
+
 @keyframes heroPulse {
   0% {
     opacity: 0.65;
@@ -5511,6 +5664,10 @@ a {
 
   .tr-footer__inner {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .tr-footer__details {
+    grid-column: 1 / -1;
   }
 
   .content {
@@ -5607,6 +5764,19 @@ a {
   .partners-section,
   .join-section {
     padding: 1.75rem;
+  }
+
+  .tr-footer__details {
+    padding: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .tr-footer__detail li {
+    padding-left: 1.2rem;
+  }
+
+  .tr-footer__detail li::before {
+    top: 0.35rem;
   }
 
   .legal-hero {
