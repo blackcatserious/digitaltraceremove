@@ -1990,8 +1990,10 @@ a {
 .about-story,
 .about-timeline,
 .about-pillars,
+.about-presence,
 .about-metrics,
 .about-method,
+.about-testimonials,
 .about-culture {
   background: rgba(15, 23, 42, 0.55);
   border: 1px solid rgba(148, 163, 184, 0.2);
@@ -2006,8 +2008,10 @@ a {
 .about-story::before,
 .about-timeline::before,
 .about-pillars::before,
+.about-presence::before,
 .about-metrics::before,
 .about-method::before,
+.about-testimonials::before,
 .about-culture::before {
   content: '';
   position: absolute;
@@ -2163,6 +2167,178 @@ a {
 .about-card p {
   margin: 0;
   color: rgba(226, 232, 240, 0.85);
+}
+
+.about-presence__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.about-presence__card {
+  background: rgba(13, 148, 136, 0.18);
+  border: 1px solid rgba(45, 212, 191, 0.28);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+  box-shadow: 0 22px 40px rgba(15, 23, 42, 0.22);
+  animation: softScaleIn 0.95s var(--motion-ease) forwards;
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.95);
+}
+
+.about-presence__card:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.about-presence__card:nth-child(3) {
+  animation-delay: 0.22s;
+}
+
+.about-presence__card header {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.about-presence__region {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(94, 234, 212, 0.8);
+}
+
+.about-presence__focus {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #5eead4;
+}
+
+.about-presence__card p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.85);
+  line-height: 1.6;
+}
+
+.about-presence__signals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.about-presence__signal {
+  background: linear-gradient(135deg, rgba(94, 234, 212, 0.18), rgba(56, 189, 248, 0.2));
+  border: 1px solid rgba(94, 234, 212, 0.32);
+  border-radius: 1.4rem;
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  gap: 0.35rem;
+  animation: metricPulse 0.9s var(--motion-ease) forwards;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+}
+
+.about-presence__signal:nth-child(1) {
+  animation-delay: 0.12s;
+}
+
+.about-presence__signal:nth-child(2) {
+  animation-delay: 0.22s;
+}
+
+.about-presence__signal:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+.about-presence__value {
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  font-weight: 700;
+  color: #f0fdfa;
+}
+
+.about-presence__label {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(240, 253, 244, 0.7);
+}
+
+.about-testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.about-testimonial {
+  background: rgba(30, 64, 175, 0.24);
+  border: 1px solid rgba(165, 180, 252, 0.35);
+  border-radius: 1.75rem;
+  padding: 1.75rem;
+  display: grid;
+  gap: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 42px rgba(15, 23, 42, 0.24);
+  animation: softScaleIn 0.95s var(--motion-ease) forwards;
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.95);
+}
+
+.about-testimonial:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.about-testimonial:nth-child(3) {
+  animation-delay: 0.22s;
+}
+
+.about-testimonial::after {
+  content: '';
+  position: absolute;
+  inset: -40% 40% 60% -30%;
+  background: linear-gradient(120deg, rgba(59, 130, 246, 0.32), transparent 60%);
+  opacity: 0.4;
+  animation: cardDrift 26s ease-in-out infinite;
+}
+
+.about-testimonial blockquote {
+  margin: 0;
+  color: rgba(224, 231, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.65;
+  position: relative;
+  z-index: 1;
+}
+
+.about-testimonial__quote {
+  display: block;
+  font-size: 3rem;
+  line-height: 0.6;
+  color: rgba(191, 219, 254, 0.4);
+  margin-bottom: 0.35rem;
+}
+
+.about-testimonial figcaption {
+  display: grid;
+  gap: 0.15rem;
+  position: relative;
+  z-index: 1;
+}
+
+.about-testimonial__name {
+  font-weight: 600;
+  color: #e0e7ff;
+}
+
+.about-testimonial__role {
+  font-size: 0.9rem;
+  color: rgba(191, 219, 254, 0.75);
 }
 
 .about-culture__grid {
@@ -5141,6 +5317,15 @@ a {
     align-items: center;
   }
 
+  .about-presence__card,
+  .about-testimonial {
+    padding: 1.5rem;
+  }
+
+  .about-testimonial__quote {
+    font-size: 2.5rem;
+  }
+
   .blog-related-card__link {
     width: 100%;
     justify-content: center;
@@ -5366,7 +5551,10 @@ a {
   }
 
   .about-pillars__grid,
-  .about-metrics__grid {
+  .about-presence__grid,
+  .about-presence__signals,
+  .about-metrics__grid,
+  .about-testimonials__grid {
     grid-template-columns: 1fr;
   }
 

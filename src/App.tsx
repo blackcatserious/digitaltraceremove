@@ -356,12 +356,23 @@ const aboutCopy: Record<
       milestones: { year: string; title: string; description: string }[]
     }
     reasons: { heading: string; summary: string; items: { title: string; description: string }[] }
+    presence: {
+      heading: string
+      summary: string
+      regions: { name: string; focus: string; description: string }[]
+      signals: { value: string; label: string }[]
+    }
     metrics: { heading: string; items: { value: string; label: string; description: string }[] }
     method: { heading: string; summary: string; steps: { title: string; description: string }[] }
     culture: {
       heading: string
       summary: string
       principles: { title: string; description: string }[]
+    }
+    testimonials: {
+      heading: string
+      summary: string
+      stories: { quote: string; name: string; role: string }[]
     }
     closing: { heading: string; body: string; cta: string }
   }
@@ -431,6 +442,36 @@ const aboutCopy: Record<
         },
       ],
     },
+    presence: {
+      heading: 'Where we operate',
+      summary:
+        'Distributed pods across the Americas and Europe keep intelligence, creative, and activation always on.',
+      regions: [
+        {
+          name: 'North America',
+          focus: 'Growth sprints & crisis command',
+          description:
+            'Louisville, Montréal, and Mexico City squads cover executive workshops, escalation rooms, and revenue program launches.',
+        },
+        {
+          name: 'Europe',
+          focus: 'Reputation architecture',
+          description:
+            'Paris and Barcelona strategists blend regulatory awareness with multilingual content, PR narratives, and partner enablement.',
+        },
+        {
+          name: 'Digital follow-the-sun',
+          focus: 'Monitoring & automation',
+          description:
+            'Remote analysts span Lisbon to Buenos Aires, tuning AI monitors, dashboards, and playbooks so updates land before your morning standup.',
+        },
+      ],
+      signals: [
+        { value: '6', label: 'active time zones' },
+        { value: '<30m', label: 'incident triage SLA' },
+        { value: '18', label: 'senior specialists on rotation' },
+      ],
+    },
     metrics: {
       heading: 'Impact snapshots',
       items: [
@@ -492,6 +533,31 @@ const aboutCopy: Record<
         {
           title: 'Craft with heart',
           description: 'Design, writing, and engineering standards favour humanity and clarity—especially across languages.',
+        },
+      ],
+    },
+    testimonials: {
+      heading: 'Leaders we support',
+      summary:
+        'Marketing, communications, and legal operators share how Traceremove keeps their brands resilient and growing.',
+      stories: [
+        {
+          quote:
+            'Traceremove orchestrated a multilingual review integrity sprint that neutralised fake feedback within weeks while keeping our funnel humming.',
+          name: 'Elena Park',
+          role: 'VP Growth, Series C SaaS',
+        },
+        {
+          quote:
+            'Their war-room cadence and executive-ready reporting gave our board calm confidence during a coordinated smear attempt.',
+          name: 'Marc-André Lefèvre',
+          role: 'Chief Communications Officer, Global Hospitality Group',
+        },
+        {
+          quote:
+            'The team connected domain protection, legal scripts, and SEO experiments so we emerged stronger than before the incident.',
+          name: 'Lucia Romero',
+          role: 'General Counsel, Fintech Scaleup',
         },
       ],
     },
@@ -566,6 +632,36 @@ const aboutCopy: Record<
         },
       ],
     },
+    presence: {
+      heading: 'Notre présence',
+      summary:
+        'Des squads distribués entre Amériques et Europe assurent une veille continue, de la création et des activations sans rupture.',
+      regions: [
+        {
+          name: 'Amérique du Nord',
+          focus: 'Sprints growth & cellule de crise',
+          description:
+            'Louisville, Montréal et Mexico accompagnent ateliers dirigeants, salles de crise et lancements de programmes revenue.',
+        },
+        {
+          name: 'Europe',
+          focus: 'Architecture réputationnelle',
+          description:
+            'Paris et Barcelone conjuguent veille réglementaire, contenus multilingues, narratifs RP et enablement partenaires.',
+        },
+        {
+          name: 'Suivi continu',
+          focus: 'Monitoring & automatisation',
+          description:
+            'Des analystes de Lisbonne à Buenos Aires orchestrent IA, dashboards et playbooks pour livrer les insights avant vos standups.',
+        },
+      ],
+      signals: [
+        { value: '6', label: 'fuseaux horaires actifs' },
+        { value: '<30 min', label: 'SLA de triage incident' },
+        { value: '18', label: 'experts seniors en rotation' },
+      ],
+    },
     metrics: {
       heading: 'Indicateurs d’impact',
       items: [
@@ -627,6 +723,31 @@ const aboutCopy: Record<
         {
           title: 'Sens du détail humain',
           description: 'Nos standards de design, rédaction et ingénierie privilégient la clarté et l’empathie, toutes langues confondues.',
+        },
+      ],
+    },
+    testimonials: {
+      heading: 'Ce que disent nos partenaires',
+      summary:
+        'Marketing, communication et juridique témoignent de la manière dont Traceremove protège et accélère leurs marques.',
+      stories: [
+        {
+          quote:
+            'Traceremove a mené un sprint multilingue sur l’authenticité des avis qui a neutralisé les faux commentaires en quelques semaines tout en soutenant la croissance.',
+          name: 'Élena Park',
+          role: 'VP Growth, SaaS série C',
+        },
+        {
+          quote:
+            'Leur rituel de war room et leurs rapports prêts pour le board ont apporté un calme précieux lors d’une campagne de dénigrement coordonnée.',
+          name: 'Marc-André Lefèvre',
+          role: 'Directeur Communication, groupe hôtelier global',
+        },
+        {
+          quote:
+            'L’équipe a relié protection de domaine, argumentaires juridiques et expérimentations SEO pour ressortir renforcés après l’incident.',
+          name: 'Lucia Romero',
+          role: 'Directrice juridique, fintech en hypercroissance',
         },
       ],
     },
@@ -701,6 +822,36 @@ const aboutCopy: Record<
         },
       ],
     },
+    presence: {
+      heading: 'Dónde estamos',
+      summary:
+        'Pods distribuidos en América y Europa mantienen la inteligencia, la creatividad y la activación encendidas 24/7.',
+      regions: [
+        {
+          name: 'Norteamérica',
+          focus: 'Sprints de crecimiento y salas de crisis',
+          description:
+            'Louisville, Montreal y Ciudad de México cubren workshops ejecutivos, war rooms y lanzamientos de programas de revenue.',
+        },
+        {
+          name: 'Europa',
+          focus: 'Arquitectura de reputación',
+          description:
+            'París y Barcelona combinan contexto regulatorio con contenidos multilingües, narrativas de PR y habilitación de partners.',
+        },
+        {
+          name: 'Cobertura continua',
+          focus: 'Monitoreo y automatización',
+          description:
+            'Analistas desde Lisboa hasta Buenos Aires ajustan monitores IA, dashboards y playbooks para anticiparse a cada jornada.',
+        },
+      ],
+      signals: [
+        { value: '6', label: 'zonas horarias activas' },
+        { value: '<30 min', label: 'SLA de respuesta a incidentes' },
+        { value: '18', label: 'especialistas senior en rotación' },
+      ],
+    },
     metrics: {
       heading: 'Instantáneas de impacto',
       items: [
@@ -762,6 +913,31 @@ const aboutCopy: Record<
         {
           title: 'Cuidado por el detalle humano',
           description: 'Estándares de diseño, narrativa y ingeniería que respetan matices culturales y lingüísticos.',
+        },
+      ],
+    },
+    testimonials: {
+      heading: 'Líderes que confían en nosotros',
+      summary:
+        'Marketing, comunicación y legal comparten cómo Traceremove mantiene sus marcas protegidas mientras siguen creciendo.',
+      stories: [
+        {
+          quote:
+            'Traceremove coordinó un sprint multilingüe de reseñas auténticas que frenó los comentarios falsos en semanas sin frenar el pipeline.',
+          name: 'Elena Park',
+          role: 'VP de Crecimiento, SaaS Serie C',
+        },
+        {
+          quote:
+            'Su cadencia de war room y reportes listos para el board nos dieron calma durante un ataque de difamación coordinado.',
+          name: 'Marc-André Lefèvre',
+          role: 'Director de Comunicación, grupo hotelero global',
+        },
+        {
+          quote:
+            'El equipo conectó protección de dominios, guiones legales y experimentos SEO para salir más fuertes que antes del incidente.',
+          name: 'Lucia Romero',
+          role: 'Directora Jurídica, scaleup fintech',
         },
       ],
     },
@@ -1741,6 +1917,32 @@ const AboutPage = () => {
         </div>
       </section>
 
+      <section className="about-presence" aria-labelledby="about-presence-heading">
+        <div className="about-section__header">
+          <h2 id="about-presence-heading">{copy.presence.heading}</h2>
+          <p>{copy.presence.summary}</p>
+        </div>
+        <div className="about-presence__grid">
+          {copy.presence.regions.map((region) => (
+            <article key={region.name} className="about-presence__card">
+              <header>
+                <span className="about-presence__region">{region.name}</span>
+                <span className="about-presence__focus">{region.focus}</span>
+              </header>
+              <p>{region.description}</p>
+            </article>
+          ))}
+        </div>
+        <div className="about-presence__signals">
+          {copy.presence.signals.map((signal) => (
+            <div key={signal.label} className="about-presence__signal">
+              <span className="about-presence__value">{signal.value}</span>
+              <span className="about-presence__label">{signal.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="about-metrics" aria-labelledby="about-metrics-heading">
         <div className="about-section__header">
           <h2 id="about-metrics-heading">{copy.metrics.heading}</h2>
@@ -1772,6 +1974,27 @@ const AboutPage = () => {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="about-testimonials" aria-labelledby="about-testimonials-heading">
+        <div className="about-section__header">
+          <h2 id="about-testimonials-heading">{copy.testimonials.heading}</h2>
+          <p>{copy.testimonials.summary}</p>
+        </div>
+        <div className="about-testimonials__grid">
+          {copy.testimonials.stories.map((story) => (
+            <figure key={story.name} className="about-testimonial">
+              <blockquote>
+                <span aria-hidden="true" className="about-testimonial__quote">“</span>
+                {story.quote}
+              </blockquote>
+              <figcaption>
+                <span className="about-testimonial__name">{story.name}</span>
+                <span className="about-testimonial__role">{story.role}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </section>
 
       <section className="about-culture" aria-labelledby="about-culture-heading">
