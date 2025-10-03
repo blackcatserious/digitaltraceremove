@@ -53,6 +53,27 @@ export interface ServicePageContent {
   contactPrompt: string
 }
 
+export interface InsightPanelContent {
+  id: string
+  title: string
+  description: string
+  metricLabel: string
+  metricValue: string
+  metricDelta: string
+  spotlight: string
+  visualizationLabel: string
+  trend: number[]
+}
+
+export interface InsightDashboardContent {
+  eyebrow: string
+  heading: string
+  subheading: string
+  ctaPrimary: string
+  ctaSecondary: string
+  panels: InsightPanelContent[]
+}
+
 interface LocalizedString {
   en: string
   fr: string
@@ -1278,6 +1299,154 @@ export const interfaceCopy: Record<
     languages: 'Idiomas',
     services: 'Servicios',
     noMatches: 'Sin coincidencias',
+  },
+}
+
+export const insightDashboards: Record<Language, InsightDashboardContent> = {
+  en: {
+    eyebrow: 'Realtime insight stacks',
+    heading: 'Visualize your brand defense velocity',
+    subheading:
+      'Our analysts feed live dashboards across SEO, review integrity, and legal actions so you can see the compounding lift.',
+    ctaPrimary: 'Schedule a live tour',
+    ctaSecondary: 'Review our case studies',
+    panels: [
+      {
+        id: 'sentiment',
+        title: 'Brand sentiment radar',
+        description:
+          'Synthesizes search, social, and review signals to sustain positive visibility across English, French, and Spanish results.',
+        metricLabel: 'Positive visibility',
+        metricValue: '92%',
+        metricDelta: '+18 pts QoQ',
+        spotlight:
+          'The visualization highlights the weighted share of positive vs. negative mentions across Google, forums, and press that our monitoring pod neutralizes.',
+        visualizationLabel: 'Positive perception trendline',
+        trend: [62, 65, 68, 72, 78, 84, 89, 92],
+      },
+      {
+        id: 'response',
+        title: 'Crisis response latency',
+        description: 'Tracks how quickly harmful narratives are identified, actioned, and resolved across channels.',
+        metricLabel: 'Median takedown time',
+        metricValue: '3.2h',
+        metricDelta: '-41% vs last quarter',
+        spotlight:
+          'Each downward movement shows faster suppression triggered by our automation, legal, and media pods working in sync.',
+        visualizationLabel: 'Response time decrease',
+        trend: [48, 44, 39, 36, 32, 28, 24, 22],
+      },
+      {
+        id: 'reviews',
+        title: 'Review integrity shield',
+        description: 'Detects fake review clusters before they erode conversion and customer trust in core markets.',
+        metricLabel: 'Fraud blocked',
+        metricValue: '1.8k',
+        metricDelta: '+27% MoM',
+        spotlight:
+          'Bars represent fraudulent review networks removed before product launches, keeping marketplace ratings stable.',
+        visualizationLabel: 'Removed fake review clusters',
+        trend: [35, 42, 38, 55, 61, 68, 74, 82],
+      },
+    ],
+  },
+  fr: {
+    eyebrow: 'Cockpits en direct',
+    heading: 'Visualisez la vitesse de protection de votre marque',
+    subheading:
+      'Nos analystes alimentent des tableaux de bord vivants sur le SEO, l’intégrité des avis et les actions juridiques pour mesurer le gain composé.',
+    ctaPrimary: 'Programmer une démonstration',
+    ctaSecondary: 'Consulter nos études de cas',
+    panels: [
+      {
+        id: 'sentiment',
+        title: 'Radar de sentiment de marque',
+        description:
+          'Croise les signaux SEO, sociaux et avis afin de maintenir une visibilité positive dans chaque langue.',
+        metricLabel: 'Visibilité positive',
+        metricValue: '92 %',
+        metricDelta: '+18 pts sur le trimestre',
+        spotlight:
+          'La visualisation montre la part pondérée de mentions positives vs négatives sur Google, forums et presse orchestrée par notre cellule de veille.',
+        visualizationLabel: 'Courbe de perception positive',
+        trend: [62, 65, 68, 72, 78, 84, 89, 92],
+      },
+      {
+        id: 'response',
+        title: 'Latence de réponse de crise',
+        description:
+          'Suit le temps nécessaire pour neutraliser les récits nuisibles sur chaque marché et canal.',
+        metricLabel: 'Temps médian de retrait',
+        metricValue: '3,2 h',
+        metricDelta: '-41 % vs trimestre précédent',
+        spotlight:
+          'Chaque chute illustre une suppression plus rapide activée par nos cellules d’automatisation, juridiques et média.',
+        visualizationLabel: 'Réduction du temps de réaction',
+        trend: [48, 44, 39, 36, 32, 28, 24, 22],
+      },
+      {
+        id: 'reviews',
+        title: 'Bouclier d’avis authentiques',
+        description:
+          'Détecte les grappes d’avis frauduleux avant qu’elles n’érodent la conversion et la confiance des clients.',
+        metricLabel: 'Fraude bloquée',
+        metricValue: '1,8 k',
+        metricDelta: '+27 % mois sur mois',
+        spotlight:
+          'Les barres représentent les réseaux d’avis frauduleux supprimés avant les lancements produits, stabilisant les notations.',
+        visualizationLabel: 'Réseaux d’avis frauduleux supprimés',
+        trend: [35, 42, 38, 55, 61, 68, 74, 82],
+      },
+    ],
+  },
+  es: {
+    eyebrow: 'Paneles en tiempo real',
+    heading: 'Visualiza la velocidad de protección de tu marca',
+    subheading:
+      'Nuestros analistas alimentan tableros vivos de SEO, integridad de reseñas y acciones legales para medir el crecimiento compuesto.',
+    ctaPrimary: 'Agenda un tour en vivo',
+    ctaSecondary: 'Revisa nuestros casos de éxito',
+    panels: [
+      {
+        id: 'sentiment',
+        title: 'Radar de sentimiento de marca',
+        description:
+          'Combina señales de búsqueda, sociales y reseñas para sostener visibilidad positiva en los tres idiomas.',
+        metricLabel: 'Visibilidad positiva',
+        metricValue: '92 %',
+        metricDelta: '+18 pts trimestrales',
+        spotlight:
+          'La visualización destaca la cuota ponderada de menciones positivas vs negativas en Google, foros y prensa monitorizada por nuestro equipo.',
+        visualizationLabel: 'Tendencia de percepción positiva',
+        trend: [62, 65, 68, 72, 78, 84, 89, 92],
+      },
+      {
+        id: 'response',
+        title: 'Latencia de respuesta a crisis',
+        description:
+          'Controla la rapidez con la que se identifican y neutralizan narrativas dañinas en cada canal.',
+        metricLabel: 'Tiempo medio de retirada',
+        metricValue: '3,2 h',
+        metricDelta: '-41 % vs trimestre anterior',
+        spotlight:
+          'Cada descenso refleja una neutralización más veloz activada por nuestros pods de automatización, legal y prensa.',
+        visualizationLabel: 'Disminución del tiempo de respuesta',
+        trend: [48, 44, 39, 36, 32, 28, 24, 22],
+      },
+      {
+        id: 'reviews',
+        title: 'Escudo de reseñas auténticas',
+        description:
+          'Detecta redes de reseñas falsas antes de que afecten la conversión y la confianza de los clientes.',
+        metricLabel: 'Fraude bloqueado',
+        metricValue: '1,8 k',
+        metricDelta: '+27 % mes a mes',
+        spotlight:
+          'Las barras representan redes de reseñas fraudulentas eliminadas antes de lanzamientos, manteniendo calificaciones estables.',
+        visualizationLabel: 'Redes de reseñas falsas eliminadas',
+        trend: [35, 42, 38, 55, 61, 68, 74, 82],
+      },
+    ],
   },
 }
 

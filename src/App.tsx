@@ -13,6 +13,7 @@ import {
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import {
   interfaceCopy,
+  insightDashboards,
   languageLabels,
   languages,
   servicePages,
@@ -291,6 +292,110 @@ const navCopy: Record<
     languages: 'Idiomas',
     languageSwitcherLabel: 'Cambiar idioma',
   },
+}
+
+const InsightShowcase = ({ variant = 'default' }: { variant?: 'default' | 'case' }) => {
+  const language = useCurrentLanguage()
+  const copy = insightDashboards[language]
+  const [activeId, setActiveId] = useState(() => copy.panels[0]?.id ?? '')
+
+  useEffect(() => {
+    setActiveId(copy.panels[0]?.id ?? '')
+  }, [copy])
+
+  if (!copy.panels.length) {
+    return null
+  }
+
+  const activePanel = copy.panels.find((panel) => panel.id === activeId) ?? copy.panels[0]
+
+  const linePoints = useMemo(() => {
+    if (activePanel.trend.length <= 1) {
+      const value = activePanel.trend[0] ?? 0
+      const clamped = Math.max(0, Math.min(100, value))
+      return `0,${100 - clamped}`
+    }
+
+    return activePanel.trend
+      .map((value, index) => {
+        const clamped = Math.max(0, Math.min(100, value))
+        const x = (index / (activePanel.trend.length - 1)) * 100
+        const y = 100 - clamped
+        return `${x},${y}`
+      })
+      .join(' ')
+  }, [activePanel])
+
+  return (
+    <section className={`insight-showcase${variant === 'case' ? ' insight-showcase--case' : ''}`}>
+      <div className="insight-showcase__intro">
+        <div>
+          <p className="insight-showcase__eyebrow">{copy.eyebrow}</p>
+          <h2>{copy.heading}</h2>
+          <p>{copy.subheading}</p>
+        </div>
+        <div className="insight-showcase__actions">
+          <Link className="button primary" to={getContactPath(language)}>
+            {copy.ctaPrimary}
+          </Link>
+          <Link className="button tertiary" to={getCaseStudiesPath(language)}>
+            {copy.ctaSecondary}
+          </Link>
+        </div>
+      </div>
+      <div className="insight-showcase__tabs" role="tablist" aria-label={copy.heading}>
+        {copy.panels.map((panel) => (
+          <button
+            key={panel.id}
+            type="button"
+            role="tab"
+            className="insight-showcase__tab"
+            id={`insight-tab-${panel.id}`}
+            aria-selected={panel.id === activePanel.id}
+            aria-controls={`insight-panel-${panel.id}`}
+            onClick={() => setActiveId(panel.id)}
+          >
+            <span>{panel.title}</span>
+            <span className="insight-showcase__tab-delta">{panel.metricDelta}</span>
+          </button>
+        ))}
+      </div>
+      <div
+        className="insight-showcase__panel"
+        role="tabpanel"
+        id={`insight-panel-${activePanel.id}`}
+        aria-labelledby={`insight-tab-${activePanel.id}`}
+      >
+        <div className="insight-showcase__metric">
+          <span className="insight-showcase__metric-label">{activePanel.metricLabel}</span>
+          <strong className="insight-showcase__metric-value">{activePanel.metricValue}</strong>
+          <p>{activePanel.description}</p>
+          <p className="insight-showcase__spotlight">{activePanel.spotlight}</p>
+        </div>
+        <div className="insight-showcase__visual">
+          <div className="insight-showcase__chart" role="img" aria-label={activePanel.visualizationLabel}>
+            <div className="insight-showcase__chart-bars">
+              {activePanel.trend.map((value, index) => (
+                <span
+                  key={`${activePanel.id}-${index}`}
+                  style={
+                    {
+                      '--insight-bar-height': `${Math.max(10, Math.min(100, value))}%`,
+                      '--insight-bar-delay': `${index * 0.06}s`,
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            </div>
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
+              <polyline points={linePoints} />
+            </svg>
+          </div>
+          <span className="insight-showcase__visual-label">{activePanel.visualizationLabel}</span>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 const teamCopy: Record<
@@ -2310,6 +2415,8 @@ const HomePage = () => {
         </article>
       </div>
 
+      <InsightShowcase />
+
       <div className="home-banner">
         <p>
           {heroCta} — <a href="mailto:contact@traceremove.com">contact@traceremove.com</a> ·{' '}
@@ -2813,6 +2920,8 @@ const CaseStudiesPage = () => {
           ))}
         </ol>
       </section>
+
+      <InsightShowcase variant="case" />
 
       <section className="case-cta">
         <div>
