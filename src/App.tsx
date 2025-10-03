@@ -97,6 +97,9 @@ const getTeamPath = (language: Language) => (language === 'en' ? '/team' : `/${l
 
 const getAboutPath = (language: Language) => (language === 'en' ? '/about' : `/${language}/about`)
 
+const getCaseStudiesPath = (language: Language) =>
+  language === 'en' ? '/case-studies' : `/${language}/case-studies`
+
 const getPartnersPath = (language: Language) => (language === 'en' ? '/partners' : `/${language}/partners`)
 
 const getJoinPath = (language: Language) => (language === 'en' ? '/join' : `/${language}/join`)
@@ -218,6 +221,7 @@ const navCopy: Record<
   {
     services: string
     about: string
+    caseStudies: string
     team: string
     blog: string
     partners: string
@@ -236,6 +240,7 @@ const navCopy: Record<
   en: {
     services: 'Services',
     about: 'About us',
+    caseStudies: 'Case studies',
     team: 'Team',
     blog: 'Blog',
     partners: 'Partners',
@@ -253,6 +258,7 @@ const navCopy: Record<
   fr: {
     services: 'Services',
     about: 'À propos',
+    caseStudies: 'Études de cas',
     team: 'Équipe',
     blog: 'Blog',
     partners: 'Partenaires',
@@ -270,6 +276,7 @@ const navCopy: Record<
   es: {
     services: 'Servicios',
     about: 'Sobre nosotros',
+    caseStudies: 'Casos de éxito',
     team: 'Equipo',
     blog: 'Blog',
     partners: 'Partners',
@@ -945,6 +952,607 @@ const aboutCopy: Record<
       heading: '¿Listo para proteger y acelerar tu marca?',
       body: 'Diseñemos una hoja de ruta que blinde tu reputación y haga crecer cada mercado que atiendes.',
       cta: 'Agenda una sesión estratégica',
+    },
+  },
+}
+
+const caseStudiesCopy: Record<
+  Language,
+  {
+    hero: {
+      kicker: string
+      title: string
+      subtitle: string
+      body: string
+      primaryCta: string
+      secondaryCta: string
+    }
+    statsHeading: string
+    stats: { value: string; label: string; description: string }[]
+    storiesHeading: string
+    storiesSubtitle: string
+    storyLabels: {
+      challenge: string
+      approach: string
+      impact: string
+      metrics: string
+      testimonial: string
+    }
+    stories: {
+      title: string
+      industry: string
+      summary: string
+      challenge: string
+      approach: string
+      impact: string
+      metrics: { label: string; value: string }[]
+      testimonial: { quote: string; attribution: string }
+      visual: string
+    }[]
+    methodology: {
+      heading: string
+      summary: string
+      steps: { title: string; description: string }[]
+    }
+    cta: { heading: string; body: string; primary: string; secondary: string }
+  }
+> = {
+  en: {
+    hero: {
+      kicker: 'Proof of impact',
+      title: 'Case studies',
+      subtitle: 'Brand protection, search authority, and trust acceleration in motion.',
+      body:
+        'See how Traceremove blends crisis defense, growth marketing, and multilingual storytelling to recover revenue and confidence.',
+      primaryCta: 'Book a strategy call',
+      secondaryCta: 'Explore our latest insights',
+    },
+    statsHeading: 'Outcomes delivered',
+    stats: [
+      {
+        value: '89%',
+        label: 'faster takedown cycles',
+        description:
+          'Average reduction in time-to-removal across marketplaces, search, and social surfaces after onboarding Traceremove.',
+      },
+      {
+        value: '4.6★',
+        label: 'review health restored',
+        description:
+          'Composite rating recovered after neutralising fake reviews and mobilising authentic advocacy programmes.',
+      },
+      {
+        value: '7.5×',
+        label: 'trusted traffic growth',
+        description:
+          'Organic visits flowing to owned experiences compared to baseline before remediation and growth activation.',
+      },
+    ],
+    storiesHeading: 'Wins from the field',
+    storiesSubtitle:
+      'Every engagement pairs brand defense with growth acceleration so momentum compounds long after launch.',
+    storyLabels: {
+      challenge: 'Challenge',
+      approach: 'Approach',
+      impact: 'Impact',
+      metrics: 'Key metrics',
+      testimonial: 'What they said',
+    },
+    stories: [
+      {
+        title: 'Marketplace reputation reset in 14 days',
+        industry: 'Consumer electronics marketplace',
+        summary:
+          'Removed 1,200 counterfeit listings and replaced top-of-funnel results with owned, high-converting experiences.',
+        challenge:
+          'Counterfeit sellers outranked brand listings across Amazon, Mercado Libre, and Cdiscount during peak demand.',
+        approach:
+          'Spun up AI-powered listing sweeps, compiled registrar escalation dossiers, and launched geo-specific SEO landing hubs.',
+        impact:
+          'Brand regained buy-box share, NPS lifted 12 points, and legal teams now work from a unified escalation centre.',
+        metrics: [
+          { label: 'Counterfeits removed', value: '1,200+' },
+          { label: 'Buy-box recovery', value: '+37%' },
+          { label: 'NPS lift', value: '+12' },
+        ],
+        testimonial: {
+          quote:
+            'Traceremove united legal, marketing, and marketplace operations so every takedown fed sustained demand.',
+          attribution: 'COO, global marketplace collective',
+        },
+        visual: 'Animated marketplace map pulsing with removals',
+      },
+      {
+        title: 'Hospitality group defends trust in peak season',
+        industry: 'Luxury hospitality & resorts',
+        summary:
+          'Neutralised fake one-star reviews and filled the gap with authentic guest stories across English, French, and Spanish.',
+        challenge:
+          'A coordinated smear campaign triggered more than 400 fabricated reviews in ten days across Google, TripAdvisor, and Booking.',
+        approach:
+          'Deployed a review triage squad, activated multilingual loyalty outreach, and delivered board-ready narratives within 24 hours.',
+        impact:
+          'Average rating returned to 4.7★, direct bookings climbed 18%, and legal exposure stayed contained.',
+        metrics: [
+          { label: 'Fake reviews removed', value: '430' },
+          { label: 'Direct bookings', value: '+18%' },
+          { label: 'Response SLA', value: '<4h' },
+        ],
+        testimonial: {
+          quote: 'They turned a frightening spike in fake reviews into a storytelling moment our guests still mention.',
+          attribution: 'Chief Marketing Officer, global resort brand',
+        },
+        visual: 'Flow of review cards shifting from alert red to brand gradients',
+      },
+      {
+        title: 'Fintech stops fraudulent debt-collection domain',
+        industry: 'Fintech & lending',
+        summary:
+          'Shut down spoofed domains and launched an always-on trust hub to reassure anxious borrowers.',
+        challenge:
+          'Attackers cloned product flows and emailed borrowers from a lookalike domain demanding crypto settlements.',
+        approach:
+          'Coordinated registrar takedowns, released verification lookup tools, and activated lifecycle comms with personalised guardrails.',
+        impact:
+          'Fraudulent traffic dropped 96%, churn stabilised, and regulators received proactive disclosure packs.',
+        metrics: [
+          { label: 'Spoofed domains closed', value: '7' },
+          { label: 'At-risk churn prevented', value: '92%' },
+          { label: 'Support tickets deflected', value: '1.8k' },
+        ],
+        testimonial: {
+          quote:
+            'Traceremove made compliance, engineering, and CX feel like one squad focused on safeguarding our borrowers.',
+          attribution: 'Chief Risk Officer, Series D fintech',
+        },
+        visual: 'Animated shield protecting secure login flows',
+      },
+      {
+        title: 'Luxury retailer outranks knock-offs with SEO labs',
+        industry: 'Luxury retail & fashion',
+        summary:
+          'Launched multilingual editorial programmes that reclaimed high-intent keywords from counterfeiters.',
+        challenge:
+          'Replica blogs and marketplaces dominated search results for the brand’s hero products across priority geographies.',
+        approach:
+          'Combined forensic SERP analysis, in-language editorial pods, and digital PR bursts targeting authority publications.',
+        impact:
+          'Organic revenue rose 54% in priority regions and positive sentiment jumped 28 points in eight weeks.',
+        metrics: [
+          { label: 'Priority keywords reclaimed', value: '32' },
+          { label: 'Organic revenue lift', value: '+54%' },
+          { label: 'Positive sentiment', value: '+28pts' },
+        ],
+        testimonial: {
+          quote: 'The blend of protection and growth finally aligned our legal and ecommerce objectives.',
+          attribution: 'VP Ecommerce, global luxury house',
+        },
+        visual: 'Rising line graph orbiting hero product imagery',
+      },
+      {
+        title: 'B2B SaaS unlocks multilingual thought leadership engine',
+        industry: 'B2B SaaS & cybersecurity',
+        summary:
+          'Scaled insider commentary and social proof that wins enterprise trust while deterring misinformation.',
+        challenge:
+          'Competing vendors seeded fake outage rumours across Reddit, Discord, and niche forums, stalling pipeline velocity.',
+        approach:
+          'Equipped exec spokespeople with rapid-response content, distributed insider guides via Substack and LinkedIn, and automated reputation listening.',
+        impact:
+          'Enterprise win rate improved 21%, sales cycle shortened by 11 days, and share of voice doubled.',
+        metrics: [
+          { label: 'Thought leadership pieces shipped', value: '48' },
+          { label: 'Enterprise win rate', value: '+21%' },
+          { label: 'Share of voice', value: '2.1×' },
+        ],
+        testimonial: {
+          quote: 'Their newsroom model keeps our narrative ahead of speculation and fuels every commercial motion.',
+          attribution: 'Chief Revenue Officer, cybersecurity SaaS',
+        },
+        visual: 'Orbit of animated content cards with motion trails',
+      },
+    ],
+    methodology: {
+      heading: 'How we orchestrate transformations',
+      summary: 'Four phased loops keep leadership aligned while our pods ship results every week.',
+      steps: [
+        {
+          title: 'Intelligence ignition',
+          description: 'Instrument listening, audit surfaces, and quantify brand damage across languages and regions.',
+        },
+        {
+          title: 'Narrative control',
+          description: 'Co-create positioning, talking points, and owned experiences that reclaim the SERP and feeds.',
+        },
+        {
+          title: 'Activation & escalation',
+          description: 'Launch takedown sprints, SEO labs, CRM journeys, and paid amplification tuned for each market.',
+        },
+        {
+          title: 'Proof & enablement',
+          description: 'Report progress, train teams, and hand off automation-ready playbooks so momentum persists.',
+        },
+      ],
+    },
+    cta: {
+      heading: 'Ready to author your next success story?',
+      body: 'Let’s map the risks, quantify the upside, and mobilise the senior pod that will protect and grow your brand.',
+      primary: 'Start a custom roadmap',
+      secondary: 'Explore our partners program',
+    },
+  },
+  fr: {
+    hero: {
+      kicker: 'Preuves d’impact',
+      title: 'Études de cas',
+      subtitle: 'Protection de marque, autorité SEO et accélération de la confiance en mouvement.',
+      body:
+        'Découvrez comment Traceremove allie défense de crise, marketing de croissance et storytelling multilingue pour restaurer revenus et confiance.',
+      primaryCta: 'Réserver un call stratégique',
+      secondaryCta: 'Explorer nos insights récents',
+    },
+    statsHeading: 'Résultats livrés',
+    stats: [
+      {
+        value: '89%',
+        label: 'cycles de retrait plus rapides',
+        description:
+          'Réduction moyenne du temps de suppression sur marketplaces, recherche et social après l’arrivée de Traceremove.',
+      },
+      {
+        value: '4,6★',
+        label: 'santé des avis restaurée',
+        description:
+          'Notation composite retrouvée après neutralisation des faux avis et mobilisation d’ambassadeurs authentiques.',
+      },
+      {
+        value: '7,5×',
+        label: 'croissance du trafic de confiance',
+        description:
+          'Visites organiques vers les expériences maîtrisées comparées à la ligne de base avant remédiation et activation growth.',
+      },
+    ],
+    storiesHeading: 'Victoires sur le terrain',
+    storiesSubtitle:
+      'Chaque mission associe défense de marque et accélération growth pour créer un élan durable.',
+    storyLabels: {
+      challenge: 'Défi',
+      approach: 'Approche',
+      impact: 'Impact',
+      metrics: 'Indicateurs clés',
+      testimonial: 'Témoignage',
+    },
+    stories: [
+      {
+        title: 'Marketplace réhabilitée en 14 jours',
+        industry: 'Marketplace électronique grand public',
+        summary:
+          'Suppression de 1 200 annonces contrefaites et reprise des résultats haut de funnel avec des expériences propriétaires.',
+        challenge:
+          'Des vendeurs frauduleux dépassaient la marque sur Amazon, Mercado Libre et Cdiscount en pleine période de demande.',
+        approach:
+          'Balayages IA, dossiers d’escalade pour registraires et hubs SEO géociblés déployés simultanément.',
+        impact:
+          'Récupération de la buy-box, NPS +12 points et cellule juridique centralisée autour d’un centre d’escalade unique.',
+        metrics: [
+          { label: 'Annonces retirées', value: '1 200+' },
+          { label: 'Part buy-box retrouvée', value: '+37%' },
+          { label: 'Gain de NPS', value: '+12' },
+        ],
+        testimonial: {
+          quote:
+            'Traceremove a aligné juridique, marketing et opérations marketplace pour transformer chaque retrait en croissance durable.',
+          attribution: 'COO, collectif marketplace global',
+        },
+        visual: 'Carte marketplace animée avec pulsations de retraits',
+      },
+      {
+        title: 'Groupe hôtelier protège sa note en haute saison',
+        industry: 'Hôtellerie de luxe et resorts',
+        summary:
+          'Neutralisation des faux avis une étoile et amplification de témoignages authentiques en anglais, français et espagnol.',
+        challenge:
+          'Une campagne coordonnée a généré plus de 400 faux avis en dix jours sur Google, TripAdvisor et Booking.',
+        approach:
+          'Cellule de tri des avis, relance fidélité multilingue et narratifs prêts pour le board livrés en moins de 24 h.',
+        impact:
+          'Note moyenne revenue à 4,7★, réservations directes +18 % et risque juridique contenu.',
+        metrics: [
+          { label: 'Faux avis supprimés', value: '430' },
+          { label: 'Réservations directes', value: '+18%' },
+          { label: 'SLA de réponse', value: '<4h' },
+        ],
+        testimonial: {
+          quote:
+            'Ils ont transformé une vague inquiétante de faux avis en récit mémorable que nos invités citent encore.',
+          attribution: 'CMO, marque de resorts internationale',
+        },
+        visual: 'Flux de cartes d’avis passant du rouge alerte aux dégradés de marque',
+      },
+      {
+        title: 'Fintech stoppe un faux domaine de recouvrement',
+        industry: 'Fintech et crédit',
+        summary:
+          'Fermeture des domaines usurpés et lancement d’un hub de confiance permanent pour rassurer les emprunteurs.',
+        challenge:
+          'Des acteurs malveillants copiaient les parcours produit et réclamaient des paiements crypto via un domaine jumeau.',
+        approach:
+          'Takedowns coordonnés auprès des registraires, outil de vérification en libre-service et communications lifecycle personnalisées.',
+        impact:
+          'Trafic frauduleux -96 %, churn stabilisé et dossiers proactifs transmis aux régulateurs.',
+        metrics: [
+          { label: 'Domaines usurpés fermés', value: '7' },
+          { label: 'Churn à risque évité', value: '92%' },
+          { label: 'Tickets support évités', value: '1,8k' },
+        ],
+        testimonial: {
+          quote:
+            'Traceremove a fusionné conformité, engineering et CX en une squad dédiée à la protection de nos emprunteurs.',
+          attribution: 'Chief Risk Officer, fintech série D',
+        },
+        visual: 'Bouclier animé protégeant les parcours de connexion sécurisés',
+      },
+      {
+        title: 'Retailer luxe domine les copies grâce aux labs SEO',
+        industry: 'Retail luxe & mode',
+        summary:
+          'Programme éditorial multilingue qui reprend les mots-clés stratégiques confisqués par les contrefacteurs.',
+        challenge:
+          'Blogs de répliques et marketplaces trustaient la SERP sur les produits phares de la marque.',
+        approach:
+          'Analyse médico-légale de la SERP, pods éditoriaux natifs et vagues de RP digitales vers des médias d’autorité.',
+        impact:
+          'Revenus organiques +54 % sur les régions clés et sentiment positif +28 points en huit semaines.',
+        metrics: [
+          { label: 'Mots-clés prioritaires repris', value: '32' },
+          { label: 'Croissance du revenu organique', value: '+54%' },
+          { label: 'Sentiment positif', value: '+28 pts' },
+        ],
+        testimonial: {
+          quote:
+            'L’alliance protection + contenu growth a enfin aligné nos objectifs juridiques et e-commerce.',
+          attribution: 'VP Ecommerce, maison de luxe globale',
+        },
+        visual: 'Graphique ascendant entourant les visuels produits héros',
+      },
+      {
+        title: 'SaaS B2B active un moteur de leadership d’opinion',
+        industry: 'SaaS B2B & cybersécurité',
+        summary:
+          'Commentaire expert et preuves sociales multilingues pour gagner la confiance tout en coupant la désinformation.',
+        challenge:
+          'Des concurrents diffusaient de faux bruits de pannes sur Reddit, Discord et des forums niches, ralentissant le pipeline.',
+        approach:
+          'Coaching porte-parole, guides insiders diffusés via Substack et LinkedIn, et écoute réputationnelle automatisée.',
+        impact:
+          'Taux de closing entreprise +21 %, cycle de vente raccourci de 11 jours et part de voix doublée.',
+        metrics: [
+          { label: 'Contenus thought leadership produits', value: '48' },
+          { label: 'Taux de victoire entreprise', value: '+21%' },
+          { label: 'Part de voix', value: '×2,1' },
+        ],
+        testimonial: {
+          quote:
+            'Leur modèle newsroom garde notre récit devant la spéculation et alimente chaque mouvement commercial.',
+          attribution: 'Chief Revenue Officer, SaaS cybersécurité',
+        },
+        visual: 'Orbite de cartes de contenu animées avec traînées lumineuses',
+      },
+    ],
+    methodology: {
+      heading: 'Notre orchestration des transformations',
+      summary: 'Quatre boucles séquencées maintiennent le leadership aligné pendant que nos pods livrent chaque semaine.',
+      steps: [
+        {
+          title: 'Allumage intelligence',
+          description: 'Instrumentation d’écoute, audit des surfaces et mesure des dommages par langue et région.',
+        },
+        {
+          title: 'Contrôle du récit',
+          description: 'Co-création de positionnements, messages et expériences propriétaires qui reprennent SERP et feeds.',
+        },
+        {
+          title: 'Activation & escalade',
+          description: 'Sprints de retrait, labs SEO, parcours CRM et amplification media calibrés par marché.',
+        },
+        {
+          title: 'Preuve & empowerment',
+          description: 'Reporting, formation et playbooks automatisables pour prolonger l’élan.',
+        },
+      ],
+    },
+    cta: {
+      heading: 'Prêts à écrire votre prochaine success story ?',
+      body: 'Cartographions les risques, l’opportunité et mobilisons le pod senior qui protègera et fera croître votre marque.',
+      primary: 'Lancer une feuille de route sur mesure',
+      secondary: 'Découvrir notre programme partenaires',
+    },
+  },
+  es: {
+    hero: {
+      kicker: 'Pruebas de impacto',
+      title: 'Casos de éxito',
+      subtitle: 'Protección de marca, autoridad en buscadores y confianza acelerada en acción.',
+      body:
+        'Descubre cómo Traceremove combina defensa de crisis, marketing de crecimiento y narrativa multilingüe para recuperar ingresos y credibilidad.',
+      primaryCta: 'Agenda una sesión estratégica',
+      secondaryCta: 'Explora nuestros últimos insights',
+    },
+    statsHeading: 'Resultados entregados',
+    stats: [
+      {
+        value: '89%',
+        label: 'retiros más rápidos',
+        description:
+          'Reducción promedio del tiempo de baja en marketplaces, buscadores y redes tras activar a Traceremove.',
+      },
+      {
+        value: '4,6★',
+        label: 'salud de reseñas restablecida',
+        description:
+          'Calificación compuesta recuperada después de neutralizar reseñas falsas y activar programas de advocacy auténtico.',
+      },
+      {
+        value: '7,5×',
+        label: 'crecimiento de tráfico confiable',
+        description:
+          'Visitas orgánicas a experiencias propias comparadas con la línea base previa a la remediación y activación growth.',
+      },
+    ],
+    storiesHeading: 'Victorias en el terreno',
+    storiesSubtitle:
+      'Cada proyecto une defensa de marca y aceleración de crecimiento para sostener el impulso.',
+    storyLabels: {
+      challenge: 'Desafío',
+      approach: 'Enfoque',
+      impact: 'Impacto',
+      metrics: 'Indicadores clave',
+      testimonial: 'Testimonio',
+    },
+    stories: [
+      {
+        title: 'Marketplace reinicia su reputación en 14 días',
+        industry: 'Marketplace de electrónica de consumo',
+        summary:
+          'Eliminamos 1 200 listados falsos y recuperamos la parte alta del embudo con experiencias propias de alta conversión.',
+        challenge:
+          'Vendedores falsos superaban a la marca en Amazon, Mercado Libre y Cdiscount durante el pico de demanda.',
+        approach:
+          'Barridos con IA, expedientes de escalamiento para registradores y hubs SEO geolocalizados lanzados en paralelo.',
+        impact:
+          'La marca recuperó la buy-box, el NPS subió 12 puntos y legal opera desde un único centro de escalamiento.',
+        metrics: [
+          { label: 'Listados falsos eliminados', value: '1 200+' },
+          { label: 'Recuperación de buy-box', value: '+37%' },
+          { label: 'Aumento de NPS', value: '+12' },
+        ],
+        testimonial: {
+          quote:
+            'Traceremove alineó legal, marketing y operaciones marketplace para que cada retiro alimentara la demanda.',
+          attribution: 'COO, colectivo marketplace global',
+        },
+        visual: 'Mapa de marketplace animado con pulsos de retiradas',
+      },
+      {
+        title: 'Cadena hotelera protege la confianza en temporada alta',
+        industry: 'Hospitalidad y resorts de lujo',
+        summary:
+          'Neutralizamos reseñas falsas de una estrella y las reemplazamos con historias reales de huéspedes en tres idiomas.',
+        challenge:
+          'Una campaña coordinada generó más de 400 reseñas fabricadas en diez días en Google, TripAdvisor y Booking.',
+        approach:
+          'Escuadrón de triage de reseñas, outreach de fidelidad multilingüe y narrativas listas para el board en menos de 24 horas.',
+        impact:
+          'La calificación volvió a 4,7★, las reservas directas crecieron 18 % y el riesgo legal quedó contenido.',
+        metrics: [
+          { label: 'Reseñas falsas removidas', value: '430' },
+          { label: 'Reservas directas', value: '+18%' },
+          { label: 'SLA de respuesta', value: '<4h' },
+        ],
+        testimonial: {
+          quote:
+            'Transformaron un pico alarmante de reseñas falsas en un relato que los huéspedes aún recuerdan.',
+          attribution: 'CMO, marca global de resorts',
+        },
+        visual: 'Flujo de tarjetas de reseñas pasando de rojo alerta a gradientes de marca',
+      },
+      {
+        title: 'Fintech desactiva dominio falso de cobranza',
+        industry: 'Fintech y préstamos',
+        summary:
+          'Cerramos dominios suplantadores y lanzamos un hub de confianza permanente para tranquilizar a los prestatarios.',
+        challenge:
+          'Atacantes clonaron los flujos de producto y enviaban correos desde un dominio gemelo solicitando pagos en cripto.',
+        approach:
+          'Takedowns coordinados con registradores, herramienta de verificación y comunicaciones lifecycle con guardas personalizadas.',
+        impact:
+          'El tráfico fraudulento cayó 96 %, el churn se estabilizó y los reguladores recibieron informes proactivos.',
+        metrics: [
+          { label: 'Dominios falsos cerrados', value: '7' },
+          { label: 'Churn en riesgo evitado', value: '92%' },
+          { label: 'Tickets evitados', value: '1,8k' },
+        ],
+        testimonial: {
+          quote:
+            'Traceremove hizo que compliance, ingeniería y CX trabajaran como una sola squad para proteger a nuestros clientes.',
+          attribution: 'Chief Risk Officer, fintech Serie D',
+        },
+        visual: 'Escudo animado que protege los flujos de inicio de sesión seguros',
+      },
+      {
+        title: 'Retailer de lujo domina a los imitadores con labs SEO',
+        industry: 'Retail de lujo y moda',
+        summary:
+          'Programa editorial multilingüe que recuperó keywords de alta intención capturadas por los falsificadores.',
+        challenge:
+          'Blogs de réplicas y marketplaces ocupaban la SERP para los productos héroe en regiones clave.',
+        approach:
+          'Análisis forense de la SERP, pods editoriales nativos y oleadas de PR digital hacia medios de autoridad.',
+        impact:
+          'Ingresos orgánicos +54 % en regiones prioritarias y sentimiento positivo +28 puntos en ocho semanas.',
+        metrics: [
+          { label: 'Keywords prioritarias recuperadas', value: '32' },
+          { label: 'Crecimiento de revenue orgánico', value: '+54%' },
+          { label: 'Sentimiento positivo', value: '+28 pts' },
+        ],
+        testimonial: {
+          quote:
+            'La mezcla de protección y contenido growth alineó por fin a legal y e-commerce.',
+          attribution: 'VP Ecommerce, casa de lujo global',
+        },
+        visual: 'Gráfico ascendente orbitando fotografía de productos',
+      },
+      {
+        title: 'SaaS B2B activa motor multilingüe de liderazgo de opinión',
+        industry: 'SaaS B2B y ciberseguridad',
+        summary:
+          'Escalamos comentarios internos y prueba social que ganan confianza enterprise y frenan la desinformación.',
+        challenge:
+          'Competidores difundían rumores falsos de caídas en Reddit, Discord y foros nicho, frenando el pipeline.',
+        approach:
+          'Preparamos voceros ejecutivos con contenido de respuesta rápida, distribuimos guías insiders vía Substack y LinkedIn y automatizamos la escucha reputacional.',
+        impact:
+          'Win rate enterprise +21 %, ciclo de ventas 11 días más corto y share of voice duplicado.',
+        metrics: [
+          { label: 'Piezas de liderazgo publicadas', value: '48' },
+          { label: 'Win rate enterprise', value: '+21%' },
+          { label: 'Share of voice', value: '2,1×' },
+        ],
+        testimonial: {
+          quote:
+            'Su modelo de newsroom mantiene nuestra narrativa por delante de la especulación y nutre cada jugada comercial.',
+          attribution: 'Chief Revenue Officer, SaaS de ciberseguridad',
+        },
+        visual: 'Órbita de tarjetas de contenido animadas con estelas de luz',
+      },
+    ],
+    methodology: {
+      heading: 'Cómo orquestamos la transformación',
+      summary: 'Cuatro bucles mantienen al liderazgo alineado mientras nuestros pods entregan resultados cada semana.',
+      steps: [
+        {
+          title: 'Ignición de inteligencia',
+          description: 'Instrumentamos escucha, auditamos superficies y cuantificamos el daño por idioma y región.',
+        },
+        {
+          title: 'Control del relato',
+          description: 'Co-creamos posicionamiento, mensajes y experiencias propias que recuperan la SERP y los feeds.',
+        },
+        {
+          title: 'Activación y escalamiento',
+          description: 'Lanzamos sprints de retirada, labs SEO, journeys CRM y paid media ajustados por mercado.',
+        },
+        {
+          title: 'Prueba y habilitación',
+          description: 'Reportes, formación y playbooks automatizables para que el impulso continúe.',
+        },
+      ],
+    },
+    cta: {
+      heading: '¿Listo para escribir tu próximo caso de éxito?',
+      body: 'Mapeemos riesgos y oportunidad para movilizar al pod senior que protegerá y hará crecer tu marca.',
+      primary: 'Inicia una hoja de ruta a medida',
+      secondary: 'Explora nuestro programa de partners',
     },
   },
 }
@@ -2087,6 +2695,137 @@ const TeamPage = () => {
               +1 606 302 2958
             </a>
           </div>
+        </div>
+      </section>
+    </article>
+  )
+}
+
+const CaseStudiesPage = () => {
+  const language = useCurrentLanguage()
+  const copy = caseStudiesCopy[language]
+
+  return (
+    <article className="case-page">
+      <header className="case-hero">
+        <div className="case-hero__copy">
+          <p className="case-hero__kicker">{copy.hero.kicker}</p>
+          <h1>{copy.hero.title}</h1>
+          <p className="case-hero__subtitle">{copy.hero.subtitle}</p>
+          <p>{copy.hero.body}</p>
+          <div className="case-hero__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            <Link className="button secondary" to={getBlogBasePath(language)}>
+              {copy.hero.secondaryCta}
+            </Link>
+          </div>
+        </div>
+        <div className="case-hero__visual" aria-hidden="true">
+          <GrowthSpark variant="light" size="lg" className="case-hero__spark" />
+          <span className="case-hero__halo" />
+        </div>
+      </header>
+
+      <section className="case-stats" aria-labelledby="case-stats-heading">
+        <div className="case-section__header">
+          <h2 id="case-stats-heading">{copy.statsHeading}</h2>
+        </div>
+        <div className="case-stats__grid">
+          {copy.stats.map((stat, index) => (
+            <article key={stat.label} className="case-stat" data-index={index}>
+              <span className="case-stat__value">{stat.value}</span>
+              <span className="case-stat__label">{stat.label}</span>
+              <p>{stat.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="case-stories" aria-labelledby="case-stories-heading">
+        <div className="case-section__header">
+          <div>
+            <h2 id="case-stories-heading">{copy.storiesHeading}</h2>
+            <p>{copy.storiesSubtitle}</p>
+          </div>
+        </div>
+        <div className="case-stories__grid">
+          {copy.stories.map((story, index) => (
+            <article key={story.title} className="case-card" data-index={index}>
+              <div className="case-card__visual" aria-hidden="true">
+                <GrowthSpark variant={index % 2 === 0 ? 'light' : 'dark'} size="sm" />
+                <span>{story.visual}</span>
+              </div>
+              <div className="case-card__body">
+                <p className="case-card__industry">{story.industry}</p>
+                <h3>{story.title}</h3>
+                <p className="case-card__summary">{story.summary}</p>
+                <dl className="case-card__details">
+                  <div>
+                    <dt>{copy.storyLabels.challenge}</dt>
+                    <dd>{story.challenge}</dd>
+                  </div>
+                  <div>
+                    <dt>{copy.storyLabels.approach}</dt>
+                    <dd>{story.approach}</dd>
+                  </div>
+                  <div>
+                    <dt>{copy.storyLabels.impact}</dt>
+                    <dd>{story.impact}</dd>
+                  </div>
+                </dl>
+                <ul className="case-card__metrics" aria-label={copy.storyLabels.metrics}>
+                  {story.metrics.map((metric) => (
+                    <li key={`${story.title}-${metric.label}`}>
+                      <span className="case-card__metric-value">{metric.value}</span>
+                      <span className="case-card__metric-label">{metric.label}</span>
+                    </li>
+                  ))}
+                </ul>
+                <blockquote className="case-card__testimonial">
+                  <p>{story.testimonial.quote}</p>
+                  <cite>{story.testimonial.attribution}</cite>
+                  <span className="case-card__testimonial-label">{copy.storyLabels.testimonial}</span>
+                </blockquote>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="case-method" aria-labelledby="case-method-heading">
+        <div className="case-section__header">
+          <div>
+            <h2 id="case-method-heading">{copy.methodology.heading}</h2>
+            <p>{copy.methodology.summary}</p>
+          </div>
+        </div>
+        <ol className="case-method__steps">
+          {copy.methodology.steps.map((step, index) => (
+            <li key={step.title} className="case-method__step" data-index={index}>
+              <span className="case-method__number">{index + 1}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="case-cta">
+        <div>
+          <h2>{copy.cta.heading}</h2>
+          <p>{copy.cta.body}</p>
+        </div>
+        <div className="case-cta__actions">
+          <Link className="button primary" to={getContactPath(language)}>
+            {copy.cta.primary}
+          </Link>
+          <Link className="button ghost" to={getPartnersPath(language)}>
+            {copy.cta.secondary}
+          </Link>
         </div>
       </section>
     </article>
@@ -3547,6 +4286,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <NavLink className="tr-nav__link" to={getAboutPath(currentLanguage)}>
             {copy.about}
           </NavLink>
+          <NavLink className="tr-nav__link" to={getCaseStudiesPath(currentLanguage)}>
+            {copy.caseStudies}
+          </NavLink>
           <NavLink className="tr-nav__link" to={getTeamPath(currentLanguage)}>
             {copy.team}
           </NavLink>
@@ -3642,6 +4384,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               </NavLink>
               <NavLink to={getAboutPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
                 {copy.about}
+              </NavLink>
+              <NavLink to={getCaseStudiesPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+                {copy.caseStudies}
               </NavLink>
               <NavLink to={getTeamPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
                 {copy.team}
@@ -4140,6 +4885,7 @@ const footerCopy: Record<
     hotlineHeading: string
     hotlineBody: string
     about: string
+    caseStudies: string
     team: string
     partners: string
     blog: string
@@ -4170,6 +4916,7 @@ const footerCopy: Record<
     hotlineHeading: 'Critical escalation',
     hotlineBody: 'Message or call +1 606 302 2958 for urgent takedowns — we respond within 60 minutes.',
     about: 'About us',
+    caseStudies: 'Case studies',
     team: 'Team',
     partners: 'Partners',
     blog: 'Blog',
@@ -4200,6 +4947,7 @@ const footerCopy: Record<
     hotlineHeading: 'Escalade critique',
     hotlineBody: 'Écrivez ou appelez le +1 606 302 2958 pour une suppression urgente — réponse sous 60 minutes.',
     about: 'À propos',
+    caseStudies: 'Études de cas',
     team: 'Équipe',
     partners: 'Partenaires',
     blog: 'Blog',
@@ -4229,6 +4977,7 @@ const footerCopy: Record<
     hotlineHeading: 'Escalada crítica',
     hotlineBody: 'Escríbenos o llama al +1 606 302 2958 para urgencias — respondemos en menos de 60 minutos.',
     about: 'Sobre nosotros',
+    caseStudies: 'Casos de éxito',
     team: 'Equipo',
     partners: 'Partners',
     blog: 'Blog',
@@ -4454,6 +5203,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         </div>
         <div className="tr-footer__links">
           <NavLink to={getAboutPath(currentLanguage)}>{copy.about}</NavLink>
+          <NavLink to={getCaseStudiesPath(currentLanguage)}>{copy.caseStudies}</NavLink>
           <NavLink to={getTeamPath(currentLanguage)}>{copy.team}</NavLink>
           <NavLink to={getPartnersPath(currentLanguage)}>{copy.partners}</NavLink>
           <NavLink to={getBlogBasePath(currentLanguage)}>{copy.blog}</NavLink>
@@ -4509,6 +5259,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="case-studies" element={<CaseStudiesPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
@@ -4521,6 +5272,7 @@ function App() {
           <Fragment key={language}>
             <Route path={language} element={<HomePage />} />
             <Route path={`${language}/about`} element={<AboutPage />} />
+            <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
             <Route path={`${language}/join`} element={<JoinPage />} />
