@@ -95,6 +95,10 @@ const getJoinPath = (language: Language) => (language === 'en' ? '/join' : `/${l
 
 const getContactPath = (language: Language) => (language === 'en' ? '/contact' : `/${language}/contact`)
 
+const getPrivacyPath = (language: Language) => (language === 'en' ? '/privacy' : `/${language}/privacy`)
+
+const getTermsPath = (language: Language) => (language === 'en' ? '/terms' : `/${language}/terms`)
+
 const slugifyHeading = (value: string) =>
   value
     .normalize('NFD')
@@ -2413,6 +2417,20 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     }
   }, [mobileOpen])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 960) {
+        setMobileOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   const firstPages = useMemo(
     () =>
       languages.reduce<Record<Language, string>>((acc, lang) => {
@@ -2431,7 +2449,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   }
 
   return (
-    <header className="tr-header">
+    <header className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}>
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to="/" className="tr-logo" aria-label="Traceremove home">
@@ -2597,6 +2615,356 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   )
 }
 
+const legalCopy: Record<
+  Language,
+  Record<
+    'privacy' | 'terms',
+    {
+      kicker: string
+      title: string
+      subtitle: string
+      updated: string
+      sections: { heading: string; body: string[] }[]
+      contactTitle: string
+      contactBody: string[]
+      ctaLabel: string
+      secondaryLabel: string
+      secondaryHref: string
+      supportPhone: { label: string; href: string }
+    }
+  >
+> = {
+  en: {
+    privacy: {
+      kicker: 'Legal center',
+      title: 'Privacy notice',
+      subtitle:
+        'We treat your data with the same care we apply to our own products. This page explains how we collect, use, and protect personal information across every market we serve.',
+      updated: 'Updated: May 2024',
+      sections: [
+        {
+          heading: 'Information we collect',
+          body: [
+            'We collect the contact details, company information, and context you share when you request proposals, download resources, register for events, or chat with our team.',
+            'We also review aggregate usage analytics and log files through privacy-first tooling so we can improve the experience without storing personal identifiers.',
+          ],
+        },
+        {
+          heading: 'How we use your information',
+          body: [
+            'Your information helps us respond to briefs, configure multilingual squads, deliver the services you select, and keep you informed about operational updates tied to your engagement.',
+            'We occasionally send research notes and product announcements when you opt in. Every message includes an instant unsubscribe link.',
+          ],
+        },
+        {
+          heading: 'How we share and store data',
+          body: [
+            'We only share data with infrastructure partners who help operate Traceremove—hosting, CRM, analytics, productivity, and payment vendors that are bound by strict confidentiality.',
+            'Data is stored in the United States and European Union with encryption at rest and in transit. Access is limited to senior personnel with audited accounts.',
+          ],
+        },
+        {
+          heading: 'Your rights and choices',
+          body: [
+            'Email privacy@traceremove.com to request a copy of your data, ask for corrections, or demand deletion. We respond to every verified request within thirty days.',
+            'You can opt out of marketing communication at any time, and we respect regulations such as GDPR, LGPD, and CCPA across every engagement.',
+          ],
+        },
+      ],
+      contactTitle: 'Need to talk with our privacy team?',
+      contactBody: [
+        'Tell us what you need to clarify and we will respond within one business day with the documentation or next steps required.',
+        'We routinely coordinate with in-house counsel to align compliance expectations before launch.',
+      ],
+      ctaLabel: 'Open the contact form',
+      secondaryLabel: 'Email privacy@traceremove.com',
+      secondaryHref: 'mailto:privacy@traceremove.com',
+      supportPhone: { label: 'Call +1 606 302 2958 to reach our privacy desk.', href: 'tel:+16063022958' },
+    },
+    terms: {
+      kicker: 'Legal center',
+      title: 'Terms of service',
+      subtitle:
+        'These terms describe how we partner with clients around the world, the responsibilities each side carries, and the principles that protect your brand and ours.',
+      updated: 'Updated: May 2024',
+      sections: [
+        {
+          heading: 'Scope of engagement',
+          body: [
+            'Each collaboration begins with an approved proposal or statement of work that defines deliverables, languages, timelines, and success metrics.',
+            'Requests outside the agreed scope are estimated separately so we can staff the right specialists without slowing ongoing milestones.',
+          ],
+        },
+        {
+          heading: 'Intellectual property and confidentiality',
+          body: [
+            'Traceremove licenses pre-existing frameworks while granting you full rights to bespoke deliverables once invoices are paid in full.',
+            'Campaign data, product roadmaps, and customer information remain confidential. We sign mutual NDAs on request and compartmentalise access internally.',
+          ],
+        },
+        {
+          heading: 'Fees, invoicing, and scheduling',
+          body: [
+            'Unless otherwise stated, engagements require a 30% deposit with remaining invoices due net 14 from the issue date.',
+            "Pauses or cancellations need ten business days' notice. Work delivered to date will be invoiced, and retainers can roll into future initiatives within six months.",
+          ],
+        },
+        {
+          heading: 'Liability and compliance',
+          body: [
+            'We design programmes aligned with applicable marketing, advertising, and privacy regulations in the markets where you operate.',
+            'Traceremove is not liable for indirect damages. If an issue arises, our total liability is capped at the fees paid for the affected services.',
+          ],
+        },
+      ],
+      contactTitle: 'Questions about these terms?',
+      contactBody: [
+        'We are happy to review clauses with your counsel and adjust engagement structures when compliance requirements evolve.',
+        'Send us your redlines or schedule a working session so paperwork never slows your launch.',
+      ],
+      ctaLabel: 'Discuss an engagement',
+      secondaryLabel: 'Email legal@traceremove.com',
+      secondaryHref: 'mailto:legal@traceremove.com',
+      supportPhone: { label: 'Call +1 606 302 2958 for urgent contract questions.', href: 'tel:+16063022958' },
+    },
+  },
+  fr: {
+    privacy: {
+      kicker: 'Espace légal',
+      title: 'Politique de confidentialité',
+      subtitle:
+        'Nous traitons vos données avec la même exigence que nos propres actifs numériques. Découvrez comment nous collectons, utilisons et protégeons vos informations.',
+      updated: 'Mise à jour : mai 2024',
+      sections: [
+        {
+          heading: 'Données collectées',
+          body: [
+            'Nous collectons les coordonnées, informations d’entreprise et éléments de contexte que vous partagez via nos formulaires, réservations de rendez-vous, téléchargements et échanges par email.',
+            'Nous analysons également des statistiques d’utilisation agrégées avec des outils respectueux de la vie privée afin d’améliorer l’expérience sans stocker d’identifiants personnels.',
+          ],
+        },
+        {
+          heading: 'Utilisation des données',
+          body: [
+            'Ces informations nous permettent de répondre à vos briefs, de constituer des équipes multilingues, de livrer les services convenus et de vous tenir informé de l’avancement.',
+            'Nous envoyons ponctuellement des analyses et actualités lorsque vous y consentez. Chaque message comporte un lien de désinscription immédiate.',
+          ],
+        },
+        {
+          heading: 'Partage et hébergement',
+          body: [
+            'Nous partageons vos données uniquement avec les partenaires d’infrastructure indispensables (hébergement, CRM, analytics, facturation) soumis à des clauses de confidentialité strictes.',
+            'Les données sont hébergées aux États-Unis et dans l’Union européenne, chiffrées au repos comme en transit, et l’accès est limité à l’équipe dirigeante disposant de comptes audités.',
+          ],
+        },
+        {
+          heading: 'Vos droits',
+          body: [
+            'Écrivez à privacy@traceremove.com pour obtenir une copie, demander une correction ou la suppression de vos données. Chaque demande est traitée sous trente jours.',
+            'Vous pouvez vous désinscrire des communications marketing à tout moment. Nous respectons le RGPD, la loi Sapin II, la LOPDGDD et les réglementations locales applicables.',
+          ],
+        },
+      ],
+      contactTitle: 'Besoin d’échanger avec notre équipe confidentialité ?',
+      contactBody: [
+        'Partagez votre demande et nous reviendrons vers vous sous un jour ouvré avec la documentation ou les actions nécessaires.',
+        'Nous collaborons volontiers avec vos juristes pour cadrer les exigences de conformité avant vos lancements.',
+      ],
+      ctaLabel: 'Accéder au formulaire de contact',
+      secondaryLabel: 'Écrire à privacy@traceremove.com',
+      secondaryHref: 'mailto:privacy@traceremove.com',
+      supportPhone: { label: 'Appelez le +1 606 302 2958 pour joindre notre cellule conformité.', href: 'tel:+16063022958' },
+    },
+    terms: {
+      kicker: 'Espace légal',
+      title: 'Conditions générales de service',
+      subtitle:
+        'Ces conditions décrivent notre mode de collaboration, les responsabilités partagées et les garanties qui protègent votre marque comme la nôtre.',
+      updated: 'Mise à jour : mai 2024',
+      sections: [
+        {
+          heading: 'Périmètre de la mission',
+          body: [
+            'Chaque collaboration démarre par une proposition ou un contrat (SOW) validé conjointement qui précise livrables, langues, planning et indicateurs de succès.',
+            'Les demandes hors périmètre font l’objet d’un chiffrage complémentaire afin de mobiliser les bons spécialistes sans freiner les jalons en cours.',
+          ],
+        },
+        {
+          heading: 'Propriété intellectuelle et confidentialité',
+          body: [
+            'Traceremove concède ses cadres méthodologiques existants et vous transfère les droits sur les livrables sur mesure une fois les factures réglées.',
+            'Les données de campagne, feuilles de route produit et informations clients restent confidentielles. Nous signons des NDA réciproques sur simple demande.',
+          ],
+        },
+        {
+          heading: 'Honoraires, facturation et calendrier',
+          body: [
+            'Sauf mention contraire, un acompte de 30 % est requis et le solde est payable à 14 jours date de facture.',
+            'Les pauses ou annulations nécessitent un préavis de dix jours ouvrés. Le travail réalisé est facturé et les retainers peuvent être réaffectés à de futures missions sous six mois.',
+          ],
+        },
+        {
+          heading: 'Responsabilité et conformité',
+          body: [
+            'Nous concevons nos programmes dans le respect des réglementations marketing, publicitaires et de protection des données applicables sur vos marchés.',
+            'Traceremove n’est pas responsable des dommages indirects. En cas de litige, notre responsabilité est limitée aux montants réglés pour les services concernés.',
+          ],
+        },
+      ],
+      contactTitle: 'Des questions sur ces conditions ?',
+      contactBody: [
+        'Nous passons volontiers vos clauses avec vos juristes et adaptons nos modalités lorsque vos obligations de conformité évoluent.',
+        'Transmettez-nous vos remarques ou planifions un échange pour finaliser la signature sans retarder votre lancement.',
+      ],
+      ctaLabel: 'Discuter d’une collaboration',
+      secondaryLabel: 'Écrire à legal@traceremove.com',
+      secondaryHref: 'mailto:legal@traceremove.com',
+      supportPhone: { label: 'Appelez le +1 606 302 2958 pour toute question contractuelle urgente.', href: 'tel:+16063022958' },
+    },
+  },
+  es: {
+    privacy: {
+      kicker: 'Centro legal',
+      title: 'Política de privacidad',
+      subtitle:
+        'Tratamos tus datos con el mismo rigor que aplicamos a nuestros propios sistemas. Aquí detallamos cómo los recopilamos, utilizamos y protegemos.',
+      updated: 'Actualizado: mayo de 2024',
+      sections: [
+        {
+          heading: 'Información que recopilamos',
+          body: [
+            'Recopilamos los datos de contacto, información de la empresa y contexto que compartes al solicitar propuestas, descargar recursos, registrarte a eventos o conversar con nuestro equipo.',
+            'También analizamos métricas agregadas con herramientas de analítica respetuosas con la privacidad para mejorar la experiencia sin almacenar identificadores personales.',
+          ],
+        },
+        {
+          heading: 'Cómo utilizamos la información',
+          body: [
+            'Usamos tus datos para responder a los briefs, formar equipos multilingües, entregar los servicios acordados y mantenerte al tanto de la operación.',
+            'Enviamos ocasionalmente investigaciones y novedades cuando lo autorizas, y cada mensaje incluye un enlace para darte de baja de inmediato.',
+          ],
+        },
+        {
+          heading: 'Cómo compartimos y almacenamos los datos',
+          body: [
+            'Solo compartimos información con proveedores esenciales de infraestructura: alojamiento, CRM, analítica, colaboración y pagos bajo acuerdos de confidencialidad estrictos.',
+            'Los datos se almacenan en Estados Unidos y la Unión Europea con cifrado en reposo y en tránsito, y el acceso se limita al personal senior con cuentas auditadas.',
+          ],
+        },
+        {
+          heading: 'Tus derechos y opciones',
+          body: [
+            'Escríbenos a privacy@traceremove.com para solicitar una copia de tus datos, corregir información o pedir su eliminación. Respondemos a todas las solicitudes verificadas en menos de treinta días.',
+            'Puedes darte de baja de las comunicaciones en cualquier momento. Cumplimos con GDPR, LGPD, CCPA y la normativa local aplicable en cada región.',
+          ],
+        },
+      ],
+      contactTitle: '¿Necesitas hablar con nuestro equipo de privacidad?',
+      contactBody: [
+        'Cuéntanos tu solicitud y responderemos en un día laborable con la documentación o acciones necesarias.',
+        'También coordinamos requisitos regulatorios específicos para tus lanzamientos multinacionales.',
+      ],
+      ctaLabel: 'Abrir el formulario de contacto',
+      secondaryLabel: 'Escribe a privacy@traceremove.com',
+      secondaryHref: 'mailto:privacy@traceremove.com',
+      supportPhone: { label: 'Llámanos al +1 606 302 2958 y pide hablar con nuestro equipo de privacidad.', href: 'tel:+16063022958' },
+    },
+    terms: {
+      kicker: 'Centro legal',
+      title: 'Términos del servicio',
+      subtitle:
+        'Estas condiciones resumen la forma en la que colaboramos, las responsabilidades de cada parte y las garantías que protegen tu marca y la nuestra.',
+      updated: 'Actualizado: mayo de 2024',
+      sections: [
+        {
+          heading: 'Alcance de la colaboración',
+          body: [
+            'Cada proyecto comienza con una propuesta o statement of work aprobado que define entregables, idiomas, cronograma y métricas clave.',
+            'Las solicitudes fuera de alcance se presupuestan aparte para asignar a los especialistas adecuados sin detener los hitos en curso.',
+          ],
+        },
+        {
+          heading: 'Propiedad intelectual y confidencialidad',
+          body: [
+            'Traceremove licencia sus marcos existentes y te concede los derechos sobre los entregables personalizados una vez que las facturas están pagadas.',
+            'Los datos de campañas, hojas de ruta de producto e información de clientes permanecen confidenciales. Firmamos acuerdos de confidencialidad recíprocos cuando lo solicitas.',
+          ],
+        },
+        {
+          heading: 'Honorarios, facturación y calendarios',
+          body: [
+            'Salvo indicación contraria, requerimos un anticipo del 30 % y el resto de las facturas se pagan a 14 días fecha de emisión.',
+            'Las pausas o cancelaciones requieren un aviso de diez días hábiles. El trabajo ya entregado se facturará y los retainers podrán aplicarse a proyectos futuros dentro de los seis meses.',
+          ],
+        },
+        {
+          heading: 'Responsabilidad y cumplimiento',
+          body: [
+            'Diseñamos programas alineados con las normativas de marketing, publicidad y privacidad de los mercados donde operas.',
+            'Traceremove no se hace responsable de daños indirectos. Si surge un problema, nuestra responsabilidad total se limita a los honorarios pagados por los servicios implicados.',
+          ],
+        },
+      ],
+      contactTitle: '¿Dudas sobre estos términos?',
+      contactBody: [
+        'Con gusto revisamos las cláusulas con tu equipo legal y adaptamos los acuerdos cuando cambian los requisitos de cumplimiento.',
+        'Comparte tus comentarios o agenda una llamada para cerrar la documentación sin retrasar el lanzamiento.',
+      ],
+      ctaLabel: 'Hablar sobre una colaboración',
+      secondaryLabel: 'Comparte términos en legal@traceremove.com',
+      secondaryHref: 'mailto:legal@traceremove.com',
+      supportPhone: { label: 'Habla con nosotros en el +1 606 302 2958 para resolver preguntas contractuales urgentes.', href: 'tel:+16063022958' },
+    },
+  },
+}
+
+const LegalPage = ({ language, variant }: { language: Language; variant: 'privacy' | 'terms' }) => {
+  const copy = legalCopy[language][variant]
+
+  return (
+    <section className={`legal-page legal-page--${variant}`}>
+      <header className="legal-hero">
+        <p className="legal-kicker">{copy.kicker}</p>
+        <h1>{copy.title}</h1>
+        <p className="legal-subtitle">{copy.subtitle}</p>
+        <p className="legal-updated">{copy.updated}</p>
+        <GrowthSpark variant="light" size="md" className="legal-hero__spark" ariaLabel={copy.title} />
+      </header>
+      {copy.sections.map((section, index) => (
+        <article
+          key={`${variant}-${section.heading}`}
+          className="legal-section"
+          style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+        >
+          <h2>{section.heading}</h2>
+          {section.body.map((paragraph, paragraphIndex) => (
+            <p key={`${section.heading}-${paragraphIndex}`}>{paragraph}</p>
+          ))}
+        </article>
+      ))}
+      <section className="legal-cta">
+        <div className="legal-cta__text">
+          <h2>{copy.contactTitle}</h2>
+          {copy.contactBody.map((paragraph, index) => (
+            <p key={`${variant}-cta-${index}`}>{paragraph}</p>
+          ))}
+          <p>
+            <a href={copy.supportPhone.href}>{copy.supportPhone.label}</a>
+          </p>
+        </div>
+        <div className="legal-cta__actions">
+          <NavLink className="button primary" to={getContactPath(language)}>
+            {copy.ctaLabel}
+          </NavLink>
+          <a className="button ghost" href={copy.secondaryHref}>
+            {copy.secondaryLabel}
+          </a>
+        </div>
+      </section>
+    </section>
+  )
+}
+
 const footerCopy: Record<
   Language,
   {
@@ -2609,6 +2977,8 @@ const footerCopy: Record<
     contact: string
     call: string
     join: string
+    privacy: string
+    terms: string
     subscribeTitle: string
     subscribeSubtitle: string
     subscribePlaceholder: string
@@ -2626,6 +2996,8 @@ const footerCopy: Record<
     contact: 'Contact',
     call: 'Call us',
     join: 'Join us',
+    privacy: 'Privacy policy',
+    terms: 'Terms of service',
     subscribeTitle: 'Stay in the loop',
     subscribeSubtitle: 'Receive frameworks, playbooks, and release notes from our growth and reputation lab.',
     subscribePlaceholder: 'Your email address',
@@ -2642,6 +3014,8 @@ const footerCopy: Record<
     contact: 'Contact',
     call: 'Appelez-nous',
     join: 'Rejoignez-nous',
+    privacy: 'Politique de confidentialité',
+    terms: 'Conditions générales',
     subscribeTitle: 'Restez informé',
     subscribeSubtitle: 'Recevez frameworks, playbooks et notes de version de notre laboratoire growth & réputation.',
     subscribePlaceholder: 'Votre adresse email',
@@ -2658,6 +3032,8 @@ const footerCopy: Record<
     contact: 'Contacto',
     call: 'Llámanos',
     join: 'Únete',
+    privacy: 'Política de privacidad',
+    terms: 'Términos del servicio',
     subscribeTitle: 'Mantente al día',
     subscribeSubtitle: 'Recibe frameworks, playbooks y notas de lanzamiento de nuestro laboratorio de crecimiento y reputación.',
     subscribePlaceholder: 'Tu correo electrónico',
@@ -2860,6 +3236,10 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           <NavLink to={getJoinPath(currentLanguage)}>{copy.join}</NavLink>
           <a href="tel:+16063022958">{copy.call}</a>
         </div>
+        <div className="tr-footer__legal">
+          <NavLink to={getPrivacyPath(currentLanguage)}>{copy.privacy}</NavLink>
+          <NavLink to={getTermsPath(currentLanguage)}>{copy.terms}</NavLink>
+        </div>
         <div className="tr-footer__social">
           {socialLinks.map(({ key, href }) => (
             <a
@@ -2904,6 +3284,8 @@ function App() {
         <Route path="contact" element={<ContactPage language="en" />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
+        <Route path="privacy" element={<LegalPage language="en" variant="privacy" />} />
+        <Route path="terms" element={<LegalPage language="en" variant="terms" />} />
         {languages.map((language) => (
           <Fragment key={language}>
             <Route path={`${language}/team`} element={<TeamPage />} />
@@ -2912,6 +3294,8 @@ function App() {
             <Route path={`${language}/contact`} element={<ContactPage language={language} />} />
             <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
             <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
+            <Route path={`${language}/privacy`} element={<LegalPage language={language} variant="privacy" />} />
+            <Route path={`${language}/terms`} element={<LegalPage language={language} variant="terms" />} />
           </Fragment>
         ))}
         {servicePages.map((page) => (
