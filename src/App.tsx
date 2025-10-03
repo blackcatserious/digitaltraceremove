@@ -99,6 +99,19 @@ const getPrivacyPath = (language: Language) => (language === 'en' ? '/privacy' :
 
 const getTermsPath = (language: Language) => (language === 'en' ? '/terms' : `/${language}/terms`)
 
+const localeMap: Record<Language, string> = {
+  en: 'en-US',
+  fr: 'fr-FR',
+  es: 'es-ES',
+}
+
+const formatLocaleDate = (language: Language, value: string) =>
+  new Date(value).toLocaleDateString(localeMap[language], {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+
 const slugifyHeading = (value: string) =>
   value
     .normalize('NFD')
@@ -1721,6 +1734,9 @@ const blogArticleCopy: Record<
     tocHint: string
     scrollTop: string
     progressLabel: string
+    relatedTitle: string
+    relatedSubtitle: string
+    relatedCta: string
   }
 > = {
   en: {
@@ -1741,6 +1757,9 @@ const blogArticleCopy: Record<
     tocHint: 'Jump to any section while the growth meter tracks your read.',
     scrollTop: 'Back to top',
     progressLabel: 'Reading progress',
+    relatedTitle: 'Continue exploring',
+    relatedSubtitle: 'Strategic playbooks that keep your brand weeks ahead of the noise.',
+    relatedCta: 'Open playbook',
   },
   fr: {
     backToBlog: 'Retour aux articles',
@@ -1760,6 +1779,9 @@ const blogArticleCopy: Record<
     tocHint: 'Accédez à chaque chapitre pendant que l’indicateur suit votre lecture.',
     scrollTop: 'Revenir en haut',
     progressLabel: 'Progression de lecture',
+    relatedTitle: 'Poursuivez l’exploration',
+    relatedSubtitle: 'Des plans d’attaque pour garder votre marque plusieurs coups d’avance.',
+    relatedCta: 'Découvrir le playbook',
   },
   es: {
     backToBlog: 'Volver a los artículos',
@@ -1779,13 +1801,10 @@ const blogArticleCopy: Record<
     tocHint: 'Salta a cualquier capítulo mientras el indicador sigue tu lectura.',
     scrollTop: 'Volver arriba',
     progressLabel: 'Progreso de lectura',
+    relatedTitle: 'Sigue explorando',
+    relatedSubtitle: 'Playbooks estratégicos para mantener tu marca pasos delante del ruido.',
+    relatedCta: 'Abrir playbook',
   },
-}
-
-const localeMap: Record<Language, string> = {
-  en: 'en-US',
-  fr: 'fr-FR',
-  es: 'es-ES',
 }
 
 const BlogPage = ({ language }: { language: Language }) => {
@@ -1845,13 +1864,6 @@ const BlogPage = ({ language }: { language: Language }) => {
 
   const featuredArticle = filteredArticles[0]
   const remainingArticles = filteredArticles.slice(1)
-
-  const formatDate = (value: string) =>
-    new Date(value).toLocaleDateString(localeMap[language], {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
@@ -1926,7 +1938,7 @@ const BlogPage = ({ language }: { language: Language }) => {
             <h2>{featuredArticle.translation.title}</h2>
             <p className="blog-featured__summary">{featuredArticle.translation.summary}</p>
             <div className="blog-featured__meta">
-              <span>{formatDate(featuredArticle.publishedAt)}</span>
+              <span>{formatLocaleDate(language, featuredArticle.publishedAt)}</span>
               <span aria-hidden="true">•</span>
               <span>{featuredArticle.translation.readTime}</span>
             </div>
@@ -1949,7 +1961,7 @@ const BlogPage = ({ language }: { language: Language }) => {
                   <h2>{article.translation.title}</h2>
                   <p className="blog-card__summary">{article.translation.summary}</p>
                   <div className="blog-card__meta">
-                    <span>{formatDate(article.publishedAt)}</span>
+                    <span>{formatLocaleDate(language, article.publishedAt)}</span>
                     <span aria-hidden="true">•</span>
                     <span>{article.translation.readTime}</span>
                   </div>
@@ -2016,11 +2028,48 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   const [activeSection, setActiveSection] = useState(defaultActiveSection)
   const activeSectionRef = useRef(defaultActiveSection)
 
-  const formattedDate = new Date(article.publishedAt).toLocaleDateString(localeMap[language], {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const relatedArticles = useMemo(() => {
+    const ranked = blogArticles
+      .filter((item) => item.slug !== article.slug)
+      .map((item) => {
+        const localized = item.translations[language]
+        if (!localized) {
+          return null
+        }
+        return {
+          slug: item.slug,
+          topic: item.topic,
+          translation: localized,
+          publishedAt: item.publishedAt,
+        }
+      })
+      .filter(
+        (
+          value,
+        ): value is {
+          slug: string
+          topic: BlogTopic
+          translation: BlogArticleTranslation
+          publishedAt: string
+        } => value !== null,
+      )
+
+    const prioritized = [
+      ...ranked.filter((item) => item.topic === article.topic),
+      ...ranked.filter((item) => item.topic !== article.topic),
+    ]
+
+    const seen = new Set<string>()
+    return prioritized.filter((item) => {
+      if (seen.has(item.slug)) {
+        return false
+      }
+      seen.add(item.slug)
+      return true
+    })
+  }, [article.slug, article.topic, language])
+
+  const formattedDate = formatLocaleDate(language, article.publishedAt)
 
   useEffect(() => {
     setActiveSection(defaultActiveSection)
@@ -2354,6 +2403,35 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
           </button>
         </div>
       </aside>
+
+      {relatedArticles.length ? (
+        <section className="blog-article__related" aria-labelledby="blog-article-related-heading">
+          <div className="blog-article__related-header">
+            <h2 id="blog-article-related-heading">{copy.relatedTitle}</h2>
+            <p>{copy.relatedSubtitle}</p>
+          </div>
+          <div className="blog-article__related-grid">
+            {relatedArticles.slice(0, 3).map((item, index) => (
+              <article key={item.slug} className="blog-related-card" data-index={index}>
+                <div className="blog-related-card__spark" aria-hidden="true">
+                  <GrowthSpark variant="light" size="sm" />
+                </div>
+                <p className="blog-related-card__topic">{item.translation.topicLabel}</p>
+                <h3>{item.translation.title}</h3>
+                <p className="blog-related-card__summary">{item.translation.summary}</p>
+                <div className="blog-related-card__meta">
+                  <span>{formatLocaleDate(language, item.publishedAt)}</span>
+                  <span aria-hidden="true">•</span>
+                  <span>{item.translation.readTime}</span>
+                </div>
+                <Link className="blog-related-card__link" to={getBlogArticlePath(language, item.slug)}>
+                  {copy.relatedCta}
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="blog-article__cta" aria-labelledby="blog-article-cta-heading">
         <div className="blog-article__cta-content">
