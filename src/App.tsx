@@ -350,9 +350,19 @@ const aboutCopy: Record<
       highlight: string
     }
     story: { heading: string; paragraphs: string[] }
+    timeline: {
+      heading: string
+      summary: string
+      milestones: { year: string; title: string; description: string }[]
+    }
     reasons: { heading: string; summary: string; items: { title: string; description: string }[] }
     metrics: { heading: string; items: { value: string; label: string; description: string }[] }
     method: { heading: string; summary: string; steps: { title: string; description: string }[] }
+    culture: {
+      heading: string
+      summary: string
+      principles: { title: string; description: string }[]
+    }
     closing: { heading: string; body: string; cta: string }
   }
 > = {
@@ -372,6 +382,32 @@ const aboutCopy: Record<
         'Traceremove is a multilingual studio of strategists, analysts, designers, and technologists focused on brand safety and demand generation for venture-backed founders and enterprise leaders.',
         'We have shipped crisis playbooks, growth programs, and revenue architecture across North America and Europe, partnering with teams that need discreet velocity and crystal-clear reporting.',
         'Working in embedded pods, we co-create campaigns, automation, and measurement rituals that your internal teams can own after the engagement.',
+      ],
+    },
+    timeline: {
+      heading: 'Our journey',
+      summary: 'We have grown from a rapid-response collective into a full-spectrum brand resilience partner.',
+      milestones: [
+        {
+          year: '2018',
+          title: 'Listening lab launches',
+          description: 'Built our first multilingual monitoring pod for founders battling coordinated smear campaigns.',
+        },
+        {
+          year: '2020',
+          title: 'Global partner network',
+          description: 'Scaled trusted legal, PR, and product advisors so responses cover every channel and jurisdiction.',
+        },
+        {
+          year: '2022',
+          title: 'Growth experimentation guild',
+          description: 'Formalised experimentation squads that transform protection insights into compounding demand.',
+        },
+        {
+          year: '2024',
+          title: 'Always-on intelligence fabric',
+          description: 'Deployed automation, AI summaries, and analyst rotations to deliver 24/7 coverage for global teams.',
+        },
       ],
     },
     reasons: {
@@ -437,6 +473,28 @@ const aboutCopy: Record<
         },
       ],
     },
+    culture: {
+      heading: 'How we operate',
+      summary: 'Principles that keep our team sharp, inclusive, and obsessively helpful to yours.',
+      principles: [
+        {
+          title: 'Transparency in action',
+          description: 'We narrate every test, insight, and risk so stakeholders feel informed—not surprised.',
+        },
+        {
+          title: 'Calm under pressure',
+          description: 'War-room rituals, rotation schedules, and scenario playbooks keep the team composed during crises.',
+        },
+        {
+          title: 'Bias for enablement',
+          description: 'Artifacts ship with documentation, office hours, and training loops to empower your operators.',
+        },
+        {
+          title: 'Craft with heart',
+          description: 'Design, writing, and engineering standards favour humanity and clarity—especially across languages.',
+        },
+      ],
+    },
     closing: {
       heading: 'Ready to protect and accelerate your brand?',
       body: 'Let’s design a roadmap that shields your reputation and compounds growth across every market you serve.',
@@ -459,6 +517,32 @@ const aboutCopy: Record<
         'Traceremove est un studio multilingue de stratèges, analystes, designers et technologues dédié à la sûreté de marque et à la génération de demande pour fondateurs et dirigeants.',
         'Nous avons livré playbooks de gestion de crise, programmes de croissance et architectures de revenus en Amérique du Nord et en Europe pour des équipes recherchant vitesse et reporting limpide.',
         'En mode pods intégrés, nous co-construisons campagnes, automatisations et rituels de mesure que vos équipes internes s’approprient ensuite.',
+      ],
+    },
+    timeline: {
+      heading: 'Notre parcours',
+      summary: 'Nous sommes passés d’un collectif de réponse rapide à un partenaire complet de résilience de marque.',
+      milestones: [
+        {
+          year: '2018',
+          title: 'Création du listening lab',
+          description: 'Mise en place d’un premier pod de veille multilingue pour des fondateurs confrontés à des campagnes de dénigrement.',
+        },
+        {
+          year: '2020',
+          title: 'Réseau de partenaires internationaux',
+          description: 'Extension d’un cercle d’avocats, RP et experts produit pour couvrir chaque canal et juridiction.',
+        },
+        {
+          year: '2022',
+          title: 'Guild d’expérimentation growth',
+          description: 'Structuration de squads dédiés qui transforment les enseignements de protection en demande durable.',
+        },
+        {
+          year: '2024',
+          title: 'Tissu d’intelligence continu',
+          description: 'Déploiement d’automations, de résumés IA et de rotations analystes pour une couverture 24/7.',
+        },
       ],
     },
     reasons: {
@@ -524,6 +608,28 @@ const aboutCopy: Record<
         },
       ],
     },
+    culture: {
+      heading: 'Notre culture',
+      summary: 'Des principes qui nous rendent exigeants, accessibles et focalisés sur la réussite de vos équipes.',
+      principles: [
+        {
+          title: 'Transparence opérationnelle',
+          description: 'Nous racontons chaque test, insight et risque pour éviter les surprises côté comité de direction.',
+        },
+        {
+          title: 'Sérénité en crise',
+          description: 'Rituels de war room, rotations et scénarios préparés assurent un pilotage calme et méthodique.',
+        },
+        {
+          title: 'Culture de l’appropriation',
+          description: 'Chaque livrable est accompagné de documentation, formation et office hours pour vos équipes.',
+        },
+        {
+          title: 'Sens du détail humain',
+          description: 'Nos standards de design, rédaction et ingénierie privilégient la clarté et l’empathie, toutes langues confondues.',
+        },
+      ],
+    },
     closing: {
       heading: 'Prêts à protéger et accélérer votre marque ?',
       body: 'Concevons une feuille de route qui sécurise votre réputation et fait croître vos marchés simultanément.',
@@ -546,6 +652,32 @@ const aboutCopy: Record<
         'Traceremove es un estudio multilingüe de estrategas, analistas, diseñadores y tecnólogos enfocados en la seguridad de marca y la generación de demanda para fundadores e industrias globales.',
         'Hemos lanzado playbooks de crisis, programas de crecimiento y arquitecturas de ingresos en Norteamérica y Europa para equipos que necesitan velocidad discreta y reportes claros.',
         'Trabajando como pods integrados, co-creamos campañas, automatizaciones y rituales de medición que tus equipos pueden operar después.',
+      ],
+    },
+    timeline: {
+      heading: 'Nuestra evolución',
+      summary: 'De un colectivo de respuesta veloz a un aliado integral de resiliencia de marca.',
+      milestones: [
+        {
+          year: '2018',
+          title: 'Laboratorio de escucha',
+          description: 'Lanzamos nuestro primer pod multilingüe para fundadores enfrentando campañas coordinadas de difamación.',
+        },
+        {
+          year: '2020',
+          title: 'Red global de aliados',
+          description: 'Ampliamos abogados, RRPP y asesores de producto confiables para cubrir cada canal y jurisdicción.',
+        },
+        {
+          year: '2022',
+          title: 'Gremio de experimentación',
+          description: 'Estructuramos squads de growth que convierten aprendizajes de protección en demanda compuesta.',
+        },
+        {
+          year: '2024',
+          title: 'Inteligencia siempre activa',
+          description: 'Automatizaciones, resúmenes con IA y rotaciones de analistas sostienen cobertura 24/7 para equipos globales.',
+        },
       ],
     },
     reasons: {
@@ -608,6 +740,28 @@ const aboutCopy: Record<
         {
           title: 'Medir y reforzar',
           description: 'Dashboards, war rooms y reportes ejecutivos mantienen alineados a los stakeholders mientras iteramos cada semana.',
+        },
+      ],
+    },
+    culture: {
+      heading: 'Nuestra cultura',
+      summary: 'Principios que nos mantienen ágiles, humanos y obsesionados con el éxito de tus equipos.',
+      principles: [
+        {
+          title: 'Transparencia radical',
+          description: 'Narramos cada experimento, aprendizaje y riesgo para que liderazgo siempre tenga contexto.',
+        },
+        {
+          title: 'Calma operativa',
+          description: 'Rituales de war room, guardias rotativas y escenarios ensayados nos permiten liderar crisis con claridad.',
+        },
+        {
+          title: 'Empoderamiento continuo',
+          description: 'Documentación, workshops y office hours acompañan cada entrega para habilitar a tus equipos.',
+        },
+        {
+          title: 'Cuidado por el detalle humano',
+          description: 'Estándares de diseño, narrativa y ingeniería que respetan matices culturales y lingüísticos.',
         },
       ],
     },
@@ -1550,6 +1704,28 @@ const AboutPage = () => {
         </div>
       </section>
 
+      <section className="about-timeline" aria-labelledby="about-timeline-heading">
+        <div className="about-section__header">
+          <h2 id="about-timeline-heading">{copy.timeline.heading}</h2>
+          <p>{copy.timeline.summary}</p>
+        </div>
+        <ol className="about-timeline__list">
+          {copy.timeline.milestones.map((milestone, index) => (
+            <li key={milestone.title} className="about-timeline__item">
+              <div className="about-timeline__marker" aria-hidden="true">
+                <span className="about-timeline__dot" />
+                {index !== copy.timeline.milestones.length - 1 && <span className="about-timeline__line" />}
+              </div>
+              <div className="about-timeline__content">
+                <span className="about-timeline__year">{milestone.year}</span>
+                <h3>{milestone.title}</h3>
+                <p>{milestone.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       <section className="about-pillars" aria-labelledby="about-pillars-heading">
         <div className="about-section__header">
           <h2 id="about-pillars-heading">{copy.reasons.heading}</h2>
@@ -1596,6 +1772,24 @@ const AboutPage = () => {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="about-culture" aria-labelledby="about-culture-heading">
+        <div className="about-section__header">
+          <h2 id="about-culture-heading">{copy.culture.heading}</h2>
+          <p>{copy.culture.summary}</p>
+        </div>
+        <div className="about-culture__grid">
+          {copy.culture.principles.map((principle, index) => (
+            <article key={principle.title} className="about-culture__card">
+              <span className="about-culture__index">{index + 1}</span>
+              <div>
+                <h3>{principle.title}</h3>
+                <p>{principle.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="about-cta" aria-labelledby="about-cta-heading">
