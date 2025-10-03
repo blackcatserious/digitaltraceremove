@@ -28,7 +28,7 @@ import {
   type BlogArticleTranslation,
   type BlogTopic,
 } from './data/blog'
-import { authorProfiles } from './data/authors'
+import { authorProfiles, type AuthorId } from './data/authors'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -1645,6 +1645,8 @@ const blogListCopy: Record<
     filtersDescription: string
     topicsLabel: string
     allTopics: string
+    authorsLabel: string
+    allAuthors: string
     searchLabel: string
     searchPlaceholder: string
     clearSearch: string
@@ -1663,9 +1665,11 @@ const blogListCopy: Record<
     readArticle: 'Read article',
     filtersTitle: 'Refine the insights',
     filtersDescription:
-      'Toggle focus areas or search keywords to surface the playbooks that match your growth moment.',
+      'Toggle focus areas, spotlight strategists, or search keywords to surface the playbooks that match your growth moment.',
     topicsLabel: 'Filter by topic',
     allTopics: 'All topics',
+    authorsLabel: 'Filter by strategist',
+    allAuthors: 'All strategists',
     searchLabel: 'Search the library',
     searchPlaceholder: 'Search articles…',
     clearSearch: 'Clear search',
@@ -1683,9 +1687,11 @@ const blogListCopy: Record<
     readArticle: 'Lire l’article',
     filtersTitle: 'Affiner les insights',
     filtersDescription:
-      'Activez les thématiques ou recherchez des mots-clés pour faire émerger les playbooks adaptés.',
+      'Activez les thématiques, choisissez vos stratèges ou recherchez des mots-clés pour faire émerger les playbooks adaptés.',
     topicsLabel: 'Filtrer par thématique',
     allTopics: 'Toutes les thématiques',
+    authorsLabel: 'Filtrer par stratège',
+    allAuthors: 'Tous les stratèges',
     searchLabel: 'Rechercher dans la bibliothèque',
     searchPlaceholder: 'Rechercher un article…',
     clearSearch: 'Effacer la recherche',
@@ -1703,9 +1709,11 @@ const blogListCopy: Record<
     readArticle: 'Leer artículo',
     filtersTitle: 'Refinar los insights',
     filtersDescription:
-      'Activa los focos o busca palabras clave para encontrar los playbooks que tu equipo necesita.',
+      'Activa los focos, elige estrategas o busca palabras clave para encontrar los playbooks que tu equipo necesita.',
     topicsLabel: 'Filtrar por temática',
     allTopics: 'Todas las temáticas',
+    authorsLabel: 'Filtrar por estratega',
+    allAuthors: 'Todos los estrategas',
     searchLabel: 'Buscar en la biblioteca',
     searchPlaceholder: 'Buscar artículos…',
     clearSearch: 'Borrar búsqueda',
@@ -1714,6 +1722,14 @@ const blogListCopy: Record<
     resetFilters: 'Restablecer filtros',
     featuredLabel: 'Insight destacado',
   },
+}
+
+type BlogListEntry = {
+  slug: string
+  publishedAt: string
+  topic: BlogTopic
+  authorId: AuthorId
+  translation: BlogArticleTranslation
 }
 
 const blogArticleCopy: Record<
@@ -1820,9 +1836,11 @@ const blogArticleCopy: Record<
   },
 }
 
+
 const BlogPage = ({ language }: { language: Language }) => {
   const copy = blogListCopy[language]
   const [topicFilter, setTopicFilter] = useState<'all' | BlogTopic>('all')
+  const [authorFilter, setAuthorFilter] = useState<'all' | AuthorId>('all')
   const [searchTerm, setSearchTerm] = useState('')
 
   const topics = useMemo(
@@ -1833,6 +1851,17 @@ const BlogPage = ({ language }: { language: Language }) => {
       })),
     [language]
   )
+
+  const authorOptions = useMemo(() => {
+    const locale = localeMap[language]
+    return Object.values(authorProfiles)
+      .map((profile) => ({
+        id: profile.id,
+        label: profile.shortName[language],
+        fullLabel: profile.name[language],
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label, locale))
+  }, [language])
 
   const articles = useMemo(
     () =>
@@ -1846,34 +1875,28 @@ const BlogPage = ({ language }: { language: Language }) => {
             slug: article.slug,
             publishedAt: article.publishedAt,
             topic: article.topic,
+            authorId: article.authorId,
             translation,
           }
         })
-        .filter(
-          (article):
-            article is {
-              slug: string
-              publishedAt: string
-              topic: BlogTopic
-              translation: BlogArticleTranslation
-            } => Boolean(article)
-        )
+        .filter((article): article is BlogListEntry => Boolean(article))
         .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()),
-    [language]
+    [language],
   )
 
   const filteredArticles = useMemo(() => {
     const normalizedQuery = searchTerm.trim().toLowerCase()
     return articles.filter((article) => {
       const matchesTopic = topicFilter === 'all' || article.topic === topicFilter
+      const matchesAuthor = authorFilter === 'all' || article.authorId === authorFilter
       const matchesQuery =
         normalizedQuery.length === 0 ||
         [article.translation.title, article.translation.summary].some((value) =>
           value.toLowerCase().includes(normalizedQuery)
         )
-      return matchesTopic && matchesQuery
+      return matchesTopic && matchesAuthor && matchesQuery
     })
-  }, [articles, searchTerm, topicFilter])
+  }, [articles, authorFilter, searchTerm, topicFilter])
 
   const featuredArticle = filteredArticles[0]
   const remainingArticles = filteredArticles.slice(1)
@@ -1884,8 +1907,12 @@ const BlogPage = ({ language }: { language: Language }) => {
 
   const handleResetFilters = () => {
     setTopicFilter('all')
+    setAuthorFilter('all')
     setSearchTerm('')
   }
+
+  const topicGroupId = `blog-${language}-topics`
+  const authorGroupId = `blog-${language}-authors`
 
   return (
     <section className="blog-page">
@@ -1902,26 +1929,61 @@ const BlogPage = ({ language }: { language: Language }) => {
           <p>{copy.filtersDescription}</p>
         </div>
         <div className="blog-filters__controls">
-          <div className="blog-topics" role="group" aria-label={copy.topicsLabel}>
-            <button
-              type="button"
-              className={`blog-topic-button ${topicFilter === 'all' ? 'is-active' : ''}`}
-              onClick={() => setTopicFilter('all')}
-              aria-pressed={topicFilter === 'all'}
-            >
-              {copy.allTopics}
-            </button>
-            {topics.map((topic) => (
-              <button
-                key={topic.key}
-                type="button"
-                className={`blog-topic-button ${topicFilter === topic.key ? 'is-active' : ''}`}
-                onClick={() => setTopicFilter(topic.key)}
-                aria-pressed={topicFilter === topic.key}
-              >
-                {topic.label}
-              </button>
-            ))}
+          <div className="blog-filter-groups">
+            <div className="blog-filter-group">
+              <p id={topicGroupId} className="blog-filter-group__label">
+                {copy.topicsLabel}
+              </p>
+              <div className="blog-topics" role="group" aria-labelledby={topicGroupId}>
+                <button
+                  type="button"
+                  className={`blog-topic-button ${topicFilter === 'all' ? 'is-active' : ''}`}
+                  onClick={() => setTopicFilter('all')}
+                  aria-pressed={topicFilter === 'all'}
+                >
+                  {copy.allTopics}
+                </button>
+                {topics.map((topic) => (
+                  <button
+                    key={topic.key}
+                    type="button"
+                    className={`blog-topic-button ${topicFilter === topic.key ? 'is-active' : ''}`}
+                    onClick={() => setTopicFilter(topic.key)}
+                    aria-pressed={topicFilter === topic.key}
+                  >
+                    {topic.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="blog-filter-group">
+              <p id={authorGroupId} className="blog-filter-group__label">
+                {copy.authorsLabel}
+              </p>
+              <div className="blog-authors" role="group" aria-labelledby={authorGroupId}>
+                <button
+                  type="button"
+                  className={`blog-author-button ${authorFilter === 'all' ? 'is-active' : ''}`}
+                  onClick={() => setAuthorFilter('all')}
+                  aria-pressed={authorFilter === 'all'}
+                >
+                  {copy.allAuthors}
+                </button>
+                {authorOptions.map((author) => (
+                  <button
+                    key={author.id}
+                    type="button"
+                    className={`blog-author-button ${authorFilter === author.id ? 'is-active' : ''}`}
+                    onClick={() => setAuthorFilter(author.id)}
+                    aria-pressed={authorFilter === author.id}
+                    title={author.fullLabel}
+                  >
+                    {author.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           <label className="blog-search">
@@ -1951,6 +2013,8 @@ const BlogPage = ({ language }: { language: Language }) => {
             <h2>{featuredArticle.translation.title}</h2>
             <p className="blog-featured__summary">{featuredArticle.translation.summary}</p>
             <div className="blog-featured__meta">
+              <span className="blog-featured__author">{featuredArticle.translation.author}</span>
+              <span aria-hidden="true">•</span>
               <span>{formatLocaleDate(language, featuredArticle.publishedAt)}</span>
               <span aria-hidden="true">•</span>
               <span>{featuredArticle.translation.readTime}</span>
@@ -1974,6 +2038,8 @@ const BlogPage = ({ language }: { language: Language }) => {
                   <h2>{article.translation.title}</h2>
                   <p className="blog-card__summary">{article.translation.summary}</p>
                   <div className="blog-card__meta">
+                    <span className="blog-card__author">{article.translation.author}</span>
+                    <span aria-hidden="true">•</span>
                     <span>{formatLocaleDate(language, article.publishedAt)}</span>
                     <span aria-hidden="true">•</span>
                     <span>{article.translation.readTime}</span>
@@ -1998,7 +2064,6 @@ const BlogPage = ({ language }: { language: Language }) => {
     </section>
   )
 }
-
 const BlogArticlePage = ({ language }: { language: Language }) => {
   const { slug } = useParams<{ slug: string }>()
   const copy = blogArticleCopy[language]
