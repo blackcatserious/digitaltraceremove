@@ -3,7 +3,7 @@ import {
   type CSSProperties,
   type ChangeEvent,
   type FormEvent,
-  type MouseEvent,
+  type MouseEvent as ReactMouseEvent,
   type ReactNode,
   useEffect,
   useMemo,
@@ -4033,7 +4033,7 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
     }
   }
 
-  const handleTocLinkClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+  const handleTocLinkClick = (event: ReactMouseEvent<HTMLAnchorElement>, id: string) => {
     event.preventDefault()
 
     if (typeof window === 'undefined') {
@@ -4295,11 +4295,56 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   const location = useLocation()
   const copy = navCopy[currentLanguage]
   const groups = navigation[currentLanguage] ?? []
+  const headerRef = useRef<HTMLElement | null>(null)
+
+  const navLinks = useMemo(
+    () => [
+      { label: copy.about, href: getAboutPath(currentLanguage) },
+      { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
+      { label: copy.team, href: getTeamPath(currentLanguage) },
+      { label: copy.partners, href: getPartnersPath(currentLanguage) },
+      { label: copy.blog, href: getBlogBasePath(currentLanguage) },
+      { label: copy.contact, href: getContactPath(currentLanguage) },
+    ],
+    [copy, currentLanguage]
+  )
 
   useEffect(() => {
     setMegaOpen(false)
     setMobileOpen(false)
   }, [location.pathname])
+
+  useEffect(() => {
+    if (!megaOpen) {
+      return
+    }
+
+    const handleClickAway = (event: MouseEvent | TouchEvent) => {
+      if (!headerRef.current) {
+        return
+      }
+
+      if (!headerRef.current.contains(event.target as Node)) {
+        setMegaOpen(false)
+      }
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMegaOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickAway)
+    document.addEventListener('touchstart', handleClickAway)
+    window.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickAway)
+      document.removeEventListener('touchstart', handleClickAway)
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [megaOpen])
 
   useEffect(() => {
     const originalOverflow = document.body.style.overflow
@@ -4357,10 +4402,31 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   const handleCloseMobile = () => {
     setMobileOpen(false)
+    setMegaOpen(false)
+  }
+
+  const handleServiceToggle = () => {
+    setMegaOpen((prev) => !prev)
+  }
+
+  const handleServiceOpen = () => {
+    if (!megaOpen) {
+      setMegaOpen(true)
+    }
+  }
+
+  const handleServiceClose = () => {
+    if (megaOpen) {
+      setMegaOpen(false)
+    }
   }
 
   return (
-    <header className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}>
+    <header
+      ref={headerRef}
+      className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}
+      onMouseLeave={handleServiceClose}
+    >
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
@@ -4373,6 +4439,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-expanded={mobileOpen}
             aria-controls="tr-mobile-menu"
+            aria-haspopup="dialog"
             aria-label={mobileOpen ? copy.closeMenu : copy.openMenu}
           >
             <span />
@@ -4385,31 +4452,32 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <button
             type="button"
             className={`tr-nav__trigger ${megaOpen ? 'is-open' : ''}`}
-            onClick={() => setMegaOpen((prev) => !prev)}
+            onClick={handleServiceToggle}
+            onMouseEnter={handleServiceOpen}
+            onFocus={handleServiceOpen}
             aria-expanded={megaOpen}
             aria-controls="tr-megamenu"
+            aria-haspopup="true"
           >
-            {copy.services}
+            <span className="tr-nav__label">{copy.services}</span>
+            <span className="tr-nav__indicator" aria-hidden="true" />
             <span className="tr-nav__chevron" aria-hidden="true" />
           </button>
-          <NavLink className="tr-nav__link" to={getAboutPath(currentLanguage)}>
-            {copy.about}
-          </NavLink>
-          <NavLink className="tr-nav__link" to={getCaseStudiesPath(currentLanguage)}>
-            {copy.caseStudies}
-          </NavLink>
-          <NavLink className="tr-nav__link" to={getTeamPath(currentLanguage)}>
-            {copy.team}
-          </NavLink>
-          <NavLink className="tr-nav__link" to={getPartnersPath(currentLanguage)}>
-            {copy.partners}
-          </NavLink>
-          <NavLink className="tr-nav__link" to={getBlogBasePath(currentLanguage)}>
-            {copy.blog}
-          </NavLink>
-          <NavLink className="tr-nav__link" to={getContactPath(currentLanguage)}>
-            {copy.contact}
-          </NavLink>
+          {navLinks.map((item, index) => (
+            <NavLink
+              key={item.href}
+              to={item.href}
+              className={({ isActive }) =>
+                `tr-nav__link${isActive ? ' is-active' : ''}` + ` tr-nav__link--${index}`
+              }
+              onMouseEnter={handleServiceClose}
+              onFocus={handleServiceClose}
+              onClick={handleServiceClose}
+            >
+              <span className="tr-nav__label">{item.label}</span>
+              <span className="tr-nav__indicator" aria-hidden="true" />
+            </NavLink>
+          ))}
         </nav>
 
         <div className="tr-header__cta">
@@ -4430,7 +4498,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
         </div>
       </div>
 
-      <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
+      <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`} onMouseLeave={handleServiceClose}>
         <div className="tr-megamenu__inner">
           {groups.map((group) => (
             <div key={group.serviceName} className="tr-megamenu__column">
@@ -4438,7 +4506,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               <ul>
                 {group.pages.map((page) => (
                   <li key={page.path}>
-                    <NavLink to={page.path}>{page.industryName}</NavLink>
+                    <NavLink
+                      to={page.path}
+                      className={({ isActive }) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
+                      onClick={handleServiceClose}
+                    >
+                      {page.industryName}
+                    </NavLink>
                   </li>
                 ))}
               </ul>
@@ -4477,7 +4551,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                   <ul>
                     {group.pages.map((page) => (
                       <li key={page.path}>
-                        <NavLink to={page.path} onClick={handleCloseMobile}>
+                        <NavLink
+                          to={page.path}
+                          className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                          onClick={handleCloseMobile}
+                        >
                           {page.industryName}
                         </NavLink>
                       </li>
@@ -4488,28 +4566,63 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             </div>
             <div className="tr-mobile-section">
               <h3>{copy.navigationTitle}</h3>
-              <NavLink to={getHomePath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+              <NavLink
+                to={getHomePath(currentLanguage)}
+                end
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
                 {copy.home}
               </NavLink>
-              <NavLink to={getAboutPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+              <NavLink
+                to={getAboutPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
                 {copy.about}
               </NavLink>
-              <NavLink to={getCaseStudiesPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+              <NavLink
+                to={getCaseStudiesPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
                 {copy.caseStudies}
               </NavLink>
-              <NavLink to={getTeamPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+              <NavLink
+                to={getTeamPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
                 {copy.team}
               </NavLink>
-              <NavLink to={getPartnersPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+              <NavLink
+                to={getPartnersPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
                 {copy.partners}
               </NavLink>
-              <NavLink to={getBlogBasePath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+              <NavLink
+                to={getBlogBasePath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
                 {copy.blog}
               </NavLink>
-              <NavLink to={getContactPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+              <NavLink
+                to={getContactPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
                 {copy.contact}
               </NavLink>
-              <NavLink to={getJoinPath(currentLanguage)} className="tr-mobile-link tr-mobile-link--cta" onClick={handleCloseMobile}>
+              <NavLink
+                to={getJoinPath(currentLanguage)}
+                className={({ isActive }) =>
+                  `tr-mobile-link tr-mobile-link--cta${isActive ? ' is-active' : ''}`
+                }
+                onClick={handleCloseMobile}
+              >
                 {copy.joinUs}
               </NavLink>
               <a className="tr-mobile-link" href="mailto:contact@traceremove.com" onClick={handleCloseMobile}>
