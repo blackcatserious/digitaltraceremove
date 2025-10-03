@@ -113,6 +113,36 @@ const formatLocaleDate = (language: Language, value: string) =>
     day: 'numeric',
   })
 
+const escapeRegExp = (value: string) => value.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
+
+const highlightSearchTerm = (value: string, query: string): ReactNode => {
+  const normalizedQuery = query.trim()
+  if (!normalizedQuery) {
+    return value
+  }
+
+  const pattern = escapeRegExp(normalizedQuery)
+  const regex = new RegExp(`(${pattern})`, 'gi')
+  const lowerQuery = normalizedQuery.toLowerCase()
+  const segments = value.split(regex)
+
+  if (segments.length === 1) {
+    return value
+  }
+
+  return segments.map((segment, index) => {
+    if (segment.toLowerCase() === lowerQuery) {
+      return (
+        <mark key={index} className="blog-highlight">
+          {segment}
+        </mark>
+      )
+    }
+
+    return <Fragment key={index}>{segment}</Fragment>
+  })
+}
+
 const slugifyHeading = (value: string) =>
   value
     .normalize('NFD')
@@ -2010,8 +2040,10 @@ const BlogPage = ({ language }: { language: Language }) => {
           <article className="blog-featured">
             <span className="blog-featured__badge">{copy.featuredLabel}</span>
             <p className="blog-featured__topic">{featuredArticle.translation.topicLabel}</p>
-            <h2>{featuredArticle.translation.title}</h2>
-            <p className="blog-featured__summary">{featuredArticle.translation.summary}</p>
+            <h2>{highlightSearchTerm(featuredArticle.translation.title, searchTerm)}</h2>
+            <p className="blog-featured__summary">
+              {highlightSearchTerm(featuredArticle.translation.summary, searchTerm)}
+            </p>
             <div className="blog-featured__meta">
               <span className="blog-featured__author">{featuredArticle.translation.author}</span>
               <span aria-hidden="true">•</span>
@@ -2035,8 +2067,10 @@ const BlogPage = ({ language }: { language: Language }) => {
               {remainingArticles.map((article) => (
                 <article key={article.slug} className="blog-card">
                   <p className="blog-card__topic">{article.translation.topicLabel}</p>
-                  <h2>{article.translation.title}</h2>
-                  <p className="blog-card__summary">{article.translation.summary}</p>
+                  <h2>{highlightSearchTerm(article.translation.title, searchTerm)}</h2>
+                  <p className="blog-card__summary">
+                    {highlightSearchTerm(article.translation.summary, searchTerm)}
+                  </p>
                   <div className="blog-card__meta">
                     <span className="blog-card__author">{article.translation.author}</span>
                     <span aria-hidden="true">•</span>
