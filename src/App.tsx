@@ -2926,6 +2926,20 @@ const legalCopy: Record<
           ],
         },
         {
+          heading: 'Data protection commitments',
+          body: [
+            'We implement role-based access controls, hardware security keys, and continuous monitoring so only the right people can see the right records at the right time.',
+            'Our data retention schedules ensure we delete or anonymise records when contracts end or regulations require it, and every vendor undergoes annual security reviews.',
+          ],
+        },
+        {
+          heading: 'Website and domain safeguards',
+          body: [
+            'The traceremove.com domain is protected by DNSSEC, registry locks, and automated certificate rotation. We run daily malware and integrity scans across our properties.',
+            'We monitor for spoofed domains, phishing attempts, and fake listings, triggering rapid takedown workflows so your engagement with us stays secure.',
+          ],
+        },
+        {
           heading: 'Your rights and choices',
           body: [
             'Email privacy@traceremove.com to request a copy of your data, ask for corrections, or demand deletion. We respond to every verified request within thirty days.',
@@ -2937,6 +2951,7 @@ const legalCopy: Record<
       contactBody: [
         'Tell us what you need to clarify and we will respond within one business day with the documentation or next steps required.',
         'We routinely coordinate with in-house counsel to align compliance expectations before launch.',
+        'For urgent data protection or domain security concerns, flag the subject line and we will escalate to our security duty officer immediately.',
       ],
       ctaLabel: 'Open the contact form',
       secondaryLabel: 'Email privacy@traceremove.com',
@@ -2965,6 +2980,20 @@ const legalCopy: Record<
           ],
         },
         {
+          heading: 'Security and data protection',
+          body: [
+            'We maintain ISO-aligned security controls, segmented environments, and incident response playbooks that keep your projects compliant with global privacy legislation.',
+            'You agree to safeguard any shared credentials or staging access we provide and alert us immediately if you suspect unauthorised activity.',
+          ],
+        },
+        {
+          heading: 'Website and domain protection',
+          body: [
+            'Traceremove secures owned domains with registry locks, multifactor administration, and continuous monitoring to prevent hijacking or defacement.',
+            'We will collaborate on takedown requests, anti-phishing initiatives, and brand protection escalations whenever threats target your digital assets.',
+          ],
+        },
+        {
           heading: 'Fees, invoicing, and scheduling',
           body: [
             'Unless otherwise stated, engagements require a 30% deposit with remaining invoices due net 14 from the issue date.',
@@ -2983,6 +3012,7 @@ const legalCopy: Record<
       contactBody: [
         'We are happy to review clauses with your counsel and adjust engagement structures when compliance requirements evolve.',
         'Send us your redlines or schedule a working session so paperwork never slows your launch.',
+        'If a request relates to data protection or domain security, note it in the subject so our legal and security leads respond immediately.',
       ],
       ctaLabel: 'Discuss an engagement',
       secondaryLabel: 'Email legal@traceremove.com',
@@ -3020,6 +3050,20 @@ const legalCopy: Record<
           ],
         },
         {
+          heading: 'Engagements de protection des données',
+          body: [
+            'Nous appliquons des contrôles d’accès basés sur les rôles, des clés de sécurité matérielles et un monitoring continu pour que seules les personnes autorisées consultent les informations nécessaires.',
+            'Nos politiques de conservation prévoient la suppression ou l’anonymisation des données à la fin des missions ou lorsqu’une réglementation l’exige, et chaque partenaire est audité chaque année.',
+          ],
+        },
+        {
+          heading: 'Protection du site et des domaines',
+          body: [
+            'Le domaine traceremove.com est sécurisé par DNSSEC, des verrous registre et une rotation automatisée des certificats. Des scans quotidiens vérifient l’intégrité et l’absence de malware.',
+            'Nous surveillons les domaines usurpés, tentatives de phishing et faux avis afin de déclencher des procédures de retrait rapides et de protéger vos échanges avec nous.',
+          ],
+        },
+        {
           heading: 'Vos droits',
           body: [
             'Écrivez à privacy@traceremove.com pour obtenir une copie, demander une correction ou la suppression de vos données. Chaque demande est traitée sous trente jours.',
@@ -3031,6 +3075,7 @@ const legalCopy: Record<
       contactBody: [
         'Partagez votre demande et nous reviendrons vers vous sous un jour ouvré avec la documentation ou les actions nécessaires.',
         'Nous collaborons volontiers avec vos juristes pour cadrer les exigences de conformité avant vos lancements.',
+        'Pour toute urgence liée à la protection des données ou à la sécurité de domaine, précisez-le dans l’objet et nous préviendrons immédiatement notre cellule sécurité.',
       ],
       ctaLabel: 'Accéder au formulaire de contact',
       secondaryLabel: 'Écrire à privacy@traceremove.com',
@@ -3072,11 +3117,26 @@ const legalCopy: Record<
             'Traceremove n’est pas responsable des dommages indirects. En cas de litige, notre responsabilité est limitée aux montants réglés pour les services concernés.',
           ],
         },
+        {
+          heading: 'Sécurité et protection des données',
+          body: [
+            'Nous maintenons des contrôles de sécurité alignés sur les standards internationaux, des environnements segmentés et des plans de réponse aux incidents pour préserver votre conformité.',
+            'Vous vous engagez à protéger les identifiants ou accès provisoires partagés et à nous alerter immédiatement en cas d’activité suspecte.',
+          ],
+        },
+        {
+          heading: 'Protection du site et des noms de domaine',
+          body: [
+            'Traceremove sécurise ses domaines grâce aux verrous registre, à l’authentification multifacteur et à une surveillance continue contre tout détournement ou défiguration.',
+            'Nous coopérons avec vous pour traiter les demandes de retrait, lutter contre le phishing et gérer les alertes de protection de marque liées à vos actifs digitaux.',
+          ],
+        },
       ],
       contactTitle: 'Des questions sur ces conditions ?',
       contactBody: [
         'Nous passons volontiers vos clauses avec vos juristes et adaptons nos modalités lorsque vos obligations de conformité évoluent.',
         'Transmettez-nous vos remarques ou planifions un échange pour finaliser la signature sans retarder votre lancement.',
+        'Mentionnez toute urgence data protection ou sécurité de domaine pour que nous mobilisions immédiatement notre référent légal et sécurité.',
       ],
       ctaLabel: 'Discuter d’une collaboration',
       secondaryLabel: 'Écrire à legal@traceremove.com',
@@ -3114,6 +3174,20 @@ const legalCopy: Record<
           ],
         },
         {
+          heading: 'Compromisos de protección de datos',
+          body: [
+            'Aplicamos controles de acceso basados en roles, llaves de seguridad físicas y monitorización continua para que únicamente el personal autorizado acceda a la información necesaria.',
+            'Nuestros calendarios de retención contemplan la eliminación o anonimización al finalizar los contratos o cuando lo exigen las normativas, y auditamos a cada proveedor anualmente.',
+          ],
+        },
+        {
+          heading: 'Protección del sitio y del dominio',
+          body: [
+            'El dominio traceremove.com está protegido con DNSSEC, bloqueos de registro y rotación automática de certificados. Realizamos escaneos diarios de malware e integridad en todos nuestros activos.',
+            'Vigilamos dominios fraudulentos, intentos de phishing y listados falsos para activar flujos rápidos de retirada y mantener seguras tus interacciones con nosotros.',
+          ],
+        },
+        {
           heading: 'Tus derechos y opciones',
           body: [
             'Escríbenos a privacy@traceremove.com para solicitar una copia de tus datos, corregir información o pedir su eliminación. Respondemos a todas las solicitudes verificadas en menos de treinta días.',
@@ -3125,6 +3199,7 @@ const legalCopy: Record<
       contactBody: [
         'Cuéntanos tu solicitud y responderemos en un día laborable con la documentación o acciones necesarias.',
         'También coordinamos requisitos regulatorios específicos para tus lanzamientos multinacionales.',
+        'Si detectas una urgencia relacionada con protección de datos o seguridad de dominios, indícalo en el asunto y activaremos de inmediato a nuestro responsable de seguridad.',
       ],
       ctaLabel: 'Abrir el formulario de contacto',
       secondaryLabel: 'Escribe a privacy@traceremove.com',
@@ -3166,11 +3241,26 @@ const legalCopy: Record<
             'Traceremove no se hace responsable de daños indirectos. Si surge un problema, nuestra responsabilidad total se limita a los honorarios pagados por los servicios implicados.',
           ],
         },
+        {
+          heading: 'Seguridad y protección de datos',
+          body: [
+            'Mantenemos controles de seguridad alineados con estándares internacionales, entornos segmentados y planes de respuesta ante incidentes para salvaguardar tu cumplimiento.',
+            'Te comprometes a proteger las credenciales o accesos provisionales que compartamos y a notificarnos de inmediato si detectas actividad no autorizada.',
+          ],
+        },
+        {
+          heading: 'Protección del sitio web y los dominios',
+          body: [
+            'Traceremove asegura sus dominios con bloqueos de registro, administración con multifactor y monitorización continua para evitar secuestros o desfiguraciones.',
+            'Colaboraremos contigo en solicitudes de retirada, iniciativas anti-phishing y escalados de protección de marca cuando surjan amenazas contra tus activos digitales.',
+          ],
+        },
       ],
       contactTitle: '¿Dudas sobre estos términos?',
       contactBody: [
         'Con gusto revisamos las cláusulas con tu equipo legal y adaptamos los acuerdos cuando cambian los requisitos de cumplimiento.',
         'Comparte tus comentarios o agenda una llamada para cerrar la documentación sin retrasar el lanzamiento.',
+        'Si la consulta implica protección de datos o seguridad de dominios, avísanos para activar de inmediato a nuestro equipo legal y de seguridad.',
       ],
       ctaLabel: 'Hablar sobre una colaboración',
       secondaryLabel: 'Comparte términos en legal@traceremove.com',
