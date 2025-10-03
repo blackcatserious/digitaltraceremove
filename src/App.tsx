@@ -95,6 +95,8 @@ const getHomePath = (language: Language) => (language === 'en' ? '/' : `/${langu
 
 const getTeamPath = (language: Language) => (language === 'en' ? '/team' : `/${language}/team`)
 
+const getAboutPath = (language: Language) => (language === 'en' ? '/about' : `/${language}/about`)
+
 const getPartnersPath = (language: Language) => (language === 'en' ? '/partners' : `/${language}/partners`)
 
 const getJoinPath = (language: Language) => (language === 'en' ? '/join' : `/${language}/join`)
@@ -215,6 +217,7 @@ const navCopy: Record<
   Language,
   {
     services: string
+    about: string
     team: string
     blog: string
     partners: string
@@ -232,6 +235,7 @@ const navCopy: Record<
 > = {
   en: {
     services: 'Services',
+    about: 'About us',
     team: 'Team',
     blog: 'Blog',
     partners: 'Partners',
@@ -248,6 +252,7 @@ const navCopy: Record<
   },
   fr: {
     services: 'Services',
+    about: 'À propos',
     team: 'Équipe',
     blog: 'Blog',
     partners: 'Partenaires',
@@ -264,6 +269,7 @@ const navCopy: Record<
   },
   es: {
     services: 'Servicios',
+    about: 'Sobre nosotros',
     team: 'Equipo',
     blog: 'Blog',
     partners: 'Partners',
@@ -329,6 +335,287 @@ const teamCopy: Record<
       'Paneles analíticos con insight profundo usando Looker Studio, Mixpanel y pipelines a medida.',
     ],
     contactPrompt: '¿Listo para colaborar? Escríbenos y respondemos en un día hábil.',
+  },
+}
+
+const aboutCopy: Record<
+  Language,
+  {
+    hero: {
+      title: string
+      subtitle: string
+      body: string
+      primaryCta: string
+      secondaryCta: string
+      highlight: string
+    }
+    story: { heading: string; paragraphs: string[] }
+    reasons: { heading: string; summary: string; items: { title: string; description: string }[] }
+    metrics: { heading: string; items: { value: string; label: string; description: string }[] }
+    method: { heading: string; summary: string; steps: { title: string; description: string }[] }
+    closing: { heading: string; body: string; cta: string }
+  }
+> = {
+  en: {
+    hero: {
+      title: 'About Traceremove',
+      subtitle: 'Brand protection and growth acceleration without borders',
+      body:
+        'Founder & CEO Artur Ziganshin leads every engagement with a senior core team operating in English, French, and Spanish. We pair reputation guardianship with revenue experiments so your brand scales safely.',
+      primaryCta: 'Talk with our team',
+      secondaryCta: 'Explore our insights',
+      highlight: 'English · French · Spanish markets',
+    },
+    story: {
+      heading: 'Who we are',
+      paragraphs: [
+        'Traceremove is a multilingual studio of strategists, analysts, designers, and technologists focused on brand safety and demand generation for venture-backed founders and enterprise leaders.',
+        'We have shipped crisis playbooks, growth programs, and revenue architecture across North America and Europe, partnering with teams that need discreet velocity and crystal-clear reporting.',
+        'Working in embedded pods, we co-create campaigns, automation, and measurement rituals that your internal teams can own after the engagement.',
+      ],
+    },
+    reasons: {
+      heading: 'Why teams choose us',
+      summary: 'We blend proactive reputation defense with compounding growth experiments.',
+      items: [
+        {
+          title: 'Reputation guardians',
+          description:
+            'We monitor search, review, and social landscapes in real time to detect risk and defend your brand narrative before issues escalate.',
+        },
+        {
+          title: 'Growth operators',
+          description:
+            'Our operators activate SEO, lifecycle, and performance plays that convert attention into pipeline while reinforcing trust.',
+        },
+        {
+          title: 'Insider intelligence',
+          description:
+            'You receive insider-grade research, scripts, and stakeholder messaging tuned for executive reviews in English, French, and Spanish.',
+        },
+      ],
+    },
+    metrics: {
+      heading: 'Impact snapshots',
+      items: [
+        {
+          value: '40%',
+          label: 'faster crisis response',
+          description: 'Average reduction in mitigation time after deploying our listening and escalation frameworks.',
+        },
+        {
+          value: '3x',
+          label: 'review authenticity lift',
+          description: 'Multi-language moderation and verification programs that triple positive verified feedback.',
+        },
+        {
+          value: '120+',
+          label: 'playbooks deployed',
+          description: 'Reusable launches, automation maps, and creative systems released across client teams.',
+        },
+      ],
+    },
+    method: {
+      heading: 'How we partner',
+      summary: 'Every engagement follows a fast but rigorous rhythm so marketing, product, and leadership stay aligned.',
+      steps: [
+        {
+          title: 'Map your threat surface',
+          description: 'We audit search, earned media, dark social, and owned channels to baseline sentiment and exposure.',
+        },
+        {
+          title: 'Design the growth flywheel',
+          description: 'Together we architect positioning, offers, and measurement that turn protection work into demand capture.',
+        },
+        {
+          title: 'Activate multilingual squads',
+          description: 'Our senior pod delivers campaigns, automation, and creative systems localised for your priority markets.',
+        },
+        {
+          title: 'Measure and reinforce',
+          description: 'Dashboards, war rooms, and executive readouts keep stakeholders informed while we iterate weekly.',
+        },
+      ],
+    },
+    closing: {
+      heading: 'Ready to protect and accelerate your brand?',
+      body: 'Let’s design a roadmap that shields your reputation and compounds growth across every market you serve.',
+      cta: 'Book a strategy call',
+    },
+  },
+  fr: {
+    hero: {
+      title: 'À propos de Traceremove',
+      subtitle: 'Protection de marque et accélération de croissance sans frontières',
+      body:
+        'Artur Ziganshin, fondateur et CEO, pilote chaque mission avec une équipe senior opérant en anglais, français et espagnol. Nous combinons veille réputationnelle et expérimentations revenue pour faire grandir votre marque en toute sécurité.',
+      primaryCta: 'Échanger avec notre équipe',
+      secondaryCta: 'Explorer nos insights',
+      highlight: 'Marchés EN · FR · ES',
+    },
+    story: {
+      heading: 'Qui nous sommes',
+      paragraphs: [
+        'Traceremove est un studio multilingue de stratèges, analystes, designers et technologues dédié à la sûreté de marque et à la génération de demande pour fondateurs et dirigeants.',
+        'Nous avons livré playbooks de gestion de crise, programmes de croissance et architectures de revenus en Amérique du Nord et en Europe pour des équipes recherchant vitesse et reporting limpide.',
+        'En mode pods intégrés, nous co-construisons campagnes, automatisations et rituels de mesure que vos équipes internes s’approprient ensuite.',
+      ],
+    },
+    reasons: {
+      heading: 'Pourquoi les équipes nous choisissent',
+      summary: 'Nous allions défense proactive de la réputation et expérimentations growth à effet composé.',
+      items: [
+        {
+          title: 'Gardiennes de réputation',
+          description:
+            'Nous surveillons search, avis et réseaux sociaux en temps réel pour détecter les risques et défendre votre narration avant qu’ils n’explosent.',
+        },
+        {
+          title: 'Opérateurs growth',
+          description:
+            'Nous activons SEO, lifecycle et performance pour convertir l’attention en pipeline tout en renforçant la confiance.',
+        },
+        {
+          title: 'Intelligence terrain',
+          description:
+            'Vous recevez analyses, scripts et messages exécutifs adaptés en anglais, français et espagnol.',
+        },
+      ],
+    },
+    metrics: {
+      heading: 'Indicateurs d’impact',
+      items: [
+        {
+          value: '40%',
+          label: 'de délais de crise en moins',
+          description: 'Réduction moyenne du temps de mitigation grâce à nos frameworks d’écoute et d’escalade.',
+        },
+        {
+          value: '3x',
+          label: 'hausse d’avis authentiques',
+          description: 'Programmes de modération multilingues qui triplent les retours vérifiés positifs.',
+        },
+        {
+          value: '120+',
+          label: 'playbooks déployés',
+          description: 'Lancements, automations et systèmes créatifs réutilisables livrés aux équipes clientes.',
+        },
+      ],
+    },
+    method: {
+      heading: 'Notre manière de collaborer',
+      summary: 'Chaque mission suit un rythme rapide mais rigoureux pour aligner marketing, produit et leadership.',
+      steps: [
+        {
+          title: 'Cartographier votre surface de risque',
+          description: 'Audit du search, earned media, dark social et canaux owned pour établir sentiment et exposition.',
+        },
+        {
+          title: 'Designer le flywheel de croissance',
+          description: 'Nous co-architecturons positionnement, offres et mesure pour transformer la protection en capture de demande.',
+        },
+        {
+          title: 'Activer des squads multilingues',
+          description: 'Notre pod senior livre campagnes, automatisations et systèmes créatifs localisés.',
+        },
+        {
+          title: 'Mesurer et renforcer',
+          description: 'Dashboards, war rooms et synthèses exécutives maintiennent l’alignement pendant que nous itérons chaque semaine.',
+        },
+      ],
+    },
+    closing: {
+      heading: 'Prêts à protéger et accélérer votre marque ?',
+      body: 'Concevons une feuille de route qui sécurise votre réputation et fait croître vos marchés simultanément.',
+      cta: 'Planifier un call stratégique',
+    },
+  },
+  es: {
+    hero: {
+      title: 'Sobre Traceremove',
+      subtitle: 'Protección de marca y aceleración del crecimiento sin fronteras',
+      body:
+        'Artur Ziganshin, fundador y CEO, lidera cada proyecto con un equipo senior que opera en inglés, francés y español. Unimos guardianes de reputación y experimentos de revenue para que tu marca escale con seguridad.',
+      primaryCta: 'Habla con nuestro equipo',
+      secondaryCta: 'Explora nuestras ideas',
+      highlight: 'Mercados EN · FR · ES',
+    },
+    story: {
+      heading: 'Quiénes somos',
+      paragraphs: [
+        'Traceremove es un estudio multilingüe de estrategas, analistas, diseñadores y tecnólogos enfocados en la seguridad de marca y la generación de demanda para fundadores e industrias globales.',
+        'Hemos lanzado playbooks de crisis, programas de crecimiento y arquitecturas de ingresos en Norteamérica y Europa para equipos que necesitan velocidad discreta y reportes claros.',
+        'Trabajando como pods integrados, co-creamos campañas, automatizaciones y rituales de medición que tus equipos pueden operar después.',
+      ],
+    },
+    reasons: {
+      heading: 'Por qué nos eligen las marcas',
+      summary: 'Combinamos defensa proactiva de reputación con experimentos de growth compuestos.',
+      items: [
+        {
+          title: 'Guardianes de reputación',
+          description:
+            'Monitorizamos search, reseñas y redes en tiempo real para detectar riesgos y proteger tu narrativa antes de que escalen.',
+        },
+        {
+          title: 'Operadores de crecimiento',
+          description:
+            'Activamos SEO, lifecycle y medios de rendimiento para convertir la atención en pipeline mientras reforzamos la confianza.',
+        },
+        {
+          title: 'Inteligencia interna',
+          description:
+            'Recibes investigación, guiones y mensajes ejecutivos adaptados al inglés, francés y español.',
+        },
+      ],
+    },
+    metrics: {
+      heading: 'Instantáneas de impacto',
+      items: [
+        {
+          value: '40%',
+          label: 'respuesta a crisis más veloz',
+          description: 'Reducción promedio del tiempo de mitigación tras implementar nuestros frameworks de escucha y escalado.',
+        },
+        {
+          value: '3x',
+          label: 'más reseñas auténticas',
+          description: 'Programas de moderación multilingüe que triplican el feedback verificado positivo.',
+        },
+        {
+          value: '120+',
+          label: 'playbooks implementados',
+          description: 'Lanzamientos, mapas de automatización y sistemas creativos reutilizables entregados a clientes.',
+        },
+      ],
+    },
+    method: {
+      heading: 'Cómo colaboramos',
+      summary: 'Cada colaboración sigue un ritmo ágil y riguroso para alinear marketing, producto y liderazgo.',
+      steps: [
+        {
+          title: 'Mapear tu superficie de riesgo',
+          description: 'Auditamos search, medios ganados, dark social y canales propios para medir sentimiento y exposición.',
+        },
+        {
+          title: 'Diseñar el flywheel de crecimiento',
+          description: 'Co-creamos posicionamiento, ofertas y medición que convierten la protección en captura de demanda.',
+        },
+        {
+          title: 'Activar squads multilingües',
+          description: 'Nuestro pod senior ejecuta campañas, automatizaciones y sistemas creativos localizados para tus mercados.',
+        },
+        {
+          title: 'Medir y reforzar',
+          description: 'Dashboards, war rooms y reportes ejecutivos mantienen alineados a los stakeholders mientras iteramos cada semana.',
+        },
+      ],
+    },
+    closing: {
+      heading: '¿Listo para proteger y acelerar tu marca?',
+      body: 'Diseñemos una hoja de ruta que blinde tu reputación y haga crecer cada mercado que atiendes.',
+      cta: 'Agenda una sesión estratégica',
+    },
   },
 }
 
@@ -1219,6 +1506,106 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
             +1 606 302 2958
           </a>
         </div>
+      </section>
+    </article>
+  )
+}
+
+const AboutPage = () => {
+  const language = useCurrentLanguage()
+  const copy = aboutCopy[language]
+
+  return (
+    <article className="about-page">
+      <header className="about-hero">
+        <div className="about-hero__copy">
+          <p className="about-hero__kicker">Traceremove</p>
+          <h1>{copy.hero.title}</h1>
+          <p className="about-hero__subtitle">{copy.hero.subtitle}</p>
+          <p>{copy.hero.body}</p>
+          <div className="about-hero__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            <Link className="button secondary" to={getBlogBasePath(language)}>
+              {copy.hero.secondaryCta}
+            </Link>
+          </div>
+        </div>
+        <div className="about-hero__visual" aria-hidden="true">
+          <div className="about-hero__badge">{copy.hero.highlight}</div>
+          <GrowthSpark variant="light" size="lg" className="about-hero__graph" />
+          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+        </div>
+      </header>
+
+      <section className="about-story" aria-labelledby="about-story-heading">
+        <div className="about-section__header">
+          <h2 id="about-story-heading">{copy.story.heading}</h2>
+        </div>
+        <div className="about-story__body">
+          {copy.story.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-pillars" aria-labelledby="about-pillars-heading">
+        <div className="about-section__header">
+          <h2 id="about-pillars-heading">{copy.reasons.heading}</h2>
+          <p>{copy.reasons.summary}</p>
+        </div>
+        <div className="about-pillars__grid">
+          {copy.reasons.items.map((item) => (
+            <article key={item.title} className="about-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-metrics" aria-labelledby="about-metrics-heading">
+        <div className="about-section__header">
+          <h2 id="about-metrics-heading">{copy.metrics.heading}</h2>
+        </div>
+        <div className="about-metrics__grid">
+          {copy.metrics.items.map((item) => (
+            <article key={item.label} className="about-metric">
+              <span className="about-metric__value">{item.value}</span>
+              <span className="about-metric__label">{item.label}</span>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-method" aria-labelledby="about-method-heading">
+        <div className="about-section__header">
+          <h2 id="about-method-heading">{copy.method.heading}</h2>
+          <p>{copy.method.summary}</p>
+        </div>
+        <ol className="about-method__steps">
+          {copy.method.steps.map((step, index) => (
+            <li key={step.title}>
+              <span className="about-method__step-index">{index + 1}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="about-cta" aria-labelledby="about-cta-heading">
+        <div>
+          <h2 id="about-cta-heading">{copy.closing.heading}</h2>
+          <p>{copy.closing.body}</p>
+        </div>
+        <Link className="button primary" to={getContactPath(language)}>
+          {copy.closing.cta}
+        </Link>
       </section>
     </article>
   )
@@ -2740,6 +3127,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             {copy.services}
             <span className="tr-nav__chevron" aria-hidden="true" />
           </button>
+          <NavLink className="tr-nav__link" to={getAboutPath(currentLanguage)}>
+            {copy.about}
+          </NavLink>
           <NavLink className="tr-nav__link" to={getTeamPath(currentLanguage)}>
             {copy.team}
           </NavLink>
@@ -2832,6 +3222,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               <h3>{copy.navigationTitle}</h3>
               <NavLink to={getHomePath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
                 {copy.home}
+              </NavLink>
+              <NavLink to={getAboutPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
+                {copy.about}
               </NavLink>
               <NavLink to={getTeamPath(currentLanguage)} className="tr-mobile-link" onClick={handleCloseMobile}>
                 {copy.team}
@@ -3323,6 +3716,7 @@ const footerCopy: Record<
     rights: string
     studio: string
     founder: string
+    about: string
     team: string
     partners: string
     blog: string
@@ -3342,6 +3736,7 @@ const footerCopy: Record<
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
     founder: 'Founder & CEO Artur Ziganshin',
+    about: 'About',
     team: 'Team',
     partners: 'Partners',
     blog: 'Blog',
@@ -3360,6 +3755,7 @@ const footerCopy: Record<
     rights: 'Tous droits réservés.',
     studio: "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
     founder: 'Fondateur & CEO Artur Ziganshin',
+    about: 'À propos',
     team: 'Équipe',
     partners: 'Partenaires',
     blog: 'Blog',
@@ -3378,6 +3774,7 @@ const footerCopy: Record<
     rights: 'Todos los derechos reservados.',
     studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
     founder: 'Fundador y CEO Artur Ziganshin',
+    about: 'Sobre nosotros',
     team: 'Equipo',
     partners: 'Partners',
     blog: 'Blog',
@@ -3581,6 +3978,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           </form>
         </div>
         <div className="tr-footer__links">
+          <NavLink to={getAboutPath(currentLanguage)}>{copy.about}</NavLink>
           <NavLink to={getTeamPath(currentLanguage)}>{copy.team}</NavLink>
           <NavLink to={getPartnersPath(currentLanguage)}>{copy.partners}</NavLink>
           <NavLink to={getBlogBasePath(currentLanguage)}>{copy.blog}</NavLink>
@@ -3630,6 +4028,7 @@ function App() {
     <AppLayout>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
@@ -3641,6 +4040,7 @@ function App() {
         {languages.map((language) => (
           <Fragment key={language}>
             <Route path={language} element={<HomePage />} />
+            <Route path={`${language}/about`} element={<AboutPage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
             <Route path={`${language}/join`} element={<JoinPage />} />
