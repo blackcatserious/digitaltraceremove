@@ -1,3 +1,4 @@
+import { defaultAuthorId, type AuthorId } from './authors'
 import { type Language } from './pages'
 
 export type BlogTopic = 'orm' | 'ai' | 'cybersecurity' | 'seo' | 'web-design'
@@ -26,6 +27,7 @@ export interface BlogArticle {
   slug: string
   topic: BlogTopic
   publishedAt: string
+  authorId: AuthorId
   translations: Record<Language, BlogArticleTranslation>
 }
 
@@ -62,11 +64,16 @@ interface ArticleSeed {
   topic: BlogTopic
   publishedAt: string
   translation: TranslationSeed
+  authorId?: AuthorId
 }
 
 const t = (en: string, fr: string, es: string): MultilingualText => ({ en, fr, es })
 
-const defaultAuthor = t('Artur Ziganshin', 'Artur Ziganshin', 'Artur Ziganshin')
+const defaultAuthor = t(
+  'Artur Ziganshin — Founder & CEO',
+  'Artur Ziganshin — Fondateur et CEO',
+  'Artur Ziganshin — Fundador y CEO',
+)
 
 const WORDS_PER_MINUTE = 220
 
@@ -361,6 +368,7 @@ const articleSeeds: ArticleSeed[] = [
     id: 'brand-safety-command-center',
     slug: 'brand-safety-search-command-center',
     topic: 'orm',
+    authorId: 'clara-martel',
     publishedAt: '2024-03-07',
     translation: {
       title: t(
@@ -433,6 +441,7 @@ const articleSeeds: ArticleSeed[] = [
     id: 'fake-review-fallout',
     slug: 'fake-review-fallout-and-customer-loss',
     topic: 'orm',
+    authorId: 'clara-martel',
     publishedAt: '2024-03-09',
     translation: {
       title: t(
@@ -649,6 +658,7 @@ const articleSeeds: ArticleSeed[] = [
     id: 'search-visual-persuasion',
     slug: 'search-visual-persuasion',
     topic: 'seo',
+    authorId: 'diego-santos',
     publishedAt: '2024-03-15',
     translation: {
       title: t(
@@ -721,6 +731,7 @@ const articleSeeds: ArticleSeed[] = [
     id: 'ai-seo-safeguards',
     slug: 'ai-seo-safeguards',
     topic: 'ai',
+    authorId: 'clara-martel',
     publishedAt: '2024-03-17',
     translation: {
       title: t(
@@ -793,6 +804,7 @@ const articleSeeds: ArticleSeed[] = [
     id: 'voice-of-customer-seo',
     slug: 'voice-of-customer-seo',
     topic: 'seo',
+    authorId: 'diego-santos',
     publishedAt: '2024-03-19',
     translation: {
       title: t(
@@ -1009,6 +1021,7 @@ const articleSeeds: ArticleSeed[] = [
     id: 'incident-response-seo',
     slug: 'incident-response-seo-war-rooms',
     topic: 'orm',
+    authorId: 'clara-martel',
     publishedAt: '2024-03-25',
     translation: {
       title: t(
@@ -1153,6 +1166,7 @@ const articleSeeds: ArticleSeed[] = [
     id: 'serp-lifecycle-optimization',
     slug: 'serp-lifecycle-optimization',
     topic: 'seo',
+    authorId: 'diego-santos',
     publishedAt: '2024-03-29',
     translation: {
       title: t(
@@ -1225,6 +1239,7 @@ const articleSeeds: ArticleSeed[] = [
     id: 'social-proof-integrity',
     slug: 'social-proof-integrity',
     topic: 'orm',
+    authorId: 'clara-martel',
     publishedAt: '2024-03-31',
     translation: {
       title: t(
@@ -1372,6 +1387,7 @@ export const blogArticles: BlogArticle[] = articleSeeds.map((seed) => ({
   slug: seed.slug,
   topic: seed.topic,
   publishedAt: seed.publishedAt,
+  authorId: seed.authorId ?? defaultAuthorId,
   translations: {
     en: buildTranslation('en', seed.topic, seed.translation),
     fr: buildTranslation('fr', seed.topic, seed.translation),

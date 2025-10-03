@@ -28,6 +28,7 @@ import {
   type BlogArticleTranslation,
   type BlogTopic,
 } from './data/blog'
+import { authorProfiles } from './data/authors'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -1737,6 +1738,9 @@ const blogArticleCopy: Record<
     relatedTitle: string
     relatedSubtitle: string
     relatedCta: string
+    authorSpotlight: string
+    authorQuoteLabel: string
+    authorAvailabilityLabel: string
   }
 > = {
   en: {
@@ -1760,6 +1764,9 @@ const blogArticleCopy: Record<
     relatedTitle: 'Continue exploring',
     relatedSubtitle: 'Strategic playbooks that keep your brand weeks ahead of the noise.',
     relatedCta: 'Open playbook',
+    authorSpotlight: 'Meet your strategist',
+    authorQuoteLabel: 'Point of view',
+    authorAvailabilityLabel: 'Currently advising:',
   },
   fr: {
     backToBlog: 'Retour aux articles',
@@ -1782,6 +1789,9 @@ const blogArticleCopy: Record<
     relatedTitle: 'Poursuivez l’exploration',
     relatedSubtitle: 'Des plans d’attaque pour garder votre marque plusieurs coups d’avance.',
     relatedCta: 'Découvrir le playbook',
+    authorSpotlight: 'Rencontrez votre stratège',
+    authorQuoteLabel: 'Point de vue',
+    authorAvailabilityLabel: 'Accompagne actuellement :',
   },
   es: {
     backToBlog: 'Volver a los artículos',
@@ -1804,6 +1814,9 @@ const blogArticleCopy: Record<
     relatedTitle: 'Sigue explorando',
     relatedSubtitle: 'Playbooks estratégicos para mantener tu marca pasos delante del ruido.',
     relatedCta: 'Abrir playbook',
+    authorSpotlight: 'Conoce a tu estratega',
+    authorQuoteLabel: 'Punto de vista',
+    authorAvailabilityLabel: 'Actualmente asesora a:',
   },
 }
 
@@ -2010,6 +2023,11 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   if (!translation) {
     return <NotFound />
   }
+
+  const authorProfile = authorProfiles[article.authorId]
+  const authorHeadingId = `${slug}-author`
+  const authorBioParagraphs = authorProfile ? authorProfile.bio[language] : []
+  const authorFocusItems = authorProfile ? authorProfile.focusAreas[language] : []
 
   const sections = useMemo(
     () =>
@@ -2310,12 +2328,59 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
           <span>{copy.publishedOn}</span> {formattedDate}
         </p>
         <p className="blog-article__author">{translation.author}</p>
-        <div className="blog-article__hero-visual" role="img" aria-label={translation.heroAlt} />
-      </header>
+      <div className="blog-article__hero-visual" role="img" aria-label={translation.heroAlt} />
+    </header>
 
-      {tocSections.length > 0 ? (
-        <nav className="blog-article__toc" aria-labelledby="blog-article-toc-heading">
-          <div className="blog-article__toc-header">
+    {authorProfile ? (
+      <aside
+        className={`blog-article__author-card blog-article__author-card--${authorProfile.accent}`}
+        aria-labelledby={authorHeadingId}
+      >
+        <div className="author-card__visual" aria-hidden="true">
+          <span className="author-card__initials">{authorProfile.initials}</span>
+        </div>
+        <div className="author-card__content">
+          <p className="author-card__kicker">{copy.authorSpotlight}</p>
+          <h2 id={authorHeadingId}>{authorProfile.name[language]}</h2>
+          <p className="author-card__role">{authorProfile.role[language]}</p>
+          <p className="author-card__quote-label">{copy.authorQuoteLabel}</p>
+          <blockquote className="author-card__quote">
+            <p>{authorProfile.quote[language]}</p>
+          </blockquote>
+          {authorBioParagraphs.map((paragraph, index) => (
+            <p key={`${authorHeadingId}-bio-${index}`}>{paragraph}</p>
+          ))}
+          <div className="author-card__focus">
+            <p className="author-card__availability">
+              <span>{copy.authorAvailabilityLabel}</span>
+              <strong>{authorProfile.availability[language]}</strong>
+            </p>
+            <ul>
+              {authorFocusItems.map((item, index) => (
+                <li key={`${authorHeadingId}-focus-${index}`}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="author-card__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {authorProfile.ctaLabel[language]}
+            </Link>
+            <a
+              className="author-card__secondary"
+              href={authorProfile.secondaryHref}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {authorProfile.secondaryLabel[language]}
+            </a>
+          </div>
+        </div>
+      </aside>
+    ) : null}
+
+    {tocSections.length > 0 ? (
+      <nav className="blog-article__toc" aria-labelledby="blog-article-toc-heading">
+        <div className="blog-article__toc-header">
             <div>
               <h2 id="blog-article-toc-heading">{copy.tocTitle}</h2>
               <p>{copy.tocHint}</p>
