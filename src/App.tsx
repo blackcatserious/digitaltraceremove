@@ -30,6 +30,7 @@ import {
   type BlogTopic,
 } from './data/blog'
 import { authorProfiles, type AuthorId } from './data/authors'
+import { resourceLibraryCopy } from './data/resources'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -100,6 +101,9 @@ const getAboutPath = (language: Language) => (language === 'en' ? '/about' : `/$
 
 const getCaseStudiesPath = (language: Language) =>
   language === 'en' ? '/case-studies' : `/${language}/case-studies`
+
+const getResourcesPath = (language: Language) =>
+  language === 'en' ? '/resources' : `/${language}/resources`
 
 const getPartnersPath = (language: Language) => (language === 'en' ? '/partners' : `/${language}/partners`)
 
@@ -307,6 +311,7 @@ const navCopy: Record<
     about: string
     caseStudies: string
     team: string
+    resources: string
     blog: string
     partners: string
     contact: string
@@ -326,6 +331,7 @@ const navCopy: Record<
     about: 'About us',
     caseStudies: 'Case studies',
     team: 'Team',
+    resources: 'Resources',
     blog: 'Blog',
     partners: 'Partners',
     contact: 'Contact',
@@ -344,6 +350,7 @@ const navCopy: Record<
     about: 'À propos',
     caseStudies: 'Études de cas',
     team: 'Équipe',
+    resources: 'Ressources',
     blog: 'Blog',
     partners: 'Partenaires',
     contact: 'Contact',
@@ -362,6 +369,7 @@ const navCopy: Record<
     about: 'Sobre nosotros',
     caseStudies: 'Casos de éxito',
     team: 'Equipo',
+    resources: 'Recursos',
     blog: 'Blog',
     partners: 'Partners',
     contact: 'Contacto',
@@ -3030,6 +3038,179 @@ const CaseStudiesPage = () => {
   )
 }
 
+const ResourceLibraryPage = () => {
+  const language = useCurrentLanguage()
+  const copy = resourceLibraryCopy[language]
+
+  return (
+    <article className="resource-page">
+      <header className="resource-hero">
+        <div className="resource-hero__content">
+          <p className="resource-hero__eyebrow">{copy.hero.eyebrow}</p>
+          <h1>{copy.hero.title}</h1>
+          <p className="resource-hero__subtitle">{copy.hero.subtitle}</p>
+          <div className="resource-hero__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.ctaPrimary}
+            </Link>
+            <Link className="button secondary" to={copy.hero.ctaSecondaryHref}>
+              {copy.hero.ctaSecondary}
+            </Link>
+          </div>
+          <p className="resource-hero__note">{copy.hero.visualCaption}</p>
+        </div>
+        <div className="resource-hero__deck">
+          <div className="resource-hero__spark">
+            <GrowthSpark variant="light" size="lg" ariaLabel={copy.hero.visualCaption} />
+            <span className="resource-hero__spark-label">{copy.hero.eyebrow}</span>
+          </div>
+          <ul className="resource-hero__metrics">
+            {copy.hero.metrics.map((metric, index) => (
+              <li key={metric.label} className="resource-metric" data-index={index}>
+                <span className="resource-metric__value">{metric.value}</span>
+                <span className="resource-metric__label">{metric.label}</span>
+                <p>{metric.annotation}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
+
+      <MomentumTicker variant="light" />
+
+      <section className="resource-highlight" aria-labelledby="resource-highlight-heading">
+        <div className="resource-highlight__intro">
+          <p className="resource-highlight__eyebrow">{copy.highlight.eyebrow}</p>
+          <h2 id="resource-highlight-heading">{copy.highlight.heading}</h2>
+          <p>{copy.highlight.description}</p>
+        </div>
+        <div className="resource-highlight__stats">
+          {copy.highlight.stats.map((stat, index) => (
+            <div key={stat.caption} className="resource-highlight__stat" data-index={index}>
+              <span className="resource-highlight__value">{stat.value}</span>
+              <span className="resource-highlight__caption">{stat.caption}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="resource-categories" aria-labelledby="resource-categories-heading">
+        <div className="resource-categories__intro">
+          <h2 id="resource-categories-heading">{copy.hero.eyebrow}</h2>
+          <p>{copy.hero.subtitle}</p>
+        </div>
+        {copy.categories.map((category, index) => (
+          <article key={category.id} className="resource-category" data-index={index}>
+            <header className="resource-category__header">
+              <p className="resource-category__eyebrow">{category.eyebrow}</p>
+              <h3>{category.title}</h3>
+              <p>{category.description}</p>
+              <div className="resource-category__metric">
+                <div>
+                  <span className="resource-category__metric-label">{category.metricLabel}</span>
+                  <div className="resource-category__metric-values">
+                    <span className="resource-category__metric-value">{category.metricValue}</span>
+                    <span className="resource-category__metric-delta">{category.metricDelta}</span>
+                  </div>
+                </div>
+                <p>{category.metricDescription}</p>
+              </div>
+            </header>
+            <div className="resource-category__visual" aria-hidden="true">
+              <GrowthSpark
+                variant={index % 2 === 0 ? 'light' : 'dark'}
+                size="md"
+                ariaLabel={category.visualLabel}
+              />
+              <span className="resource-category__visual-label">{category.visualLabel}</span>
+            </div>
+            <ul className="resource-category__list">
+              {category.resources.map((resource) => (
+                <li key={resource.id} className="resource-asset">
+                  <div className="resource-asset__heading">
+                    <span className="resource-asset__format">{resource.format}</span>
+                    <h4>{resource.title}</h4>
+                  </div>
+                  <p className="resource-asset__summary">{resource.summary}</p>
+                  <div className="resource-asset__meta">
+                    <span>{resource.length}</span>
+                    <span>{resource.callout}</span>
+                  </div>
+                  <Link className="resource-asset__action" to={getContactPath(language)}>
+                    {copy.assetCta}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </section>
+
+      <section className="resource-workflow" aria-labelledby="resource-workflow-heading">
+        <div className="resource-workflow__intro">
+          <h2 id="resource-workflow-heading">{copy.workflow.title}</h2>
+          <p>{copy.workflow.description}</p>
+        </div>
+        <ol className="resource-workflow__steps">
+          {copy.workflow.steps.map((step, index) => (
+            <li key={step.title} className="resource-workflow__step" data-index={index}>
+              <span className="resource-workflow__index">{index + 1}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.detail}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="resource-testimonials" aria-labelledby="resource-testimonials-heading">
+        <div className="resource-testimonials__intro">
+          <h2 id="resource-testimonials-heading">{copy.testimonialsHeading}</h2>
+        </div>
+        <div className="resource-testimonials__grid">
+          {copy.testimonials.map((testimonial, index) => (
+            <figure key={testimonial.attribution} className="resource-testimonial" data-index={index}>
+              <blockquote>{testimonial.quote}</blockquote>
+              <figcaption>
+                <span className="resource-testimonial__name">{testimonial.attribution}</span>
+                <span className="resource-testimonial__role">{testimonial.role}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="resource-cta">
+        <div>
+          <h2>{copy.cta.title}</h2>
+          <p>{copy.cta.subtitle}</p>
+        </div>
+        <div className="resource-cta__actions">
+          <Link className="button primary" to={getContactPath(language)}>
+            {copy.cta.primary}
+          </Link>
+          <Link className="button tertiary" to={getCaseStudiesPath(language)}>
+            {copy.cta.secondary}
+          </Link>
+        </div>
+      </section>
+
+      <section className="resource-faq" aria-labelledby="resource-faq-heading">
+        <h2 id="resource-faq-heading">{copy.faqHeading}</h2>
+        <dl className="resource-faq__list">
+          {copy.faq.map((item, index) => (
+            <div key={item.question} className="resource-faq__item" data-index={index}>
+              <dt>{item.question}</dt>
+              <dd>{item.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    </article>
+  )
+}
+
 const PartnersPage = () => {
   const language = useCurrentLanguage()
   const copy = partnersCopy[language]
@@ -4399,6 +4580,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     () => [
       { label: copy.about, href: getAboutPath(currentLanguage) },
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
+      { label: copy.resources, href: getResourcesPath(currentLanguage) },
       { label: copy.team, href: getTeamPath(currentLanguage) },
       { label: copy.partners, href: getPartnersPath(currentLanguage) },
       { label: copy.blog, href: getBlogBasePath(currentLanguage) },
@@ -4685,6 +4867,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onClick={handleCloseMobile}
               >
                 {copy.caseStudies}
+              </NavLink>
+              <NavLink
+                to={getResourcesPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
+                {copy.resources}
               </NavLink>
               <NavLink
                 to={getTeamPath(currentLanguage)}
@@ -5207,6 +5396,7 @@ const footerCopy: Record<
     about: string
     caseStudies: string
     team: string
+    resources: string
     partners: string
     blog: string
     contact: string
@@ -5238,6 +5428,7 @@ const footerCopy: Record<
     about: 'About us',
     caseStudies: 'Case studies',
     team: 'Team',
+    resources: 'Resources',
     partners: 'Partners',
     blog: 'Blog',
     contact: 'Contact',
@@ -5269,6 +5460,7 @@ const footerCopy: Record<
     about: 'À propos',
     caseStudies: 'Études de cas',
     team: 'Équipe',
+    resources: 'Ressources',
     partners: 'Partenaires',
     blog: 'Blog',
     contact: 'Contact',
@@ -5299,6 +5491,7 @@ const footerCopy: Record<
     about: 'Sobre nosotros',
     caseStudies: 'Casos de éxito',
     team: 'Equipo',
+    resources: 'Recursos',
     partners: 'Partners',
     blog: 'Blog',
     contact: 'Contacto',
@@ -5464,6 +5657,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const menuLinks = [
     { to: getAboutPath(currentLanguage), label: copy.about },
     { to: getCaseStudiesPath(currentLanguage), label: copy.caseStudies },
+    { to: getResourcesPath(currentLanguage), label: copy.resources },
     { to: getTeamPath(currentLanguage), label: copy.team },
     { to: getPartnersPath(currentLanguage), label: copy.partners },
     { to: getBlogBasePath(currentLanguage), label: copy.blog },
@@ -5601,6 +5795,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
+        <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
@@ -5614,6 +5809,7 @@ function App() {
             <Route path={language} element={<HomePage />} />
             <Route path={`${language}/about`} element={<AboutPage />} />
             <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
+            <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
             <Route path={`${language}/join`} element={<JoinPage />} />
