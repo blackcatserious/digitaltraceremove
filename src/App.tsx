@@ -217,6 +217,89 @@ const GrowthSpark = ({ variant = 'dark', size = 'md', className = '', ariaLabel 
   )
 }
 
+const momentumTickerCopy: Record<
+  Language,
+  {
+    eyebrow: string
+    highlights: string[]
+    cta: string
+  }
+> = {
+  en: {
+    eyebrow: 'Momentum signals',
+    highlights: [
+      'Deindexed 1,200+ malicious pages across 14 jurisdictions',
+      'Recovered $18.4M in pipeline by reversing fake-review attacks',
+      '60-day brand vault protecting 80+ executive identities',
+      'Live sentiment command center in English, French, and Spanish',
+      '24/7 escalation team orchestrated by Founder & CEO Artur Ziganshin',
+    ],
+    cta: 'Activate a protection sprint',
+  },
+  fr: {
+    eyebrow: 'Signaux de momentum',
+    highlights: [
+      'Plus de 1 200 pages malveillantes déréférencées dans 14 juridictions',
+      '18,4 M $ de pipeline récupérés après des attaques de faux avis',
+      'Coffre-fort de marque sur 60 jours couvrant plus de 80 dirigeants',
+      'Centre de commande du sentiment en français, anglais et espagnol',
+      'Équipe d’escalade 24/7 pilotée par Artur Ziganshin, Founder & CEO',
+    ],
+    cta: 'Activer un sprint de protection',
+  },
+  es: {
+    eyebrow: 'Señales de momentum',
+    highlights: [
+      'Más de 1 200 páginas maliciosas dadas de baja en 14 jurisdicciones',
+      'Recuperamos 18,4 M USD de pipeline tras ataques de reseñas falsas',
+      'Bóveda de marca de 60 días cubriendo a más de 80 ejecutivos',
+      'Centro de comando de sentimiento en inglés, francés y español',
+      'Equipo de escalación 24/7 liderado por el Founder & CEO Artur Ziganshin',
+    ],
+    cta: 'Activar un sprint de protección',
+  },
+}
+
+const MomentumTicker = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
+  const language = useCurrentLanguage()
+  const copy = momentumTickerCopy[language]
+  const [isPaused, setIsPaused] = useState(false)
+
+  const duplicatedHighlights = useMemo(() => {
+    const base = copy.highlights
+    if (base.length <= 1) {
+      return base
+    }
+    return [...base, ...base]
+  }, [copy.highlights])
+
+  if (!copy.highlights.length) {
+    return null
+  }
+
+  return (
+    <section className={`momentum-ticker momentum-ticker--${variant}`} aria-label={copy.eyebrow}>
+      <div className="momentum-ticker__label">{copy.eyebrow}</div>
+      <div
+        className={`momentum-ticker__track${isPaused ? ' is-paused' : ''}`}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <ul className="momentum-ticker__items">
+          {duplicatedHighlights.map((highlight, index) => (
+            <li key={`${highlight}-${index}`} className="momentum-ticker__item">
+              {highlight}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <Link className="momentum-ticker__cta button ghost" to={getContactPath(language)}>
+        {copy.cta}
+      </Link>
+    </section>
+  )
+}
+
 const navCopy: Record<
   Language,
   {
@@ -2344,6 +2427,8 @@ const HomePage = () => {
         </div>
       </div>
 
+      <MomentumTicker variant="light" />
+
       <section className="home-services">
         <header className="home-services__header">
           <h2>{serviceIntro.title}</h2>
@@ -2583,6 +2668,8 @@ const AboutPage = () => {
           <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
         </div>
       </header>
+
+      <MomentumTicker variant="dark" />
 
       <section className="about-story" aria-labelledby="about-story-heading">
         <div className="about-section__header">
@@ -2835,6 +2922,8 @@ const CaseStudiesPage = () => {
         </div>
       </header>
 
+      <MomentumTicker variant="light" />
+
       <section className="case-stats" aria-labelledby="case-stats-heading">
         <div className="case-section__header">
           <h2 id="case-stats-heading">{copy.statsHeading}</h2>
@@ -2962,6 +3051,8 @@ const PartnersPage = () => {
         </div>
       </header>
 
+      <MomentumTicker variant="dark" />
+
       <section className="partners-section">
         <h2>{copy.segmentsHeading}</h2>
         <div className="partners-grid">
@@ -3033,6 +3124,8 @@ const JoinPage = () => {
           <p>Growth designers, analysts, storytellers, and operators.</p>
         </div>
       </header>
+
+      <MomentumTicker variant="light" />
 
       <section className="join-section">
         <h2>{copy.valuesHeading}</h2>
@@ -3219,6 +3312,9 @@ const ContactPage = ({ language }: { language: Language }) => {
         <p className="contact-subtitle">{copy.subtitle}</p>
         <p className="contact-intro">{copy.intro}</p>
       </header>
+
+      <MomentumTicker variant="dark" />
+
       <div className="contact-grid">
         <form className="contact-form" onSubmit={handleSubmit} noValidate>
           <h2>{copy.formTitle}</h2>
@@ -3625,6 +3721,8 @@ const BlogPage = ({ language }: { language: Language }) => {
         <p className="blog-hero__subtitle">{copy.subtitle}</p>
         <p className="blog-hero__intro">{copy.intro}</p>
       </header>
+
+      <MomentumTicker variant="light" />
 
       <div className="blog-filters" role="region" aria-label={copy.filtersTitle}>
         <div className="blog-filters__text">
