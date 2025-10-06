@@ -30,6 +30,7 @@ import {
   type BlogTopic,
 } from './data/blog'
 import { authorProfiles, type AuthorId } from './data/authors'
+import { mediaCenterCopy } from './data/media'
 import { resourceLibraryCopy } from './data/resources'
 import './App.css'
 
@@ -104,6 +105,9 @@ const getCaseStudiesPath = (language: Language) =>
 
 const getResourcesPath = (language: Language) =>
   language === 'en' ? '/resources' : `/${language}/resources`
+
+const getMediaPath = (language: Language) =>
+  language === 'en' ? '/media' : `/${language}/media`
 
 const getPartnersPath = (language: Language) => (language === 'en' ? '/partners' : `/${language}/partners`)
 
@@ -312,6 +316,7 @@ const navCopy: Record<
     caseStudies: string
     team: string
     resources: string
+    media: string
     blog: string
     partners: string
     contact: string
@@ -332,6 +337,7 @@ const navCopy: Record<
     caseStudies: 'Case studies',
     team: 'Team',
     resources: 'Resources',
+    media: 'Media',
     blog: 'Blog',
     partners: 'Partners',
     contact: 'Contact',
@@ -351,6 +357,7 @@ const navCopy: Record<
     caseStudies: 'Études de cas',
     team: 'Équipe',
     resources: 'Ressources',
+    media: 'Presse',
     blog: 'Blog',
     partners: 'Partenaires',
     contact: 'Contact',
@@ -370,6 +377,7 @@ const navCopy: Record<
     caseStudies: 'Casos de éxito',
     team: 'Equipo',
     resources: 'Recursos',
+    media: 'Prensa',
     blog: 'Blog',
     partners: 'Partners',
     contact: 'Contacto',
@@ -3211,6 +3219,188 @@ const ResourceLibraryPage = () => {
   )
 }
 
+const MediaPage = () => {
+  const language = useCurrentLanguage()
+  const copy = mediaCenterCopy[language]
+
+  return (
+    <article className="media-page">
+      <header className="media-hero">
+        <div className="media-hero__content">
+          <p className="media-hero__eyebrow">{copy.hero.eyebrow}</p>
+          <h1>{copy.hero.title}</h1>
+          <p className="media-hero__subtitle">{copy.hero.subtitle}</p>
+          <div className="media-hero__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            <a className="button secondary" href={copy.hero.secondaryHref}>
+              {copy.hero.secondaryCta}
+            </a>
+          </div>
+          <p className="media-hero__note">{copy.hero.mediaNote}</p>
+        </div>
+        <div className="media-hero__visual" aria-hidden="true">
+          <GrowthSpark variant="light" size="lg" className="media-hero__spark" />
+          <span className="media-hero__caption">{copy.hero.visualCaption}</span>
+        </div>
+        <ul className="media-hero__metrics">
+          {copy.hero.metrics.map((metric, index) => (
+            <li
+              key={metric.label}
+              className="media-hero__metric"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <span className="media-hero__metric-value">{metric.value}</span>
+              <span className="media-hero__metric-label">{metric.label}</span>
+              <p>{metric.description}</p>
+            </li>
+          ))}
+        </ul>
+      </header>
+
+      <MomentumTicker variant="light" />
+
+      <section className="media-coverage" aria-labelledby="media-coverage-heading">
+        <div className="media-section__intro">
+          <h2 id="media-coverage-heading">{copy.coverage.heading}</h2>
+          <p>{copy.coverage.description}</p>
+        </div>
+        <div className="media-coverage__grid">
+          {copy.coverage.outlets.map((outlet, index) => (
+            <article
+              key={outlet.name}
+              className="media-coverage__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <span className="media-coverage__region">{outlet.region}</span>
+              <h3>{outlet.name}</h3>
+              <p>{outlet.summary}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="media-releases" aria-labelledby="media-releases-heading">
+        <div className="media-section__intro">
+          <h2 id="media-releases-heading">{copy.releases.heading}</h2>
+          <p>{copy.releases.description}</p>
+        </div>
+        <ol className="media-releases__list">
+          {copy.releases.items.map((item, index) => (
+            <li
+              key={item.id}
+              className="media-release"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <span className="media-release__date">{item.date}</span>
+              <div className="media-release__body">
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+                <p className="media-release__highlight">{item.highlight}</p>
+                <Link className="media-release__cta" to={getBlogBasePath(language)}>
+                  {copy.releases.ctaLabel}
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="media-kit" className="media-kit" aria-labelledby="media-kit-heading">
+        <div className="media-section__intro">
+          <h2 id="media-kit-heading">{copy.kit.heading}</h2>
+          <p>{copy.kit.description}</p>
+          <p className="media-kit__note">{copy.kit.usageNote}</p>
+        </div>
+        <div className="media-kit__grid">
+          {copy.kit.assets.map((asset, index) => (
+            <article
+              key={asset.id}
+              className="media-asset"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <div className="media-asset__meta">
+                <span className="media-asset__format">{asset.format}</span>
+                <span className="media-asset__size">{asset.size}</span>
+              </div>
+              <h3>{asset.title}</h3>
+              <p>{asset.usage}</p>
+              <a className="media-asset__download" href={copy.hero.secondaryHref}>
+                {copy.kit.downloadLabel}
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="media-spokespeople" aria-labelledby="media-spokespeople-heading">
+        <div className="media-section__intro">
+          <h2 id="media-spokespeople-heading">{copy.spokespeople.heading}</h2>
+          <p>{copy.spokespeople.description}</p>
+        </div>
+        <div className="media-spokespeople__grid">
+          {copy.spokespeople.people.map((person, index) => (
+            <article
+              key={person.id}
+              className="media-spokesperson"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <div className="media-spokesperson__header">
+                <h3>{person.name}</h3>
+                <span className="media-spokesperson__role">{person.role}</span>
+              </div>
+              <p>{person.bio}</p>
+              <dl className="media-spokesperson__details">
+                <div>
+                  <dt>{copy.spokespeople.focusLabel}</dt>
+                  <dd>{person.topics}</dd>
+                </div>
+                <div>
+                  <dt>{copy.spokespeople.languagesLabel}</dt>
+                  <dd>{person.languages}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="media-contact" aria-labelledby="media-contact-heading">
+        <div className="media-contact__content">
+          <h2 id="media-contact-heading">{copy.contact.heading}</h2>
+          <p className="media-contact__subtitle">{copy.contact.subtitle}</p>
+          <ul className="media-contact__list">
+            {copy.contact.details.map((detail) => (
+              <li key={detail}>{detail}</li>
+            ))}
+          </ul>
+          <div className="media-contact__actions">
+            <a className="button primary" href={copy.contact.emailHref}>
+              {copy.contact.emailLabel}
+            </a>
+            <a className="button tertiary" href={copy.contact.phoneHref}>
+              {copy.contact.phoneLabel}
+            </a>
+            <Link className="button ghost" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+          </div>
+          <p className="media-contact__note">{copy.contact.note}</p>
+        </div>
+        <div className="media-contact__visual" aria-hidden="true">
+          <GrowthSpark variant="dark" size="md" />
+        </div>
+      </section>
+    </article>
+  )
+}
+
 const PartnersPage = () => {
   const language = useCurrentLanguage()
   const copy = partnersCopy[language]
@@ -4581,6 +4771,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       { label: copy.about, href: getAboutPath(currentLanguage) },
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
       { label: copy.resources, href: getResourcesPath(currentLanguage) },
+      { label: copy.media, href: getMediaPath(currentLanguage) },
       { label: copy.team, href: getTeamPath(currentLanguage) },
       { label: copy.partners, href: getPartnersPath(currentLanguage) },
       { label: copy.blog, href: getBlogBasePath(currentLanguage) },
@@ -4874,6 +5065,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onClick={handleCloseMobile}
               >
                 {copy.resources}
+              </NavLink>
+              <NavLink
+                to={getMediaPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
+                {copy.media}
               </NavLink>
               <NavLink
                 to={getTeamPath(currentLanguage)}
@@ -5397,6 +5595,7 @@ const footerCopy: Record<
     caseStudies: string
     team: string
     resources: string
+    media: string
     partners: string
     blog: string
     contact: string
@@ -5429,6 +5628,7 @@ const footerCopy: Record<
     caseStudies: 'Case studies',
     team: 'Team',
     resources: 'Resources',
+    media: 'Media',
     partners: 'Partners',
     blog: 'Blog',
     contact: 'Contact',
@@ -5461,6 +5661,7 @@ const footerCopy: Record<
     caseStudies: 'Études de cas',
     team: 'Équipe',
     resources: 'Ressources',
+    media: 'Presse',
     partners: 'Partenaires',
     blog: 'Blog',
     contact: 'Contact',
@@ -5492,6 +5693,7 @@ const footerCopy: Record<
     caseStudies: 'Casos de éxito',
     team: 'Equipo',
     resources: 'Recursos',
+    media: 'Prensa',
     partners: 'Partners',
     blog: 'Blog',
     contact: 'Contacto',
@@ -5658,6 +5860,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
     { to: getAboutPath(currentLanguage), label: copy.about },
     { to: getCaseStudiesPath(currentLanguage), label: copy.caseStudies },
     { to: getResourcesPath(currentLanguage), label: copy.resources },
+    { to: getMediaPath(currentLanguage), label: copy.media },
     { to: getTeamPath(currentLanguage), label: copy.team },
     { to: getPartnersPath(currentLanguage), label: copy.partners },
     { to: getBlogBasePath(currentLanguage), label: copy.blog },
@@ -5796,6 +5999,7 @@ function App() {
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
+        <Route path="media" element={<MediaPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
@@ -5810,6 +6014,7 @@ function App() {
             <Route path={`${language}/about`} element={<AboutPage />} />
             <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
             <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
+            <Route path={`${language}/media`} element={<MediaPage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
             <Route path={`${language}/join`} element={<JoinPage />} />
