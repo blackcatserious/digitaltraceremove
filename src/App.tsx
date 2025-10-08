@@ -32,6 +32,7 @@ import {
 import { authorProfiles, type AuthorId } from './data/authors'
 import { mediaCenterCopy } from './data/media'
 import { resourceLibraryCopy } from './data/resources'
+import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -108,6 +109,8 @@ const getResourcesPath = (language: Language) =>
 
 const getMediaPath = (language: Language) =>
   language === 'en' ? '/media' : `/${language}/media`
+
+const getFaqPath = (language: Language) => (language === 'en' ? '/faq' : `/${language}/faq`)
 
 const getPartnersPath = (language: Language) => (language === 'en' ? '/partners' : `/${language}/partners`)
 
@@ -317,6 +320,7 @@ const navCopy: Record<
     team: string
     resources: string
     media: string
+    faq: string
     blog: string
     partners: string
     contact: string
@@ -338,6 +342,7 @@ const navCopy: Record<
     team: 'Team',
     resources: 'Resources',
     media: 'Media',
+    faq: 'FAQ',
     blog: 'Blog',
     partners: 'Partners',
     contact: 'Contact',
@@ -358,6 +363,7 @@ const navCopy: Record<
     team: 'Équipe',
     resources: 'Ressources',
     media: 'Presse',
+    faq: 'FAQ',
     blog: 'Blog',
     partners: 'Partenaires',
     contact: 'Contact',
@@ -378,6 +384,7 @@ const navCopy: Record<
     team: 'Equipo',
     resources: 'Recursos',
     media: 'Prensa',
+    faq: 'FAQ',
     blog: 'Blog',
     partners: 'Partners',
     contact: 'Contacto',
@@ -3219,6 +3226,195 @@ const ResourceLibraryPage = () => {
   )
 }
 
+const resolveGuideHref = (target: FaqGuideTarget, language: Language) => {
+  switch (target) {
+    case 'resources':
+      return getResourcesPath(language)
+    case 'caseStudies':
+      return getCaseStudiesPath(language)
+    case 'blog':
+      return getBlogBasePath(language)
+    case 'contact':
+    default:
+      return getContactPath(language)
+  }
+}
+
+const FaqPage = () => {
+  const language = useCurrentLanguage()
+  const copy = faqCopy[language]
+  const firstCategoryId = copy.categories[0]?.id ?? ''
+  const [activeCategoryId, setActiveCategoryId] = useState(firstCategoryId)
+
+  useEffect(() => {
+    if (!firstCategoryId) {
+      return
+    }
+    setActiveCategoryId(firstCategoryId)
+  }, [firstCategoryId, language])
+
+  return (
+    <article className="faq-page">
+      <header className="faq-hero">
+        <div className="faq-hero__content">
+          <p className="faq-hero__eyebrow">{copy.hero.eyebrow}</p>
+          <h1>{copy.hero.title}</h1>
+          <p className="faq-hero__subtitle">{copy.hero.subtitle}</p>
+          <p>{copy.hero.description}</p>
+          <div className="faq-hero__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            <a className="button secondary" href={copy.hero.secondaryHref}>
+              {copy.hero.secondaryCta}
+            </a>
+          </div>
+          <p className="faq-hero__assurance">{copy.hero.assurance}</p>
+        </div>
+        <div className="faq-hero__visual">
+          <GrowthSpark
+            variant="light"
+            size="lg"
+            className="faq-hero__spark"
+            ariaLabel={copy.hero.visualLabel}
+          />
+          <ul className="faq-hero__metrics">
+            {copy.hero.metrics.map((metric, index) => (
+              <li key={metric.label} className="faq-hero__metric" data-index={index}>
+                <span className="faq-hero__metric-value">{metric.value}</span>
+                <span className="faq-hero__metric-label">{metric.label}</span>
+                <p>{metric.annotation}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
+
+      <MomentumTicker variant="light" />
+
+      <section className="faq-categories" aria-labelledby="faq-categories-heading">
+        <div className="faq-categories__nav" role="tablist" aria-orientation="vertical">
+          <div className="faq-categories__intro">
+            <h2 id="faq-categories-heading">{copy.categoriesHeading}</h2>
+            <p>{copy.categoriesDescription}</p>
+          </div>
+          <ul>
+            {copy.categories.map((category) => {
+              const isActive = category.id === activeCategoryId
+              return (
+                <li key={category.id}>
+                  <button
+                    type="button"
+                    id={`faq-tab-${category.id}`}
+                    className={`faq-tab${isActive ? ' is-active' : ''}`}
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-controls={`faq-panel-${category.id}`}
+                    onClick={() => setActiveCategoryId(category.id)}
+                  >
+                    <span className="faq-tab__eyebrow">{category.eyebrow}</span>
+                    <span className="faq-tab__title">{category.title}</span>
+                    <span className="faq-tab__indicator" aria-hidden="true" />
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+        <div className="faq-categories__panel">
+          {copy.categories.map((category) => {
+            const isActive = category.id === activeCategoryId
+            return (
+              <article
+                key={category.id}
+                id={`faq-panel-${category.id}`}
+                className={`faq-category${isActive ? ' is-active' : ''}`}
+                role="tabpanel"
+                aria-labelledby={`faq-tab-${category.id}`}
+                hidden={!isActive}
+              >
+                <header className="faq-category__header">
+                  <p className="faq-category__eyebrow">{category.eyebrow}</p>
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                  <div className="faq-category__signal">
+                    <span className="faq-category__signal-label">{category.signalLabel}</span>
+                    <span className="faq-category__signal-value">{category.signalValue}</span>
+                    <p>{category.signalDetail}</p>
+                  </div>
+                </header>
+                <dl className="faq-category__list">
+                  {category.items.map((item, index) => (
+                    <div key={item.question} className="faq-item" data-index={index}>
+                      <dt>{item.question}</dt>
+                      <dd>
+                        {item.answer.map((paragraph, paragraphIndex) => (
+                          <p key={`${category.id}-${index}-${paragraphIndex}`}>{paragraph}</p>
+                        ))}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </article>
+            )
+          })}
+        </div>
+      </section>
+
+      <section className="faq-guides" aria-labelledby="faq-guides-heading">
+        <div className="faq-guides__intro">
+          <h2 id="faq-guides-heading">{copy.guidesHeading}</h2>
+          <p>{copy.guidesDescription}</p>
+        </div>
+        <div className="faq-guides__grid">
+          {copy.guides.map((guide, index) => (
+            <article key={guide.id} className="faq-guide" data-index={index}>
+              <p className="faq-guide__eyebrow">{guide.eyebrow}</p>
+              <h3>{guide.title}</h3>
+              <p>{guide.description}</p>
+              <Link className="faq-guide__cta" to={resolveGuideHref(guide.target, language)}>
+                {guide.ctaLabel}
+                <span aria-hidden="true">→</span>
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="faq-support" aria-labelledby="faq-support-heading">
+        <div className="faq-support__content">
+          <h2 id="faq-support-heading">{copy.support.title}</h2>
+          <p className="faq-support__subtitle">{copy.support.subtitle}</p>
+          <ul className="faq-support__notes">
+            {copy.support.notes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
+          <div className="faq-support__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.support.ctaLabel}
+            </Link>
+            <a className="button ghost" href={copy.support.ctaSecondaryHref} target="_blank" rel="noreferrer">
+              {copy.support.ctaSecondary}
+            </a>
+          </div>
+        </div>
+        <div className="faq-support__channels">
+          <GrowthSpark variant="light" size="sm" className="faq-support__spark" />
+          <ul>
+            {copy.support.channels.map((channel, index) => (
+              <li key={channel.label} data-index={index}>
+                <span className="faq-support__channel-label">{channel.label}</span>
+                <span className="faq-support__channel-detail">{channel.detail}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </article>
+  )
+}
+
 const MediaPage = () => {
   const language = useCurrentLanguage()
   const copy = mediaCenterCopy[language]
@@ -4774,6 +4970,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       { label: copy.media, href: getMediaPath(currentLanguage) },
       { label: copy.team, href: getTeamPath(currentLanguage) },
       { label: copy.partners, href: getPartnersPath(currentLanguage) },
+      { label: copy.faq, href: getFaqPath(currentLanguage) },
       { label: copy.blog, href: getBlogBasePath(currentLanguage) },
       { label: copy.contact, href: getContactPath(currentLanguage) },
     ],
@@ -5093,6 +5290,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onClick={handleCloseMobile}
               >
                 {copy.blog}
+              </NavLink>
+              <NavLink
+                to={getFaqPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
+                {copy.faq}
               </NavLink>
               <NavLink
                 to={getContactPath(currentLanguage)}
@@ -5596,6 +5800,7 @@ const footerCopy: Record<
     team: string
     resources: string
     media: string
+    faq: string
     partners: string
     blog: string
     contact: string
@@ -5629,6 +5834,7 @@ const footerCopy: Record<
     team: 'Team',
     resources: 'Resources',
     media: 'Media',
+    faq: 'FAQ',
     partners: 'Partners',
     blog: 'Blog',
     contact: 'Contact',
@@ -5662,6 +5868,7 @@ const footerCopy: Record<
     team: 'Équipe',
     resources: 'Ressources',
     media: 'Presse',
+    faq: 'FAQ',
     partners: 'Partenaires',
     blog: 'Blog',
     contact: 'Contact',
@@ -5694,6 +5901,7 @@ const footerCopy: Record<
     team: 'Equipo',
     resources: 'Recursos',
     media: 'Prensa',
+    faq: 'FAQ',
     partners: 'Partners',
     blog: 'Blog',
     contact: 'Contacto',
@@ -5863,6 +6071,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
     { to: getMediaPath(currentLanguage), label: copy.media },
     { to: getTeamPath(currentLanguage), label: copy.team },
     { to: getPartnersPath(currentLanguage), label: copy.partners },
+    { to: getFaqPath(currentLanguage), label: copy.faq },
     { to: getBlogBasePath(currentLanguage), label: copy.blog },
     { to: getContactPath(currentLanguage), label: copy.contact },
     { to: getJoinPath(currentLanguage), label: copy.join },
@@ -5999,6 +6208,7 @@ function App() {
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
+        <Route path="faq" element={<FaqPage />} />
         <Route path="media" element={<MediaPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
@@ -6014,6 +6224,7 @@ function App() {
             <Route path={`${language}/about`} element={<AboutPage />} />
             <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
             <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
+            <Route path={`${language}/faq`} element={<FaqPage />} />
             <Route path={`${language}/media`} element={<MediaPage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
