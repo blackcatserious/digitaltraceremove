@@ -33,6 +33,7 @@ import { authorProfiles, type AuthorId } from './data/authors'
 import { mediaCenterCopy } from './data/media'
 import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
+import { trustCenterCopy } from './data/trust'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -111,6 +112,8 @@ const getMediaPath = (language: Language) =>
   language === 'en' ? '/media' : `/${language}/media`
 
 const getFaqPath = (language: Language) => (language === 'en' ? '/faq' : `/${language}/faq`)
+
+const getTrustPath = (language: Language) => (language === 'en' ? '/trust' : `/${language}/trust`)
 
 const getPartnersPath = (language: Language) => (language === 'en' ? '/partners' : `/${language}/partners`)
 
@@ -320,6 +323,7 @@ const navCopy: Record<
     team: string
     resources: string
     media: string
+    trust: string
     faq: string
     blog: string
     partners: string
@@ -342,6 +346,7 @@ const navCopy: Record<
     team: 'Team',
     resources: 'Resources',
     media: 'Media',
+    trust: 'Trust center',
     faq: 'FAQ',
     blog: 'Blog',
     partners: 'Partners',
@@ -363,6 +368,7 @@ const navCopy: Record<
     team: 'Équipe',
     resources: 'Ressources',
     media: 'Presse',
+    trust: 'Centre de confiance',
     faq: 'FAQ',
     blog: 'Blog',
     partners: 'Partenaires',
@@ -384,6 +390,7 @@ const navCopy: Record<
     team: 'Equipo',
     resources: 'Recursos',
     media: 'Prensa',
+    trust: 'Centro de confianza',
     faq: 'FAQ',
     blog: 'Blog',
     partners: 'Partners',
@@ -2918,6 +2925,152 @@ const TeamPage = () => {
   )
 }
 
+const TrustCenterPage = () => {
+  const language = useCurrentLanguage()
+  const copy = trustCenterCopy[language]
+
+  return (
+    <article className="trust-page">
+      <header className="trust-hero">
+        <div className="trust-hero__copy">
+          <p className="trust-hero__kicker">{copy.hero.kicker}</p>
+          <h1>{copy.hero.title}</h1>
+          <p className="trust-hero__subtitle">{copy.hero.subtitle}</p>
+          <p>{copy.hero.body}</p>
+          <div className="trust-hero__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            <Link className="button tertiary" to={getResourcesPath(language)}>
+              {copy.hero.secondaryCta}
+            </Link>
+          </div>
+          <ul className="trust-hero__highlights">
+            {copy.highlights.map((item, index) => (
+              <li key={item} data-index={index}>
+                <span aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="trust-hero__visual" aria-hidden="true">
+          <span className="trust-hero__halo" />
+          <GrowthSpark variant="light" size="lg" className="trust-hero__spark" />
+        </div>
+      </header>
+
+      <MomentumTicker variant="light" />
+
+      <section className="trust-signals" aria-labelledby="trust-signals-heading">
+        <div className="trust-section__header">
+          <h2 id="trust-signals-heading">{copy.signalsTitle}</h2>
+        </div>
+        <div className="trust-signals__grid">
+          {copy.signals.map((signal, index) => (
+            <article key={signal.label} className="trust-signal" data-index={index}>
+              <span className="trust-signal__value">{signal.value}</span>
+              <h3>{signal.label}</h3>
+              <p>{signal.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="trust-pillars" aria-labelledby="trust-pillars-heading">
+        <div className="trust-section__header">
+          <div>
+            <h2 id="trust-pillars-heading">{copy.pillarsTitle}</h2>
+            <p>{copy.pillarsSubtitle}</p>
+          </div>
+        </div>
+        <div className="trust-pillars__grid">
+          {copy.pillars.map((pillar, index) => (
+            <article key={pillar.id} className="trust-pillar" data-index={index}>
+              <p className="trust-pillar__eyebrow">{pillar.eyebrow}</p>
+              <h3>{pillar.title}</h3>
+              <p className="trust-pillar__description">{pillar.description}</p>
+              <ul>
+                {pillar.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+              <span className="trust-pillar__glow" aria-hidden="true" />
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="trust-frameworks" aria-labelledby="trust-frameworks-heading">
+        <div className="trust-section__header">
+          <div>
+            <h2 id="trust-frameworks-heading">{copy.frameworksTitle}</h2>
+            <p>{copy.frameworksSubtitle}</p>
+          </div>
+        </div>
+        <div className="trust-frameworks__list">
+          {copy.frameworks.map((framework, index) => (
+            <article key={framework.id} className="trust-framework" data-index={index}>
+              <div className="trust-framework__heading">
+                <h3>{framework.title}</h3>
+                <p>{framework.summary}</p>
+              </div>
+              <div className="trust-framework__meta">
+                <p>{framework.certification}</p>
+                <p>{framework.renewal}</p>
+              </div>
+              <span className="trust-framework__spark" aria-hidden="true">
+                <GrowthSpark variant={index % 2 === 0 ? 'light' : 'dark'} size="sm" />
+              </span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="trust-streams" aria-labelledby="trust-streams-heading">
+        <div className="trust-section__header">
+          <div>
+            <h2 id="trust-streams-heading">{copy.streamsTitle}</h2>
+            <p>{copy.streamsSubtitle}</p>
+          </div>
+        </div>
+        <div className="trust-streams__grid">
+          {copy.streams.map((stream, index) => (
+            <article key={stream.id} className="trust-stream" data-index={index}>
+              <header>
+                <p className="trust-stream__eyebrow">{index + 1}</p>
+                <h3>{stream.title}</h3>
+                <p>{stream.description}</p>
+              </header>
+              <ul>
+                {stream.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="trust-contact" aria-labelledby="trust-contact-heading">
+        <div className="trust-contact__copy">
+          <h2 id="trust-contact-heading">{copy.contact.title}</h2>
+          <p>{copy.contact.subtitle}</p>
+          <p className="trust-contact__phone">{copy.contact.phone}</p>
+          <p className="trust-contact__hours">{copy.contact.hours}</p>
+        </div>
+        <div className="trust-contact__actions">
+          {copy.contact.actions.map((action) => (
+            <a key={action.label} className="button secondary" href={action.href}>
+              {action.label}
+            </a>
+          ))}
+        </div>
+      </section>
+    </article>
+  )
+}
+
 const CaseStudiesPage = () => {
   const language = useCurrentLanguage()
   const copy = caseStudiesCopy[language]
@@ -4968,6 +5121,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
       { label: copy.resources, href: getResourcesPath(currentLanguage) },
       { label: copy.media, href: getMediaPath(currentLanguage) },
+      { label: copy.trust, href: getTrustPath(currentLanguage) },
       { label: copy.team, href: getTeamPath(currentLanguage) },
       { label: copy.partners, href: getPartnersPath(currentLanguage) },
       { label: copy.faq, href: getFaqPath(currentLanguage) },
@@ -5269,6 +5423,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onClick={handleCloseMobile}
               >
                 {copy.media}
+              </NavLink>
+              <NavLink
+                to={getTrustPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
+                {copy.trust}
               </NavLink>
               <NavLink
                 to={getTeamPath(currentLanguage)}
@@ -5800,6 +5961,7 @@ const footerCopy: Record<
     team: string
     resources: string
     media: string
+    trust: string
     faq: string
     partners: string
     blog: string
@@ -5834,6 +5996,7 @@ const footerCopy: Record<
     team: 'Team',
     resources: 'Resources',
     media: 'Media',
+    trust: 'Trust center',
     faq: 'FAQ',
     partners: 'Partners',
     blog: 'Blog',
@@ -5868,6 +6031,7 @@ const footerCopy: Record<
     team: 'Équipe',
     resources: 'Ressources',
     media: 'Presse',
+    trust: 'Centre de confiance',
     faq: 'FAQ',
     partners: 'Partenaires',
     blog: 'Blog',
@@ -5901,6 +6065,7 @@ const footerCopy: Record<
     team: 'Equipo',
     resources: 'Recursos',
     media: 'Prensa',
+    trust: 'Centro de confianza',
     faq: 'FAQ',
     partners: 'Partners',
     blog: 'Blog',
@@ -6069,6 +6234,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
     { to: getCaseStudiesPath(currentLanguage), label: copy.caseStudies },
     { to: getResourcesPath(currentLanguage), label: copy.resources },
     { to: getMediaPath(currentLanguage), label: copy.media },
+    { to: getTrustPath(currentLanguage), label: copy.trust },
     { to: getTeamPath(currentLanguage), label: copy.team },
     { to: getPartnersPath(currentLanguage), label: copy.partners },
     { to: getFaqPath(currentLanguage), label: copy.faq },
@@ -6210,6 +6376,7 @@ function App() {
         <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="faq" element={<FaqPage />} />
         <Route path="media" element={<MediaPage />} />
+        <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
@@ -6226,6 +6393,7 @@ function App() {
             <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
             <Route path={`${language}/faq`} element={<FaqPage />} />
             <Route path={`${language}/media`} element={<MediaPage />} />
+            <Route path={`${language}/trust`} element={<TrustCenterPage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
             <Route path={`${language}/join`} element={<JoinPage />} />
