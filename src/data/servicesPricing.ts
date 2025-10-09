@@ -41,6 +41,24 @@ export type Testimonial = {
   role: string
 }
 
+export type ComparisonRow = {
+  label: string
+  traceremove: string
+  traditional: string
+}
+
+export type Deliverable = {
+  title: string
+  description: string
+  cadence: string
+}
+
+export type SupportChannel = {
+  name: string
+  availability: string
+  description: string
+}
+
 export type ServicesPricingCopy = {
   hero: {
     eyebrow: string
@@ -66,10 +84,22 @@ export type ServicesPricingCopy = {
     tiers: PricingTier[]
     note: string
   }
+  comparison: {
+    title: string
+    subtitle: string
+    criteriaLabel: string
+    columns: { traceremove: string; traditional: string }
+    rows: ComparisonRow[]
+  }
   addOns: {
     title: string
     subtitle: string
     items: AddOn[]
+  }
+  deliverables: {
+    title: string
+    subtitle: string
+    items: Deliverable[]
   }
   workflow: {
     title: string
@@ -81,6 +111,11 @@ export type ServicesPricingCopy = {
     subtitle: string
     metrics: Metric[]
     testimonials: Testimonial[]
+  }
+  support: {
+    title: string
+    subtitle: string
+    channels: SupportChannel[]
   }
   faqs: {
     title: string
@@ -205,6 +240,43 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       ],
       note: 'Need a shorter engagement or in-house enablement? We scope project intensives starting at $12,000.',
     },
+    comparison: {
+      title: 'Why teams switch to Traceremove',
+      subtitle: 'A quick snapshot of how our operator-led pod differs from traditional agencies.',
+      criteriaLabel: 'Decision lens',
+      columns: {
+        traceremove: 'Traceremove operator pod',
+        traditional: 'Traditional agency model',
+      },
+      rows: [
+        {
+          label: 'Leadership access',
+          traceremove:
+            'Founder & CEO Artur Ziganshin drives every diagnostic, playbook review, and crisis huddle with the core team.',
+          traditional:
+            'Layers of account managers filter insights before they reach senior operators, slowing decisions.',
+        },
+        {
+          label: 'Speed to intervention',
+          traceremove:
+            '60-minute hotline backed by multilingual analysts and legal partners who can neutralize threats around the clock.',
+          traditional:
+            'Ticket queues and timezone gaps delay takedowns and leave fake reviews or spoofed domains active for days.',
+        },
+        {
+          label: 'Measurement & motion',
+          traceremove:
+            'Unified dashboards with growth, brand safety, and revenue metrics plus motion design recaps for stakeholders.',
+          traditional:
+            'Fragmented spreadsheets with monthly reporting that fails to capture live sentiment or opportunity swings.',
+        },
+        {
+          label: 'Language coverage',
+          traceremove: 'English, French, and Spanish specialists embedded in every pod to mirror your markets.',
+          traditional: 'External translators bolt on after the fact, diluting nuance and delaying launch.',
+        },
+      ],
+    },
     addOns: {
       title: 'Add-on accelerators',
       subtitle: 'Layer specialist tracks on top of your base plan whenever you need extra lift.',
@@ -238,6 +310,32 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'Speaker bureau outreach plus media training sessions.',
             'Performance dashboard showing reach, sentiment, and sourced pipeline.',
           ],
+        },
+      ],
+    },
+    deliverables: {
+      title: 'What ships each quarter',
+      subtitle: 'Every scope is mapped to tangible, reviewable artefacts so you always see progress.',
+      items: [
+        {
+          title: 'Threat intelligence board',
+          description: 'Live risk register, takedown history, and decision log maintained in shared workspaces.',
+          cadence: 'Updated daily',
+        },
+        {
+          title: 'Growth experiment releases',
+          description: 'New landing pages, nurture flows, paid assets, and motion graphics ready for launch.',
+          cadence: '2-6 drops per month',
+        },
+        {
+          title: 'Executive narrative kit',
+          description: 'Narrative memos, leadership talking points, and social scripts localized per market.',
+          cadence: 'Monthly package',
+        },
+        {
+          title: 'Revenue & sentiment pulse',
+          description: 'KPI dashboard with commentary, forecast adjustments, and recommended next bets.',
+          cadence: 'Bi-weekly',
         },
       ],
     },
@@ -303,6 +401,27 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'The team orchestrated legal, product, and marketing stakeholders across three countries without slowing delivery—our board now sees weekly progress pulses.',
           author: 'Luis Méndez',
           role: 'Chief Communications Officer, Global retail brand',
+        },
+      ],
+    },
+    support: {
+      title: 'Support that never powers down',
+      subtitle: 'Direct access to the humans doing the work, not a generic help desk.',
+      channels: [
+        {
+          name: 'Critical escalation hotline',
+          availability: '24/7 · English / Français / Español',
+          description: 'Immediate access to Artur Ziganshin and the response unit for domain spoofing, data leaks, or viral crises.',
+        },
+        {
+          name: 'Traceremove Command Center',
+          availability: 'Weekdays 8:00–22:00 local',
+          description: 'Shared Notion + Slack hub with experiment boards, takedown trackers, and annotated motion updates.',
+        },
+        {
+          name: 'Executive office hours',
+          availability: 'Weekly 45-minute session',
+          description: 'Leadership-only forum to review momentum, unblock approvals, and align global stakeholders.',
         },
       ],
     },
@@ -451,6 +570,43 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       note:
         'Besoin d’un sprint court ou d’enablement interne ? Nous concevons des intensifs à partir de 12 000 $.',
     },
+    comparison: {
+      title: 'Pourquoi les équipes passent chez Traceremove',
+      subtitle: 'Un aperçu de ce qui différencie notre escouade opérateurs d’une agence traditionnelle.',
+      criteriaLabel: 'Angle de décision',
+      columns: {
+        traceremove: 'Pod opérateurs Traceremove',
+        traditional: 'Modèle agence traditionnel',
+      },
+      rows: [
+        {
+          label: 'Accès à la direction',
+          traceremove:
+            'Le fondateur & CEO Artur Ziganshin anime chaque diagnostic, revue de playbook et cellule de crise avec l’équipe cœur.',
+          traditional:
+            'Des couches de chefs de projet filtrent l’information avant qu’elle n’atteigne les décideurs, ce qui ralentit tout.',
+        },
+        {
+          label: 'Vitesse d’intervention',
+          traceremove:
+            'Hotline 60 minutes appuyée par des analystes multilingues et des partenaires juridiques mobilisables à toute heure.',
+          traditional:
+            'Files d’attente et décalages horaires retardent les retraits et laissent des faux avis ou domaines frauduleux actifs plusieurs jours.',
+        },
+        {
+          label: 'Mesure & motion design',
+          traceremove:
+            'Dashboards unifiés growth, brand safety et revenu avec comptes rendus animés pour les parties prenantes.',
+          traditional:
+            'Tableurs fragmentés et reporting mensuel qui ne capte ni le sentiment temps réel ni les opportunités.',
+        },
+        {
+          label: 'Couverture linguistique',
+          traceremove: 'Spécialistes anglais, français et espagnol intégrés à chaque pod pour refléter vos marchés.',
+          traditional: 'Traductions externalisées a posteriori, sans nuance et avec des retards de mise en ligne.',
+        },
+      ],
+    },
     addOns: {
       title: 'Accélérateurs additionnels',
       subtitle: 'Ajoutez des tracks spécialisés à votre plan de base lorsque vous avez besoin d’un boost.',
@@ -487,6 +643,32 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'Prospection speakers + sessions de media training.',
             'Dashboard performance couvrant reach, sentiment et pipeline généré.',
           ],
+        },
+      ],
+    },
+    deliverables: {
+      title: 'Livrables par trimestre',
+      subtitle: 'Chaque périmètre est relié à des artefacts concrets et vérifiables pour matérialiser l’avancement.',
+      items: [
+        {
+          title: 'Tableau de bord de veille',
+          description: 'Registre des risques, historique des retraits et journal de décision partagé en continu.',
+          cadence: 'Mise à jour quotidienne',
+        },
+        {
+          title: 'Lancements d’expériences growth',
+          description: 'Landing pages, séquences nurture, assets paid et animations motion prêts à activer.',
+          cadence: '2 à 6 déploiements par mois',
+        },
+        {
+          title: 'Kit narratif exécutif',
+          description: 'Memos narratifs, éléments de langage dirigeants et scripts sociaux localisés par marché.',
+          cadence: 'Package mensuel',
+        },
+        {
+          title: 'Pulse revenu & sentiment',
+          description: 'Dashboard KPI avec commentaires, ajustements de forecast et prochaines actions recommandées.',
+          cadence: 'Bi-mensuel',
         },
       ],
     },
@@ -556,6 +738,27 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'L’équipe a orchestré juridique, produit et marketing sur trois pays sans ralentir la livraison — notre board reçoit désormais des pulses hebdomadaires.',
           author: 'Luis Méndez',
           role: 'Directeur communication, marque retail globale',
+        },
+      ],
+    },
+    support: {
+      title: 'Un support qui ne dort jamais',
+      subtitle: 'Accès direct aux opérateurs, jamais à un help desk générique.',
+      channels: [
+        {
+          name: 'Hotline d’escalade critique',
+          availability: '24/7 · Français / English / Español',
+          description: 'Accès immédiat à Artur Ziganshin et à l’unité de réponse pour usurpation de domaine, fuite de données ou crise virale.',
+        },
+        {
+          name: 'Command Center Traceremove',
+          availability: 'Du lundi au vendredi · 8h00–22h00',
+          description: 'Hub Notion + Slack partagé avec boards d’expériences, suivis de retraits et updates animés.',
+        },
+        {
+          name: 'Office hours exécutifs',
+          availability: 'Session hebdomadaire de 45 minutes',
+          description: 'Espace dirigeants pour aligner le momentum, lever les blocages et coordonner les parties prenantes globales.',
         },
       ],
     },
@@ -704,6 +907,43 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       note:
         '¿Prefieres un sprint corto o enablement interno? Diseñamos intensivos desde 12 000 $.',
     },
+    comparison: {
+      title: 'Por qué los equipos se cambian a Traceremove',
+      subtitle: 'Una mirada rápida a cómo nuestro pod de operadores supera a una agencia tradicional.',
+      criteriaLabel: 'Criterio clave',
+      columns: {
+        traceremove: 'Pod operador Traceremove',
+        traditional: 'Agencia tradicional',
+      },
+      rows: [
+        {
+          label: 'Acceso al liderazgo',
+          traceremove:
+            'El fundador y CEO Artur Ziganshin dirige cada diagnóstico, revisión de playbooks y war room junto al equipo central.',
+          traditional:
+            'Capas de accounts filtran la información antes de llegar a los decisores senior, lo que frena las decisiones.',
+        },
+        {
+          label: 'Velocidad de intervención',
+          traceremove:
+            'Hotline de 60 minutos respaldada por analistas multilingües y socios legales capaces de neutralizar amenazas 24/7.',
+          traditional:
+            'Filas de tickets y diferencias horarias retrasan los retiros y dejan activos los reviews falsos o dominios clonados durante días.',
+        },
+        {
+          label: 'Medición y motion',
+          traceremove:
+            'Dashboards unificados con métricas de growth, seguridad de marca e ingresos más recaps animados para stakeholders.',
+          traditional:
+            'Hojas de cálculo fragmentadas con reportes mensuales que no capturan sentimiento en vivo ni cambios de oportunidad.',
+        },
+        {
+          label: 'Cobertura de idiomas',
+          traceremove: 'Especialistas en inglés, francés y español integrados en cada pod para reflejar tus mercados.',
+          traditional: 'Traductores externos se suman al final, perdiendo matices y retrasando el lanzamiento.',
+        },
+      ],
+    },
     addOns: {
       title: 'Aceleradores opcionales',
       subtitle: 'Activa tracks especializados sobre tu plan base cuando necesites impulso extra.',
@@ -740,6 +980,32 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'Gestión de oportunidades de speaker y sesiones de media training.',
             'Dashboard de performance con alcance, sentimiento y pipeline generado.',
           ],
+        },
+      ],
+    },
+    deliverables: {
+      title: 'Entregables por trimestre',
+      subtitle: 'Cada alcance se conecta a artefactos tangibles para que veas el avance sin dudas.',
+      items: [
+        {
+          title: 'Tablero de inteligencia de riesgos',
+          description: 'Registro vivo de amenazas, historial de retiros y bitácora de decisiones en espacios compartidos.',
+          cadence: 'Actualizado a diario',
+        },
+        {
+          title: 'Lanzamientos de experimentos de growth',
+          description: 'Landing pages, flujos nurture, piezas pagas y gráficos motion listos para desplegar.',
+          cadence: '2 a 6 entregas mensuales',
+        },
+        {
+          title: 'Kit narrativo ejecutivo',
+          description: 'Memorandos, talking points de liderazgo y guiones sociales localizados por mercado.',
+          cadence: 'Entrega mensual',
+        },
+        {
+          title: 'Pulso de ingresos y sentimiento',
+          description: 'Dashboard de KPI con comentarios, ajustes de forecast y próximas apuestas recomendadas.',
+          cadence: 'Cada dos semanas',
         },
       ],
     },
@@ -809,6 +1075,27 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'El equipo coordinó legal, producto y marketing en tres países sin frenar la entrega; ahora nuestro directorio recibe pulsos semanales.',
           author: 'Luis Méndez',
           role: 'Chief Communications Officer, marca retail global',
+        },
+      ],
+    },
+    support: {
+      title: 'Soporte que nunca se apaga',
+      subtitle: 'Acceso directo al equipo operador, sin intermediarios.',
+      channels: [
+        {
+          name: 'Hotline de escalación crítica',
+          availability: '24/7 · English / Français / Español',
+          description: 'Acceso inmediato a Artur Ziganshin y a la unidad de respuesta ante dominios clonados, filtraciones o crisis virales.',
+        },
+        {
+          name: 'Traceremove Command Center',
+          availability: 'Lunes a viernes · 8:00–22:00 local',
+          description: 'Hub compartido en Notion + Slack con tableros de experimentos, seguimiento de retiros y actualizaciones animadas.',
+        },
+        {
+          name: 'Office hours ejecutivas',
+          availability: 'Sesión semanal de 45 minutos',
+          description: 'Espacio para liderazgo donde revisamos momentum, desbloqueamos aprobaciones y alineamos a los stakeholders globales.',
         },
       ],
     },

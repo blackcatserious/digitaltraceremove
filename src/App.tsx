@@ -2823,6 +2823,34 @@ const ServicesPricingPage = () => {
         <p className="services-pricing__footnote">{copy.pricing.note}</p>
       </section>
 
+      <section className="services-pricing__comparison" aria-labelledby="services-pricing-comparison">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-comparison">{copy.comparison.title}</h2>
+          <p>{copy.comparison.subtitle}</p>
+        </div>
+        <div className="services-pricing__comparison-table" role="table">
+          <div className="services-pricing__comparison-head" role="row">
+            <span role="columnheader" className="services-pricing__comparison-label">
+              {copy.comparison.criteriaLabel}
+            </span>
+            <span role="columnheader">{copy.comparison.columns.traceremove}</span>
+            <span role="columnheader">{copy.comparison.columns.traditional}</span>
+          </div>
+          {copy.comparison.rows.map((row, index) => (
+            <div
+              key={row.label}
+              className="services-pricing__comparison-row"
+              role="row"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <span role="rowheader">{row.label}</span>
+              <span>{row.traceremove}</span>
+              <span>{row.traditional}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__addons" aria-labelledby="services-pricing-addons">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-addons">{copy.addOns.title}</h2>
@@ -2845,6 +2873,28 @@ const ServicesPricingPage = () => {
                   <li key={benefit}>{benefit}</li>
                 ))}
               </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="services-pricing__deliverables" aria-labelledby="services-pricing-deliverables">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-deliverables">{copy.deliverables.title}</h2>
+          <p>{copy.deliverables.subtitle}</p>
+        </div>
+        <div className="services-pricing__deliverable-grid">
+          {copy.deliverables.items.map((item, index) => (
+            <article
+              key={item.title}
+              className="services-pricing__deliverable-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{item.title}</h3>
+                <span>{item.cadence}</span>
+              </header>
+              <p>{item.description}</p>
             </article>
           ))}
         </div>
@@ -2904,6 +2954,28 @@ const ServicesPricingPage = () => {
               </figure>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="services-pricing__support" aria-labelledby="services-pricing-support">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-support">{copy.support.title}</h2>
+          <p>{copy.support.subtitle}</p>
+        </div>
+        <div className="services-pricing__support-grid">
+          {copy.support.channels.map((channel, index) => (
+            <article
+              key={channel.name}
+              className="services-pricing__support-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{channel.name}</h3>
+                <span>{channel.availability}</span>
+              </header>
+              <p>{channel.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
