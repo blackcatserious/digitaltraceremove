@@ -1,0 +1,843 @@
+import { type Language } from './pages'
+
+export type PricingTier = {
+  id: string
+  name: string
+  price: string
+  cadence: string
+  description: string
+  highlight: string
+  features: string[]
+}
+
+export type ServicePillar = {
+  title: string
+  description: string
+  bullets: string[]
+}
+
+export type AddOn = {
+  name: string
+  price: string
+  description: string
+  benefits: string[]
+}
+
+export type WorkflowStep = {
+  title: string
+  duration: string
+  description: string
+  outputs: string[]
+}
+
+export type Metric = {
+  label: string
+  value: string
+}
+
+export type Testimonial = {
+  quote: string
+  author: string
+  role: string
+}
+
+export type ServicesPricingCopy = {
+  hero: {
+    eyebrow: string
+    heading: string
+    body: string
+    primaryCta: string
+    secondaryCta: string
+    note: string
+  }
+  promise: {
+    title: string
+    paragraphs: string[]
+    bullets: string[]
+  }
+  pillars: {
+    title: string
+    subtitle: string
+    items: ServicePillar[]
+  }
+  pricing: {
+    title: string
+    subtitle: string
+    tiers: PricingTier[]
+    note: string
+  }
+  addOns: {
+    title: string
+    subtitle: string
+    items: AddOn[]
+  }
+  workflow: {
+    title: string
+    subtitle: string
+    steps: WorkflowStep[]
+  }
+  assurance: {
+    title: string
+    subtitle: string
+    metrics: Metric[]
+    testimonials: Testimonial[]
+  }
+  faqs: {
+    title: string
+    items: { question: string; answer: string }[]
+  }
+  cta: {
+    title: string
+    body: string
+    primary: string
+    secondary: string
+  }
+}
+
+export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
+  en: {
+    hero: {
+      eyebrow: 'Services & Pricing',
+      heading: 'Choose the squad that protects your brand while shipping growth.',
+      body:
+        'Every engagement is led by Founder & CEO Artur Ziganshin with a multilingual core team covering reputation recovery, demand generation, and product storytelling. Use the packages below to benchmark investment, then we tailor the scope to your velocity.',
+      primaryCta: 'Start a custom scope',
+      secondaryCta: 'Download pricing PDF',
+      note: 'Average ramp time: 10 business days from kickoff.',
+    },
+    promise: {
+      title: 'What you unlock with Traceremove',
+      paragraphs: [
+        'We operate as an extension of your leadership team, pairing growth strategists, security engineers, and creative directors who already collaborate across English, French, and Spanish markets.',
+        'Every plan combines motion-rich storytelling, performance experimentation, and rapid incident response so your reputation is defended while pipeline keeps scaling.',
+      ],
+      bullets: [
+        'Founder-led diagnostics with direct access to Artur Ziganshin throughout the engagement.',
+        'Weekly performance rooms that surface insights, blockers, and next experiments in one animated command center.',
+        'Clear measurement frameworks with Looker Studio dashboards, guardrail alerts, and executive-ready recaps.',
+      ],
+    },
+    pillars: {
+      title: 'Modular service pillars',
+      subtitle: 'Blend the pods you need—each plan includes these building blocks.',
+      items: [
+        {
+          title: 'Brand defense & reputation control',
+          description:
+            'Monitoring, takedowns, and community management that keep fake reviews, phishing domains, and negative narratives from compounding.',
+          bullets: [
+            '24/7 threat monitoring across search, marketplaces, social, and messaging apps.',
+            'Escalation playbooks with registrar, platform, and legal partner coordination.',
+            'Review authentication systems plus proactive community engagement scripts.',
+          ],
+        },
+        {
+          title: 'Growth operations & experimentation',
+          description:
+            'Lifecycle campaigns, conversion experiments, and paid media programs that are instrumented for speed without sacrificing governance.',
+          bullets: [
+            'Full-funnel diagnostics covering acquisition, retention, and expansion flows.',
+            'Experiment backlog prioritisation with motion dashboards and win-loss retros.',
+            'Attribution modelling, incrementality testing, and revenue reporting cadences.',
+          ],
+        },
+        {
+          title: 'Creative systems & experience design',
+          description:
+            'Narratives, design systems, and interaction patterns that move across channels while reflecting your brand’s protected positioning.',
+          bullets: [
+            'Modular storytelling frameworks with localized messaging kits and hero visuals.',
+            'Component libraries for landing pages, sales enablement, and product education.',
+            'Motion design guidelines plus asset production for launch, social, and PR moments.',
+          ],
+        },
+      ],
+    },
+    pricing: {
+      title: 'Pricing calibrated to momentum',
+      subtitle: 'Select a plan as a starting point; we finalize scope after a collaborative diagnostic.',
+      tiers: [
+        {
+          id: 'launch',
+          name: 'Launch Safeguard',
+          price: '$6,800 / month',
+          cadence: '3-month minimum',
+          description: 'Rapid response squad to clean risk, relaunch trust signals, and prime growth experiments.',
+          highlight: 'Best for teams entering a new market or recovering from reputation shocks.',
+          features: [
+            'Daily monitoring + takedown execution across three priority channels.',
+            'Two motion-enabled campaign launches per month with creative + analytics support.',
+            'Weekly performance room with growth, brand, and product stakeholders.',
+            'Foundational dashboard suite with sentiment, traffic, and lead indicators.',
+            'Crisis hotline with 60-minute response commitment.',
+          ],
+        },
+        {
+          id: 'scale',
+          name: 'Scale Acceleration',
+          price: '$11,500 / month',
+          cadence: '6-month partnership',
+          description: 'Integrated pod aligning marketing, product, and CX to scale defensible demand.',
+          highlight: 'Ideal for Series A-C companies balancing aggressive growth with brand protection.',
+          features: [
+            'Always-on monitoring + legal coordination across five priority territories.',
+            'Four experiment launches per month with CRO, lifecycle, and paid media squads.',
+            'Creative system refresh including hero visuals, component library, and playbooks.',
+            'Advanced measurement stack with attribution, MMM, and executive scorecards.',
+            'Quarterly stakeholder workshop with roadmap realignment and enablement.',
+          ],
+        },
+        {
+          id: 'enterprise',
+          name: 'Enterprise Guardian',
+          price: '$18,500 / month',
+          cadence: '12-month transformation',
+          description: 'Multi-market transformation team embedding governance, experimentation, and executive reporting.',
+          highlight: 'Designed for global brands with complex risk, compliance, and revenue targets.',
+          features: [
+            'Global monitoring fabric across 12+ channels with automated intervention triggers.',
+            'Dedicated creative newsroom producing weekly assets with localization + motion.',
+            'Full RevOps alignment covering sales enablement, partner activation, and CS plays.',
+            'Scenario planning, crisis simulation, and board-ready communications support.',
+            'Embedded analysts modelling revenue impact and forecasting pipeline resilience.',
+          ],
+        },
+      ],
+      note: 'Need a shorter engagement or in-house enablement? We scope project intensives starting at $12,000.',
+    },
+    addOns: {
+      title: 'Add-on accelerators',
+      subtitle: 'Layer specialist tracks on top of your base plan whenever you need extra lift.',
+      items: [
+        {
+          name: 'Crisis simulation lab',
+          price: '$4,200',
+          description: 'Tabletop exercise that stress-tests your brand protection rituals with live scoring.',
+          benefits: [
+            'Custom attack scenarios mapped to your industry and tech stack.',
+            'Cross-functional response drills with debrief and updated playbooks.',
+            'Executive summary with prioritized remediation roadmap.',
+          ],
+        },
+        {
+          name: 'Paid media firewall',
+          price: '$3,600',
+          description: 'Detection and mitigation of impersonator ads stealing branded demand.',
+          benefits: [
+            '24-hour sweeps across Google, Meta, TikTok, and programmatic exchanges.',
+            'Complaint filing and budget reallocation workflows managed by our team.',
+            'Creative refresh focused on trust, proof, and safety messaging.',
+          ],
+        },
+        {
+          name: 'Executive visibility studio',
+          price: '$2,900',
+          description: 'Thought-leadership engine pairing narrative design with distribution ops.',
+          benefits: [
+            'Monthly ghostwritten articles and LinkedIn motions with localized variations.',
+            'Speaker bureau outreach plus media training sessions.',
+            'Performance dashboard showing reach, sentiment, and sourced pipeline.',
+          ],
+        },
+      ],
+    },
+    workflow: {
+      title: 'How our programs run',
+      subtitle: 'From kickoff to recurring rituals, every phase is orchestrated with transparency.',
+      steps: [
+        {
+          title: 'Immersion & risk sweep',
+          duration: 'Week 1',
+          description: 'Stakeholder interviews, data access, and threat inventory to map the current state.',
+          outputs: [
+            'Reputation & growth diagnostic with prioritized risks.',
+            'Access checklist + instrumentation readiness score.',
+          ],
+        },
+        {
+          title: 'Momentum blueprint',
+          duration: 'Weeks 2-3',
+          description: 'Experience mapping, hypothesis design, and pricing validation with your leadership.',
+          outputs: [
+            '90-day roadmap with experiments, safeguards, and owners.',
+            'Measurement framework plus executive communications plan.',
+          ],
+        },
+        {
+          title: 'Activation sprints',
+          duration: 'Weeks 4-12',
+          description: 'Cross-functional pods launch campaigns, harden reputation layers, and automate reporting.',
+          outputs: [
+            'Weekly releases across creative, lifecycle, and product surfaces.',
+            'Looker Studio dashboard suite with live commentary.',
+          ],
+        },
+        {
+          title: 'Scale & enablement',
+          duration: 'Ongoing',
+          description: 'We embed rituals, train your team, and evolve the roadmap based on signal loops.',
+          outputs: [
+            'Playbooks, templates, and recorded training sessions.',
+            'Quarterly business reviews with executive scorecards.',
+          ],
+        },
+      ],
+    },
+    assurance: {
+      title: 'Evidence & guarantees',
+      subtitle: 'We operate with radical transparency so you see impact in motion.',
+      metrics: [
+        { label: 'Average review recovery window', value: '14 hours' },
+        { label: 'Net-new pipeline influenced', value: '+38% YoY' },
+        { label: 'Markets activated per engagement', value: '3 languages' },
+      ],
+      testimonials: [
+        {
+          quote:
+            'Traceremove cleaned 1,200 fake listings in under two weeks while launching new revenue campaigns that beat our control by 27%.',
+          author: 'Camille Roy',
+          role: 'VP Growth, Fintech scale-up',
+        },
+        {
+          quote:
+            'The team orchestrated legal, product, and marketing stakeholders across three countries without slowing delivery—our board now sees weekly progress pulses.',
+          author: 'Luis Méndez',
+          role: 'Chief Communications Officer, Global retail brand',
+        },
+      ],
+    },
+    faqs: {
+      title: 'Services & pricing FAQs',
+      items: [
+        {
+          question: 'Can we start with a project instead of a retainer?',
+          answer:
+            'Yes. We scope 6- to 8-week intensives focused on remediation or go-to-market acceleration starting at $12,000. Most teams then roll into a retainer once momentum is proven.',
+        },
+        {
+          question: 'How do you collaborate with internal teams?',
+          answer:
+            'We embed inside your existing tools (Slack, Notion, Jira, HubSpot, etc.) and run weekly ceremonies that include your marketing, product, and CX leads. Every deliverable ships with documentation for easy handoff.',
+        },
+        {
+          question: 'Do you work with regulated industries?',
+          answer:
+            'Absolutely. We handle compliance reviews, security requirements, and legal approvals for finance, healthcare, public sector, and marketplace organizations across three languages.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Ready to protect and grow with one squad?',
+      body:
+        'Share your goals and current pressure points. We will return within 24 hours with a tailored agenda and the specialists we recommend embedding with your team.',
+      primary: 'Book a strategy call',
+      secondary: 'Email Artur directly',
+    },
+  },
+  fr: {
+    hero: {
+      eyebrow: 'Services & Tarifs',
+      heading: 'Choisissez le squad qui protège votre marque tout en accélérant la croissance.',
+      body:
+        'Chaque mission est dirigée par le Fondateur & CEO Artur Ziganshin avec une équipe centrale multilingue couvrant réputation, génération de demande et storytelling produit. Utilisez les offres ci-dessous pour cadrer l’investissement, puis nous ajustons le périmètre à votre rythme.',
+      primaryCta: 'Construire un devis sur mesure',
+      secondaryCta: 'Télécharger la grille tarifaire',
+      note: 'Temps moyen de déploiement : 10 jours ouvrés après le kick-off.',
+    },
+    promise: {
+      title: 'Ce que vous débloquez avec Traceremove',
+      paragraphs: [
+        'Nous opérons comme le prolongement de votre comité de direction en alignant stratèges growth, ingénieurs sécurité et directeurs créatifs déjà rodés aux marchés francophone, anglophone et hispanophone.',
+        'Chaque offre combine storytelling animé, expérimentation performance et réponse incident rapide afin que votre réputation soit protégée pendant que le pipeline s’amplifie.',
+      ],
+      bullets: [
+        'Diagnostic piloté par le fondateur avec accès direct à Artur Ziganshin pendant toute la mission.',
+        'Rooms hebdomadaires où insights, blocages et prochaines expérimentations sont synchronisés dans un centre de commande animé.',
+        'Cadres de mesure clairs avec dashboards Looker Studio, alertes de garde-fous et synthèses exécutives.',
+      ],
+    },
+    pillars: {
+      title: 'Piliers de service modulaires',
+      subtitle: 'Assemblez les pods nécessaires — chaque plan inclut ces briques.',
+      items: [
+        {
+          title: 'Défense de marque & contrôle de réputation',
+          description:
+            'Veille, retraits et community management pour éviter que faux avis, domaines frauduleux et narratifs négatifs ne s’amplifient.',
+          bullets: [
+            'Surveillance 24/7 sur moteurs, marketplaces, réseaux sociaux et messageries.',
+            'Playbooks d’escalade avec coordination registraires, plateformes et partenaires juridiques.',
+            'Systèmes d’authentification des avis et scripts d’engagement communautaire proactif.',
+          ],
+        },
+        {
+          title: 'Operations growth & expérimentation',
+          description:
+            'Campagnes lifecycle, tests de conversion et programmes media instrumentés pour la vitesse sans sacrifier la gouvernance.',
+          bullets: [
+            'Diagnostic full funnel couvrant acquisition, rétention et expansion.',
+            'Priorisation du backlog d’expériences avec dashboards animés et retros wins/losses.',
+            'Modélisation d’attribution, tests d’incrémentalité et cadences de reporting revenu.',
+          ],
+        },
+        {
+          title: 'Systèmes créatifs & design d’expérience',
+          description:
+            'Narrations, design systems et interactions cohérentes sur les canaux en respectant votre positionnement protégé.',
+          bullets: [
+            'Cadres narratifs modulaires avec kits de messages localisés et visuels hero.',
+            'Bibliothèques de composants pour landing pages, enablement commercial et éducation produit.',
+            'Guidelines motion design et production d’assets pour lancement, social et RP.',
+          ],
+        },
+      ],
+    },
+    pricing: {
+      title: 'Tarifs calibrés sur le momentum',
+      subtitle: 'Choisissez une offre de base ; nous finalisons le périmètre après un diagnostic collaboratif.',
+      tiers: [
+        {
+          id: 'launch',
+          name: 'Pack Lancement sécurisé',
+          price: '6 800 $ / mois',
+          cadence: 'Engagement minimum de 3 mois',
+          description:
+            'Squad de réponse rapide pour assainir les risques, relancer les signaux de confiance et préparer les expérimentations growth.',
+          highlight:
+            'Parfait pour les équipes qui entrent sur un nouveau marché ou sortent d’une crise de réputation.',
+          features: [
+            'Monitoring quotidien + exécution des retraits sur trois canaux prioritaires.',
+            'Deux lancements de campagne animés par mois avec support créatif et analytics.',
+            'Room performance hebdomadaire avec parties prenantes growth, marque et produit.',
+            'Suite de dashboards fondamentaux : sentiment, trafic et indicateurs leads.',
+            'Hotline crise avec engagement de réponse en 60 minutes.',
+          ],
+        },
+        {
+          id: 'scale',
+          name: 'Pack Accélération scale',
+          price: '11 500 $ / mois',
+          cadence: 'Partenariat de 6 mois',
+          description:
+            'Pod intégré alignant marketing, produit et CX pour scaler une demande défendable.',
+          highlight:
+            'Idéal pour les entreprises Series A-C qui équilibrent croissance agressive et protection de marque.',
+          features: [
+            'Monitoring continu + coordination juridique sur cinq territoires prioritaires.',
+            'Quatre expérimentations mensuelles avec squads CRO, lifecycle et paid media.',
+            'Refonte du système créatif : visuels hero, librairie de composants et playbooks.',
+            'Stack de mesure avancée avec attribution, MMM et scorecards exécutives.',
+            'Atelier trimestriel avec réalignement roadmap et enablement équipes.',
+          ],
+        },
+        {
+          id: 'enterprise',
+          name: 'Pack Guardian entreprise',
+          price: '18 500 $ / mois',
+          cadence: 'Transformation sur 12 mois',
+          description:
+            'Équipe transformation multi-marchés qui embarque gouvernance, expérimentation et reporting exécutif.',
+          highlight:
+            'Pensé pour les marques globales avec enjeux complexes de risque, conformité et revenu.',
+          features: [
+            'Tissu de monitoring mondial sur 12+ canaux avec déclencheurs d’intervention automatisés.',
+            'Newsroom créative dédiée produisant des assets hebdomadaires localisés & motion.',
+            'Alignement RevOps complet : enablement sales, activation partenaires, plans CS.',
+            'Planification de scénarios, simulations de crise et support communication board.',
+            'Analystes embarqués modélisant l’impact revenu et la résilience pipeline.',
+          ],
+        },
+      ],
+      note:
+        'Besoin d’un sprint court ou d’enablement interne ? Nous concevons des intensifs à partir de 12 000 $.',
+    },
+    addOns: {
+      title: 'Accélérateurs additionnels',
+      subtitle: 'Ajoutez des tracks spécialisés à votre plan de base lorsque vous avez besoin d’un boost.',
+      items: [
+        {
+          name: 'Laboratoire de simulation de crise',
+          price: '4 200 $',
+          description:
+            'Exercice tabletop qui éprouve vos rituels de protection de marque avec scoring live.',
+          benefits: [
+            'Scénarios d’attaque sur mesure adaptés à votre industrie et stack tech.',
+            'Drills cross-fonctionnels avec debrief et playbooks mis à jour.',
+            'Synthèse exécutive avec feuille de route de remédiation priorisée.',
+          ],
+        },
+        {
+          name: 'Pare-feu paid media',
+          price: '3 600 $',
+          description:
+            'Détection et mitigation des publicités usurpées qui captent votre demande.',
+          benefits: [
+            'Sweeps 24h sur Google, Meta, TikTok et régies programmatiques.',
+            'Gestion des plaintes et réallocation budgétaire pilotée par notre équipe.',
+            'Refresh créatif axé sur preuves, confiance et messages sécurité.',
+          ],
+        },
+        {
+          name: 'Studio visibilité dirigeants',
+          price: '2 900 $',
+          description:
+            'Moteur de thought leadership combinant design narratif et opérations de diffusion.',
+          benefits: [
+            'Articles ghostwrités mensuels et motions LinkedIn avec variations locales.',
+            'Prospection speakers + sessions de media training.',
+            'Dashboard performance couvrant reach, sentiment et pipeline généré.',
+          ],
+        },
+      ],
+    },
+    workflow: {
+      title: 'Comment se déroulent nos programmes',
+      subtitle: 'Du kick-off aux rituels récurrents, chaque phase est orchestrée avec transparence.',
+      steps: [
+        {
+          title: 'Immersion & sweep des risques',
+          duration: 'Semaine 1',
+          description:
+            'Interviews parties prenantes, accès data et inventaire des menaces pour cartographier l’état actuel.',
+          outputs: [
+            'Diagnostic réputation & growth avec risques priorisés.',
+            'Checklist d’accès + score de préparation instrumentation.',
+          ],
+        },
+        {
+          title: 'Blueprint momentum',
+          duration: 'Semaines 2-3',
+          description:
+            'Mapping d’expérience, design d’hypothèses et validation pricing avec vos dirigeants.',
+          outputs: [
+            'Roadmap 90 jours : expériences, garde-fous et owners.',
+            'Cadre de mesure + plan de communication exécutive.',
+          ],
+        },
+        {
+          title: 'Sprints d’activation',
+          duration: 'Semaines 4-12',
+          description:
+            'Pods cross-fonctionnels lancent campagnes, renforcent la réputation et automatisent le reporting.',
+          outputs: [
+            'Releases hebdomadaires sur créa, lifecycle et surfaces produit.',
+            'Suite Looker Studio avec commentaires live.',
+          ],
+        },
+        {
+          title: 'Scale & enablement',
+          duration: 'En continu',
+          description:
+            'Nous ancrons les rituels, formons vos équipes et faisons évoluer la roadmap selon les signaux.',
+          outputs: [
+            'Playbooks, templates et sessions de formation enregistrées.',
+            'Business reviews trimestrielles avec scorecards exécutives.',
+          ],
+        },
+      ],
+    },
+    assurance: {
+      title: 'Preuves & garanties',
+      subtitle: 'Transparence radicale pour visualiser l’impact en direct.',
+      metrics: [
+        { label: 'Délai moyen de récupération d’avis', value: '14 heures' },
+        { label: 'Pipeline net nouveau influencé', value: '+38 % vs N-1' },
+        { label: 'Marchés activés par mission', value: '3 langues' },
+      ],
+      testimonials: [
+        {
+          quote:
+            'Traceremove a supprimé 1 200 faux listings en moins de deux semaines tout en lançant des campagnes qui ont battu notre contrôle de 27 %.',
+          author: 'Camille Roy',
+          role: 'VP Growth, scale-up fintech',
+        },
+        {
+          quote:
+            'L’équipe a orchestré juridique, produit et marketing sur trois pays sans ralentir la livraison — notre board reçoit désormais des pulses hebdomadaires.',
+          author: 'Luis Méndez',
+          role: 'Directeur communication, marque retail globale',
+        },
+      ],
+    },
+    faqs: {
+      title: 'FAQ services & tarifs',
+      items: [
+        {
+          question: 'Peut-on commencer par un projet plutôt qu’un abonnement ?',
+          answer:
+            'Oui. Nous cadrons des intensifs de 6 à 8 semaines centrés sur la remédiation ou l’accélération go-to-market à partir de 12 000 $. La plupart des équipes basculent ensuite sur un abonnement une fois le momentum validé.',
+        },
+        {
+          question: 'Comment collaborez-vous avec les équipes internes ?',
+          answer:
+            'Nous intégrons vos outils existants (Slack, Notion, Jira, HubSpot…) et animons des cérémonies hebdomadaires avec vos leads marketing, produit et CX. Chaque livrable est documenté pour faciliter le passage de relais.',
+        },
+        {
+          question: 'Travaillez-vous avec des secteurs régulés ?',
+          answer:
+            'Absolument. Nous gérons revues conformité, exigences sécurité et validations légales pour finance, santé, secteur public et marketplaces dans nos trois langues.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Prêts à protéger et accélérer avec un seul squad ?',
+      body:
+        'Partagez vos objectifs et points de pression. Nous revenons sous 24 h avec un agenda personnalisé et les spécialistes à embarquer.',
+      primary: 'Planifier un call stratégique',
+      secondary: 'Écrire directement à Artur',
+    },
+  },
+  es: {
+    hero: {
+      eyebrow: 'Servicios y precios',
+      heading: 'Elige el squad que protege tu marca mientras acelera el crecimiento.',
+      body:
+        'Cada colaboración está liderada por el Fundador y CEO Artur Ziganshin junto a un núcleo senior multilingüe que cubre reputación, generación de demanda y storytelling de producto. Usa los paquetes como referencia y luego ajustamos el alcance a tu velocidad.',
+      primaryCta: 'Solicitar propuesta a medida',
+      secondaryCta: 'Descargar tabla de precios',
+      note: 'Tiempo medio de puesta en marcha: 10 días hábiles desde el kickoff.',
+    },
+    promise: {
+      title: 'Lo que desbloqueas con Traceremove',
+      paragraphs: [
+        'Operamos como extensión de tu dirección, alineando estrategas de growth, ingenieros de seguridad y directores creativos que ya trabajan en mercados en inglés, francés y español.',
+        'Cada plan combina storytelling animado, experimentación de performance y respuesta rápida a incidentes para defender tu reputación mientras el pipeline sigue escalando.',
+      ],
+      bullets: [
+        'Diagnóstico liderado por el fundador con acceso directo a Artur Ziganshin durante toda la colaboración.',
+        'Salas semanales donde insights, bloqueos y próximos experimentos se sincronizan en un centro de mando animado.',
+        'Marcos de medición claros con dashboards en Looker Studio, alertas preventivas y resúmenes ejecutivos.',
+      ],
+    },
+    pillars: {
+      title: 'Pilares de servicio modulares',
+      subtitle: 'Combina los pods que necesitas: cada plan incluye estos bloques.',
+      items: [
+        {
+          title: 'Defensa de marca y control reputacional',
+          description:
+            'Monitoreo, eliminaciones y gestión de comunidad para evitar que reseñas falsas, dominios phishing y narrativas negativas se multipliquen.',
+          bullets: [
+            'Vigilancia 24/7 en buscadores, marketplaces, redes sociales y apps de mensajería.',
+            'Playbooks de escalado con coordinación de registradores, plataformas y aliados legales.',
+            'Sistemas de autenticación de reseñas y guiones de engagement proactivo.',
+          ],
+        },
+        {
+          title: 'Operaciones de growth y experimentación',
+          description:
+            'Campañas lifecycle, experimentos de conversión y programas de paid media instrumentados para la velocidad sin perder gobernanza.',
+          bullets: [
+            'Diagnóstico full funnel que cubre adquisición, retención y expansión.',
+            'Priorización del backlog de experimentos con tableros animados y retros wins/losses.',
+            'Modelos de atribución, pruebas de incrementalidad y cadencias de reporting de ingresos.',
+          ],
+        },
+        {
+          title: 'Sistemas creativos y diseño de experiencia',
+          description:
+            'Narrativas, sistemas de diseño e interacciones que viajan por los canales reflejando tu posicionamiento protegido.',
+          bullets: [
+            'Marcos narrativos modulares con mensajes localizados y visuales hero.',
+            'Bibliotecas de componentes para landing pages, enablement comercial y educación de producto.',
+            'Guías de motion design y producción de assets para lanzamientos, social y PR.',
+          ],
+        },
+      ],
+    },
+    pricing: {
+      title: 'Precios calibrados para el momentum',
+      subtitle: 'Elige un plan como punto de partida; cerramos el alcance tras un diagnóstico conjunto.',
+      tiers: [
+        {
+          id: 'launch',
+          name: 'Escudo de lanzamiento',
+          price: '6 800 $ / mes',
+          cadence: 'Compromiso mínimo de 3 meses',
+          description:
+            'Escuadrón de respuesta rápida para limpiar riesgos, reactivar señales de confianza y preparar experimentos de growth.',
+          highlight:
+            'Ideal para equipos que entran a un nuevo mercado o se recuperan de golpes reputacionales.',
+          features: [
+            'Monitoreo diario + ejecuciones de retirada en tres canales prioritarios.',
+            'Dos lanzamientos de campaña con motion al mes con soporte creativo y analítico.',
+            'Sala de performance semanal con referentes de growth, marca y producto.',
+            'Suite de dashboards base con sentimiento, tráfico e indicadores de leads.',
+            'Línea directa de crisis con respuesta garantizada en 60 minutos.',
+          ],
+        },
+        {
+          id: 'scale',
+          name: 'Aceleración scale',
+          price: '11 500 $ / mes',
+          cadence: 'Alianza de 6 meses',
+          description:
+            'Pod integrado que alinea marketing, producto y CX para escalar demanda defendible.',
+          highlight:
+            'Pensado para compañías Series A-C que equilibran crecimiento agresivo con protección de marca.',
+          features: [
+            'Monitoreo continuo + coordinación legal en cinco territorios prioritarios.',
+            'Cuatro experimentos mensuales con squads de CRO, lifecycle y paid media.',
+            'Actualización del sistema creativo con visuales hero, librería de componentes y playbooks.',
+            'Stack de medición avanzado con atribución, MMM y scorecards ejecutivas.',
+            'Workshop trimestral con realineamiento de roadmap y enablement.',
+          ],
+        },
+        {
+          id: 'enterprise',
+          name: 'Guardia enterprise',
+          price: '18 500 $ / mes',
+          cadence: 'Transformación de 12 meses',
+          description:
+            'Equipo de transformación multi-mercado que integra gobernanza, experimentación y reporting ejecutivo.',
+          highlight:
+            'Diseñado para marcas globales con objetivos complejos de riesgo, cumplimiento e ingresos.',
+          features: [
+            'Red de monitoreo global en 12+ canales con disparadores de intervención automatizados.',
+            'Sala creativa dedicada que produce assets semanales con localización y motion.',
+            'Alineación RevOps total: enablement comercial, activación de partners y plays de CS.',
+            'Planificación de escenarios, simulaciones de crisis y soporte de comunicaciones al directorio.',
+            'Analistas embebidos modelando impacto en ingresos y resiliencia del pipeline.',
+          ],
+        },
+      ],
+      note:
+        '¿Prefieres un sprint corto o enablement interno? Diseñamos intensivos desde 12 000 $.',
+    },
+    addOns: {
+      title: 'Aceleradores opcionales',
+      subtitle: 'Activa tracks especializados sobre tu plan base cuando necesites impulso extra.',
+      items: [
+        {
+          name: 'Laboratorio de simulación de crisis',
+          price: '4 200 $',
+          description:
+            'Ejercicio tabletop que pone a prueba tus rituales de protección de marca con scoring en vivo.',
+          benefits: [
+            'Escenarios de ataque personalizados según tu industria y stack tecnológico.',
+            'Drills multifuncionales con debrief y playbooks actualizados.',
+            'Resumen ejecutivo con hoja de ruta priorizada de remediación.',
+          ],
+        },
+        {
+          name: 'Cortafuegos de paid media',
+          price: '3 600 $',
+          description:
+            'Detección y mitigación de anuncios impostores que capturan tu demanda de marca.',
+          benefits: [
+            'Barridos cada 24 h en Google, Meta, TikTok y redes programáticas.',
+            'Gestión de reclamaciones y redistribución de presupuesto a cargo del equipo.',
+            'Actualización creativa enfocada en confianza, prueba social y seguridad.',
+          ],
+        },
+        {
+          name: 'Estudio de visibilidad ejecutiva',
+          price: '2 900 $',
+          description:
+            'Motor de thought leadership que combina narrativa con operaciones de distribución.',
+          benefits: [
+            'Artículos ghostwritten mensuales y movimientos en LinkedIn con variaciones locales.',
+            'Gestión de oportunidades de speaker y sesiones de media training.',
+            'Dashboard de performance con alcance, sentimiento y pipeline generado.',
+          ],
+        },
+      ],
+    },
+    workflow: {
+      title: 'Cómo operan nuestros programas',
+      subtitle: 'Del kickoff a los rituales recurrentes, cada fase se coordina con transparencia.',
+      steps: [
+        {
+          title: 'Inmersión y barrido de riesgos',
+          duration: 'Semana 1',
+          description:
+            'Entrevistas con stakeholders, acceso a datos e inventario de amenazas para mapear la situación actual.',
+          outputs: [
+            'Diagnóstico de reputación y growth con riesgos priorizados.',
+            'Checklist de accesos y score de preparación de instrumentación.',
+          ],
+        },
+        {
+          title: 'Blueprint de momentum',
+          duration: 'Semanas 2-3',
+          description:
+            'Mapeo de experiencia, diseño de hipótesis y validación de pricing junto a tu liderazgo.',
+          outputs: [
+            'Roadmap de 90 días con experimentos, salvaguardas y responsables.',
+            'Marco de medición y plan de comunicación ejecutiva.',
+          ],
+        },
+        {
+          title: 'Sprints de activación',
+          duration: 'Semanas 4-12',
+          description:
+            'Pods multifuncionales lanzan campañas, refuerzan la reputación y automatizan el reporting.',
+          outputs: [
+            'Lanzamientos semanales en creatividades, lifecycle y superficies de producto.',
+            'Suite de dashboards en Looker Studio con comentarios en vivo.',
+          ],
+        },
+        {
+          title: 'Escala y enablement',
+          duration: 'Continuo',
+          description:
+            'Anclamos rituales, capacitamos a tu equipo y evolucionamos la hoja de ruta según las señales.',
+          outputs: [
+            'Playbooks, plantillas y sesiones de formación grabadas.',
+            'Business reviews trimestrales con scorecards ejecutivas.',
+          ],
+        },
+      ],
+    },
+    assurance: {
+      title: 'Evidencias y garantías',
+      subtitle: 'Trabajamos con transparencia radical para ver el impacto en movimiento.',
+      metrics: [
+        { label: 'Ventana media para recuperar reseñas', value: '14 horas' },
+        { label: 'Pipeline nuevo influenciado', value: '+38 % interanual' },
+        { label: 'Mercados activados por engagement', value: '3 idiomas' },
+      ],
+      testimonials: [
+        {
+          quote:
+            'Traceremove limpió 1 200 listados falsos en menos de dos semanas mientras lanzaba campañas que superaron nuestro control en un 27 %.',
+          author: 'Camille Roy',
+          role: 'VP Growth, fintech scale-up',
+        },
+        {
+          quote:
+            'El equipo coordinó legal, producto y marketing en tres países sin frenar la entrega; ahora nuestro directorio recibe pulsos semanales.',
+          author: 'Luis Méndez',
+          role: 'Chief Communications Officer, marca retail global',
+        },
+      ],
+    },
+    faqs: {
+      title: 'Preguntas frecuentes sobre servicios y precios',
+      items: [
+        {
+          question: '¿Podemos iniciar con un proyecto en lugar de un retainer?',
+          answer:
+            'Sí. Diseñamos intensivos de 6 a 8 semanas enfocados en remediación o aceleración go-to-market desde 12 000 $. La mayoría de los equipos pasa a retainer una vez que el momentum está validado.',
+        },
+        {
+          question: '¿Cómo colaboran con los equipos internos?',
+          answer:
+            'Nos integramos en tus herramientas (Slack, Notion, Jira, HubSpot, etc.) y facilitamos ceremonias semanales con tus responsables de marketing, producto y CX. Cada entregable incluye documentación para un traspaso sencillo.',
+        },
+        {
+          question: '¿Trabajan con industrias reguladas?',
+          answer:
+            'Por supuesto. Gestionamos revisiones de compliance, requisitos de seguridad y aprobaciones legales para finanzas, salud, sector público y marketplaces en nuestros tres idiomas.',
+        },
+      ],
+    },
+    cta: {
+      title: '¿Listo para proteger y crecer con un solo squad?',
+      body:
+        'Comparte tus objetivos y puntos de presión. En menos de 24 horas respondemos con una agenda personalizada y los especialistas que recomendamos integrar.',
+      primary: 'Agendar llamada estratégica',
+      secondary: 'Escribir directamente a Artur',
+    },
+  },
+}

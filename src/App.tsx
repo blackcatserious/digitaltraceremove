@@ -20,6 +20,7 @@ import {
   type Language,
   type ServicePageContent,
 } from './data/pages'
+import { servicesPricingCopy } from './data/servicesPricing'
 import {
   blogArticles,
   blogTopicLabels,
@@ -104,6 +105,9 @@ const getAboutPath = (language: Language) => (language === 'en' ? '/about' : `/$
 
 const getCaseStudiesPath = (language: Language) =>
   language === 'en' ? '/case-studies' : `/${language}/case-studies`
+
+const getServicesPricingPath = (language: Language) =>
+  language === 'en' ? '/services' : `/${language}/services`
 
 const getResourcesPath = (language: Language) =>
   language === 'en' ? '/resources' : `/${language}/resources`
@@ -320,6 +324,7 @@ const navCopy: Record<
     services: string
     about: string
     caseStudies: string
+    servicesPricing: string
     team: string
     resources: string
     media: string
@@ -343,6 +348,7 @@ const navCopy: Record<
     services: 'Services',
     about: 'About us',
     caseStudies: 'Case studies',
+    servicesPricing: 'Services & pricing',
     team: 'Team',
     resources: 'Resources',
     media: 'Media',
@@ -365,6 +371,7 @@ const navCopy: Record<
     services: 'Services',
     about: 'À propos',
     caseStudies: 'Études de cas',
+    servicesPricing: 'Services & tarifs',
     team: 'Équipe',
     resources: 'Ressources',
     media: 'Presse',
@@ -387,6 +394,7 @@ const navCopy: Record<
     services: 'Servicios',
     about: 'Sobre nosotros',
     caseStudies: 'Casos de éxito',
+    servicesPricing: 'Servicios y precios',
     team: 'Equipo',
     resources: 'Recursos',
     media: 'Prensa',
@@ -2664,6 +2672,266 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
           </a>
           <a className="button secondary" href="tel:+16063022958">
             +1 606 302 2958
+          </a>
+        </div>
+      </section>
+    </article>
+  )
+}
+
+const ServicesPricingPage = () => {
+  const language = useCurrentLanguage()
+  const copy = servicesPricingCopy[language]
+  const tiers = copy.pricing.tiers
+  const [activeTierId, setActiveTierId] = useState(tiers[0]?.id ?? '')
+
+  useEffect(() => {
+    setActiveTierId(copy.pricing.tiers[0]?.id ?? '')
+  }, [copy])
+
+  const activeTier = tiers.find((tier) => tier.id === activeTierId) ?? tiers[0]
+
+  return (
+    <article className="services-pricing">
+      <header className="services-pricing__hero">
+        <div className="services-pricing__hero-copy">
+          <span className="services-pricing__eyebrow">{copy.hero.eyebrow}</span>
+          <h1>{copy.hero.heading}</h1>
+          <p>{copy.hero.body}</p>
+          <div className="services-pricing__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            <a className="button secondary" href="#services-pricing-pricing">
+              {copy.hero.secondaryCta}
+            </a>
+          </div>
+          <p className="services-pricing__note">{copy.hero.note}</p>
+        </div>
+        <div className="services-pricing__hero-visual" aria-hidden="true">
+          <GrowthSpark variant="light" size="lg" className="services-pricing__spark" />
+          <span className="services-pricing__glow" />
+          <span className="services-pricing__orb services-pricing__orb--one" />
+          <span className="services-pricing__orb services-pricing__orb--two" />
+        </div>
+      </header>
+
+      <MomentumTicker variant="dark" />
+
+      <section className="services-pricing__promise" aria-labelledby="services-pricing-promise">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-promise">{copy.promise.title}</h2>
+        </div>
+        <div className="services-pricing__promise-body">
+          <div>
+            {copy.promise.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+          <ul>
+            {copy.promise.bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="services-pricing__pillars" aria-labelledby="services-pricing-pillars">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-pillars">{copy.pillars.title}</h2>
+          <p>{copy.pillars.subtitle}</p>
+        </div>
+        <div className="services-pricing__pillar-grid">
+          {copy.pillars.items.map((item, index) => (
+            <article
+              key={item.title}
+              className="services-pricing__pillar-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <span className="services-pricing__badge">{String(index + 1).padStart(2, '0')}</span>
+                <h3>{item.title}</h3>
+              </header>
+              <p>{item.description}</p>
+              <ul>
+                {item.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="services-pricing-pricing"
+        className="services-pricing__pricing"
+        aria-labelledby="services-pricing-pricing-heading"
+      >
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-pricing-heading">{copy.pricing.title}</h2>
+          <p>{copy.pricing.subtitle}</p>
+        </div>
+        <div className="services-pricing__tier-tabs" role="tablist" aria-label={copy.pricing.title}>
+          {tiers.map((tier) => {
+            const isActive = tier.id === activeTier?.id
+            return (
+              <button
+                key={tier.id}
+                type="button"
+                className={`services-pricing__tier-tab${isActive ? ' is-active' : ''}`}
+                onClick={() => setActiveTierId(tier.id)}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`services-pricing-tier-${tier.id}`}
+                id={`services-pricing-tab-${tier.id}`}
+              >
+                <span className="services-pricing__tier-name">{tier.name}</span>
+                <span className="services-pricing__tier-price">{tier.price}</span>
+                <span className="services-pricing__tier-cadence">{tier.cadence}</span>
+              </button>
+            )
+          })}
+        </div>
+        {activeTier ? (
+          <article
+            id={`services-pricing-tier-${activeTier.id}`}
+            role="tabpanel"
+            aria-labelledby={`services-pricing-tab-${activeTier.id}`}
+            className="services-pricing__tier-card"
+          >
+            <header>
+              <h3>{activeTier.name}</h3>
+              <p className="services-pricing__tier-highlight">{activeTier.highlight}</p>
+              <p className="services-pricing__tier-description">{activeTier.description}</p>
+            </header>
+            <ul className="services-pricing__tier-features">
+              {activeTier.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+            <div className="services-pricing__tier-actions">
+              <Link className="button primary" to={getContactPath(language)}>
+                {copy.hero.primaryCta}
+              </Link>
+              <a className="button ghost" href="mailto:contact@traceremove.com">
+                contact@traceremove.com
+              </a>
+            </div>
+          </article>
+        ) : null}
+        <p className="services-pricing__footnote">{copy.pricing.note}</p>
+      </section>
+
+      <section className="services-pricing__addons" aria-labelledby="services-pricing-addons">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-addons">{copy.addOns.title}</h2>
+          <p>{copy.addOns.subtitle}</p>
+        </div>
+        <div className="services-pricing__addon-grid">
+          {copy.addOns.items.map((item, index) => (
+            <article
+              key={item.name}
+              className="services-pricing__addon-card"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{item.name}</h3>
+                <span className="services-pricing__addon-price">{item.price}</span>
+              </header>
+              <p>{item.description}</p>
+              <ul>
+                {item.benefits.map((benefit) => (
+                  <li key={benefit}>{benefit}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="services-pricing__workflow" aria-labelledby="services-pricing-workflow">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-workflow">{copy.workflow.title}</h2>
+          <p>{copy.workflow.subtitle}</p>
+        </div>
+        <ol className="services-pricing__workflow-list">
+          {copy.workflow.steps.map((step, index) => (
+            <li key={step.title} className="services-pricing__workflow-step">
+              <div className="services-pricing__workflow-marker" aria-hidden="true">
+                <span>{index + 1}</span>
+                {index !== copy.workflow.steps.length - 1 && <span className="services-pricing__workflow-line" />}
+              </div>
+              <div className="services-pricing__workflow-content">
+                <header>
+                  <h3>{step.title}</h3>
+                  <span>{step.duration}</span>
+                </header>
+                <p>{step.description}</p>
+                <ul>
+                  {step.outputs.map((output) => (
+                    <li key={output}>{output}</li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="services-pricing__assurance" aria-labelledby="services-pricing-assurance">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-assurance">{copy.assurance.title}</h2>
+          <p>{copy.assurance.subtitle}</p>
+        </div>
+        <div className="services-pricing__assurance-grid">
+          <div className="services-pricing__metrics">
+            {copy.assurance.metrics.map((metric) => (
+              <div key={metric.label} className="services-pricing__metric">
+                <span className="services-pricing__metric-value">{metric.value}</span>
+                <span className="services-pricing__metric-label">{metric.label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="services-pricing__testimonials">
+            {copy.assurance.testimonials.map((testimonial) => (
+              <figure key={testimonial.quote} className="services-pricing__testimonial">
+                <blockquote>{testimonial.quote}</blockquote>
+                <figcaption>
+                  <span className="services-pricing__testimonial-author">{testimonial.author}</span>
+                  <span className="services-pricing__testimonial-role">{testimonial.role}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="services-pricing__faq" aria-labelledby="services-pricing-faq">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-faq">{copy.faqs.title}</h2>
+        </div>
+        <dl className="services-pricing__faq-list">
+          {copy.faqs.items.map((item) => (
+            <div key={item.question} className="services-pricing__faq-item">
+              <dt>{item.question}</dt>
+              <dd>{item.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="services-pricing__cta" aria-labelledby="services-pricing-cta">
+        <div>
+          <h2 id="services-pricing-cta">{copy.cta.title}</h2>
+          <p>{copy.cta.body}</p>
+        </div>
+        <div className="services-pricing__cta-actions">
+          <Link className="button primary" to={getContactPath(language)}>
+            {copy.cta.primary}
+          </Link>
+          <a className="button ghost" href="mailto:artur@traceremove.com">
+            {copy.cta.secondary}
           </a>
         </div>
       </section>
@@ -5119,6 +5387,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     () => [
       { label: copy.about, href: getAboutPath(currentLanguage) },
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
+      { label: copy.servicesPricing, href: getServicesPricingPath(currentLanguage) },
       { label: copy.resources, href: getResourcesPath(currentLanguage) },
       { label: copy.media, href: getMediaPath(currentLanguage) },
       { label: copy.trust, href: getTrustPath(currentLanguage) },
@@ -5409,6 +5678,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onClick={handleCloseMobile}
               >
                 {copy.caseStudies}
+              </NavLink>
+              <NavLink
+                to={getServicesPricingPath(currentLanguage)}
+                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
+                {copy.servicesPricing}
               </NavLink>
               <NavLink
                 to={getResourcesPath(currentLanguage)}
@@ -5956,6 +6232,7 @@ const footerCopy: Record<
     officeLocations: string[]
     hotlineHeading: string
     hotlineBody: string
+    servicesPricing: string
     about: string
     caseStudies: string
     team: string
@@ -5991,6 +6268,7 @@ const footerCopy: Record<
     officeLocations: ['Montréal · North America HQ', 'Paris · EU lead desk', 'Madrid · Iberia growth pod'],
     hotlineHeading: 'Critical escalation',
     hotlineBody: 'Message or call +1 606 302 2958 for urgent takedowns — we respond within 60 minutes.',
+    servicesPricing: 'Services & pricing',
     about: 'About us',
     caseStudies: 'Case studies',
     team: 'Team',
@@ -6026,6 +6304,7 @@ const footerCopy: Record<
     officeLocations: ['Montréal · QG Amériques', 'Paris · Hub Europe', 'Madrid · Cellule Ibérie'],
     hotlineHeading: 'Escalade critique',
     hotlineBody: 'Écrivez ou appelez le +1 606 302 2958 pour une suppression urgente — réponse sous 60 minutes.',
+    servicesPricing: 'Services & tarifs',
     about: 'À propos',
     caseStudies: 'Études de cas',
     team: 'Équipe',
@@ -6060,6 +6339,7 @@ const footerCopy: Record<
     officeLocations: ['Montreal · HQ Norteamérica', 'París · Oficina Europa', 'Madrid · Equipo Iberia'],
     hotlineHeading: 'Escalada crítica',
     hotlineBody: 'Escríbenos o llama al +1 606 302 2958 para urgencias — respondemos en menos de 60 minutos.',
+    servicesPricing: 'Servicios y precios',
     about: 'Sobre nosotros',
     caseStudies: 'Casos de éxito',
     team: 'Equipo',
@@ -6232,6 +6512,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const menuLinks = [
     { to: getAboutPath(currentLanguage), label: copy.about },
     { to: getCaseStudiesPath(currentLanguage), label: copy.caseStudies },
+    { to: getServicesPricingPath(currentLanguage), label: copy.servicesPricing },
     { to: getResourcesPath(currentLanguage), label: copy.resources },
     { to: getMediaPath(currentLanguage), label: copy.media },
     { to: getTrustPath(currentLanguage), label: copy.trust },
@@ -6373,6 +6654,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
+        <Route path="services" element={<ServicesPricingPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="faq" element={<FaqPage />} />
         <Route path="media" element={<MediaPage />} />
@@ -6390,6 +6672,7 @@ function App() {
             <Route path={language} element={<HomePage />} />
             <Route path={`${language}/about`} element={<AboutPage />} />
             <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
+            <Route path={`${language}/services`} element={<ServicesPricingPage />} />
             <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
             <Route path={`${language}/faq`} element={<FaqPage />} />
             <Route path={`${language}/media`} element={<MediaPage />} />
