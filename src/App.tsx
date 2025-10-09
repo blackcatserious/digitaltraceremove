@@ -2975,6 +2975,36 @@ const ServicesPricingPage = () => {
         </ol>
       </section>
 
+      <section className="services-pricing__timeline" aria-labelledby="services-pricing-timeline">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-timeline">{copy.timeline.title}</h2>
+          <p>{copy.timeline.subtitle}</p>
+        </div>
+        <ol className="services-pricing__timeline-grid">
+          {copy.timeline.phases.map((phase, index) => (
+            <li
+              key={phase.title}
+              className="services-pricing__timeline-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <span className="services-pricing__badge">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{phase.title}</h3>
+                  <span>{phase.duration}</span>
+                </div>
+              </header>
+              <p>{phase.description}</p>
+              <ul>
+                {phase.outcomes.map((outcome) => (
+                  <li key={outcome}>{outcome}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       <section className="services-pricing__assurance" aria-labelledby="services-pricing-assurance">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-assurance">{copy.assurance.title}</h2>
@@ -3000,6 +3030,25 @@ const ServicesPricingPage = () => {
               </figure>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="services-pricing__guarantees" aria-labelledby="services-pricing-guarantees">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-guarantees">{copy.guarantees.title}</h2>
+          <p>{copy.guarantees.subtitle}</p>
+        </div>
+        <div className="services-pricing__guarantee-grid">
+          {copy.guarantees.items.map((item, index) => (
+            <article
+              key={item.title}
+              className="services-pricing__guarantee-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 

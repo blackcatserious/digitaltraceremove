@@ -155,6 +155,24 @@ export type ServicesPricingCopy = {
     subtitle: string
     channels: SupportChannel[]
   }
+  timeline: {
+    title: string
+    subtitle: string
+    phases: {
+      title: string
+      duration: string
+      description: string
+      outcomes: string[]
+    }[]
+  }
+  guarantees: {
+    title: string
+    subtitle: string
+    items: {
+      title: string
+      description: string
+    }[]
+  }
   roi: RoiCopy
   faqs: {
     title: string
@@ -461,6 +479,66 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Executive office hours',
           availability: 'Weekly 45-minute session',
           description: 'Leadership-only forum to review momentum, unblock approvals, and align global stakeholders.',
+        },
+      ],
+    },
+    timeline: {
+      title: 'How momentum compounds over 90 days',
+      subtitle: 'Every engagement follows a battle-tested rhythm with transparent milestones and measurable outputs.',
+      phases: [
+        {
+          title: 'Stabilize the signal',
+          duration: 'Days 1-10',
+          description:
+            'We neutralize active threats, secure accounts, and re-establish trusted surfaces before we relaunch growth.',
+          outcomes: [
+            'Threat inventory with severity scoring and assigned owners.',
+            'Domain, listing, and review recovery actions in-flight within 48 hours.',
+            'Updated crisis communications matrix across languages.',
+          ],
+        },
+        {
+          title: 'Rebuild trust narratives',
+          duration: 'Weeks 2-5',
+          description:
+            'Motion-enabled storytelling, social proof, and enablement assets go live while experimentation pods accelerate.',
+          outcomes: [
+            'New hero, landing, and lifecycle experiences localized for priority markets.',
+            'Automated sentiment reporting with live dashboards and alerting.',
+            'Playbooks for review authentication and community response cadence.',
+          ],
+        },
+        {
+          title: 'Scale defensible growth',
+          duration: 'Weeks 6-12',
+          description:
+            'We compound the wins—expanding campaigns, refining pricing, and transferring rituals so your team sustains velocity.',
+          outcomes: [
+            'Experiment pipeline with clear ROI modeling and approval tracks.',
+            'Quarterly executive narrative kit plus board-ready performance recap.',
+            'Training, documentation, and tool access transitioned to internal leads.',
+          ],
+        },
+      ],
+    },
+    guarantees: {
+      title: 'Commitments we stand behind',
+      subtitle: 'Founder-led accountability with safeguards that keep your leadership confident.',
+      items: [
+        {
+          title: 'Founder on-call guarantee',
+          description:
+            'Artur Ziganshin joins every critical escalation and weekly performance room—no handoffs to junior account layers.',
+        },
+        {
+          title: '30-day momentum checkpoint',
+          description:
+            'If we miss the agreed milestone outcomes in month one, we extend the engagement at no additional cost until recovered.',
+        },
+        {
+          title: 'Source-of-truth transparency',
+          description:
+            'Real-time dashboards, budget tracking, and experimentation notes stay client-owned so you maintain control long-term.',
         },
       ],
     },
@@ -882,6 +960,66 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    timeline: {
+      title: 'Comment l’élan se construit en 90 jours',
+      subtitle: 'Chaque mission suit un rythme éprouvé avec jalons visibles et résultats mesurables.',
+      phases: [
+        {
+          title: 'Stabiliser le signal',
+          duration: 'Jours 1-10',
+          description:
+            'Neutralisation des menaces actives, sécurisation des accès et remise à niveau de vos surfaces de confiance avant la relance.',
+          outcomes: [
+            'Inventaire des menaces scoré par sévérité avec owners attribués.',
+            'Actions de retrait domaines, listings et avis engagées en moins de 48 h.',
+            'Matrice de communication de crise mise à jour dans chaque langue.',
+          ],
+        },
+        {
+          title: 'Reconstruire les récits de confiance',
+          duration: 'Semaines 2-5',
+          description:
+            'Storytelling animé, preuves sociales et assets d’activation sortent pendant que les pods d’expérimentation montent en puissance.',
+          outcomes: [
+            'Nouvelles expériences hero, landing et lifecycle localisées pour les marchés prioritaires.',
+            'Reporting sentiment automatisé avec dashboards live et alertes.',
+            'Playbooks d’authentification des avis et cadence de réponse communautaire.',
+          ],
+        },
+        {
+          title: 'Accélérer une croissance défendable',
+          duration: 'Semaines 6-12',
+          description:
+            'Capitalisation sur les gains : extension des campagnes, optimisation pricing et transfert des rituels à vos équipes.',
+          outcomes: [
+            'Pipeline d’expérimentations avec modélisation ROI et circuits de validation.',
+            'Kit narratif exécutif trimestriel et synthèse performance pour le board.',
+            'Formations, documentation et accès outils remis aux leaders internes.',
+          ],
+        },
+      ],
+    },
+    guarantees: {
+      title: 'Nos engagements contractuels',
+      subtitle: 'Responsabilité fondatrice et garde-fous qui rassurent vos dirigeants.',
+      items: [
+        {
+          title: 'Fondateur en première ligne',
+          description:
+            'Artur Ziganshin participe à chaque escalade critique et aux rooms hebdomadaires — aucun relais à une couche junior.',
+        },
+        {
+          title: 'Checkpoint momentum à 30 jours',
+          description:
+            'Si les jalons convenus ne sont pas atteints le premier mois, nous prolongeons la mission sans frais jusqu’au rattrapage.',
+        },
+        {
+          title: 'Transparence source de vérité',
+          description:
+            'Dashboards temps réel, suivi budgétaire et notes d’expérimentation restent en propriété client pour garder la main durablement.',
+        },
+      ],
+    },
     roi: {
       title: 'Calculez votre ROI de protection de marque',
       subtitle: 'Ajustez les paramètres pour visualiser la vitesse à laquelle la récupération proactive sécurise vos revenus.',
@@ -1297,6 +1435,66 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Office hours ejecutivas',
           availability: 'Sesión semanal de 45 minutos',
           description: 'Espacio para liderazgo donde revisamos momentum, desbloqueamos aprobaciones y alineamos a los stakeholders globales.',
+        },
+      ],
+    },
+    timeline: {
+      title: 'Cómo se construye el momentum en 90 días',
+      subtitle: 'Cada engagement sigue un ritmo probado con hitos visibles y entregables cuantificables.',
+      phases: [
+        {
+          title: 'Estabilizar la señal',
+          duration: 'Días 1-10',
+          description:
+            'Neutralizamos amenazas activas, aseguramos accesos y restablecemos las superficies de confianza antes de relanzar el crecimiento.',
+          outcomes: [
+            'Inventario de amenazas con puntaje de severidad y responsables asignados.',
+            'Acciones de retiro de dominios, listados y reseñas en marcha en menos de 48 horas.',
+            'Matriz de comunicación de crisis actualizada en los tres idiomas.',
+          ],
+        },
+        {
+          title: 'Reconstruir narrativas de confianza',
+          duration: 'Semanas 2-5',
+          description:
+            'Historias en motion, prueba social y assets de habilitación salen a producción mientras los pods de experimentación aceleran.',
+          outcomes: [
+            'Nuevas experiencias hero, landing y lifecycle localizadas para los mercados prioritarios.',
+            'Reportes de sentimiento automatizados con dashboards en vivo y alertas.',
+            'Playbooks de autenticación de reseñas y cadencia de respuesta comunitaria.',
+          ],
+        },
+        {
+          title: 'Escalar un crecimiento defendible',
+          duration: 'Semanas 6-12',
+          description:
+            'Capitalizamos las victorias: expandimos campañas, refinamos pricing y transferimos rituales para que tu equipo sostenga la velocidad.',
+          outcomes: [
+            'Pipeline de experimentos con modelado de ROI y carriles de aprobación claros.',
+            'Kit narrativo ejecutivo trimestral y recap de performance listo para directorio.',
+            'Capacitaciones, documentación y accesos a herramientas traspasados a líderes internos.',
+          ],
+        },
+      ],
+    },
+    guarantees: {
+      title: 'Compromisos que cumplimos',
+      subtitle: 'Responsabilidad directa del fundador y garantías que mantienen tranquila a tu dirección.',
+      items: [
+        {
+          title: 'Fundador siempre disponible',
+          description:
+            'Artur Ziganshin participa en cada escalación crítica y en las rooms semanales; nunca delegamos en capas junior.',
+        },
+        {
+          title: 'Checkpoint de momentum a 30 días',
+          description:
+            'Si no alcanzamos los hitos pactados en el primer mes, extendemos el engagement sin costo adicional hasta recuperarlos.',
+        },
+        {
+          title: 'Transparencia de fuente única',
+          description:
+            'Dashboards en tiempo real, seguimiento de presupuesto y notas de experimentación permanecen bajo tu propiedad para que mantengas el control.',
         },
       ],
     },
