@@ -59,6 +59,44 @@ export type SupportChannel = {
   description: string
 }
 
+export type RoiInput = {
+  label: string
+  help: string
+  suffix?: string
+  prefix?: string
+  min: number
+  max: number
+  step: number
+  defaultValue: number
+}
+
+export type RoiScenario = {
+  title: string
+  loss: string
+  improvement: string
+  description: string
+  bullets: string[]
+}
+
+export type RoiCopy = {
+  title: string
+  subtitle: string
+  inputs: {
+    incidents: RoiInput
+    retention: RoiInput
+    customerValue: RoiInput
+  }
+  assumption: string
+  result: {
+    headline: string
+    label: string
+    monthlyLabel: string
+    customersLabel: string
+    summary: string
+  }
+  scenarios: RoiScenario[]
+}
+
 export type ServicesPricingCopy = {
   hero: {
     eyebrow: string
@@ -117,6 +155,7 @@ export type ServicesPricingCopy = {
     subtitle: string
     channels: SupportChannel[]
   }
+  roi: RoiCopy
   faqs: {
     title: string
     items: { question: string; answer: string }[]
@@ -422,6 +461,87 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Executive office hours',
           availability: 'Weekly 45-minute session',
           description: 'Leadership-only forum to review momentum, unblock approvals, and align global stakeholders.',
+        },
+      ],
+    },
+    roi: {
+      title: 'Model your brand protection ROI',
+      subtitle: 'Adjust the inputs to see how quickly proactive recovery safeguards revenue.',
+      inputs: {
+        incidents: {
+          label: 'Monthly critical incidents',
+          help: 'Fake reviews, phishing domains, urgent takedowns we resolve for your team.',
+          suffix: '/mo',
+          min: 0,
+          max: 120,
+          step: 1,
+          defaultValue: 12,
+        },
+        retention: {
+          label: 'Demand rescued per incident',
+          help: 'Percent of at-risk buyers we recover once Traceremove intercepts the threat.',
+          suffix: '%',
+          min: 10,
+          max: 100,
+          step: 5,
+          defaultValue: 65,
+        },
+        customerValue: {
+          label: 'Average revenue per customer',
+          help: 'Blend of first purchase, retention, and expansion per saved account.',
+          prefix: '$',
+          min: 100,
+          max: 20000,
+          step: 100,
+          defaultValue: 850,
+        },
+      },
+      assumption:
+        'Projection assumes protected demand compounds for 12 months with Traceremove as lead partner.',
+      result: {
+        headline: 'Projected annual revenue safeguarded',
+        label: 'Annual impact',
+        monthlyLabel: 'Monthly revenue protected',
+        customersLabel: 'Customers retained each month',
+        summary:
+          'Traceremove keeps {{value}} from leaking each year by neutralising threats before they erode trust.',
+      },
+      scenarios: [
+        {
+          title: 'Marketplace sabotage',
+          loss: 'Up to $180K in listings lost when fake sellers flood your catalog.',
+          improvement: 'Traceremove restores verified experiences in under 48 hours.',
+          description:
+            'Our takedown desk coordinates with marketplaces, payment providers, and customers to reestablish trust.',
+          bullets: [
+            'Rapid seller verification sweeps across Amazon, Etsy, and niche marketplaces.',
+            'Customer messaging sequences that recover stalled checkouts and reviews.',
+            'Escalation to marketplace trust & safety teams with evidence packs.',
+          ],
+        },
+        {
+          title: 'Review fraud crisis',
+          loss: 'Teams lose $95K in pipeline each month when fake 1-star waves go unanswered.',
+          improvement: 'Traceremove authenticates reviews and amplifies verified social proof within hours.',
+          description:
+            'We blend investigations, legal outreach, and growth programs so confidence rebounds across every touchpoint.',
+          bullets: [
+            'Machine-assisted pattern detection across G2, Capterra, and app stores.',
+            'Outreach workflows that convert silent champions into high-intent testimonials.',
+            'Motion content kits that relaunch search, paid, and lifecycle trust signals.',
+          ],
+        },
+        {
+          title: 'Executive impersonation',
+          loss: 'Spoofed domains and emails bleed $60K+ per breach in refunds and churn.',
+          improvement: 'Traceremove blocks phishing infrastructure and restores comms clarity the same day.',
+          description:
+            'Security engineers and storytellers combine takedowns with leadership communication drills to steady the market.',
+          bullets: [
+            'Domain and inbox sweeps with registrar escalations and DMARC hardening.',
+            'Prepared statements and newsroom assets for investors, partners, and press.',
+            'Follow-the-funnel dashboards showing regained revenue and retention.',
+          ],
         },
       ],
     },
@@ -762,6 +882,87 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    roi: {
+      title: 'Calculez votre ROI de protection de marque',
+      subtitle: 'Ajustez les paramètres pour visualiser la vitesse à laquelle la récupération proactive sécurise vos revenus.',
+      inputs: {
+        incidents: {
+          label: 'Incidents critiques mensuels',
+          help: 'Avis frauduleux, domaines de phishing, demandes de retrait que nous gérons pour vous.',
+          suffix: '/mois',
+          min: 0,
+          max: 120,
+          step: 1,
+          defaultValue: 12,
+        },
+        retention: {
+          label: 'Demande sauvée par incident',
+          help: 'Pourcentage d’acheteurs à risque que nous récupérons dès que Traceremove neutralise la menace.',
+          suffix: '%',
+          min: 10,
+          max: 100,
+          step: 5,
+          defaultValue: 65,
+        },
+        customerValue: {
+          label: 'Revenu moyen par client',
+          help: 'Moyenne panier initial, réachat et expansion par compte sauvegardé.',
+          prefix: '€',
+          min: 100,
+          max: 20000,
+          step: 100,
+          defaultValue: 800,
+        },
+      },
+      assumption:
+        'Projection basée sur 12 mois de demande protégée avec Traceremove comme partenaire principal.',
+      result: {
+        headline: 'Revenus annuels sécurisés estimés',
+        label: 'Impact annuel',
+        monthlyLabel: 'Revenus mensuels protégés',
+        customersLabel: 'Clients sauvegardés chaque mois',
+        summary:
+          'Traceremove empêche {{value}} de s’évaporer chaque année en neutralisant les menaces avant qu’elles ne fassent chuter la confiance.',
+      },
+      scenarios: [
+        {
+          title: 'Sabotage marketplace',
+          loss: 'Jusqu’à 180 000 € de ventes perdues lorsque de faux vendeurs saturent votre catalogue.',
+          improvement: 'Traceremove rétablit des expériences vérifiées en moins de 48 h.',
+          description:
+            'Notre cellule retrait coordonne marketplaces, prestataires de paiement et clients pour réinstaller la confiance.',
+          bullets: [
+            'Vérifications éclairs des vendeurs sur Amazon, Etsy et plateformes spécialisées.',
+            'Séquences messages clients qui relancent paniers et avis légitimes.',
+            'Escalades auprès des équipes trust & safety avec dossiers de preuves.',
+          ],
+        },
+        {
+          title: 'Crise d’avis frauduleux',
+          loss: 'Jusqu’à 95 000 € de pipeline mensuel envolé lorsque les vagues de faux avis 1★ restent sans réponse.',
+          improvement: 'Traceremove authentifie les avis et amplifie les preuves sociales en quelques heures.',
+          description:
+            'Nous combinons investigations, actions juridiques et programmes de croissance pour restaurer la confiance sur chaque point de contact.',
+          bullets: [
+            'Détection assistée par IA sur G2, Capterra et stores applicatifs.',
+            'Parcours d’activation qui transforment les clients satisfaits en témoignages à forte intention.',
+            'Kits de contenus animés qui relancent SEO, paid et nurturing.',
+          ],
+        },
+        {
+          title: 'Usurpation de dirigeants',
+          loss: 'Les domaines et emails usurpés coûtent plus de 60 000 € par incident en remboursements et churn.',
+          improvement: 'Traceremove bloque l’infrastructure de phishing et clarifie la communication dans la journée.',
+          description:
+            'Ingénieurs sécurité et storytellers orchestrent retraits et messages leadership pour stabiliser le marché.',
+          bullets: [
+            'Audit domaines et messageries avec escalades registraires et durcissement DMARC.',
+            'Prises de parole prêtes pour investisseurs, partenaires et presse.',
+            'Dashboards temps réel montrant revenus regagnés et fidélisation.',
+          ],
+        },
+      ],
+    },
     faqs: {
       title: 'FAQ services & tarifs',
       items: [
@@ -1096,6 +1297,87 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Office hours ejecutivas',
           availability: 'Sesión semanal de 45 minutos',
           description: 'Espacio para liderazgo donde revisamos momentum, desbloqueamos aprobaciones y alineamos a los stakeholders globales.',
+        },
+      ],
+    },
+    roi: {
+      title: 'Calcula tu ROI de protección de marca',
+      subtitle: 'Ajusta los parámetros para ver qué tan rápido la recuperación proactiva protege tus ingresos.',
+      inputs: {
+        incidents: {
+          label: 'Incidentes críticos mensuales',
+          help: 'Reseñas falsas, dominios phishing y solicitudes urgentes que gestionamos por ti.',
+          suffix: '/mes',
+          min: 0,
+          max: 120,
+          step: 1,
+          defaultValue: 12,
+        },
+        retention: {
+          label: 'Demanda rescatada por incidente',
+          help: 'Porcentaje de compradores en riesgo que recuperamos al neutralizar la amenaza.',
+          suffix: '%',
+          min: 10,
+          max: 100,
+          step: 5,
+          defaultValue: 65,
+        },
+        customerValue: {
+          label: 'Ingreso medio por cliente',
+          help: 'Promedio de compra inicial, retención y expansión por cuenta protegida.',
+          prefix: '€',
+          min: 100,
+          max: 20000,
+          step: 100,
+          defaultValue: 780,
+        },
+      },
+      assumption:
+        'Proyección basada en 12 meses de demanda protegida con Traceremove como socio principal.',
+      result: {
+        headline: 'Ingresos anuales protegidos estimados',
+        label: 'Impacto anual',
+        monthlyLabel: 'Ingresos mensuales protegidos',
+        customersLabel: 'Clientes retenidos cada mes',
+        summary:
+          'Traceremove evita que {{value}} se pierdan cada año al neutralizar amenazas antes de que dañen la confianza.',
+      },
+      scenarios: [
+        {
+          title: 'Sabotaje en marketplaces',
+          loss: 'Hasta 180 000 € en ventas perdidas cuando vendedores falsos inundan tu catálogo.',
+          improvement: 'Traceremove restablece experiencias verificadas en menos de 48 horas.',
+          description:
+            'Nuestro equipo de retiros coordina marketplaces, procesadores de pago y clientes para reconstruir la confianza.',
+          bullets: [
+            'Barridos de verificación exprés en Amazon, Etsy y marketplaces de nicho.',
+            'Secuencias de mensajes que recuperan carritos y reseñas legítimas.',
+            'Escaladas con equipos de trust & safety acompañadas de paquetes de evidencia.',
+          ],
+        },
+        {
+          title: 'Crisis de reseñas falsas',
+          loss: 'Se pierden 95 000 € de pipeline mensual cuando las oleadas de reseñas 1★ quedan sin respuesta.',
+          improvement: 'Traceremove autentica reseñas y amplifica prueba social verificada en cuestión de horas.',
+          description:
+            'Combinamos investigación, acciones legales y programas de growth para que la confianza vuelva a cada punto de contacto.',
+          bullets: [
+            'Detección asistida por IA en G2, Capterra y tiendas de aplicaciones.',
+            'Flujos de activación que convierten clientes satisfechos en testimonios de alta intención.',
+            'Kits de contenido animado que reactivan SEO, paid y lifecycle.',
+          ],
+        },
+        {
+          title: 'Suplantación de directivos',
+          loss: 'Dominios y correos falsos generan más de 60 000 € por incidente en reembolsos y churn.',
+          improvement: 'Traceremove bloquea la infraestructura de phishing y ordena la comunicación el mismo día.',
+          description:
+            'Ingenieros de seguridad y storytellers coordinan retiros y mensajes ejecutivos para estabilizar al mercado.',
+          bullets: [
+            'Barridos de dominios y bandejas con escalados a registradores y endurecimiento DMARC.',
+            'Mensajes preparados para inversores, partners y prensa.',
+            'Dashboards que muestran ingresos recuperados y retención.',
+          ],
         },
       ],
     },

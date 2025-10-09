@@ -142,6 +142,24 @@ const formatLocaleDate = (language: Language, value: string) =>
     day: 'numeric',
   })
 
+const currencyConfig: Record<Language, { locale: string; currency: string }> = {
+  en: { locale: 'en-US', currency: 'USD' },
+  fr: { locale: 'fr-FR', currency: 'EUR' },
+  es: { locale: 'es-ES', currency: 'EUR' },
+}
+
+const formatCurrency = (language: Language, value: number) =>
+  new Intl.NumberFormat(currencyConfig[language].locale, {
+    style: 'currency',
+    currency: currencyConfig[language].currency,
+    maximumFractionDigits: value >= 1000 ? 0 : 2,
+  }).format(value)
+
+const formatNumber = (language: Language, value: number) =>
+  new Intl.NumberFormat(localeMap[language], {
+    maximumFractionDigits: 0,
+  }).format(value)
+
 const escapeRegExp = (value: string) => value.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
 
 const highlightSearchTerm = (value: string, query: string): ReactNode => {
@@ -2684,12 +2702,40 @@ const ServicesPricingPage = () => {
   const copy = servicesPricingCopy[language]
   const tiers = copy.pricing.tiers
   const [activeTierId, setActiveTierId] = useState(tiers[0]?.id ?? '')
+  const [incidentCount, setIncidentCount] = useState(copy.roi.inputs.incidents.defaultValue)
+  const [retentionRate, setRetentionRate] = useState(copy.roi.inputs.retention.defaultValue)
+  const [customerValue, setCustomerValue] = useState(copy.roi.inputs.customerValue.defaultValue)
 
   useEffect(() => {
     setActiveTierId(copy.pricing.tiers[0]?.id ?? '')
+    setIncidentCount(copy.roi.inputs.incidents.defaultValue)
+    setRetentionRate(copy.roi.inputs.retention.defaultValue)
+    setCustomerValue(copy.roi.inputs.customerValue.defaultValue)
   }, [copy])
 
   const activeTier = tiers.find((tier) => tier.id === activeTierId) ?? tiers[0]
+
+  const monthlyCustomersProtected = Math.max(
+    0,
+    Math.round((incidentCount * retentionRate) / 100)
+  )
+  const monthlyRevenueProtected = Math.max(0, Math.round(monthlyCustomersProtected * customerValue))
+  const annualRevenueProtected = monthlyRevenueProtected * 12
+  const formattedAnnualImpact = formatCurrency(language, annualRevenueProtected)
+  const formattedMonthlyRevenue = formatCurrency(language, monthlyRevenueProtected)
+  const summaryText = copy.roi.result.summary.replace('{{value}}', formattedAnnualImpact)
+
+  const handleIncidentsChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setIncidentCount(Number(event.target.value))
+  }
+
+  const handleRetentionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setRetentionRate(Number(event.target.value))
+  }
+
+  const handleCustomerValueChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setCustomerValue(Number(event.target.value))
+  }
 
   return (
     <article className="services-pricing">
@@ -2974,6 +3020,128 @@ const ServicesPricingPage = () => {
                 <span>{channel.availability}</span>
               </header>
               <p>{channel.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="services-pricing__roi" aria-labelledby="services-pricing-roi">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-roi">{copy.roi.title}</h2>
+          <p>{copy.roi.subtitle}</p>
+        </div>
+        <div className="services-pricing__roi-grid">
+          <form
+            className="services-pricing__roi-calculator"
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <div className="services-pricing__roi-field">
+              <label htmlFor="services-pricing-incidents">
+                <span>{copy.roi.inputs.incidents.label}</span>
+                <small>{copy.roi.inputs.incidents.help}</small>
+              </label>
+              <div className="services-pricing__roi-control">
+                <input
+                  id="services-pricing-incidents"
+                  type="range"
+                  min={copy.roi.inputs.incidents.min}
+                  max={copy.roi.inputs.incidents.max}
+                  step={copy.roi.inputs.incidents.step}
+                  value={incidentCount}
+                  onChange={handleIncidentsChange}
+                />
+                <span className="services-pricing__roi-value">
+                  {formatNumber(language, incidentCount)}
+                  {copy.roi.inputs.incidents.suffix ? ` ${copy.roi.inputs.incidents.suffix}` : ''}
+                </span>
+              </div>
+            </div>
+
+            <div className="services-pricing__roi-field">
+              <label htmlFor="services-pricing-retention">
+                <span>{copy.roi.inputs.retention.label}</span>
+                <small>{copy.roi.inputs.retention.help}</small>
+              </label>
+              <div className="services-pricing__roi-control">
+                <input
+                  id="services-pricing-retention"
+                  type="range"
+                  min={copy.roi.inputs.retention.min}
+                  max={copy.roi.inputs.retention.max}
+                  step={copy.roi.inputs.retention.step}
+                  value={retentionRate}
+                  onChange={handleRetentionChange}
+                />
+                <span className="services-pricing__roi-value">
+                  {formatNumber(language, retentionRate)}
+                  {copy.roi.inputs.retention.suffix ? ` ${copy.roi.inputs.retention.suffix}` : ''}
+                </span>
+              </div>
+            </div>
+
+            <div className="services-pricing__roi-field">
+              <label htmlFor="services-pricing-customer-value">
+                <span>{copy.roi.inputs.customerValue.label}</span>
+                <small>{copy.roi.inputs.customerValue.help}</small>
+              </label>
+              <div className="services-pricing__roi-control">
+                <input
+                  id="services-pricing-customer-value"
+                  type="range"
+                  min={copy.roi.inputs.customerValue.min}
+                  max={copy.roi.inputs.customerValue.max}
+                  step={copy.roi.inputs.customerValue.step}
+                  value={customerValue}
+                  onChange={handleCustomerValueChange}
+                />
+                <span className="services-pricing__roi-value">
+                  {formatCurrency(language, customerValue)}
+                </span>
+              </div>
+            </div>
+          </form>
+
+          <aside className="services-pricing__roi-result">
+            <header>
+              <h3>{copy.roi.result.headline}</h3>
+              <p className="services-pricing__roi-impact-label">{copy.roi.result.label}</p>
+              <p className="services-pricing__roi-impact-value">{formattedAnnualImpact}</p>
+            </header>
+            <p>{summaryText}</p>
+            <dl className="services-pricing__roi-metrics">
+              <div>
+                <dt>{copy.roi.result.monthlyLabel}</dt>
+                <dd>{formattedMonthlyRevenue}</dd>
+              </div>
+              <div>
+                <dt>{copy.roi.result.customersLabel}</dt>
+                <dd>{formatNumber(language, monthlyCustomersProtected)}</dd>
+              </div>
+            </dl>
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.cta.primary}
+            </Link>
+          </aside>
+        </div>
+        <p className="services-pricing__roi-note">{copy.roi.assumption}</p>
+        <div className="services-pricing__roi-scenarios">
+          {copy.roi.scenarios.map((scenario, index) => (
+            <article
+              key={scenario.title}
+              className="services-pricing__roi-card"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{scenario.title}</h3>
+                <p className="services-pricing__roi-loss">{scenario.loss}</p>
+                <p className="services-pricing__roi-improvement">{scenario.improvement}</p>
+              </header>
+              <p>{scenario.description}</p>
+              <ul>
+                {scenario.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
