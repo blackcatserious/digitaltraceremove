@@ -3158,6 +3158,31 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__integrations" aria-labelledby="services-pricing-integrations">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-integrations">{copy.integrations.title}</h2>
+          <p>{copy.integrations.subtitle}</p>
+        </div>
+        <div className="services-pricing__integration-grid">
+          {copy.integrations.partners.map((partner, index) => (
+            <article
+              key={partner.name}
+              className="services-pricing__integration-card"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <header>
+                <span className="services-pricing__integration-category">{partner.category}</span>
+                <h3>{partner.name}</h3>
+              </header>
+              <p>{partner.description}</p>
+              <footer>
+                <span className="services-pricing__integration-coverage">{partner.coverage}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__roi" aria-labelledby="services-pricing-roi">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-roi">{copy.roi.title}</h2>

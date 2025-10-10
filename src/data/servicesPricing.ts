@@ -82,6 +82,13 @@ export type EnablementStream = {
   assets: string[]
 }
 
+export type IntegrationPartner = {
+  name: string
+  category: string
+  description: string
+  coverage: string
+}
+
 export type RoiInput = {
   label: string
   help: string
@@ -192,6 +199,11 @@ export type ServicesPricingCopy = {
     title: string
     subtitle: string
     streams: EnablementStream[]
+  }
+  integrations: {
+    title: string
+    subtitle: string
+    partners: IntegrationPartner[]
   }
   timeline: {
     title: string
@@ -619,6 +631,55 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'Motion design kit with editable files, animation presets, and usage guides for your team.',
             'Proactive review and community response scripts tuned for each supported locale.',
           ],
+        },
+      ],
+    },
+    integrations: {
+      title: 'Connect your stack without slowing down',
+      subtitle:
+        'We plug into your analytics, marketing, security, and support systems on day one so insights and escalations stay in sync.',
+      partners: [
+        {
+          name: 'Looker Studio & BigQuery',
+          category: 'Analytics & dashboards',
+          description:
+            'Stream sentiment, demand, and incident telemetry into motion-rich Looker Studio boards powered by BigQuery models that your leadership already trusts.',
+          coverage: 'Live within 5 business days with two years of historical context imported.',
+        },
+        {
+          name: 'HubSpot & Salesforce',
+          category: 'Revenue platforms',
+          description:
+            'Sync lead scoring, pipeline velocity, and escalation ownership inside your CRM so recovered demand converts without manual reconciliation.',
+          coverage: 'Bi-directional automation shipped during week one with governance reviews.',
+        },
+        {
+          name: 'Cloudflare · AWS WAF · Registrar network',
+          category: 'Domain & security',
+          description:
+            'Pair our takedown desk with your edge protection to automatically neutralize spoofed domains, phishing journeys, and shadow infrastructure.',
+          coverage: 'Escalation circuits activated in under 48 hours across priority markets.',
+        },
+        {
+          name: 'Trustpilot · Google Business Profile',
+          category: 'Review ecosystems',
+          description:
+            'Authenticate reviews, dispute fraud, and publish proof points directly from the platforms where prospects validate your reputation.',
+          coverage: 'Content policies aligned in English, French, and Spanish with daily monitoring.',
+        },
+        {
+          name: 'Zendesk · Intercom · Gorgias',
+          category: 'Customer care',
+          description:
+            'Loop CS and reputation squads together so escalations, macros, and proactive outreach live inside the tools your agents use every hour.',
+          coverage: 'Playbooks and automations deployed within 10 days including localization.',
+        },
+        {
+          name: 'Slack & Microsoft Teams',
+          category: 'Collaboration rituals',
+          description:
+            'Route alerts, wins, and executive-ready recaps straight into the channels your operators already monitor so momentum never bottlenecks.',
+          coverage: 'War-room channels configured on kickoff with layered access controls.',
         },
       ],
     },
@@ -1202,6 +1263,55 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    integrations: {
+      title: 'Connectez votre stack sans ralentir vos équipes',
+      subtitle:
+        'Nous branchons analytics, marketing, sécurité et support dès le jour 1 pour synchroniser signaux et escalades.',
+      partners: [
+        {
+          name: 'Looker Studio & BigQuery',
+          category: 'Analytique & tableaux de bord',
+          description:
+            'Diffusion continue du sentiment, de la demande et des incidents dans des tableaux Looker Studio animés par des modèles BigQuery déjà validés par votre direction.',
+          coverage: 'Mise en ligne en 5 jours ouvrés avec deux ans d’historique importés.',
+        },
+        {
+          name: 'HubSpot & Salesforce',
+          category: 'Plateformes go-to-market',
+          description:
+            'Synchronisation scoring, vélocité pipeline et ownership d’escalade dans votre CRM pour convertir la demande récupérée sans rapprochement manuel.',
+          coverage: 'Automatisations bi-directionnelles livrées la première semaine avec revue de gouvernance.',
+        },
+        {
+          name: 'Cloudflare · AWS WAF · Réseau registraires',
+          category: 'Sécurité domaines & edge',
+          description:
+            'Notre desk retrait se couple à vos protections edge pour neutraliser automatiquement domaines spoofés, parcours de phishing et infrastructures fantômes.',
+          coverage: 'Circuits d’escalade activés en moins de 48 h sur les marchés prioritaires.',
+        },
+        {
+          name: 'Trustpilot · Google Business Profile',
+          category: 'Écosystèmes d’avis',
+          description:
+            'Authentification des avis, contestation de la fraude et publication de preuves directement sur les plateformes où vos prospects valident la confiance.',
+          coverage: 'Politiques contenus harmonisées en français, anglais et espagnol avec monitoring quotidien.',
+        },
+        {
+          name: 'Zendesk · Intercom · Gorgias',
+          category: 'Relation client',
+          description:
+            'Lien direct entre squads CX et réputation pour que macros, escalades et outreach proactif vivent dans les outils utilisés par vos agents chaque heure.',
+          coverage: 'Playbooks et automatisations déployés en 10 jours avec localisation incluse.',
+        },
+        {
+          name: 'Slack & Microsoft Teams',
+          category: 'Rituels de collaboration',
+          description:
+            'Acheminement des alertes, victoires et synthèses exécutives dans les canaux que vos opérateurs consultent déjà pour éviter tout goulot.',
+          coverage: 'Salons de war-room configurés dès le kickoff avec contrôles d’accès granulaires.',
+        },
+      ],
+    },
     timeline: {
       title: 'Comment l’élan se construit en 90 jours',
       subtitle: 'Chaque mission suit un rythme éprouvé avec jalons visibles et résultats mesurables.',
@@ -1779,6 +1889,55 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'Kit de motion con archivos editables, presets de animación y guías de uso para tu equipo.',
             'Guiones proactivos de reseñas y comunidad afinados para cada idioma soportado.',
           ],
+        },
+      ],
+    },
+    integrations: {
+      title: 'Integramos tu stack sin perder ritmo',
+      subtitle:
+        'Conectamos analytics, marketing, seguridad y soporte desde el día uno para que las señales y las escalaciones permanezcan alineadas.',
+      partners: [
+        {
+          name: 'Looker Studio & BigQuery',
+          category: 'Analítica y dashboards',
+          description:
+            'Transmitimos sentimiento, demanda y telemetría de incidentes hacia tableros animados en Looker Studio alimentados por modelos de BigQuery validados por tu dirección.',
+          coverage: 'Activo en 5 días hábiles con dos años de histórico importado.',
+        },
+        {
+          name: 'HubSpot & Salesforce',
+          category: 'Plataformas de revenue',
+          description:
+            'Sincronizamos scoring, velocidad de pipeline y ownership de escalaciones dentro de tu CRM para convertir la demanda recuperada sin conciliaciones manuales.',
+          coverage: 'Automatizaciones bidireccionales listas en la primera semana con revisión de governance.',
+        },
+        {
+          name: 'Cloudflare · AWS WAF · Red de registradores',
+          category: 'Seguridad de dominios',
+          description:
+            'Acoplamos nuestro desk de retiros a tu protección perimetral para neutralizar dominios falsos, recorridos de phishing e infraestructura sombra de forma automática.',
+          coverage: 'Circuitos de escalación activos en menos de 48 horas en tus mercados prioritarios.',
+        },
+        {
+          name: 'Trustpilot · Google Business Profile',
+          category: 'Ecosistemas de reseñas',
+          description:
+            'Autenticamos reseñas, disputamos fraudes y publicamos prueba social directamente en las plataformas donde los prospectos verifican tu reputación.',
+          coverage: 'Políticas alineadas en inglés, francés y español con monitoreo diario.',
+        },
+        {
+          name: 'Zendesk · Intercom · Gorgias',
+          category: 'Atención al cliente',
+          description:
+            'Unimos CX y reputación para que escalaciones, macros y outreach proactivo vivan en las herramientas que tus agentes usan a cada hora.',
+          coverage: 'Playbooks y automatizaciones desplegados en 10 días con localización incluida.',
+        },
+        {
+          name: 'Slack & Microsoft Teams',
+          category: 'Rituales de colaboración',
+          description:
+            'Enrutamos alertas, victorias y resúmenes ejecutivos directo a los canales que tu equipo ya sigue para que el momentum no se estanque.',
+          coverage: 'Canales de war room configurados desde el kickoff con controles de acceso por niveles.',
         },
       ],
     },
