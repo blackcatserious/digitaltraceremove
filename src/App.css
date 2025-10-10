@@ -10121,6 +10121,140 @@ a {
   font-weight: 500;
 }
 
+.services-pricing__sla-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.services-pricing__sla-card {
+  position: relative;
+  padding: 1.85rem;
+  border-radius: 26px;
+  border: 1px solid rgba(45, 212, 191, 0.32);
+  background: linear-gradient(155deg, rgba(20, 184, 166, 0.16), rgba(45, 212, 191, 0.1), rgba(15, 23, 42, 0.82));
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  overflow: hidden;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
+}
+
+.services-pricing__sla-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -25% -40% -25%;
+  height: 65%;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.28), transparent 70%);
+  opacity: 0.45;
+  animation: auroraGlow 22s ease-in-out infinite;
+}
+
+.services-pricing__sla-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.services-pricing__sla-card header span {
+  color: rgba(45, 212, 191, 0.92);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.services-pricing__sla-card footer {
+  margin-top: auto;
+}
+
+.services-pricing__sla-card footer span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgba(226, 232, 240, 0.75);
+  font-size: 0.9rem;
+}
+
+.services-pricing__sla-card footer span::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(45, 212, 191, 0.8);
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.65);
+}
+
+.services-pricing__reporting-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.services-pricing__reporting-card {
+  position: relative;
+  padding: 2rem;
+  border-radius: 28px;
+  border: 1px solid rgba(129, 140, 248, 0.32);
+  background: linear-gradient(165deg, rgba(99, 102, 241, 0.14), rgba(129, 140, 248, 0.1), rgba(15, 23, 42, 0.84));
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  overflow: hidden;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
+}
+
+.services-pricing__reporting-card::after {
+  content: '';
+  position: absolute;
+  inset: -35% -30% auto;
+  height: 65%;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.32), transparent 65%);
+  opacity: 0.45;
+  animation: auroraGlow 24s ease-in-out infinite;
+}
+
+.services-pricing__reporting-card header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.services-pricing__reporting-card header span {
+  align-self: flex-start;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  background: rgba(129, 140, 248, 0.18);
+  color: rgba(199, 210, 254, 0.95);
+  border: 1px solid rgba(129, 140, 248, 0.32);
+}
+
+.services-pricing__reporting-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.services-pricing__reporting-card li {
+  position: relative;
+  color: rgba(226, 232, 240, 0.82);
+}
+
+.services-pricing__reporting-card li::marker {
+  color: rgba(199, 210, 254, 0.9);
+}
+
 .services-pricing__industry-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -11370,6 +11504,8 @@ a {
 
   .services-pricing__deliverable-grid,
   .services-pricing__support-grid,
+  .services-pricing__sla-grid,
+  .services-pricing__reporting-grid,
   .services-pricing__industry-grid,
   .services-pricing__concierge-grid,
   .services-pricing__procurement-grid,
@@ -11419,6 +11555,8 @@ a {
   .services-pricing__enablement-grid,
   .services-pricing__procurement-grid,
   .services-pricing__integration-grid,
+  .services-pricing__sla-grid,
+  .services-pricing__reporting-grid,
   .services-pricing__compliance-grid,
   .services-pricing__compliance-badges {
     padding: 0 1rem;
@@ -11429,6 +11567,8 @@ a {
   .services-pricing__enablement-card,
   .services-pricing__procurement-card,
   .services-pricing__integration-card,
+  .services-pricing__sla-card,
+  .services-pricing__reporting-card,
   .services-pricing__compliance-card {
     padding: 1.6rem;
   }

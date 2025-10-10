@@ -3113,6 +3113,58 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__slas" aria-labelledby="services-pricing-slas">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-slas">{copy.slas.title}</h2>
+          <p>{copy.slas.subtitle}</p>
+        </div>
+        <div className="services-pricing__sla-grid">
+          {copy.slas.commitments.map((commitment, index) => (
+            <article
+              key={commitment.title}
+              className="services-pricing__sla-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{commitment.title}</h3>
+                <span>{commitment.target}</span>
+              </header>
+              <p>{commitment.description}</p>
+              <footer>
+                <span>{commitment.coverage}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="services-pricing__reporting" aria-labelledby="services-pricing-reporting">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-reporting">{copy.reporting.title}</h2>
+          <p>{copy.reporting.subtitle}</p>
+        </div>
+        <div className="services-pricing__reporting-grid">
+          {copy.reporting.rhythms.map((rhythm, index) => (
+            <article
+              key={rhythm.title}
+              className="services-pricing__reporting-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <span>{rhythm.cadence}</span>
+                <h3>{rhythm.title}</h3>
+              </header>
+              <p>{rhythm.description}</p>
+              <ul>
+                {rhythm.deliverables.map((deliverable) => (
+                  <li key={deliverable}>{deliverable}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__industries" aria-labelledby="services-pricing-industries">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-industries">{copy.industries.title}</h2>

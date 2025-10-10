@@ -59,6 +59,20 @@ export type SupportChannel = {
   description: string
 }
 
+export type SlaCommitment = {
+  title: string
+  description: string
+  target: string
+  coverage: string
+}
+
+export type ReportingRhythm = {
+  title: string
+  description: string
+  cadence: string
+  deliverables: string[]
+}
+
 export type IndustrySpotlight = {
   id: string
   name: string
@@ -211,6 +225,16 @@ export type ServicesPricingCopy = {
     title: string
     subtitle: string
     channels: SupportChannel[]
+  }
+  slas: {
+    title: string
+    subtitle: string
+    commitments: SlaCommitment[]
+  }
+  reporting: {
+    title: string
+    subtitle: string
+    rhythms: ReportingRhythm[]
   }
   industries: {
     title: string
@@ -612,6 +636,72 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Executive office hours',
           availability: 'Weekly 45-minute session',
           description: 'Leadership-only forum to review momentum, unblock approvals, and align global stakeholders.',
+        },
+      ],
+    },
+    slas: {
+      title: 'Response times you can schedule around',
+      subtitle: 'Founder-enforced SLAs keep incidents contained before they spiral across markets.',
+      commitments: [
+        {
+          title: 'Critical incident triage',
+          target: '<15 min first-response window',
+          description:
+            'Multilingual incident leads activate bridge rooms that align security, legal, and comms in real time.',
+          coverage: 'Domain hijacks · phishing infra · viral misinformation spikes',
+        },
+        {
+          title: 'Platform escalation launch',
+          target: '<45 min to file and document escalations',
+          description:
+            'Traceremove advocates package evidence, legal context, and motion snippets for marketplaces and regulators.',
+          coverage: 'App stores · marketplaces · ad networks · review platforms',
+        },
+        {
+          title: 'Executive situational brief',
+          target: '<4 h signed-off summary',
+          description:
+            'Founder team delivers an executive-ready brief with impact forecast, decision asks, and next sync cadence.',
+          coverage: 'Board, investors, and global leadership stakeholders',
+        },
+      ],
+    },
+    reporting: {
+      title: 'Reporting rituals that keep decisions obvious',
+      subtitle: 'Every engagement includes layered analytics so operators, finance, and the board see the same picture.',
+      rhythms: [
+        {
+          title: 'Executive momentum review',
+          cadence: 'Weekly',
+          description:
+            'Founder-led huddle that synthesizes threat removals, demand generation lift, and resourcing requirements.',
+          deliverables: [
+            'Animated scorecard spotlighting pipeline impact, revenue protected, and review health.',
+            'Risk register with owner assignments and probability/severity motion cues.',
+            'Action log recap distributed to stakeholders within two hours.',
+          ],
+        },
+        {
+          title: 'Growth & trust analytics packet',
+          cadence: 'Bi-weekly',
+          description:
+            'Ops + analytics crew compile experimentation learnings, content performance, and sentiment deltas.',
+          deliverables: [
+            'Looker Studio dashboards refreshed with annotated wins and losses.',
+            'Channel-by-channel pacing model with budget + creative recommendations.',
+            'Community and support intelligence summary with proactive response templates.',
+          ],
+        },
+        {
+          title: 'Always-on observability',
+          cadence: 'Real-time',
+          description:
+            'Motion dashboards push live alerts, review queues, and reputation health scores across devices.',
+          deliverables: [
+            'Slack + email notifications for threat detections and SLA checkpoints.',
+            '24/7 analytics portal with localized drilldowns and audit-ready exports.',
+            'API + webhook feeds to sync with BI, CRM, and incident tooling.',
+          ],
         },
       ],
     },
@@ -1330,6 +1420,72 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    slas: {
+      title: 'Des engagements de réponse sur lesquels vous pouvez compter',
+      subtitle: 'Les SLA pilotés par le fondateur contiennent les incidents avant qu’ils ne se propagent sur vos marchés.',
+      commitments: [
+        {
+          title: 'Triage incident critique',
+          target: '<15 min pour la première réponse',
+          description:
+            'Leads incidents multilingues ouvrent une war room qui synchronise sécurité, juridique et communication en direct.',
+          coverage: 'Détournements de domaines · infrastructures de phishing · vagues de désinformation',
+        },
+        {
+          title: 'Lancement d’escalade plateforme',
+          target: '<45 min pour déposer dossiers et preuves',
+          description:
+            'Les avocats Traceremove assemblent preuves, contexte légal et extraits motion pour marketplaces et régulateurs.',
+          coverage: 'Stores applicatifs · marketplaces · régies publicitaires · plateformes d’avis',
+        },
+        {
+          title: 'Brief de situation exécutif',
+          target: '<4 h pour un résumé validé',
+          description:
+            'L’équipe fondatrice livre un mémo exécutif avec projection d’impact, décisions attendues et prochaine synchronisation.',
+          coverage: 'Comité de direction, investisseurs et leadership global',
+        },
+      ],
+    },
+    reporting: {
+      title: 'Des rituels de reporting qui facilitent les décisions',
+      subtitle: 'Chaque mission inclut des couches d’analytics pour aligner opérations, finance et gouvernance.',
+      rhythms: [
+        {
+          title: 'Revue momentum exécutive',
+          cadence: 'Hebdomadaire',
+          description:
+            'Revue pilotée par le fondateur qui synthétise retraits de menaces, lift de la demande et besoins en ressources.',
+          deliverables: [
+            'Scorecard animée mettant en lumière revenus protégés, pipeline et santé des avis.',
+            'Registre des risques avec propriétaires, probabilités et niveaux d’alerte.',
+            'Compte rendu actionnable distribué aux parties prenantes sous deux heures.',
+          ],
+        },
+        {
+          title: 'Packet analytics croissance & confiance',
+          cadence: 'Bi-hebdomadaire',
+          description:
+            'Équipe ops + analytics rassemble apprentissages d’expérimentation, performances contenus et deltas de sentiment.',
+          deliverables: [
+            'Dashboards Looker Studio annotés avec victoires et axes d’optimisation.',
+            'Modèle de pacing par canal avec recommandations budget + création.',
+            'Synthèse intelligence communauté & support avec scripts proactifs.',
+          ],
+        },
+        {
+          title: 'Observabilité continue',
+          cadence: 'Temps réel',
+          description:
+            'Dashboards animés poussent alertes, files d’avis et score de santé réputationnel sur tous les devices.',
+          deliverables: [
+            'Notifications Slack + email pour détections et checkpoints SLA.',
+            'Portail analytics 24/7 avec vues localisées et exports auditables.',
+            'Flux API + webhooks connectés à vos outils BI, CRM et incident.',
+          ],
+        },
+      ],
+    },
     industries: {
       title: 'Playbooks sectoriels activés chaque semaine',
       subtitle: 'Chaque forfait se module selon les pressions propres à votre industrie et à vos marchés.',
@@ -2042,6 +2198,72 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Office hours ejecutivas',
           availability: 'Sesión semanal de 45 minutos',
           description: 'Espacio para liderazgo donde revisamos momentum, desbloqueamos aprobaciones y alineamos a los stakeholders globales.',
+        },
+      ],
+    },
+    slas: {
+      title: 'Compromisos de respuesta en los que podés confiar',
+      subtitle: 'SLA dirigidos por el fundador contienen los incidentes antes de que se multipliquen.',
+      commitments: [
+        {
+          title: 'Triage de incidentes críticos',
+          target: '<15 min primera respuesta',
+          description:
+            'Leads multilingües activan una war room que coordina seguridad, legal y comunicación en vivo.',
+          coverage: 'Dominios secuestrados · infraestructura phishing · picos de desinformación',
+        },
+        {
+          title: 'Escalación a plataformas',
+          target: '<45 min para presentar y documentar casos',
+          description:
+            'Los defensores Traceremove empaquetan evidencias, contexto legal y piezas motion para marketplaces y reguladores.',
+          coverage: 'Tiendas de apps · marketplaces · redes publicitarias · portales de reseñas',
+        },
+        {
+          title: 'Informe ejecutivo de situación',
+          target: '<4 h resumen aprobado',
+          description:
+            'El equipo fundador entrega un brief ejecutivo con impacto previsto, decisiones requeridas y próxima cadencia.',
+          coverage: 'Directorio, inversores y liderazgo global',
+        },
+      ],
+    },
+    reporting: {
+      title: 'Rituales de reporting que hacen obvia la decisión',
+      subtitle: 'Cada colaboración incluye analytics multicapa para alinear operaciones, finanzas y gobernanza.',
+      rhythms: [
+        {
+          title: 'Revisión de momentum ejecutiva',
+          cadence: 'Semanal',
+          description:
+            'Sesion liderada por el fundador que sintetiza retiros de amenazas, lift de demanda y necesidades de recursos.',
+          deliverables: [
+            'Scorecard animada con ingresos protegidos, pipeline y salud de reseñas.',
+            'Registro de riesgos con responsables, probabilidad y severidad.',
+            'Resumen accionable enviado a stakeholders dentro de las dos horas posteriores.',
+          ],
+        },
+        {
+          title: 'Paquete analytics de growth & trust',
+          cadence: 'Quincenal',
+          description:
+            'Equipo de operaciones y analytics recopila aprendizajes de experimentos, performance de contenidos y cambios de sentimiento.',
+          deliverables: [
+            'Dashboards Looker Studio con anotaciones de victorias y oportunidades.',
+            'Modelo de pacing por canal con recomendaciones de presupuesto y creatividades.',
+            'Resumen de inteligencia de comunidad y soporte con guiones proactivos.',
+          ],
+        },
+        {
+          title: 'Observabilidad permanente',
+          cadence: 'Tiempo real',
+          description:
+            'Dashboards animados emiten alertas, colas de reseñas y score de salud reputacional en todos los dispositivos.',
+          deliverables: [
+            'Notificaciones en Slack + email para detecciones y checkpoints SLA.',
+            'Portal analytics 24/7 con vistas localizadas y exports listos para auditoría.',
+            'Feeds API + webhooks conectados a BI, CRM y gestión de incidentes.',
+          ],
         },
       ],
     },
