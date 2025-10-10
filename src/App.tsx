@@ -3074,6 +3074,62 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__industries" aria-labelledby="services-pricing-industries">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-industries">{copy.industries.title}</h2>
+          <p>{copy.industries.subtitle}</p>
+        </div>
+        <div className="services-pricing__industry-grid">
+          {copy.industries.sectors.map((sector, index) => (
+            <article
+              key={sector.id}
+              className="services-pricing__industry-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <span className="services-pricing__badge">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{sector.name}</h3>
+                  <p>{sector.challenge}</p>
+                </div>
+              </header>
+              <p className="services-pricing__industry-approach">{sector.approach}</p>
+              <dl>
+                <div>
+                  <dt>{sector.metric}</dt>
+                  <dd>{sector.proof}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="services-pricing__concierge" aria-labelledby="services-pricing-concierge">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-concierge">{copy.concierge.title}</h2>
+          <p>{copy.concierge.subtitle}</p>
+        </div>
+        <div className="services-pricing__concierge-grid">
+          {copy.concierge.touchpoints.map((touchpoint, index) => (
+            <article
+              key={touchpoint.title}
+              className="services-pricing__concierge-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{touchpoint.title}</h3>
+                <span>{touchpoint.availability}</span>
+              </header>
+              <p>{touchpoint.description}</p>
+              <footer>
+                <span>{touchpoint.channel}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__roi" aria-labelledby="services-pricing-roi">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-roi">{copy.roi.title}</h2>

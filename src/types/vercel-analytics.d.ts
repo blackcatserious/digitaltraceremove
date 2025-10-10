@@ -1,5 +1,5 @@
-import type { ComponentType } from 'react'
-
 declare module '@vercel/analytics/react' {
-  export const Analytics: ComponentType
+  import type { ComponentType } from 'react'
+
+  export const Analytics: ComponentType<Record<string, never>>
 }

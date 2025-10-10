@@ -59,6 +59,22 @@ export type SupportChannel = {
   description: string
 }
 
+export type IndustrySpotlight = {
+  id: string
+  name: string
+  challenge: string
+  approach: string
+  metric: string
+  proof: string
+}
+
+export type ConciergeTouchpoint = {
+  title: string
+  description: string
+  availability: string
+  channel: string
+}
+
 export type RoiInput = {
   label: string
   help: string
@@ -154,6 +170,16 @@ export type ServicesPricingCopy = {
     title: string
     subtitle: string
     channels: SupportChannel[]
+  }
+  industries: {
+    title: string
+    subtitle: string
+    sectors: IndustrySpotlight[]
+  }
+  concierge: {
+    title: string
+    subtitle: string
+    touchpoints: ConciergeTouchpoint[]
   }
   timeline: {
     title: string
@@ -479,6 +505,68 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Executive office hours',
           availability: 'Weekly 45-minute session',
           description: 'Leadership-only forum to review momentum, unblock approvals, and align global stakeholders.',
+        },
+      ],
+    },
+    industries: {
+      title: 'Industry playbooks we run every week',
+      subtitle: 'Pick a package and we tailor the rituals to your sector’s pressure points.',
+      sectors: [
+        {
+          id: 'saas',
+          name: 'SaaS scaleups',
+          challenge: 'Fake review networks spiking churn across English and Spanish app stores.',
+          approach: 'Bilingual takedown desk combines legal scripts with lifecycle win-back streams inside 14 days.',
+          metric: '38% reduction in fraudulent listings within the first month.',
+          proof: 'SaaS marketplace retained $4.2M ARR after coordinated sweep.',
+        },
+        {
+          id: 'hospitality',
+          name: 'Luxury hospitality groups',
+          challenge: 'Viral rumor cycles suppressing direct bookings across EMEA and the Americas.',
+          approach: 'On-site reputation SWAT pairs UGC activations with concierge enablement in English, French, and Spanish.',
+          metric: '+22% direct bookings restored within eight weeks.',
+          proof: 'Paris & Barcelona flagships regained share post influencer partnerships.',
+        },
+        {
+          id: 'fintech',
+          name: 'Fintech disruptors',
+          challenge: 'Regulatory scrutiny and spoofed domains eroding trust in LATAM.',
+          approach: 'Domain recovery pods sync with compliance counsel and investor comms to align every release.',
+          metric: 'Zero spoofed domains live after 30 days.',
+          proof: 'Series D wallet reopened waitlist with regulator-backed messaging.',
+        },
+        {
+          id: 'healthcare',
+          name: 'Healthcare networks',
+          challenge: 'Physician impersonation scams driving patient complaints and staff burnout.',
+          approach: 'Signal monitoring fuses with patient communications, clinic training, and escalation scripts.',
+          metric: '40% drop in complaint escalations quarter over quarter.',
+          proof: 'National telehealth brand restored CMS quality ratings and patient trust.',
+        },
+      ],
+    },
+    concierge: {
+      title: 'White-glove concierge at every tier',
+      subtitle: 'Founder-led guidance with proactive rituals so you never chase us for updates.',
+      touchpoints: [
+        {
+          title: 'Signal war room',
+          description: 'Shared Slack and WhatsApp command center staffed by multilingual strategists and analysts.',
+          availability: '24/7 monitoring with <30 minute response on priority alerts.',
+          channel: 'Slack · WhatsApp',
+        },
+        {
+          title: 'Founder escalation lane',
+          description: 'Direct access to Artur Ziganshin for board reviews, sensitive negotiations, or press briefings.',
+          availability: 'Immediate callbacks for critical items, daily sync during active incidents.',
+          channel: 'Secure phone · Signal',
+        },
+        {
+          title: 'Insight huddles',
+          description: 'Weekly instrumentation review with recommendations, blockers, and upcoming experiments.',
+          availability: 'Standing 60-minute session aligned to your core time zone.',
+          channel: 'Zoom · Live dashboards',
         },
       ],
     },
@@ -960,6 +1048,68 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    industries: {
+      title: 'Playbooks sectoriels activés chaque semaine',
+      subtitle: 'Chaque forfait se module selon les pressions propres à votre industrie et à vos marchés.',
+      sectors: [
+        {
+          id: 'saas',
+          name: 'Scale-ups SaaS',
+          challenge: 'Réseaux de faux avis qui augmentent le churn sur les stores anglophones et hispanophones.',
+          approach: 'Cellule de retrait bilingue combinant scripts juridiques et séquences win-back en 14 jours.',
+          metric: '-38 % de listings frauduleux en 30 jours.',
+          proof: 'Place de marché SaaS ayant préservé 4,2 M$ d’ARR après l’opération.',
+        },
+        {
+          id: 'hospitality',
+          name: 'Groupes hôteliers premium',
+          challenge: 'Rumeurs virales qui étouffent les réservations directes en EMEA et Amériques.',
+          approach: 'Escouade réputation sur site couplant activations UGC et enablement concierge en trois langues.',
+          metric: '+22 % de réservations directes restaurées en huit semaines.',
+          proof: 'Flagships Paris & Barcelone ayant regagné leurs parts grâce aux partenariats influence.',
+        },
+        {
+          id: 'fintech',
+          name: 'Fintech en hypercroissance',
+          challenge: 'Pression réglementaire et domaines usurpés qui fragilisent la confiance en LATAM.',
+          approach: 'Pods de récupération de domaines synchronisés avec juridique et communication investisseurs.',
+          metric: '0 domaine usurpé actif après 30 jours.',
+          proof: 'Portefeuille Série D ayant rouvert sa liste d’attente avec un discours validé par les autorités.',
+        },
+        {
+          id: 'healthcare',
+          name: 'Réseaux santé & téléconsultation',
+          challenge: 'Impersonations de praticiens générant plaintes patients et burn-out des équipes.',
+          approach: 'Monitoring des signaux couplé à la communication patient et aux scripts d’escalade pour les cliniques.',
+          metric: '-40 % de plaintes escaladées d’un trimestre à l’autre.',
+          proof: 'Marque de télésanté nationale ayant retrouvé sa notation qualité CMS.',
+        },
+      ],
+    },
+    concierge: {
+      title: 'Conciergerie premium sur chaque palier',
+      subtitle: 'Pilotage fondateur avec rituels proactifs pour que vous restiez toujours en avance sur les signaux.',
+      touchpoints: [
+        {
+          title: 'Salle de commandement Signal',
+          description: 'Slack et WhatsApp partagés, animés par des stratégistes multilingues et analysts en continu.',
+          availability: 'Monitoring 24/7 avec réponse <30 minutes sur alertes critiques.',
+          channel: 'Slack · WhatsApp',
+        },
+        {
+          title: 'Voie d’escalade fondateur',
+          description: 'Accès direct à Artur Ziganshin pour updates board, négociations sensibles ou briefings presse.',
+          availability: 'Rappel immédiat sur sujets critiques, point quotidien pendant incident.',
+          channel: 'Téléphone sécurisé · Signal',
+        },
+        {
+          title: 'Comités insight',
+          description: 'Revue instrumentation hebdomadaire : recommandations, blockers et prochaines expérimentations.',
+          availability: 'Session de 60 minutes calée sur votre fuseau horaire central.',
+          channel: 'Zoom · Dashboards live',
+        },
+      ],
+    },
     timeline: {
       title: 'Comment l’élan se construit en 90 jours',
       subtitle: 'Chaque mission suit un rythme éprouvé avec jalons visibles et résultats mesurables.',
@@ -1435,6 +1585,68 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Office hours ejecutivas',
           availability: 'Sesión semanal de 45 minutos',
           description: 'Espacio para liderazgo donde revisamos momentum, desbloqueamos aprobaciones y alineamos a los stakeholders globales.',
+        },
+      ],
+    },
+    industries: {
+      title: 'Playbooks por industria activados cada semana',
+      subtitle: 'Elegís un paquete y modulamos los rituales según la presión real de tu sector.',
+      sectors: [
+        {
+          id: 'saas',
+          name: 'Scaleups SaaS',
+          challenge: 'Redes de reseñas falsas elevan la rotación en tiendas en inglés y español.',
+          approach: 'Mesa de bajas bilingüe que combina guiones legales con flujos de win-back en menos de 14 días.',
+          metric: '-38 % de listados fraudulentos durante el primer mes.',
+          proof: 'Marketplace SaaS retuvo 4,2 M$ de ARR tras la barrida coordinada.',
+        },
+        {
+          id: 'hospitality',
+          name: 'Hotelería de lujo',
+          challenge: 'Ciclos virales frenan reservas directas en EMEA y las Américas.',
+          approach: 'Escuadrón reputacional on-site combina activaciones UGC y enablement de concierge en tres idiomas.',
+          metric: '+22 % de reservas directas recuperadas en ocho semanas.',
+          proof: 'Hoteles insignia en París y Barcelona recuperaron cuota con alianzas de creadores.',
+        },
+        {
+          id: 'fintech',
+          name: 'Fintech disruptivas',
+          challenge: 'Scrutinio regulatorio y dominios falsos erosionan la confianza en LATAM.',
+          approach: 'Pods de recuperación de dominios coordinan legal, compliance y comunicación con inversores.',
+          metric: '0 dominios suplantados activos tras 30 días.',
+          proof: 'Billetera Serie D reabrió lista de espera con narrativa avalada por reguladores.',
+        },
+        {
+          id: 'healthcare',
+          name: 'Redes de salud',
+          challenge: 'Suplantaciones de profesionales disparan quejas de pacientes y fatiga del staff.',
+          approach: 'Monitoreo de señales integrado con comunicación paciente y guías de escalación para clínicas.',
+          metric: '-40 % de quejas escaladas trimestre contra trimestre.',
+          proof: 'Marca nacional de telemedicina recuperó su rating de calidad CMS.',
+        },
+      ],
+    },
+    concierge: {
+      title: 'Concierge de alto toque en cada plan',
+      subtitle: 'Acompañamiento liderado por el fundador con rituales proactivos para que nunca tengas que perseguir updates.',
+      touchpoints: [
+        {
+          title: 'Cuarto de guerra de señales',
+          description: 'Slack y WhatsApp compartidos con estrategas multilingües y analistas monitoreando en vivo.',
+          availability: 'Cobertura 24/7 con respuesta <30 minutos en alertas prioritarias.',
+          channel: 'Slack · WhatsApp',
+        },
+        {
+          title: 'Vía de escalación con el fundador',
+          description: 'Acceso directo a Artur Ziganshin para comités de directorio, negociaciones sensibles o briefings de prensa.',
+          availability: 'Callbacks inmediatos en incidentes y touchpoint diario mientras dure la crisis.',
+          channel: 'Teléfono seguro · Signal',
+        },
+        {
+          title: 'Rondas de insights',
+          description: 'Revisión semanal de la instrumentación con recomendaciones, bloqueos y experimentos próximos.',
+          availability: 'Sesión fija de 60 minutos adaptada a tu huso horario.',
+          channel: 'Zoom · Dashboards en vivo',
         },
       ],
     },

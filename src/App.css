@@ -10113,6 +10113,149 @@ a {
   font-weight: 500;
 }
 
+.services-pricing__industry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.services-pricing__industry-card {
+  position: relative;
+  padding: 2rem;
+  border-radius: 28px;
+  border: 1px solid rgba(96, 165, 250, 0.32);
+  background: linear-gradient(155deg, rgba(14, 165, 233, 0.16), rgba(59, 130, 246, 0.12), rgba(15, 23, 42, 0.82));
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow: hidden;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
+}
+
+.services-pricing__industry-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -30% -40% -30%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.32), transparent 70%);
+  opacity: 0.45;
+  animation: auroraGlow 18s infinite ease-in-out;
+}
+
+.services-pricing__industry-card header {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__industry-card header h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.4rem;
+}
+
+.services-pricing__industry-card header p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.services-pricing__industry-approach {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  color: rgba(226, 232, 240, 0.88);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.services-pricing__industry-card dl {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__industry-card dt {
+  font-weight: 600;
+  color: rgba(125, 211, 252, 0.95);
+}
+
+.services-pricing__industry-card dd {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.7);
+  font-size: 0.95rem;
+}
+
+.services-pricing__concierge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.services-pricing__concierge-card {
+  padding: 1.85rem;
+  border-radius: 26px;
+  border: 1px solid rgba(244, 114, 182, 0.24);
+  background: linear-gradient(150deg, rgba(236, 72, 153, 0.18), rgba(15, 23, 42, 0.76));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
+}
+
+.services-pricing__concierge-card::after {
+  content: '';
+  position: absolute;
+  inset: -40% 10% auto;
+  height: 60%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.25), transparent 70%);
+  opacity: 0.55;
+  animation: shimmerPulse 16s infinite ease-in-out;
+}
+
+.services-pricing__concierge-card header,
+.services-pricing__concierge-card footer,
+.services-pricing__concierge-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__concierge-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.services-pricing__concierge-card header span {
+  color: rgba(244, 114, 182, 0.9);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.services-pricing__concierge-card p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.services-pricing__concierge-card footer span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: rgba(244, 114, 182, 0.85);
+}
+
 .services-pricing__roi {
   padding: 0 0 4rem;
   position: relative;
@@ -10753,6 +10896,8 @@ a {
 
   .services-pricing__deliverable-grid,
   .services-pricing__support-grid,
+  .services-pricing__industry-grid,
+  .services-pricing__concierge-grid,
   .services-pricing__guarantee-grid {
     grid-template-columns: 1fr;
   }
@@ -10789,6 +10934,16 @@ a {
 
   .services-pricing__tier-card {
     padding: 1.75rem;
+  }
+
+  .services-pricing__industry-grid,
+  .services-pricing__concierge-grid {
+    padding: 0 1rem;
+  }
+
+  .services-pricing__industry-card,
+  .services-pricing__concierge-card {
+    padding: 1.6rem;
   }
 
   .services-pricing__roi-control {
