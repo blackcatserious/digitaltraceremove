@@ -89,6 +89,13 @@ export type IntegrationPartner = {
   coverage: string
 }
 
+export type ProcurementArtifact = {
+  title: string
+  description: string
+  format: string
+  availability: string
+}
+
 export type RoiInput = {
   label: string
   help: string
@@ -194,6 +201,11 @@ export type ServicesPricingCopy = {
     title: string
     subtitle: string
     touchpoints: ConciergeTouchpoint[]
+  }
+  procurement: {
+    title: string
+    subtitle: string
+    artifacts: ProcurementArtifact[]
   }
   enablement: {
     title: string
@@ -591,6 +603,41 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           description: 'Weekly instrumentation review with recommendations, blockers, and upcoming experiments.',
           availability: 'Standing 60-minute session aligned to your core time zone.',
           channel: 'Zoom · Live dashboards',
+        },
+      ],
+    },
+    procurement: {
+      title: 'Procurement-ready documentation from day one',
+      subtitle:
+        'Accelerate security, legal, and finance reviews with transparent artefacts that answer every due diligence checklist.',
+      artifacts: [
+        {
+          title: 'Security & compliance dossier',
+          description:
+            'Control inventory covering encryption, access, incident response, and data residency with linked policies and audit evidence.',
+          format: 'PDF bundle',
+          availability: 'Refreshed quarterly or after any material change.',
+        },
+        {
+          title: 'Risk & liability alignment matrix',
+          description:
+            'Maps deliverables, data flows, and responsibilities against your procurement requirements and contractual guardrails.',
+          format: 'Interactive spreadsheet',
+          availability: 'Delivered during scoping, updated collaboratively as scope evolves.',
+        },
+        {
+          title: 'Investment justification kit',
+          description:
+            'Executive briefing outlining pricing, ROI assumptions, billing terms, and escalation clauses for CFO sign-off.',
+          format: 'Executive deck',
+          availability: 'Available at proposal stage with scenario refresh on request.',
+        },
+        {
+          title: 'Stakeholder onboarding playbook',
+          description:
+            'Step-by-step orientation with kickoff agenda, RACI, communication cadences, and multilingual escalation tree.',
+          format: 'Notion workspace',
+          availability: 'Shared pre-kickoff and maintained in real time.',
         },
       ],
     },
@@ -1223,6 +1270,41 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    procurement: {
+      title: 'Documentation achats prête dès le jour 1',
+      subtitle:
+        'Accélérez les validations sécurité, juridiques et financières grâce à des artefacts transparents qui répondent à chaque contrôle de due diligence.',
+      artifacts: [
+        {
+          title: 'Dossier sécurité & conformité',
+          description:
+            'Inventaire des contrôles couvrant chiffrement, accès, réponse aux incidents et localisation des données avec politiques et preuves d’audit associées.',
+          format: 'Pack PDF',
+          availability: 'Actualisé chaque trimestre ou après tout changement majeur.',
+        },
+        {
+          title: 'Matrice d’alignement risques & responsabilités',
+          description:
+            'Cartographie livrables, flux de données et responsabilités face à vos exigences achats et clauses contractuelles.',
+          format: 'Tableur interactif',
+          availability: 'Remis lors du cadrage et mis à jour collaborativement selon l’évolution du périmètre.',
+        },
+        {
+          title: 'Kit de justification d’investissement',
+          description:
+            'Brief exécutif détaillant tarifs, hypothèses ROI, modalités de facturation et clauses d’escalade pour validation CFO.',
+          format: 'Présentation exécutive',
+          availability: 'Disponible dès la proposition avec mises à jour sur demande.',
+        },
+        {
+          title: 'Playbook d’onboarding des parties prenantes',
+          description:
+            'Parcours pas à pas avec agenda de kick-off, RACI, cadences de communication et arbre d’escalade multilingue.',
+          format: 'Workspace Notion',
+          availability: 'Partagé avant le kick-off et maintenu en temps réel.',
+        },
+      ],
+    },
     enablement: {
       title: 'Accélérateurs d’activation intégrés à vos équipes',
       subtitle:
@@ -1849,6 +1931,41 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           description: 'Revisión semanal de la instrumentación con recomendaciones, bloqueos y experimentos próximos.',
           availability: 'Sesión fija de 60 minutos adaptada a tu huso horario.',
           channel: 'Zoom · Dashboards en vivo',
+        },
+      ],
+    },
+    procurement: {
+      title: 'Documentación de compras lista desde el día uno',
+      subtitle:
+        'Acelera las revisiones de seguridad, legales y financieras con artefactos transparentes que resuelven cada checklist de due diligence.',
+      artifacts: [
+        {
+          title: 'Dossier de seguridad y cumplimiento',
+          description:
+            'Inventario de controles que cubre cifrado, accesos, respuesta a incidentes y residencia de datos con políticas y evidencias de auditoría enlazadas.',
+          format: 'Paquete PDF',
+          availability: 'Actualizado trimestralmente o tras cualquier cambio material.',
+        },
+        {
+          title: 'Matriz de alineación de riesgos y responsabilidades',
+          description:
+            'Mapea entregables, flujos de datos y responsabilidades frente a tus requisitos de compras y cláusulas contractuales.',
+          format: 'Hoja de cálculo interactiva',
+          availability: 'Entregada durante el scoping y actualizada en colaboración cuando evoluciona el alcance.',
+        },
+        {
+          title: 'Kit de justificación de inversión',
+          description:
+            'Resumen ejecutivo con precios, supuestos de ROI, condiciones de facturación y cláusulas de escalamiento para aprobación financiera.',
+          format: 'Presentación ejecutiva',
+          availability: 'Disponible en la fase de propuesta con actualizaciones bajo demanda.',
+        },
+        {
+          title: 'Playbook de onboarding de stakeholders',
+          description:
+            'Guía paso a paso con agenda de kickoff, RACI, cadencias de comunicación y árbol de escalación multilingüe.',
+          format: 'Workspace en Notion',
+          availability: 'Compartido antes del kickoff y mantenido en tiempo real.',
         },
       ],
     },

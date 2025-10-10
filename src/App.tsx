@@ -3131,6 +3131,31 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__procurement" aria-labelledby="services-pricing-procurement">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-procurement">{copy.procurement.title}</h2>
+          <p>{copy.procurement.subtitle}</p>
+        </div>
+        <div className="services-pricing__procurement-grid">
+          {copy.procurement.artifacts.map((artifact, index) => (
+            <article
+              key={artifact.title}
+              className="services-pricing__procurement-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <span className="services-pricing__procurement-format">{artifact.format}</span>
+                <h3>{artifact.title}</h3>
+              </header>
+              <p>{artifact.description}</p>
+              <footer>
+                <span className="services-pricing__procurement-availability">{artifact.availability}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__enablement" aria-labelledby="services-pricing-enablement">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-enablement">{copy.enablement.title}</h2>
