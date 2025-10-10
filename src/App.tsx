@@ -3130,6 +3130,33 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__enablement" aria-labelledby="services-pricing-enablement">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-enablement">{copy.enablement.title}</h2>
+          <p>{copy.enablement.subtitle}</p>
+        </div>
+        <div className="services-pricing__enablement-grid">
+          {copy.enablement.streams.map((stream, index) => (
+            <article
+              key={stream.title}
+              className="services-pricing__enablement-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{stream.title}</h3>
+                <span>{stream.rhythm}</span>
+              </header>
+              <p>{stream.description}</p>
+              <ul>
+                {stream.assets.map((asset) => (
+                  <li key={asset}>{asset}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__roi" aria-labelledby="services-pricing-roi">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-roi">{copy.roi.title}</h2>

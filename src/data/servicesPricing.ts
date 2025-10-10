@@ -75,6 +75,13 @@ export type ConciergeTouchpoint = {
   channel: string
 }
 
+export type EnablementStream = {
+  title: string
+  description: string
+  rhythm: string
+  assets: string[]
+}
+
 export type RoiInput = {
   label: string
   help: string
@@ -180,6 +187,11 @@ export type ServicesPricingCopy = {
     title: string
     subtitle: string
     touchpoints: ConciergeTouchpoint[]
+  }
+  enablement: {
+    title: string
+    subtitle: string
+    streams: EnablementStream[]
   }
   timeline: {
     title: string
@@ -567,6 +579,46 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           description: 'Weekly instrumentation review with recommendations, blockers, and upcoming experiments.',
           availability: 'Standing 60-minute session aligned to your core time zone.',
           channel: 'Zoom · Live dashboards',
+        },
+      ],
+    },
+    enablement: {
+      title: 'Enablement accelerators that embed with your operators',
+      subtitle:
+        'Each plan unlocks immersive working sessions so your team absorbs the rituals, tooling, and storytelling required to sustain momentum.',
+      streams: [
+        {
+          title: 'Executive war room',
+          rhythm: 'Weekly 45-minute command center',
+          description:
+            'Founder-led review aligning incidents, growth experiments, and resourcing decisions inside one animated dashboard environment.',
+          assets: [
+            'Escalation and growth scoreboard tailored to your leadership metrics.',
+            'Decision log with action owners, due dates, and multilingual communications templates.',
+            'Board and investor narrative prompts refreshed after every session.',
+          ],
+        },
+        {
+          title: 'Revenue recovery lab',
+          rhythm: 'Bi-weekly experimentation sprint',
+          description:
+            'Operators and analysts pair to rebuild funnels, recalibrate paid mix, and recapture lost demand within 14 days.',
+          assets: [
+            'Channel playbooks with localized creative, targeting, and measurement checkpoints.',
+            'GrowthSpark dashboards visualizing lift, retention, and pipeline velocity in real time.',
+            'QA checklist covering landing experiences, CRM automation, and attribution handoffs.',
+          ],
+        },
+        {
+          title: 'Brand trust studio',
+          rhythm: 'Monthly immersive production',
+          description:
+            'Creative directors, strategists, and motion designers co-create signature stories and assets that reinforce trust signals.',
+          assets: [
+            'Hero narrative frameworks with social, PR, and product storyline variants.',
+            'Motion design kit with editable files, animation presets, and usage guides for your team.',
+            'Proactive review and community response scripts tuned for each supported locale.',
+          ],
         },
       ],
     },
@@ -1110,6 +1162,46 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    enablement: {
+      title: 'Accélérateurs d’activation intégrés à vos équipes',
+      subtitle:
+        'Chaque forfait débloque des ateliers immersifs pour transmettre rituels, outils et storytelling à vos équipes internes.',
+      streams: [
+        {
+          title: 'War room exécutive',
+          rhythm: 'Command center hebdomadaire de 45 minutes',
+          description:
+            'Revue pilotée par le fondateur alignant incidents, expérimentations growth et arbitrages de ressources dans un dashboard animé.',
+          assets: [
+            'Tableau de bord d’escalade et de croissance adapté à vos indicateurs de direction.',
+            'Journal de décision avec responsables, échéances et templates de communication multilingues.',
+            'Prompts narratifs pour board et investisseurs mis à jour après chaque session.',
+          ],
+        },
+        {
+          title: 'Lab de reprise de revenus',
+          rhythm: 'Sprint d’expérimentation bi-hebdomadaire',
+          description:
+            'Opérateurs et analysts reconstruisent funnels, recalibrent le mix paid et récupèrent la demande perdue en 14 jours.',
+          assets: [
+            'Playbooks canal avec créas localisées, ciblage et checkpoints de mesure.',
+            'Dashboards GrowthSpark visualisant lift, rétention et vélocité pipeline en temps réel.',
+            'Checklist QA couvrant landing pages, automatisations CRM et handoffs attribution.',
+          ],
+        },
+        {
+          title: 'Studio confiance marque',
+          rhythm: 'Production immersive mensuelle',
+          description:
+            'Directeurs créa, stratégistes et motion designers co-construisent des récits signature qui renforcent vos signaux de confiance.',
+          assets: [
+            'Frameworks narratifs héro avec déclinaisons social, PR et produit.',
+            'Kit motion avec fichiers éditables, presets d’animation et guides d’usage pour vos équipes.',
+            'Scripts proactifs d’avis et de communauté adaptés à chaque langue couverte.',
+          ],
+        },
+      ],
+    },
     timeline: {
       title: 'Comment l’élan se construit en 90 jours',
       subtitle: 'Chaque mission suit un rythme éprouvé avec jalons visibles et résultats mesurables.',
@@ -1647,6 +1739,46 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           description: 'Revisión semanal de la instrumentación con recomendaciones, bloqueos y experimentos próximos.',
           availability: 'Sesión fija de 60 minutos adaptada a tu huso horario.',
           channel: 'Zoom · Dashboards en vivo',
+        },
+      ],
+    },
+    enablement: {
+      title: 'Aceleradores de enablement dentro de tu equipo',
+      subtitle:
+        'Cada plan abre talleres inmersivos para transferir rituales, herramientas y storytelling que sostienen el impulso.',
+      streams: [
+        {
+          title: 'War room ejecutivo',
+          rhythm: 'Comando semanal de 45 minutos',
+          description:
+            'Revisión liderada por el fundador que alinea incidentes, experimentos de growth y decisiones de recursos dentro de un dashboard animado.',
+          assets: [
+            'Scoreboard de escalación y crecimiento alineado a tus métricas directivas.',
+            'Log de decisiones con responsables, deadlines y plantillas multilingües de comunicación.',
+            'Prompts narrativos para board e inversores actualizados en cada sesión.',
+          ],
+        },
+        {
+          title: 'Laboratorio de recuperación de ingresos',
+          rhythm: 'Sprint de experimentación quincenal',
+          description:
+            'Operadores y analistas reconstruyen funnels, recalibran el mix pago y recuperan demanda perdida en 14 días.',
+          assets: [
+            'Playbooks por canal con creatividades localizadas, targeting y checkpoints de medición.',
+            'Dashboards GrowthSpark que visualizan lift, retención y velocidad de pipeline en tiempo real.',
+            'Checklist de QA que cubre landings, automatizaciones CRM y traspasos de atribución.',
+          ],
+        },
+        {
+          title: 'Studio de confianza de marca',
+          rhythm: 'Producción inmersiva mensual',
+          description:
+            'Directores creativos, estrategas y motion designers co-crean relatos insignia y activos que refuerzan los signos de confianza.',
+          assets: [
+            'Frameworks narrativos hero con variaciones para social, PR y producto.',
+            'Kit de motion con archivos editables, presets de animación y guías de uso para tu equipo.',
+            'Guiones proactivos de reseñas y comunidad afinados para cada idioma soportado.',
+          ],
         },
       ],
     },

@@ -10256,6 +10256,109 @@ a {
   color: rgba(244, 114, 182, 0.85);
 }
 
+.services-pricing__enablement {
+  position: relative;
+}
+
+.services-pricing__enablement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.services-pricing__enablement-card {
+  padding: 2rem;
+  border-radius: 28px;
+  border: 1px solid rgba(94, 234, 212, 0.26);
+  background: linear-gradient(150deg, rgba(16, 185, 129, 0.18), rgba(15, 23, 42, 0.78));
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
+}
+
+.services-pricing__enablement-card::before {
+  content: '';
+  position: absolute;
+  inset: -45% auto auto 15%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle at top, rgba(94, 234, 212, 0.35), transparent 65%);
+  opacity: 0.6;
+  transform: translateZ(0);
+  animation: floatField 18s ease-in-out infinite;
+}
+
+.services-pricing__enablement-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -35% -40% auto;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle at bottom, rgba(45, 212, 191, 0.28), transparent 70%);
+  opacity: 0.55;
+  animation: shimmerPulse 14s ease-in-out infinite;
+}
+
+.services-pricing__enablement-card header,
+.services-pricing__enablement-card p,
+.services-pricing__enablement-card ul {
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__enablement-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.services-pricing__enablement-card header span {
+  color: rgba(110, 231, 183, 0.92);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.services-pricing__enablement-card p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.85);
+  line-height: 1.55;
+}
+
+.services-pricing__enablement-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.services-pricing__enablement-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: rgba(226, 232, 240, 0.78);
+  font-size: 0.98rem;
+}
+
+.services-pricing__enablement-card li::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(94, 234, 212, 0.85), rgba(56, 189, 248, 0.75));
+  box-shadow: 0 0 12px rgba(94, 234, 212, 0.6);
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
 .services-pricing__roi {
   padding: 0 0 4rem;
   position: relative;
@@ -10898,6 +11001,7 @@ a {
   .services-pricing__support-grid,
   .services-pricing__industry-grid,
   .services-pricing__concierge-grid,
+  .services-pricing__enablement-grid,
   .services-pricing__guarantee-grid {
     grid-template-columns: 1fr;
   }
@@ -10937,12 +11041,14 @@ a {
   }
 
   .services-pricing__industry-grid,
-  .services-pricing__concierge-grid {
+  .services-pricing__concierge-grid,
+  .services-pricing__enablement-grid {
     padding: 0 1rem;
   }
 
   .services-pricing__industry-card,
-  .services-pricing__concierge-card {
+  .services-pricing__concierge-card,
+  .services-pricing__enablement-card {
     padding: 1.6rem;
   }
 
