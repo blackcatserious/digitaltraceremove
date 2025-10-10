@@ -3034,6 +3034,44 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__compliance" aria-labelledby="services-pricing-compliance">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-compliance">{copy.compliance.title}</h2>
+          <p>{copy.compliance.subtitle}</p>
+        </div>
+        <div className="services-pricing__compliance-grid">
+          {copy.compliance.frameworks.map((framework, index) => (
+            <article
+              key={framework.id}
+              className="services-pricing__compliance-card"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <header>
+                <span className="services-pricing__compliance-eyebrow">{framework.framework}</span>
+                <h3>{framework.name}</h3>
+              </header>
+              <p>{framework.coverage}</p>
+              <footer>
+                <span className="services-pricing__compliance-renewal">{framework.renewal}</span>
+                <span className="services-pricing__compliance-evidence">{framework.evidence}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+        <ul className="services-pricing__compliance-badges">
+          {copy.compliance.badges.map((badge, index) => (
+            <li
+              key={badge.label}
+              className="services-pricing__compliance-badge"
+              style={{ animationDelay: `${index * 0.06}s` } as CSSProperties}
+            >
+              <span>{badge.label}</span>
+              <p>{badge.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section className="services-pricing__guarantees" aria-labelledby="services-pricing-guarantees">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-guarantees">{copy.guarantees.title}</h2>

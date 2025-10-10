@@ -96,6 +96,20 @@ export type ProcurementArtifact = {
   availability: string
 }
 
+export type ComplianceFramework = {
+  id: string
+  name: string
+  framework: string
+  coverage: string
+  renewal: string
+  evidence: string
+}
+
+export type ComplianceBadge = {
+  label: string
+  description: string
+}
+
 export type RoiInput = {
   label: string
   help: string
@@ -186,6 +200,12 @@ export type ServicesPricingCopy = {
     subtitle: string
     metrics: Metric[]
     testimonials: Testimonial[]
+  }
+  compliance: {
+    title: string
+    subtitle: string
+    frameworks: ComplianceFramework[]
+    badges: ComplianceBadge[]
   }
   support: {
     title: string
@@ -520,6 +540,57 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'The team orchestrated legal, product, and marketing stakeholders across three countries without slowing delivery—our board now sees weekly progress pulses.',
           author: 'Luis Méndez',
           role: 'Chief Communications Officer, Global retail brand',
+        },
+      ],
+    },
+    compliance: {
+      title: 'Regulatory compliance ready on day one',
+      subtitle:
+        'Every engagement ships with documentation, evidence, and bilingual counsel alignment so procurement can accelerate approvals.',
+      frameworks: [
+        {
+          id: 'iso27001',
+          name: 'ISO 27001 Response Map',
+          framework: 'ISO 27001 Annex A',
+          coverage:
+            'Control narratives linking monitoring, takedown workflows, and brand recovery procedures to Annex A domains.',
+          renewal: 'Refreshed every 90 days with change logs and risk reviews.',
+          evidence: 'Includes risk register excerpts, playbook library, and corrective action tracker.',
+        },
+        {
+          id: 'soc2',
+          name: 'SOC 2 Action Workbook',
+          framework: 'SOC 2 Type II',
+          coverage:
+            'Trust services mapping that proves security, availability, and confidentiality controls across marketing and product stacks.',
+          renewal: 'Updated alongside quarterly control testing and auditor coordination.',
+          evidence: 'Provides control matrix, monitoring dashboards, and incident drill reports.',
+        },
+        {
+          id: 'gdpr',
+          name: 'GDPR + LGPD Readiness Pack',
+          framework: 'GDPR / LGPD',
+          coverage:
+            'Data processing inventory, lawful basis documentation, and multilingual consent journeys for EU and LATAM markets.',
+          renewal: 'Reviewed biannually with privacy counsel and DPO partners.',
+          evidence: 'Delivers DPIA templates, vendor assessment logs, and breach notification scripts.',
+        },
+      ],
+      badges: [
+        {
+          label: 'Signed DPAs in 48h',
+          description:
+            'Pre-approved templates with EU/US clauses, bilingual counsel notes, and tracked signature workflows.',
+        },
+        {
+          label: 'Audit trails on demand',
+          description:
+            'Motion dashboards archive takedowns, review disputes, and communication threads for regulator-ready exports.',
+        },
+        {
+          label: 'Security questionnaire vault',
+          description:
+            'Library of 400+ infosec answers covering cloud, marketing, and data residency controls with localized context.',
         },
       ],
     },
@@ -1187,6 +1258,57 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    compliance: {
+      title: 'Conformité prête dès le jour un',
+      subtitle:
+        'Chaque mission arrive avec la documentation, les preuves et l’alignement juridique bilingue nécessaires pour accélérer vos comités achats.',
+      frameworks: [
+        {
+          id: 'iso27001',
+          name: 'Cartographie ISO 27001',
+          framework: 'ISO 27001 Annexe A',
+          coverage:
+            'Narratifs de contrôle reliant veille, procédures de retrait et plans de reprise de réputation aux domaines de l’Annexe A.',
+          renewal: 'Actualisé tous les 90 jours avec journaux de changements et revues des risques.',
+          evidence: 'Inclut extraits du registre des risques, bibliothèque de playbooks et suivi des actions correctives.',
+        },
+        {
+          id: 'soc2',
+          name: 'Workbook SOC 2',
+          framework: 'SOC 2 Type II',
+          coverage:
+            'Mapping des critères de sécurité, disponibilité et confidentialité couvrant marketing et produit.',
+          renewal: 'Mis à jour lors des tests de contrôle trimestriels et de la coordination avec l’auditeur.',
+          evidence: 'Fournit matrice de contrôle, tableaux de bord de monitoring et rapports de simulations d’incident.',
+        },
+        {
+          id: 'gdpr',
+          name: 'Pack RGPD + LGPD',
+          framework: 'RGPD / LGPD',
+          coverage:
+            'Inventaire des traitements, bases légales et parcours de consentement multilingues pour l’Europe et l’Amérique latine.',
+          renewal: 'Revu deux fois par an avec les conseils privacy et les DPO partenaires.',
+          evidence: 'Livré avec modèles d’AIPD, registres d’évaluation fournisseurs et scripts de notification d’incident.',
+        },
+      ],
+      badges: [
+        {
+          label: 'DPA signés en 48 h',
+          description:
+            'Modèles pré-approuvés avec clauses UE/US, annotations juridiques bilingues et suivi des signatures.',
+        },
+        {
+          label: 'Traçabilité prête pour l’audit',
+          description:
+            'Tableaux de bord animés archivant retraits, contestations d’avis et échanges pour export immédiat aux régulateurs.',
+        },
+        {
+          label: 'Base de questionnaires sécurité',
+          description:
+            'Bibliothèque de plus de 400 réponses infosec couvrant cloud, marketing et résidence des données avec contexte localisé.',
+        },
+      ],
+    },
     support: {
       title: 'Un support qui ne dort jamais',
       subtitle: 'Accès direct aux opérateurs, jamais à un help desk générique.',
@@ -1848,6 +1970,57 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'El equipo coordinó legal, producto y marketing en tres países sin frenar la entrega; ahora nuestro directorio recibe pulsos semanales.',
           author: 'Luis Méndez',
           role: 'Chief Communications Officer, marca retail global',
+        },
+      ],
+    },
+    compliance: {
+      title: 'Conformidad regulatoria desde el inicio',
+      subtitle:
+        'Cada proyecto incluye documentación, evidencias y coordinación jurídica bilingüe para acelerar las aprobaciones de compras.',
+      frameworks: [
+        {
+          id: 'iso27001',
+          name: 'Mapa de respuesta ISO 27001',
+          framework: 'ISO 27001 Anexo A',
+          coverage:
+            'Relatos de control que vinculan monitoreo, flujos de retirada y planes de recuperación de marca con los dominios del Anexo A.',
+          renewal: 'Actualizado cada 90 días con registros de cambios y revisiones de riesgos.',
+          evidence: 'Incluye extractos del registro de riesgos, biblioteca de playbooks y seguimiento de acciones correctivas.',
+        },
+        {
+          id: 'soc2',
+          name: 'Cuaderno SOC 2',
+          framework: 'SOC 2 Tipo II',
+          coverage:
+            'Mapeo de los criterios de seguridad, disponibilidad y confidencialidad que cubren marketing y producto.',
+          renewal: 'Se actualiza junto a las pruebas trimestrales de control y la coordinación con auditores.',
+          evidence: 'Aporta matriz de controles, dashboards de monitoreo e informes de simulacros de incidentes.',
+        },
+        {
+          id: 'gdpr',
+          name: 'Kit RGPD + LGPD',
+          framework: 'RGPD / LGPD',
+          coverage:
+            'Inventario de tratamiento de datos, bases legales y recorridos de consentimiento multilingües para Europa y Latinoamérica.',
+          renewal: 'Revisado dos veces al año con asesores de privacidad y socios DPO.',
+          evidence: 'Incluye plantillas de EIPD, registros de evaluación de proveedores y guiones de notificación de brechas.',
+        },
+      ],
+      badges: [
+        {
+          label: 'DPA firmados en 48 h',
+          description:
+            'Plantillas preaprobadas con cláusulas UE/EE. UU., anotaciones legales bilingües y seguimiento de firmas.',
+        },
+        {
+          label: 'Trazabilidad lista para auditores',
+          description:
+            'Dashboards animados archivan retiradas, disputas de reseñas y conversaciones para exportar al regulador.',
+        },
+        {
+          label: 'Repositorio de cuestionarios de seguridad',
+          description:
+            'Biblioteca con más de 400 respuestas de ciberseguridad sobre cloud, marketing y residencia de datos con contexto localizado.',
         },
       ],
     },

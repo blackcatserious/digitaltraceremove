@@ -11071,6 +11071,153 @@ a {
   font-size: 0.95rem;
 }
 
+.services-pricing__compliance {
+  position: relative;
+}
+
+.services-pricing__compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto 2.5rem;
+  position: relative;
+}
+
+.services-pricing__compliance-card {
+  position: relative;
+  padding: 1.75rem;
+  border-radius: 24px;
+  border: 1px solid rgba(34, 197, 94, 0.32);
+  background: linear-gradient(155deg, rgba(34, 197, 94, 0.14), rgba(15, 23, 42, 0.82));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  animation: floatFadeIn 0.9s var(--motion-ease) both;
+}
+
+.services-pricing__compliance-card::before,
+.services-pricing__compliance-card::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.services-pricing__compliance-card::before {
+  inset: -40% auto auto -25%;
+  width: 65%;
+  height: 65%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.28), transparent 70%);
+  animation: floatField 18s ease-in-out infinite;
+}
+
+.services-pricing__compliance-card::after {
+  inset: auto -30% -45% auto;
+  width: 58%;
+  height: 58%;
+  background: radial-gradient(circle, rgba(74, 222, 128, 0.2), transparent 70%);
+  animation: shimmerPulse 16s ease-in-out infinite;
+}
+
+.services-pricing__compliance-card header,
+.services-pricing__compliance-card p,
+.services-pricing__compliance-card footer {
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__compliance-eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: rgba(187, 247, 208, 0.85);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  background: rgba(22, 163, 74, 0.22);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.services-pricing__compliance-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: rgba(224, 231, 255, 0.95);
+}
+
+.services-pricing__compliance-card p {
+  margin: 0;
+  color: rgba(203, 213, 225, 0.9);
+  font-size: 0.98rem;
+}
+
+.services-pricing__compliance-card footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(148, 163, 184, 0.88);
+}
+
+.services-pricing__compliance-renewal {
+  font-weight: 600;
+  color: rgba(134, 239, 172, 0.92);
+}
+
+.services-pricing__compliance-evidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.services-pricing__compliance-evidence::before {
+  content: '';
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(145deg, rgba(74, 222, 128, 0.75), rgba(59, 130, 246, 0.6));
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+}
+
+.services-pricing__compliance-badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.services-pricing__compliance-badge {
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: rgba(226, 232, 240, 0.92);
+  animation: fadeSlideUp 0.8s var(--motion-ease) both;
+}
+
+.services-pricing__compliance-badge span {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.services-pricing__compliance-badge p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(148, 163, 184, 0.88);
+}
+
 .services-pricing__faq-list {
   max-width: 900px;
   margin: 0 auto;
@@ -11187,7 +11334,8 @@ a {
 
   .services-pricing__promise-body,
   .services-pricing__comparison-table,
-  .services-pricing__assurance-grid {
+  .services-pricing__assurance-grid,
+  .services-pricing__compliance-grid {
     grid-template-columns: 1fr;
   }
 
@@ -11227,6 +11375,7 @@ a {
   .services-pricing__procurement-grid,
   .services-pricing__enablement-grid,
   .services-pricing__integration-grid,
+  .services-pricing__compliance-badges,
   .services-pricing__guarantee-grid {
     grid-template-columns: 1fr;
   }
@@ -11269,7 +11418,9 @@ a {
   .services-pricing__concierge-grid,
   .services-pricing__enablement-grid,
   .services-pricing__procurement-grid,
-  .services-pricing__integration-grid {
+  .services-pricing__integration-grid,
+  .services-pricing__compliance-grid,
+  .services-pricing__compliance-badges {
     padding: 0 1rem;
   }
 
@@ -11277,7 +11428,8 @@ a {
   .services-pricing__concierge-card,
   .services-pricing__enablement-card,
   .services-pricing__procurement-card,
-  .services-pricing__integration-card {
+  .services-pricing__integration-card,
+  .services-pricing__compliance-card {
     padding: 1.6rem;
   }
 
