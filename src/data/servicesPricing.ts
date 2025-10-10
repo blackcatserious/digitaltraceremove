@@ -158,6 +158,19 @@ export type IncidentPlaybook = {
   outcome: string
 }
 
+export type ExecutiveBriefing = {
+  title: string
+  cadence: string
+  description: string
+  takeaways: string[]
+}
+
+export type ExecutiveIndicator = {
+  label: string
+  value: string
+  context: string
+}
+
 export type RoiInput = {
   label: string
   help: string
@@ -285,6 +298,16 @@ export type ServicesPricingCopy = {
     subtitle: string
     cadences: OperationalCadence[]
     signals: OperationalSignal[]
+  }
+  executive: {
+    title: string
+    subtitle: string
+    briefings: ExecutiveBriefing[]
+    indicators: ExecutiveIndicator[]
+    cta: {
+      label: string
+      description: string
+    }
   }
   concierge: {
     title: string
@@ -903,6 +926,68 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           description: 'Rolling feedback from leadership surveys covering responsiveness and clarity.',
         },
       ],
+    },
+    executive: {
+      title: 'Executive briefing rituals',
+      subtitle:
+        'Founder & CEO Artur Ziganshin keeps leadership in the loop with motion-rich recaps, decision logs, and proactive asks.',
+      briefings: [
+        {
+          title: 'Monday command briefing',
+          cadence: 'Weekly · 30 minutes',
+          description:
+            'Kick off the week with Artur guiding threat updates, campaign momentum, and approvals required to stay ahead.',
+          takeaways: [
+            'Risk radar review with critical incidents, status, and escalation paths.',
+            'Growth and retention dashboard pulses highlighting revenue being protected.',
+            'Decision register outlining owners, deadlines, and supporting context.',
+          ],
+        },
+        {
+          title: 'Mid-month momentum forum',
+          cadence: 'Bi-weekly · 45 minutes',
+          description:
+            'Deep-dive on experiments, creative performance, and resource pivots with data-rich storytelling.',
+          takeaways: [
+            'Experiment scorecards with animation overlays showing wins and next bets.',
+            'Creative and narrative heatmap across English, French, and Spanish markets.',
+            'Resourcing recommendations plus approvals needed to accelerate.',
+          ],
+        },
+        {
+          title: 'Board prep studio',
+          cadence: 'Monthly · 40 minutes',
+          description:
+            'Founder team packages executive-ready decks, proof points, and response language ahead of investor or board reviews.',
+          takeaways: [
+            'Motion-designed board slides summarizing trust, growth, and pipeline health.',
+            'Scenario analysis with modeled revenue impact and mitigation options.',
+            'Follow-up toolkit including talking points, media briefs, and Q&A support.',
+          ],
+        },
+      ],
+      indicators: [
+        {
+          label: 'Board deck turnaround',
+          value: '< 24 hours',
+          context: 'Average time to deliver executive-ready summaries after an incident escalates.',
+        },
+        {
+          label: 'Leadership satisfaction',
+          value: '98% CSAT',
+          context: 'Six-month rolling feedback from founders, CMOs, and COOs we support.',
+        },
+        {
+          label: 'Escalation rehearsals',
+          value: '12 per year',
+          context: 'Simulations facilitated with your executive team to keep crisis playbooks sharp.',
+        },
+      ],
+      cta: {
+        label: 'Book an executive preview',
+        description:
+          'Request a private walkthrough with Artur Ziganshin to see how our briefings keep leadership aligned during high velocity moments.',
+      },
     },
     concierge: {
       title: 'White-glove concierge at every tier',
@@ -1871,6 +1956,68 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    executive: {
+      title: 'Rituels de briefing exécutif',
+      subtitle:
+        'Artur Ziganshin pilote des syncs animés qui gardent le comité de direction aligné sur la protection de marque et la vitesse de croissance.',
+      briefings: [
+        {
+          title: 'Briefing de commandement du lundi',
+          cadence: 'Hebdomadaire · 30 minutes',
+          description:
+            'Ouverture de semaine menée par le fondateur avec mise à jour des menaces, dynamique des campagnes et arbitrages urgents.',
+          takeaways: [
+            'Revue du radar de risques avec incidents critiques, statut et voies d’escalade.',
+            'Pulse des dashboards croissance & rétention mettant en lumière les revenus protégés.',
+            'Registre des décisions avec propriétaires, échéances et contexte.',
+          ],
+        },
+        {
+          title: 'Forum momentum de mi-mois',
+          cadence: 'Bi-hebdomadaire · 45 minutes',
+          description:
+            'Analyse approfondie des expérimentations, performances créatives et besoins de ressources appuyée par nos visualisations.',
+          takeaways: [
+            'Scorecards d’expériences avec animations illustrant victoires et prochains paris.',
+            'Carte de chaleur narrative couvrant les marchés anglais, français et espagnol.',
+            'Recommandations de ressources et validations nécessaires pour accélérer.',
+          ],
+        },
+        {
+          title: 'Studio préparation board',
+          cadence: 'Mensuel · 40 minutes',
+          description:
+            'L’équipe fondatrice assemble decks exécutifs, preuves et éléments de langage avant vos revues investisseurs ou conseil.',
+          takeaways: [
+            'Slides animées synthétisant confiance, croissance et santé pipeline.',
+            'Analyses de scénarios avec projections de revenus et options de mitigation.',
+            'Kit de suivi incluant Q&R, briefs media et points de discussion.',
+          ],
+        },
+      ],
+      indicators: [
+        {
+          label: 'Délai de deck board',
+          value: '< 24 h',
+          context: 'Temps moyen pour livrer une synthèse exécutive après escalade.',
+        },
+        {
+          label: 'Satisfaction leadership',
+          value: '98 % CSAT',
+          context: 'Feedback glissant sur 6 mois des fondateurs, CMO et COO accompagnés.',
+        },
+        {
+          label: 'Exercices d’escalade',
+          value: '12 par an',
+          context: 'Simulations animées avec votre direction pour garder les playbooks affûtés.',
+        },
+      ],
+      cta: {
+        label: 'Planifier un briefing exécutif',
+        description:
+          'Demandez une session privée avec Artur Ziganshin afin de découvrir comment nos briefings maintiennent l’alignement en phase critique.',
+      },
+    },
     concierge: {
       title: 'Conciergerie premium sur chaque palier',
       subtitle: 'Pilotage fondateur avec rituels proactifs pour que vous restiez toujours en avance sur les signaux.',
@@ -2837,6 +2984,68 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           description: 'Feedback continuo de las direcciones sobre nuestra velocidad y claridad.',
         },
       ],
+    },
+    executive: {
+      title: 'Rituales de briefing ejecutivo',
+      subtitle:
+        'Artur Ziganshin mantiene al liderazgo sincronizado con resúmenes animados, bitácoras de decisión y pedidos proactivos.',
+      briefings: [
+        {
+          title: 'Briefing de comando de los lunes',
+          cadence: 'Semanal · 30 minutos',
+          description:
+            'Arrancamos la semana con el fundador guiando actualizaciones de amenazas, momentum de campañas y aprobaciones críticas.',
+          takeaways: [
+            'Revisión del radar de riesgos con incidentes críticos, estado y rutas de escalación.',
+            'Pulso de dashboards de crecimiento y retención mostrando ingresos protegidos.',
+            'Registro de decisiones con responsables, plazos y contexto clave.',
+          ],
+        },
+        {
+          title: 'Foro de momentum de mitad de mes',
+          cadence: 'Quincenal · 45 minutos',
+          description:
+            'Profundizamos en experimentos, performance creativa y reasignación de recursos con storytelling basado en datos.',
+          takeaways: [
+            'Scorecards de experimentos con animaciones que destacan victorias y próximas apuestas.',
+            'Mapa de calor narrativo para los mercados en inglés, francés y español.',
+            'Recomendaciones de recursos y aprobaciones necesarias para acelerar.',
+          ],
+        },
+        {
+          title: 'Studio de preparación para board',
+          cadence: 'Mensual · 40 minutos',
+          description:
+            'El equipo fundador empaqueta decks ejecutivos, pruebas y lenguaje de respuesta antes de reuniones con inversores o directorio.',
+          takeaways: [
+            'Slides animadas que resumen confianza, crecimiento y salud del pipeline.',
+            'Análisis de escenarios con impacto de ingresos modelado y opciones de mitigación.',
+            'Kit de seguimiento con talking points, briefs de prensa y soporte de Q&A.',
+          ],
+        },
+      ],
+      indicators: [
+        {
+          label: 'Entrega de deck para el board',
+          value: '< 24 h',
+          context: 'Tiempo promedio para enviar resúmenes ejecutivos después de una escalación.',
+        },
+        {
+          label: 'Satisfacción del liderazgo',
+          value: '98 % CSAT',
+          context: 'Feedback móvil de los últimos 6 meses entre founders, CMO y COO aliados.',
+        },
+        {
+          label: 'Simulacros de escalación',
+          value: '12 al año',
+          context: 'Ensayos facilitados con tu equipo ejecutivo para mantener playbooks afilados.',
+        },
+      ],
+      cta: {
+        label: 'Agenda un preview ejecutivo',
+        description:
+          'Solicitá una sesión privada con Artur Ziganshin y descubrí cómo los briefings sostienen la alineación en momentos de alta velocidad.',
+      },
     },
     concierge: {
       title: 'Concierge de alto toque en cada plan',

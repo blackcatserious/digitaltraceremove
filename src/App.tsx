@@ -3278,6 +3278,62 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__executive" aria-labelledby="services-pricing-executive">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-executive">{copy.executive.title}</h2>
+          <p>{copy.executive.subtitle}</p>
+        </div>
+        <div className="services-pricing__executive-layout">
+          <div className="services-pricing__executive-briefings">
+            {copy.executive.briefings.map((briefing, index) => (
+              <article
+                key={briefing.title}
+                className="services-pricing__executive-card"
+                style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+              >
+                <header>
+                  <h3>{briefing.title}</h3>
+                  <span>{briefing.cadence}</span>
+                </header>
+                <p>{briefing.description}</p>
+                <ul>
+                  {briefing.takeaways.map((takeaway) => (
+                    <li key={takeaway}>{takeaway}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <aside className="services-pricing__executive-aside">
+            <div className="services-pricing__executive-indicators">
+              {copy.executive.indicators.map((indicator, index) => (
+                <article
+                  key={indicator.label}
+                  className="services-pricing__executive-indicator"
+                  style={{ animationDelay: `${0.12 + index * 0.08}s` } as CSSProperties}
+                >
+                  <header>
+                    <span>{indicator.label}</span>
+                    <strong>{indicator.value}</strong>
+                  </header>
+                  <p>{indicator.context}</p>
+                </article>
+              ))}
+            </div>
+            <div className="services-pricing__executive-cta">
+              <p>{copy.executive.cta.description}</p>
+              <Link className="button primary" to={getContactPath(language)}>
+                {copy.executive.cta.label}
+              </Link>
+            </div>
+            <div className="services-pricing__executive-visual" aria-hidden="true">
+              <GrowthSpark variant="light" size="sm" />
+              <span className="services-pricing__executive-orb" />
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <section className="services-pricing__concierge" aria-labelledby="services-pricing-concierge">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-concierge">{copy.concierge.title}</h2>
