@@ -10088,6 +10088,124 @@ a {
   font-weight: 500;
 }
 
+.services-pricing__governance {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.services-pricing__governance::before {
+  content: '';
+  position: absolute;
+  inset: -15% -10% auto;
+  height: 60%;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.22), transparent 70%);
+  filter: blur(12px);
+  opacity: 0.65;
+  pointer-events: none;
+  animation: floatField 18s ease-in-out infinite;
+}
+
+.services-pricing__governance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.6rem;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__governance-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  border-radius: 28px;
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  background: linear-gradient(155deg, rgba(16, 185, 129, 0.2), rgba(15, 23, 42, 0.82));
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  color: rgba(226, 232, 240, 0.88);
+  animation: fadeSlideUp 0.85s var(--motion-ease) both;
+  backdrop-filter: blur(12px);
+}
+
+.services-pricing__governance-card::before,
+.services-pricing__governance-card::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.services-pricing__governance-card::before {
+  inset: -30% auto auto -25%;
+  width: 65%;
+  height: 65%;
+  background: radial-gradient(circle, rgba(74, 222, 128, 0.32), transparent 70%);
+  animation: floatOrbit 20s ease-in-out infinite;
+}
+
+.services-pricing__governance-card::after {
+  inset: auto -20% -35% auto;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.28), transparent 70%);
+  animation: shimmerPulse 16s ease-in-out infinite;
+}
+
+.services-pricing__governance-card header,
+.services-pricing__governance-card ul {
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__governance-card header {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.services-pricing__governance-card h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: rgba(236, 253, 245, 0.92);
+}
+
+.services-pricing__governance-card p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.78);
+  line-height: 1.6;
+}
+
+.services-pricing__governance-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.services-pricing__governance-card li {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  color: rgba(240, 253, 244, 0.85);
+  font-size: 0.98rem;
+}
+
+.services-pricing__governance-card li::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.85), rgba(20, 184, 166, 0.75));
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.6);
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
 .services-pricing__support-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -11723,7 +11841,8 @@ a {
   .services-pricing__promise-body,
   .services-pricing__comparison-table,
   .services-pricing__assurance-grid,
-  .services-pricing__compliance-grid {
+  .services-pricing__compliance-grid,
+  .services-pricing__governance-grid {
     grid-template-columns: 1fr;
   }
 
@@ -11767,6 +11886,7 @@ a {
   .services-pricing__platform-grid,
   .services-pricing__playbooks-grid,
   .services-pricing__integration-grid,
+  .services-pricing__governance-grid,
   .services-pricing__compliance-badges,
   .services-pricing__guarantee-grid {
     grid-template-columns: 1fr;
@@ -11816,7 +11936,8 @@ a {
   .services-pricing__sla-grid,
   .services-pricing__reporting-grid,
   .services-pricing__compliance-grid,
-  .services-pricing__compliance-badges {
+  .services-pricing__compliance-badges,
+  .services-pricing__governance-grid {
     padding: 0 1rem;
   }
 
@@ -11829,7 +11950,8 @@ a {
   .services-pricing__integration-card,
   .services-pricing__sla-card,
   .services-pricing__reporting-card,
-  .services-pricing__compliance-card {
+  .services-pricing__compliance-card,
+  .services-pricing__governance-card {
     padding: 1.6rem;
   }
 

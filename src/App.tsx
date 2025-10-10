@@ -3072,6 +3072,32 @@ const ServicesPricingPage = () => {
         </ul>
       </section>
 
+      <section className="services-pricing__governance" aria-labelledby="services-pricing-governance">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-governance">{copy.governance.title}</h2>
+          <p>{copy.governance.subtitle}</p>
+        </div>
+        <div className="services-pricing__governance-grid">
+          {copy.governance.protocols.map((protocol, index) => (
+            <article
+              key={protocol.title}
+              className="services-pricing__governance-card"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{protocol.title}</h3>
+                <p>{protocol.description}</p>
+              </header>
+              <ul>
+                {protocol.safeguards.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__guarantees" aria-labelledby="services-pricing-guarantees">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-guarantees">{copy.guarantees.title}</h2>

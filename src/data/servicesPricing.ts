@@ -124,6 +124,12 @@ export type ComplianceBadge = {
   description: string
 }
 
+export type GovernanceProtocol = {
+  title: string
+  description: string
+  safeguards: string[]
+}
+
 export type PlatformCapability = {
   title: string
   description: string
@@ -234,6 +240,11 @@ export type ServicesPricingCopy = {
     subtitle: string
     frameworks: ComplianceFramework[]
     badges: ComplianceBadge[]
+  }
+  governance: {
+    title: string
+    subtitle: string
+    protocols: GovernanceProtocol[]
   }
   support: {
     title: string
@@ -639,6 +650,42 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           label: 'Security questionnaire vault',
           description:
             'Library of 400+ infosec answers covering cloud, marketing, and data residency controls with localized context.',
+        },
+      ],
+    },
+    governance: {
+      title: 'Governance & risk controls',
+      subtitle: 'The approvals, policies, and evidence we maintain so every action stands up to scrutiny.',
+      protocols: [
+        {
+          title: 'Escalation charters',
+          description:
+            'Mapped decision makers with timeboxed approvals across marketing, legal, product, and security stakeholders.',
+          safeguards: [
+            'Live RACI tracker embedded in your workspace with ownership animations for quick scanning.',
+            'Localized notification templates covering English, French, and Spanish audiences.',
+            'Crisis stand-ups triggered in under 45 minutes with documented next checkpoints.',
+          ],
+        },
+        {
+          title: 'Change management runway',
+          description:
+            'Structured review windows and QA rituals that keep launches compliant without slowing experimentation velocity.',
+          safeguards: [
+            'Async briefs with redline history, risk scoring, and approval timelines.',
+            'Dual-operator QA paired with channel-specific verification checklists.',
+            'Automated regression alerts wired into dashboards, Slack, and email digests.',
+          ],
+        },
+        {
+          title: 'Evidence & audit vault',
+          description:
+            'Centralized archive of takedowns, approvals, measurement artifacts, and comms transcripts ready for regulators.',
+          safeguards: [
+            'Encrypted repository with quarterly access reviews and retention policies.',
+            'Chain-of-custody logs for every incident response action and escalation.',
+            'Board-ready summaries with localized executive commentary and CTA tracking.',
+          ],
         },
       ],
     },
@@ -1503,6 +1550,42 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    governance: {
+      title: 'Gouvernance & contrôles des risques',
+      subtitle: 'Nous documentons décisions, politiques et preuves pour que chaque action résiste aux audits.',
+      protocols: [
+        {
+          title: 'Chartes d’escalade',
+          description:
+            'Cartographie des décideurs avec jalons d’approbation chronométrés côté marketing, juridique, produit et sécurité.',
+          safeguards: [
+            'RACI vivant intégré à vos espaces de travail avec animations de statut.',
+            'Templates de notifications localisés EN / FR / ES prêts à diffuser.',
+            'Stand-ups de crise déclenchés en moins de 45 minutes avec prochaines étapes tracées.',
+          ],
+        },
+        {
+          title: 'Runway de change management',
+          description:
+            'Fenêtres de revue structurées et rituels QA qui maintiennent la conformité sans brider l’expérimentation.',
+          safeguards: [
+            'Briefs asynchrones avec historique des redlines, scoring de risque et échéances d’approbation.',
+            'QA en binôme s’appuyant sur des checklists de vérification par canal.',
+            'Alertes de régression automatisées reliées à vos dashboards, Slack et emails.',
+          ],
+        },
+        {
+          title: 'Coffre preuves & audits',
+          description:
+            'Archive centralisée des retraits, validations, artefacts de mesure et transcripts prêts pour autorités et comex.',
+          safeguards: [
+            'Répertoire chiffré avec revue d’accès trimestrielle et politiques de rétention.',
+            'Journal de chaîne de garde pour chaque action de réponse et escalade.',
+            'Synthèses exécutives multilingues prêtes pour board avec suivi des décisions.',
+          ],
+        },
+      ],
+    },
     support: {
       title: 'Un support qui ne dort jamais',
       subtitle: 'Accès direct aux opérateurs, jamais à un help desk générique.',
@@ -2361,6 +2444,42 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           label: 'Repositorio de cuestionarios de seguridad',
           description:
             'Biblioteca con más de 400 respuestas de ciberseguridad sobre cloud, marketing y residencia de datos con contexto localizado.',
+        },
+      ],
+    },
+    governance: {
+      title: 'Gobernanza y controles de riesgo',
+      subtitle: 'Documentamos decisiones, políticas y evidencias para que cada acción resista auditorías.',
+      protocols: [
+        {
+          title: 'Cartas de escalación',
+          description:
+            'Mapa de decisores con aprobaciones cronometradas entre marketing, legal, producto y seguridad.',
+          safeguards: [
+            'RACI vivo integrado en tus workspaces con indicadores animados de estado.',
+            'Plantillas de notificación localizadas EN / FR / ES listas para enviar.',
+            'Stand-ups de crisis disparados en menos de 45 minutos con próximos pasos documentados.',
+          ],
+        },
+        {
+          title: 'Runway de gestión de cambios',
+          description:
+            'Ventanas de revisión y rituales de QA estructurados que mantienen la conformidad sin frenar la experimentación.',
+          safeguards: [
+            'Briefs asíncronos con historial de redlines, scoring de riesgo y deadlines de aprobación.',
+            'QA en pareja apoyado en checklists de verificación por canal.',
+            'Alertas de regresión automatizadas conectadas a dashboards, Slack y resúmenes por email.',
+          ],
+        },
+        {
+          title: 'Bóveda de evidencias y auditoría',
+          description:
+            'Archivo centralizado de retiros, aprobaciones, artefactos de medición y transcripciones listo para reguladores y directorio.',
+          safeguards: [
+            'Repositorio cifrado con revisiones de acceso trimestrales y políticas de retención.',
+            'Logs de cadena de custodia para cada acción y escalación de incidentes.',
+            'Resúmenes ejecutivos multilingües para el board con seguimiento de decisiones y CTA.',
+          ],
         },
       ],
     },
