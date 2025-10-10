@@ -510,7 +510,7 @@ a {
   backdrop-filter: blur(18px);
   color: #e2e8f0;
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .tr-header::before,
@@ -831,12 +831,14 @@ a {
   pointer-events: none;
   transform: translateY(-10px);
   transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 70;
 }
 
 .tr-megamenu.is-open {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.45);
 }
 
 .tr-megamenu__inner {
@@ -1043,7 +1045,9 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.35rem 0;
+  padding: 0.55rem 0;
+  min-height: 2.75rem;
+  width: 100%;
   transition: color 0.3s ease;
 }
 
@@ -6915,6 +6919,10 @@ a {
 }
 
 @media (max-width: 960px) {
+  .tr-megamenu {
+    display: none;
+  }
+
   .tr-header__inner {
     grid-template-columns: 1fr;
     gap: 1rem;

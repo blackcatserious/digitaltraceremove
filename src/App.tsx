@@ -3,6 +3,7 @@ import {
   type CSSProperties,
   type ChangeEvent,
   type FormEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent as ReactMouseEvent,
   type ReactNode,
   useEffect,
@@ -5754,6 +5755,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = navCopy[currentLanguage]
   const groups = navigation[currentLanguage] ?? []
   const headerRef = useRef<HTMLElement | null>(null)
+  const mobileCloseRef = useRef<HTMLButtonElement | null>(null)
 
   const navLinks = useMemo(
     () => [
@@ -5810,6 +5812,27 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   }, [megaOpen])
 
   useEffect(() => {
+    if (!mobileOpen) {
+      return
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false)
+      }
+    }
+
+    const closeButton = mobileCloseRef.current
+    closeButton?.focus({ preventScroll: true })
+
+    window.addEventListener('keydown', handleEscape)
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [mobileOpen])
+
+  useEffect(() => {
     const originalOverflow = document.body.style.overflow
     if (mobileOpen) {
       document.body.style.overflow = 'hidden'
@@ -5819,24 +5842,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
     return () => {
       document.body.style.overflow = originalOverflow
-    }
-  }, [mobileOpen])
-
-  useEffect(() => {
-    if (!mobileOpen) {
-      return
-    }
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setMobileOpen(false)
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
     }
   }, [mobileOpen])
 
@@ -5868,7 +5873,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     setMegaOpen(false)
   }
 
+  const handleBurgerToggle = () => {
+    setMegaOpen(false)
+    setMobileOpen((prev) => !prev)
+  }
+
   const handleServiceToggle = () => {
+    setMobileOpen(false)
     setMegaOpen((prev) => !prev)
   }
 
@@ -5884,11 +5895,44 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     }
   }
 
+  const handleHeaderMouseLeave = (event: ReactMouseEvent<HTMLElement>) => {
+    if (!headerRef.current) {
+      return
+    }
+
+    const nextTarget = event.relatedTarget as Node | null
+
+    if (!nextTarget || !headerRef.current.contains(nextTarget)) {
+      setMegaOpen(false)
+    }
+  }
+
+  const handleServiceKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault()
+      if (!megaOpen) {
+        setMobileOpen(false)
+        setMegaOpen(true)
+      }
+      return
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      handleServiceToggle()
+      return
+    }
+
+    if (event.key === 'Escape') {
+      setMegaOpen(false)
+    }
+  }
+
   return (
     <header
       ref={headerRef}
       className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}
-      onMouseLeave={handleServiceClose}
+      onMouseLeave={handleHeaderMouseLeave}
     >
       <div className="tr-header__inner">
         <div className="tr-header__brand">
@@ -5899,7 +5943,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <button
             type="button"
             className={`tr-burger ${mobileOpen ? 'is-open' : ''}`}
-            onClick={() => setMobileOpen((prev) => !prev)}
+            onClick={handleBurgerToggle}
             aria-expanded={mobileOpen}
             aria-controls="tr-mobile-menu"
             aria-haspopup="dialog"
@@ -5918,6 +5962,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             onClick={handleServiceToggle}
             onMouseEnter={handleServiceOpen}
             onFocus={handleServiceOpen}
+            onKeyDown={handleServiceKeyDown}
             aria-expanded={megaOpen}
             aria-controls="tr-megamenu"
             aria-haspopup="true"
@@ -6000,7 +6045,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
         >
           <div className="tr-mobile-menu__header">
             <span className="tr-mobile-menu__title">Traceremove</span>
-            <button type="button" className="tr-mobile-close" aria-label={copy.closeMenu} onClick={handleCloseMobile}>
+            <button
+              type="button"
+              className="tr-mobile-close"
+              aria-label={copy.closeMenu}
+              onClick={handleCloseMobile}
+              ref={mobileCloseRef}
+            >
               <span />
               <span />
             </button>
