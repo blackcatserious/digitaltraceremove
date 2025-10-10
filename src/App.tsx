@@ -3273,6 +3273,65 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__platform" aria-labelledby="services-pricing-platform">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-platform">{copy.platform.title}</h2>
+          <p>{copy.platform.subtitle}</p>
+        </div>
+        <div className="services-pricing__platform-grid">
+          {copy.platform.capabilities.map((capability, index) => (
+            <article
+              key={capability.title}
+              className="services-pricing__platform-card"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <span className="services-pricing__badge">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{capability.title}</h3>
+                  <p>{capability.description}</p>
+                </div>
+              </header>
+              <ul>
+                {capability.signals.map((signal) => (
+                  <li key={signal}>{signal}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="services-pricing__playbooks" aria-labelledby="services-pricing-playbooks">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-playbooks">{copy.playbooks.title}</h2>
+          <p>{copy.playbooks.subtitle}</p>
+        </div>
+        <div className="services-pricing__playbooks-grid">
+          {copy.playbooks.items.map((playbook, index) => (
+            <article
+              key={playbook.title}
+              className="services-pricing__playbook-card"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <header>
+                <span className="services-pricing__playbook-response">{playbook.responseTime}</span>
+                <h3>{playbook.title}</h3>
+                <p>{playbook.description}</p>
+              </header>
+              <ol>
+                {playbook.stages.map((stage) => (
+                  <li key={stage}>{stage}</li>
+                ))}
+              </ol>
+              <footer>
+                <span>{playbook.outcome}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__integrations" aria-labelledby="services-pricing-integrations">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-integrations">{copy.integrations.title}</h2>

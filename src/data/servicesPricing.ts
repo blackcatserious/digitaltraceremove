@@ -124,6 +124,20 @@ export type ComplianceBadge = {
   description: string
 }
 
+export type PlatformCapability = {
+  title: string
+  description: string
+  signals: string[]
+}
+
+export type IncidentPlaybook = {
+  title: string
+  responseTime: string
+  description: string
+  stages: string[]
+  outcome: string
+}
+
 export type RoiInput = {
   label: string
   help: string
@@ -255,6 +269,16 @@ export type ServicesPricingCopy = {
     title: string
     subtitle: string
     streams: EnablementStream[]
+  }
+  platform: {
+    title: string
+    subtitle: string
+    capabilities: PlatformCapability[]
+  }
+  playbooks: {
+    title: string
+    subtitle: string
+    items: IncidentPlaybook[]
   }
   integrations: {
     title: string
@@ -839,6 +863,86 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'Motion design kit with editable files, animation presets, and usage guides for your team.',
             'Proactive review and community response scripts tuned for each supported locale.',
           ],
+        },
+      ],
+    },
+    platform: {
+      title: 'Platform intelligence you inherit',
+      subtitle:
+        'Automated detection, analytics, and governance layers deploy with every engagement so your team gains instant visibility.',
+      capabilities: [
+        {
+          title: 'Real-time risk graph',
+          description:
+            'Unified monitoring index that maps impersonations, review anomalies, and escalation owners across every market we support.',
+          signals: [
+            '50M+ sources scored with geo and language weighting.',
+            'Automated takedown triggers for domains, ads, and social clones.',
+            'Registrar + platform outreach sequences preloaded for legal teams.',
+          ],
+        },
+        {
+          title: 'Trust analytics workspace',
+          description:
+            'Looker Studio + BigQuery environment blending sentiment, funnel, and revenue telemetry with motion indicators for leadership.',
+          signals: [
+            'Executive dashboards refreshed hourly with annotation trails.',
+            'API + webhook feeds syncing to CRM, CDP, and incident tooling.',
+            'Automated variance alerts piping into Slack, Teams, and email.',
+          ],
+        },
+        {
+          title: 'Automation command center',
+          description:
+            'Low-code workflows orchestrating response rooms, approvals, and enablement drops without adding headcount.',
+          signals: [
+            'Scenario-based playbooks triggered by risk severity bands.',
+            'Motion status boards tracking owner, deadline, and confidence.',
+            'Translation + localization automations for EN/FR/ES releases.',
+          ],
+        },
+      ],
+    },
+    playbooks: {
+      title: 'Response playbooks on standby',
+      subtitle:
+        'Founder-authored sequences keep every incident contained while growth experiments keep shipping in parallel.',
+      items: [
+        {
+          title: 'Spoofed domain takedown',
+          responseTime: '15-minute first action',
+          description:
+            'Domain desk synchronizes legal counsel, paid media, and registrar partners to remove or reroute malicious clones.',
+          stages: [
+            'Signal detection flags registrar, hosting, and DNS data with screenshots.',
+            'Automated outreach packages dispatch to registrar and ad platforms.',
+            'Growth pod refreshes paid + organic creatives to reclaim traffic.',
+          ],
+          outcome: 'Malicious domain removed or redirected with zero lead downtime.',
+        },
+        {
+          title: 'Fake review surge suppression',
+          responseTime: '60-minute containment window',
+          description:
+            'Multilingual analysts verify authenticity, coordinate customer outreach, and trigger platform enforcement sweeps.',
+          stages: [
+            'Reviewer audit cross-references CRM, purchase, and support logs.',
+            'Verified customers receive guided re-engagement prompts and templates.',
+            'Legal + PR teams deploy narrative updates across press and social.',
+          ],
+          outcome: 'Authentic sentiment restored with trendline dashboards documenting recovery.',
+        },
+        {
+          title: 'Executive impersonation response',
+          responseTime: 'Under 30 minutes',
+          description:
+            'Security, comms, and enablement squads collapse on a shared channel to neutralize spoofed profiles targeting leadership.',
+          stages: [
+            'Automated takedown requests fire to social, messaging, and marketplace platforms.',
+            'Stakeholder comms kit with scripts deploys to investors, partners, and teams.',
+            'Trust campaigns refresh paid/owned channels with verified messaging.',
+          ],
+          outcome: 'False persona removed and reputation pulse stabilised within hours.',
         },
       ],
     },
@@ -1623,6 +1727,86 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    platform: {
+      title: 'Plateforme d’intelligence livrée avec la mission',
+      subtitle:
+        'Chaque mandat active nos couches de détection, d’analytics et de gouvernance afin que vos équipes disposent d’une visibilité instantanée.',
+      capabilities: [
+        {
+          title: 'Graphe de risque temps réel',
+          description:
+            'Index unifié qui cartographie usurpations, anomalies d’avis et propriétaires d’escalade sur vos marchés cibles.',
+          signals: [
+            '50M+ sources scorées avec pondération géographique et linguistique.',
+            'Déclencheurs automatiques pour retraits de domaines, annonces et clones sociaux.',
+            'Séquences d’escalade pré-bâties pour registraires, marketplaces et équipes légales.',
+          ],
+        },
+        {
+          title: 'Workspace analytics confiance',
+          description:
+            'Environnement Looker Studio + BigQuery qui fusionne sentiment, funnels et revenus avec des indicateurs animés pour votre direction.',
+          signals: [
+            'Dashboards exécutifs rafraîchis chaque heure avec pistes d’annotation.',
+            'Flux API + webhooks synchronisés avec CRM, CDP et outils incidents.',
+            'Alertes de variance automatisées vers Slack, Teams et email.',
+          ],
+        },
+        {
+          title: 'Command center automatisation',
+          description:
+            'Workflows low-code qui orchestrent salles de crise, validations et livrables d’enablement sans ajouter de charge opérationnelle.',
+          signals: [
+            'Playbooks déclenchés selon le niveau de sévérité des risques.',
+            'Tableaux de statut animés suivant responsables, échéances et confiance.',
+            'Automatisations de traduction pour lancements EN/FR/ES et communication interne.',
+          ],
+        },
+      ],
+    },
+    playbooks: {
+      title: 'Playbooks de réponse prêts à l’emploi',
+      subtitle:
+        'Les séquences rédigées par la direction contiennent chaque incident pendant que vos initiatives croissance continuent.',
+      items: [
+        {
+          title: 'Retrait de domaine usurpé',
+          responseTime: 'Premières actions en 15 minutes',
+          description:
+            'Desk domaines synchronise juridique, paid media et registraires pour supprimer ou rediriger les clones malveillants.',
+          stages: [
+            'Détection signale données registrar, hébergeur et DNS avec captures.',
+            'Dossiers d’escalade automatisés envoyés aux registraires et plateformes pub.',
+            'Squad growth rafraîchit créas payées et SEO pour récupérer le trafic.',
+          ],
+          outcome: 'Domaine frauduleux retiré ou redirigé sans interruption de leads.',
+        },
+        {
+          title: 'Suppression d’une vague de faux avis',
+          responseTime: 'Fenêtre de confinement de 60 minutes',
+          description:
+            'Analystes multilingues vérifient l’authenticité, contactent les clients et déclenchent les actions des plateformes.',
+          stages: [
+            'Audit des auteurs croisant CRM, historiques d’achat et support.',
+            'Clients vérifiés reçoivent prompts et scripts pour rétablir la vérité.',
+            'Juridique + PR déploient mises à jour narratives sur presse et réseaux.',
+          ],
+          outcome: 'Sentiment authentique restauré avec dashboards prouvant la reprise.',
+        },
+        {
+          title: 'Riposte à l’impersonation exécutive',
+          responseTime: 'Moins de 30 minutes',
+          description:
+            'Équipes sécurité, communication et enablement se réunissent pour neutraliser les profils usurpant vos dirigeants.',
+          stages: [
+            'Requêtes de retrait automatiques vers réseaux sociaux, messageries et marketplaces.',
+            'Kit de communication déployé auprès d’investisseurs, partenaires et équipes internes.',
+            'Campagnes confiance rafraîchissent owned & paid media avec messages vérifiés.',
+          ],
+          outcome: 'Fausse identité supprimée et pouls réputationnel stabilisé en quelques heures.',
+        },
+      ],
+    },
     integrations: {
       title: 'Connectez votre stack sans ralentir vos équipes',
       subtitle:
@@ -2401,6 +2585,86 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'Kit de motion con archivos editables, presets de animación y guías de uso para tu equipo.',
             'Guiones proactivos de reseñas y comunidad afinados para cada idioma soportado.',
           ],
+        },
+      ],
+    },
+    platform: {
+      title: 'Plataforma de inteligencia desde el día uno',
+      subtitle:
+        'Activamos capas de detección, analítica y gobernanza para que tu equipo tenga visibilidad inmediata sin otra implementación.',
+      capabilities: [
+        {
+          title: 'Grafo de riesgo en tiempo real',
+          description:
+            'Índice unificado que mapea suplantaciones, anomalías de reseñas y responsables de escalación en todos tus mercados prioritarios.',
+          signals: [
+            '50M+ fuentes ponderadas por geografía e idioma.',
+            'Disparadores automáticos para retirar dominios, anuncios y clones sociales.',
+            'Secuencias de outreach listas para registradores, marketplaces y equipos legales.',
+          ],
+        },
+        {
+          title: 'Workspace de analytics de confianza',
+          description:
+            'Looker Studio + BigQuery combinan sentimiento, funnel y revenue con indicadores animados para liderazgo.',
+          signals: [
+            'Dashboards ejecutivos actualizados cada hora con anotaciones colaborativas.',
+            'Feeds API + webhooks enlazados a CRM, CDP e incident response.',
+            'Alertas de variación entregadas en segundos vía Slack, Teams y correo.',
+          ],
+        },
+        {
+          title: 'Command center de automatización',
+          description:
+            'Workflows low-code que coordinan salas de respuesta, aprobaciones y enablement sin sumar overhead operativo.',
+          signals: [
+            'Playbooks activados según bandas de severidad del riesgo.',
+            'Boards animados muestran responsables, deadlines y nivel de confianza.',
+            'Automatizaciones de localización para lanzamientos EN/FR/ES y comunicaciones internas.',
+          ],
+        },
+      ],
+    },
+    playbooks: {
+      title: 'Playbooks de respuesta listos para activar',
+      subtitle:
+        'Secuencias escritas por la dirección contienen cada incidente mientras los experimentos de crecimiento siguen avanzando.',
+      items: [
+        {
+          title: 'Retiro de dominio suplantado',
+          responseTime: 'Primera acción en 15 minutos',
+          description:
+            'El desk de dominios coordina legales, paid media y registradores para eliminar o redirigir clones maliciosos.',
+          stages: [
+            'Detección reúne datos de registrar, hosting y DNS con evidencias visuales.',
+            'Paquetes automáticos se envían a registradores y plataformas publicitarias.',
+            'El pod de growth actualiza campañas pagas y orgánicas para recuperar tráfico.',
+          ],
+          outcome: 'Dominio fraudulento fuera de línea o redirigido sin cortar la generación de leads.',
+        },
+        {
+          title: 'Contención de reseñas falsas',
+          responseTime: 'Ventana de control de 60 minutos',
+          description:
+            'Analistas multilingües validan autenticidad, activan outreach a clientes y fuerzan acciones de las plataformas.',
+          stages: [
+            'Auditoría cruza CRM, historial de compra y tickets de soporte.',
+            'Clientes verificados reciben guías y scripts para recuperar la narrativa.',
+            'Legal + PR publican actualizaciones en prensa y canales sociales.',
+          ],
+          outcome: 'Sentimiento legítimo restablecido con dashboards que muestran la recuperación.',
+        },
+        {
+          title: 'Respuesta a impersonación ejecutiva',
+          responseTime: 'Menos de 30 minutos',
+          description:
+            'Seguridad, comunicaciones y enablement se coordinan en un canal compartido para neutralizar perfiles que imitan al liderazgo.',
+          stages: [
+            'Solicitudes de retirada automáticas a redes sociales, mensajería y marketplaces.',
+            'Kit de mensajes se despliega a inversores, partners y equipos internos.',
+            'Campañas de confianza refrescan paid & owned media con mensajes verificados.',
+          ],
+          outcome: 'Identidad falsa eliminada y pulso reputacional estabilizado en cuestión de horas.',
         },
       ],
     },
