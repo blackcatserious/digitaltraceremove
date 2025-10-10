@@ -82,6 +82,20 @@ export type IndustrySpotlight = {
   proof: string
 }
 
+export type OperationalCadence = {
+  title: string
+  duration: string
+  focus: string
+  attendees: string[]
+  outcomes: string[]
+}
+
+export type OperationalSignal = {
+  label: string
+  value: string
+  description: string
+}
+
 export type ConciergeTouchpoint = {
   title: string
   description: string
@@ -265,6 +279,12 @@ export type ServicesPricingCopy = {
     title: string
     subtitle: string
     sectors: IndustrySpotlight[]
+  }
+  operations: {
+    title: string
+    subtitle: string
+    cadences: OperationalCadence[]
+    signals: OperationalSignal[]
   }
   concierge: {
     title: string
@@ -811,6 +831,76 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           approach: 'Signal monitoring fuses with patient communications, clinic training, and escalation scripts.',
           metric: '40% drop in complaint escalations quarter over quarter.',
           proof: 'National telehealth brand restored CMS quality ratings and patient trust.',
+        },
+      ],
+    },
+    operations: {
+      title: 'Operational rhythm that keeps every squad aligned',
+      subtitle:
+        'Founder-led cadences orchestrate trust, growth, and product momentum across time zones with clear ownership.',
+      cadences: [
+        {
+          title: 'Monday command center',
+          duration: '60 minutes',
+          focus: 'Threat sweeps, demand pacing, and experiment approvals',
+          attendees: [
+            'Artur Ziganshin',
+            'Growth lead',
+            'Security engineer',
+            'Lifecycle strategist',
+          ],
+          outcomes: [
+            'Prioritized takedowns with owners, evidence packs, and deadlines.',
+            'Updated experiment backlog with motion briefs and launch dates.',
+            'Executive recap dispatched to stakeholders within two hours.',
+          ],
+        },
+        {
+          title: 'Midweek pulse',
+          duration: '30 minutes',
+          focus: 'Channel health, creative QA, and sentiment analytics',
+          attendees: [
+            'Channel operators',
+            'Creative director',
+            'Data analyst',
+          ],
+          outcomes: [
+            'Green/yellow/red dashboard review with intervention triggers.',
+            'Creative refresh decisions paired with asset production timelines.',
+            'Customer feedback snippets routed to product and CX teams.',
+          ],
+        },
+        {
+          title: 'Friday executive standdown',
+          duration: '25 minutes',
+          focus: 'Momentum scorecard, escalations, and next-week runway',
+          attendees: [
+            'Founding team',
+            'Client executives',
+            'Finance partner',
+          ],
+          outcomes: [
+            'Week-in-review narrative with quantified revenue protected.',
+            'Escalation board status including pending legal or platform actions.',
+            'Next-week calendar lock with owners and prep requirements.',
+          ],
+        },
+      ],
+      signals: [
+        {
+          label: 'Average incident resolution velocity',
+          value: '3.2 hours',
+          description: 'Mean time to neutralize critical spoofed domains or fake review spikes.',
+        },
+        {
+          label: 'Experiment launch adherence',
+          value: '94%',
+          description: 'Percentage of scheduled growth launches that ship on time after QA.',
+        },
+        {
+          label: 'Stakeholder satisfaction score',
+          value: '9.4 / 10',
+          description: 'Rolling feedback from leadership surveys covering responsiveness and clarity.',
         },
       ],
     },
@@ -1711,6 +1801,76 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    operations: {
+      title: 'Rythme opérationnel qui aligne chaque équipe',
+      subtitle:
+        'Des cadences pilotées par le fondateur orchestrent confiance, croissance et produit sur tous les fuseaux horaires.',
+      cadences: [
+        {
+          title: 'Command center du lundi',
+          duration: '60 minutes',
+          focus: 'Veille des menaces, pilotage de la demande et arbitrage des expériences',
+          attendees: [
+            'Artur Ziganshin',
+            'Lead croissance',
+            'Ingénieur sécurité',
+            'Stratège lifecycle',
+          ],
+          outcomes: [
+            'Priorisation des retraits avec responsables, dossiers de preuves et échéances.',
+            'Backlog d’expériences mis à jour avec briefs motion et dates de lancement.',
+            'Synthèse exécutive envoyée aux parties prenantes sous deux heures.',
+          ],
+        },
+        {
+          title: 'Pulse de mi-semaine',
+          duration: '30 minutes',
+          focus: 'Santé des canaux, QA créative et analytics de sentiment',
+          attendees: [
+            'Opérateurs de canaux',
+            'Directeur créatif',
+            'Analyste data',
+          ],
+          outcomes: [
+            'Revue du tableau de bord vert / jaune / rouge avec déclencheurs d’intervention.',
+            'Décisions de refresh créatif accompagnées de plannings de production.',
+            'Remontées clients routées vers les équipes produit et CX.',
+          ],
+        },
+        {
+          title: 'Standdown exécutif du vendredi',
+          duration: '25 minutes',
+          focus: 'Scorecard de momentum, escalades et préparation de la semaine suivante',
+          attendees: [
+            'Équipe fondatrice',
+            'Dirigeants client',
+            'Partenaire finance',
+          ],
+          outcomes: [
+            'Narratif hebdomadaire avec revenus protégés quantifiés.',
+            'Statut du board d’escalade incluant actions juridiques ou plateformes en cours.',
+            'Calendrier de la semaine suivante verrouillé avec responsables et besoins de préparation.',
+          ],
+        },
+      ],
+      signals: [
+        {
+          label: 'Vitesse moyenne de résolution des incidents',
+          value: '3,2 heures',
+          description: 'Temps moyen pour neutraliser domaines usurpés ou vagues de faux avis critiques.',
+        },
+        {
+          label: 'Respect des lancements d’expériences',
+          value: '94 %',
+          description: 'Part des expérimentations planifiées qui partent à l’heure après QA.',
+        },
+        {
+          label: 'Satisfaction des parties prenantes',
+          value: '9,4 / 10',
+          description: 'Feedback continu des directions sur notre réactivité et la clarté des décisions.',
+        },
+      ],
+    },
     concierge: {
       title: 'Conciergerie premium sur chaque palier',
       subtitle: 'Pilotage fondateur avec rituels proactifs pour que vous restiez toujours en avance sur les signaux.',
@@ -2605,6 +2765,76 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           approach: 'Monitoreo de señales integrado con comunicación paciente y guías de escalación para clínicas.',
           metric: '-40 % de quejas escaladas trimestre contra trimestre.',
           proof: 'Marca nacional de telemedicina recuperó su rating de calidad CMS.',
+        },
+      ],
+    },
+    operations: {
+      title: 'Ritmo operativo que mantiene a todos alineados',
+      subtitle:
+        'Cadencias lideradas por el fundador sincronizan confianza, crecimiento y producto sin importar el huso horario.',
+      cadences: [
+        {
+          title: 'Command center de los lunes',
+          duration: '60 minutos',
+          focus: 'Barridos de amenazas, pacing de demanda y aprobaciones de experimentos',
+          attendees: [
+            'Artur Ziganshin',
+            'Lead de growth',
+            'Ingeniero de seguridad',
+            'Estratega de lifecycle',
+          ],
+          outcomes: [
+            'Prioridad de retiros con responsables, paquetes de evidencia y deadlines claros.',
+            'Backlog de experimentos actualizado con briefs motion y fechas de lanzamiento.',
+            'Resumen ejecutivo enviado a stakeholders en menos de dos horas.',
+          ],
+        },
+        {
+          title: 'Pulso de mitad de semana',
+          duration: '30 minutos',
+          focus: 'Salud de canales, QA creativa y analítica de sentimiento',
+          attendees: [
+            'Operadores de canal',
+            'Director creativo',
+            'Analista de datos',
+          ],
+          outcomes: [
+            'Revisión del dashboard verde / amarillo / rojo con disparadores de intervención.',
+            'Decisiones de refresh creativo con calendario de producción asociado.',
+            'Insights de clientes derivados a producto y experiencia de cliente.',
+          ],
+        },
+        {
+          title: 'Standdown ejecutivo del viernes',
+          duration: '25 minutos',
+          focus: 'Scorecard de momentum, escalaciones y agenda de la semana siguiente',
+          attendees: [
+            'Equipo fundador',
+            'Ejecutivos del cliente',
+            'Socio de finanzas',
+          ],
+          outcomes: [
+            'Narrativa semanal con ingresos protegidos cuantificados.',
+            'Estado del tablero de escalaciones incluyendo acciones legales o con plataformas.',
+            'Agenda de la semana siguiente bloqueada con responsables y requisitos de preparación.',
+          ],
+        },
+      ],
+      signals: [
+        {
+          label: 'Velocidad media de resolución de incidentes',
+          value: '3,2 horas',
+          description: 'Tiempo promedio para neutralizar dominios falsos o avalanchas de reseñas negativas.',
+        },
+        {
+          label: 'Cumplimiento de lanzamientos de experimentos',
+          value: '94 %',
+          description: 'Porcentaje de lanzamientos planificados que salen a tiempo luego del QA.',
+        },
+        {
+          label: 'Satisfacción de stakeholders',
+          value: '9,4 / 10',
+          description: 'Feedback continuo de las direcciones sobre nuestra velocidad y claridad.',
         },
       ],
     },

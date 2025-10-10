@@ -3222,6 +3222,62 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__operations" aria-labelledby="services-pricing-operations">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-operations">{copy.operations.title}</h2>
+          <p>{copy.operations.subtitle}</p>
+        </div>
+        <div className="services-pricing__operations-layout">
+          <div className="services-pricing__operations-grid">
+            {copy.operations.cadences.map((cadence, index) => (
+              <article
+                key={cadence.title}
+                className="services-pricing__operations-card"
+                style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+              >
+                <header>
+                  <h3>{cadence.title}</h3>
+                  <span>{cadence.duration}</span>
+                </header>
+                <p>{cadence.focus}</p>
+                <div className="services-pricing__operations-meta">
+                  <strong>{copy.hero.eyebrow}</strong>
+                  <ul>
+                    {cadence.attendees.map((attendee) => (
+                      <li key={attendee}>{attendee}</li>
+                    ))}
+                  </ul>
+                </div>
+                <ul>
+                  {cadence.outcomes.map((outcome) => (
+                    <li key={outcome}>{outcome}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <aside className="services-pricing__operations-signals">
+            {copy.operations.signals.map((signal, index) => (
+              <article
+                key={signal.label}
+                className="services-pricing__operations-signal"
+                style={{ animationDelay: `${0.12 + index * 0.08}s` } as CSSProperties}
+              >
+                <header>
+                  <span>{signal.label}</span>
+                  <strong>{signal.value}</strong>
+                </header>
+                <p>{signal.description}</p>
+              </article>
+            ))}
+            <div className="services-pricing__operations-visual" aria-hidden="true">
+              <GrowthSpark variant="dark" size="sm" />
+              <span className="services-pricing__operations-orb" />
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <section className="services-pricing__concierge" aria-labelledby="services-pricing-concierge">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-concierge">{copy.concierge.title}</h2>

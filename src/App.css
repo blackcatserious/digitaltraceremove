@@ -10451,6 +10451,196 @@ a {
   font-size: 0.95rem;
 }
 
+.services-pricing__operations-layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.services-pricing__operations-grid {
+  flex: 1.8;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.services-pricing__operations-card {
+  padding: 1.9rem;
+  border-radius: 26px;
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  background: linear-gradient(160deg, rgba(248, 250, 252, 0.12), rgba(37, 99, 235, 0.15), rgba(15, 23, 42, 0.82));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlideUp 0.85s var(--motion-ease) both;
+}
+
+.services-pricing__operations-card::before {
+  content: '';
+  position: absolute;
+  inset: -45% auto auto -35%;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.26), transparent 70%);
+  opacity: 0.6;
+  animation: floatField 22s ease-in-out infinite;
+}
+
+.services-pricing__operations-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -30% -45% auto;
+  width: 65%;
+  height: 65%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 70%);
+  opacity: 0.6;
+  animation: shimmerPulse 18s ease-in-out infinite;
+}
+
+.services-pricing__operations-card header,
+.services-pricing__operations-card p,
+.services-pricing__operations-card ul,
+.services-pricing__operations-meta {
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__operations-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.services-pricing__operations-card header span {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(248, 250, 252, 0.26);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.services-pricing__operations-card p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.82);
+}
+
+.services-pricing__operations-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+}
+
+.services-pricing__operations-meta strong {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(125, 211, 252, 0.9);
+}
+
+.services-pricing__operations-meta ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.services-pricing__operations-meta li::marker {
+  color: rgba(125, 211, 252, 0.85);
+}
+
+.services-pricing__operations-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.services-pricing__operations-card li {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.services-pricing__operations-signals {
+  flex: 1;
+  display: grid;
+  gap: 1rem;
+  position: relative;
+}
+
+.services-pricing__operations-signal {
+  padding: 1.25rem 1.4rem;
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(37, 99, 235, 0.16), rgba(59, 130, 246, 0.12), rgba(15, 23, 42, 0.85));
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
+}
+
+.services-pricing__operations-signal header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.services-pricing__operations-signal header span {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(191, 219, 254, 0.9);
+}
+
+.services-pricing__operations-signal header strong {
+  font-size: 1.35rem;
+  color: rgba(219, 234, 254, 0.98);
+}
+
+.services-pricing__operations-signal p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.75);
+  line-height: 1.5;
+}
+
+.services-pricing__operations-visual {
+  position: absolute;
+  inset: auto 5% -20% 5%;
+  display: grid;
+  place-items: center;
+  padding: 1.75rem;
+  border-radius: 28px;
+  background: linear-gradient(160deg, rgba(148, 163, 184, 0.12), rgba(15, 23, 42, 0.7));
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  overflow: hidden;
+}
+
+.services-pricing__operations-visual .growth-spark {
+  transform: scale(0.9);
+}
+
+.services-pricing__operations-orb {
+  position: absolute;
+  inset: auto auto -35% -20%;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent 70%);
+  animation: floatField 24s ease-in-out infinite;
+}
+
 .services-pricing__concierge-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -11879,8 +12069,9 @@ a {
   .services-pricing__support-grid,
   .services-pricing__sla-grid,
   .services-pricing__reporting-grid,
-  .services-pricing__industry-grid,
-  .services-pricing__concierge-grid,
+    .services-pricing__industry-grid,
+    .services-pricing__operations-grid,
+    .services-pricing__concierge-grid,
   .services-pricing__procurement-grid,
   .services-pricing__enablement-grid,
   .services-pricing__platform-grid,
@@ -11888,9 +12079,24 @@ a {
   .services-pricing__integration-grid,
   .services-pricing__governance-grid,
   .services-pricing__compliance-badges,
-  .services-pricing__guarantee-grid {
-    grid-template-columns: 1fr;
-  }
+    .services-pricing__guarantee-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-pricing__operations-layout {
+      flex-direction: column;
+      padding: 0 1rem;
+      gap: 1.5rem;
+    }
+
+    .services-pricing__operations-signals {
+      padding-bottom: 4rem;
+    }
+
+    .services-pricing__operations-visual {
+      position: static;
+      margin-top: 1.25rem;
+    }
 
   .services-pricing__roi-grid {
     grid-template-columns: 1fr;
@@ -11926,8 +12132,9 @@ a {
     padding: 1.75rem;
   }
 
-  .services-pricing__industry-grid,
-  .services-pricing__concierge-grid,
+    .services-pricing__industry-grid,
+    .services-pricing__operations-layout,
+    .services-pricing__concierge-grid,
   .services-pricing__enablement-grid,
   .services-pricing__platform-grid,
   .services-pricing__playbooks-grid,
@@ -11941,8 +12148,9 @@ a {
     padding: 0 1rem;
   }
 
-  .services-pricing__industry-card,
-  .services-pricing__concierge-card,
+    .services-pricing__industry-card,
+    .services-pricing__operations-card,
+    .services-pricing__concierge-card,
   .services-pricing__enablement-card,
   .services-pricing__platform-card,
   .services-pricing__playbook-card,
@@ -11963,10 +12171,14 @@ a {
     justify-self: flex-start;
   }
 
-  .services-pricing__roi-result {
-    padding: 1.85rem;
-    gap: 1rem;
-  }
+    .services-pricing__roi-result {
+      padding: 1.85rem;
+      gap: 1rem;
+    }
+
+    .services-pricing__operations-signals {
+      padding-bottom: 3rem;
+    }
 
   .services-pricing__roi-metrics div {
     flex-direction: column;
