@@ -3224,6 +3224,48 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section
+        className="services-pricing__transformations"
+        aria-labelledby="services-pricing-transformations"
+      >
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-transformations">{copy.transformations.title}</h2>
+          <p>{copy.transformations.subtitle}</p>
+        </div>
+        <div className="services-pricing__transformation-grid">
+          {copy.transformations.stories.map((story, index) => (
+            <article
+              key={story.id}
+              className="services-pricing__transformation-card"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <header>
+                <div className="services-pricing__transformation-meta">
+                  <span>{story.sector}</span>
+                  <strong>{story.client}</strong>
+                </div>
+                <h3>{story.title}</h3>
+              </header>
+              <p className="services-pricing__transformation-challenge">{story.challenge}</p>
+              <ul>
+                {story.interventions.map((intervention) => (
+                  <li key={intervention}>{intervention}</li>
+                ))}
+              </ul>
+              <p className="services-pricing__transformation-outcome">{story.outcome}</p>
+              <blockquote>
+                <p>{story.quote}</p>
+                <cite>{story.speaker}</cite>
+              </blockquote>
+              <div className="services-pricing__transformation-visual" aria-hidden="true">
+                <GrowthSpark variant={index % 2 === 0 ? 'light' : 'dark'} size="sm" />
+                <span className="services-pricing__transformation-orb" />
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="services-pricing__operations" aria-labelledby="services-pricing-operations">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-operations">{copy.operations.title}</h2>

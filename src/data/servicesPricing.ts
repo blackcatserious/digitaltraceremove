@@ -158,6 +158,18 @@ export type IncidentPlaybook = {
   outcome: string
 }
 
+export type TransformationStory = {
+  id: string
+  title: string
+  client: string
+  sector: string
+  challenge: string
+  interventions: string[]
+  outcome: string
+  quote: string
+  speaker: string
+}
+
 export type ResilienceDrill = {
   title: string
   scenario: string
@@ -305,6 +317,11 @@ export type ServicesPricingCopy = {
     title: string
     subtitle: string
     sectors: IndustrySpotlight[]
+  }
+  transformations: {
+    title: string
+    subtitle: string
+    stories: TransformationStory[]
   }
   operations: {
     title: string
@@ -877,6 +894,67 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           approach: 'Signal monitoring fuses with patient communications, clinic training, and escalation scripts.',
           metric: '40% drop in complaint escalations quarter over quarter.',
           proof: 'National telehealth brand restored CMS quality ratings and patient trust.',
+        },
+      ],
+    },
+    transformations: {
+      title: 'Transformation stories from the field',
+      subtitle:
+        'Representative engagements showing how our pods blend reputation defense, growth momentum, and executive enablement.',
+      stories: [
+        {
+          id: 'latam-fintech',
+          title: 'Neutralising fake review rings before a Series B roadshow',
+          client: 'LatAm fintech marketplace',
+          sector: 'Fintech',
+          challenge:
+            'Coordinated review farms tanked app store ratings and search snippets across Spanish- and Portuguese-language surfaces hours before investor meetings.',
+          interventions: [
+            'Launched multilingual takedown sprint across marketplaces, paid placements, and affiliate channels within four hours.',
+            'Refreshed launch hub with animated proof dashboards, verified customer films, and CRO experiments to maintain conversion while trust recovered.',
+            'Fed escalated disputes into CX, legal, and product telemetry to detect new anomalies and pre-empt future attacks.',
+          ],
+          outcome:
+            'Recovered a 4.8★ blended rating inside six days and generated a 22% lift in qualified pipeline during the same quarter.',
+          quote:
+            'Traceremove choreographed growth, legal, and CX into one war room—we stayed on offense with motion-rich proof while Artur’s team deleted the noise.',
+          speaker: 'Chief Growth Officer, LatAm fintech marketplace',
+        },
+        {
+          id: 'eu-retail',
+          title: 'Rebuilding cross-border trust after domain spoofing',
+          client: 'European luxury retailer',
+          sector: 'Retail & eCommerce',
+          challenge:
+            'Fraudulent storefronts in three languages siphoned deposits and created an avalanche of social backlash heading into peak season.',
+          interventions: [
+            'Spun up registrar, platform, and payment escalations with real-time dashboards for the executive suite.',
+            'Deployed motion-enabled reassurance campaigns across paid social, CRM, and point-of-sale signage to calm high-value clients.',
+            'Activated concierge pods on WhatsApp and Instagram with multilingual scripts and proof visuals to handle VIP outreach.',
+          ],
+          outcome:
+            'Chargebacks fell 63% within two weeks and net promoter scores rebounded from 21 to 58 ahead of holiday trading.',
+          quote:
+            'Their animations and scripts helped frontline teams recover confidence fast—leadership finally had one view of risk, revenue, and response.',
+          speaker: 'Global CX Director, European luxury retailer',
+        },
+        {
+          id: 'na-cyber',
+          title: 'Aligning security and marketing during a breach narrative',
+          client: 'North American cybersecurity SaaS',
+          sector: 'Cybersecurity',
+          challenge:
+            'A competitor amplified a leaked incident, stalling enterprise renewals and eroding analyst confidence.',
+          interventions: [
+            'Scripted coordinated executive briefings, analyst updates, and motion explainers translating remediation progress.',
+            'Ran resilience simulations with sales and success leads to reframe the story around rapid detection and partnership.',
+            'Delivered a GrowthSpark-powered microsite surfacing live SLAs, uptime, and customer sentiment metrics.',
+          ],
+          outcome:
+            'Closed 94% of at-risk renewals and landed two net-new Fortune 500 deals within the quarter while the brand sentiment index rose 18 points.',
+          quote:
+            'Artur’s core team made sure our truth moved faster than speculation—the animations, dashboards, and rehearsed responses turned fear into momentum.',
+          speaker: 'Chief Revenue Officer, cybersecurity SaaS',
         },
       ],
     },
@@ -1967,6 +2045,67 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    transformations: {
+      title: 'Transformations orchestrées sur le terrain',
+      subtitle:
+        'Aperçu d’engagements où nos pods ont combiné défense de la réputation, accélération de la croissance et alignement exécutif.',
+      stories: [
+        {
+          id: 'latam-fintech',
+          title: 'Neutraliser des fermes d’avis avant un roadshow Série B',
+          client: 'Place de marché fintech LATAM',
+          sector: 'Fintech',
+          challenge:
+            'Des réseaux de faux avis ont fait chuter les notes d’app et les extraits search en espagnol et portugais à la veille des rencontres investisseurs.',
+          interventions: [
+            'Lancement d’un sprint de retraits multilingues couvrant stores, affiliés payants et partenaires influence en moins de quatre heures.',
+            'Refonte du hub de lancement avec dashboards animés de preuves, témoignages clients filmés et expériences CRO pour maintenir la conversion.',
+            'Boucle CX / juridique / produit alimentée par les litiges remontés pour détecter les nouvelles anomalies et renforcer les garde-fous.',
+          ],
+          outcome:
+            'Note moyenne revenue à 4,8★ en six jours et +22 % de pipeline qualifié sur le trimestre.',
+          quote:
+            'Traceremove a mis croissance, juridique et CX dans la même war room — Artur et son équipe ont supprimé le bruit pendant que nous gardions l’offensive.',
+          speaker: 'Chief Growth Officer, marketplace fintech LATAM',
+        },
+        {
+          id: 'eu-retail',
+          title: 'Reconstruire la confiance transfrontalière après du spoofing',
+          client: 'Retailer luxe européen',
+          sector: 'Retail & e-commerce',
+          challenge:
+            'Des boutiques frauduleuses dans trois langues détournaient des acomptes et déclenchaient une tempête sur les réseaux avant la haute saison.',
+          interventions: [
+            'Escalade coordonnée auprès des registrars, plateformes et PSP avec dashboards temps réel pour le comité de direction.',
+            'Campagnes de réassurance animées sur paid social, CRM et PLV pour apaiser les client·es premium.',
+            'Pods concierge activés sur WhatsApp et Instagram avec scripts multilingues et preuves visuelles pour gérer les VIP.',
+          ],
+          outcome:
+            'Les rétrofacturations ont chuté de 63 % en deux semaines et le NPS est passé de 21 à 58 avant les fêtes.',
+          quote:
+            'Leur motion design et leurs scripts ont redonné confiance aux équipes terrain — la direction disposait enfin d’une vision unifiée du risque et du revenu.',
+          speaker: 'Directrice CX globale, retailer luxe européen',
+        },
+        {
+          id: 'na-cyber',
+          title: 'Aligner sécurité et marketing pendant un récit de brèche',
+          client: 'Editeur SaaS cybersécurité Amérique du Nord',
+          sector: 'Cybersécurité',
+          challenge:
+            'Un concurrent amplifiait une fuite pour freiner les renouvellements enterprise et semer le doute chez les analystes.',
+          interventions: [
+            'Scénarisation des briefs exécutifs, updates analystes et explainers animés détaillant la remédiation.',
+            'Simulations de résilience menées avec ventes et succès client pour repositionner la narration autour de la détection rapide.',
+            'Microsite GrowthSpark diffusant SLAs, uptime et sentiment clients en temps réel.',
+          ],
+          outcome:
+            '94 % des renouvellements à risque sécurisés et deux nouveaux comptes Fortune 500 signés sur le trimestre, avec +18 pts d’indice de sentiment.',
+          quote:
+            'L’équipe d’Artur a fait circuler notre vérité plus vite que la rumeur — animations, dashboards et répétitions ont transformé la peur en momentum.',
+          speaker: 'Chief Revenue Officer, éditeur SaaS cybersécurité',
+        },
+      ],
+    },
     operations: {
       title: 'Rythme opérationnel qui aligne chaque équipe',
       subtitle:
@@ -3051,6 +3190,67 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           approach: 'Monitoreo de señales integrado con comunicación paciente y guías de escalación para clínicas.',
           metric: '-40 % de quejas escaladas trimestre contra trimestre.',
           proof: 'Marca nacional de telemedicina recuperó su rating de calidad CMS.',
+        },
+      ],
+    },
+    transformations: {
+      title: 'Transformaciones impulsadas con nuestros pods',
+      subtitle:
+        'Historias donde blindamos reputación, aceleramos demanda y mantuvimos al liderazgo en control sin frenar el crecimiento.',
+      stories: [
+        {
+          id: 'latam-fintech',
+          title: 'Neutralizar anillos de reseñas falsas antes del roadshow Serie B',
+          client: 'Marketplace fintech LATAM',
+          sector: 'Fintech',
+          challenge:
+            'Horas antes de reunirse con inversores, granjas de reseñas hundieron las calificaciones en español y portugués.',
+          interventions: [
+            'Sprint de derribos multilingües cubriendo marketplaces, paid media y afiliados en menos de cuatro horas.',
+            'Relanzamiento del hub con dashboards animados, testimonios en video y experimentos CRO para sostener conversiones.',
+            'Canalización de disputas a CX, legal y producto para detectar nuevos patrones y fortalecer alertas.',
+          ],
+          outcome:
+            'El rating promedio volvió a 4,8★ en seis días y el pipeline calificado creció 22 % ese trimestre.',
+          quote:
+            'Traceremove alineó growth, legal y CX en una sola war room; mientras Artur limpiaba el ruido seguimos generando confianza en público.',
+          speaker: 'Chief Growth Officer, marketplace fintech LATAM',
+        },
+        {
+          id: 'eu-retail',
+          title: 'Recuperar la confianza transfronteriza tras tiendas clonadas',
+          client: 'Retailer de lujo europeo',
+          sector: 'Retail & eCommerce',
+          challenge:
+            'Sitios fraudulentos en tres idiomas desviaban depósitos y encendían la conversación negativa antes de la temporada alta.',
+          interventions: [
+            'Escalaciones coordinadas con registradores, plataformas y PSP acompañadas de dashboards en vivo para dirección.',
+            'Campañas de tranquilidad con motion design en paid social, CRM y señalética para clientes VIP.',
+            'Pods concierge en WhatsApp e Instagram con guiones multilingües y recursos visuales verificables.',
+          ],
+          outcome:
+            'Los contracargos bajaron 63 % en dos semanas y el NPS subió de 21 a 58 antes de las fiestas.',
+          quote:
+            'Sus animaciones y guiones devolvieron la calma a nuestros equipos; por primera vez el board vio riesgo y revenue en un mismo panel.',
+          speaker: 'Directora global de CX, retailer de lujo europeo',
+        },
+        {
+          id: 'na-cyber',
+          title: 'Alinear seguridad y marketing durante una narrativa de brecha',
+          client: 'SaaS de ciberseguridad Norteamérica',
+          sector: 'Ciberseguridad',
+          challenge:
+            'Un competidor amplificó una filtración antigua, deteniendo renovaciones enterprise y generando dudas en analistas.',
+          interventions: [
+            'Guiones coordinados para briefings ejecutivos, updates a analistas y explainers animados sobre la remediación.',
+            'Simulacros de resiliencia con ventas y customer success para reposicionar la historia en torno a la detección rápida.',
+            'Micrositio con GrowthSpark mostrando SLA, uptime y sentimiento de clientes en tiempo real.',
+          ],
+          outcome:
+            'Cerramos 94 % de renovaciones en riesgo y sumamos dos Fortune 500 nuevos mientras el índice de sentimiento subió 18 puntos.',
+          quote:
+            'El equipo de Artur hizo que nuestra versión corriera más rápido que el rumor; dashboards y prácticas animadas convirtieron el miedo en impulso.',
+          speaker: 'Chief Revenue Officer, SaaS de ciberseguridad',
         },
       ],
     },
