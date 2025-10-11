@@ -4434,6 +4434,53 @@ const AcademyPage = () => {
         </div>
       </section>
 
+      <section className="academy-cohorts" aria-labelledby="academy-cohorts-heading">
+        <div className="academy-cohorts__intro">
+          <h2 id="academy-cohorts-heading">{copy.cohortsHeading}</h2>
+          <p>{copy.cohortsSubtitle}</p>
+          <p className="academy-cohorts__note">{copy.cohortsNote}</p>
+        </div>
+        <div className="academy-cohorts__grid">
+          {copy.cohorts.map((cohort, index) => (
+            <article key={cohort.id} className="academy-cohort" data-index={index}>
+              <header className="academy-cohort__header">
+                <h3>{cohort.title}</h3>
+                <p className="academy-cohort__description">{cohort.description}</p>
+              </header>
+              <dl className="academy-cohort__meta">
+                <div>
+                  <dt>{copy.cohortStartLabel}</dt>
+                  <dd>{cohort.start}</dd>
+                </div>
+                <div>
+                  <dt>{copy.cohortCadenceLabel}</dt>
+                  <dd>{cohort.cadence}</dd>
+                </div>
+                <div>
+                  <dt>{copy.cohortFocusLabel}</dt>
+                  <dd>{cohort.focus}</dd>
+                </div>
+                <div>
+                  <dt>{copy.cohortSeatsLabel}</dt>
+                  <dd>{cohort.seats}</dd>
+                </div>
+              </dl>
+              <div className="academy-cohort__highlights">
+                <h4>{copy.cohortHighlightsLabel}</h4>
+                <ul>
+                  {cohort.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+              <Link className="button tertiary" to={getContactPath(language)}>
+                {copy.cohortActionLabel}
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="academy-mentorship" aria-labelledby="academy-mentorship-heading">
         <div className="academy-mentorship__intro">
           <h2 id="academy-mentorship-heading">{copy.mentorshipHeading}</h2>
@@ -4545,6 +4592,48 @@ const AcademyPage = () => {
               <p className="academy-certification__renewal">
                 <strong>{copy.certificationRenewalLabel}:</strong> {certification.renewal}
               </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-scholarships" aria-labelledby="academy-scholarships-heading">
+        <div className="academy-scholarships__intro">
+          <h2 id="academy-scholarships-heading">{copy.scholarshipsHeading}</h2>
+          <p>{copy.scholarshipsSubtitle}</p>
+        </div>
+        <div className="academy-scholarships__grid">
+          {copy.scholarships.map((scholarship, index) => (
+            <article key={scholarship.id} className="academy-scholarship" data-index={index}>
+              <header className="academy-scholarship__header">
+                <h3>{scholarship.title}</h3>
+                <p>{scholarship.description}</p>
+                <div className="academy-scholarship__value">
+                  <span className="academy-scholarship__value-label">{copy.scholarshipValueLabel}</span>
+                  <span className="academy-scholarship__value-amount">{scholarship.value}</span>
+                </div>
+              </header>
+              <div className="academy-scholarship__lists">
+                <div className="academy-scholarship__list">
+                  <h4>{copy.scholarshipEligibilityLabel}</h4>
+                  <ul>
+                    {scholarship.eligibility.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="academy-scholarship__list">
+                  <h4>{copy.scholarshipSupportLabel}</h4>
+                  <ul>
+                    {scholarship.support.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <Link className="button secondary" to={getContactPath(language)}>
+                {scholarship.cta || copy.scholarshipActionLabel}
+              </Link>
             </article>
           ))}
         </div>

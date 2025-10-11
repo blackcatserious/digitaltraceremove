@@ -33,6 +33,27 @@ export type AcademyLab = {
   deliverables: string[]
 }
 
+export type AcademyCohort = {
+  id: string
+  title: string
+  start: string
+  cadence: string
+  focus: string
+  seats: string
+  description: string
+  highlights: string[]
+}
+
+export type AcademyScholarship = {
+  id: string
+  title: string
+  description: string
+  value: string
+  eligibility: string[]
+  support: string[]
+  cta: string
+}
+
 export type AcademyHighlight = {
   label: string
   description: string
@@ -101,6 +122,16 @@ export const academyCopy: Record<
     labsSubtitle: string
     labDeliverableLabel: string
     labs: AcademyLab[]
+    cohortsHeading: string
+    cohortsSubtitle: string
+    cohortStartLabel: string
+    cohortCadenceLabel: string
+    cohortFocusLabel: string
+    cohortSeatsLabel: string
+    cohortHighlightsLabel: string
+    cohortActionLabel: string
+    cohortsNote: string
+    cohorts: AcademyCohort[]
     mentorshipHeading: string
     mentorshipSubtitle: string
     mentorExpertiseLabel: string
@@ -122,6 +153,13 @@ export const academyCopy: Record<
     certificationRequirementsLabel: string
     certificationRenewalLabel: string
     certifications: AcademyCertification[]
+    scholarshipsHeading: string
+    scholarshipsSubtitle: string
+    scholarshipValueLabel: string
+    scholarshipEligibilityLabel: string
+    scholarshipSupportLabel: string
+    scholarshipActionLabel: string
+    scholarships: AcademyScholarship[]
     communityHeading: string
     communitySubtitle: string
     communityHighlights: AcademyHighlight[]
@@ -305,6 +343,64 @@ export const academyCopy: Record<
         ],
       },
     ],
+    cohortsHeading: 'Upcoming cohorts & immersions',
+    cohortsSubtitle:
+      'Reserve seats for the next Academy waves. Cohorts stay intentionally small so every leader receives direct feedback from our strategists.',
+    cohortStartLabel: 'Kickoff',
+    cohortCadenceLabel: 'Cadence',
+    cohortFocusLabel: 'Built for',
+    cohortSeatsLabel: 'Seats remaining',
+    cohortHighlightsLabel: 'Spotlight labs',
+    cohortActionLabel: 'Reserve seats',
+    cohortsNote:
+      'Need a private enablement sprint? Mention it when you contact us and we will configure a custom intake within 48 hours.',
+    cohorts: [
+      {
+        id: 'executive-resilience',
+        title: 'Executive resilience intensive',
+        start: '5 May 2024 · GMT+1',
+        cadence: '6 weeks · Live + async',
+        focus: 'CMO, CRO, Chief of Staff',
+        seats: '8 seats left',
+        description:
+          'Leadership cohort covering enterprise risk steering, stakeholder assurance, and rapid takedown orchestration alongside our core team.',
+        highlights: [
+          'Board-level incident simulation with Artur Ziganshin.',
+          'Live dark web and SERP threat review lab.',
+          'Stakeholder assurance storytelling sprint.',
+        ],
+      },
+      {
+        id: 'search-authority-sprint',
+        title: 'Search authority rebuild studio',
+        start: '21 May 2024 · Virtual',
+        cadence: '4 weeks · Studio intensives',
+        focus: 'SEO & growth leads',
+        seats: '12 seats left',
+        description:
+          'Hands-on studio rebuilding trust signals, multilingual SEO defenses, and review integrity workflows with Clara Martel’s intelligence pod.',
+        highlights: [
+          'SERP volatility monitoring setup.',
+          'Content firewall calendar co-creation.',
+          'Review dispute kit in English, French, Spanish.',
+        ],
+      },
+      {
+        id: 'marketplace-trust',
+        title: 'Marketplace trust accelerator',
+        start: '4 June 2024 · Hybrid Barcelona',
+        cadence: '3 weeks · Hybrid fieldwork',
+        focus: 'Marketplace & operations leaders',
+        seats: '6 seats left',
+        description:
+          'Hybrid fieldwork anchored in Barcelona focused on rooting out fake storefronts, synchronising marketplace policies, and securing conversion recovery.',
+        highlights: [
+          'On-site marketplace policy summit.',
+          'Fraud network teardown with Diego Santos.',
+          'Customer advocacy relaunch playbook.',
+        ],
+      },
+    ],
     mentorshipHeading: 'Mentors on the front lines',
     mentorshipSubtitle:
       'Book deep-dive sessions with the strategists who lead our managed engagements. Every mentor works active incidents each week.',
@@ -444,6 +540,69 @@ export const academyCopy: Record<
           'Maintain CSAT above agreed thresholds for 60 days.',
         ],
         renewal: 'Annual audit of trust metrics and updated outreach scripts.',
+      },
+    ],
+    scholarshipsHeading: 'Scholarships & sponsorships',
+    scholarshipsSubtitle:
+      'We remove barriers for teams safeguarding essential services, community platforms, and underfunded founders.',
+    scholarshipValueLabel: 'Coverage',
+    scholarshipEligibilityLabel: 'Eligibility',
+    scholarshipSupportLabel: 'Support included',
+    scholarshipActionLabel: 'Nominate a leader',
+    scholarships: [
+      {
+        id: 'essential-services',
+        title: 'Essential services fellowship',
+        description:
+          'For hospitals, utilities, and civic platforms facing persistent reputation attacks across multiple markets.',
+        value: '100% tuition covered',
+        eligibility: [
+          'Operate in a critical infrastructure or public trust sector.',
+          'Facing active misinformation or fake review campaigns.',
+          'Commit to sharing anonymised learnings with other fellows.',
+        ],
+        support: [
+          'Priority placement in the next executive resilience intensive.',
+          'Dedicated bilingual strategist for 90 days of implementation.',
+          'Custom tabletop and incident rehearsal for your leadership team.',
+        ],
+        cta: 'Apply for the fellowship',
+      },
+      {
+        id: 'founder-sprint',
+        title: 'Founder sprint sponsorship',
+        description:
+          'Supports bootstrapped founders rebuilding credibility after coordinated defamation or marketplace abuse.',
+        value: '50% tuition covered + travel stipend',
+        eligibility: [
+          'Founder-led company under 50 employees.',
+          'Documented reputation attack impacting revenue.',
+          'Ability to attend at least three live sessions.',
+        ],
+        support: [
+          'Access to search authority rebuild studio.',
+          'One-on-one mentoring with Artur Ziganshin.',
+          'Conversion storytelling audit with our growth pod.',
+        ],
+        cta: 'Request sponsorship',
+      },
+      {
+        id: 'community-guardians',
+        title: 'Community guardians grant',
+        description:
+          'Helps nonprofits and advocacy groups train volunteer moderators and rapid-response teams.',
+        value: 'Partial scholarship + enablement credits',
+        eligibility: [
+          'Registered nonprofit or community collective.',
+          'Active online community exceeding 10k members.',
+          'Commitment to publish public impact summary within 90 days.',
+        ],
+        support: [
+          'Seat bundle for reputation operations pods cohort.',
+          'Template pack translated across English, French, Spanish.',
+          'Quarterly office hour passes for volunteer leads.',
+        ],
+        cta: 'Nominate your organisation',
       },
     ],
     communityHeading: 'Community & support',
@@ -662,6 +821,64 @@ export const academyCopy: Record<
         ],
       },
     ],
+    cohortsHeading: 'Cohortes & immersions à venir',
+    cohortsSubtitle:
+      'Réservez vos places pour les prochaines vagues Academy. Les groupes restent volontairement restreints pour garantir du feedback individuel de nos stratèges.',
+    cohortStartLabel: 'Lancement',
+    cohortCadenceLabel: 'Cadence',
+    cohortFocusLabel: 'Pour qui',
+    cohortSeatsLabel: 'Places restantes',
+    cohortHighlightsLabel: 'Labs mis en avant',
+    cohortActionLabel: 'Réserver une place',
+    cohortsNote:
+      'Besoin d’un sprint privatisé ? Indiquez-le lors du contact, nous organisons une session dédiée sous 48 h.',
+    cohorts: [
+      {
+        id: 'executive-resilience',
+        title: 'Intensive résilience leadership',
+        start: '5 mai 2024 · GMT+1',
+        cadence: '6 semaines · Live + async',
+        focus: 'CMO, CRO, Chief of Staff',
+        seats: '8 places restantes',
+        description:
+          'Programme de direction couvrant pilotage du risque, assurance parties prenantes et orchestration accélérée des retraits aux côtés de notre équipe cœur.',
+        highlights: [
+          'Simulation de crise niveau conseil avec Artur Ziganshin.',
+          'Analyse live des menaces dark web et SERP.',
+          'Sprint storytelling assurance parties prenantes.',
+        ],
+      },
+      {
+        id: 'search-authority-sprint',
+        title: 'Studio reconstruction d’autorité SEO',
+        start: '21 mai 2024 · Virtuel',
+        cadence: '4 semaines · Studios intensifs',
+        focus: 'Leads SEO & growth',
+        seats: '12 places restantes',
+        description:
+          'Atelier pratique pour rebâtir les signaux de confiance, les défenses SEO multilingues et les workflows d’intégrité des avis avec le pod intelligence de Clara Martel.',
+        highlights: [
+          'Mise en place d’un monitoring volatilité SERP.',
+          'Co-création du calendrier content firewall.',
+          'Kit de contestation d’avis EN/FR/ES.',
+        ],
+      },
+      {
+        id: 'marketplace-trust',
+        title: 'Accélérateur confiance marketplaces',
+        start: '4 juin 2024 · Hybride Barcelone',
+        cadence: '3 semaines · Immersion hybride',
+        focus: 'Leaders marketplaces & opérations',
+        seats: '6 places restantes',
+        description:
+          'Immersion hybride à Barcelone pour démanteler les faux vendeurs, synchroniser les politiques marketplaces et sécuriser la reprise des conversions.',
+        highlights: [
+          'Sommet politique marketplaces sur site.',
+          'Démantèlement de réseaux fraude avec Diego Santos.',
+          'Playbook relance advocacy client.',
+        ],
+      },
+    ],
     mentorshipHeading: 'Mentors en première ligne',
     mentorshipSubtitle:
       'Réservez des sessions approfondies avec les stratèges qui pilotent nos missions gérées. Chaque mentor traite des incidents réels chaque semaine.',
@@ -801,6 +1018,69 @@ export const academyCopy: Record<
           'Maintenir le CSAT au-dessus du seuil 60 jours.',
         ],
         renewal: 'Audit annuel des métriques confiance et mise à jour des scripts.',
+      },
+    ],
+    scholarshipsHeading: 'Bourses & parrainages',
+    scholarshipsSubtitle:
+      'Nous levons les freins pour les équipes qui protègent des services essentiels, des plateformes communautaires et des fondateurs sous-financés.',
+    scholarshipValueLabel: 'Couverture',
+    scholarshipEligibilityLabel: 'Éligibilité',
+    scholarshipSupportLabel: 'Accompagnement inclus',
+    scholarshipActionLabel: 'Proposer une candidature',
+    scholarships: [
+      {
+        id: 'essential-services',
+        title: 'Fellowship services essentiels',
+        description:
+          'Pour hôpitaux, services publics et plateformes civiques confrontés à des attaques réputationnelles persistantes sur plusieurs marchés.',
+        value: '100 % des frais couverts',
+        eligibility: [
+          'Opérer dans un secteur d’infrastructure critique ou de confiance publique.',
+          'Subir une campagne active de désinformation ou de faux avis.',
+          'Partager des enseignements anonymisés avec les autres fellows.',
+        ],
+        support: [
+          'Priorité sur la prochaine intensive résilience leadership.',
+          'Stratège bilingue dédié pendant 90 jours de déploiement.',
+          'Tabletop et répétition d’incident personnalisés pour votre direction.',
+        ],
+        cta: 'Déposer une candidature',
+      },
+      {
+        id: 'founder-sprint',
+        title: 'Sponsorship sprint fondateur',
+        description:
+          'Soutient les fondateurs bootstrappés qui reconstruisent leur crédibilité après diffamation coordonnée ou abus marketplaces.',
+        value: '50 % des frais + stipend déplacement',
+        eligibility: [
+          'Entreprise dirigée par son fondateur avec moins de 50 employés.',
+          'Attaque réputationnelle documentée impactant le revenu.',
+          'Disponibilité pour participer à au moins trois sessions live.',
+        ],
+        support: [
+          'Accès au studio reconstruction d’autorité SEO.',
+          'Mentorat individuel avec Artur Ziganshin.',
+          'Audit storytelling conversion avec notre pod growth.',
+        ],
+        cta: 'Demander un sponsorship',
+      },
+      {
+        id: 'community-guardians',
+        title: 'Bourse gardiens de communauté',
+        description:
+          'Aide les associations et collectifs à former modérateurs bénévoles et cellules de réponse rapide.',
+        value: 'Bourse partielle + crédits enablement',
+        eligibility: [
+          'Organisation à but non lucratif ou collectif communautaire déclaré.',
+          'Communauté en ligne active de plus de 10k membres.',
+          'Engagement à publier un retour d’impact public sous 90 jours.',
+        ],
+        support: [
+          'Pack de places pour la cohorte opérations réputation.',
+          'Templates traduits EN/FR/ES.',
+          'Pass trimestriels aux office hours pour les leads bénévoles.',
+        ],
+        cta: 'Nommer votre organisation',
       },
     ],
     communityHeading: 'Communauté & support',
@@ -1019,6 +1299,64 @@ export const academyCopy: Record<
         ],
       },
     ],
+    cohortsHeading: 'Próximas cohortes e inmersiones',
+    cohortsSubtitle:
+      'Reserva tu plaza en las próximas olas de la Academy. Los grupos son reducidos para garantizar feedback directo de nuestros estrategas.',
+    cohortStartLabel: 'Inicio',
+    cohortCadenceLabel: 'Cadencia',
+    cohortFocusLabel: 'Dirigido a',
+    cohortSeatsLabel: 'Cupos disponibles',
+    cohortHighlightsLabel: 'Labs destacados',
+    cohortActionLabel: 'Reservar plaza',
+    cohortsNote:
+      '¿Necesitas un sprint privado? Dínoslo al contactarnos y organizaremos una edición personalizada en 48 horas.',
+    cohorts: [
+      {
+        id: 'executive-resilience',
+        title: 'Intensivo de resiliencia ejecutiva',
+        start: '5 mayo 2024 · GMT+1',
+        cadence: '6 semanas · Live + async',
+        focus: 'CMO, CRO y Chief of Staff',
+        seats: 'Quedan 8 cupos',
+        description:
+          'Cohorte de liderazgo que cubre dirección de riesgo, aseguramiento de stakeholders y orquestación rápida de retiros junto a nuestro equipo central.',
+        highlights: [
+          'Simulación de crisis a nivel directorio con Artur Ziganshin.',
+          'Laboratorio en vivo de amenazas dark web y SERP.',
+          'Sprint de storytelling para tranquilizar a stakeholders.',
+        ],
+      },
+      {
+        id: 'search-authority-sprint',
+        title: 'Estudio de reconstrucción de autoridad SEO',
+        start: '21 mayo 2024 · Virtual',
+        cadence: '4 semanas · Estudios intensivos',
+        focus: 'Líderes de SEO y growth',
+        seats: 'Quedan 12 cupos',
+        description:
+          'Estudio práctico para reactivar señales de confianza, defensas SEO multilingües y flujos de integridad de reseñas junto al pod de inteligencia de Clara Martel.',
+        highlights: [
+          'Configuración de monitoreo de volatilidad SERP.',
+          'Co-creación de calendario content firewall.',
+          'Kit de disputa de reseñas en EN/FR/ES.',
+        ],
+      },
+      {
+        id: 'marketplace-trust',
+        title: 'Acelerador de confianza en marketplaces',
+        start: '4 junio 2024 · Híbrido Barcelona',
+        cadence: '3 semanas · Inmersión híbrida',
+        focus: 'Líderes de marketplaces y operaciones',
+        seats: 'Quedan 6 cupos',
+        description:
+          'Inmersión híbrida en Barcelona enfocada en erradicar vendedores falsos, alinear políticas y asegurar la recuperación de conversiones.',
+        highlights: [
+          'Cumbre presencial de políticas de marketplaces.',
+          'Desmantelamiento de redes fraudulentas con Diego Santos.',
+          'Playbook para relanzar la defensa de clientes.',
+        ],
+      },
+    ],
     mentorshipHeading: 'Mentores en primera línea',
     mentorshipSubtitle:
       'Agenda sesiones profundas con los estrategas que lideran nuestras cuentas gestionadas. Cada mentor atiende incidentes reales todas las semanas.',
@@ -1158,6 +1496,69 @@ export const academyCopy: Record<
           'Mantener CSAT por encima del umbral durante 60 días.',
         ],
         renewal: 'Auditoría anual de métricas de confianza y actualización de guiones.',
+      },
+    ],
+    scholarshipsHeading: 'Becas y patrocinios',
+    scholarshipsSubtitle:
+      'Eliminamos barreras para equipos que protegen servicios esenciales, plataformas comunitarias y fundadores con recursos limitados.',
+    scholarshipValueLabel: 'Cobertura',
+    scholarshipEligibilityLabel: 'Requisitos',
+    scholarshipSupportLabel: 'Acompañamiento incluido',
+    scholarshipActionLabel: 'Postular equipo',
+    scholarships: [
+      {
+        id: 'essential-services',
+        title: 'Beca servicios esenciales',
+        description:
+          'Para hospitales, utilities y plataformas cívicas que sufren ataques reputacionales persistentes en varios mercados.',
+        value: '100 % de la matrícula',
+        eligibility: [
+          'Operar en un sector de infraestructura crítica o confianza pública.',
+          'Enfrentar campañas activas de desinformación o reseñas falsas.',
+          'Compartir aprendizajes anonimizados con la cohorte.',
+        ],
+        support: [
+          'Lugar prioritario en el intensivo de resiliencia ejecutiva.',
+          'Estratega bilingüe dedicado durante 90 días de implementación.',
+          'Tabletop y simulacro de incidentes personalizado para tu dirección.',
+        ],
+        cta: 'Postular a la beca',
+      },
+      {
+        id: 'founder-sprint',
+        title: 'Patrocinio sprint fundadores',
+        description:
+          'Apoya a fundadores bootstrapped que reconstruyen credibilidad tras difamación coordinada o abuso en marketplaces.',
+        value: '50 % de matrícula + estipendio de viaje',
+        eligibility: [
+          'Empresa liderada por su fundador con menos de 50 personas.',
+          'Ataque reputacional documentado que afecta ingresos.',
+          'Disponibilidad para asistir al menos a tres sesiones en vivo.',
+        ],
+        support: [
+          'Acceso al estudio de reconstrucción de autoridad SEO.',
+          'Mentoría individual con Artur Ziganshin.',
+          'Auditoría de storytelling de conversión con nuestro pod de growth.',
+        ],
+        cta: 'Solicitar patrocinio',
+      },
+      {
+        id: 'community-guardians',
+        title: 'Beca guardianes de comunidad',
+        description:
+          'Ayuda a ONGs y colectivos a formar moderadores voluntarios y equipos de respuesta rápida.',
+        value: 'Beca parcial + créditos de enablement',
+        eligibility: [
+          'Organización sin fines de lucro o colectivo comunitario registrado.',
+          'Comunidad en línea activa con más de 10k miembros.',
+          'Compromiso de publicar informe de impacto en 90 días.',
+        ],
+        support: [
+          'Paquete de plazas para la cohorte de operaciones de reputación.',
+          'Paquete de plantillas traducidas EN/FR/ES.',
+          'Pases trimestrales a office hours para líderes voluntarios.',
+        ],
+        cta: 'Nominar organización',
       },
     ],
     communityHeading: 'Comunidad y soporte',

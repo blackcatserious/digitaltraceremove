@@ -3744,6 +3744,11 @@ a {
   .momentum-ticker__items {
     animation: none;
   }
+
+  .academy-cohort::after,
+  .academy-scholarship::after {
+    animation: none;
+  }
 }
 
 .tr-footer {
@@ -13304,6 +13309,237 @@ a {
   border: 1px solid rgba(148, 190, 255, 0.18);
 }
 
+.academy-cohorts {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.academy-cohorts__intro {
+  max-width: 680px;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.academy-cohorts__note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(226, 236, 255, 0.75);
+}
+
+.academy-cohorts__grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.academy-cohort {
+  position: relative;
+  padding: 1.9rem;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, rgba(94, 234, 212, 0.2), rgba(5, 12, 26, 0.92));
+  border: 1px solid rgba(94, 234, 212, 0.22);
+  box-shadow: 0 22px 54px rgba(2, 16, 32, 0.45);
+  display: grid;
+  gap: 1.4rem;
+  overflow: hidden;
+}
+
+.academy-cohort::after {
+  content: '';
+  position: absolute;
+  inset: auto -40% -65% -40%;
+  height: 180px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%);
+  animation: shimmerPulse 16s ease-in-out infinite;
+}
+
+.academy-cohort__header,
+.academy-cohort__meta,
+.academy-cohort__highlights,
+.academy-cohort .button {
+  position: relative;
+  z-index: 1;
+}
+
+.academy-cohort__description {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.academy-cohort__meta {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.academy-cohort__meta div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 14px;
+  background: rgba(2, 10, 24, 0.72);
+  border: 1px solid rgba(94, 234, 212, 0.18);
+}
+
+.academy-cohort__meta dt {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(94, 234, 212, 0.78);
+}
+
+.academy-cohort__meta dd {
+  margin: 0;
+  font-weight: 600;
+  color: rgba(226, 236, 255, 0.88);
+}
+
+.academy-cohort__highlights {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.academy-cohort__highlights h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(148, 190, 255, 0.78);
+}
+
+.academy-cohort__highlights ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.academy-cohort__highlights li {
+  padding: 0.55rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(4, 12, 26, 0.82);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+}
+
+.academy-cohort .button {
+  justify-self: flex-start;
+}
+
+.academy-scholarships {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.academy-scholarships__intro {
+  max-width: 680px;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.academy-scholarships__grid {
+  display: grid;
+  gap: clamp(1.6rem, 3vw, 2.6rem);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.academy-scholarship {
+  position: relative;
+  padding: 2rem;
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(30, 64, 175, 0.28), rgba(8, 20, 44, 0.9));
+  border: 1px solid rgba(148, 190, 255, 0.24);
+  box-shadow: 0 24px 58px rgba(4, 18, 42, 0.5);
+  display: grid;
+  gap: 1.6rem;
+  overflow: hidden;
+}
+
+.academy-scholarship::after {
+  content: '';
+  position: absolute;
+  inset: -45% -30% auto -30%;
+  height: 200px;
+  background: radial-gradient(circle, rgba(94, 234, 212, 0.22), transparent 68%);
+  animation: floatOrbit 20s linear infinite;
+}
+
+.academy-scholarship__header,
+.academy-scholarship__lists,
+.academy-scholarship .button {
+  position: relative;
+  z-index: 1;
+}
+
+.academy-scholarship__header p {
+  margin: 0.6rem 0 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.academy-scholarship__value {
+  margin-top: 1rem;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 16px;
+  background: rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(94, 234, 212, 0.28);
+}
+
+.academy-scholarship__value-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 190, 255, 0.72);
+}
+
+.academy-scholarship__value-amount {
+  font-weight: 600;
+  color: rgba(226, 236, 255, 0.9);
+}
+
+.academy-scholarship__lists {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.academy-scholarship__list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.academy-scholarship__list h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(148, 190, 255, 0.78);
+}
+
+.academy-scholarship__list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.academy-scholarship__list li {
+  padding: 0.55rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(6, 14, 30, 0.82);
+  border: 1px solid rgba(148, 190, 255, 0.18);
+}
+
+.academy-scholarship .button {
+  justify-self: flex-start;
+}
+
 .academy-mentorship {
   display: grid;
   gap: 2.75rem;
@@ -13790,6 +14026,21 @@ a {
 
   .academy-cta {
     padding: 2rem;
+  }
+
+  .academy-cohorts__grid,
+  .academy-scholarships__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .academy-cohort__meta div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .academy-scholarship__lists {
+    grid-template-columns: 1fr;
   }
 }
 
