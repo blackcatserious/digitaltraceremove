@@ -22,6 +22,17 @@ export interface CommandCenterCopy {
     description: string
     steps: { id: string; title: string; description: string; duration: string }[]
   }
+  dashboards: {
+    title: string
+    description: string
+    panels: {
+      id: string
+      title: string
+      description: string
+      metric: string
+      action: string
+    }[]
+  }
   diagnostics: {
     title: string
     description: string
@@ -208,6 +219,37 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           description:
             'Post-incident retrospectives capture lessons learned, automation updates, and follow-on opportunities for trust-building.',
           duration: 'Within 24 hours',
+        },
+      ],
+    },
+    dashboards: {
+      title: 'Live command dashboards for every stakeholder',
+      description:
+        'Executives, comms, and product leaders receive tailored visualisations that translate live investigations into the KPIs each group needs to steer response.',
+      panels: [
+        {
+          id: 'executive',
+          title: 'Executive risk pulse',
+          description:
+            'Streams threat severity, revenue at risk, and brand sentiment deltas with contextual analyst notes for each spike.',
+          metric: 'Refreshed every 5 minutes with anomaly call-outs.',
+          action: 'Export a board-ready PDF in two clicks.',
+        },
+        {
+          id: 'marketing',
+          title: 'Growth & reputation view',
+          description:
+            'Maps SERP shifts, paid spend protections, and review authenticity trends so marketing teams can reallocate budget confidently.',
+          metric: 'Connects to GA4, Search Console, and marketplace APIs.',
+          action: 'Trigger a mitigation sprint directly from the dashboard.',
+        },
+        {
+          id: 'product',
+          title: 'Product & CX operations console',
+          description:
+            'Surfaces incident ticket queues, affected SKUs, and customer-impact forecasts with recommended fixes and status automation.',
+          metric: 'Links to Jira, ServiceNow, and internal status pages.',
+          action: 'Sync restoration playbooks with one-click updates.',
         },
       ],
     },
@@ -609,6 +651,37 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    dashboards: {
+      title: 'Tableaux de bord en direct pour chaque partie prenante',
+      description:
+        'Direction générale, communication et produit accèdent à des vues adaptées qui traduisent l’enquête en indicateurs activables par équipe.',
+      panels: [
+        {
+          id: 'executive',
+          title: 'Pulse risque exécutif',
+          description:
+            'Diffuse sévérité des menaces, revenu protégé et dérive de sentiment avec annotations analystes pour chaque pic.',
+          metric: 'Actualisé toutes les 5 minutes avec alertes contextuelles.',
+          action: 'Exporter un rapport conseil en deux clics.',
+        },
+        {
+          id: 'marketing',
+          title: 'Vue réputation & growth',
+          description:
+            'Cartographie les mouvements SERP, protections paid et tendances d’authenticité des avis pour guider l’allocation budgétaire.',
+          metric: 'Connecté à GA4, Search Console et APIs marketplaces.',
+          action: 'Lancer un sprint de mitigation directement depuis la vue.',
+        },
+        {
+          id: 'product',
+          title: 'Console produit & expérience client',
+          description:
+            'Met en avant files tickets incident, SKU touchés et prévisions d’impact client avec recommandations automatisées.',
+          metric: 'Synchronisé avec Jira, ServiceNow et vos status pages.',
+          action: 'Mettre à jour les playbooks de restauration en un clic.',
+        },
+      ],
+    },
     diagnostics: {
       title: 'Diagnostics continus sur chaque surface de risque',
       description:
@@ -1004,6 +1077,37 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           description:
             'Retrospectivas post-incidente con aprendizajes, automatizaciones a actualizar y oportunidades de confianza.',
           duration: 'En menos de 24 horas',
+        },
+      ],
+    },
+    dashboards: {
+      title: 'Dashboards en vivo para cada equipo clave',
+      description:
+        'Dirección, comunicación y producto reciben visualizaciones hechas a medida que convierten la investigación en KPIs accionables por función.',
+      panels: [
+        {
+          id: 'executive',
+          title: 'Pulso ejecutivo de riesgo',
+          description:
+            'Muestra severidad de amenazas, ingresos en riesgo y variaciones de sentimiento con notas analistas en cada pico.',
+          metric: 'Se actualiza cada 5 minutos con alertas contextuales.',
+          action: 'Exporta un informe para el consejo en dos clics.',
+        },
+        {
+          id: 'marketing',
+          title: 'Vista de reputación y growth',
+          description:
+            'Mapea desplazamientos SERP, protecciones de paid media y tendencias de reseñas auténticas para reorientar inversión con seguridad.',
+          metric: 'Integrado con GA4, Search Console y APIs de marketplaces.',
+          action: 'Lanza un sprint de mitigación sin salir del dashboard.',
+        },
+        {
+          id: 'product',
+          title: 'Consola de producto y CX',
+          description:
+            'Expone colas de tickets, SKUs afectados y pronósticos de impacto cliente con recomendaciones automatizadas.',
+          metric: 'Sincronizado con Jira, ServiceNow y status pages internas.',
+          action: 'Actualiza playbooks de restauración con un clic.',
         },
       ],
     },

@@ -4409,6 +4409,34 @@ const CommandCenterPage = () => {
         </ol>
       </section>
 
+      <section className="command-dashboards" aria-labelledby="command-dashboards-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-dashboards-heading">{copy.dashboards.title}</h2>
+            <p>{copy.dashboards.description}</p>
+          </div>
+        </div>
+        <div className="command-dashboards__grid">
+          {copy.dashboards.panels.map((panel, index) => (
+            <article
+              key={panel.id}
+              className="command-dashboards__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header className="command-dashboards__header">
+                <h3>{panel.title}</h3>
+                <span className="command-dashboards__metric">{panel.metric}</span>
+              </header>
+              <p>{panel.description}</p>
+              <footer className="command-dashboards__footer">
+                <span>{panel.action}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="command-diagnostics" aria-labelledby="command-diagnostics-heading">
         <div className="command-section__header">
           <div>
