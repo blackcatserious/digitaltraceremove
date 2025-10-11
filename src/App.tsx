@@ -4409,6 +4409,39 @@ const CommandCenterPage = () => {
         </ol>
       </section>
 
+      <section className="command-intel" aria-labelledby="command-intel-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-intel-heading">{copy.intelligence.title}</h2>
+            <p>{copy.intelligence.description}</p>
+          </div>
+        </div>
+        <div className="command-intel__grid">
+          {copy.intelligence.feeds.map((feed, index) => (
+            <article
+              key={feed.id}
+              className="command-intel__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <span className="command-intel__badge" aria-hidden="true">
+                  <GrowthSpark variant={index % 2 === 0 ? 'light' : 'dark'} size="sm" />
+                </span>
+                <div>
+                  <h3>{feed.title}</h3>
+                  <p>{feed.description}</p>
+                </div>
+              </header>
+              <footer>
+                <span>{feed.cadence}</span>
+                <span>{feed.coverage}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="command-fusion" aria-labelledby="command-fusion-heading">
         <div className="command-section__header">
           <div>
@@ -4518,6 +4551,39 @@ const CommandCenterPage = () => {
               <ul>
                 {column.bullets.map((bullet) => (
                   <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="command-escalation" aria-labelledby="command-escalation-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-escalation-heading">{copy.escalation.title}</h2>
+            <p>{copy.escalation.description}</p>
+          </div>
+          <div className="command-escalation__hotline">
+            <span>{copy.escalation.hotlineLabel}</span>
+            <strong>{copy.escalation.hotlineValue}</strong>
+          </div>
+        </div>
+        <div className="command-escalation__grid">
+          {copy.escalation.tiers.map((tier, index) => (
+            <article
+              key={tier.id}
+              className="command-escalation__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <span className="command-escalation__level">{tier.level}</span>
+                <p>{tier.response}</p>
+              </header>
+              <ul>
+                {tier.channels.map((channel) => (
+                  <li key={channel}>{channel}</li>
                 ))}
               </ul>
             </article>

@@ -22,6 +22,17 @@ export interface CommandCenterCopy {
     description: string
     steps: { id: string; title: string; description: string; duration: string }[]
   }
+  intelligence: {
+    title: string
+    description: string
+    feeds: {
+      id: string
+      title: string
+      description: string
+      cadence: string
+      coverage: string
+    }[]
+  }
   fusion: {
     title: string
     description: string
@@ -41,6 +52,18 @@ export interface CommandCenterCopy {
     title: string
     description: string
     columns: { title: string; bullets: string[] }[]
+  }
+  escalation: {
+    title: string
+    description: string
+    tiers: {
+      id: string
+      level: string
+      response: string
+      channels: string[]
+    }[]
+    hotlineLabel: string
+    hotlineValue: string
   }
   contact: {
     title: string
@@ -142,6 +165,37 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           description:
             'Post-incident retrospectives capture lessons learned, automation updates, and follow-on opportunities for trust-building.',
           duration: 'Within 24 hours',
+        },
+      ],
+    },
+    intelligence: {
+      title: 'Persistent intelligence streams powering every play',
+      description:
+        'Dashboards feed live anomaly, sentiment, and impersonation data into the command floor so analysts can pivot without waiting for manual reports.',
+      feeds: [
+        {
+          id: 'threatmap',
+          title: 'Threat landscape map',
+          description:
+            'Clusters paid, organic, and social chatter by adversary to reveal which narratives are accelerating and where intervention is required next.',
+          cadence: 'Updated every 15 minutes',
+          coverage: 'Search, paid, social, marketplaces',
+        },
+        {
+          id: 'sentiment',
+          title: 'Sentiment fidelity barometer',
+          description:
+            'Blends first-party review signals with marketplace star drift to quantify brand trust erosion before it impacts pipeline.',
+          cadence: 'Refreshed hourly',
+          coverage: 'App stores, GMB, Trustpilot, regional review hubs',
+        },
+        {
+          id: 'spoofing',
+          title: 'Spoofing radar',
+          description:
+            'Detects spoofed domains, typosquats, rogue ads, and fake support handles so takedown motions trigger while attackers are still live.',
+          cadence: 'Continuous with instant alerting',
+          coverage: 'Domains, paid media, social, messaging platforms',
         },
       ],
     },
@@ -261,6 +315,36 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    escalation: {
+      title: 'Escalation lanes with founder-level access',
+      description:
+        'When something breaks containment, you reach senior leadership immediately. No ticket queues or outsourced responders — just our core team.',
+      tiers: [
+        {
+          id: 'p0',
+          level: 'Priority zero',
+          response:
+            'Artur activates the executive bridge, aligns legal and communications, and deploys multilingual spokespeople to contain the threat.',
+          channels: ['Direct Signal bridge', 'Founder WhatsApp hotline', 'Emergency Zoom room'],
+        },
+        {
+          id: 'p1',
+          level: 'Priority one',
+          response:
+            'Regional leads coordinate recovery while the core team issues verified customer messaging and marketplace takedown sequences.',
+          channels: ['Regional Slack war room', 'Pager rotation', 'Incident knowledge base'],
+        },
+        {
+          id: 'p2',
+          level: 'Priority two',
+          response:
+            'Command center analysts document the event, share sentiment shifts, and recommend growth plays that reinforce trust signals.',
+          channels: ['Insights email digest', 'Leadership dashboard', 'Follow-up coaching session'],
+        },
+      ],
+      hotlineLabel: 'Hotline coverage',
+      hotlineValue: '24/7/365 with native English, French, and Spanish squads',
+    },
     contact: {
       title: 'Spin up your command center in under 72 hours',
       subtitle:
@@ -360,6 +444,37 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           description:
             'Rex post-incident avec enseignements, automatisations à mettre à jour et opportunités de réassurance.',
           duration: 'Sous 24 heures',
+        },
+      ],
+    },
+    intelligence: {
+      title: 'Des flux d’intelligence pour guider chaque action',
+      description:
+        'Des tableaux de bord en direct alimentent le plateau de commandement en signaux d’anomalie, de sentiment et d’usurpation afin que les analystes pivotent sans attendre des rapports manuels.',
+      feeds: [
+        {
+          id: 'threatmap',
+          title: 'Cartographie des menaces',
+          description:
+            'Regroupe search, paid et conversations sociales par adversaire pour révéler les récits qui accélèrent et les zones d’intervention à prioriser.',
+          cadence: 'Mise à jour toutes les 15 minutes',
+          coverage: 'Search, paid, social, marketplaces',
+        },
+        {
+          id: 'sentiment',
+          title: 'Baromètre de fidélité',
+          description:
+            'Croise avis propriétaires et dérive des notes marketplaces pour quantifier l’érosion de confiance avant qu’elle n’impacte le pipeline.',
+          cadence: 'Rafraîchi chaque heure',
+          coverage: 'Stores apps, Google Business, Trustpilot, hubs régionaux',
+        },
+        {
+          id: 'spoofing',
+          title: 'Radar d’usurpation',
+          description:
+            'Détecte domaines typosquat, annonces frauduleuses et faux supports pour enclencher les retraits pendant que l’attaque est encore active.',
+          cadence: 'Continu avec alertes instantanées',
+          coverage: 'Domaines, paid media, social, messageries',
         },
       ],
     },
@@ -479,6 +594,36 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    escalation: {
+      title: 'Voies d’escalade avec accès fondateur',
+      description:
+        'Dès qu’un incident échappe au cadre prévu, vous contactez directement le leadership. Aucun ticket, aucune externalisation — seulement notre équipe cœur.',
+      tiers: [
+        {
+          id: 'p0',
+          level: 'Priorité zéro',
+          response:
+            'Artur ouvre le bridge exécutif, aligne juridique et communication et déploie des porte-parole multilingues pour contenir la menace.',
+          channels: ['Bridge Signal direct', 'Hotline WhatsApp fondateur', 'Salle Zoom d’urgence'],
+        },
+        {
+          id: 'p1',
+          level: 'Priorité une',
+          response:
+            'Les leads régionaux coordonnent la reprise pendant que l’équipe centrale diffuse des messages vérifiés et enclenche les retraits marketplaces.',
+          channels: ['War room Slack régionale', 'Rotation pager', 'Base de connaissance incidents'],
+        },
+        {
+          id: 'p2',
+          level: 'Priorité deux',
+          response:
+            'Les analystes documentent l’événement, partagent l’évolution du sentiment et recommandent des actions de réassurance.',
+          channels: ['Digest email insights', 'Dashboard direction', 'Session de coaching follow-up'],
+        },
+      ],
+      hotlineLabel: 'Couverture hotline',
+      hotlineValue: '24/7/365 avec squads natifs anglais, français et espagnol',
+    },
     contact: {
       title: 'Activez votre command center en moins de 72 h',
       subtitle:
@@ -578,6 +723,37 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           description:
             'Retrospectivas post-incidente con aprendizajes, automatizaciones a actualizar y oportunidades de confianza.',
           duration: 'En menos de 24 horas',
+        },
+      ],
+    },
+    intelligence: {
+      title: 'Flujos de inteligencia que alimentan cada decisión',
+      description:
+        'Tableros en vivo entregan datos de anomalías, sentimiento e impersonaciones directamente al piso de comando para que los analistas reaccionen sin esperar reportes manuales.',
+      feeds: [
+        {
+          id: 'threatmap',
+          title: 'Mapa de amenazas',
+          description:
+            'Agrupa búsquedas, paid y conversación social por actor adversario para mostrar qué narrativas aceleran y dónde intervenir.',
+          cadence: 'Actualización cada 15 minutos',
+          coverage: 'Search, paid, social, marketplaces',
+        },
+        {
+          id: 'sentiment',
+          title: 'Barómetro de confianza',
+          description:
+            'Combina reseñas propias con la deriva de estrellas en marketplaces para medir la erosión de confianza antes de que impacte ingresos.',
+          cadence: 'Se refresca cada hora',
+          coverage: 'App stores, Google Business, Trustpilot, hubs regionales',
+        },
+        {
+          id: 'spoofing',
+          title: 'Radar de suplantación',
+          description:
+            'Detecta dominios typosquat, anuncios falsos y cuentas de soporte apócrifas para iniciar retiros mientras el ataque sigue activo.',
+          cadence: 'Continuo con alertas instantáneas',
+          coverage: 'Dominios, paid media, social, plataformas de mensajería',
         },
       ],
     },
@@ -696,6 +872,36 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           ],
         },
       ],
+    },
+    escalation: {
+      title: 'Vías de escalación con acceso al fundador',
+      description:
+        'Si un incidente sale del guion, hablas directo con liderazgo. Sin tickets ni terceros: solo nuestro equipo central.',
+      tiers: [
+        {
+          id: 'p0',
+          level: 'Prioridad cero',
+          response:
+            'Artur abre el bridge ejecutivo, alinea legal y comunicación y despliega portavoces multilingües para contener la amenaza.',
+          channels: ['Bridge Signal directo', 'Hotline WhatsApp del fundador', 'Sala Zoom de emergencia'],
+        },
+        {
+          id: 'p1',
+          level: 'Prioridad uno',
+          response:
+            'Líderes regionales coordinan la recuperación mientras el equipo central emite mensajes verificados y activa retiros en marketplaces.',
+          channels: ['War room Slack regional', 'Rotación pager', 'Base de conocimiento de incidentes'],
+        },
+        {
+          id: 'p2',
+          level: 'Prioridad dos',
+          response:
+            'Los analistas documentan el evento, comparten cambios de sentimiento y recomiendan jugadas para reforzar la confianza.',
+          channels: ['Digest de insights', 'Dashboard ejecutivo', 'Sesión de coaching de seguimiento'],
+        },
+      ],
+      hotlineLabel: 'Cobertura de hotline',
+      hotlineValue: '24/7/365 con squads nativos en inglés, francés y español',
     },
     contact: {
       title: 'Lanza tu command center en menos de 72 h',
