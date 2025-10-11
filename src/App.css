@@ -14479,6 +14479,77 @@ a {
   color: #4338ca;
 }
 
+.command-fusion__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(1.2rem, 3vw, 1.9rem);
+}
+
+.command-fusion__card {
+  position: relative;
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.6rem, 3vw, 2.1rem);
+  border-radius: 1.75rem;
+  background: linear-gradient(145deg, rgba(59, 130, 246, 0.16), rgba(14, 165, 233, 0.12));
+  border: 1px solid rgba(96, 165, 250, 0.32);
+  box-shadow: 0 26px 48px rgba(37, 99, 235, 0.18);
+  overflow: hidden;
+  animation: fadeSlideUp 0.85s var(--motion-ease) forwards;
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+}
+
+.command-fusion__card::after {
+  content: '';
+  position: absolute;
+  inset: -40% 10% auto 45%;
+  height: 220px;
+  background: radial-gradient(circle at center, rgba(191, 219, 254, 0.32), transparent 70%);
+  z-index: 0;
+  filter: blur(8px);
+}
+
+.command-fusion__card header {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.command-fusion__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 0.9rem;
+  background: rgba(59, 130, 246, 0.24);
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.command-fusion__card footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #0ea5e9;
+}
+
+.command-fusion__card footer::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #38bdf8;
+  box-shadow: 0 0 0 6px rgba(125, 211, 252, 0.24);
+}
+
 .command-playbooks__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -14543,6 +14614,51 @@ a {
 .command-playbook:hover {
   transform: translateY(-6px);
   box-shadow: 0 30px 56px rgba(30, 64, 175, 0.14);
+}
+
+.command-technology__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.command-technology__card {
+  position: relative;
+  display: grid;
+  gap: 0.9rem;
+  padding: clamp(1.8rem, 3vw, 2.25rem);
+  border-radius: 1.8rem;
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  box-shadow: 0 24px 48px rgba(30, 64, 175, 0.16);
+  animation: fadeSlideUp 0.85s var(--motion-ease) forwards;
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: transform 0.45s var(--motion-ease), box-shadow 0.45s var(--motion-ease);
+}
+
+.command-technology__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.18);
+}
+
+.command-technology__card header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.command-technology__icon {
+  display: inline-flex;
+  padding: 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.22), rgba(129, 140, 248, 0.22));
+  color: #1e3a8a;
+}
+
+.command-technology__automation {
+  font-weight: 600;
+  color: #312e81;
 }
 
 .command-readiness__grid {
@@ -14625,7 +14741,9 @@ a {
   }
 
   .command-monitoring__grid,
+  .command-fusion__grid,
   .command-playbooks__grid,
+  .command-technology__grid,
   .command-readiness__grid {
     grid-template-columns: minmax(0, 1fr);
   }

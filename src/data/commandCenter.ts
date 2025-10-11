@@ -22,10 +22,20 @@ export interface CommandCenterCopy {
     description: string
     steps: { id: string; title: string; description: string; duration: string }[]
   }
+  fusion: {
+    title: string
+    description: string
+    rooms: { id: string; title: string; goal: string; cadence: string }[]
+  }
   playbooks: {
     title: string
     description: string
     items: { id: string; title: string; description: string; outcomes: string[] }[]
+  }
+  technology: {
+    title: string
+    description: string
+    modules: { id: string; name: string; description: string; automation: string }[]
   }
   readiness: {
     title: string
@@ -135,6 +145,31 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    fusion: {
+      title: 'War rooms tuned to your leadership rhythms',
+      description:
+        'Command center strategists host persistent rooms that keep legal, comms, revenue, and product aligned — even when incidents unfold simultaneously across markets.',
+      rooms: [
+        {
+          id: 'daily',
+          title: 'Daily vigilance huddle',
+          goal: 'Review overnight anomalies, priority escalations, and comms queue so stakeholders start the day with clarity.',
+          cadence: '07:30 regional stand-ups',
+        },
+        {
+          id: 'executive',
+          title: 'Executive situation room',
+          goal: 'Founder-led brief that synthesises revenue impact, reputational exposure, and recommended decision points.',
+          cadence: 'Available on-demand within 15 minutes of activation',
+        },
+        {
+          id: 'recovery',
+          title: 'Recovery planning pod',
+          goal: 'Document playbook updates, audience messaging, and growth experiments triggered by the latest incident learnings.',
+          cadence: 'Twice weekly across impacted markets',
+        },
+      ],
+    },
     playbooks: {
       title: 'Playbooks ready for rapid deployment',
       description:
@@ -172,6 +207,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
             'Stakeholder tracker covering boards, investors, and ecosystem allies.',
             'Measurement cadence with sentiment, reach, and share-of-voice targets.',
           ],
+        },
+      ],
+    },
+    technology: {
+      title: 'Automation fabric powering every signal and escalation',
+      description:
+        'The command center stack blends proprietary crawlers with enterprise integrations so intelligence flows directly into your systems of record.',
+      modules: [
+        {
+          id: 'crawler',
+          name: 'Multilingual crawler fleet',
+          description:
+            'Captures SERP, marketplace, review, and social data with locale-aware parsers tuned to your keyword, product, and executive lists.',
+          automation: 'Auto-prioritises anomalies with explainable scoring and routes them to the right analyst squad.',
+        },
+        {
+          id: 'fusion',
+          name: 'Evidence fusion layer',
+          description:
+            'Combines analyst notes, legal feedback, and media monitoring into a single incident timeline your leadership can approve in seconds.',
+          automation: 'Synchronises updates to Slack, Teams, and email with templated stakeholder briefings in each language.',
+        },
+        {
+          id: 'reporting',
+          name: 'Executive reporting studio',
+          description:
+            'Generates Looker Studio and PowerPoint exports that track protected revenue, trust signals, and mitigation velocity.',
+          automation: 'Delivers refreshed dashboards before every leadership check-in with personalised commentary from Artur Ziganshin.',
         },
       ],
     },
@@ -300,6 +363,31 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    fusion: {
+      title: 'War rooms calés sur vos rythmes de direction',
+      description:
+        'Nos stratèges animent des salles de crise persistantes pour garder juridique, communication, revenue et produit alignés — même quand plusieurs incidents surviennent en parallèle.',
+      rooms: [
+        {
+          id: 'daily',
+          title: 'Vigilance quotidienne',
+          goal: 'Passer en revue anomalies nocturnes, escalades prioritaires et files de messages afin que chaque équipe démarre alignée.',
+          cadence: 'Stand-ups régionaux 7 h 30',
+        },
+        {
+          id: 'executive',
+          title: 'Salle de situation exécutive',
+          goal: 'Brief piloté par le fondateur synthétisant impact business, exposition réputationnelle et décisions à acter.',
+          cadence: 'Disponible à la demande en moins de 15 minutes',
+        },
+        {
+          id: 'recovery',
+          title: 'Atelier de reprise',
+          goal: 'Documenter les mises à jour de playbooks, messages audiences et expérimentations growth issus des derniers enseignements.',
+          cadence: 'Bi-hebdomadaire sur les marchés touchés',
+        },
+      ],
+    },
     playbooks: {
       title: 'Des playbooks prêts à déployer',
       description:
@@ -337,6 +425,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
             'Tableau de bord parties prenantes couvrant boards, investisseurs et alliés.',
             'Cadence de mesure incluant sentiment, reach et part de voix.',
           ],
+        },
+      ],
+    },
+    technology: {
+      title: 'Tissu d’automatisation au service de chaque signal',
+      description:
+        'Le stack du command center combine crawlers propriétaires et intégrations d’entreprise pour injecter l’intelligence directement dans vos outils.',
+      modules: [
+        {
+          id: 'crawler',
+          name: 'Flotte de crawlers multilingues',
+          description:
+            'Capture données SERP, marketplaces, avis et social via des parseurs localisés alignés sur vos listes de mots-clés, produits et dirigeants.',
+          automation: 'Priorise automatiquement les anomalies grâce à un scoring explicable et les route vers le squad analyste adéquat.',
+        },
+        {
+          id: 'fusion',
+          name: 'Couche de fusion des preuves',
+          description:
+            'Réunit notes analystes, retours juridiques et veille média dans une chronologie unique validée par votre direction.',
+          automation: 'Synchronise mises à jour Slack, Teams et email avec des briefings parties prenantes prêts à l’emploi par langue.',
+        },
+        {
+          id: 'reporting',
+          name: 'Studio de reporting exécutif',
+          description:
+            'Génère exports Looker Studio et PowerPoint suivantrent revenus protégés, signaux de confiance et vélocité de mitigation.',
+          automation: 'Diffuse des dashboards actualisés avant chaque point leadership avec commentaire personnalisé d’Artur Ziganshin.',
         },
       ],
     },
@@ -465,6 +581,31 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    fusion: {
+      title: 'War rooms sincronizadas con tus ritmos ejecutivos',
+      description:
+        'Los estrategas del command center mantienen salas activas que alinean jurídico, comunicación, revenue y producto aun cuando varios incidentes ocurren en paralelo.',
+      rooms: [
+        {
+          id: 'daily',
+          title: 'Reunión diaria de vigilancia',
+          goal: 'Repasar anomalías nocturnas, escalaciones críticas y la cola de comunicación para iniciar el día con claridad.',
+          cadence: 'Stand-ups regionales 07:30',
+        },
+        {
+          id: 'executive',
+          title: 'Sala ejecutiva de situación',
+          goal: 'Brief liderado por el fundador que sintetiza impacto en ingresos, exposición reputacional y decisiones recomendadas.',
+          cadence: 'Disponible bajo demanda en menos de 15 minutos',
+        },
+        {
+          id: 'recovery',
+          title: 'Célula de recuperación',
+          goal: 'Documentar actualizaciones de playbooks, mensajes por audiencia y experimentos de crecimiento activados por los últimos aprendizajes.',
+          cadence: 'Dos veces por semana en mercados afectados',
+        },
+      ],
+    },
     playbooks: {
       title: 'Playbooks listos para desplegar',
       description:
@@ -502,6 +643,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
             'Tablero de stakeholders con boards, inversores y aliados.',
             'Cadencia de métricas con sentimiento, alcance y share of voice.',
           ],
+        },
+      ],
+    },
+    technology: {
+      title: 'Automatización que alimenta cada señal y escalación',
+      description:
+        'El stack del command center mezcla crawlers propietarios con integraciones empresariales para que la inteligencia llegue directo a tus sistemas.',
+      modules: [
+        {
+          id: 'crawler',
+          name: 'Flota de crawlers multilingües',
+          description:
+            'Captura datos de SERP, marketplaces, reseñas y social con parsers localizados alineados a tus listas de keywords, productos y ejecutivos.',
+          automation: 'Prioriza automáticamente las anomalías con un scoring explicable y las dirige al squad analista adecuado.',
+        },
+        {
+          id: 'fusion',
+          name: 'Capa de fusión de evidencias',
+          description:
+            'Combina notas analistas, feedback legal y monitoreo de medios en una línea de tiempo única para aprobación ejecutiva.',
+          automation: 'Sincroniza actualizaciones en Slack, Teams y email con briefings de stakeholders listos por idioma.',
+        },
+        {
+          id: 'reporting',
+          name: 'Estudio de reportes ejecutivos',
+          description:
+            'Genera exports de Looker Studio y PowerPoint que miden ingresos protegidos, señales de confianza y velocidad de mitigación.',
+          automation: 'Entrega dashboards actualizados antes de cada checkpoint con comentarios personalizados de Artur Ziganshin.',
         },
       ],
     },

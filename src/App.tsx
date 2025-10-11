@@ -4409,6 +4409,38 @@ const CommandCenterPage = () => {
         </ol>
       </section>
 
+      <section className="command-fusion" aria-labelledby="command-fusion-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-fusion-heading">{copy.fusion.title}</h2>
+            <p>{copy.fusion.description}</p>
+          </div>
+        </div>
+        <div className="command-fusion__grid">
+          {copy.fusion.rooms.map((room, index) => (
+            <article
+              key={room.id}
+              className="command-fusion__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <span className="command-fusion__badge" aria-hidden="true">
+                  {index + 1}
+                </span>
+                <div>
+                  <h3>{room.title}</h3>
+                  <p>{room.goal}</p>
+                </div>
+              </header>
+              <footer>
+                <span>{room.cadence}</span>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="command-playbooks" aria-labelledby="command-playbooks-heading">
         <div className="command-section__header">
           <div>
@@ -4434,6 +4466,34 @@ const CommandCenterPage = () => {
                   <li key={outcome}>{outcome}</li>
                 ))}
               </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="command-technology" aria-labelledby="command-technology-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-technology-heading">{copy.technology.title}</h2>
+            <p>{copy.technology.description}</p>
+          </div>
+        </div>
+        <div className="command-technology__grid">
+          {copy.technology.modules.map((module, index) => (
+            <article
+              key={module.id}
+              className="command-technology__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <span className="command-technology__icon" aria-hidden="true">
+                  <GrowthSpark variant={index % 2 === 0 ? 'dark' : 'light'} size="sm" />
+                </span>
+                <h3>{module.name}</h3>
+              </header>
+              <p>{module.description}</p>
+              <p className="command-technology__automation">{module.automation}</p>
             </article>
           ))}
         </div>
