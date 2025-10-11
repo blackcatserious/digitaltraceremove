@@ -53,6 +53,28 @@ export interface CommandCenterCopy {
     description: string
     columns: { title: string; bullets: string[] }[]
   }
+  retrospectives: {
+    title: string
+    description: string
+    stories: {
+      id: string
+      name: string
+      impact: string
+      improvement: string
+      metric: string
+    }[]
+  }
+  calendar: {
+    title: string
+    description: string
+    events: {
+      id: string
+      month: string
+      focus: string
+      lead: string
+      readiness: string
+    }[]
+  }
   escalation: {
     title: string
     description: string
@@ -312,6 +334,69 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
             'Quarterly horizon scans revealing new adversarial tactics and marketplace policy shifts.',
             'Secure executive workspace with annotated dashboards and decision logs.',
           ],
+        },
+      ],
+    },
+    retrospectives: {
+      title: 'Incident retrospectives that create momentum',
+      description:
+        'Every major activation ends with a founder-led retrospective so we can harden defences, celebrate recoveries, and tee up the next growth unlock.',
+      stories: [
+        {
+          id: 'marketplace',
+          name: 'Marketplace fraud neutralised',
+          impact: 'Shut down a 47-store spoofing network impersonating a luxury retailer across EU marketplaces within 36 hours.',
+          improvement: 'Deployed credential monitoring and registrar pre-buys to stop domain reuse while training client fraud teams.',
+          metric: '+1.8 Trustpilot star swing in 14 days',
+        },
+        {
+          id: 'review',
+          name: 'Review sabotage reversed',
+          impact: 'Removed 630 fake 1-star reviews seeded by a competitor and replaced them with verified customer testimonials.',
+          improvement: 'Automated authenticity scoring across 12 platforms and refreshed outreach cadences for loyal advocates.',
+          metric: 'Retention back above 96% within a quarter',
+        },
+        {
+          id: 'exec',
+          name: 'Executive attack defused',
+          impact: 'Contained a deepfake smear targeting the CEO with coordinated media, legal, and community interventions.',
+          improvement: 'Rolled out voiceprint verification, proactive briefing scripts, and a crisis microsite template.',
+          metric: 'Negative coverage suppressed in under 6 hours',
+        },
+      ],
+    },
+    calendar: {
+      title: 'Simulation calendar you can plug into immediately',
+      description:
+        'We keep a rolling calendar of live-fire simulations so your executives, communications, and ops teams rehearse responses before real threats land.',
+      events: [
+        {
+          id: 'jan',
+          month: 'January',
+          focus: 'Cross-market misinformation cascade',
+          lead: 'Hosted by Artur with regional leads running live newsroom drills.',
+          readiness: 'Aligns paid, PR, and legal messaging for multilingual reputation shocks.',
+        },
+        {
+          id: 'apr',
+          month: 'April',
+          focus: 'Marketplace takedown gauntlet',
+          lead: 'Marketplace taskforce plus legal counsel rehearse platform escalation scripts.',
+          readiness: 'Strengthens takedown muscle memory and evidence packaging workflows.',
+        },
+        {
+          id: 'aug',
+          month: 'August',
+          focus: 'Leadership impersonation surge',
+          lead: 'Comms strategists and trust & safety partners co-host media and community responses.',
+          readiness: 'Ensures spokespeople, affiliates, and customer care can spot and report spoofed outreach instantly.',
+        },
+        {
+          id: 'nov',
+          month: 'November',
+          focus: 'Holiday traffic stress test',
+          lead: 'Growth, engineering, and CX squads model surge load and incident coordination.',
+          readiness: 'Preps call centre, fulfilment, and ad ops to escalate anomalies during peak demand.',
         },
       ],
     },
@@ -594,6 +679,69 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    retrospectives: {
+      title: 'Retours d’expérience qui renforcent chaque cycle',
+      description:
+        'Chaque activation majeure se conclut par une rétrospective menée par le fondateur afin de consolider les défenses, célébrer les succès et préparer le prochain palier de croissance.',
+      stories: [
+        {
+          id: 'marketplace',
+          name: 'Fraude marketplaces démantelée',
+          impact: 'Neutralisation en 36 h d’un réseau de 47 boutiques usurpant un distributeur luxe sur l’UE.',
+          improvement: 'Mise en place d’une veille identifiants et de pré-rachats de domaines tout en formant les équipes fraude du client.',
+          metric: '+1,8 étoiles Trustpilot en 14 jours',
+        },
+        {
+          id: 'review',
+          name: 'Sabotage avis inversé',
+          impact: 'Suppression de 630 faux avis 1 étoile déposés par un concurrent et remplacement par des témoignages vérifiés.',
+          improvement: 'Scoring automatique de l’authenticité sur 12 plateformes et relance affinée des clients ambassadeurs.',
+          metric: 'Rétention revenue >96 % le trimestre suivant',
+        },
+        {
+          id: 'exec',
+          name: 'Attaque exécutive désamorcée',
+          impact: 'Contenir une campagne deepfake visant le CEO grâce à une riposte média, juridique et communauté.',
+          improvement: 'Déploiement de vérification vocale, scripts proactifs et template de microsite de crise.',
+          metric: 'Couverture négative stoppée en <6 h',
+        },
+      ],
+    },
+    calendar: {
+      title: 'Calendrier de simulations clé en main',
+      description:
+        'Nous entretenons un calendrier de simulations réalistes pour que vos dirigeants, communicants et opérations répètent les gestes avant la prochaine crise.',
+      events: [
+        {
+          id: 'jan',
+          month: 'Janvier',
+          focus: 'Cascade de désinformation multimarques',
+          lead: 'Animé par Artur et les leads régionaux en configuration newsroom.',
+          readiness: 'Aligne paid, RP et juridique face aux chocs réputationnels multilingues.',
+        },
+        {
+          id: 'apr',
+          month: 'Avril',
+          focus: 'Parcours de retrait marketplaces',
+          lead: 'Taskforce marketplaces et juristes répètent les scripts d’escalade plateformes.',
+          readiness: 'Muscle la préparation dossier et les workflows de preuve pour accélérer les retraits.',
+        },
+        {
+          id: 'aug',
+          month: 'Août',
+          focus: 'Usurpation de dirigeants',
+          lead: 'Stratèges communication et partenaires trust & safety co-animent la réponse média et communauté.',
+          readiness: 'Garantit que porte-parole, affiliés et care détectent et remontent toute usurpation instantanément.',
+        },
+        {
+          id: 'nov',
+          month: 'Novembre',
+          focus: 'Stress test haute saison',
+          lead: 'Squads growth, engineering et CX modélisent la charge et la coordination incidents.',
+          readiness: 'Prépare centres de contact, logistique et ad ops pour les pics de demande.',
+        },
+      ],
+    },
     escalation: {
       title: 'Voies d’escalade avec accès fondateur',
       description:
@@ -870,6 +1018,69 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
             'Escaneos trimestrales de nuevas tácticas adversarias y cambios en políticas de marketplaces.',
             'Espacio ejecutivo seguro con dashboards anotados y registro de decisiones.',
           ],
+        },
+      ],
+    },
+    retrospectives: {
+      title: 'Retrospectivas que impulsan mejoras continuas',
+      description:
+        'Cerramos cada activación con una retrospectiva guiada por el fundador para reforzar defensas, reconocer victorias y preparar el siguiente salto de crecimiento.',
+      stories: [
+        {
+          id: 'marketplace',
+          name: 'Fraude en marketplaces desarticulado',
+          impact: 'Se desactivó en 36 horas una red de 47 tiendas que suplantaban a un retail de lujo en la UE.',
+          improvement: 'Se implementó monitoreo de credenciales y compras preventivas de dominios mientras se entrenaba al equipo antifraude del cliente.',
+          metric: '+1,8 estrellas en Trustpilot en 14 días',
+        },
+        {
+          id: 'review',
+          name: 'Sabotaje de reseñas revertido',
+          impact: 'Eliminamos 630 reseñas falsas de 1 estrella sembradas por un competidor y las sustituimos por testimonios verificados.',
+          improvement: 'Automatizamos el scoring de autenticidad en 12 plataformas y reactivamos a clientes defensores.',
+          metric: 'Retención recuperada por encima del 96 % en un trimestre',
+        },
+        {
+          id: 'exec',
+          name: 'Ataque ejecutivo neutralizado',
+          impact: 'Se contuvo una campaña deepfake contra el CEO con acciones coordinadas legales, mediáticas y comunitarias.',
+          improvement: 'Se desplegó verificación de voz, guiones proactivos y una plantilla de micrositio de crisis.',
+          metric: 'Cobertura negativa contenida en menos de 6 horas',
+        },
+      ],
+    },
+    calendar: {
+      title: 'Calendario de simulaciones listo para usar',
+      description:
+        'Mantenemos un calendario de simulacros realistas para que dirección, comunicación y operaciones practiquen antes de que llegue la próxima amenaza.',
+      events: [
+        {
+          id: 'jan',
+          month: 'Enero',
+          focus: 'Cascada de desinformación multirregional',
+          lead: 'Artur y los leads regionales dirigen un ejercicio estilo sala de redacción.',
+          readiness: 'Alinea paid, PR y legal ante crisis reputacionales multilingües.',
+        },
+        {
+          id: 'apr',
+          month: 'Abril',
+          focus: 'Carrera de derribos en marketplaces',
+          lead: 'Taskforce de marketplaces y asesoría legal ensayan guiones de escalación.',
+          readiness: 'Fortalece la preparación de evidencias y la coordinación con los equipos de plataforma.',
+        },
+        {
+          id: 'aug',
+          month: 'Agosto',
+          focus: 'Oleada de suplantación de liderazgo',
+          lead: 'Estrategas de comunicación y partners de trust & safety co-crean la respuesta mediática y comunitaria.',
+          readiness: 'Capacita a portavoces, afiliados y soporte para detectar y reportar contactos falsos al instante.',
+        },
+        {
+          id: 'nov',
+          month: 'Noviembre',
+          focus: 'Stress test de temporada alta',
+          lead: 'Equipos de growth, ingeniería y CX modelan la carga y la coordinación de incidentes.',
+          readiness: 'Prepara call center, logística y ad ops para escalar anomalías en picos de demanda.',
         },
       ],
     },

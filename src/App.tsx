@@ -4558,6 +4558,58 @@ const CommandCenterPage = () => {
         </div>
       </section>
 
+      <section className="command-retrospectives" aria-labelledby="command-retrospectives-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-retrospectives-heading">{copy.retrospectives.title}</h2>
+            <p>{copy.retrospectives.description}</p>
+          </div>
+        </div>
+        <div className="command-retrospectives__grid">
+          {copy.retrospectives.stories.map((story, index) => (
+            <article
+              key={story.id}
+              className="command-retrospectives__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{story.name}</h3>
+                <span className="command-retrospectives__metric">{story.metric}</span>
+              </header>
+              <p className="command-retrospectives__impact">{story.impact}</p>
+              <p>{story.improvement}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="command-calendar" aria-labelledby="command-calendar-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-calendar-heading">{copy.calendar.title}</h2>
+            <p>{copy.calendar.description}</p>
+          </div>
+        </div>
+        <ol className="command-calendar__list">
+          {copy.calendar.events.map((event, index) => (
+            <li
+              key={event.id}
+              className="command-calendar__item"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <span className="command-calendar__month">{event.month}</span>
+              <div className="command-calendar__content">
+                <h3>{event.focus}</h3>
+                <p className="command-calendar__lead">{event.lead}</p>
+                <p>{event.readiness}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       <section className="command-escalation" aria-labelledby="command-escalation-heading">
         <div className="command-section__header">
           <div>
