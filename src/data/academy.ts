@@ -94,6 +94,24 @@ export type AcademyTestimonial = {
   role: string
 }
 
+export type AcademyToolkit = {
+  id: string
+  title: string
+  description: string
+  artifacts: string[]
+  impact: string
+}
+
+export type AcademyAlumniStory = {
+  id: string
+  name: string
+  role: string
+  organization: string
+  quote: string
+  outcome: string
+  focus: string
+}
+
 export type AcademyHeroSecondaryTarget = 'caseStudies' | 'resources' | 'servicesPricing'
 
 export const academyCopy: Record<
@@ -163,6 +181,15 @@ export const academyCopy: Record<
     communityHeading: string
     communitySubtitle: string
     communityHighlights: AcademyHighlight[]
+    toolkitHeading: string
+    toolkitSubtitle: string
+    toolkitResourcesLabel: string
+    toolkitImpactLabel: string
+    toolkit: AcademyToolkit[]
+    alumniHeading: string
+    alumniSubtitle: string
+    alumniCtaLabel: string
+    alumni: AcademyAlumniStory[]
     testimonialsHeading: string
     testimonials: AcademyTestimonial[]
     cta: {
@@ -620,6 +647,85 @@ export const academyCopy: Record<
       {
         label: 'Playbook vault',
         description: 'Downloadable templates updated quarterly with the latest enforcement learnings.',
+      },
+    ],
+    toolkitHeading: 'Enablement toolkits',
+    toolkitSubtitle:
+      'Translate Academy learnings into action with ready-made operating systems your teams can deploy the moment class ends.',
+    toolkitResourcesLabel: 'Inside the kit',
+    toolkitImpactLabel: 'Impact delivered',
+    toolkit: [
+      {
+        id: 'intel-vault',
+        title: 'Threat intelligence vault',
+        description:
+          'Build a living repository of takedown precedents, fraudster patterns, and regulatory contacts synced across markets.',
+        artifacts: [
+          'Template taxonomy for labelling escalations by severity and channel.',
+          'Automation-ready spreadsheet with macros for fraudster cluster analysis.',
+          'Quarterly update workflow with ownership rotation and alerts.',
+        ],
+        impact: 'Reduces evidence gathering time by 63% during multi-market escalations.',
+      },
+      {
+        id: 'crisis-room',
+        title: 'Crisis war room command pack',
+        description:
+          'Spin up a remote-ready command centre with comms scripts, reporting cadences, and stakeholder routing templates.',
+        artifacts: [
+          '60-minute incident stand-up agenda translated across EN/FR/ES.',
+          'Executive-ready briefing deck with live KPI embeds.',
+          'Pre-approved escalation macros for legal, policy, and platform outreach.',
+        ],
+        impact: 'Accelerates time-to-first-response from 6 hours to under 90 minutes on average.',
+      },
+      {
+        id: 'authority-rebuilder',
+        title: 'Search authority rebuilder',
+        description:
+          'Operationalise the SEO recovery plan with sprint boards, content briefs, and link reclamation cadences.',
+        artifacts: [
+          'Six-week backlog with prioritised recovery epics and owners.',
+          'Localized content brief templates for multilingual turnaround articles.',
+          'Measurement dashboard schema with trust and conversion benchmarks.',
+        ],
+        impact: 'Restores pre-incident organic conversions within two sprint cycles.',
+      },
+    ],
+    alumniHeading: 'Alumni in action',
+    alumniSubtitle:
+      'See how recent cohorts translated the curriculum into measurable brand protection wins within weeks of graduation.',
+    alumniCtaLabel: 'Book an alumni briefing',
+    alumni: [
+      {
+        id: 'leah-martin',
+        name: 'Leah Martin',
+        role: 'VP Growth',
+        organization: 'North American marketplace',
+        quote:
+          'We left with a full-scale investigation kit and stakeholder playbook. The first takedown sprint closed inside 72 hours.',
+        outcome: 'Reclaimed 38% of lost GMV and reinstated star seller badges within one launch cycle.',
+        focus: 'Review fraud dismantling',
+      },
+      {
+        id: 'romain-lefevre',
+        name: 'Romain Lefèvre',
+        role: 'Chief Communications Officer',
+        organization: 'European fintech',
+        quote:
+          'Our executive suite finally rehearsed coordinated comms, legal, and product responses instead of reacting in silos.',
+        outcome: 'Cut misinformation downtimes by 55% and secured regulator assurances before launch.',
+        focus: 'Cross-functional crisis orchestration',
+      },
+      {
+        id: 'carla-mendez',
+        name: 'Carla Méndez',
+        role: 'Head of Customer Experience',
+        organization: 'Iberian travel brand',
+        quote:
+          'Scripts from the moderation lab gave our CX team confidence to intervene early and escalate only genuine threats.',
+        outcome: 'Lowered contested chargebacks by 41% while increasing CSAT nine points quarter-over-quarter.',
+        focus: 'Community moderation excellence',
       },
     ],
     testimonialsHeading: 'What Academy alumni say',
@@ -1100,6 +1206,85 @@ export const academyCopy: Record<
         description: 'Modèles téléchargeables mis à jour chaque trimestre.',
       },
     ],
+    toolkitHeading: 'Trousses opérationnelles',
+    toolkitSubtitle:
+      'Convertissez les enseignements de l’Academy en systèmes prêts à l’emploi pour vos équipes, disponibles dès la fin des sessions.',
+    toolkitResourcesLabel: 'Dans la trousse',
+    toolkitImpactLabel: 'Impact constaté',
+    toolkit: [
+      {
+        id: 'intel-vault',
+        title: 'Coffre d’intelligence des menaces',
+        description:
+          'Constituez un référentiel vivant des précédents de retrait, modes opératoires fraudeurs et contacts régulateurs pour chaque marché.',
+        artifacts: [
+          'Taxonomie de classement des incidents par sévérité et canal.',
+          'Tableur automatisé avec macros pour regrouper les réseaux fraudeurs.',
+          'Workflow de mise à jour trimestrielle avec rotation des responsables et alertes.',
+        ],
+        impact: 'Réduit de 63 % le temps de collecte de preuves lors d’escalades multi-marchés.',
+      },
+      {
+        id: 'crisis-room',
+        title: 'Pack salle de crise',
+        description:
+          'Déployez un centre de commandement distribué avec scripts de communication, cadences de reporting et matrices de parties prenantes.',
+        artifacts: [
+          'Agenda de stand-up incident de 60 minutes traduit en EN/FR/ES.',
+          'Deck exécutif prêt à l’emploi avec indicateurs en temps réel.',
+          'Macros d’escalade pré-validées pour juridique, politique et plateformes.',
+        ],
+        impact: 'Fait passer le délai de première réponse de 6 heures à moins de 90 minutes.',
+      },
+      {
+        id: 'authority-rebuilder',
+        title: 'Relanceur d’autorité SEO',
+        description:
+          'Industrialisez la reconstruction SEO via des boards de sprint, briefs contenus et rituels de récupération de liens.',
+        artifacts: [
+          'Backlog de six semaines avec épopées priorisées et responsables.',
+          'Modèles de briefs multilingues pour contenus de relance.',
+          'Schéma de tableau de bord mesurant confiance et conversions.',
+        ],
+        impact: 'Restaure les conversions organiques pré-incident en deux sprints.',
+      },
+    ],
+    alumniHeading: 'Alumni en action',
+    alumniSubtitle:
+      'Découvrez comment les cohortes récentes ont transformé le programme en résultats mesurables quelques semaines après la certification.',
+    alumniCtaLabel: 'Planifier un échange avec un alumni',
+    alumni: [
+      {
+        id: 'leah-martin',
+        name: 'Leah Martin',
+        role: 'VP Growth',
+        organization: 'Marketplace nord-américaine',
+        quote:
+          'Nous sommes repartis avec un kit d’enquête complet et un playbook parties prenantes. Le premier sprint de retrait s’est clos en 72 heures.',
+        outcome: 'A récupéré 38 % du GMV perdu et rétabli les badges vendeurs en un cycle de lancement.',
+        focus: 'Démantèlement des faux avis',
+      },
+      {
+        id: 'romain-lefevre',
+        name: 'Romain Lefèvre',
+        role: 'Directeur communication',
+        organization: 'Fintech européenne',
+        quote:
+          'Le comité exécutif a enfin répété des réponses coordonnées juridique, produit et communication au lieu de réagir en silos.',
+        outcome: 'A réduit de 55 % les temps d’exposition aux rumeurs et obtenu des garanties du régulateur avant lancement.',
+        focus: 'Orchestration de crise transverse',
+      },
+      {
+        id: 'carla-mendez',
+        name: 'Carla Méndez',
+        role: 'Directrice expérience client',
+        organization: 'Marque de voyage ibérique',
+        quote:
+          'Les scripts du lab de modération ont donné confiance à l’équipe CX pour intervenir tôt et n’escalader que les menaces avérées.',
+        outcome: 'A réduit de 41 % les rétrofacturations contestées tout en gagnant neuf points de satisfaction client.',
+        focus: 'Excellence modération communautaire',
+      },
+    ],
     testimonialsHeading: 'Ce que disent les alumni',
     testimonials: [
       {
@@ -1576,6 +1761,85 @@ export const academyCopy: Record<
       {
         label: 'Vault de playbooks',
         description: 'Plantillas descargables actualizadas cada trimestre.',
+      },
+    ],
+    toolkitHeading: 'Kits de activación',
+    toolkitSubtitle:
+      'Convierte las lecciones de la Academy en sistemas listos para ejecutar con plantillas, tableros y rituales compartidos.',
+    toolkitResourcesLabel: 'Incluye',
+    toolkitImpactLabel: 'Impacto logrado',
+    toolkit: [
+      {
+        id: 'intel-vault',
+        title: 'Vault de inteligencia de amenazas',
+        description:
+          'Crea un repositorio vivo con precedentes de retiro, patrones de fraude y contactos regulatorios sincronizados por mercado.',
+        artifacts: [
+          'Taxonomía para clasificar incidentes por severidad y canal.',
+          'Hoja automatizada con macros para agrupar redes fraudulentas.',
+          'Workflow trimestral con rotación de responsables y alertas.',
+        ],
+        impact: 'Reduce 63 % el tiempo de recolección de evidencia en escaladas multi-mercado.',
+      },
+      {
+        id: 'crisis-room',
+        title: 'Pack de sala de crisis',
+        description:
+          'Lanza un centro de comando remoto con guiones de comunicación, cadencias de reporte y rutas de stakeholders.',
+        artifacts: [
+          'Agenda de stand-up de incidentes de 60 minutos en EN/FR/ES.',
+          'Deck ejecutivo con indicadores en vivo.',
+          'Macros de escalada aprobadas para legal, policy y plataformas.',
+        ],
+        impact: 'Disminuye el tiempo a la primera respuesta de 6 horas a menos de 90 minutos.',
+      },
+      {
+        id: 'authority-rebuilder',
+        title: 'Reconstructor de autoridad SEO',
+        description:
+          'Operacionaliza la recuperación SEO con tableros de sprint, briefs de contenido y rituales de reclamación de enlaces.',
+        artifacts: [
+          'Backlog de seis semanas con épicas priorizadas y responsables.',
+          'Plantillas de briefs localizados para contenidos de recuperación.',
+          'Esquema de dashboard con indicadores de confianza y conversión.',
+        ],
+        impact: 'Restaura las conversiones orgánicas previas en dos sprints.',
+      },
+    ],
+    alumniHeading: 'Historias de alumni',
+    alumniSubtitle:
+      'Así activan los egresados el programa para defender marca, acelerar retiradas y generar confianza medible.',
+    alumniCtaLabel: 'Agendar charla con alumni',
+    alumni: [
+      {
+        id: 'leah-martin',
+        name: 'Leah Martin',
+        role: 'VP Growth',
+        organization: 'Marketplace Norteamérica',
+        quote:
+          'Salimos con un kit de investigación completo y guías para cada stakeholder. El primer sprint de retiro cerró en 72 horas.',
+        outcome: 'Recuperó 38 % del GMV perdido y restableció insignias premium en un ciclo.',
+        focus: 'Desactivación de reseñas falsas',
+      },
+      {
+        id: 'romain-lefevre',
+        name: 'Romain Lefèvre',
+        role: 'Chief Communications Officer',
+        organization: 'Fintech europea',
+        quote:
+          'El comité ejecutivo practicó respuestas coordinadas entre legal, producto y comunicación en vez de reaccionar por separado.',
+        outcome: 'Redujo 55 % el tiempo de desinformación al aire y aseguró garantías regulatorias previas al lanzamiento.',
+        focus: 'Orquestación de crisis transversal',
+      },
+      {
+        id: 'carla-mendez',
+        name: 'Carla Méndez',
+        role: 'Head of Customer Experience',
+        organization: 'Marca de viajes Ibérica',
+        quote:
+          'Los guiones del laboratorio de moderación dieron seguridad al equipo CX para intervenir temprano y escalar solo amenazas reales.',
+        outcome: 'Bajó 41 % los contracargos disputados y aumentó 9 puntos el CSAT trimestre a trimestre.',
+        focus: 'Excelencia en moderación comunitaria',
       },
     ],
     testimonialsHeading: 'Lo que dicen los alumni',

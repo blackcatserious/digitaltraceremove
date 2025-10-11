@@ -13912,6 +13912,195 @@ a {
   line-height: 1.6;
 }
 
+.academy-toolkits {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.academy-toolkits__intro {
+  max-width: 640px;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.academy-toolkits__grid {
+  display: grid;
+  gap: clamp(1.6rem, 3vw, 2.6rem);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.academy-toolkit {
+  padding: 1.8rem;
+  border-radius: 22px;
+  background: linear-gradient(150deg, rgba(12, 26, 52, 0.9), rgba(8, 20, 38, 0.82));
+  border: 1px solid rgba(94, 234, 212, 0.18);
+  box-shadow: 0 20px 48px rgba(3, 17, 35, 0.46);
+  display: grid;
+  gap: 1.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.academy-toolkit::before {
+  content: '';
+  position: absolute;
+  inset: -40% auto auto -20%;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.26), transparent 70%);
+  animation: floatField 18s ease-in-out infinite;
+}
+
+.academy-toolkit__header {
+  display: grid;
+  gap: 0.65rem;
+  position: relative;
+  z-index: 1;
+}
+
+.academy-toolkit__header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: rgba(226, 236, 255, 0.95);
+}
+
+.academy-toolkit__header p {
+  margin: 0;
+  color: rgba(196, 214, 246, 0.82);
+  line-height: 1.65;
+}
+
+.academy-toolkit__content {
+  display: grid;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.academy-toolkit__list h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 190, 255, 0.85);
+}
+
+.academy-toolkit__list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.academy-toolkit__list li {
+  padding: 0.6rem 0.8rem;
+  border-radius: 14px;
+  background: rgba(4, 12, 26, 0.82);
+  border: 1px solid rgba(148, 190, 255, 0.16);
+  color: rgba(214, 226, 255, 0.86);
+  line-height: 1.5;
+}
+
+.academy-toolkit__impact {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  background: rgba(8, 20, 40, 0.78);
+  border: 1px solid rgba(94, 234, 212, 0.16);
+  color: rgba(173, 217, 255, 0.88);
+  line-height: 1.6;
+}
+
+.academy-alumni {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.academy-alumni__intro {
+  max-width: 640px;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.academy-alumni__grid {
+  display: grid;
+  gap: clamp(1.6rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.academy-alumni__story {
+  padding: 1.8rem;
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(8, 20, 44, 0.9), rgba(6, 16, 34, 0.84));
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  box-shadow: 0 18px 48px rgba(2, 12, 28, 0.44);
+  display: grid;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.academy-alumni__story::after {
+  content: '';
+  position: absolute;
+  inset: auto -30% -50% 10%;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(94, 234, 212, 0.22), transparent 70%);
+  animation: pulseBloom 14s ease-in-out infinite;
+}
+
+.academy-alumni__meta {
+  display: grid;
+  gap: 0.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.academy-alumni__meta h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: rgba(226, 236, 255, 0.95);
+}
+
+.academy-alumni__role {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(148, 190, 255, 0.82);
+}
+
+.academy-alumni__focus {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(94, 234, 212, 0.78);
+}
+
+.academy-alumni__story blockquote {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(214, 228, 255, 0.92);
+  position: relative;
+  z-index: 1;
+}
+
+.academy-alumni__outcome {
+  margin: 0;
+  color: rgba(173, 217, 255, 0.85);
+  position: relative;
+  z-index: 1;
+}
+
+.academy-alumni__actions {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .academy-testimonials {
   display: grid;
   gap: 2.5rem;
@@ -14003,7 +14192,9 @@ a {
 
   .academy-mentorship__grid,
   .academy-office-hours__grid,
-  .academy-certifications__grid {
+  .academy-certifications__grid,
+  .academy-toolkits__grid,
+  .academy-alumni__grid {
     grid-template-columns: 1fr;
   }
 
@@ -14029,7 +14220,9 @@ a {
   }
 
   .academy-cohorts__grid,
-  .academy-scholarships__grid {
+  .academy-scholarships__grid,
+  .academy-toolkits__grid,
+  .academy-alumni__grid {
     grid-template-columns: 1fr;
   }
 
@@ -14041,6 +14234,14 @@ a {
 
   .academy-scholarship__lists {
     grid-template-columns: 1fr;
+  }
+
+  .academy-alumni__actions {
+    width: 100%;
+  }
+
+  .academy-alumni__actions .button {
+    width: 100%;
   }
 }
 

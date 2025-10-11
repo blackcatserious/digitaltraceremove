@@ -4654,6 +4654,63 @@ const AcademyPage = () => {
         </div>
       </section>
 
+      <section className="academy-toolkits" aria-labelledby="academy-toolkits-heading">
+        <div className="academy-toolkits__intro">
+          <h2 id="academy-toolkits-heading">{copy.toolkitHeading}</h2>
+          <p>{copy.toolkitSubtitle}</p>
+        </div>
+        <div className="academy-toolkits__grid">
+          {copy.toolkit.map((kit, index) => (
+            <article key={kit.id} className="academy-toolkit" data-index={index}>
+              <header className="academy-toolkit__header">
+                <h3>{kit.title}</h3>
+                <p>{kit.description}</p>
+              </header>
+              <div className="academy-toolkit__content">
+                <div className="academy-toolkit__list">
+                  <h4>{copy.toolkitResourcesLabel}</h4>
+                  <ul>
+                    {kit.artifacts.map((artifact) => (
+                      <li key={artifact}>{artifact}</li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="academy-toolkit__impact">
+                  <strong>{copy.toolkitImpactLabel}:</strong> {kit.impact}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-alumni" aria-labelledby="academy-alumni-heading">
+        <div className="academy-alumni__intro">
+          <h2 id="academy-alumni-heading">{copy.alumniHeading}</h2>
+          <p>{copy.alumniSubtitle}</p>
+        </div>
+        <div className="academy-alumni__grid">
+          {copy.alumni.map((alum, index) => (
+            <article key={alum.id} className="academy-alumni__story" data-index={index}>
+              <header className="academy-alumni__meta">
+                <h3>{alum.name}</h3>
+                <p className="academy-alumni__role">
+                  {alum.role} · {alum.organization}
+                </p>
+                <p className="academy-alumni__focus">{alum.focus}</p>
+              </header>
+              <blockquote>{alum.quote}</blockquote>
+              <p className="academy-alumni__outcome">{alum.outcome}</p>
+            </article>
+          ))}
+        </div>
+        <div className="academy-alumni__actions">
+          <Link className="button tertiary" to={getContactPath(language)}>
+            {copy.alumniCtaLabel}
+          </Link>
+        </div>
+      </section>
+
       <section className="academy-testimonials" aria-labelledby="academy-testimonials-heading">
         <div className="academy-testimonials__intro">
           <h2 id="academy-testimonials-heading">{copy.testimonialsHeading}</h2>
