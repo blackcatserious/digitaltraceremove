@@ -22,6 +22,16 @@ export interface CommandCenterCopy {
     description: string
     steps: { id: string; title: string; description: string; duration: string }[]
   }
+  diagnostics: {
+    title: string
+    description: string
+    modules: {
+      id: string
+      title: string
+      summary: string
+      assurance: string
+    }[]
+  }
   intelligence: {
     title: string
     description: string
@@ -47,6 +57,17 @@ export interface CommandCenterCopy {
     title: string
     description: string
     modules: { id: string; name: string; description: string; automation: string }[]
+  }
+  briefings: {
+    title: string
+    description: string
+    sessions: {
+      id: string
+      audience: string
+      focus: string
+      cadence: string
+      takeaways: string
+    }[]
   }
   readiness: {
     title: string
@@ -190,6 +211,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    diagnostics: {
+      title: 'Continuous diagnostics across every risk surface',
+      description:
+        'Specialist pods run synthetic takedowns, sentiment drift tests, and registrar pings daily so the command floor always knows which safeguards hold.',
+      modules: [
+        {
+          id: 'synthetic',
+          title: 'Synthetic takedown rehearsals',
+          summary:
+            'We stress-test policy language and evidence packets against platforms before a crisis hits to confirm approval paths.',
+          assurance: 'Pre-approved artefacts cut removal timelines by 54% on average.',
+        },
+        {
+          id: 'sentiment',
+          title: 'Sentiment drift radar',
+          summary:
+            'Behavioural linguists grade tone across priority review sites and social threads, highlighting when rebuttals must shift.',
+          assurance: 'Escalates copy refreshes once negative drift exceeds 8 points.',
+        },
+        {
+          id: 'registrar',
+          title: 'Registrar pulse checks',
+          summary:
+            'Domain stewards validate WHOIS, DNS, and certificate hygiene while probing for spoofing or transfer attempts.',
+          assurance: 'Locks registrar contacts in under 15 minutes during simulated hijacks.',
+        },
+      ],
+    },
     intelligence: {
       title: 'Persistent intelligence streams powering every play',
       description:
@@ -311,6 +360,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           description:
             'Generates Looker Studio and PowerPoint exports that track protected revenue, trust signals, and mitigation velocity.',
           automation: 'Delivers refreshed dashboards before every leadership check-in with personalised commentary from Artur Ziganshin.',
+        },
+      ],
+    },
+    briefings: {
+      title: 'Executive briefings that keep leadership aligned',
+      description:
+        'Founder-led and regional sessions keep communications, legal, and product teams synced on posture, hot risks, and required decisions.',
+      sessions: [
+        {
+          id: 'daily-huddle',
+          audience: 'Daily command huddle',
+          focus: 'Active incidents, suppression progress, and platform escalations',
+          cadence: 'Every weekday — 20 minutes',
+          takeaways: 'Leadership receives a colour-coded readiness score and action log.',
+        },
+        {
+          id: 'regional-sync',
+          audience: 'Regional escalation sync',
+          focus: 'LATAM, EU, and NA regulatory updates with localisation adjustments',
+          cadence: 'Twice weekly — 30 minutes',
+          takeaways: 'Regional owners confirm messaging variants and timeline confidence.',
+        },
+        {
+          id: 'board-brief',
+          audience: 'Board & founders briefing',
+          focus: 'Priority threats, mitigation ROI, and resource allocations',
+          cadence: 'Monthly — 45 minutes',
+          takeaways: 'Board receives scenario forecasts and renewal recommendations.',
         },
       ],
     },
@@ -532,6 +609,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    diagnostics: {
+      title: 'Diagnostics continus sur chaque surface de risque',
+      description:
+        'Des équipes spécialisées exécutent quotidiennement des retraits synthétiques, tests de dérive de sentiment et pings registraires pour valider la robustesse des garde-fous.',
+      modules: [
+        {
+          id: 'synthetic',
+          title: 'Requêtes de retrait synthétiques',
+          summary:
+            'Nous éprouvons la rédaction juridique et les preuves auprès des plateformes avant crise pour confirmer les voies d’approbation.',
+          assurance: 'Les dossiers pré-approuvés réduisent de 54 % les délais de retrait.',
+        },
+        {
+          id: 'sentiment',
+          title: 'Radar de dérive de sentiment',
+          summary:
+            'Nos linguistes évaluent le ton sur les sites d’avis clés et les fils sociaux pour signaler quand ajuster les réponses.',
+          assurance: 'Déclenche l’actualisation des messages dès que la dérive négative dépasse 8 points.',
+        },
+        {
+          id: 'registrar',
+          title: 'Pulse registraires',
+          summary:
+            'Les gardiens de domaines vérifient WHOIS, DNS et certificats tout en détectant spoofing ou tentatives de transfert.',
+          assurance: 'Verrouille les contacts registraires en moins de 15 minutes lors des exercices.',
+        },
+      ],
+    },
     intelligence: {
       title: 'Des flux d’intelligence pour guider chaque action',
       description:
@@ -653,6 +758,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           description:
             'Génère exports Looker Studio et PowerPoint suivantrent revenus protégés, signaux de confiance et vélocité de mitigation.',
           automation: 'Diffuse des dashboards actualisés avant chaque point leadership avec commentaire personnalisé d’Artur Ziganshin.',
+        },
+      ],
+    },
+    briefings: {
+      title: 'Briefings exécutifs pour garder le cap',
+      description:
+        'Des sessions pilotées par le fondateur et les leads régionaux alignent communication, juridique et produit sur la posture, les risques chauds et les décisions à acter.',
+      sessions: [
+        {
+          id: 'daily-huddle',
+          audience: 'Point de commandement quotidien',
+          focus: 'Incidents actifs, progrès des suppressions et escalades plateformes',
+          cadence: 'Chaque jour — 20 minutes',
+          takeaways: 'Score de préparation et log d’actions remis aux dirigeants.',
+        },
+        {
+          id: 'regional-sync',
+          audience: 'Synchronisation régionale',
+          focus: 'Mises à jour réglementaires LATAM, UE et Amériques avec adaptations locales',
+          cadence: 'Bi-hebdomadaire — 30 minutes',
+          takeaways: 'Validation des variantes messages et confiance sur les délais.',
+        },
+        {
+          id: 'board-brief',
+          audience: 'Briefing board & fondateur',
+          focus: 'Menaces prioritaires, ROI des mitigations et arbitrages de ressources',
+          cadence: 'Mensuel — 45 minutes',
+          takeaways: 'Projection de scénarios et recommandations de renouvellement.',
         },
       ],
     },
@@ -874,6 +1007,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
     },
+    diagnostics: {
+      title: 'Diagnósticos continuos sobre cada superficie de riesgo',
+      description:
+        'Pods especializados ejecutan retiros sintéticos, pruebas de deriva de sentimiento y pings a registradores todos los días para confirmar qué barreras siguen firmes.',
+      modules: [
+        {
+          id: 'synthetic',
+          title: 'Ensayos de retiro sintético',
+          summary:
+            'Ponemos a prueba el lenguaje legal y los paquetes de evidencia con las plataformas antes de una crisis para validar rutas de aprobación.',
+          assurance: 'Expedientes preaprobados reducen un 54 % los tiempos de retirada.',
+        },
+        {
+          id: 'sentiment',
+          title: 'Radar de deriva de sentimiento',
+          summary:
+            'Lingüistas conductuales evalúan el tono en sitios de reseñas prioritarios y hilos sociales, señalando cuándo ajustar las réplicas.',
+          assurance: 'Activa actualizaciones de copy al superar 8 puntos de deriva negativa.',
+        },
+        {
+          id: 'registrar',
+          title: 'Pulso con registradores',
+          summary:
+            'Guardianes de dominios validan WHOIS, DNS y certificados mientras buscan intentos de spoofing o transferencias.',
+          assurance: 'Asegura contactos de registrador en menos de 15 minutos durante simulacros.',
+        },
+      ],
+    },
     intelligence: {
       title: 'Flujos de inteligencia que alimentan cada decisión',
       description:
@@ -995,6 +1156,34 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           description:
             'Genera exports de Looker Studio y PowerPoint que miden ingresos protegidos, señales de confianza y velocidad de mitigación.',
           automation: 'Entrega dashboards actualizados antes de cada checkpoint con comentarios personalizados de Artur Ziganshin.',
+        },
+      ],
+    },
+    briefings: {
+      title: 'Briefings ejecutivos que mantienen el rumbo',
+      description:
+        'Sesiones lideradas por el fundador y los leads regionales sincronizan comunicación, legal y producto sobre postura, riesgos calientes y decisiones necesarias.',
+      sessions: [
+        {
+          id: 'daily-huddle',
+          audience: 'Reunión diaria de comando',
+          focus: 'Incidentes activos, avance de supresiones y escalaciones en plataformas',
+          cadence: 'Cada día — 20 minutos',
+          takeaways: 'Los líderes reciben score de preparación y registro de acciones.',
+        },
+        {
+          id: 'regional-sync',
+          audience: 'Sincronización regional',
+          focus: 'Actualizaciones regulatorias LATAM, UE y Norteamérica con ajustes locales',
+          cadence: 'Dos veces por semana — 30 minutos',
+          takeaways: 'Se validan mensajes por idioma y confianza en los plazos.',
+        },
+        {
+          id: 'board-brief',
+          audience: 'Briefing para board y fundadores',
+          focus: 'Amenazas prioritarias, ROI de mitigaciones y asignación de recursos',
+          cadence: 'Mensual — 45 minutos',
+          takeaways: 'Se entregan escenarios proyectados y recomendaciones de renovación.',
         },
       ],
     },

@@ -4409,6 +4409,34 @@ const CommandCenterPage = () => {
         </ol>
       </section>
 
+      <section className="command-diagnostics" aria-labelledby="command-diagnostics-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-diagnostics-heading">{copy.diagnostics.title}</h2>
+            <p>{copy.diagnostics.description}</p>
+          </div>
+        </div>
+        <div className="command-diagnostics__grid">
+          {copy.diagnostics.modules.map((module, index) => (
+            <article
+              key={module.id}
+              className="command-diagnostics__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header className="command-diagnostics__header">
+                <span className="command-diagnostics__icon" aria-hidden="true">
+                  <GrowthSpark variant={index % 2 === 0 ? 'light' : 'dark'} size="sm" />
+                </span>
+                <h3>{module.title}</h3>
+              </header>
+              <p>{module.summary}</p>
+              <p className="command-diagnostics__assurance">{module.assurance}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="command-intel" aria-labelledby="command-intel-heading">
         <div className="command-section__header">
           <div>
@@ -4527,6 +4555,32 @@ const CommandCenterPage = () => {
               </header>
               <p>{module.description}</p>
               <p className="command-technology__automation">{module.automation}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="command-briefings" aria-labelledby="command-briefings-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-briefings-heading">{copy.briefings.title}</h2>
+            <p>{copy.briefings.description}</p>
+          </div>
+        </div>
+        <div className="command-briefings__grid">
+          {copy.briefings.sessions.map((session, index) => (
+            <article
+              key={session.id}
+              className="command-briefings__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header className="command-briefings__header">
+                <span className="command-briefings__audience">{session.audience}</span>
+                <span className="command-briefings__cadence">{session.cadence}</span>
+              </header>
+              <h3>{session.focus}</h3>
+              <p>{session.takeaways}</p>
             </article>
           ))}
         </div>
