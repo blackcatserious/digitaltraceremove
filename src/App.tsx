@@ -22,6 +22,7 @@ import {
   type ServicePageContent,
 } from './data/pages'
 import { servicesPricingCopy } from './data/servicesPricing'
+import { commandCenterCopy } from './data/commandCenter'
 import {
   blogArticles,
   blogTopicLabels,
@@ -118,6 +119,9 @@ const getResourcesPath = (language: Language) =>
 
 const getMediaPath = (language: Language) =>
   language === 'en' ? '/media' : `/${language}/media`
+
+const getCommandCenterPath = (language: Language) =>
+  language === 'en' ? '/command-center' : `/${language}/command-center`
 
 const getAcademyPath = (language: Language) =>
   language === 'en' ? '/academy' : `/${language}/academy`
@@ -354,6 +358,7 @@ const navCopy: Record<
     resources: string
     academy: string
     media: string
+    commandCenter: string
     trust: string
     faq: string
     blog: string
@@ -379,6 +384,7 @@ const navCopy: Record<
     resources: 'Resources',
     academy: 'Academy',
     media: 'Media',
+    commandCenter: 'Command center',
     trust: 'Trust center',
     faq: 'FAQ',
     blog: 'Blog',
@@ -403,6 +409,7 @@ const navCopy: Record<
     resources: 'Ressources',
     academy: 'Académie',
     media: 'Presse',
+    commandCenter: 'Centre de commandement',
     trust: 'Centre de confiance',
     faq: 'FAQ',
     blog: 'Blog',
@@ -427,6 +434,7 @@ const navCopy: Record<
     resources: 'Recursos',
     academy: 'Academia',
     media: 'Prensa',
+    commandCenter: 'Centro de comando',
     trust: 'Centro de confianza',
     faq: 'FAQ',
     blog: 'Blog',
@@ -4294,6 +4302,187 @@ const CaseStudiesPage = () => {
   )
 }
 
+const CommandCenterPage = () => {
+  const language = useCurrentLanguage()
+  const copy = commandCenterCopy[language]
+  const heroSecondaryIsExternal =
+    copy.hero.secondaryHref.startsWith('http') || copy.hero.secondaryHref.startsWith('mailto:')
+
+  return (
+    <article className="command-page">
+      <header className="command-hero">
+        <div className="command-hero__copy">
+          <p className="command-hero__eyebrow">{copy.hero.eyebrow}</p>
+          <h1>{copy.hero.title}</h1>
+          <p className="command-hero__subtitle">{copy.hero.subtitle}</p>
+          <p>{copy.hero.description}</p>
+          <div className="command-hero__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            {heroSecondaryIsExternal ? (
+              <a className="button secondary" href={copy.hero.secondaryHref}>
+                {copy.hero.secondaryCta}
+              </a>
+            ) : (
+              <Link className="button secondary" to={copy.hero.secondaryHref}>
+                {copy.hero.secondaryCta}
+              </Link>
+            )}
+          </div>
+        </div>
+        <div className="command-hero__visual">
+          <GrowthSpark
+            variant="light"
+            size="lg"
+            className="command-hero__spark"
+            ariaLabel={copy.hero.visualCaption}
+          />
+          <p className="command-hero__caption">{copy.hero.visualCaption}</p>
+          <ul className="command-hero__metrics">
+            {copy.hero.metrics.map((metric, index) => (
+              <li
+                key={metric.label}
+                className="command-hero__metric"
+                style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+              >
+                <span className="command-hero__metric-value">{metric.value}</span>
+                <span className="command-hero__metric-label">{metric.label}</span>
+                <p>{metric.annotation}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
+
+      <MomentumTicker variant="light" />
+
+      <section className="command-monitoring" aria-labelledby="command-monitoring-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-monitoring-heading">{copy.monitoring.title}</h2>
+            <p>{copy.monitoring.description}</p>
+          </div>
+        </div>
+        <div className="command-monitoring__grid">
+          {copy.monitoring.signals.map((signal, index) => (
+            <article
+              key={signal.id}
+              className="command-monitoring__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <span className="command-monitoring__icon" aria-hidden="true">
+                <GrowthSpark variant={index % 2 === 0 ? 'light' : 'dark'} size="sm" />
+              </span>
+              <h3>{signal.label}</h3>
+              <p>{signal.detail}</p>
+              <p className="command-monitoring__metric">{signal.metric}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="command-workflows" aria-labelledby="command-workflows-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-workflows-heading">{copy.workflows.title}</h2>
+            <p>{copy.workflows.description}</p>
+          </div>
+        </div>
+        <ol className="command-workflows__steps">
+          {copy.workflows.steps.map((step, index) => (
+            <li
+              key={step.id}
+              className="command-workflows__step"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <span className="command-workflows__number">{index + 1}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+                <p className="command-workflows__duration">{step.duration}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="command-playbooks" aria-labelledby="command-playbooks-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-playbooks-heading">{copy.playbooks.title}</h2>
+            <p>{copy.playbooks.description}</p>
+          </div>
+        </div>
+        <div className="command-playbooks__grid">
+          {copy.playbooks.items.map((item, index) => (
+            <article
+              key={item.id}
+              className="command-playbook"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <span className="command-playbook__badge">{index + 1}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </header>
+              <ul>
+                {item.outcomes.map((outcome) => (
+                  <li key={outcome}>{outcome}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="command-readiness" aria-labelledby="command-readiness-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-readiness-heading">{copy.readiness.title}</h2>
+            <p>{copy.readiness.description}</p>
+          </div>
+        </div>
+        <div className="command-readiness__grid">
+          {copy.readiness.columns.map((column, index) => (
+            <article
+              key={column.title}
+              className="command-readiness__column"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <h3>{column.title}</h3>
+              <ul>
+                {column.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="command-cta">
+        <div>
+          <h2>{copy.contact.title}</h2>
+          <p>{copy.contact.subtitle}</p>
+        </div>
+        <div className="command-cta__actions">
+          <Link className="button primary" to={getContactPath(language)}>
+            {copy.contact.primary}
+          </Link>
+          <a className="button ghost" href={copy.contact.secondaryHref}>
+            {copy.contact.secondary}
+          </a>
+        </div>
+      </section>
+    </article>
+  )
+}
+
 const AcademyPage = () => {
   const language = useCurrentLanguage()
   const copy = academyCopy[language]
@@ -6680,6 +6869,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       { label: copy.resources, href: getResourcesPath(currentLanguage) },
       { label: copy.academy, href: getAcademyPath(currentLanguage) },
       { label: copy.media, href: getMediaPath(currentLanguage) },
+      { label: copy.commandCenter, href: getCommandCenterPath(currentLanguage) },
       { label: copy.trust, href: getTrustPath(currentLanguage) },
       { label: copy.team, href: getTeamPath(currentLanguage) },
       { label: copy.partners, href: getPartnersPath(currentLanguage) },
@@ -7045,6 +7235,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onClick={handleCloseMobile}
               >
                 {copy.media}
+              </NavLink>
+              <NavLink
+                to={getCommandCenterPath(currentLanguage)}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
+                {copy.commandCenter}
               </NavLink>
               <NavLink
                 to={getTrustPath(currentLanguage)}
@@ -7585,6 +7782,7 @@ const footerCopy: Record<
     resources: string
     academy: string
     media: string
+    commandCenter: string
     trust: string
     faq: string
     partners: string
@@ -7622,6 +7820,7 @@ const footerCopy: Record<
     resources: 'Resources',
     academy: 'Academy',
     media: 'Media',
+    commandCenter: 'Command center',
     trust: 'Trust center',
     faq: 'FAQ',
     partners: 'Partners',
@@ -7659,6 +7858,7 @@ const footerCopy: Record<
     resources: 'Ressources',
     academy: 'Académie',
     media: 'Presse',
+    commandCenter: 'Centre de commandement',
     trust: 'Centre de confiance',
     faq: 'FAQ',
     partners: 'Partenaires',
@@ -7695,6 +7895,7 @@ const footerCopy: Record<
     resources: 'Recursos',
     academy: 'Academia',
     media: 'Prensa',
+    commandCenter: 'Centro de comando',
     trust: 'Centro de confianza',
     faq: 'FAQ',
     partners: 'Partners',
@@ -7866,6 +8067,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
     { to: getResourcesPath(currentLanguage), label: copy.resources },
     { to: getAcademyPath(currentLanguage), label: copy.academy },
     { to: getMediaPath(currentLanguage), label: copy.media },
+    { to: getCommandCenterPath(currentLanguage), label: copy.commandCenter },
     { to: getTrustPath(currentLanguage), label: copy.trust },
     { to: getTeamPath(currentLanguage), label: copy.team },
     { to: getPartnersPath(currentLanguage), label: copy.partners },
@@ -8010,6 +8212,7 @@ function App() {
         <Route path="academy" element={<AcademyPage />} />
         <Route path="faq" element={<FaqPage />} />
         <Route path="media" element={<MediaPage />} />
+        <Route path="command-center" element={<CommandCenterPage />} />
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
@@ -8029,6 +8232,7 @@ function App() {
             <Route path={`${language}/academy`} element={<AcademyPage />} />
             <Route path={`${language}/faq`} element={<FaqPage />} />
             <Route path={`${language}/media`} element={<MediaPage />} />
+            <Route path={`${language}/command-center`} element={<CommandCenterPage />} />
             <Route path={`${language}/trust`} element={<TrustCenterPage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
