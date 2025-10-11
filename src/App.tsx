@@ -4434,6 +4434,122 @@ const AcademyPage = () => {
         </div>
       </section>
 
+      <section className="academy-mentorship" aria-labelledby="academy-mentorship-heading">
+        <div className="academy-mentorship__intro">
+          <h2 id="academy-mentorship-heading">{copy.mentorshipHeading}</h2>
+          <p>{copy.mentorshipSubtitle}</p>
+        </div>
+        <div className="academy-mentorship__grid">
+          {copy.mentors.map((mentor, index) => (
+            <article key={mentor.name} className="academy-mentor" data-index={index}>
+              <header className="academy-mentor__header">
+                <div>
+                  <h3>{mentor.name}</h3>
+                  <p className="academy-mentor__role">{mentor.role}</p>
+                </div>
+                <span className="academy-mentor__badge">{mentor.availability}</span>
+              </header>
+              <p className="academy-mentor__bio">{mentor.bio}</p>
+              <div className="academy-mentor__lists">
+                <div className="academy-mentor__list">
+                  <h4>{copy.mentorExpertiseLabel}</h4>
+                  <ul>
+                    {mentor.expertise.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="academy-mentor__meta">
+                  <dl>
+                    <div>
+                      <dt>{copy.mentorAvailabilityLabel}</dt>
+                      <dd>{mentor.availability}</dd>
+                    </div>
+                    <div>
+                      <dt>{copy.mentorLanguagesLabel}</dt>
+                      <dd>{mentor.languages.join(', ')}</dd>
+                    </div>
+                  </dl>
+                  <p className="academy-mentor__note">
+                    <span>{copy.mentorNoteLabel}</span>
+                    {mentor.note}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-office-hours" aria-labelledby="academy-office-hours-heading">
+        <div className="academy-office-hours__intro">
+          <h2 id="academy-office-hours-heading">{copy.officeHoursHeading}</h2>
+          <p>{copy.officeHoursSubtitle}</p>
+        </div>
+        <div className="academy-office-hours__grid">
+          {copy.officeHours.map((slot, index) => (
+            <article key={slot.title} className="academy-office-hour" data-index={index}>
+              <header className="academy-office-hour__header">
+                <p className="academy-office-hour__cadence">{slot.cadence}</p>
+                <h3>{slot.title}</h3>
+                <p className="academy-office-hour__focus">
+                  <span>{copy.officeHoursFocusLabel}</span>
+                  {slot.focus}
+                </p>
+              </header>
+              <dl className="academy-office-hour__meta">
+                <div>
+                  <dt>{copy.officeHoursFacilitatorLabel}</dt>
+                  <dd>{slot.facilitator}</dd>
+                </div>
+                <div>
+                  <dt>{copy.officeHoursFormatLabel}</dt>
+                  <dd>{slot.format}</dd>
+                </div>
+              </dl>
+              <div className="academy-office-hour__takeaways">
+                <h4>{copy.officeHoursTakeawayLabel}</h4>
+                <ul>
+                  {slot.takeaways.map((takeaway) => (
+                    <li key={takeaway}>{takeaway}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-certifications" aria-labelledby="academy-certifications-heading">
+        <div className="academy-certifications__intro">
+          <h2 id="academy-certifications-heading">{copy.certificationsHeading}</h2>
+          <p>{copy.certificationsSubtitle}</p>
+        </div>
+        <div className="academy-certifications__grid">
+          {copy.certifications.map((certification, index) => (
+            <article key={certification.id} className="academy-certification" data-index={index}>
+              <span className="academy-certification__badge">{certification.badgeLabel}</span>
+              <h3>{certification.title}</h3>
+              <p className="academy-certification__description">{certification.description}</p>
+              <p className="academy-certification__validation">
+                <strong>{copy.certificationValidationLabel}:</strong> {certification.validation}
+              </p>
+              <div className="academy-certification__requirements">
+                <h4>{copy.certificationRequirementsLabel}</h4>
+                <ul>
+                  {certification.requirements.map((requirement) => (
+                    <li key={requirement}>{requirement}</li>
+                  ))}
+                </ul>
+              </div>
+              <p className="academy-certification__renewal">
+                <strong>{copy.certificationRenewalLabel}:</strong> {certification.renewal}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="academy-community" aria-labelledby="academy-community-heading">
         <div className="academy-community__intro">
           <h2 id="academy-community-heading">{copy.communityHeading}</h2>

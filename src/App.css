@@ -13304,6 +13304,326 @@ a {
   border: 1px solid rgba(148, 190, 255, 0.18);
 }
 
+.academy-mentorship {
+  display: grid;
+  gap: 2.75rem;
+}
+
+.academy-mentorship__intro {
+  max-width: 660px;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.academy-mentorship__grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.academy-mentor {
+  position: relative;
+  padding: 1.8rem;
+  border-radius: 24px;
+  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.32), rgba(7, 14, 28, 0.85));
+  border: 1px solid rgba(94, 234, 212, 0.18);
+  box-shadow: 0 24px 60px rgba(3, 10, 24, 0.45);
+  display: grid;
+  gap: 1.25rem;
+  overflow: hidden;
+}
+
+.academy-mentor::after {
+  content: '';
+  position: absolute;
+  inset: auto -30% -70% -30%;
+  height: 160px;
+  background: radial-gradient(circle, rgba(94, 234, 212, 0.24), transparent 70%);
+  opacity: 0.7;
+  animation: shimmerPulse 12s ease-in-out infinite;
+}
+
+.academy-mentor__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.academy-mentor__role {
+  margin: 0.35rem 0 0;
+  color: rgba(148, 190, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.academy-mentor__badge {
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.25);
+  border: 1px solid rgba(94, 234, 212, 0.35);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(222, 255, 245, 0.82);
+}
+
+.academy-mentor__bio {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.academy-mentor__lists {
+  display: grid;
+  gap: 1.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.academy-mentor__list h4 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(148, 190, 255, 0.75);
+}
+
+.academy-mentor__list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.academy-mentor__list li {
+  padding: 0.55rem 0.75rem;
+  border-radius: 14px;
+  background: rgba(9, 16, 30, 0.82);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+}
+
+.academy-mentor__meta dl {
+  margin: 0 0 0.75rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.academy-mentor__meta dl div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.academy-mentor__meta dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(94, 234, 212, 0.75);
+}
+
+.academy-mentor__meta dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.academy-mentor__note {
+  margin: 0;
+  color: rgba(222, 236, 255, 0.86);
+  display: grid;
+  gap: 0.25rem;
+}
+
+.academy-mentor__note span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(148, 190, 255, 0.65);
+}
+
+.academy-office-hours {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.academy-office-hours__intro {
+  max-width: 660px;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.academy-office-hours__grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.academy-office-hour {
+  padding: 1.6rem;
+  border-radius: 22px;
+  background: linear-gradient(150deg, rgba(14, 116, 144, 0.28), rgba(7, 12, 26, 0.88));
+  border: 1px solid rgba(14, 116, 144, 0.35);
+  box-shadow: 0 20px 50px rgba(3, 14, 32, 0.42);
+  display: grid;
+  gap: 1.1rem;
+}
+
+.academy-office-hour__header {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.academy-office-hour__cadence {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(94, 234, 212, 0.7);
+}
+
+.academy-office-hour__focus {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.academy-office-hour__focus span {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(94, 234, 212, 0.75);
+}
+
+.academy-office-hour__meta {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.academy-office-hour__meta div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.academy-office-hour__meta dt {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 190, 255, 0.68);
+}
+
+.academy-office-hour__meta dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.academy-office-hour__takeaways h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(148, 190, 255, 0.7);
+}
+
+.academy-office-hour__takeaways ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.academy-office-hour__takeaways li {
+  padding: 0.55rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(5, 14, 30, 0.82);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+}
+
+.academy-certifications {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.academy-certifications__intro {
+  max-width: 680px;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.academy-certifications__grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.academy-certification {
+  padding: 1.8rem;
+  border-radius: 22px;
+  background: linear-gradient(170deg, rgba(59, 130, 246, 0.28), rgba(9, 14, 28, 0.9));
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  box-shadow: 0 22px 55px rgba(2, 12, 30, 0.44);
+  display: grid;
+  gap: 1rem;
+}
+
+.academy-certification__badge {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.24);
+  border: 1px solid rgba(148, 190, 255, 0.35);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(222, 235, 255, 0.82);
+}
+
+.academy-certification__description {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.academy-certification__validation {
+  margin: 0;
+  color: rgba(222, 236, 255, 0.82);
+}
+
+.academy-certification__requirements h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 190, 255, 0.75);
+}
+
+.academy-certification__requirements ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.academy-certification__requirements li {
+  padding: 0.55rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(6, 12, 26, 0.85);
+  border: 1px solid rgba(94, 234, 212, 0.18);
+}
+
+.academy-certification__renewal {
+  margin: 0;
+  color: rgba(222, 236, 255, 0.82);
+}
+
 .academy-community {
   display: grid;
   gap: 2.25rem;
@@ -13443,6 +13763,12 @@ a {
 
   .academy-hero__visual {
     min-height: 360px;
+  }
+
+  .academy-mentorship__grid,
+  .academy-office-hours__grid,
+  .academy-certifications__grid {
+    grid-template-columns: 1fr;
   }
 
   .academy-testimonials__intro {

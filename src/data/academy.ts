@@ -38,6 +38,35 @@ export type AcademyHighlight = {
   description: string
 }
 
+export type AcademyMentor = {
+  name: string
+  role: string
+  bio: string
+  expertise: string[]
+  availability: string
+  languages: string[]
+  note: string
+}
+
+export type AcademyOfficeHour = {
+  title: string
+  facilitator: string
+  cadence: string
+  format: string
+  focus: string
+  takeaways: string[]
+}
+
+export type AcademyCertification = {
+  id: string
+  title: string
+  description: string
+  badgeLabel: string
+  validation: string
+  requirements: string[]
+  renewal: string
+}
+
 export type AcademyTestimonial = {
   quote: string
   name: string
@@ -72,6 +101,27 @@ export const academyCopy: Record<
     labsSubtitle: string
     labDeliverableLabel: string
     labs: AcademyLab[]
+    mentorshipHeading: string
+    mentorshipSubtitle: string
+    mentorExpertiseLabel: string
+    mentorAvailabilityLabel: string
+    mentorLanguagesLabel: string
+    mentorNoteLabel: string
+    mentors: AcademyMentor[]
+    officeHoursHeading: string
+    officeHoursSubtitle: string
+    officeHoursFacilitatorLabel: string
+    officeHoursCadenceLabel: string
+    officeHoursFormatLabel: string
+    officeHoursFocusLabel: string
+    officeHoursTakeawayLabel: string
+    officeHours: AcademyOfficeHour[]
+    certificationsHeading: string
+    certificationsSubtitle: string
+    certificationValidationLabel: string
+    certificationRequirementsLabel: string
+    certificationRenewalLabel: string
+    certifications: AcademyCertification[]
     communityHeading: string
     communitySubtitle: string
     communityHighlights: AcademyHighlight[]
@@ -253,6 +303,147 @@ export const academyCopy: Record<
           'Proof library linking wins to revenue.',
           'Executive headline pack.',
         ],
+      },
+    ],
+    mentorshipHeading: 'Mentors on the front lines',
+    mentorshipSubtitle:
+      'Book deep-dive sessions with the strategists who lead our managed engagements. Every mentor works active incidents each week.',
+    mentorExpertiseLabel: 'Active specialisations',
+    mentorAvailabilityLabel: 'Office hours',
+    mentorLanguagesLabel: 'Languages',
+    mentorNoteLabel: 'Best for',
+    mentors: [
+      {
+        name: 'Artur Ziganshin',
+        role: 'Founder & CEO',
+        bio: 'Artur directs Traceremove response programmes across three continents, blending executive comms, platform escalations, and growth reactivation.',
+        expertise: [
+          'Board and investor assurance frameworks',
+          'Domain & marketplace takedowns',
+          'Revenue rescue storytelling',
+        ],
+        availability: 'Mondays & Wednesdays · 09:00–12:00 ET',
+        languages: ['English', 'Spanish'],
+        note: 'Founders, CEOs, and boards needing orchestrated crisis leadership.',
+      },
+      {
+        name: 'Clara Martel',
+        role: 'Head of Intelligence',
+        bio: 'Former investigative journalist guiding multilingual threat intelligence pods monitoring review fraud and emerging policy shifts.',
+        expertise: [
+          'Cross-market signal pipelines',
+          'Narrative risk modelling',
+          'Marketplace policy enforcement',
+        ],
+        availability: 'Tuesdays · 14:00–18:00 CET',
+        languages: ['French', 'English'],
+        note: 'Intelligence, legal, and policy teams building proactive listening.',
+      },
+      {
+        name: 'Diego Santos',
+        role: 'Response Lead',
+        bio: 'Diego oversees Spanish and LATAM response operations with a focus on deceptive listings, review integrity, and high-velocity takedowns.',
+        expertise: [
+          'Incident war-room facilitation',
+          'Marketplace & SERP recovery',
+          'Customer trust communications',
+        ],
+        availability: 'Thursdays · 10:00–13:00 CDT',
+        languages: ['Spanish', 'English'],
+        note: 'CX, comms, and operations leaders managing active escalations.',
+      },
+    ],
+    officeHoursHeading: 'Live response office hours',
+    officeHoursSubtitle:
+      'Drop into rotating clinics covering the week’s most urgent threats. Sessions are capped at eight seats to keep guidance specific.',
+    officeHoursFacilitatorLabel: 'Facilitator',
+    officeHoursCadenceLabel: 'Cadence',
+    officeHoursFormatLabel: 'Format',
+    officeHoursFocusLabel: 'Focus',
+    officeHoursTakeawayLabel: 'You will leave with',
+    officeHours: [
+      {
+        title: 'Reputation triage stand-up',
+        facilitator: 'Clara Martel',
+        cadence: 'Weekly',
+        format: 'Live working session',
+        focus: 'Prioritise incidents in under 15 minutes and assign the right playbooks.',
+        takeaways: [
+          'Risk triage canvas template.',
+          'Escalation messaging snippets.',
+          '90-day visibility projection worksheet.',
+        ],
+      },
+      {
+        title: 'Marketplace takedown desk',
+        facilitator: 'Diego Santos',
+        cadence: 'Bi-weekly',
+        format: 'Case clinic',
+        focus: 'Audit fraudulent sellers, file cross-platform takedowns, and prep proof packs.',
+        takeaways: [
+          'Evidence locker checklist.',
+          'Appeal letter outline for Amazon & Google.',
+          'Response SLA cheat sheet.',
+        ],
+      },
+      {
+        title: 'Executive assurance huddle',
+        facilitator: 'Artur Ziganshin',
+        cadence: 'Monthly',
+        format: 'Leadership roundtable',
+        focus: 'Shape board-ready updates that connect defence wins to commercial impact.',
+        takeaways: [
+          'Board narrative storyboard.',
+          'Metric stack for investor briefings.',
+          'Follow-up action tracker template.',
+        ],
+      },
+    ],
+    certificationsHeading: 'Certification pathways',
+    certificationsSubtitle:
+      'Earn credentials that prove your team can defend visibility, rebuild trust, and communicate outcomes under pressure.',
+    certificationValidationLabel: 'Validated by',
+    certificationRequirementsLabel: 'Requirements',
+    certificationRenewalLabel: 'Renewal',
+    certifications: [
+      {
+        id: 'strategic-brand-defender',
+        title: 'Strategic Brand Defender',
+        description: 'Confirms executives can lead multidisciplinary war rooms, negotiate platform enforcement, and report to boards.',
+        badgeLabel: 'Badge: Strategic Brand Defender',
+        validation: 'Assessed by Artur Ziganshin and external legal advisors.',
+        requirements: [
+          'Complete the Brand defense leadership track.',
+          'Lead a live incident simulation with passing score.',
+          'Submit executive reporting packet for review.',
+        ],
+        renewal: 'Annual tabletop exercise plus refresher clinic on major platform updates.',
+      },
+      {
+        id: 'search-authority-architect',
+        title: 'Search Authority Architect',
+        description: 'Recognises growth leaders who stabilise rankings post-crisis and design multilingual authority regrowth plans.',
+        badgeLabel: 'Badge: Search Authority Architect',
+        validation: 'Audited by Clara Martel and partner SEO analysts.',
+        requirements: [
+          'Finish the Search authority accelerator track.',
+          'Ship a 90-day recovery roadmap with measurement plan.',
+          'Pass SERP threat mapping proficiency assessment.',
+        ],
+        renewal: 'Biannual submission of live ranking improvements across two markets.',
+      },
+      {
+        id: 'customer-trust-sentinel',
+        title: 'Customer Trust Sentinel',
+        description: 'Demonstrates CX and ops leaders can eradicate fake reviews, coordinate outreach, and sustain trust metrics.',
+        badgeLabel: 'Badge: Customer Trust Sentinel',
+        validation: 'Reviewed by Diego Santos and external CX auditors.',
+        requirements: [
+          'Complete the Trust operations mastery modules.',
+          'Document a verified review remediation win.',
+          'Maintain CSAT above agreed thresholds for 60 days.',
+        ],
+        renewal: 'Annual audit of trust metrics and updated outreach scripts.',
       },
     ],
     communityHeading: 'Community & support',
@@ -471,6 +662,147 @@ export const academyCopy: Record<
         ],
       },
     ],
+    mentorshipHeading: 'Mentors en première ligne',
+    mentorshipSubtitle:
+      'Réservez des sessions approfondies avec les stratèges qui pilotent nos missions gérées. Chaque mentor traite des incidents réels chaque semaine.',
+    mentorExpertiseLabel: 'Spécialisations actives',
+    mentorAvailabilityLabel: 'Plages de rendez-vous',
+    mentorLanguagesLabel: 'Langues',
+    mentorNoteLabel: 'Idéal pour',
+    mentors: [
+      {
+        name: 'Artur Ziganshin',
+        role: 'Fondateur & CEO',
+        bio: 'Artur orchestre les programmes de réponse Traceremove sur trois continents en combinant communication exécutive, escalades plateformes et relance de la croissance.',
+        expertise: [
+          'Cadres d’assurance pour conseils et investisseurs',
+          'Retraits domaines & marketplaces',
+          'Narration revenue rescue',
+        ],
+        availability: 'Lundis & mercredis · 15h00–18h00 CET',
+        languages: ['Anglais', 'Espagnol'],
+        note: 'Dirigeants, fondateurs et boards recherchant un pilotage de crise coordonné.',
+      },
+      {
+        name: 'Clara Martel',
+        role: 'Head of Intelligence',
+        bio: 'Ancienne journaliste d’investigation qui guide nos cellules d’intelligence multilingues sur la fraude avis et les évolutions réglementaires.',
+        expertise: [
+          'Pipelines de signaux multi-marchés',
+          'Modélisation des risques narratifs',
+          'Application des politiques marketplaces',
+        ],
+        availability: 'Mardis · 14h00–18h00 CET',
+        languages: ['Français', 'Anglais'],
+        note: 'Équipes intelligence, juridique et policy qui bâtissent une veille proactive.',
+      },
+      {
+        name: 'Diego Santos',
+        role: 'Response Lead',
+        bio: 'Diego supervise les opérations de réponse Espagne & LATAM avec un focus sur les faux avis, listings abusifs et retraits à haute vitesse.',
+        expertise: [
+          'Animation de war-rooms incident',
+          'Récupération marketplaces & SERP',
+          'Communication confiance client',
+        ],
+        availability: 'Jeudis · 10h00–13h00 CDT',
+        languages: ['Espagnol', 'Anglais'],
+        note: 'Leaders CX, communication et opérations gérant des escalades en cours.',
+      },
+    ],
+    officeHoursHeading: 'Office hours de réponse',
+    officeHoursSubtitle:
+      'Participez à des clinics thématiques sur les menaces du moment. Huit places maximum pour conserver un coaching précis.',
+    officeHoursFacilitatorLabel: 'Facilitateur',
+    officeHoursCadenceLabel: 'Cadence',
+    officeHoursFormatLabel: 'Format',
+    officeHoursFocusLabel: 'Focus',
+    officeHoursTakeawayLabel: 'Vous repartez avec',
+    officeHours: [
+      {
+        title: 'Stand-up triage réputation',
+        facilitator: 'Clara Martel',
+        cadence: 'Hebdomadaire',
+        format: 'Session live',
+        focus: 'Prioriser les incidents en moins de 15 minutes et affecter le bon playbook.',
+        takeaways: [
+          'Canvas de triage du risque.',
+          'Snippets de messages d’escalade.',
+          'Projection visibilité sur 90 jours.',
+        ],
+      },
+      {
+        title: 'Desk retraits marketplaces',
+        facilitator: 'Diego Santos',
+        cadence: 'Bi-hebdomadaire',
+        format: 'Clinic de cas',
+        focus: 'Auditer les vendeurs frauduleux, déposer des retraits multi-plateformes et préparer les preuves.',
+        takeaways: [
+          'Checklist dossier de preuves.',
+          'Trame de lettre d’appel Amazon & Google.',
+          'Aide-mémoire SLA de réponse.',
+        ],
+      },
+      {
+        title: 'Huddle assurance exécutive',
+        facilitator: 'Artur Ziganshin',
+        cadence: 'Mensuel',
+        format: 'Table ronde direction',
+        focus: 'Construire des updates board-ready reliant défense et impact business.',
+        takeaways: [
+          'Storyboard narratif conseil.',
+          'Stack de métriques pour investisseurs.',
+          'Tracker d’actions de suivi.',
+        ],
+      },
+    ],
+    certificationsHeading: 'Parcours de certification',
+    certificationsSubtitle:
+      'Obtenez des accréditations prouvant la capacité de vos équipes à défendre la visibilité, restaurer la confiance et communiquer sous pression.',
+    certificationValidationLabel: 'Validé par',
+    certificationRequirementsLabel: 'Prérequis',
+    certificationRenewalLabel: 'Renouvellement',
+    certifications: [
+      {
+        id: 'strategic-brand-defender',
+        title: 'Strategic Brand Defender',
+        description: 'Atteste que les dirigeants peuvent mener des war-rooms pluridisciplinaires, négocier les plateformes et reporter aux conseils.',
+        badgeLabel: 'Badge : Strategic Brand Defender',
+        validation: 'Évalué par Artur Ziganshin et des conseillers juridiques externes.',
+        requirements: [
+          'Suivre le parcours Leadership brand defense.',
+          'Diriger une simulation d’incident validée.',
+          'Soumettre un pack de reporting exécutif.',
+        ],
+        renewal: 'Exercice tabletop annuel + clinic de mise à jour plateformes.',
+      },
+      {
+        id: 'search-authority-architect',
+        title: 'Search Authority Architect',
+        description: 'Reconnaît les leaders growth capables de stabiliser les positions et de bâtir des plans multilingues de reconquête.',
+        badgeLabel: 'Badge : Search Authority Architect',
+        validation: 'Audité par Clara Martel et des analystes SEO partenaires.',
+        requirements: [
+          'Finaliser le parcours Accélérateurs d’autorité SEO.',
+          'Livrer une feuille de route de reprise 90 jours avec plan de mesure.',
+          'Réussir l’évaluation mapping des menaces SERP.',
+        ],
+        renewal: 'Soumission semestrielle d’améliorations de ranking sur deux marchés.',
+      },
+      {
+        id: 'customer-trust-sentinel',
+        title: 'Customer Trust Sentinel',
+        description: 'Prouve que les responsables CX/ops éliminent les faux avis, coordonnent l’outreach et maintiennent les indicateurs de confiance.',
+        badgeLabel: 'Badge : Customer Trust Sentinel',
+        validation: 'Revu par Diego Santos et des auditeurs CX externes.',
+        requirements: [
+          'Suivre les modules Trust operations mastery.',
+          'Documenter une remédiation avis réussie.',
+          'Maintenir le CSAT au-dessus du seuil 60 jours.',
+        ],
+        renewal: 'Audit annuel des métriques confiance et mise à jour des scripts.',
+      },
+    ],
     communityHeading: 'Communauté & support',
     communitySubtitle:
       'Votre inscription ouvre un accompagnement continu : vous n’affrontez plus le risque réputationnel seul.',
@@ -685,6 +1017,147 @@ export const academyCopy: Record<
           'Biblioteca de evidencias ligadas a revenue.',
           'Paquete de titulares ejecutivos.',
         ],
+      },
+    ],
+    mentorshipHeading: 'Mentores en primera línea',
+    mentorshipSubtitle:
+      'Agenda sesiones profundas con los estrategas que lideran nuestras cuentas gestionadas. Cada mentor atiende incidentes reales todas las semanas.',
+    mentorExpertiseLabel: 'Especializaciones activas',
+    mentorAvailabilityLabel: 'Horarios',
+    mentorLanguagesLabel: 'Idiomas',
+    mentorNoteLabel: 'Ideal para',
+    mentors: [
+      {
+        name: 'Artur Ziganshin',
+        role: 'Fundador & CEO',
+        bio: 'Artur dirige los programas de respuesta de Traceremove en tres continentes combinando comunicación ejecutiva, escalaciones de plataforma y reactivación del crecimiento.',
+        expertise: [
+          'Marcos de aseguramiento para directorios e inversores',
+          'Retiro de dominios y marketplaces',
+          'Narrativas de recuperación de ingresos',
+        ],
+        availability: 'Lunes y miércoles · 09:00–12:00 ET',
+        languages: ['Inglés', 'Español'],
+        note: 'Fundadores, CEOs y boards que necesitan liderazgo de crisis coordinado.',
+      },
+      {
+        name: 'Clara Martel',
+        role: 'Head of Intelligence',
+        bio: 'Ex periodista de investigación que guía células de inteligencia multilingües contra fraude de reseñas y cambios normativos.',
+        expertise: [
+          'Pipelines de señales multimercado',
+          'Modelado de riesgo narrativo',
+          'Ejecución de políticas en marketplaces',
+        ],
+        availability: 'Martes · 14:00–18:00 CET',
+        languages: ['Francés', 'Inglés'],
+        note: 'Equipos de inteligencia, legal y policy que construyen escucha proactiva.',
+      },
+      {
+        name: 'Diego Santos',
+        role: 'Response Lead',
+        bio: 'Diego lidera operaciones de respuesta para España y LATAM con foco en listados falsos, integridad de reseñas y retiros acelerados.',
+        expertise: [
+          'Facilitación de war-rooms de incidentes',
+          'Recuperación de marketplaces y SERP',
+          'Comunicaciones de confianza al cliente',
+        ],
+        availability: 'Jueves · 10:00–13:00 CDT',
+        languages: ['Español', 'Inglés'],
+        note: 'Líderes de CX, comunicación y operaciones con escaladas activas.',
+      },
+    ],
+    officeHoursHeading: 'Office hours en vivo',
+    officeHoursSubtitle:
+      'Únete a clínicas rotativas sobre las amenazas más urgentes de la semana. Cada sesión tiene un máximo de ocho asientos.',
+    officeHoursFacilitatorLabel: 'Facilitador',
+    officeHoursCadenceLabel: 'Cadencia',
+    officeHoursFormatLabel: 'Formato',
+    officeHoursFocusLabel: 'Enfoque',
+    officeHoursTakeawayLabel: 'Te llevarás',
+    officeHours: [
+      {
+        title: 'Stand-up de triage reputacional',
+        facilitator: 'Clara Martel',
+        cadence: 'Semanal',
+        format: 'Sesión en vivo',
+        focus: 'Priorizar incidentes en menos de 15 minutos y asignar el playbook adecuado.',
+        takeaways: [
+          'Plantilla de canvas de triage de riesgo.',
+          'Fragmentos de mensajes de escalada.',
+          'Proyección de visibilidad a 90 días.',
+        ],
+      },
+      {
+        title: 'Desk de retiros en marketplaces',
+        facilitator: 'Diego Santos',
+        cadence: 'Quincenal',
+        format: 'Clínica de casos',
+        focus: 'Auditar vendedores fraudulentos, presentar retiros multiplataforma y preparar paquetes de evidencia.',
+        takeaways: [
+          'Checklist para dossier de evidencias.',
+          'Guion de apelación para Amazon y Google.',
+          'Chuleta de SLA de respuesta.',
+        ],
+      },
+      {
+        title: 'Huddle de confianza ejecutiva',
+        facilitator: 'Artur Ziganshin',
+        cadence: 'Mensual',
+        format: 'Mesa redonda directiva',
+        focus: 'Construir actualizaciones para el directorio que conecten defensa con impacto comercial.',
+        takeaways: [
+          'Storyboard narrativo para el directorio.',
+          'Stack de métricas para inversores.',
+          'Tracker de acciones de seguimiento.',
+        ],
+      },
+    ],
+    certificationsHeading: 'Rutas de certificación',
+    certificationsSubtitle:
+      'Consigue credenciales que demuestran que tu equipo puede defender visibilidad, restaurar confianza y comunicar resultados bajo presión.',
+    certificationValidationLabel: 'Validado por',
+    certificationRequirementsLabel: 'Requisitos',
+    certificationRenewalLabel: 'Renovación',
+    certifications: [
+      {
+        id: 'strategic-brand-defender',
+        title: 'Strategic Brand Defender',
+        description: 'Confirma que los ejecutivos pueden liderar war-rooms multidisciplinarios, negociar con plataformas y reportar a directorios.',
+        badgeLabel: 'Insignia: Strategic Brand Defender',
+        validation: 'Evaluado por Artur Ziganshin y asesores legales externos.',
+        requirements: [
+          'Completar el track Leadership brand defense.',
+          'Dirigir una simulación de incidente aprobada.',
+          'Entregar paquete de reporting ejecutivo para revisión.',
+        ],
+        renewal: 'Ejercicio tabletop anual más clínica de actualización de plataformas.',
+      },
+      {
+        id: 'search-authority-architect',
+        title: 'Search Authority Architect',
+        description: 'Reconoce a líderes de growth que estabilizan rankings tras crisis y diseñan planes multilingües de reconquista.',
+        badgeLabel: 'Insignia: Search Authority Architect',
+        validation: 'Auditado por Clara Martel y analistas SEO aliados.',
+        requirements: [
+          'Finalizar el track Aceleradores de autoridad SEO.',
+          'Entregar roadmap de recuperación a 90 días con plan de medición.',
+          'Aprobar evaluación de mapeo de amenazas SERP.',
+        ],
+        renewal: 'Envío semestral de mejoras de ranking en dos mercados.',
+      },
+      {
+        id: 'customer-trust-sentinel',
+        title: 'Customer Trust Sentinel',
+        description: 'Demuestra que líderes de CX y operaciones erradican reseñas falsas, coordinan outreach y sostienen métricas de confianza.',
+        badgeLabel: 'Insignia: Customer Trust Sentinel',
+        validation: 'Revisado por Diego Santos y auditores CX externos.',
+        requirements: [
+          'Completar los módulos Trust operations mastery.',
+          'Documentar un caso exitoso de remediación de reseñas.',
+          'Mantener CSAT por encima del umbral durante 60 días.',
+        ],
+        renewal: 'Auditoría anual de métricas de confianza y actualización de guiones.',
       },
     ],
     communityHeading: 'Comunidad y soporte',
