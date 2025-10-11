@@ -98,6 +98,8 @@ const buildNavigation = () => {
 
 const navigation = buildNavigation()
 
+type NavLinkRenderArgs = { isActive: boolean }
+
 const getHomePath = (language: Language) => (language === 'en' ? '/' : `/${language}`)
 
 const getTeamPath = (language: Language) => (language === 'en' ? '/team' : `/${language}/team`)
@@ -3278,6 +3280,64 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__resilience" aria-labelledby="services-pricing-resilience">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-resilience">{copy.resilience.title}</h2>
+          <p>{copy.resilience.subtitle}</p>
+        </div>
+        <div className="services-pricing__resilience-layout">
+          <div className="services-pricing__resilience-grid">
+            {copy.resilience.drills.map((drill, index) => (
+              <article
+                key={drill.title}
+                className="services-pricing__resilience-card"
+                style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+              >
+                <header>
+                  <div>
+                    <h3>{drill.title}</h3>
+                    <span>{drill.cadence}</span>
+                  </div>
+                  <p>{drill.scenario}</p>
+                </header>
+                <ul>
+                  {drill.outcomes.map((outcome) => (
+                    <li key={outcome}>{outcome}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <aside className="services-pricing__resilience-aside">
+            <div className="services-pricing__resilience-signals">
+              {copy.resilience.signals.map((signal, index) => (
+                <article
+                  key={signal.label}
+                  className="services-pricing__resilience-signal"
+                  style={{ animationDelay: `${0.16 + index * 0.08}s` } as CSSProperties}
+                >
+                  <header>
+                    <span>{signal.label}</span>
+                    <strong>{signal.value}</strong>
+                  </header>
+                  <p>{signal.description}</p>
+                </article>
+              ))}
+            </div>
+            <div className="services-pricing__resilience-cta">
+              <p>{copy.resilience.cta.description}</p>
+              <Link className="button tertiary" to={getContactPath(language)}>
+                {copy.resilience.cta.label}
+              </Link>
+            </div>
+            <div className="services-pricing__resilience-visual" aria-hidden="true">
+              <GrowthSpark variant="dark" size="sm" />
+              <span className="services-pricing__resilience-orb" />
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <section className="services-pricing__executive" aria-labelledby="services-pricing-executive">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-executive">{copy.executive.title}</h2>
@@ -6312,7 +6372,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             <NavLink
               key={item.href}
               to={item.href}
-              className={({ isActive }) =>
+              className={({ isActive }: NavLinkRenderArgs) =>
                 `tr-nav__link${isActive ? ' is-active' : ''}` + ` tr-nav__link--${index}`
               }
               onMouseEnter={handleServiceClose}
@@ -6353,7 +6413,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                   <li key={page.path}>
                     <NavLink
                       to={page.path}
-                      className={({ isActive }) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
+                      className={({ isActive }: NavLinkRenderArgs) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
                       onClick={handleServiceClose}
                     >
                       {page.industryName}
@@ -6404,7 +6464,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                       <li key={page.path}>
                         <NavLink
                           to={page.path}
-                          className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                          className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                           onClick={handleCloseMobile}
                         >
                           {page.industryName}
@@ -6420,91 +6480,91 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               <NavLink
                 to={getHomePath(currentLanguage)}
                 end
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.home}
               </NavLink>
               <NavLink
                 to={getAboutPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.about}
               </NavLink>
               <NavLink
                 to={getCaseStudiesPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.caseStudies}
               </NavLink>
               <NavLink
                 to={getServicesPricingPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.servicesPricing}
               </NavLink>
               <NavLink
                 to={getResourcesPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.resources}
               </NavLink>
               <NavLink
                 to={getMediaPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.media}
               </NavLink>
               <NavLink
                 to={getTrustPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.trust}
               </NavLink>
               <NavLink
                 to={getTeamPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.team}
               </NavLink>
               <NavLink
                 to={getPartnersPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.partners}
               </NavLink>
               <NavLink
                 to={getBlogBasePath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.blog}
               </NavLink>
               <NavLink
                 to={getFaqPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.faq}
               </NavLink>
               <NavLink
                 to={getContactPath(currentLanguage)}
-                className={({ isActive }) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.contact}
               </NavLink>
               <NavLink
                 to={getJoinPath(currentLanguage)}
-                className={({ isActive }) =>
+                className={({ isActive }: NavLinkRenderArgs) =>
                   `tr-mobile-link tr-mobile-link--cta${isActive ? ' is-active' : ''}`
                 }
                 onClick={handleCloseMobile}
@@ -7354,7 +7414,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
             <NavLink
               key={label}
               to={to}
-              className={({ isActive }) =>
+              className={({ isActive }: NavLinkRenderArgs) =>
                 `tr-footer__menu-link${isActive ? ' tr-footer__menu-link--active' : ''}`
               }
             >

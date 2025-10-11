@@ -10641,6 +10641,220 @@ a {
   animation: floatField 24s ease-in-out infinite;
 }
 
+.services-pricing__resilience {
+  position: relative;
+}
+
+.services-pricing__resilience-layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.services-pricing__resilience-grid {
+  flex: 1.7;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.services-pricing__resilience-card {
+  padding: 1.9rem;
+  border-radius: 28px;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  background: linear-gradient(160deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1), rgba(15, 23, 42, 0.82));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
+}
+
+.services-pricing__resilience-card::before,
+.services-pricing__resilience-card::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.65;
+}
+
+.services-pricing__resilience-card::before {
+  inset: -35% auto auto -30%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%);
+  animation: floatField 26s ease-in-out infinite;
+}
+
+.services-pricing__resilience-card::after {
+  inset: auto -25% -45% auto;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(165, 243, 252, 0.25), transparent 70%);
+  animation: shimmerPulse 20s ease-in-out infinite;
+}
+
+.services-pricing__resilience-card header,
+.services-pricing__resilience-card ul {
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__resilience-card header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.services-pricing__resilience-card header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.services-pricing__resilience-card header span {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(191, 219, 254, 0.35);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+.services-pricing__resilience-card header p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.services-pricing__resilience-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.services-pricing__resilience-card li {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.services-pricing__resilience-aside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.services-pricing__resilience-signals {
+  display: grid;
+  gap: 1rem;
+}
+
+.services-pricing__resilience-signal {
+  padding: 1.4rem 1.6rem;
+  border-radius: 26px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: linear-gradient(165deg, rgba(56, 189, 248, 0.18), rgba(37, 99, 235, 0.12), rgba(15, 23, 42, 0.85));
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: fadeSlideUp 0.95s var(--motion-ease) both;
+}
+
+.services-pricing__resilience-signal header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.services-pricing__resilience-signal header span {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(191, 219, 254, 0.9);
+}
+
+.services-pricing__resilience-signal header strong {
+  font-size: 1.35rem;
+  color: rgba(224, 242, 254, 0.98);
+}
+
+.services-pricing__resilience-signal p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.75);
+  line-height: 1.55;
+}
+
+.services-pricing__resilience-cta {
+  padding: 1.6rem;
+  border-radius: 26px;
+  border: 1px solid rgba(147, 197, 253, 0.35);
+  background: linear-gradient(150deg, rgba(191, 219, 254, 0.18), rgba(37, 99, 235, 0.12), rgba(15, 23, 42, 0.85));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeSlideUp 1s var(--motion-ease) both;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-pricing__resilience-cta::before {
+  content: '';
+  position: absolute;
+  inset: -45% auto auto -35%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(147, 197, 253, 0.35), transparent 70%);
+  animation: floatField 28s ease-in-out infinite;
+}
+
+.services-pricing__resilience-cta p,
+.services-pricing__resilience-cta .button {
+  position: relative;
+  z-index: 1;
+}
+
+.services-pricing__resilience-cta p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.8);
+  line-height: 1.6;
+}
+
+.services-pricing__resilience-visual {
+  position: absolute;
+  inset: auto 4% -18% 4%;
+  padding: 1.75rem;
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: linear-gradient(160deg, rgba(148, 163, 184, 0.15), rgba(15, 23, 42, 0.72));
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.services-pricing__resilience-visual .growth-spark {
+  transform: scale(0.85);
+}
+
+.services-pricing__resilience-orb {
+  position: absolute;
+  inset: auto auto -40% -25%;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.28), transparent 70%);
+  animation: floatField 26s ease-in-out infinite;
+}
+
 .services-pricing__executive {
   position: relative;
 }
@@ -12329,6 +12543,25 @@ a {
       margin-top: 1.25rem;
     }
 
+    .services-pricing__resilience-layout {
+      flex-direction: column;
+      padding: 0 1rem;
+      gap: 1.5rem;
+    }
+
+    .services-pricing__resilience-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-pricing__resilience-aside {
+      padding-bottom: 4rem;
+    }
+
+    .services-pricing__resilience-visual {
+      position: static;
+      margin-top: 1.25rem;
+    }
+
   .services-pricing__executive-layout {
     grid-template-columns: 1fr;
     padding: 0 1rem;
@@ -12436,6 +12669,20 @@ a {
 
     .services-pricing__operations-signals {
       padding-bottom: 3rem;
+    }
+
+    .services-pricing__resilience-layout {
+      gap: 1.35rem;
+    }
+
+    .services-pricing__resilience-card,
+    .services-pricing__resilience-signal,
+    .services-pricing__resilience-cta {
+      padding: 1.6rem;
+    }
+
+    .services-pricing__resilience-visual {
+      padding: 1.5rem;
     }
 
   .services-pricing__roi-metrics div {

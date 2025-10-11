@@ -158,6 +158,19 @@ export type IncidentPlaybook = {
   outcome: string
 }
 
+export type ResilienceDrill = {
+  title: string
+  scenario: string
+  cadence: string
+  outcomes: string[]
+}
+
+export type ResilienceSignal = {
+  label: string
+  value: string
+  description: string
+}
+
 export type ExecutiveBriefing = {
   title: string
   cadence: string
@@ -298,6 +311,16 @@ export type ServicesPricingCopy = {
     subtitle: string
     cadences: OperationalCadence[]
     signals: OperationalSignal[]
+  }
+  resilience: {
+    title: string
+    subtitle: string
+    drills: ResilienceDrill[]
+    signals: ResilienceSignal[]
+    cta: {
+      label: string
+      description: string
+    }
   }
   executive: {
     title: string
@@ -926,6 +949,64 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           description: 'Rolling feedback from leadership surveys covering responsiveness and clarity.',
         },
       ],
+    },
+    resilience: {
+      title: 'War-room simulations that harden your reputation perimeter',
+      subtitle:
+        'We choreograph full-spectrum drills with your comms, legal, and product squads so every threat triggers decisive action.',
+      drills: [
+        {
+          title: 'Marketplace integrity breach',
+          scenario: 'Coordinated fake review ring and spoofed seller storefront attempt to erode trust overnight.',
+          cadence: 'Monthly',
+          outcomes: [
+            'Live triage maps aligning legal, trust & safety, and lifecycle responses within 20 minutes.',
+            'Localized comms scripts distributed to support teams across English, French, and Spanish queues.',
+            'Remediation backlog prioritized with ROI impact scoring and owner assignments.',
+          ],
+        },
+        {
+          title: 'Executive impersonation surge',
+          scenario: 'Social and messaging clones target investors and press with fabricated statements.',
+          cadence: 'Quarterly',
+          outcomes: [
+            'Rapid takedown toolkit rehearsed with LinkedIn, Instagram, and WhatsApp escalation partners.',
+            'Investor and media notification flows refined with timestamped sign-offs from leadership.',
+            'Forensics logging checklist validated for legal, security, and insurance stakeholders.',
+          ],
+        },
+        {
+          title: 'Product vulnerability narrative',
+          scenario: 'Anonymous forum leak claims critical security flaw and spreads across tech press.',
+          cadence: 'Bi-weekly micro-drills',
+          outcomes: [
+            'Engineering, product, and PR roundtable walks through patch timelines and evidence releases.',
+            'Customer reassurance email/SMS copy iterated with compliance and privacy approvals.',
+            'Dashboard instrumentation reviewed to ensure live status and uptime visuals are ready to publish.',
+          ],
+        },
+      ],
+      signals: [
+        {
+          label: 'Average drill participation',
+          value: '42 stakeholders',
+          description: 'Cross-functional leaders and operators trained per engagement, across three primary regions.',
+        },
+        {
+          label: 'Runbook update velocity',
+          value: '48 hours',
+          description: 'Time to ship refreshed playbooks and knowledge base articles after each simulation.',
+        },
+        {
+          label: 'Confidence delta post-drill',
+          value: '+31 pts',
+          description: 'Lift in self-reported readiness from executive sponsors after facilitated retros.',
+        },
+      ],
+      cta: {
+        label: 'Schedule a resilience drill',
+        description: 'Invite your core leaders—we facilitate the session, capture gaps, and deliver an action report within 48 hours.',
+      },
     },
     executive: {
       title: 'Executive briefing rituals',
@@ -1956,6 +2037,64 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    resilience: {
+      title: 'Simulations de crise qui blindent votre périmètre de réputation',
+      subtitle:
+        'Nous orchestrons des exercices grandeur nature avec vos équipes communication, juridique et produit afin que chaque menace déclenche une réponse coordonnée.',
+      drills: [
+        {
+          title: 'Sabotage marketplace coordonné',
+          scenario: 'Anneaux de faux avis et boutiques frauduleuses attaquent votre catalogue dans plusieurs langues.',
+          cadence: 'Mensuel',
+          outcomes: [
+            'Cartographie de triage en direct alignant juridique, trust & safety et lifecycle en moins de 20 minutes.',
+            'Scripts de communication localisés diffusés aux équipes support FR / EN / ES.',
+            'Backlog de remédiation priorisé avec scoring d’impact et responsables identifiés.',
+          ],
+        },
+        {
+          title: 'Usurpation d’exécutif',
+          scenario: 'Clones sociaux et messageries ciblent investisseurs et presse avec de faux communiqués.',
+          cadence: 'Trimestriel',
+          outcomes: [
+            'Kit de retrait accéléré répété avec partenaires LinkedIn, Instagram et WhatsApp.',
+            'Flux d’information investisseurs / médias affiné avec validations horodatées du leadership.',
+            'Checklist de traçabilité validée pour juridique, sécurité et assurances.',
+          ],
+        },
+        {
+          title: 'Narratif faille produit',
+          scenario: 'Une fuite anonyme prétend révéler une vulnérabilité critique et se propage dans la presse tech.',
+          cadence: 'Micro-drills bi-mensuels',
+          outcomes: [
+            'Table ronde engineering / produit / PR sur calendrier de patch et publication des preuves.',
+            'Messages clients email / SMS iterés avec conformité et privacy pour rassurer rapidement.',
+            'Vérification des dashboards statut pour garantir disponibilité des visuels uptime et sécurité.',
+          ],
+        },
+      ],
+      signals: [
+        {
+          label: 'Participants moyens par exercice',
+          value: '42 dirigeants & opérateurs',
+          description: 'Leaders multi-fonctions formés par engagement sur nos trois régions principales.',
+        },
+        {
+          label: 'Mise à jour des playbooks',
+          value: '48 heures',
+          description: 'Délai pour livrer playbooks et bases de connaissance révisés après chaque simulation.',
+        },
+        {
+          label: 'Gain de confiance post-exercice',
+          value: '+31 pts',
+          description: 'Progression moyenne du score de confiance déclaré par les sponsors exécutifs.',
+        },
+      ],
+      cta: {
+        label: 'Programmer un exercice de résilience',
+        description: 'Invitez vos leaders clés — nous animons la session, identifions les écarts et livrons un rapport d’actions sous 48 h.',
+      },
+    },
     executive: {
       title: 'Rituels de briefing exécutif',
       subtitle:
@@ -2984,6 +3123,64 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           description: 'Feedback continuo de las direcciones sobre nuestra velocidad y claridad.',
         },
       ],
+    },
+    resilience: {
+      title: 'Simulacros de guerra que blindan tu reputación digital',
+      subtitle:
+        'Coreografiamos incidentes de extremo a extremo con tus equipos de comunicación, legal y producto para que la respuesta sea automática.',
+      drills: [
+        {
+          title: 'Sabotaje coordinado en marketplaces',
+          scenario: 'Anillos de reseñas falsas y tiendas apócrifas intentan erosionar la confianza en cuestión de horas.',
+          cadence: 'Mensual',
+          outcomes: [
+            'Mapa de triage en vivo que alinea jurídico, trust & safety y lifecycle en menos de 20 minutos.',
+            'Scripts de comunicación localizados distribuidos a los equipos de soporte en EN / FR / ES.',
+            'Backlog de remediación priorizado con puntaje de impacto y responsables asignados.',
+          ],
+        },
+        {
+          title: 'Oleada de suplantación ejecutiva',
+          scenario: 'Clones en redes sociales y mensajería apuntan a inversores y prensa con declaraciones falsas.',
+          cadence: 'Trimestral',
+          outcomes: [
+            'Toolkit de derribo practicado con partners de LinkedIn, Instagram y WhatsApp.',
+            'Flujos de aviso a inversores y medios afinados con aprobaciones con sello de hora del liderazgo.',
+            'Checklist forense validada para legal, seguridad y aseguradoras.',
+          ],
+        },
+        {
+          title: 'Narrativa de vulnerabilidad de producto',
+          scenario: 'Un hilo anónimo afirma una falla crítica y se expande por foros y prensa tecnológica.',
+          cadence: 'Micro-drills quincenales',
+          outcomes: [
+            'Mesa redonda entre ingeniería, producto y PR sobre tiempos de parche y publicación de evidencias.',
+            'Mensajes de tranquilidad para clientes en email / SMS iterados con compliance y privacidad.',
+            'Revisión de tableros de estatus para garantizar visualizaciones de uptime listas para salir al aire.',
+          ],
+        },
+      ],
+      signals: [
+        {
+          label: 'Promedio de participantes por simulacro',
+          value: '42 líderes y operadores',
+          description: 'Personas clave entrenadas por engagement en nuestras tres regiones principales.',
+        },
+        {
+          label: 'Tiempo para actualizar runbooks',
+          value: '48 horas',
+          description: 'Ventana para liberar playbooks y bases de conocimiento actualizados tras cada simulación.',
+        },
+        {
+          label: 'Salto de confianza post-simulacro',
+          value: '+31 pts',
+          description: 'Incremento medio en el puntaje de confianza reportado por sponsors ejecutivos.',
+        },
+      ],
+      cta: {
+        label: 'Agenda un simulacro de resiliencia',
+        description: 'Invitá a tus líderes clave: facilitamos la sesión, documentamos brechas y enviamos un informe accionable en 48 horas.',
+      },
     },
     executive: {
       title: 'Rituales de briefing ejecutivo',
