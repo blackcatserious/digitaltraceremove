@@ -36,6 +36,7 @@ import { mediaCenterCopy } from './data/media'
 import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
+import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -117,6 +118,9 @@ const getResourcesPath = (language: Language) =>
 
 const getMediaPath = (language: Language) =>
   language === 'en' ? '/media' : `/${language}/media`
+
+const getAcademyPath = (language: Language) =>
+  language === 'en' ? '/academy' : `/${language}/academy`
 
 const getFaqPath = (language: Language) => (language === 'en' ? '/faq' : `/${language}/faq`)
 
@@ -348,6 +352,7 @@ const navCopy: Record<
     servicesPricing: string
     team: string
     resources: string
+    academy: string
     media: string
     trust: string
     faq: string
@@ -372,6 +377,7 @@ const navCopy: Record<
     servicesPricing: 'Services & pricing',
     team: 'Team',
     resources: 'Resources',
+    academy: 'Academy',
     media: 'Media',
     trust: 'Trust center',
     faq: 'FAQ',
@@ -395,6 +401,7 @@ const navCopy: Record<
     servicesPricing: 'Services & tarifs',
     team: 'Équipe',
     resources: 'Ressources',
+    academy: 'Académie',
     media: 'Presse',
     trust: 'Centre de confiance',
     faq: 'FAQ',
@@ -418,6 +425,7 @@ const navCopy: Record<
     servicesPricing: 'Servicios y precios',
     team: 'Equipo',
     resources: 'Recursos',
+    academy: 'Academia',
     media: 'Prensa',
     trust: 'Centro de confianza',
     faq: 'FAQ',
@@ -4286,6 +4294,197 @@ const CaseStudiesPage = () => {
   )
 }
 
+const AcademyPage = () => {
+  const language = useCurrentLanguage()
+  const copy = academyCopy[language]
+  const secondaryHref = resolveAcademySecondaryHref(copy.hero.secondaryTarget, language)
+
+  return (
+    <article className="academy-page">
+      <header className="academy-hero">
+        <div className="academy-hero__content">
+          <p className="academy-hero__eyebrow">{copy.hero.eyebrow}</p>
+          <h1>{copy.hero.title}</h1>
+          <p className="academy-hero__subtitle">{copy.hero.subtitle}</p>
+          <div className="academy-hero__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            <Link className="button secondary" to={secondaryHref}>
+              {copy.hero.secondaryCta}
+            </Link>
+          </div>
+        </div>
+        <div className="academy-hero__visual">
+          <GrowthSpark
+            variant="light"
+            size="lg"
+            className="academy-hero__spark"
+            ariaLabel={copy.hero.visualCaption}
+          />
+          <p className="academy-hero__caption">{copy.hero.visualCaption}</p>
+          <ul className="academy-hero__metrics">
+            {copy.hero.metrics.map((metric, index) => (
+              <li key={metric.label} className="academy-hero__metric" data-index={index}>
+                <span className="academy-hero__metric-value">{metric.value}</span>
+                <span className="academy-hero__metric-label">{metric.label}</span>
+                <p>{metric.annotation}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
+
+      <MomentumTicker variant="light" />
+
+      <section className="academy-tracks" aria-labelledby="academy-tracks-heading">
+        <div className="academy-tracks__intro">
+          <p className="academy-tracks__eyebrow">{copy.hero.eyebrow}</p>
+          <h2 id="academy-tracks-heading">{copy.tracksHeading}</h2>
+          <p>{copy.tracksSubtitle}</p>
+        </div>
+        <div className="academy-tracks__grid">
+          {copy.tracks.map((track, index) => (
+            <article key={track.id} className="academy-track" data-index={index}>
+              <header className="academy-track__header">
+                <p className="academy-track__focus">{track.focus}</p>
+                <h3>{track.title}</h3>
+                <p className="academy-track__description">{track.description}</p>
+                <div className="academy-track__meta">
+                  <span>{track.duration}</span>
+                  <span>{track.format}</span>
+                </div>
+              </header>
+              <div className="academy-track__body">
+                <div className="academy-track__list">
+                  <h4>{copy.trackOutcomeLabel}</h4>
+                  <ul>
+                    {track.outcomes.map((outcome) => (
+                      <li key={outcome}>{outcome}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="academy-track__list">
+                  <h4>{copy.trackModuleLabel}</h4>
+                  <ul>
+                    {track.modules.map((module) => (
+                      <li key={module}>{module}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-workshops" aria-labelledby="academy-workshops-heading">
+        <div className="academy-workshops__intro">
+          <h2 id="academy-workshops-heading">{copy.workshopsHeading}</h2>
+          <p>{copy.workshopsSubtitle}</p>
+        </div>
+        <div className="academy-workshops__list">
+          {copy.workshops.map((workshop, index) => (
+            <article key={workshop.title} className="academy-workshop" data-index={index}>
+              <header className="academy-workshop__header">
+                <p className="academy-workshop__focus">{workshop.focus}</p>
+                <h3>{workshop.title}</h3>
+                <div className="academy-workshop__meta">
+                  <span>{workshop.length}</span>
+                  <span>{workshop.format}</span>
+                </div>
+              </header>
+              <div className="academy-workshop__takeaways">
+                <h4>{copy.workshopTakeawayLabel}</h4>
+                <ul>
+                  {workshop.takeaways.map((takeaway) => (
+                    <li key={takeaway}>{takeaway}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-labs" aria-labelledby="academy-labs-heading">
+        <div className="academy-labs__intro">
+          <h2 id="academy-labs-heading">{copy.labsHeading}</h2>
+          <p>{copy.labsSubtitle}</p>
+        </div>
+        <div className="academy-labs__grid">
+          {copy.labs.map((lab, index) => (
+            <article key={lab.title} className="academy-lab" data-index={index}>
+              <header className="academy-lab__header">
+                <h3>{lab.title}</h3>
+                <p className="academy-lab__description">{lab.description}</p>
+              </header>
+              <p className="academy-lab__lead">{lab.lead}</p>
+              <p className="academy-lab__cadence">{lab.cadence}</p>
+              <div className="academy-lab__deliverables">
+                <h4>{copy.labDeliverableLabel}</h4>
+                <ul>
+                  {lab.deliverables.map((deliverable) => (
+                    <li key={deliverable}>{deliverable}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-community" aria-labelledby="academy-community-heading">
+        <div className="academy-community__intro">
+          <h2 id="academy-community-heading">{copy.communityHeading}</h2>
+          <p>{copy.communitySubtitle}</p>
+        </div>
+        <div className="academy-community__grid">
+          {copy.communityHighlights.map((highlight, index) => (
+            <article key={highlight.label} className="academy-community__card" data-index={index}>
+              <h3>{highlight.label}</h3>
+              <p>{highlight.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-testimonials" aria-labelledby="academy-testimonials-heading">
+        <div className="academy-testimonials__intro">
+          <h2 id="academy-testimonials-heading">{copy.testimonialsHeading}</h2>
+          <GrowthSpark variant="light" size="md" className="academy-testimonials__spark" />
+        </div>
+        <div className="academy-testimonials__grid">
+          {copy.testimonials.map((testimonial, index) => (
+            <figure key={testimonial.name} className="academy-testimonial" data-index={index}>
+              <blockquote>{testimonial.quote}</blockquote>
+              <figcaption>
+                <span className="academy-testimonial__name">{testimonial.name}</span>
+                <span className="academy-testimonial__role">{testimonial.role}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="academy-cta" aria-labelledby="academy-cta-heading">
+        <div className="academy-cta__content">
+          <h2 id="academy-cta-heading">{copy.cta.title}</h2>
+          <p>{copy.cta.subtitle}</p>
+        </div>
+        <div className="academy-cta__actions">
+          <Link className="button primary" to={getContactPath(language)}>
+            {copy.cta.primary}
+          </Link>
+          <Link className="button tertiary" to={getServicesPricingPath(language)}>
+            {copy.cta.secondary}
+          </Link>
+        </div>
+      </section>
+    </article>
+  )
+}
+
 const ResourceLibraryPage = () => {
   const language = useCurrentLanguage()
   const copy = resourceLibraryCopy[language]
@@ -4470,6 +4669,21 @@ const resolveGuideHref = (target: FaqGuideTarget, language: Language) => {
     case 'contact':
     default:
       return getContactPath(language)
+  }
+}
+
+const resolveAcademySecondaryHref = (
+  target: AcademyHeroSecondaryTarget,
+  language: Language
+) => {
+  switch (target) {
+    case 'resources':
+      return getResourcesPath(language)
+    case 'servicesPricing':
+      return getServicesPricingPath(language)
+    case 'caseStudies':
+    default:
+      return getCaseStudiesPath(language)
   }
 }
 
@@ -6202,6 +6416,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
       { label: copy.servicesPricing, href: getServicesPricingPath(currentLanguage) },
       { label: copy.resources, href: getResourcesPath(currentLanguage) },
+      { label: copy.academy, href: getAcademyPath(currentLanguage) },
       { label: copy.media, href: getMediaPath(currentLanguage) },
       { label: copy.trust, href: getTrustPath(currentLanguage) },
       { label: copy.team, href: getTeamPath(currentLanguage) },
@@ -6554,6 +6769,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onClick={handleCloseMobile}
               >
                 {copy.resources}
+              </NavLink>
+              <NavLink
+                to={getAcademyPath(currentLanguage)}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
+                {copy.academy}
               </NavLink>
               <NavLink
                 to={getMediaPath(currentLanguage)}
@@ -7099,6 +7321,7 @@ const footerCopy: Record<
     caseStudies: string
     team: string
     resources: string
+    academy: string
     media: string
     trust: string
     faq: string
@@ -7135,6 +7358,7 @@ const footerCopy: Record<
     caseStudies: 'Case studies',
     team: 'Team',
     resources: 'Resources',
+    academy: 'Academy',
     media: 'Media',
     trust: 'Trust center',
     faq: 'FAQ',
@@ -7171,6 +7395,7 @@ const footerCopy: Record<
     caseStudies: 'Études de cas',
     team: 'Équipe',
     resources: 'Ressources',
+    academy: 'Académie',
     media: 'Presse',
     trust: 'Centre de confiance',
     faq: 'FAQ',
@@ -7206,6 +7431,7 @@ const footerCopy: Record<
     caseStudies: 'Casos de éxito',
     team: 'Equipo',
     resources: 'Recursos',
+    academy: 'Academia',
     media: 'Prensa',
     trust: 'Centro de confianza',
     faq: 'FAQ',
@@ -7376,6 +7602,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
     { to: getCaseStudiesPath(currentLanguage), label: copy.caseStudies },
     { to: getServicesPricingPath(currentLanguage), label: copy.servicesPricing },
     { to: getResourcesPath(currentLanguage), label: copy.resources },
+    { to: getAcademyPath(currentLanguage), label: copy.academy },
     { to: getMediaPath(currentLanguage), label: copy.media },
     { to: getTrustPath(currentLanguage), label: copy.trust },
     { to: getTeamPath(currentLanguage), label: copy.team },
@@ -7518,6 +7745,7 @@ function App() {
         <Route path="case-studies" element={<CaseStudiesPage />} />
         <Route path="services" element={<ServicesPricingPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
+        <Route path="academy" element={<AcademyPage />} />
         <Route path="faq" element={<FaqPage />} />
         <Route path="media" element={<MediaPage />} />
         <Route path="trust" element={<TrustCenterPage />} />
@@ -7536,6 +7764,7 @@ function App() {
             <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
             <Route path={`${language}/services`} element={<ServicesPricingPage />} />
             <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
+            <Route path={`${language}/academy`} element={<AcademyPage />} />
             <Route path={`${language}/faq`} element={<FaqPage />} />
             <Route path={`${language}/media`} element={<MediaPage />} />
             <Route path={`${language}/trust`} element={<TrustCenterPage />} />
