@@ -39,6 +39,30 @@ export interface ObservatoryCopy {
     description: string
     panels: { id: string; title: string; metric: string; delta: string; description: string }[]
   }
+  forecasts: {
+    title: string
+    description: string
+    projections: {
+      id: string
+      horizon: string
+      scenario: string
+      summary: string
+      impact: string
+      action: string
+    }[]
+  }
+  benchmarks: {
+    title: string
+    description: string
+    metrics: {
+      id: string
+      name: string
+      value: string
+      change: string
+      baseline: string
+      narrative: string
+    }[]
+  }
   briefings: {
     title: string
     description: string
@@ -268,6 +292,80 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           metric: '27',
           delta: 'new mentions flagged',
           description: 'Surfaces new channels where the brand is mentioned so GTM can join conversations safely.',
+        },
+      ],
+    },
+    forecasts: {
+      title: 'Scenario forecasting',
+      description:
+        'Forward models flag the next disruption arcs so founders see how fast to mobilise, which regions feel the hit first, and the counter-moves already in draft.',
+      projections: [
+        {
+          id: 'f1',
+          horizon: 'Next 24 hours',
+          scenario: 'Coordinated review fraud wave',
+          summary:
+            'Marketplace signals show burner accounts queueing one-star streaks across food delivery and home services listings in Montréal and Lyon.',
+          impact:
+            'Model projects a 12% dip in loyalty sign-ups and a 0.4 star rating drop if the wave lands before sweeps trigger.',
+          action:
+            'Escalate rapid-response review sweeps, force verified purchase prompts, and queue legal takedowns across Uber Eats, Deliveroo, and Amazon Handmade.',
+        },
+        {
+          id: 'f2',
+          horizon: 'Next 7 days',
+          scenario: 'Influencer misinformation loop',
+          summary:
+            'FR and ES creator chatter hints at a fabricated recall rumour seeded by a competitor-funded agency targeting skincare routines.',
+          impact:
+            'Would lift negative brand queries by 22% and spike support ticket volume 1.3x if rebuttals lag.',
+          action:
+            'Pre-produce founder briefing clips, align spokesperson quotes in three languages, and sync paid social reassurance bursts with affiliate updates.',
+        },
+        {
+          id: 'f3',
+          horizon: '30-day outlook',
+          scenario: 'Marketplace impersonation network',
+          summary:
+            'Domain permutations and social handles registered in APAC signal a drop-ship impersonation network preparing to spoof official storefronts.',
+          impact:
+            'Risking $2.1M GMV plus partner trust erosion as disputes cascade through payment processors.',
+          action:
+            'Pre-register priority domains, trigger registrar takedown holds, ready ad verification pushes, and rehearse seller outreach playbooks with partner ops.',
+        },
+      ],
+    },
+    benchmarks: {
+      title: 'Performance benchmarks',
+      description:
+        'Live benchmarks show how observatory operations outperform the market so leadership can message progress with proof.',
+      metrics: [
+        {
+          id: 'bm1',
+          name: 'Incident neutralisation speed',
+          value: '42 min',
+          change: '↓6 min vs last month',
+          baseline: 'SLA target: under 55 minutes',
+          narrative:
+            'Automation-assisted routing and pre-cleared playbooks cut review loops while founders approve within dedicated stand-ups.',
+        },
+        {
+          id: 'bm2',
+          name: 'Share of positive coverage',
+          value: '71%',
+          change: '↑9 pts QoQ',
+          baseline: 'Enterprise SaaS benchmark: 58%',
+          narrative:
+            'Rapid spokesperson deployment plus media observatory rebuttals flipped hostile narratives across tier-one tech and fintech press.',
+        },
+        {
+          id: 'bm3',
+          name: 'Revenue preserved',
+          value: '$4.8M',
+          change: 'protected last quarter',
+          baseline: 'Baseline risk: $6.2M exposure',
+          narrative:
+            'Marketplace takedowns, ad negative keyword shields, and customer comms automation prevented conversion leakage.',
         },
       ],
     },
@@ -632,6 +730,80 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    forecasts: {
+      title: 'Prévisions de scénarios',
+      description:
+        'Nos modèles projectifs révèlent la prochaine courbe de disruption pour indiquer aux dirigeants la vitesse de mobilisation, les régions touchées et les contre-mesures déjà prêtes.',
+      projections: [
+        {
+          id: 'f1',
+          horizon: 'Prochaines 24 h',
+          scenario: 'Déferlante de faux avis coordonnés',
+          summary:
+            'Les signaux marketplace révèlent des comptes jetables préparant des salves 1 étoile sur les plateformes de livraison et services à domicile à Montréal et Lyon.',
+          impact:
+            'Le modèle anticipe une baisse de 12 % des inscriptions fidélité et -0,4 étoile si les balayages tardent.',
+          action:
+            'Déclencher les balayages accélérés, imposer la preuve d’achat vérifiée et lancer les demandes juridiques auprès d’Uber Eats, Deliveroo et Amazon Handmade.',
+        },
+        {
+          id: 'f2',
+          horizon: 'Prochaine semaine',
+          scenario: 'Boucle de désinformation d’influenceurs',
+          summary:
+            'Les conversations FR et ES laissent entendre une rumeur de rappel fabriquée par une agence financée par un concurrent ciblant les routines skincare.',
+          impact:
+            'Ferait grimper de 22 % les requêtes négatives et 1,3x les tickets support si les contre-discours tardent.',
+          action:
+            'Préparer les clips de briefing fondateur, aligner les citations des porte-paroles en trois langues et synchroniser les campagnes rassurantes payantes avec les affiliés.',
+        },
+        {
+          id: 'f3',
+          horizon: 'Vision à 30 jours',
+          scenario: 'Réseau d’usurpation marketplaces',
+          summary:
+            'Des permutations de domaines et handles sociaux enregistrés en APAC signalent un réseau dropshipping prêt à usurper les boutiques officielles.',
+          impact:
+            'Menace 2,1 M€ de GMV et la confiance partenaires avec un effet domino sur les litiges.',
+          action:
+            'Pré-enregistrer les domaines clés, demander des blocages aux registrars, préparer les vérifications publicitaires et répéter les scripts d’alerte vendeurs avec l’équipe partenaires.',
+        },
+      ],
+    },
+    benchmarks: {
+      title: 'Indicateurs de performance',
+      description:
+        'Des benchmarks en direct montrent comment l’observatoire surperforme le marché pour que le leadership prouve les progrès avec des chiffres.',
+      metrics: [
+        {
+          id: 'bm1',
+          name: 'Vitesse de neutralisation des incidents',
+          value: '42 min',
+          change: '↓6 min vs mois dernier',
+          baseline: 'Objectif SLA : moins de 55 min',
+          narrative:
+            'Le routage assisté par automatisation et les playbooks pré-validés réduisent les boucles de revue tandis que les fondateurs statuent lors des stand-ups dédiés.',
+        },
+        {
+          id: 'bm2',
+          name: 'Part de couverture positive',
+          value: '71 %',
+          change: '↑9 pts T/T',
+          baseline: 'Benchmark SaaS entreprise : 58 %',
+          narrative:
+            'Le déploiement rapide des porte-paroles et les contre-récits médias ont retourné les narratifs hostiles dans la presse tech et fintech.',
+        },
+        {
+          id: 'bm3',
+          name: 'Revenus préservés',
+          value: '4,8 M$',
+          change: 'protégés dernier trimestre',
+          baseline: 'Risque initial : 6,2 M$ d’exposition',
+          narrative:
+            'Retraits marketplace, négatifs mots-clés et automatisation des communications clients ont empêché la fuite de conversion.',
+        },
+      ],
+    },
     briefings: {
       title: 'Briefings fondateurs',
       description:
@@ -992,6 +1164,80 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           metric: '27',
           delta: 'nuevas menciones',
           description: 'Detecta nuevos canales donde se menciona la marca para intervenir con seguridad.',
+        },
+      ],
+    },
+    forecasts: {
+      title: 'Previsiones de escenarios',
+      description:
+        'Nuestros modelos predictivos anticipan la siguiente curva de disrupción para que los directivos sepan a qué velocidad movilizarse, qué regiones sentirán el impacto y qué contra-movimientos ya están listos.',
+      projections: [
+        {
+          id: 'f1',
+          horizon: 'Próximas 24 h',
+          scenario: 'Oleada coordinada de reseñas falsas',
+          summary:
+            'Las señales de marketplaces muestran cuentas desechables preparando rachas de una estrella en entregas y servicios a domicilio en Montreal y Lyon.',
+          impact:
+            'El modelo prevé una caída del 12 % en altas de lealtad y -0,4 estrellas si los barridos tardan.',
+          action:
+            'Activar barridos acelerados de reseñas, exigir comprobantes verificados y lanzar solicitudes legales en Uber Eats, Deliveroo y Amazon Handmade.',
+        },
+        {
+          id: 'f2',
+          horizon: 'Próximos 7 días',
+          scenario: 'Bucle de desinformación de influencers',
+          summary:
+            'Conversaciones FR y ES de creadores insinúan un retiro fabricado por una agencia financiada por competidor en rutinas de skincare.',
+          impact:
+            'Podría elevar 22 % las búsquedas negativas de marca y multiplicar por 1,3 los tickets de soporte si las réplicas tardan.',
+          action:
+            'Preproducir clips del fundador, alinear citas de portavoces en tres idiomas y sincronizar oleadas pagadas de tranquilidad con afiliados.',
+        },
+        {
+          id: 'f3',
+          horizon: 'Perspectiva 30 días',
+          scenario: 'Red de suplantación en marketplaces',
+          summary:
+            'Permutaciones de dominios y handles sociales registrados en APAC señalan una red de dropshipping lista para suplantar tiendas oficiales.',
+          impact:
+            'Amenaza 2,1 M$ de GMV y la confianza de partners con disputas en cadena.',
+          action:
+            'Pre-registrar dominios críticos, solicitar bloqueos a registradores, preparar verificaciones publicitarias y ensayar guiones de contacto a vendedores con operaciones de partners.',
+        },
+      ],
+    },
+    benchmarks: {
+      title: 'Indicadores de rendimiento',
+      description:
+        'Los benchmarks en vivo muestran cómo la operación del observatorio supera al mercado para que liderazgo comunique avances con evidencia.',
+      metrics: [
+        {
+          id: 'bm1',
+          name: 'Velocidad de neutralización de incidentes',
+          value: '42 min',
+          change: '↓6 min vs mes anterior',
+          baseline: 'Objetivo SLA: menos de 55 min',
+          narrative:
+            'El enrutamiento asistido por automatización y los playbooks preaprobados reducen ciclos de revisión mientras los founders deciden en los stand-ups dedicados.',
+        },
+        {
+          id: 'bm2',
+          name: 'Cuota de cobertura positiva',
+          value: '71 %',
+          change: '↑9 pts trimestre a trimestre',
+          baseline: 'Referente SaaS empresarial: 58 %',
+          narrative:
+            'El despliegue veloz de portavoces y contrarrelatos mediáticos revirtió narrativas hostiles en prensa tech y fintech.',
+        },
+        {
+          id: 'bm3',
+          name: 'Ingresos preservados',
+          value: '4,8 M$',
+          change: 'protegidos último trimestre',
+          baseline: 'Riesgo base: 6,2 M$ expuestos',
+          narrative:
+            'Los retiros en marketplaces, keywords negativos y automatización de comunicaciones evitaron fugas de conversión.',
         },
       ],
     },

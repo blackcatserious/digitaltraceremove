@@ -5194,6 +5194,66 @@ const ObservatoryPage = () => {
       </section>
 
       <section
+        className="observatory__section observatory__section--forecasts"
+        aria-labelledby="observatory-forecasts-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-forecasts-heading">{copy.forecasts.title}</h2>
+            <p>{copy.forecasts.description}</p>
+          </div>
+        </div>
+        <div className="observatory__forecasts-grid">
+          {copy.forecasts.projections.map((projection, index) => (
+            <article
+              key={projection.id}
+              className="observatory-card observatory-card--forecast"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <span className="observatory-card__tag">{projection.horizon}</span>
+                <h3>{projection.scenario}</h3>
+              </header>
+              <p className="observatory-card__summary">{projection.summary}</p>
+              <p className="observatory-card__insight">{projection.impact}</p>
+              <p className="observatory-card__note">{projection.action}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--benchmarks"
+        aria-labelledby="observatory-benchmarks-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-benchmarks-heading">{copy.benchmarks.title}</h2>
+            <p>{copy.benchmarks.description}</p>
+          </div>
+        </div>
+        <div className="observatory__benchmarks-grid">
+          {copy.benchmarks.metrics.map((metric, index) => (
+            <article
+              key={metric.id}
+              className="observatory-card observatory-card--benchmark"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{metric.name}</h3>
+              </header>
+              <div className="observatory-card__metric">
+                <span className="observatory-card__metric-value">{metric.value}</span>
+                <span className="observatory-card__metric-delta">{metric.change}</span>
+              </div>
+              <p className="observatory-card__summary">{metric.narrative}</p>
+              <p className="observatory-card__note">{metric.baseline}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
         className="observatory__section observatory__section--briefings"
         aria-labelledby="observatory-briefings-heading"
       >
