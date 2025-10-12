@@ -29,6 +29,7 @@ import {
   blogTopics,
   getBlogArticlePath,
   getBlogBasePath,
+  type BlogArticleSection,
   type BlogArticleTranslation,
   type BlogTopic,
 } from './data/blog'
@@ -460,15 +461,15 @@ const InsightShowcase = ({ variant = 'default' }: { variant?: 'default' | 'case'
   useEffect(() => {
     setActiveId(copy.panels[0]?.id ?? '')
   }, [copy])
-
-  if (!copy.panels.length) {
-    return null
-  }
-
-  const activePanel = copy.panels.find((panel) => panel.id === activeId) ?? copy.panels[0]
+  const hasPanels = copy.panels.length > 0
+  const activePanel = copy.panels.find((panel) => panel.id === activeId) ?? copy.panels[0] ?? null
 
   const linePoints = useMemo(() => {
-    if (activePanel.trend.length <= 1) {
+    if (!activePanel || activePanel.trend.length === 0) {
+      return '0,100'
+    }
+
+    if (activePanel.trend.length === 1) {
       const value = activePanel.trend[0] ?? 0
       const clamped = Math.max(0, Math.min(100, value))
       return `0,${100 - clamped}`
@@ -483,6 +484,10 @@ const InsightShowcase = ({ variant = 'default' }: { variant?: 'default' | 'case'
       })
       .join(' ')
   }, [activePanel])
+
+  if (!hasPanels || !activePanel) {
+    return null
+  }
 
   return (
     <section className={`insight-showcase${variant === 'case' ? ' insight-showcase--case' : ''}`}>
@@ -6811,46 +6816,43 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   const [readingProgress, setReadingProgress] = useState(0)
   const bodyRef = useRef<HTMLDivElement | null>(null)
 
-  if (!slug) {
-    return <NotFound />
-  }
-
-  const article = blogArticles.find((item) => item.slug === slug)
-
-  if (!article) {
-    return <NotFound />
-  }
-
-  const translation = article.translations[language]
-  const articlePath = getBlogArticlePath(language, article.slug)
-
-  if (!translation) {
-    return <NotFound />
-  }
-
-  const authorProfile = authorProfiles[article.authorId]
-  const authorHeadingId = `${slug}-author`
+  const article = useMemo(
+    () => (slug ? blogArticles.find((item) => item.slug === slug) : undefined),
+    [slug],
+  )
+  const translation = article?.translations[language]
+  const articlePath = slug ? getBlogArticlePath(language, slug) : ''
+  const authorProfile = article ? authorProfiles[article.authorId] : undefined
+  const authorHeadingId = slug ? `${slug}-author` : 'article-author'
   const authorBioParagraphs = authorProfile ? authorProfile.bio[language] : []
   const authorFocusItems = authorProfile ? authorProfile.focusAreas[language] : []
 
-  const sections = useMemo(
-    () =>
-      translation.body.map((section, index) => {
-        const base = section.heading ? slugifyHeading(section.heading) : `section-${index + 1}`
-        return {
-          ...section,
-          id: `${slug}-${base}`,
-        }
-      }),
-    [slug, translation.body]
-  )
+  type ArticleSection = BlogArticleSection & { id: string }
+
+  const sections = useMemo<ArticleSection[]>(() => {
+    if (!translation || !slug) {
+      return []
+    }
+
+    return translation.body.map((section, index) => {
+      const base = section.heading ? slugifyHeading(section.heading) : `section-${index + 1}`
+      return {
+        ...section,
+        id: `${slug}-${base}`,
+      }
+    })
+  }, [slug, translation])
 
   const tocSections = useMemo(() => sections.filter((section) => Boolean(section.heading)), [sections])
   const defaultActiveSection = tocSections[0]?.id ?? sections[0]?.id ?? ''
-  const [activeSection, setActiveSection] = useState(defaultActiveSection)
+  const [activeSection, setActiveSection] = useState(() => defaultActiveSection)
   const activeSectionRef = useRef(defaultActiveSection)
 
   const relatedArticles = useMemo(() => {
+    if (!article) {
+      return []
+    }
+
     const ranked = blogArticles
       .filter((item) => item.slug !== article.slug)
       .map((item) => {
@@ -6889,9 +6891,9 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
       seen.add(item.slug)
       return true
     })
-  }, [article.slug, article.topic, language])
+  }, [article, language])
 
-  const formattedDate = formatLocaleDate(language, article.publishedAt)
+  const formattedDate = article ? formatLocaleDate(language, article.publishedAt) : ''
 
   useEffect(() => {
     setActiveSection(defaultActiveSection)
@@ -7037,7 +7039,7 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   }
 
   const handleShare = (network: 'linkedin' | 'twitter' | 'email') => {
-    if (!shareUrl || typeof window === 'undefined') {
+    if (!shareUrl || typeof window === 'undefined' || !translation) {
       return
     }
 
@@ -7102,6 +7104,10 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
       top: 0,
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
     })
+  }
+
+  if (!slug || !article || !translation) {
+    return <NotFound />
   }
 
   const progressPercentage = Math.round(readingProgress * 100)
