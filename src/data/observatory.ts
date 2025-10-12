@@ -105,6 +105,29 @@ export interface ObservatoryCopy {
     description: string
     tracks: { id: string; name: string; focus: string; cadence: string; lead: string }[]
   }
+  alliances: {
+    title: string
+    description: string
+    programs: {
+      id: string
+      name: string
+      partners: string
+      coverage: string
+      integration: string
+      outcome: string
+    }[]
+  }
+  automations: {
+    title: string
+    description: string
+    workflows: {
+      id: string
+      name: string
+      trigger: string
+      automation: string
+      human: string
+    }[]
+  }
   intercepts: {
     title: string
     description: string
@@ -509,6 +532,65 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           focus: 'Detects counterfeit sellers with AI clustering and manual sweeps.',
           cadence: 'Twice weekly',
           lead: 'Artur Ziganshin · Founder desk',
+        },
+      ],
+    },
+    alliances: {
+      title: 'Enterprise integrations & alliances',
+      description:
+        'We stitch the observatory into your martech, commerce, and legal stack so every risk signal lands exactly where your operators work.',
+      programs: [
+        {
+          id: 'ally1',
+          name: 'Search guardian alliance',
+          partners: 'Google Ads Integrity · Microsoft Ads Trust · Custom search listeners',
+          coverage: 'Real-time branded keyword auctions across 37 markets with anomaly scoring.',
+          integration: 'Pushes takedown-ready evidence packs into Salesforce and the incident Slack bridge.',
+          outcome: 'Blocks hijacked clicks and prevents reputational leakage before budgets burn.',
+        },
+        {
+          id: 'ally2',
+          name: 'Marketplace enforcement guild',
+          partners: 'Amazon Brand Registry · Mercado Libre Compliance · Shopify Protect',
+          coverage: 'Monitors listings, seller clones, and review velocity on 48 platforms.',
+          integration: 'Syncs case IDs into Zendesk and auto-opens legal workflows with counsel.',
+          outcome: 'Compresses counterfeit takedowns from days to hours while preserving ratings.',
+        },
+        {
+          id: 'ally3',
+          name: 'Communications rapid response collective',
+          partners: 'Crisis PR networks · Regional spokesperson bench · Legal affairs',
+          coverage: 'Tracks hostile narratives across press, podcasts, and short-form video.',
+          integration: 'Feeds narrative heatmaps into Notion playbooks and press room asset kits.',
+          outcome: 'Keeps founders in front of the story with aligned talking points and approvals.',
+        },
+      ],
+    },
+    automations: {
+      title: 'Human + automation choreography',
+      description:
+        'Automation handles the heavy lifting while analysts steer the decision points that require judgement and founder alignment.',
+      workflows: [
+        {
+          id: 'auto1',
+          name: 'Sentiment spike triage',
+          trigger: 'Social and review sentiment dips faster than 6 points hour-over-hour.',
+          automation: 'Signal fusion bot escalates with annotated dashboards and auto-tagged transcripts.',
+          human: 'Analyst validates false positives and briefs founders on the recommended response.',
+        },
+        {
+          id: 'auto2',
+          name: 'Marketplace takedown autopilot',
+          trigger: 'Counterfeit clusters or price dumping detected on priority SKUs.',
+          automation: 'Evidence bundle compiled, rights-owner notices dispatched, and seller IDs suspended.',
+          human: 'Legal liaison confirms jurisdiction nuances and coordinates replacement stock messaging.',
+        },
+        {
+          id: 'auto3',
+          name: 'Executive impersonation guard',
+          trigger: 'Lookalike domains or spoofed messaging apps mimic leadership identities.',
+          automation: 'Domains quarantined, DMARC tightened, and warning scripts pushed to partner channels.',
+          human: 'Founder desk records a personalised alert and prioritises direct stakeholder outreach.',
         },
       ],
     },
@@ -987,6 +1069,65 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    alliances: {
+      title: 'Alliances & intégrations enterprise',
+      description:
+        "Nous ancrons l’observatoire dans vos écosystèmes marketing, commerce et juridique afin que chaque signal de risque arrive directement auprès des opérateurs.",
+      programs: [
+        {
+          id: 'ally1',
+          name: 'Alliance gardienne search',
+          partners: 'Google Ads Integrity · Microsoft Ads Trust · Écoutes search custom',
+          coverage: 'Surveillance temps réel des enchères mots-clés de marque dans 37 marchés avec scoring d’anomalie.',
+          integration: 'Déverse des dossiers prêts pour retrait dans Salesforce et le bridge Slack incidents.',
+          outcome: 'Bloque les détournements de clics et évite la fuite de réputation avant l’impact budgétaire.',
+        },
+        {
+          id: 'ally2',
+          name: 'Guilde d’application marketplace',
+          partners: 'Amazon Brand Registry · Mercado Libre Compliance · Shopify Protect',
+          coverage: 'Suit listings, clones vendeurs et vitesse d’avis sur 48 plateformes.',
+          integration: 'Synchronise les IDs de cas dans Zendesk et déclenche les workflows juridiques avec le cabinet.',
+          outcome: 'Réduit les retraits contrefaçon de plusieurs jours à quelques heures tout en préservant les notes.',
+        },
+        {
+          id: 'ally3',
+          name: 'Collectif réponse communication',
+          partners: 'Réseaux PR de crise · Banc de porte-parole régionaux · Affaires juridiques',
+          coverage: 'Cartographie les narratifs hostiles dans la presse, les podcasts et la vidéo courte.',
+          integration: 'Alimente les heatmaps narratifs dans Notion et les kits médias press room.',
+          outcome: 'Permet aux fondateurs de garder une longueur d’avance avec messages alignés et validations rapides.',
+        },
+      ],
+    },
+    automations: {
+      title: 'Chorégraphie humain + automatisation',
+      description:
+        'L’automatisation absorbe la charge tandis que les analystes valident chaque décision clé nécessitant du jugement et l’accord des dirigeants.',
+      workflows: [
+        {
+          id: 'auto1',
+          name: 'Triage pic de sentiment',
+          trigger: 'Le sentiment social ou avis chute de plus de 6 points en une heure.',
+          automation: 'Le bot fusion des signaux escalade avec dashboards annotés et transcriptions taguées.',
+          human: 'Un analyste valide les faux positifs et briefe les fondateurs sur la réponse recommandée.',
+        },
+        {
+          id: 'auto2',
+          name: 'Autopilote retraits marketplace',
+          trigger: 'Clusters contrefaits ou dumping prix détectés sur les SKU prioritaires.',
+          automation: 'Assemble le dossier probant, envoie les notifications ayants droit et suspend les vendeurs.',
+          human: 'Le relais juridique confirme les nuances locales et coordonne la communication stock de remplacement.',
+        },
+        {
+          id: 'auto3',
+          name: 'Bouclier usurpation dirigeants',
+          trigger: 'Domaines sosies ou messageries spoofées imitant les identités leadership.',
+          automation: 'Met en quarantaine les domaines, renforce DMARC et pousse des scripts d’alerte aux partenaires.',
+          human: 'La cellule fondateur enregistre une alerte personnalisée et priorise la sensibilisation directe.',
+        },
+      ],
+    },
     intercepts: {
       title: 'Journal des interceptions critiques',
       description:
@@ -1461,6 +1602,65 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           focus: 'Detecta vendedores falsos con clustering IA y barridos manuales.',
           cadence: 'Dos veces por semana',
           lead: 'Artur Ziganshin · Founder desk',
+        },
+      ],
+    },
+    alliances: {
+      title: 'Alianzas e integraciones enterprise',
+      description:
+        'Incrustamos el observatorio en tu stack de marketing, comercio y legal para que cada señal crítica llegue al equipo que la debe ejecutar.',
+      programs: [
+        {
+          id: 'ally1',
+          name: 'Alianza guardián de search',
+          partners: 'Google Ads Integrity · Microsoft Ads Trust · Escuchas search personalizadas',
+          coverage: 'Vigila subastas de keywords de marca en 37 mercados con scoring de anomalías en tiempo real.',
+          integration: 'Envía expedientes listos para retiro a Salesforce y al bridge de incidentes en Slack.',
+          outcome: 'Bloquea clics secuestrados y evita fugas reputacionales antes de quemar presupuesto.',
+        },
+        {
+          id: 'ally2',
+          name: 'Gremio de cumplimiento marketplace',
+          partners: 'Amazon Brand Registry · Mercado Libre Compliance · Shopify Protect',
+          coverage: 'Monitorea listados, clones de vendedores y velocidad de reseñas en 48 plataformas.',
+          integration: 'Sincroniza IDs de casos en Zendesk y abre automáticamente workflows legales con el despacho.',
+          outcome: 'Reduce retiros por falsificación de días a horas mientras protege la calificación.',
+        },
+        {
+          id: 'ally3',
+          name: 'Colectivo de respuesta en comunicaciones',
+          partners: 'Redes PR de crisis · Banco de voceros regionales · Asuntos legales',
+          coverage: 'Mapea narrativas hostiles en prensa, pódcasts y video corto.',
+          integration: 'Alimenta mapas de calor narrativos en Notion y kits de prensa listos para enviar.',
+          outcome: 'Mantiene a los founders delante de la historia con mensajes alineados y aprobaciones ágiles.',
+        },
+      ],
+    },
+    automations: {
+      title: 'Coreografía humano + automatización',
+      description:
+        'La automatización hace el trabajo pesado mientras los analistas validan cada decisión que requiere criterio y coordinación ejecutiva.',
+      workflows: [
+        {
+          id: 'auto1',
+          name: 'Triage de picos de sentimiento',
+          trigger: 'El sentimiento social o de reseñas cae más de 6 puntos en una hora.',
+          automation: 'El bot de fusión de señales escala con tableros anotados y transcripciones etiquetadas.',
+          human: 'Un analista descarta falsos positivos y resume la respuesta sugerida a los founders.',
+        },
+        {
+          id: 'auto2',
+          name: 'Autopiloto de retiros en marketplaces',
+          trigger: 'Se detectan clusters falsos o dumping de precios en SKUs prioritarios.',
+          automation: 'Compila el expediente probatorio, envía avisos de derechos y suspende IDs de vendedores.',
+          human: 'El enlace legal revisa matices por país y coordina mensajes de stock de reemplazo.',
+        },
+        {
+          id: 'auto3',
+          name: 'Escudo contra suplantación ejecutiva',
+          trigger: 'Dominios lookalike o apps de mensajería spoofeadas imitan identidades de liderazgo.',
+          automation: 'Pone en cuarentena dominios, refuerza DMARC y difunde scripts de alerta a partners.',
+          human: 'La mesa del fundador graba una alerta personalizada y prioriza el contacto directo con stakeholders.',
         },
       ],
     },

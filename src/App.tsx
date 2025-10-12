@@ -4979,6 +4979,13 @@ const observatoryMetaLabels: Record<Language, {
   window: string
   tooling: string
   recipients: string
+  partners: string
+  coverage: string
+  integration: string
+  outcome: string
+  trigger: string
+  automation: string
+  human: string
 }> = {
   en: {
     cadence: 'Cadence',
@@ -4994,6 +5001,13 @@ const observatoryMetaLabels: Record<Language, {
     window: 'Window',
     tooling: 'Tooling',
     recipients: 'Recipients',
+    partners: 'Partners',
+    coverage: 'Coverage',
+    integration: 'Integration',
+    outcome: 'Outcome',
+    trigger: 'Trigger',
+    automation: 'Automation',
+    human: 'Human in the loop',
   },
   fr: {
     cadence: 'Cadence',
@@ -5009,6 +5023,13 @@ const observatoryMetaLabels: Record<Language, {
     window: 'Fenêtre',
     tooling: 'Outils',
     recipients: 'Destinataires',
+    partners: 'Partenaires',
+    coverage: 'Couverture',
+    integration: 'Intégration',
+    outcome: 'Résultat',
+    trigger: 'Déclencheur',
+    automation: 'Automatisation',
+    human: 'Supervision humaine',
   },
   es: {
     cadence: 'Cadencia',
@@ -5024,6 +5045,13 @@ const observatoryMetaLabels: Record<Language, {
     window: 'Ventana',
     tooling: 'Herramientas',
     recipients: 'Destinatarios',
+    partners: 'Socios',
+    coverage: 'Cobertura',
+    integration: 'Integración',
+    outcome: 'Resultado',
+    trigger: 'Disparador',
+    automation: 'Automatización',
+    human: 'Supervisión humana',
   },
 }
 
@@ -5401,6 +5429,85 @@ const ObservatoryPage = () => {
                 <div>
                   <dt>{labels.lead}</dt>
                   <dd>{track.lead}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--alliances"
+        aria-labelledby="observatory-alliances-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-alliances-heading">{copy.alliances.title}</h2>
+            <p>{copy.alliances.description}</p>
+          </div>
+        </div>
+        <div className="observatory__alliances-grid">
+          {copy.alliances.programs.map((program, index) => (
+            <article
+              key={program.id}
+              className="observatory-card observatory-card--alliance"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{program.name}</h3>
+              </header>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.partners}</dt>
+                  <dd>{program.partners}</dd>
+                </div>
+                <div>
+                  <dt>{labels.coverage}</dt>
+                  <dd>{program.coverage}</dd>
+                </div>
+                <div>
+                  <dt>{labels.integration}</dt>
+                  <dd>{program.integration}</dd>
+                </div>
+              </dl>
+              <p className="observatory-card__note">{program.outcome}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--automations"
+        aria-labelledby="observatory-automations-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-automations-heading">{copy.automations.title}</h2>
+            <p>{copy.automations.description}</p>
+          </div>
+        </div>
+        <div className="observatory__automations-grid">
+          {copy.automations.workflows.map((workflow, index) => (
+            <article
+              key={workflow.id}
+              className="observatory-card observatory-card--automation"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{workflow.name}</h3>
+              </header>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.trigger}</dt>
+                  <dd>{workflow.trigger}</dd>
+                </div>
+                <div>
+                  <dt>{labels.automation}</dt>
+                  <dd>{workflow.automation}</dd>
+                </div>
+                <div>
+                  <dt>{labels.human}</dt>
+                  <dd>{workflow.human}</dd>
                 </div>
               </dl>
             </article>
