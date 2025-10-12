@@ -4986,6 +4986,10 @@ const observatoryMetaLabels: Record<Language, {
   trigger: string
   automation: string
   human: string
+  sector: string
+  incident: string
+  sla: string
+  status: string
 }> = {
   en: {
     cadence: 'Cadence',
@@ -5008,6 +5012,10 @@ const observatoryMetaLabels: Record<Language, {
     trigger: 'Trigger',
     automation: 'Automation',
     human: 'Human in the loop',
+    sector: 'Sector',
+    incident: 'Incident',
+    sla: 'SLA',
+    status: 'Status',
   },
   fr: {
     cadence: 'Cadence',
@@ -5030,6 +5038,10 @@ const observatoryMetaLabels: Record<Language, {
     trigger: 'Déclencheur',
     automation: 'Automatisation',
     human: 'Supervision humaine',
+    sector: 'Secteur',
+    incident: 'Incident',
+    sla: 'SLA',
+    status: 'Statut',
   },
   es: {
     cadence: 'Cadencia',
@@ -5052,6 +5064,10 @@ const observatoryMetaLabels: Record<Language, {
     trigger: 'Disparador',
     automation: 'Automatización',
     human: 'Supervisión humana',
+    sector: 'Sector',
+    incident: 'Incidente',
+    sla: 'SLA',
+    status: 'Estado',
   },
 }
 
@@ -5508,6 +5524,85 @@ const ObservatoryPage = () => {
                 <div>
                   <dt>{labels.human}</dt>
                   <dd>{workflow.human}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--casefiles"
+        aria-labelledby="observatory-casefiles-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-casefiles-heading">{copy.casefiles.title}</h2>
+            <p>{copy.casefiles.description}</p>
+          </div>
+        </div>
+        <div className="observatory__casefiles-grid">
+          {copy.casefiles.cases.map((caseFile, index) => (
+            <article
+              key={caseFile.id}
+              className="observatory-card observatory-card--casefile"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{caseFile.name}</h3>
+              </header>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.sector}</dt>
+                  <dd>{caseFile.sector}</dd>
+                </div>
+                <div>
+                  <dt>{labels.incident}</dt>
+                  <dd>{caseFile.incident}</dd>
+                </div>
+              </dl>
+              <p className="observatory-card__summary">{caseFile.action}</p>
+              <p className="observatory-card__insight">{caseFile.result}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--requests"
+        aria-labelledby="observatory-requests-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-requests-heading">{copy.intelRequests.title}</h2>
+            <p>{copy.intelRequests.description}</p>
+          </div>
+        </div>
+        <div className="observatory__requests-grid">
+          {copy.intelRequests.requests.map((request, index) => (
+            <article
+              key={request.id}
+              className="observatory-card observatory-card--request"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <span
+                  className="observatory-card__status"
+                  aria-label={labels.status}
+                >
+                  {request.status}
+                </span>
+                <h3>{request.name}</h3>
+              </header>
+              <p className="observatory-card__summary">{request.summary}</p>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.sla}</dt>
+                  <dd>{request.sla}</dd>
+                </div>
+                <div>
+                  <dt>{labels.owner}</dt>
+                  <dd>{request.owner}</dd>
                 </div>
               </dl>
             </article>

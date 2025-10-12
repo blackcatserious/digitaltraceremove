@@ -128,6 +128,30 @@ export interface ObservatoryCopy {
       human: string
     }[]
   }
+  casefiles: {
+    title: string
+    description: string
+    cases: {
+      id: string
+      name: string
+      sector: string
+      incident: string
+      action: string
+      result: string
+    }[]
+  }
+  intelRequests: {
+    title: string
+    description: string
+    requests: {
+      id: string
+      name: string
+      sla: string
+      status: string
+      summary: string
+      owner: string
+    }[]
+  }
   intercepts: {
     title: string
     description: string
@@ -591,6 +615,75 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           trigger: 'Lookalike domains or spoofed messaging apps mimic leadership identities.',
           automation: 'Domains quarantined, DMARC tightened, and warning scripts pushed to partner channels.',
           human: 'Founder desk records a personalised alert and prioritises direct stakeholder outreach.',
+        },
+      ],
+    },
+    casefiles: {
+      title: 'Field case files',
+      description:
+        'Snapshots from the observatory floor showing how we fold intelligence, legal, and communications into rapid threat resolution.',
+      cases: [
+        {
+          id: 'cf1',
+          name: 'Luxury retailer review flooding',
+          sector: 'Luxury retail',
+          incident: 'Coordinated one-star review blast across EU marketplaces and Google Shopping.',
+          action:
+            'Escalated to marketplaces with merchant-of-record affidavits and automated fraud classifiers inside two hours.',
+          result:
+            'Recovered a 4.6★ score, reinstated Shopping placements, and issued loyalty reassurance messaging within 48 hours.',
+        },
+        {
+          id: 'cf2',
+          name: 'Fintech app store clone purge',
+          sector: 'Financial services',
+          incident: 'Fraudulent lookalike apps harvesting credentials across LATAM stores.',
+          action:
+            'Activated legal, mobilised platform trust teams, and pushed an in-app security broadcast in three languages.',
+          result: 'Removed 31 clones, restored app store rankings, and halted credential stuffing campaigns.',
+        },
+        {
+          id: 'cf3',
+          name: 'Hospitality data leak rumour',
+          sector: 'Hospitality',
+          incident: 'Anonymous Telegram channels alleging a guest data breach ahead of a peak weekend.',
+          action:
+            'Correlated telemetry, traced the rumour origin, and briefed press plus VIP hosts with verified status updates.',
+          result: 'Neutralised speculation, kept occupancy at 96%, and published a transparent resilience summary.',
+        },
+      ],
+    },
+    intelRequests: {
+      title: 'Live intelligence desk',
+      description:
+        'Founders and chiefs of staff submit flash requests when they need rapid clarity on a spike, surge, or rumour.',
+      requests: [
+        {
+          id: 'ir1',
+          name: 'APAC influencer surge triage',
+          sla: '90 minutes to first insight',
+          status: 'In flight',
+          summary:
+            'Validating whether a viral TikTok clip is organic or a coordinated smear tied to a challenger marketplace.',
+          owner: 'Clara Martel · Observatory APAC desk',
+        },
+        {
+          id: 'ir2',
+          name: 'LATAM product recall monitoring',
+          sla: '45 minutes to escalation pack',
+          status: 'Resolved in 4 hours',
+          summary:
+            'Cross-checking consumer complaints, logistics data, and seller chatter before triggering a voluntary recall.',
+          owner: 'Diego Santos · LATAM response lead',
+        },
+        {
+          id: 'ir3',
+          name: 'EMEA board briefing synthesis',
+          sla: 'Same-day executive brief',
+          status: 'Delivered',
+          summary:
+            'Preparing reputation trendlines and next-quarter risk projections for the audit and risk committee.',
+          owner: 'Artur Ziganshin · Founder desk',
         },
       ],
     },
@@ -1128,6 +1221,75 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    casefiles: {
+      title: 'Dossiers terrain en cours',
+      description:
+        'Instantanés du plateau de l’observatoire montrant comment nous synchronisons veille, juridique et communication pour résoudre les crises en quelques heures.',
+      cases: [
+        {
+          id: 'cf1',
+          name: 'Déluge d’avis pour un acteur luxe',
+          sector: 'Retail luxe',
+          incident: 'Vague coordonnée de notes une étoile sur marketplaces européennes et Google Shopping.',
+          action:
+            'Constitution de dossiers marchand, engagement des équipes trust & safety et diffusion d’un pack rassurance clients en deux heures.',
+          result:
+            'Retour à une note 4,6★, réactivation des emplacements Shopping et préservation du chiffre d’affaires week-end.',
+        },
+        {
+          id: 'cf2',
+          name: 'Purge de clones d’app fintech',
+          sector: 'Services financiers',
+          incident: 'Applications imitatrices collectant des identifiants sur les stores LATAM.',
+          action:
+            'Activation juridique, mobilisation des équipes trust plateformes et diffusion d’une alerte in-app trilingue.',
+          result: 'Suppression de 31 clones, restauration des classements stores et arrêt des tentatives de credential stuffing.',
+        },
+        {
+          id: 'cf3',
+          name: 'Rumeur fuite données hôtelière',
+          sector: 'Hospitalité',
+          incident: 'Canaux Telegram anonymes annonçant une fuite clients avant un week-end critique.',
+          action:
+            'Corrélation des télémétries, traçage de l’origine et briefing presse plus VIP avec mises à jour vérifiées.',
+          result: 'Spéculation neutralisée, taux d’occupation maintenu à 96 % et publication d’un bulletin résilience.',
+        },
+      ],
+    },
+    intelRequests: {
+      title: 'Desk renseignements express',
+      description:
+        'Les directions communication et opérations soumettent des requêtes flash dès qu’un pic doit être éclairci.',
+      requests: [
+        {
+          id: 'ir1',
+          name: 'Analyse pic influenceurs APAC',
+          sla: '90 minutes pour le premier insight',
+          status: 'En cours',
+          summary:
+            'Qualification d’un TikTok viral pour déterminer s’il s’agit d’un pic organique ou d’une campagne hostile orchestrée.',
+          owner: 'Clara Martel · Desk observatoire APAC',
+        },
+        {
+          id: 'ir2',
+          name: 'Surveillance rappel produit LATAM',
+          sla: '45 minutes pour le pack escalade',
+          status: 'Clos en 4 heures',
+          summary:
+            'Croisement plaintes clients, données logistiques et conversations vendeurs avant un rappel volontaire.',
+          owner: 'Diego Santos · Lead réponse LATAM',
+        },
+        {
+          id: 'ir3',
+          name: 'Synthèse briefing board EMEA',
+          sla: 'Brief exécutif dans la journée',
+          status: 'Livré',
+          summary:
+            'Préparation de courbes de réputation et projections risques T+1 pour le comité audit et risques.',
+          owner: 'Artur Ziganshin · Founder desk',
+        },
+      ],
+    },
     intercepts: {
       title: 'Journal des interceptions critiques',
       description:
@@ -1661,6 +1823,75 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           trigger: 'Dominios lookalike o apps de mensajería spoofeadas imitan identidades de liderazgo.',
           automation: 'Pone en cuarentena dominios, refuerza DMARC y difunde scripts de alerta a partners.',
           human: 'La mesa del fundador graba una alerta personalizada y prioriza el contacto directo con stakeholders.',
+        },
+      ],
+    },
+    casefiles: {
+      title: 'Expedientes de campo',
+      description:
+        'Instantáneas del piso del observatorio mostrando cómo combinamos inteligencia, legal y comunicación para cerrar incidentes en horas.',
+      cases: [
+        {
+          id: 'cf1',
+          name: 'Diluvio de reseñas en lujo',
+          sector: 'Retail de lujo',
+          incident: 'Oleada coordinada de reseñas de una estrella en marketplaces europeos y Google Shopping.',
+          action:
+            'Se activaron equipos de confianza, expedientes de titularidad y mensajes de tranquilidad en menos de dos horas.',
+          result:
+            'Se recuperó la calificación a 4,6★, se reactivaron los espacios de Shopping y se protegió la facturación del fin de semana.',
+        },
+        {
+          id: 'cf2',
+          name: 'Purge de clones en app fintech',
+          sector: 'Servicios financieros',
+          incident: 'Apps imitadoras capturando credenciales en tiendas LATAM.',
+          action:
+            'Activamos al equipo legal, involucramos a los equipos trust & safety y enviamos alerta in-app en tres idiomas.',
+          result: 'Eliminamos 31 clones, recuperamos rankings en tiendas y frenamos campañas de robo de credenciales.',
+        },
+        {
+          id: 'cf3',
+          name: 'Rumor de fuga en hotelería',
+          sector: 'Hospitalidad',
+          incident: 'Canales de Telegram anónimos insinuando filtración de datos previo a un fin de semana pico.',
+          action:
+            'Cruzamos telemetría, rastreamos origen y briefings a prensa y hosts VIP con estatus verificado.',
+          result: 'La especulación se desactivó, la ocupación se mantuvo en 96 % y publicamos resumen de resiliencia.',
+        },
+      ],
+    },
+    intelRequests: {
+      title: 'Mesa de inteligencia en vivo',
+      description:
+        'Dirección ejecutiva eleva solicitudes flash cuando necesita claridad inmediata sobre picos, rumores o anomalías.',
+      requests: [
+        {
+          id: 'ir1',
+          name: 'Triage de pico de influencers APAC',
+          sla: '90 minutos para el primer insight',
+          status: 'En curso',
+          summary:
+            'Validamos si un video viral de TikTok es orgánico o parte de una campaña coordinada contra la marca.',
+          owner: 'Clara Martel · Mesa APAC del observatorio',
+        },
+        {
+          id: 'ir2',
+          name: 'Monitoreo de retiro en LATAM',
+          sla: '45 minutos para el paquete de escalación',
+          status: 'Cerrado en 4 horas',
+          summary:
+            'Cotejamos quejas de clientes, logística y conversaciones de vendedores antes de accionar un retiro voluntario.',
+          owner: 'Diego Santos · Líder de respuesta LATAM',
+        },
+        {
+          id: 'ir3',
+          name: 'Síntesis para el board EMEA',
+          sla: 'Informe ejecutivo el mismo día',
+          status: 'Entregado',
+          summary:
+            'Preparamos tendencias de reputación y proyecciones de riesgo para el comité de auditoría y riesgos.',
+          owner: 'Artur Ziganshin · Mesa del fundador',
         },
       ],
     },

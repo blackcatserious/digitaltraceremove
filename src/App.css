@@ -14669,6 +14669,8 @@ a {
 .observatory__labs-grid,
 .observatory__alliances-grid,
 .observatory__automations-grid,
+.observatory__casefiles-grid,
+.observatory__requests-grid,
 .observatory__intercepts-grid,
 .observatory__rhythms-grid,
 .observatory__escalation-grid {
@@ -14724,6 +14726,14 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
+.observatory__casefiles-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.observatory__requests-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
 .observatory__intercepts-grid {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
@@ -14762,6 +14772,16 @@ a {
   z-index: 0;
 }
 
+.observatory-card--casefile::before {
+  inset: -36% 60% auto -18%;
+  background: radial-gradient(circle at center, rgba(192, 132, 252, 0.4), transparent 72%);
+}
+
+.observatory-card--request::before {
+  inset: -32% 54% auto -6%;
+  background: radial-gradient(circle at center, rgba(45, 212, 191, 0.38), transparent 70%);
+}
+
 .observatory-card header {
   position: relative;
   z-index: 1;
@@ -14795,6 +14815,12 @@ a {
   background: rgba(239, 68, 68, 0.16);
   color: rgba(254, 226, 226, 0.92);
   box-shadow: inset 0 0 0 1px rgba(248, 113, 113, 0.35);
+}
+
+.observatory-card--request .observatory-card__status {
+  background: rgba(16, 185, 129, 0.18);
+  color: rgba(209, 250, 229, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.28);
 }
 
 .observatory-card__summary {
@@ -16509,6 +16535,8 @@ a {
   .observatory__labs-grid,
   .observatory__alliances-grid,
   .observatory__automations-grid,
+  .observatory__casefiles-grid,
+  .observatory__requests-grid,
   .observatory__escalation-grid {
     grid-template-columns: minmax(0, 1fr);
   }
