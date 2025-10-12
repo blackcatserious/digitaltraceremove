@@ -68,6 +68,32 @@ export interface ObservatoryCopy {
     description: string
     tracks: { id: string; name: string; focus: string; cadence: string; lead: string }[]
   }
+  intercepts: {
+    title: string
+    description: string
+    entries: {
+      id: string
+      name: string
+      severity: string
+      timestamp: string
+      summary: string
+      resolution: string
+      owner: string
+      channel: string
+    }[]
+  }
+  rhythms: {
+    title: string
+    description: string
+    rituals: {
+      id: string
+      name: string
+      window: string
+      owner: string
+      outcome: string
+      tooling: string
+    }[]
+  }
   escalation: {
     title: string
     description: string
@@ -332,6 +358,80 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           focus: 'Detects counterfeit sellers with AI clustering and manual sweeps.',
           cadence: 'Twice weekly',
           lead: 'Artur Ziganshin · Founder desk',
+        },
+      ],
+    },
+    intercepts: {
+      title: 'Critical intercept log',
+      description:
+        'A rolling log of the highest-severity incidents we have neutralised this week with context you can share across leadership threads.',
+      entries: [
+        {
+          id: 'i1',
+          name: 'Deepfake press pitch intercepted',
+          severity: 'Severity 1 · Active containment',
+          timestamp: '04:10 UTC',
+          summary:
+            'An AI-forged press pitch impersonated our founder with credential-harvesting forms aimed at fintech journalists.',
+          resolution:
+            'Intercepted before publication, launched credential resets, and distributed verified quotes via the command center wire.',
+          owner: 'Artur Ziganshin · Founder desk',
+          channel: 'Press & media outreach',
+        },
+        {
+          id: 'i2',
+          name: 'Fake review swarm dismantled',
+          severity: 'Severity 2 · Neutralised',
+          timestamp: '12:25 CET',
+          summary:
+            'Six hundred negative marketplace reviews triggered by a competitor botnet targeted premium SKUs across France.',
+          resolution:
+            'Filed takedowns, restored authentic ratings, and launched a reassurance drip to loyalty cohorts within 45 minutes.',
+          owner: 'Clara Martel · EMEA Intelligence',
+          channel: 'Marketplace governance',
+        },
+        {
+          id: 'i3',
+          name: 'Executive WhatsApp scam blocked',
+          severity: 'Severity 2 · Contained',
+          timestamp: '21:40 BRT',
+          summary:
+            'Spoofed WhatsApp messages requesting urgent wire transfers reached 42 channel partners in Brazil.',
+          resolution:
+            'Disabled lookalike domains, issued a bilingual alert pack, and ring-fenced partner payments within the hour.',
+          owner: 'Diego Santos · Americas desk',
+          channel: 'Partner communications',
+        },
+      ],
+    },
+    rhythms: {
+      title: 'Response rhythms & rituals',
+      description:
+        'Cadence keeps founders, analysts, and automation in lockstep. These rituals align every desk around the next decisive move.',
+      rituals: [
+        {
+          id: 'rh1',
+          name: 'Sunrise triage review',
+          window: '06:30 CET · 20 min',
+          owner: 'Clara Martel & automation desk',
+          outcome: 'Align overnight escalations, flag manual follow-ups, and refresh radar priorities.',
+          tooling: 'Signal fusion dashboard · Notion war log',
+        },
+        {
+          id: 'rh2',
+          name: 'Market pulse sync',
+          window: '13:00 UTC · 25 min',
+          owner: 'Regional GMs with observatory leads',
+          outcome: 'Review sentiment deltas, align creative swaps, and confirm response queue status.',
+          tooling: 'Live observatory boards · Figma asset room',
+        },
+        {
+          id: 'rh3',
+          name: 'Evening founder recap',
+          window: '19:30 local time · 15 min',
+          owner: 'Artur Ziganshin & incident commander',
+          outcome: 'Confirm resolutions, escalate unresolved blockers, and share the next-day watchlist.',
+          tooling: 'Command center bridge · Slack incident channel',
         },
       ],
     },
@@ -622,6 +722,80 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    intercepts: {
+      title: 'Journal des interceptions critiques',
+      description:
+        'Le journal en direct des incidents les plus sévères neutralisés cette semaine, prêt à être partagé avec vos instances dirigeantes.',
+      entries: [
+        {
+          id: 'i1',
+          name: 'Pitch presse deepfake neutralisé',
+          severity: 'Sévérité 1 · Contention active',
+          timestamp: '04 h 10 UTC',
+          summary:
+            'Un faux pitch média généré par IA usurpait notre fondateur avec des formulaires de vol d’identifiants destinés aux journalistes fintech.',
+          resolution:
+            'Bloqué avant publication, réinitialisation des accès et diffusion de citations vérifiées via le fil du command center.',
+          owner: 'Artur Ziganshin · Cellule fondateur',
+          channel: 'Presse & relations médias',
+        },
+        {
+          id: 'i2',
+          name: 'Escadron d’avis frauduleux démantelé',
+          severity: 'Sévérité 2 · Neutralisé',
+          timestamp: '12 h 25 CET',
+          summary:
+            'Six cents faux avis marketplace orchestrés par un bot concurrent visaient nos gammes premium en France.',
+          resolution:
+            'Déréférencement express, restauration des notes authentiques et relance réassurance vers les cohortes fidélité en 45 minutes.',
+          owner: 'Clara Martel · Intelligence EMEA',
+          channel: 'Gouvernance marketplace',
+        },
+        {
+          id: 'i3',
+          name: 'Arnaque WhatsApp dirigeant bloquée',
+          severity: 'Sévérité 2 · Contenue',
+          timestamp: '21 h 40 BRT',
+          summary:
+            'Des messages WhatsApp usurpés réclamant des virements urgents ont touché 42 partenaires au Brésil.',
+          resolution:
+            'Désactivation des domaines sosies, kit d’alerte bilingue et sécurisation des flux partenaires dans l’heure.',
+          owner: 'Diego Santos · Desk Amériques',
+          channel: 'Communication partenaires',
+        },
+      ],
+    },
+    rhythms: {
+      title: 'Rituels de réponse',
+      description:
+        'Une cadence partagée maintient fondateurs, analystes et automatisation parfaitement synchronisés autour du prochain mouvement décisif.',
+      rituals: [
+        {
+          id: 'rh1',
+          name: 'Revue triage à l’aube',
+          window: '06 h 30 CET · 20 min',
+          owner: 'Clara Martel & desk automatisation',
+          outcome: 'Aligner les escalades nocturnes, signaler les suivis manuels et recalibrer les priorités du radar.',
+          tooling: 'Tableau fusion des signaux · Journal de crise Notion',
+        },
+        {
+          id: 'rh2',
+          name: 'Synchronisation pulse marché',
+          window: '13 h 00 UTC · 25 min',
+          owner: 'DG régionaux & leads observatoire',
+          outcome: 'Passer en revue les deltas de sentiment, ajuster les créations et confirmer l’état des files de réponse.',
+          tooling: 'Boards observatoire en direct · Salle d’actifs Figma',
+        },
+        {
+          id: 'rh3',
+          name: 'Récap fondateur soir',
+          window: '19 h 30 locale · 15 min',
+          owner: 'Artur Ziganshin & incident commander',
+          outcome: 'Valider les résolutions, escalader les blocages et partager la watchlist du lendemain.',
+          tooling: 'Bridge command center · Canal incident Slack',
+        },
+      ],
+    },
     escalation: {
       title: 'Ponts d’escalade',
       description:
@@ -908,6 +1082,80 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           focus: 'Detecta vendedores falsos con clustering IA y barridos manuales.',
           cadence: 'Dos veces por semana',
           lead: 'Artur Ziganshin · Founder desk',
+        },
+      ],
+    },
+    intercepts: {
+      title: 'Registro crítico de interceptaciones',
+      description:
+        'Bitácora en vivo de los incidentes de mayor severidad neutralizados esta semana, lista para compartir con el liderazgo.',
+      entries: [
+        {
+          id: 'i1',
+          name: 'Pitch de prensa deepfake desactivado',
+          severity: 'Severidad 1 · Contención activa',
+          timestamp: '04:10 UTC',
+          summary:
+            'Un pitch de prensa generado por IA suplantó al fundador con formularios de robo de credenciales para periodistas fintech.',
+          resolution:
+            'Se bloqueó antes de su publicación, se forzaron reseteos de credenciales y se enviaron citas verificadas mediante el cable del command center.',
+          owner: 'Artur Ziganshin · Mesa del fundador',
+          channel: 'Prensa y medios',
+        },
+        {
+          id: 'i2',
+          name: 'Enjambre de reseñas falsas desmantelado',
+          severity: 'Severidad 2 · Neutralizado',
+          timestamp: '12:25 CET',
+          summary:
+            'Seiscientas reseñas negativas en marketplaces activadas por un bot de la competencia atacaron SKU premium en Francia.',
+          resolution:
+            'Se presentaron retiros, se restauraron valoraciones reales y se activó un goteo de tranquilidad para clientes fieles en 45 minutos.',
+          owner: 'Clara Martel · Inteligencia EMEA',
+          channel: 'Gobernanza marketplace',
+        },
+        {
+          id: 'i3',
+          name: 'Estafa de WhatsApp a directivos bloqueada',
+          severity: 'Severidad 2 · Contenida',
+          timestamp: '21:40 BRT',
+          summary:
+            'Mensajes falsos de WhatsApp solicitando transferencias urgentes llegaron a 42 socios comerciales en Brasil.',
+          resolution:
+            'Se inhabilitaron dominios similares, se envió un paquete de alerta bilingüe y se blindaron los pagos de partners en una hora.',
+          owner: 'Diego Santos · Desk Américas',
+          channel: 'Comunicaciones con partners',
+        },
+      ],
+    },
+    rhythms: {
+      title: 'Ritmos de respuesta',
+      description:
+        'La cadencia compartida mantiene a fundadores, analistas y automatización completamente sincronizados para el siguiente movimiento clave.',
+      rituals: [
+        {
+          id: 'rh1',
+          name: 'Revisión de triage al amanecer',
+          window: '06:30 CET · 20 min',
+          owner: 'Clara Martel y desk de automatización',
+          outcome: 'Alinear escaladas nocturnas, señalar seguimientos manuales y ajustar prioridades del radar.',
+          tooling: 'Panel de fusión de señales · Bitácora Notion',
+        },
+        {
+          id: 'rh2',
+          name: 'Sync de pulso de mercado',
+          window: '13:00 UTC · 25 min',
+          owner: 'GMs regionales y leads del observatorio',
+          outcome: 'Revisar deltas de sentimiento, coordinar cambios creativos y confirmar el estado de las colas de respuesta.',
+          tooling: 'Tableros del observatorio en vivo · Biblioteca Figma',
+        },
+        {
+          id: 'rh3',
+          name: 'Resumen vespertino con founders',
+          window: '19:30 hora local · 15 min',
+          owner: 'Artur Ziganshin y incident commander',
+          outcome: 'Validar resoluciones, escalar bloqueos pendientes y compartir la watchlist del día siguiente.',
+          tooling: 'Bridge del command center · Canal de incidentes en Slack',
         },
       ],
     },

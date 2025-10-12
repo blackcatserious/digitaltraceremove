@@ -4973,6 +4973,11 @@ const observatoryMetaLabels: Record<Language, {
   host: string
   uptime: string
   analysts: string
+  timestamp: string
+  owner: string
+  channel: string
+  window: string
+  tooling: string
 }> = {
   en: {
     cadence: 'Cadence',
@@ -4982,6 +4987,11 @@ const observatoryMetaLabels: Record<Language, {
     host: 'Host',
     uptime: 'Coverage window',
     analysts: 'On-desk analysts',
+    timestamp: 'Detected',
+    owner: 'Owner',
+    channel: 'Channel',
+    window: 'Window',
+    tooling: 'Tooling',
   },
   fr: {
     cadence: 'Cadence',
@@ -4991,6 +5001,11 @@ const observatoryMetaLabels: Record<Language, {
     host: 'Animateur',
     uptime: 'Fenêtre de couverture',
     analysts: 'Analystes de garde',
+    timestamp: 'Horodatage',
+    owner: 'Référent',
+    channel: 'Canal',
+    window: 'Fenêtre',
+    tooling: 'Outils',
   },
   es: {
     cadence: 'Cadencia',
@@ -5000,6 +5015,11 @@ const observatoryMetaLabels: Record<Language, {
     host: 'Anfitrión',
     uptime: 'Ventana de cobertura',
     analysts: 'Analistas en turno',
+    timestamp: 'Hora',
+    owner: 'Responsable',
+    channel: 'Canal',
+    window: 'Ventana',
+    tooling: 'Herramientas',
   },
 }
 
@@ -5279,6 +5299,90 @@ const ObservatoryPage = () => {
                 <div>
                   <dt>{labels.lead}</dt>
                   <dd>{track.lead}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--intercepts"
+        aria-labelledby="observatory-intercepts-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-intercepts-heading">{copy.intercepts.title}</h2>
+            <p>{copy.intercepts.description}</p>
+          </div>
+        </div>
+        <div className="observatory__intercepts-grid">
+          {copy.intercepts.entries.map((entry, index) => (
+            <article
+              key={entry.id}
+              className="observatory-card observatory-card--intercept"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <span className="observatory-card__status observatory-card__status--severity">
+                  {entry.severity}
+                </span>
+                <h3>{entry.name}</h3>
+              </header>
+              <p className="observatory-card__summary">{entry.summary}</p>
+              <p className="observatory-card__insight">{entry.resolution}</p>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.timestamp}</dt>
+                  <dd>{entry.timestamp}</dd>
+                </div>
+                <div>
+                  <dt>{labels.owner}</dt>
+                  <dd>{entry.owner}</dd>
+                </div>
+                <div>
+                  <dt>{labels.channel}</dt>
+                  <dd>{entry.channel}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--rhythms"
+        aria-labelledby="observatory-rhythms-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-rhythms-heading">{copy.rhythms.title}</h2>
+            <p>{copy.rhythms.description}</p>
+          </div>
+        </div>
+        <div className="observatory__rhythms-grid">
+          {copy.rhythms.rituals.map((ritual, index) => (
+            <article
+              key={ritual.id}
+              className="observatory-card observatory-card--rhythm"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{ritual.name}</h3>
+              </header>
+              <p className="observatory-card__focus">{ritual.outcome}</p>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.window}</dt>
+                  <dd>{ritual.window}</dd>
+                </div>
+                <div>
+                  <dt>{labels.owner}</dt>
+                  <dd>{ritual.owner}</dd>
+                </div>
+                <div>
+                  <dt>{labels.tooling}</dt>
+                  <dd>{ritual.tooling}</dd>
                 </div>
               </dl>
             </article>
