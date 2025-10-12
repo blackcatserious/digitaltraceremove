@@ -39,6 +39,7 @@ import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
+import { observatoryCopy } from './data/observatory'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -123,6 +124,9 @@ const getMediaPath = (language: Language) =>
 
 const getCommandCenterPath = (language: Language) =>
   language === 'en' ? '/command-center' : `/${language}/command-center`
+
+const getObservatoryPath = (language: Language) =>
+  language === 'en' ? '/observatory' : `/${language}/observatory`
 
 const getAcademyPath = (language: Language) =>
   language === 'en' ? '/academy' : `/${language}/academy`
@@ -360,6 +364,7 @@ const navCopy: Record<
     academy: string
     media: string
     commandCenter: string
+    observatory: string
     trust: string
     faq: string
     blog: string
@@ -386,6 +391,7 @@ const navCopy: Record<
     academy: 'Academy',
     media: 'Media',
     commandCenter: 'Command center',
+    observatory: 'Observatory',
     trust: 'Trust center',
     faq: 'FAQ',
     blog: 'Blog',
@@ -411,6 +417,7 @@ const navCopy: Record<
     academy: 'Académie',
     media: 'Presse',
     commandCenter: 'Centre de commandement',
+    observatory: 'Observatoire',
     trust: 'Centre de confiance',
     faq: 'FAQ',
     blog: 'Blog',
@@ -436,6 +443,7 @@ const navCopy: Record<
     academy: 'Academia',
     media: 'Prensa',
     commandCenter: 'Centro de comando',
+    observatory: 'Observatorio',
     trust: 'Centro de confianza',
     faq: 'FAQ',
     blog: 'Blog',
@@ -4957,6 +4965,234 @@ const CommandCenterPage = () => {
   )
 }
 
+const observatoryMetaLabels: Record<Language, { cadence: string; lead: string }> = {
+  en: { cadence: 'Cadence', lead: 'Lead' },
+  fr: { cadence: 'Cadence', lead: 'Référent' },
+  es: { cadence: 'Cadencia', lead: 'Responsable' },
+}
+
+const ObservatoryPage = () => {
+  const language = useCurrentLanguage()
+  const copy = observatoryCopy[language]
+  const labels = observatoryMetaLabels[language]
+
+  return (
+    <article className="observatory">
+      <header className="observatory__hero">
+        <div className="observatory__hero-copy">
+          <span className="observatory__eyebrow">{copy.hero.eyebrow}</span>
+          <h1>{copy.hero.title}</h1>
+          <p className="observatory__subtitle">{copy.hero.subtitle}</p>
+          <p>{copy.hero.description}</p>
+          <div className="observatory__actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.hero.primaryCta}
+            </Link>
+            <a className="button secondary" href={copy.hero.secondaryHref}>
+              {copy.hero.secondaryCta}
+            </a>
+          </div>
+        </div>
+        <div className="observatory__hero-visual">
+          <GrowthSpark
+            variant="light"
+            size="lg"
+            className="observatory__hero-spark"
+            ariaLabel={copy.hero.visualCaption}
+          />
+          <p className="observatory__hero-caption">{copy.hero.visualCaption}</p>
+          <ul className="observatory__metrics">
+            {copy.hero.metrics.map((metric, index) => (
+              <li
+                key={metric.id}
+                className="observatory__metric"
+                style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+              >
+                <span className="observatory__metric-value">{metric.value}</span>
+                <span className="observatory__metric-label">{metric.label}</span>
+                <p>{metric.detail}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
+
+      <MomentumTicker variant="light" />
+
+      <section
+        id="observatory-radar"
+        className="observatory__section observatory__section--radar"
+        aria-labelledby="observatory-radar-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-radar-heading">{copy.radar.title}</h2>
+            <p>{copy.radar.description}</p>
+          </div>
+        </div>
+        <div className="observatory__radar-grid">
+          {copy.radar.signals.map((signal, index) => (
+            <article
+              key={signal.id}
+              className="observatory-card observatory-card--signal"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <span className="observatory-card__status">{signal.status}</span>
+                <h3>{signal.title}</h3>
+              </header>
+              <p>{signal.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--spotlights"
+        aria-labelledby="observatory-spotlights-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-spotlights-heading">{copy.spotlights.title}</h2>
+            <p>{copy.spotlights.description}</p>
+          </div>
+        </div>
+        <div className="observatory__spotlight-grid">
+          {copy.spotlights.cards.map((card, index) => (
+            <article
+              key={card.id}
+              className="observatory-card observatory-card--spotlight"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{card.title}</h3>
+              </header>
+              <p className="observatory-card__summary">{card.summary}</p>
+              <p className="observatory-card__insight">{card.insight}</p>
+              <Link className="button ghost observatory-card__action" to={getResourcesPath(language)}>
+                {card.action}
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--dashboards"
+        aria-labelledby="observatory-dashboards-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-dashboards-heading">{copy.dashboards.title}</h2>
+            <p>{copy.dashboards.description}</p>
+          </div>
+        </div>
+        <div className="observatory__dashboard-grid">
+          {copy.dashboards.panels.map((panel, index) => (
+            <article
+              key={panel.id}
+              className="observatory-card observatory-card--dashboard"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{panel.title}</h3>
+                <div className="observatory-card__metric">
+                  <span className="observatory-card__metric-value">{panel.metric}</span>
+                  <span className="observatory-card__metric-delta">{panel.delta}</span>
+                </div>
+              </header>
+              <p>{panel.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--labs"
+        aria-labelledby="observatory-labs-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-labs-heading">{copy.labs.title}</h2>
+            <p>{copy.labs.description}</p>
+          </div>
+        </div>
+        <div className="observatory__labs-grid">
+          {copy.labs.tracks.map((track, index) => (
+            <article
+              key={track.id}
+              className="observatory-card observatory-card--lab"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{track.name}</h3>
+              </header>
+              <p className="observatory-card__focus">{track.focus}</p>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.cadence}</dt>
+                  <dd>{track.cadence}</dd>
+                </div>
+                <div>
+                  <dt>{labels.lead}</dt>
+                  <dd>{track.lead}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--escalation"
+        aria-labelledby="observatory-escalation-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-escalation-heading">{copy.escalation.title}</h2>
+            <p>{copy.escalation.description}</p>
+          </div>
+        </div>
+        <div className="observatory__escalation-grid">
+          {copy.escalation.contacts.map((contact, index) => (
+            <article
+              key={contact.id}
+              className="observatory-card observatory-card--escalation"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{contact.name}</h3>
+              </header>
+              <p className="observatory-card__role">{contact.role}</p>
+              <p className="observatory-card__channel">{contact.channel}</p>
+            </article>
+          ))}
+        </div>
+        <p className="observatory__escalation-note">{copy.escalation.note}</p>
+      </section>
+
+      <section className="observatory__cta" aria-labelledby="observatory-cta-heading">
+        <div>
+          <h2 id="observatory-cta-heading">{copy.cta.title}</h2>
+          <p>{copy.cta.body}</p>
+          <div className="observatory__cta-actions">
+            <Link className="button primary" to={getContactPath(language)}>
+              {copy.cta.primary}
+            </Link>
+            <Link className="button ghost" to={getServicesPricingPath(language)}>
+              {copy.cta.secondary}
+            </Link>
+          </div>
+        </div>
+        <div className="observatory__cta-visual" aria-hidden="true">
+          <GrowthSpark variant="light" size="md" />
+          <span className="observatory__cta-orb" />
+        </div>
+      </section>
+    </article>
+  )
+}
+
 const AcademyPage = () => {
   const language = useCurrentLanguage()
   const copy = academyCopy[language]
@@ -7345,6 +7581,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       { label: copy.academy, href: getAcademyPath(currentLanguage) },
       { label: copy.media, href: getMediaPath(currentLanguage) },
       { label: copy.commandCenter, href: getCommandCenterPath(currentLanguage) },
+      { label: copy.observatory, href: getObservatoryPath(currentLanguage) },
       { label: copy.trust, href: getTrustPath(currentLanguage) },
       { label: copy.team, href: getTeamPath(currentLanguage) },
       { label: copy.partners, href: getPartnersPath(currentLanguage) },
@@ -7717,6 +7954,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onClick={handleCloseMobile}
               >
                 {copy.commandCenter}
+              </NavLink>
+              <NavLink
+                to={getObservatoryPath(currentLanguage)}
+                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                onClick={handleCloseMobile}
+              >
+                {copy.observatory}
               </NavLink>
               <NavLink
                 to={getTrustPath(currentLanguage)}
@@ -8258,6 +8502,7 @@ const footerCopy: Record<
     academy: string
     media: string
     commandCenter: string
+    observatory: string
     trust: string
     faq: string
     partners: string
@@ -8296,6 +8541,7 @@ const footerCopy: Record<
     academy: 'Academy',
     media: 'Media',
     commandCenter: 'Command center',
+    observatory: 'Observatory',
     trust: 'Trust center',
     faq: 'FAQ',
     partners: 'Partners',
@@ -8334,6 +8580,7 @@ const footerCopy: Record<
     academy: 'Académie',
     media: 'Presse',
     commandCenter: 'Centre de commandement',
+    observatory: 'Observatoire',
     trust: 'Centre de confiance',
     faq: 'FAQ',
     partners: 'Partenaires',
@@ -8371,6 +8618,7 @@ const footerCopy: Record<
     academy: 'Academia',
     media: 'Prensa',
     commandCenter: 'Centro de comando',
+    observatory: 'Observatorio',
     trust: 'Centro de confianza',
     faq: 'FAQ',
     partners: 'Partners',
@@ -8543,6 +8791,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
     { to: getAcademyPath(currentLanguage), label: copy.academy },
     { to: getMediaPath(currentLanguage), label: copy.media },
     { to: getCommandCenterPath(currentLanguage), label: copy.commandCenter },
+    { to: getObservatoryPath(currentLanguage), label: copy.observatory },
     { to: getTrustPath(currentLanguage), label: copy.trust },
     { to: getTeamPath(currentLanguage), label: copy.team },
     { to: getPartnersPath(currentLanguage), label: copy.partners },
@@ -8688,6 +8937,7 @@ function App() {
         <Route path="faq" element={<FaqPage />} />
         <Route path="media" element={<MediaPage />} />
         <Route path="command-center" element={<CommandCenterPage />} />
+        <Route path="observatory" element={<ObservatoryPage />} />
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
@@ -8708,6 +8958,7 @@ function App() {
             <Route path={`${language}/faq`} element={<FaqPage />} />
             <Route path={`${language}/media`} element={<MediaPage />} />
             <Route path={`${language}/command-center`} element={<CommandCenterPage />} />
+            <Route path={`${language}/observatory`} element={<ObservatoryPage />} />
             <Route path={`${language}/trust`} element={<TrustCenterPage />} />
             <Route path={`${language}/team`} element={<TeamPage />} />
             <Route path={`${language}/partners`} element={<PartnersPage />} />
