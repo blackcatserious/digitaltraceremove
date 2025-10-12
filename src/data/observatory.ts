@@ -22,6 +22,19 @@ export interface ObservatoryCopy {
     description: string
     cards: { id: string; title: string; summary: string; insight: string; action: string }[]
   }
+  pulse: {
+    title: string
+    description: string
+    alerts: {
+      id: string
+      name: string
+      medium: string
+      cadence: string
+      summary: string
+      focus: string
+      recipients: string
+    }[]
+  }
   threatReports: {
     title: string
     description: string
@@ -227,6 +240,46 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           insight:
             'Playbook triggered dynamic FAQ updates, CRO experiments, and direct founder outreach to top reviewers.',
           action: 'Open remediation workflow',
+        },
+      ],
+    },
+    pulse: {
+      title: 'Incident pulse alerts',
+      description:
+        'Founders stay ahead through live alert bundles delivered to the channels they already trust. Each pulse includes summary, recommended actions, and routed owners so no threat slips.',
+      alerts: [
+        {
+          id: 'p1',
+          name: 'Review integrity sweep',
+          medium: 'Signal + Slack',
+          cadence: 'Triggered within 2 minutes of anomaly',
+          summary:
+            'Live intercept packages cross-check suspect reviews across marketplaces, paid media comments, and NPS verbatims.',
+          focus:
+            'Routes review manipulation attempts straight to operations, legal, and media pods with pre-approved response language.',
+          recipients: 'Founders · Regional ops leads · Counsel desk',
+        },
+        {
+          id: 'p2',
+          name: 'WhatsApp crisis broadcast',
+          medium: 'Encrypted WhatsApp list',
+          cadence: 'Every 30 minutes until neutralised',
+          summary:
+            'Secure mobile digest pairs threat score, customer impact, and key talking points for execs on the move.',
+          focus:
+            'Keeps distributed leadership aligned on rebuttal assets and stakeholder comms while command center runs remediation.',
+          recipients: 'Executive team · Country managers · PR partners',
+        },
+        {
+          id: 'p3',
+          name: 'Executive impersonation killswitch',
+          medium: 'Email + founder bridge',
+          cadence: 'Immediately when spoof detected',
+          summary:
+            'Identity graphing flags spoofed inbox domains, SMS lookalikes, and compromised landing pages tied to exec personas.',
+          focus:
+            'Pushes takedown kits, MFA resets, and investor notification scripts with severity tags for each exposure.',
+          recipients: 'Founders · Security · Investor relations',
         },
       ],
     },
@@ -665,6 +718,46 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    pulse: {
+      title: 'Alertes pulse incidents',
+      description:
+        'Les fondateurs reçoivent en direct des paquets d’alertes sur leurs canaux de confiance. Chaque pulse embarque résumé, actions recommandées et propriétaires assignés pour ne rien laisser passer.',
+      alerts: [
+        {
+          id: 'p1',
+          name: 'Balayage intégrité des avis',
+          medium: 'Signal + Slack',
+          cadence: 'Déclenché < 2 min après anomalie',
+          summary:
+            'Dossiers d’interception qui recoupent avis suspects sur marketplaces, commentaires paid media et verbatims NPS.',
+          focus:
+            'Dirige automatiquement les tentatives de manipulation vers opérations, juridique et médias avec langage validé.',
+          recipients: 'Fondateurs · Leads opérations régionaux · Cellule juridique',
+        },
+        {
+          id: 'p2',
+          name: 'Diffusion WhatsApp de crise',
+          medium: 'Liste WhatsApp chiffrée',
+          cadence: 'Toutes les 30 min jusqu’à résolution',
+          summary:
+            'Digest mobile sécurisé combinant score de menace, impact client et éléments de langage pour dirigeants en déplacement.',
+          focus:
+            'Maintient le leadership distribué aligné sur les assets de riposte et la communication parties prenantes pendant la remédiation.',
+          recipients: 'Comex · Directeurs pays · Partenaires RP',
+        },
+        {
+          id: 'p3',
+          name: 'Coupe-circuit usurpation dirigeants',
+          medium: 'Email + bridge fondateur',
+          cadence: 'Immédiat dès spoof détecté',
+          summary:
+            'Graphes d’identité repèrent domaines email, SMS et pages compromises ciblant vos dirigeants.',
+          focus:
+            'Diffuse kits de retrait, resets MFA et scripts investisseurs avec niveau de sévérité par exposition.',
+          recipients: 'Fondateurs · Sécurité · Relations investisseurs',
+        },
+      ],
+    },
     threatReports: {
       title: 'Rapports de menaces hebdomadaires',
       description:
@@ -1099,6 +1192,46 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           insight:
             'FAQs dinámicas, tests CRO y alcance directo del fundador estabilizaron la conversión.',
           action: 'Abrir flujo de remediación',
+        },
+      ],
+    },
+    pulse: {
+      title: 'Alertas pulse de incidentes',
+      description:
+        'Los fundadores se mantienen un paso adelante con paquetes de alertas enviados a los canales que ya utilizan. Cada pulse incluye resumen, pasos sugeridos y responsables asignados.',
+      alerts: [
+        {
+          id: 'p1',
+          name: 'Barrido de integridad de reseñas',
+          medium: 'Signal + Slack',
+          cadence: 'Disparado a los 2 min de la anomalía',
+          summary:
+            'Paquetes de intercepción que cruzan reseñas sospechosas en marketplaces, comentarios de paid media y verbatims NPS.',
+          focus:
+            'Deriva los intentos de manipulación directo a operaciones, legal y media con lenguaje aprobado por los fundadores.',
+          recipients: 'Founders · Líderes de operaciones regionales · Mesa legal',
+        },
+        {
+          id: 'p2',
+          name: 'Broadcast de crisis por WhatsApp',
+          medium: 'Lista cifrada de WhatsApp',
+          cadence: 'Cada 30 minutos hasta neutralizar',
+          summary:
+            'Resumen móvil seguro que combina puntaje de amenaza, impacto en clientes y mensajes clave para ejecutivos en movimiento.',
+          focus:
+            'Mantiene al liderazgo distribuido alineado con assets de respuesta y comunicación a stakeholders mientras el command center ejecuta.',
+          recipients: 'Equipo ejecutivo · Country managers · Partners de PR',
+        },
+        {
+          id: 'p3',
+          name: 'Interruptor de suplantación ejecutiva',
+          medium: 'Email + puente fundador',
+          cadence: 'Inmediato al detectar spoof',
+          summary:
+            'Grafos de identidad detectan dominios, SMS y landing pages comprometidas ligadas a los ejecutivos.',
+          focus:
+            'Envía kits de derribo, reseteos MFA y guiones para inversores con etiquetas de severidad por exposición.',
+          recipients: 'Founders · Seguridad · Relaciones con inversores',
         },
       ],
     },

@@ -4978,6 +4978,7 @@ const observatoryMetaLabels: Record<Language, {
   channel: string
   window: string
   tooling: string
+  recipients: string
 }> = {
   en: {
     cadence: 'Cadence',
@@ -4992,6 +4993,7 @@ const observatoryMetaLabels: Record<Language, {
     channel: 'Channel',
     window: 'Window',
     tooling: 'Tooling',
+    recipients: 'Recipients',
   },
   fr: {
     cadence: 'Cadence',
@@ -5006,6 +5008,7 @@ const observatoryMetaLabels: Record<Language, {
     channel: 'Canal',
     window: 'Fenêtre',
     tooling: 'Outils',
+    recipients: 'Destinataires',
   },
   es: {
     cadence: 'Cadencia',
@@ -5020,6 +5023,7 @@ const observatoryMetaLabels: Record<Language, {
     channel: 'Canal',
     window: 'Ventana',
     tooling: 'Herramientas',
+    recipients: 'Destinatarios',
   },
 }
 
@@ -5124,6 +5128,44 @@ const ObservatoryPage = () => {
               <Link className="button ghost observatory-card__action" to={getResourcesPath(language)}>
                 {card.action}
               </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--pulse"
+        aria-labelledby="observatory-pulse-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-pulse-heading">{copy.pulse.title}</h2>
+            <p>{copy.pulse.description}</p>
+          </div>
+        </div>
+        <div className="observatory__pulse-grid">
+          {copy.pulse.alerts.map((alert, index) => (
+            <article
+              key={alert.id}
+              className="observatory-card observatory-card--pulse"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <span className="observatory-card__status">{alert.medium}</span>
+                <h3>{alert.name}</h3>
+              </header>
+              <p className="observatory-card__summary">{alert.summary}</p>
+              <p className="observatory-card__focus">{alert.focus}</p>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.cadence}</dt>
+                  <dd>{alert.cadence}</dd>
+                </div>
+                <div>
+                  <dt>{labels.recipients}</dt>
+                  <dd>{alert.recipients}</dd>
+                </div>
+              </dl>
             </article>
           ))}
         </div>

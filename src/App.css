@@ -14659,6 +14659,7 @@ a {
 
 .observatory__radar-grid,
 .observatory__spotlight-grid,
+.observatory__pulse-grid,
 .observatory__reports-grid,
 .observatory__dashboard-grid,
 .observatory__forecasts-grid,
@@ -14679,6 +14680,10 @@ a {
 
 .observatory__spotlight-grid {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.observatory__pulse-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .observatory__reports-grid {
@@ -14887,6 +14892,14 @@ a {
 
 .observatory-card--spotlight::before {
   background: radial-gradient(circle at center, rgba(192, 132, 252, 0.35), transparent 70%);
+}
+
+.observatory-card--pulse {
+  border-color: rgba(56, 189, 248, 0.28);
+}
+
+.observatory-card--pulse::before {
+  background: radial-gradient(circle at center, rgba(56, 189, 248, 0.34), transparent 72%);
 }
 
 .observatory-card--dashboard::before {
@@ -16462,6 +16475,7 @@ a {
 
   .observatory__radar-grid,
   .observatory__spotlight-grid,
+  .observatory__pulse-grid,
   .observatory__reports-grid,
   .observatory__dashboard-grid,
   .observatory__briefings-grid,
