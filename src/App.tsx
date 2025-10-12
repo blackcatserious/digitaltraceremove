@@ -3024,6 +3024,57 @@ const ServicesPricingPage = () => {
         </ol>
       </section>
 
+      <section className="services-pricing__onboarding" aria-labelledby="services-pricing-onboarding">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-onboarding">{copy.onboarding.title}</h2>
+          <p>{copy.onboarding.subtitle}</p>
+        </div>
+        <div className="services-pricing__onboarding-layout">
+          <ol className="services-pricing__onboarding-stages">
+            {copy.onboarding.stages.map((stage, index) => (
+              <li
+                key={stage.id}
+                className="services-pricing__onboarding-stage"
+                style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+              >
+                <header>
+                  <div className="services-pricing__onboarding-heading">
+                    <span className="services-pricing__badge">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3>{stage.title}</h3>
+                  </div>
+                  <span className="services-pricing__onboarding-duration">{stage.duration}</span>
+                </header>
+                <p className="services-pricing__onboarding-description">{stage.description}</p>
+                <p className="services-pricing__onboarding-focus">{stage.focus}</p>
+                <ul>
+                  {stage.checkpoints.map((checkpoint) => (
+                    <li key={checkpoint}>{checkpoint}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+          <aside className="services-pricing__onboarding-metrics">
+            {copy.onboarding.metrics.map((metric, index) => (
+              <article
+                key={metric.label}
+                className="services-pricing__onboarding-metric"
+                style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+              >
+                <span>{metric.value}</span>
+                <h3>{metric.label}</h3>
+                <p>{metric.description}</p>
+              </article>
+            ))}
+            <Link className="button tertiary" to={getContactPath(language)}>
+              {copy.onboarding.ctaLabel}
+            </Link>
+          </aside>
+        </div>
+      </section>
+
       <section className="services-pricing__assurance" aria-labelledby="services-pricing-assurance">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-assurance">{copy.assurance.title}</h2>

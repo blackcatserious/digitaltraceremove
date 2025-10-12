@@ -196,6 +196,21 @@ export type ExecutiveIndicator = {
   context: string
 }
 
+export type OnboardingStage = {
+  id: string
+  title: string
+  duration: string
+  focus: string
+  description: string
+  checkpoints: string[]
+}
+
+export type OnboardingMetric = {
+  label: string
+  value: string
+  description: string
+}
+
 export type RoiInput = {
   label: string
   help: string
@@ -388,6 +403,13 @@ export type ServicesPricingCopy = {
       description: string
       outcomes: string[]
     }[]
+  }
+  onboarding: {
+    title: string
+    subtitle: string
+    stages: OnboardingStage[]
+    metrics: OnboardingMetric[]
+    ctaLabel: string
   }
   guarantees: {
     title: string
@@ -1414,6 +1436,87 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           ],
         },
       ],
+    },
+    onboarding: {
+      title: 'Founder-led onboarding that ships value in days',
+      subtitle:
+        'A multilingual strike team choreographs discovery, stabilization, and growth without waiting on paperwork.',
+      stages: [
+        {
+          id: 'signal-sync',
+          title: 'Signal sync & discovery',
+          duration: 'Day 0 – Day 3',
+          focus: 'Capture the baseline and align escalation rituals across teams.',
+          description:
+            'Founder Artur Ziganshin convenes marketing, product, legal, and CX leads to map narratives, risks, and desired outcomes in every language.',
+          checkpoints: [
+            'Multilingual kickoff with leadership and operational owners inside 24 hours.',
+            'Access, data, and monitoring credentials validated across tools and regions.',
+            'Threat landscape benchmarked with severity scoring and historical incidents.',
+            'Escalation tree, working cadences, and success metrics ratified.',
+          ],
+        },
+        {
+          id: 'stabilize-shield',
+          title: 'Stabilize & shield priority surfaces',
+          duration: 'Day 4 – Day 10',
+          focus: 'Neutralize urgent threats while establishing trust signals.',
+          description:
+            'Review, domain, and social desks deploy takedowns, publish clarifying narratives, and enable frontline teams to respond with confidence.',
+          checkpoints: [
+            'Rapid takedown sprints across marketplaces, ad platforms, and registrars.',
+            'Crisis messaging updated with localized scripts and stakeholder briefs.',
+            'Paid and owned channels refreshed with reassurance campaigns.',
+            'Daily momentum notes circulate to executives with clear asks.',
+          ],
+        },
+        {
+          id: 'momentum-build',
+          title: 'Momentum build & experiment launch',
+          duration: 'Week 2 – Week 4',
+          focus: 'Pair growth experimentation with ongoing protection to regain share.',
+          description:
+            'Growth pods launch CRO tests, lifecycle nurtures, and earned media moves while intelligence analysts monitor sentiment shifts.',
+          checkpoints: [
+            'Prioritized experiment backlog with owners, dependencies, and KPIs.',
+            'GrowthSpark dashboards activated with real-time sentiment overlays.',
+            'Community and review response playbooks rehearsed with operators.',
+            'Partnership, PR, and paid sequences coordinated around wins.',
+          ],
+        },
+        {
+          id: 'scale-embed',
+          title: 'Scale & embed rituals',
+          duration: 'Month 2 onward',
+          focus: 'Transfer playbooks, automate governance, and expand protection coverage.',
+          description:
+            'Enablement crews train internal teams, codify governance, and prepare future market launches with localized systems.',
+          checkpoints: [
+            'Training sprints for regional teams with recorded labs and office hours.',
+            'Automation and integration workstreams finalize data sharing and alerts.',
+            'Quarterly executive reviews lock next-wave roadmap and investment cases.',
+            'Shared command center transitions with co-ownership and documentation.',
+          ],
+        },
+      ],
+      metrics: [
+        {
+          label: 'Time to first remediation',
+          value: '46h avg',
+          description: 'Average window from signature to first takedown, review reversal, or SERP suppression.',
+        },
+        {
+          label: 'Stakeholder satisfaction',
+          value: '4.8 / 5',
+          description: 'Average onboarding score from executive sponsors across English, French, and Spanish markets.',
+        },
+        {
+          label: 'Multilingual readiness',
+          value: '3 desks live',
+          description: 'Dedicated English, French, and Spanish strategists activated from day one.',
+        },
+      ],
+      ctaLabel: 'Book your onboarding run-through',
     },
     guarantees: {
       title: 'Commitments we stand behind',
@@ -2563,6 +2666,87 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
       ],
     },
+    onboarding: {
+      title: 'Onboarding fondateur déployé en quelques jours',
+      subtitle:
+        'Une escouade multilingue orchestre découverte, stabilisation et croissance sans latence opérationnelle.',
+      stages: [
+        {
+          id: 'synchronisation-signal',
+          title: 'Synchronisation des signaux & découverte',
+          duration: 'Jour 0 – Jour 3',
+          focus: 'Capturer la base et aligner les rituels d’escalade entre équipes.',
+          description:
+            'Artur Ziganshin réunit marketing, produit, juridique et CX pour cartographier récits, risques et ambitions dans chaque langue.',
+          checkpoints: [
+            'Kickoff multilingue avec direction et owners opérationnels sous 24 h.',
+            'Accès, données et credentials monitoring validés sur vos outils et régions.',
+            'Cartographie du paysage de menaces avec scoring de sévérité et incidents passés.',
+            'Arbre d’escalade, cadences de travail et indicateurs de succès ratifiés.',
+          ],
+        },
+        {
+          id: 'stabiliser-proteger',
+          title: 'Stabiliser & protéger les surfaces prioritaires',
+          duration: 'Jour 4 – Jour 10',
+          focus: 'Neutraliser les urgences tout en réinstallant des signaux de confiance.',
+          description:
+            'Desks avis, domaines et social lancent retraits, narratifs clarifiants et enablement terrain pour répondre avec assurance.',
+          checkpoints: [
+            'Sprints de retrait rapides sur marketplaces, plateformes pub et registraires.',
+            'Messagerie de crise mise à jour avec scripts localisés et briefs parties prenantes.',
+            'Canaux paid & owned rafraîchis avec campagnes de réassurance.',
+            'Notes momentum quotidiennes aux dirigeants avec décisions attendues.',
+          ],
+        },
+        {
+          id: 'momentum-experiments',
+          title: 'Construire le momentum & lancer les expériences',
+          duration: 'Semaine 2 – Semaine 4',
+          focus: 'Associer expérimentation croissance et protection continue pour regagner des parts.',
+          description:
+            'Pods growth activent tests CRO, nurturing et earned media tandis que les analystes surveillent l’évolution du sentiment.',
+          checkpoints: [
+            'Backlog d’expérimentations priorisé avec owners, dépendances et KPIs.',
+            'Dashboards GrowthSpark activés avec overlays sentiment temps réel.',
+            'Playbooks réponse communauté & avis répétés avec vos opérateurs.',
+            'Séquences partenariats, PR et paid coordonnées autour des victoires.',
+          ],
+        },
+        {
+          id: 'scale-ancrer',
+          title: 'Scaler & ancrer les rituels',
+          duration: 'Mois 2 et au-delà',
+          focus: 'Transférer les playbooks, automatiser la gouvernance et étendre la couverture.',
+          description:
+            'Les équipes enablement forment vos talents, codifient la gouvernance et préparent les prochains lancements marchés.',
+          checkpoints: [
+            'Bootcamps pour équipes régionales avec labs enregistrés et office hours.',
+            'Travaux d’automatisation & intégration finalisant partage de données et alertes.',
+            'Revues exécutives trimestrielles verrouillant roadmap et business case.',
+            'Transition du command center partagé avec co-ownership et documentation.',
+          ],
+        },
+      ],
+      metrics: [
+        {
+          label: 'Temps jusqu’à la première remédiation',
+          value: '46 h moy.',
+          description: 'Fenêtre moyenne entre signature et premier retrait, renversement d’avis ou suppression SERP.',
+        },
+        {
+          label: 'Satisfaction des parties prenantes',
+          value: '4,8 / 5',
+          description: 'Score onboarding moyen fourni par les sponsors exécutifs sur nos marchés EN/FR/ES.',
+        },
+        {
+          label: 'Prêt multilingue',
+          value: '3 desks actifs',
+          description: 'Stratèges natifs anglais, français et espagnol opérationnels dès le jour 1.',
+        },
+      ],
+      ctaLabel: 'Réserver votre session d’onboarding',
+    },
     guarantees: {
       title: 'Nos engagements contractuels',
       subtitle: 'Responsabilité fondatrice et garde-fous qui rassurent vos dirigeants.',
@@ -3710,6 +3894,87 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           ],
         },
       ],
+    },
+    onboarding: {
+      title: 'Onboarding liderado por el fundador listo en días',
+      subtitle:
+        'Un escuadrón multilingüe coreografía descubrimiento, estabilización y crecimiento sin fricción operativa.',
+      stages: [
+        {
+          id: 'sincronizacion-senal',
+          title: 'Sincronización de señales y discovery',
+          duration: 'Día 0 – Día 3',
+          focus: 'Capturar la línea base y alinear rituales de escalación entre equipos.',
+          description:
+            'Artur Ziganshin reúne marketing, producto, legal y CX para mapear narrativas, riesgos y metas en cada idioma.',
+          checkpoints: [
+            'Kickoff multilingüe con dirección y responsables operativos dentro de las primeras 24 h.',
+            'Credenciales, datos y accesos de monitoreo validados en herramientas y regiones clave.',
+            'Benchmark de amenazas con puntaje de severidad e historial de incidentes.',
+            'Árbol de escalación, cadencias de trabajo y métricas de éxito ratificados.',
+          ],
+        },
+        {
+          id: 'estabilizar-blindar',
+          title: 'Estabilizar y blindar superficies críticas',
+          duration: 'Día 4 – Día 10',
+          focus: 'Neutralizar urgencias mientras instalamos señales de confianza.',
+          description:
+            'Los desks de reseñas, dominios y social ejecutan retiros, publican narrativas claras y habilitan a los equipos de frente.',
+          checkpoints: [
+            'Sprints de retiro en marketplaces, plataformas de anuncios y registradores.',
+            'Mensajería de crisis actualizada con guiones localizados y briefs para stakeholders.',
+            'Canales pagados y propios refrescados con campañas de tranquilidad.',
+            'Notas diarias de momentum para el comité ejecutivo con decisiones solicitadas.',
+          ],
+        },
+        {
+          id: 'construir-momentum',
+          title: 'Construir momentum y lanzar experimentos',
+          duration: 'Semana 2 – Semana 4',
+          focus: 'Unir experimentación de growth y protección continua para recuperar share.',
+          description:
+            'Pods de crecimiento activan pruebas CRO, nurtures y jugadas de earned media mientras analistas siguen el pulso del sentimiento.',
+          checkpoints: [
+            'Backlog de experimentos priorizado con dueños, dependencias y KPIs.',
+            'Dashboards GrowthSpark encendidos con overlays de sentimiento en tiempo real.',
+            'Playbooks de respuesta comunitaria y de reseñas practicados con operadores.',
+            'Secuencias de partners, PR y paid alineadas a los hitos logrados.',
+          ],
+        },
+        {
+          id: 'escalar-rituales',
+          title: 'Escalar y dejar rituales instalados',
+          duration: 'Mes 2 en adelante',
+          focus: 'Transferir playbooks, automatizar governance y ampliar la cobertura.',
+          description:
+            'Los equipos de enablement forman talento interno, codifican gobernanza y preparan próximas expansiones de mercado.',
+          checkpoints: [
+            'Bootcamps para equipos regionales con laboratorios grabados y office hours.',
+            'Frentes de automatización e integraciones cierran flujos de datos y alertas.',
+            'Revisiones ejecutivas trimestrales aseguran roadmap y casos de inversión.',
+            'Command center compartido transfiere co-ownership y documentación completa.',
+          ],
+        },
+      ],
+      metrics: [
+        {
+          label: 'Tiempo hasta la primera remediación',
+          value: '46 h promedio',
+          description: 'Ventana promedio entre la firma y el primer retiro, reversión de reseña o supresión en SERP.',
+        },
+        {
+          label: 'Satisfacción de sponsors',
+          value: '4.8 / 5',
+          description: 'Puntuación media de onboarding entregada por sponsors ejecutivos en mercados EN/FR/ES.',
+        },
+        {
+          label: 'Preparación multilingüe',
+          value: '3 squads activos',
+          description: 'Estrategas nativos en inglés, francés y español activos desde el primer día.',
+        },
+      ],
+      ctaLabel: 'Agenda tu recorrido de onboarding',
     },
     guarantees: {
       title: 'Compromisos que cumplimos',
