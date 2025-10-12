@@ -6,6 +6,15 @@ import { Analytics } from '@vercel/analytics/react'
 import App from './App.tsx'
 import './index.css'
 
+const pendingPath = sessionStorage.getItem('vite-spa-fallback')
+if (pendingPath) {
+  sessionStorage.removeItem('vite-spa-fallback')
+  const current = window.location.pathname + window.location.search + window.location.hash
+  if (current !== pendingPath) {
+    window.history.replaceState(null, '', pendingPath)
+  }
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
