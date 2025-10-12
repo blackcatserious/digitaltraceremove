@@ -14378,6 +14378,7 @@ a {
   color: rgba(248, 250, 252, 0.8);
 }
 
+.command-coverage,
 .command-monitoring,
 .command-workflows,
 .command-diagnostics,
@@ -15147,6 +15148,110 @@ a {
   flex-wrap: wrap;
 }
 
+.command-coverage__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1.2rem, 3vw, 2.2rem);
+}
+
+.command-coverage__card {
+  position: relative;
+  display: grid;
+  gap: 0.85rem;
+  padding: clamp(1.6rem, 3vw, 2.2rem);
+  border-radius: 1.8rem;
+  background: linear-gradient(150deg, rgba(96, 165, 250, 0.18), rgba(129, 140, 248, 0.12));
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  box-shadow: 0 24px 52px rgba(30, 64, 175, 0.16);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  animation: fadeSlideUp 0.9s var(--motion-ease) forwards;
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+}
+
+.command-coverage__spark {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  display: inline-flex;
+  padding: 0.5rem;
+  border-radius: 999px;
+  background: rgba(30, 64, 175, 0.12);
+  box-shadow: 0 12px 32px rgba(30, 64, 175, 0.2);
+  z-index: 2;
+}
+
+.command-coverage__card > *:not(.command-coverage__spark) {
+  position: relative;
+  z-index: 1;
+}
+
+.command-coverage__header {
+  display: grid;
+  gap: 0.45rem;
+  padding-right: 3.2rem;
+}
+
+.command-coverage__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(191, 219, 254, 0.6);
+  color: #1e3a8a;
+  width: fit-content;
+}
+
+.command-coverage__lead {
+  font-size: 0.9rem;
+  color: rgba(30, 58, 138, 0.9);
+}
+
+.command-coverage__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.command-coverage__list li {
+  position: relative;
+  padding-left: 1.4rem;
+  line-height: 1.45;
+}
+
+.command-coverage__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.9), rgba(14, 165, 233, 0.2));
+  box-shadow: 0 0 0 4px rgba(191, 219, 254, 0.5);
+}
+
+.command-coverage__card:hover {
+  transform: translate3d(0, -6px, 0);
+  box-shadow: 0 28px 58px rgba(30, 64, 175, 0.24);
+}
+
+.command-coverage__card::after {
+  content: '';
+  position: absolute;
+  inset: auto -40% -40% -20%;
+  height: 220px;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.22), transparent 70%);
+  filter: blur(18px);
+}
+
 @media (max-width: 960px) {
   .command-hero {
     grid-template-columns: minmax(0, 1fr);
@@ -15187,6 +15292,7 @@ a {
   }
 
   .command-monitoring__grid,
+  .command-coverage__grid,
   .command-dashboards__grid,
   .command-diagnostics__grid,
   .command-fusion__grid,

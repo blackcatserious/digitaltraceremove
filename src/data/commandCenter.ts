@@ -12,6 +12,17 @@ export interface CommandCenterCopy {
     metrics: { value: string; label: string; annotation: string }[]
     visualCaption: string
   }
+  coverage: {
+    title: string
+    description: string
+    regions: {
+      id: string
+      name: string
+      lead: string
+      availability: string
+      specialties: string[]
+    }[]
+  }
   monitoring: {
     title: string
     description: string
@@ -158,6 +169,57 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
       visualCaption: 'Live dashboards animate anomaly spikes so leadership sees risk posture instantly.',
+    },
+    coverage: {
+      title: 'Follow-the-sun squads covering every escalation window',
+      description:
+        'Localized command desks in Montréal, Paris, and Mexico City hand off active cases in real time so risk response never pauses — even when your leadership team does.',
+      regions: [
+        {
+          id: 'na-desk',
+          name: 'North America desk',
+          lead: 'Lead: Clara Martel — Montréal fusion hub',
+          availability: 'Availability: 24/7 bilingual coverage',
+          specialties: [
+            'Executive impersonation takedowns within 90 minutes',
+            'Marketplace fraud sweeps across Amazon, Walmart, and niche retail',
+            'Crisis messaging alignment with legal and communications leads',
+          ],
+        },
+        {
+          id: 'eu-desk',
+          name: 'European response desk',
+          lead: 'Lead: Artur Ziganshin — Paris war room',
+          availability: 'Availability: 06:00–22:00 CET with overnight watch',
+          specialties: [
+            'Domain recovery and registrar diplomacy across EU jurisdictions',
+            'Narrative monitoring spanning English and French media ecosystems',
+            'Brand guideline enforcement with agency and partner networks',
+          ],
+        },
+        {
+          id: 'latam-desk',
+          name: 'LATAM escalation desk',
+          lead: 'Lead: Diego Santos — Mexico City command loft',
+          availability: 'Availability: 05:00–23:00 CST rapid activation',
+          specialties: [
+            'Spanish-language review integrity sweeps and takedowns',
+            'Marketplace seizure coordination with Mercado Libre and Rappi',
+            'Incident translation loops and leadership briefings for global teams',
+          ],
+        },
+        {
+          id: 'global-escalation',
+          name: 'Founder escalation bridge',
+          lead: 'Lead: Artur Ziganshin — direct escalation line',
+          availability: 'Availability: Founder-on-call for severity one incidents',
+          specialties: [
+            'Immediate executive alignment and stakeholder comms drafting',
+            'Signal fusion across all desks with board-ready reporting',
+            'Decision rights arbitration and legal coordination within minutes',
+          ],
+        },
+      ],
     },
     monitoring: {
       title: 'Anomaly intelligence that sees around corners',
@@ -588,6 +650,57 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
       ],
       visualCaption: 'Des tableaux de bord animés montrent instantanément l’évolution du risque aux dirigeants.',
     },
+    coverage: {
+      title: 'Des cellules relais qui couvrent chaque fuseau critique',
+      description:
+        'Nos desks de Montréal, Paris et Mexico se relaient en continu pour reprendre vos incidents, traduire les signaux et briefer vos dirigeants sans délai, quel que soit l’horaire.',
+      regions: [
+        {
+          id: 'na-desk',
+          name: 'Desk Amériques',
+          lead: 'Lead : Clara Martel — hub fusion de Montréal',
+          availability: 'Disponibilité : couverture bilingue 24/7',
+          specialties: [
+            'Neutralisation des usurpations exécutives en moins de 90 minutes',
+            'Veilles marketplaces sur Amazon, Walmart et détaillants spécialisés',
+            'Coordination message crise avec juridique et communication',
+          ],
+        },
+        {
+          id: 'eu-desk',
+          name: 'Desk Europe',
+          lead: 'Lead : Artur Ziganshin — war room Paris',
+          availability: 'Disponibilité : 06h00–22h00 CET avec astreinte nocturne',
+          specialties: [
+            'Récupération de domaines et négociations registrars multi-pays',
+            'Monitoring narratif sur écosystèmes médiatiques francophones et anglophones',
+            'Application des chartes de marque avec agences et partenaires',
+          ],
+        },
+        {
+          id: 'latam-desk',
+          name: 'Desk LATAM',
+          lead: 'Lead : Diego Santos — loft de commandement Mexico',
+          availability: 'Disponibilité : activation rapide 05h00–23h00 CST',
+          specialties: [
+            'Forensique des avis frauduleux hispanophones et demandes de retrait',
+            'Coordination marketplaces avec Mercado Libre, Rappi et retailers régionaux',
+            'Boucles de traduction incidents et briefs dirigeants globaux',
+          ],
+        },
+        {
+          id: 'global-escalation',
+          name: 'Bridge d’escalade fondateur',
+          lead: 'Lead : Artur Ziganshin — ligne directe',
+          availability: 'Disponibilité : fondateur on-call pour incidents sévérité 1',
+          specialties: [
+            'Alignement exécutif immédiat et rédaction de messages officiels',
+            'Fusion des signaux cross-desks avec reporting prêt pour le board',
+            'Arbitrage des droits de décision et coordination juridique en minutes',
+          ],
+        },
+      ],
+    },
     monitoring: {
       title: 'Une intelligence des anomalies qui anticipe les menaces',
       description:
@@ -1016,6 +1129,57 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
       ],
       visualCaption: 'Dashboards animados muestran al instante la postura de riesgo para la dirección.',
+    },
+    coverage: {
+      title: 'Celdas de guardia que cubren cada huso crítico',
+      description:
+        'Nuestros desks de Montréal, París y Ciudad de México se relevan en tiempo real para tomar incidentes, traducir señales y mantener informada a la dirección sin importar la zona horaria.',
+      regions: [
+        {
+          id: 'na-desk',
+          name: 'Desk Norteamérica',
+          lead: 'Lead: Clara Martel — hub de fusión Montréal',
+          availability: 'Disponibilidad: cobertura bilingüe 24/7',
+          specialties: [
+            'Desactivación de suplantaciones ejecutivas en menos de 90 minutos',
+            'Barridos antifraude en Amazon, Walmart y retailers especializados',
+            'Alineación de mensajes de crisis con legal y comunicación',
+          ],
+        },
+        {
+          id: 'eu-desk',
+          name: 'Desk Europa',
+          lead: 'Lead: Artur Ziganshin — war room París',
+          availability: 'Disponibilidad: 06:00–22:00 CET con guardia nocturna',
+          specialties: [
+            'Recuperación de dominios y diplomacia con registradores europeos',
+            'Monitoreo narrativo en ecosistemas mediáticos en francés e inglés',
+            'Aplicación de guías de marca junto a agencias y partners locales',
+          ],
+        },
+        {
+          id: 'latam-desk',
+          name: 'Desk LATAM',
+          lead: 'Lead: Diego Santos — loft de comando CDMX',
+          availability: 'Disponibilidad: activación rápida 05:00–23:00 CST',
+          specialties: [
+            'Forense de reseñas en español y coordinación de retiros',
+            'Operativos marketplace con Mercado Libre, Rappi y verticales locales',
+            'Bucles de traducción y briefings ejecutivos para equipos globales',
+          ],
+        },
+        {
+          id: 'global-escalation',
+          name: 'Puente de escalación fundador',
+          lead: 'Lead: Artur Ziganshin — línea directa',
+          availability: 'Disponibilidad: fundador on-call para incidentes severidad uno',
+          specialties: [
+            'Alineación ejecutiva inmediata y redacción de mensajes oficiales',
+            'Fusión de señales entre desks con reporting listo para el board',
+            'Arbitraje de derechos de decisión y coordinación legal en minutos',
+          ],
+        },
+      ],
     },
     monitoring: {
       title: 'Inteligencia de anomalías que anticipa amenazas',

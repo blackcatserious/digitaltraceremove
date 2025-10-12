@@ -4357,6 +4357,39 @@ const CommandCenterPage = () => {
 
       <MomentumTicker variant="light" />
 
+      <section className="command-coverage" aria-labelledby="command-coverage-heading">
+        <div className="command-section__header">
+          <div>
+            <h2 id="command-coverage-heading">{copy.coverage.title}</h2>
+            <p>{copy.coverage.description}</p>
+          </div>
+        </div>
+        <div className="command-coverage__grid">
+          {copy.coverage.regions.map((region, index) => (
+            <article
+              key={region.id}
+              className="command-coverage__card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <span className="command-coverage__spark" aria-hidden="true">
+                <GrowthSpark variant={index % 2 === 0 ? 'dark' : 'light'} size="sm" />
+              </span>
+              <header className="command-coverage__header">
+                <span className="command-coverage__badge">{region.availability}</span>
+                <span className="command-coverage__lead">{region.lead}</span>
+              </header>
+              <h3>{region.name}</h3>
+              <ul className="command-coverage__list">
+                {region.specialties.map((specialty) => (
+                  <li key={specialty}>{specialty}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="command-monitoring" aria-labelledby="command-monitoring-heading">
         <div className="command-section__header">
           <div>
