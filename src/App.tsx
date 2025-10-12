@@ -4965,10 +4965,42 @@ const CommandCenterPage = () => {
   )
 }
 
-const observatoryMetaLabels: Record<Language, { cadence: string; lead: string }> = {
-  en: { cadence: 'Cadence', lead: 'Lead' },
-  fr: { cadence: 'Cadence', lead: 'Référent' },
-  es: { cadence: 'Cadencia', lead: 'Responsable' },
+const observatoryMetaLabels: Record<Language, {
+  cadence: string
+  lead: string
+  timeframe: string
+  audience: string
+  host: string
+  uptime: string
+  analysts: string
+}> = {
+  en: {
+    cadence: 'Cadence',
+    lead: 'Lead',
+    timeframe: 'Timeframe',
+    audience: 'Audience',
+    host: 'Host',
+    uptime: 'Coverage window',
+    analysts: 'On-desk analysts',
+  },
+  fr: {
+    cadence: 'Cadence',
+    lead: 'Référent',
+    timeframe: 'Fenêtre',
+    audience: 'Public',
+    host: 'Animateur',
+    uptime: 'Fenêtre de couverture',
+    analysts: 'Analystes de garde',
+  },
+  es: {
+    cadence: 'Cadencia',
+    lead: 'Responsable',
+    timeframe: 'Ventana',
+    audience: 'Audiencia',
+    host: 'Anfitrión',
+    uptime: 'Ventana de cobertura',
+    analysts: 'Analistas en turno',
+  },
 }
 
 const ObservatoryPage = () => {
@@ -5078,6 +5110,40 @@ const ObservatoryPage = () => {
       </section>
 
       <section
+        className="observatory__section observatory__section--reports"
+        aria-labelledby="observatory-reports-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-reports-heading">{copy.threatReports.title}</h2>
+            <p>{copy.threatReports.description}</p>
+          </div>
+        </div>
+        <div className="observatory__reports-grid">
+          {copy.threatReports.reports.map((report, index) => (
+            <article
+              key={report.id}
+              className="observatory-card observatory-card--report"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{report.name}</h3>
+                <span className="observatory-card__tag">
+                  <span>{labels.timeframe}</span>
+                  {report.timeframe}
+                </span>
+              </header>
+              <p className="observatory-card__summary">{report.summary}</p>
+              <p className="observatory-card__insight">{report.response}</p>
+              <Link className="button ghost observatory-card__action" to={getResourcesPath(language)}>
+                {report.asset}
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
         className="observatory__section observatory__section--dashboards"
         aria-labelledby="observatory-dashboards-heading"
       >
@@ -5102,6 +5168,83 @@ const ObservatoryPage = () => {
                 </div>
               </header>
               <p>{panel.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--briefings"
+        aria-labelledby="observatory-briefings-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-briefings-heading">{copy.briefings.title}</h2>
+            <p>{copy.briefings.description}</p>
+          </div>
+        </div>
+        <div className="observatory__briefings-grid">
+          {copy.briefings.sessions.map((session, index) => (
+            <article
+              key={session.id}
+              className="observatory-card observatory-card--briefing"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{session.title}</h3>
+              </header>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.audience}</dt>
+                  <dd>{session.audience}</dd>
+                </div>
+                <div>
+                  <dt>{labels.cadence}</dt>
+                  <dd>{session.cadence}</dd>
+                </div>
+                <div>
+                  <dt>{labels.host}</dt>
+                  <dd>{session.host}</dd>
+                </div>
+              </dl>
+              <p className="observatory-card__focus">{session.focus}</p>
+              <p className="observatory-card__note">{session.commitment}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--coverage"
+        aria-labelledby="observatory-coverage-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-coverage-heading">{copy.coverage.title}</h2>
+            <p>{copy.coverage.description}</p>
+          </div>
+        </div>
+        <div className="observatory__coverage-grid">
+          {copy.coverage.desks.map((desk, index) => (
+            <article
+              key={desk.id}
+              className="observatory-card observatory-card--coverage"
+              style={{ animationDelay: `${index * 0.1}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{desk.region}</h3>
+              </header>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.uptime}</dt>
+                  <dd>{desk.uptime}</dd>
+                </div>
+              </dl>
+              <p className="observatory-card__focus">{desk.focus}</p>
+              <p className="observatory-card__channel">
+                <span>{labels.analysts}</span>
+                {desk.analysts}
+              </p>
             </article>
           ))}
         </div>

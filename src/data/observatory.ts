@@ -22,10 +22,46 @@ export interface ObservatoryCopy {
     description: string
     cards: { id: string; title: string; summary: string; insight: string; action: string }[]
   }
+  threatReports: {
+    title: string
+    description: string
+    reports: {
+      id: string
+      name: string
+      timeframe: string
+      summary: string
+      response: string
+      asset: string
+    }[]
+  }
   dashboards: {
     title: string
     description: string
     panels: { id: string; title: string; metric: string; delta: string; description: string }[]
+  }
+  briefings: {
+    title: string
+    description: string
+    sessions: {
+      id: string
+      title: string
+      audience: string
+      cadence: string
+      host: string
+      focus: string
+      commitment: string
+    }[]
+  }
+  coverage: {
+    title: string
+    description: string
+    desks: {
+      id: string
+      region: string
+      uptime: string
+      focus: string
+      analysts: string
+    }[]
   }
   labs: {
     title: string
@@ -144,6 +180,43 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    threatReports: {
+      title: 'Weekly threat reports',
+      description:
+        'Every Friday we publish a founder digest distilling the most material risks, the counter-moves we executed, and where leadership decisions accelerated recovery.',
+      reports: [
+        {
+          id: 'r1',
+          name: 'Marketplace fraud pulse',
+          timeframe: 'Last 7 days',
+          summary:
+            'Counterfeit clusters across EU luxury marketplaces targeting accessories. Nine storefronts linked through wallet analytics.',
+          response:
+            'Issued platform takedowns, swapped PDP copy, and launched retargeting reassurance campaigns across paid social.',
+          asset: 'Open enforcement brief',
+        },
+        {
+          id: 'r2',
+          name: 'Generative review attacks',
+          timeframe: '72-hour window',
+          summary:
+            'AI-written negative streak detected on Spanish delivery apps with identical phrasing and VPN fingerprints.',
+          response:
+            'Deployed verified buyer prompts, activated media rebuttals, and notified marketplaces through founder desks.',
+          asset: 'View counter narrative kit',
+        },
+        {
+          id: 'r3',
+          name: 'Executive impersonation surge',
+          timeframe: 'Current sprint',
+          summary:
+            'Spoofed onboarding emails hitting LATAM prospects referencing a fake investment round and wiring instructions.',
+          response:
+            'Pushed takedowns with registrars, updated nurture templates, and escalated to affected investors with briefing notes.',
+          asset: 'Download investor alert pack',
+        },
+      ],
+    },
     dashboards: {
       title: 'Intelligence dashboards',
       description:
@@ -169,6 +242,68 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           metric: '27',
           delta: 'new mentions flagged',
           description: 'Surfaces new channels where the brand is mentioned so GTM can join conversations safely.',
+        },
+      ],
+    },
+    briefings: {
+      title: 'Founder briefings',
+      description:
+        'Rapid-fire syncs keep decision-makers aligned. Each briefing condenses signal analysis, the playbook underway, and what we need from founders next.',
+      sessions: [
+        {
+          id: 'b1',
+          title: 'Executive stand-up',
+          audience: 'Founders & comms leads',
+          cadence: 'Daily · 09:00 CET',
+          host: 'Artur Ziganshin',
+          focus: 'Prioritise overnight escalations, assign spokespersons, and approve budget unlocks.',
+          commitment: '15 minutes with follow-up action register in Notion.',
+        },
+        {
+          id: 'b2',
+          title: 'Regional intel huddle',
+          audience: 'Regional GMs & marketing',
+          cadence: 'Twice weekly',
+          host: 'Clara Martel',
+          focus: 'Share playbook performance, align local creative swaps, and review channel stability.',
+          commitment: '25 minutes plus async recap with assets.',
+        },
+        {
+          id: 'b3',
+          title: 'Board alignment dial-in',
+          audience: 'Board observers & investor relations',
+          cadence: 'Weekly',
+          host: 'Diego Santos',
+          focus: 'Summarise reputational posture, ROI recovered, and highlight support asks.',
+          commitment: '20 minutes including Q&A transcript.',
+        },
+      ],
+    },
+    coverage: {
+      title: 'Follow-the-sun coverage',
+      description:
+        'Three desks rotate to keep your brand observed without pause. Every pod blends native-language analysts, automation engineers, and legal partners.',
+      desks: [
+        {
+          id: 'cov1',
+          region: 'Americas desk',
+          uptime: '18 hours',
+          focus: 'Marketplace fraud, executive phishing, crisis media buys.',
+          analysts: 'Diego Santos · Daniela Rojas · Jason Lee',
+        },
+        {
+          id: 'cov2',
+          region: 'EMEA desk',
+          uptime: '20 hours',
+          focus: 'Search volatility, regulatory monitoring, trust & safety escalations.',
+          analysts: 'Artur Ziganshin · Clara Martel · Sofia Andersson',
+        },
+        {
+          id: 'cov3',
+          region: 'APAC acceleration',
+          uptime: '16 hours',
+          focus: 'Marketplace cloning, review manipulation, partner enablement.',
+          analysts: 'Kenji Arai · Priya Desai · Miguel Cortez',
         },
       ],
     },
@@ -318,17 +453,54 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           summary:
             'Onze boutiques Instagram frauduleuses copiant un revendeur espagnol et détournant les paiements.',
           insight:
-            'Suppressions Traceremove + communication clients ont protégé 420 k€ de pipeline en 3 jours.',
-          action: 'Consulter les templates',
+            'Traceremove a obtenu les retraits, orchestré la communication client et protégé 420 k€ de pipeline en 3 jours.',
+          action: 'Consulter les templates de réponse',
         },
         {
           id: 'c3',
-          title: 'Blocage onboarding fintech',
+          title: 'Goulot d’onboarding fintech',
           summary:
-            'Baisse d’inscriptions (-14 %) suite à un nouveau fournisseur KYC provoquant une série d’avis négatifs.',
+            'Série négative Trustpilot liée à un nouveau prestataire KYC. -14 % d’inscriptions semaine sur semaine.',
           insight:
-            'Playbook déclenchant FAQ dynamiques, tests CRO et contact direct des top reviewers par le fondateur.',
-          action: 'Ouvrir le workflow',
+            'FAQ dynamiques, tests CRO et contact direct des reviewers par le fondateur ont stabilisé la conversion.',
+          action: 'Ouvrir le workflow de remédiation',
+        },
+      ],
+    },
+    threatReports: {
+      title: 'Rapports de menaces hebdomadaires',
+      description:
+        'Chaque vendredi nous envoyons un digest fondateur résumant les risques critiques, les contre-mesures déployées et les décisions de leadership qui ont accéléré la reprise.',
+      reports: [
+        {
+          id: 'r1',
+          name: 'Pulse fraude marketplace',
+          timeframe: '7 derniers jours',
+          summary:
+            'Cluster de contrefaçons sur des marketplaces luxe EU visant les accessoires. Neuf boutiques reliées par analyse de portefeuilles.',
+          response:
+            'Takedowns plateforme, mise à jour des pages produits et campagnes rassurance en paid social.',
+          asset: 'Ouvrir la note d’application',
+        },
+        {
+          id: 'r2',
+          name: 'Attaques d’avis génératifs',
+          timeframe: 'Fenêtre 72 h',
+          summary:
+            'Série négative rédigée par IA sur des apps de livraison espagnoles avec phrasé identique et empreintes VPN.',
+          response:
+            'Prompts acheteurs vérifiés, riposte média et notifications aux marketplaces via le desk fondateur.',
+          asset: 'Voir le kit de contre-narratif',
+        },
+        {
+          id: 'r3',
+          name: 'Pic d’usurpation dirigeants',
+          timeframe: 'Sprint en cours',
+          summary:
+            'Emails d’onboarding usurpés visant des prospects LATAM avec faux tour de table et instructions de virement.',
+          response:
+            'Takedowns registrar, mise à jour des séquences nurture et briefing aux investisseurs concernés.',
+          asset: 'Télécharger l’alerte investisseurs',
         },
       ],
     },
@@ -357,6 +529,68 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           metric: '27',
           delta: 'nouveaux signaux',
           description: 'Identifie les nouveaux canaux où la marque est citée pour intervenir en sécurité.',
+        },
+      ],
+    },
+    briefings: {
+      title: 'Briefings fondateurs',
+      description:
+        'Des synchronisations rapides maintiennent l’alignement. Chaque session condense l’analyse, le playbook en cours et les décisions attendues des dirigeants.',
+      sessions: [
+        {
+          id: 'b1',
+          title: 'Stand-up exécutif',
+          audience: 'Fondateurs & communication',
+          cadence: 'Quotidien · 09h00 CET',
+          host: 'Artur Ziganshin',
+          focus: 'Prioriser les escalades nocturnes, nommer les porte-parole et valider les budgets.',
+          commitment: '15 minutes avec registre d’actions dans Notion.',
+        },
+        {
+          id: 'b2',
+          title: 'Huddle intelligence régions',
+          audience: 'DG régionaux & marketing',
+          cadence: 'Bi-hebdomadaire',
+          host: 'Clara Martel',
+          focus: 'Performance des playbooks, ajustements créatifs locaux, stabilité des canaux.',
+          commitment: '25 minutes + récap asynchrone avec assets.',
+        },
+        {
+          id: 'b3',
+          title: 'Point alignement board',
+          audience: 'Board & relations investisseurs',
+          cadence: 'Hebdomadaire',
+          host: 'Diego Santos',
+          focus: 'Posture réputationnelle, ROI récupéré et demandes de support.',
+          commitment: '20 minutes avec compte rendu Q&R.',
+        },
+      ],
+    },
+    coverage: {
+      title: 'Couverture follow-the-sun',
+      description:
+        'Trois desks se relaient pour ne jamais quitter votre marque des yeux. Chaque pod regroupe analystes natifs, ingénieurs automation et partenaires juridiques.',
+      desks: [
+        {
+          id: 'cov1',
+          region: 'Desk Amériques',
+          uptime: '18 heures',
+          focus: 'Fraude marketplace, phishing dirigeants, achats médias de crise.',
+          analysts: 'Diego Santos · Daniela Rojas · Jason Lee',
+        },
+        {
+          id: 'cov2',
+          region: 'Desk EMEA',
+          uptime: '20 heures',
+          focus: 'Volatilité search, veille réglementaire, escalades trust & safety.',
+          analysts: 'Artur Ziganshin · Clara Martel · Sofia Andersson',
+        },
+        {
+          id: 'cov3',
+          region: 'Accélération APAC',
+          uptime: '16 heures',
+          focus: 'Clonage marketplace, manipulation d’avis, enablement partenaires.',
+          analysts: 'Kenji Arai · Priya Desai · Miguel Cortez',
         },
       ],
     },
@@ -508,7 +742,7 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           summary:
             'Once tiendas falsas en Instagram copiaban a un reseller español y desviaban pagos.',
           insight:
-            'Bajas de Traceremove más comunicación a clientes protegieron €420k de pipeline en 3 días.',
+            'Traceremove coordinó las bajas, comunicó a clientes y protegió €420k de pipeline en 3 días.',
           action: 'Ver plantillas de respuesta',
         },
         {
@@ -517,8 +751,45 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           summary:
             'Racha de reseñas negativas ligada a un nuevo proveedor KYC. Altas bajaron 14 % semana contra semana.',
           insight:
-            'Playbook activó FAQs dinámicas, tests CRO y alcance directo del fundador a los top reviewers.',
+            'FAQs dinámicas, tests CRO y alcance directo del fundador estabilizaron la conversión.',
           action: 'Abrir flujo de remediación',
+        },
+      ],
+    },
+    threatReports: {
+      title: 'Reportes de amenazas semanales',
+      description:
+        'Cada viernes enviamos un digest para founders con los riesgos más críticos, las contramedidas ejecutadas y dónde la dirección aceleró la recuperación.',
+      reports: [
+        {
+          id: 'r1',
+          name: 'Pulso de fraude en marketplaces',
+          timeframe: 'Últimos 7 días',
+          summary:
+            'Clusters de falsificaciones en marketplaces de lujo europeos atacando accesorios. Nueve tiendas conectadas vía wallets.',
+          response:
+            'Emitimos bajas, actualizamos copy en PDP y lanzamos campañas de tranquilidad en paid social.',
+          asset: 'Abrir informe de aplicación',
+        },
+        {
+          id: 'r2',
+          name: 'Ataques de reseñas generativas',
+          timeframe: 'Ventana de 72 h',
+          summary:
+            'Racha negativa escrita con IA en apps de delivery españolas con frases idénticas y huellas VPN.',
+          response:
+            'Activamos prompts a compradores verificados, campañas de contrapeso mediático y avisos a marketplaces.',
+          asset: 'Ver kit de contra-narrativa',
+        },
+        {
+          id: 'r3',
+          name: 'Ola de suplantación ejecutiva',
+          timeframe: 'Sprint actual',
+          summary:
+            'Emails de onboarding falsos a prospectos LATAM mencionando una ronda ficticia y órdenes de transferencia.',
+          response:
+            'Solicitamos bajas a registradores, actualizamos nurtures y avisamos a inversionistas con briefing.',
+          asset: 'Descargar alerta a inversionistas',
         },
       ],
     },
@@ -547,6 +818,68 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           metric: '27',
           delta: 'nuevas menciones',
           description: 'Detecta nuevos canales donde se menciona la marca para intervenir con seguridad.',
+        },
+      ],
+    },
+    briefings: {
+      title: 'Briefings para founders',
+      description:
+        'Sincronizaciones exprés mantienen a los decisores alineados. Cada sesión condensa análisis, playbook en curso y próximos pasos para liderazgo.',
+      sessions: [
+        {
+          id: 'b1',
+          title: 'Briefing ejecutivo diario',
+          audience: 'Founders y comunicación',
+          cadence: 'Diario · 09:00 CET',
+          host: 'Artur Ziganshin',
+          focus: 'Priorizar escalaciones nocturnas, asignar voceros y aprobar desbloqueos de presupuesto.',
+          commitment: '15 minutos con registro de acciones en Notion.',
+        },
+        {
+          id: 'b2',
+          title: 'Huddle de inteligencia regional',
+          audience: 'GMs regionales y marketing',
+          cadence: 'Dos veces por semana',
+          host: 'Clara Martel',
+          focus: 'Revisar performance de playbooks, alinear cambios creativos y salud de canales.',
+          commitment: '25 minutos más recap asíncrono con assets.',
+        },
+        {
+          id: 'b3',
+          title: 'Dial-in para el board',
+          audience: 'Consejo e inversores',
+          cadence: 'Semanal',
+          host: 'Diego Santos',
+          focus: 'Postura reputacional, ROI protegido y solicitudes de soporte.',
+          commitment: '20 minutos incluyendo Q&A transcrito.',
+        },
+      ],
+    },
+    coverage: {
+      title: 'Cobertura follow-the-sun',
+      description:
+        'Tres desks se relevan para que la marca nunca quede sin vigilancia. Cada pod combina analistas nativos, ingenieros de automatización y aliados legales.',
+      desks: [
+        {
+          id: 'cov1',
+          region: 'Desk Américas',
+          uptime: '18 horas',
+          focus: 'Fraude en marketplaces, phishing a ejecutivos, medios de crisis.',
+          analysts: 'Diego Santos · Daniela Rojas · Jason Lee',
+        },
+        {
+          id: 'cov2',
+          region: 'Desk EMEA',
+          uptime: '20 horas',
+          focus: 'Volatilidad en search, monitoreo regulatorio, escalaciones de trust & safety.',
+          analysts: 'Artur Ziganshin · Clara Martel · Sofia Andersson',
+        },
+        {
+          id: 'cov3',
+          region: 'Aceleración APAC',
+          uptime: '16 horas',
+          focus: 'Clones de marketplaces, manipulación de reseñas, enablement de partners.',
+          analysts: 'Kenji Arai · Priya Desai · Miguel Cortez',
         },
       ],
     },

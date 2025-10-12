@@ -14659,7 +14659,10 @@ a {
 
 .observatory__radar-grid,
 .observatory__spotlight-grid,
+.observatory__reports-grid,
 .observatory__dashboard-grid,
+.observatory__briefings-grid,
+.observatory__coverage-grid,
 .observatory__labs-grid,
 .observatory__escalation-grid {
   display: grid;
@@ -14674,8 +14677,20 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
+.observatory__reports-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
 .observatory__dashboard-grid {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.observatory__briefings-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.observatory__coverage-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .observatory__labs-grid {
@@ -14768,13 +14783,31 @@ a {
   color: rgba(96, 165, 250, 0.85);
 }
 
+.observatory-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.18);
+  color: rgba(224, 242, 254, 0.86);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.observatory-card__tag span {
+  font-weight: 600;
+  color: rgba(224, 242, 254, 0.95);
+}
+
 .observatory-card__focus {
   color: rgba(226, 232, 240, 0.9);
 }
 
 .observatory-card__meta {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0.8rem;
   margin: 0;
 }
@@ -14805,6 +14838,21 @@ a {
   color: rgba(148, 197, 255, 0.9);
 }
 
+.observatory-card__channel span {
+  display: block;
+  font-family: 'Suisse Intl', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.78);
+  margin-bottom: 0.3rem;
+}
+
+.observatory-card__note {
+  margin: 0;
+  color: rgba(148, 163, 184, 0.85);
+}
+
 .observatory-card__action {
   justify-self: flex-start;
   position: relative;
@@ -14817,6 +14865,18 @@ a {
 
 .observatory-card--dashboard::before {
   background: radial-gradient(circle at center, rgba(14, 165, 233, 0.28), transparent 72%);
+}
+
+.observatory-card--report::before {
+  background: radial-gradient(circle at center, rgba(56, 189, 248, 0.28), transparent 72%);
+}
+
+.observatory-card--briefing::before {
+  background: radial-gradient(circle at center, rgba(129, 140, 248, 0.3), transparent 72%);
+}
+
+.observatory-card--coverage::before {
+  background: radial-gradient(circle at center, rgba(52, 211, 153, 0.3), transparent 72%);
 }
 
 .observatory-card--lab::before {
@@ -16348,7 +16408,10 @@ a {
 
   .observatory__radar-grid,
   .observatory__spotlight-grid,
+  .observatory__reports-grid,
   .observatory__dashboard-grid,
+  .observatory__briefings-grid,
+  .observatory__coverage-grid,
   .observatory__labs-grid,
   .observatory__escalation-grid {
     grid-template-columns: minmax(0, 1fr);
