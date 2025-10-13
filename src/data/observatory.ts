@@ -76,6 +76,18 @@ export interface ObservatoryCopy {
       narrative: string
     }[]
   }
+  indices: {
+    title: string
+    description: string
+    indices: {
+      id: string
+      name: string
+      score: string
+      trend: string
+      signal: string
+      recommendation: string
+    }[]
+  }
   briefings: {
     title: string
     description: string
@@ -466,6 +478,40 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           baseline: 'Baseline risk: $6.2M exposure',
           narrative:
             'Marketplace takedowns, ad negative keyword shields, and customer comms automation prevented conversion leakage.',
+        },
+      ],
+    },
+    indices: {
+      title: 'Resilience indices',
+      description:
+        'Composite scores blend signal health, audience trust, and playbook readiness so founders can spot risk drift before it requires escalation.',
+      indices: [
+        {
+          id: 'ri1',
+          name: 'Reputation stability',
+          score: '92 / 100',
+          trend: '↑ 3 pts week-over-week',
+          signal: 'Search & review harmony',
+          recommendation:
+            'Keep executive AMAs on weekly cadence and expand advocacy prompts to loyalty cohorts to preserve headroom.',
+        },
+        {
+          id: 'ri2',
+          name: 'Response precision',
+          score: '88 / 100',
+          trend: '↔ steady',
+          signal: 'Playbook turnaround speed',
+          recommendation:
+            'Refresh scenario macros for LATAM desk and rotate automation QA pods through next drill cycle.',
+        },
+        {
+          id: 'ri3',
+          name: 'Escalation readiness',
+          score: '95 / 100',
+          trend: '↑ 1 pt',
+          signal: 'Founder hotline rehearsal',
+          recommendation:
+            'Lock next fusion war-room walkthrough with product, finance, and legal observers to maintain gold-standard alignment.',
         },
       ],
     },
@@ -1072,6 +1118,40 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    indices: {
+      title: 'Indices de résilience',
+      description:
+        'Des scores composites croisent la santé des signaux, la confiance des audiences et la préparation des playbooks pour détecter les dérives avant l’escalade.',
+      indices: [
+        {
+          id: 'ri1',
+          name: 'Stabilité réputationnelle',
+          score: '92 / 100',
+          trend: '↑ 3 pts semaine après semaine',
+          signal: 'Harmonie recherche & avis',
+          recommendation:
+            'Maintenir les sessions AMA fondatrices hebdomadaires et étendre les invitations advocacy aux cercles fidélité pour conserver la marge positive.',
+        },
+        {
+          id: 'ri2',
+          name: 'Précision de réponse',
+          score: '88 / 100',
+          trend: '↔ stable',
+          signal: 'Vitesse d’exécution des playbooks',
+          recommendation:
+            'Actualiser les macros de scénario pour le desk LATAM et faire tourner les pods QA automatisation lors du prochain cycle de drill.',
+        },
+        {
+          id: 'ri3',
+          name: 'Préparation à l’escalade',
+          score: '95 / 100',
+          trend: '↑ 1 pt',
+          signal: 'Répétition de la hotline fondateur',
+          recommendation:
+            'Bloquer la prochaine revue war room fusion avec produit, finance et juridique pour préserver l’alignement premium.',
+        },
+      ],
+    },
     briefings: {
       title: 'Briefings fondateurs',
       description:
@@ -1674,6 +1754,40 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           baseline: 'Riesgo base: 6,2 M$ expuestos',
           narrative:
             'Los retiros en marketplaces, keywords negativos y automatización de comunicaciones evitaron fugas de conversión.',
+        },
+      ],
+    },
+    indices: {
+      title: 'Índices de resiliencia',
+      description:
+        'Puntajes compuestos combinan la salud de señales, la confianza de la audiencia y la preparación de los playbooks para detectar derivas antes de que escalen.',
+      indices: [
+        {
+          id: 'ri1',
+          name: 'Estabilidad reputacional',
+          score: '92 / 100',
+          trend: '↑ 3 pts semana a semana',
+          signal: 'Armonía de búsqueda y reseñas',
+          recommendation:
+            'Mantener AMAs ejecutivas semanales y ampliar prompts de advocacy a cohortes de lealtad para sostener la ventaja.',
+        },
+        {
+          id: 'ri2',
+          name: 'Precisión de respuesta',
+          score: '88 / 100',
+          trend: '↔ estable',
+          signal: 'Velocidad de activación de playbooks',
+          recommendation:
+            'Actualizar macros de escenario para el desk LATAM y rotar los pods de QA de automatización en el próximo ciclo de drill.',
+        },
+        {
+          id: 'ri3',
+          name: 'Preparación de escalamiento',
+          score: '95 / 100',
+          trend: '↑ 1 pt',
+          signal: 'Ensayo de hotline de fundadores',
+          recommendation:
+            'Agendar el siguiente recorrido de war room de fusión con producto, finanzas y legal para conservar la alineación premium.',
         },
       ],
     },

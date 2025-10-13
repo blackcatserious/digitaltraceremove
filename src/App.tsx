@@ -5026,6 +5026,10 @@ const observatoryMetaLabels: Record<Language, {
   incident: string
   sla: string
   status: string
+  score: string
+  trend: string
+  signal: string
+  recommendation: string
 }> = {
   en: {
     cadence: 'Cadence',
@@ -5052,6 +5056,10 @@ const observatoryMetaLabels: Record<Language, {
     incident: 'Incident',
     sla: 'SLA',
     status: 'Status',
+    score: 'Score',
+    trend: 'Trend',
+    signal: 'Signal',
+    recommendation: 'Recommendation',
   },
   fr: {
     cadence: 'Cadence',
@@ -5078,6 +5086,10 @@ const observatoryMetaLabels: Record<Language, {
     incident: 'Incident',
     sla: 'SLA',
     status: 'Statut',
+    score: 'Score',
+    trend: 'Tendance',
+    signal: 'Signal',
+    recommendation: 'Recommandation',
   },
   es: {
     cadence: 'Cadencia',
@@ -5104,6 +5116,10 @@ const observatoryMetaLabels: Record<Language, {
     incident: 'Incidente',
     sla: 'SLA',
     status: 'Estado',
+    score: 'Puntuación',
+    trend: 'Tendencia',
+    signal: 'Señal',
+    recommendation: 'Recomendación',
   },
 }
 
@@ -5370,6 +5386,45 @@ const ObservatoryPage = () => {
               </div>
               <p className="observatory-card__summary">{metric.narrative}</p>
               <p className="observatory-card__note">{metric.baseline}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--indices"
+        aria-labelledby="observatory-indices-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-indices-heading">{copy.indices.title}</h2>
+            <p>{copy.indices.description}</p>
+          </div>
+        </div>
+        <div className="observatory__indices-grid">
+          {copy.indices.indices.map((resilienceIndex, index) => (
+            <article
+              key={resilienceIndex.id}
+              className="observatory-card observatory-card--index"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{resilienceIndex.name}</h3>
+              </header>
+              <div className="observatory-card__metric">
+                <span className="observatory-card__metric-value">{resilienceIndex.score}</span>
+                <span className="observatory-card__metric-delta">{resilienceIndex.trend}</span>
+              </div>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{labels.signal}</dt>
+                  <dd>{resilienceIndex.signal}</dd>
+                </div>
+                <div>
+                  <dt>{labels.recommendation}</dt>
+                  <dd>{resilienceIndex.recommendation}</dd>
+                </div>
+              </dl>
             </article>
           ))}
         </div>
