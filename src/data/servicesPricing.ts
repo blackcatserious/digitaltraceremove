@@ -196,6 +196,15 @@ export type ExecutiveIndicator = {
   context: string
 }
 
+export type AdvisoryExpert = {
+  id: string
+  name: string
+  title: string
+  coverage: string
+  focus: string
+  specializations: string[]
+}
+
 export type OnboardingStage = {
   id: string
   title: string
@@ -360,6 +369,15 @@ export type ServicesPricingCopy = {
     briefings: ExecutiveBriefing[]
     indicators: ExecutiveIndicator[]
     cta: {
+      label: string
+      description: string
+    }
+  }
+  advisory: {
+    title: string
+    subtitle: string
+    experts: AdvisoryExpert[]
+    contact: {
       label: string
       description: string
     }
@@ -1168,6 +1186,57 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         label: 'Book an executive preview',
         description:
           'Request a private walkthrough with Artur Ziganshin to see how our briefings keep leadership aligned during high velocity moments.',
+      },
+    },
+    advisory: {
+      title: 'Strategist advisory council on standby',
+      subtitle:
+        'Tap the operators who solve your hardest brand, growth, and trust challenges across English, French, and Spanish markets.',
+      experts: [
+        {
+          id: 'artur-ziganshin',
+          name: 'Artur Ziganshin',
+          title: 'Founder & CEO',
+          coverage: 'Global · English / French / Spanish',
+          focus:
+            'Leads every diagnostic and crisis choreography, shaping executive-ready narratives and governance with your leadership team.',
+          specializations: [
+            'High-stakes incident command and board alignment.',
+            'Go-to-market relaunch programs with motion storytelling.',
+            'Cross-border reputation recovery and brand architecture.',
+          ],
+        },
+        {
+          id: 'clara-martel',
+          name: 'Clara Martel',
+          title: 'Principal, Reputation Systems',
+          coverage: 'EMEA & North America',
+          focus:
+            'Architects monitoring fabrics, review authenticity programs, and concierge enablement rituals tailored to regulated industries.',
+          specializations: [
+            'Marketplace integrity sweeps and seller recovery.',
+            'CX and community operations choreography.',
+            'Legal, registrar, and platform escalation playbooks.',
+          ],
+        },
+        {
+          id: 'diego-santos',
+          name: 'Diego Santos',
+          title: 'Director, Growth Experiments',
+          coverage: 'LATAM & US',
+          focus:
+            'Pairs experimentation, paid media, and lifecycle automation with trust signals so revenue rebounds quickly after attacks.',
+          specializations: [
+            'Full-funnel experiment design and CRO.',
+            'Paid media firewalling and attribution modeling.',
+            'Localized storytelling and enablement in Spanish and English.',
+          ],
+        },
+      ],
+      contact: {
+        label: 'Meet the advisory team',
+        description:
+          'Share your brief and we will assemble the right mix of strategists for a chemistry session within 24 hours.',
       },
     },
     concierge: {
@@ -2399,6 +2468,57 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           'Demandez une session privée avec Artur Ziganshin afin de découvrir comment nos briefings maintiennent l’alignement en phase critique.',
       },
     },
+    advisory: {
+      title: 'Conseil stratégique mobilisable à la demande',
+      subtitle:
+        'Activez les opérateurs qui résolvent vos défis de marque, de croissance et de confiance sur les marchés anglophones, francophones et hispanophones.',
+      experts: [
+        {
+          id: 'artur-ziganshin',
+          name: 'Artur Ziganshin',
+          title: 'Fondateur & CEO',
+          coverage: 'Global · anglais / français / espagnol',
+          focus:
+            'Pilote chaque diagnostic et chorégraphie de crise, en façonnant avec vos dirigeants des narratifs exécutifs et des cadres de gouvernance.',
+          specializations: [
+            'Commandement d’incident critique et alignement board.',
+            'Relances go-to-market avec storytelling animé.',
+            'Reconstruction de réputation multi-pays et architecture de marque.',
+          ],
+        },
+        {
+          id: 'clara-martel',
+          name: 'Clara Martel',
+          title: 'Principal, systèmes de réputation',
+          coverage: 'EMEA & Amérique du Nord',
+          focus:
+            'Conçoit des tissus de monitoring, des programmes d’authenticité avis et des rituels concierge adaptés aux secteurs régulés.',
+          specializations: [
+            'Assainissement des marketplaces et récupération vendeurs.',
+            'Orchestration CX et communautés multilingues.',
+            'Playbooks d’escalade juridique, registrar et plateformes.',
+          ],
+        },
+        {
+          id: 'diego-santos',
+          name: 'Diego Santos',
+          title: 'Director, growth experiments',
+          coverage: 'LATAM & États-Unis',
+          focus:
+            'Couple expérimentation, paid media et automation lifecycle avec les signaux de confiance pour restaurer le revenu rapidement.',
+          specializations: [
+            'Design d’expériences full-funnel et CRO.',
+            'Pare-feu paid media et modélisation d’attribution.',
+            'Storytelling localisé et enablement en espagnol et anglais.',
+          ],
+        },
+      ],
+      contact: {
+        label: 'Rencontrer le conseil',
+        description:
+          'Partagez votre contexte : nous réunissons la bonne combinaison de stratèges pour une session de cadrage sous 24 heures.',
+      },
+    },
     concierge: {
       title: 'Conciergerie premium sur chaque palier',
       subtitle: 'Pilotage fondateur avec rituels proactifs pour que vous restiez toujours en avance sur les signaux.',
@@ -3626,6 +3746,57 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         label: 'Agenda un preview ejecutivo',
         description:
           'Solicitá una sesión privada con Artur Ziganshin y descubrí cómo los briefings sostienen la alineación en momentos de alta velocidad.',
+      },
+    },
+    advisory: {
+      title: 'Consejo estratégico disponible en segundos',
+      subtitle:
+        'Activa a los operadores que resuelven tus desafíos de marca, crecimiento y confianza en inglés, francés y español.',
+      experts: [
+        {
+          id: 'artur-ziganshin',
+          name: 'Artur Ziganshin',
+          title: 'Fundador & CEO',
+          coverage: 'Global · inglés / francés / español',
+          focus:
+            'Dirige cada diagnóstico y la coreografía de crisis, moldeando narrativas listas para directorio y gobernanza junto a tu liderazgo.',
+          specializations: [
+            'Comando de incidentes críticos y alineación con directorios.',
+            'Relanzamientos go-to-market con storytelling en motion.',
+            'Recuperación reputacional multi-país y arquitectura de marca.',
+          ],
+        },
+        {
+          id: 'clara-martel',
+          name: 'Clara Martel',
+          title: 'Principal, sistemas de reputación',
+          coverage: 'EMEA y Norteamérica',
+          focus:
+            'Diseña tejidos de monitoreo, programas de autenticidad de reseñas y rituales concierge para industrias reguladas.',
+          specializations: [
+            'Limpieza de marketplaces y recuperación de vendedores.',
+            'Orquestación de CX y comunidades multilingües.',
+            'Playbooks de escalación con legal, registradores y plataformas.',
+          ],
+        },
+        {
+          id: 'diego-santos',
+          name: 'Diego Santos',
+          title: 'Director, growth experiments',
+          coverage: 'LATAM y Estados Unidos',
+          focus:
+            'Combina experimentación, paid media y automatización lifecycle con señales de confianza para recuperar ingresos rápido.',
+          specializations: [
+            'Diseño de experimentos full-funnel y CRO.',
+            'Firewall de paid media y modelado de atribución.',
+            'Storytelling localizado y enablement en español e inglés.',
+          ],
+        },
+      ],
+      contact: {
+        label: 'Hablar con el consejo',
+        description:
+          'Contanos tus objetivos y armamos la mezcla correcta de estrategas para una sesión exploratoria en menos de 24 horas.',
       },
     },
     concierge: {

@@ -3516,6 +3516,42 @@ const ServicesPricingPage = () => {
         </div>
       </section>
 
+      <section className="services-pricing__advisory" aria-labelledby="services-pricing-advisory">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-advisory">{copy.advisory.title}</h2>
+          <p>{copy.advisory.subtitle}</p>
+        </div>
+        <div className="services-pricing__advisory-grid">
+          {copy.advisory.experts.map((expert, index) => (
+            <article
+              key={expert.id}
+              className="services-pricing__advisory-card"
+              style={{ animationDelay: `${index * 0.08}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{expert.name}</h3>
+                <span className="services-pricing__advisory-title">{expert.title}</span>
+              </header>
+              <p className="services-pricing__advisory-focus">{expert.focus}</p>
+              <div className="services-pricing__advisory-meta">
+                <span className="services-pricing__advisory-coverage">{expert.coverage}</span>
+              </div>
+              <ul>
+                {expert.specializations.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+          <aside className="services-pricing__advisory-cta" style={{ animationDelay: `${copy.advisory.experts.length * 0.08}s` } as CSSProperties}>
+            <p>{copy.advisory.contact.description}</p>
+            <Link className="button secondary" to={getContactPath(language)}>
+              {copy.advisory.contact.label}
+            </Link>
+          </aside>
+        </div>
+      </section>
+
       <section className="services-pricing__concierge" aria-labelledby="services-pricing-concierge">
         <div className="services-pricing__section-header">
           <h2 id="services-pricing-concierge">{copy.concierge.title}</h2>
