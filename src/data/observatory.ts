@@ -1,5 +1,11 @@
 import { type Language } from './pages'
 
+export type ObservatoryResourceTarget =
+  | 'resources'
+  | 'contact'
+  | 'servicesPricing'
+  | 'blog'
+
 export interface ObservatoryCopy {
   hero: {
     eyebrow: string
@@ -151,6 +157,19 @@ export interface ObservatoryCopy {
       trigger: string
       automation: string
       human: string
+    }[]
+  }
+  knowledgeBase: {
+    title: string
+    description: string
+    resources: {
+      id: string
+      name: string
+      format: string
+      length: string
+      summary: string
+      cta: string
+      target: ObservatoryResourceTarget
     }[]
   }
   casefiles: {
@@ -731,6 +750,43 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           trigger: 'Lookalike domains or spoofed messaging apps mimic leadership identities.',
           automation: 'Domains quarantined, DMARC tightened, and warning scripts pushed to partner channels.',
           human: 'Founder desk records a personalised alert and prioritises direct stakeholder outreach.',
+        },
+      ],
+    },
+    knowledgeBase: {
+      title: 'Founder intelligence knowledge base',
+      description:
+        'Your teams stay battle ready with founder-authored playbooks, broadcast templates, and rehearsal guides tuned to the latest observatory intelligence.',
+      resources: [
+        {
+          id: 'kb1',
+          name: 'Crisis intercept workspace',
+          format: 'Interactive Notion playbook',
+          length: '42 pages',
+          summary:
+            'Step-by-step intercept rituals, bilingual statement starters, and escalation macros refreshed weekly by the founder desk.',
+          cta: 'Open the playbook',
+          target: 'resources',
+        },
+        {
+          id: 'kb2',
+          name: 'Signal choreography workshop',
+          format: 'Video briefing + transcript',
+          length: '9-minute walkthrough',
+          summary:
+            'See how we fuse sentiment, search, and marketplace data into a single escalation narrative that boards can act on instantly.',
+          cta: 'Watch the briefing',
+          target: 'blog',
+        },
+        {
+          id: 'kb3',
+          name: 'Executive rehearsal huddle',
+          format: 'Founders-only live session',
+          length: '20-minute agenda',
+          summary:
+            'Book a private run-through with Artur Ziganshin to tailor observatory rituals, success metrics, and next-quarter response drills.',
+          cta: 'Book a consult',
+          target: 'contact',
         },
       ],
     },
@@ -1460,6 +1516,43 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    knowledgeBase: {
+      title: 'Base de connaissances pilotée par les fondateurs',
+      description:
+        'Playbooks, modèles d’annonces et guides de répétition rédigés par le founder desk pour garder vos équipes prêtes face aux signaux de l’observatoire.',
+      resources: [
+        {
+          id: 'kb1',
+          name: 'Espace d’interception de crise',
+          format: 'Playbook Notion interactif',
+          length: '42 pages',
+          summary:
+            'Rituels d’interception pas à pas, amorces de messages bilingues et macros d’escalade mises à jour chaque semaine par la cellule fondatrice.',
+          cta: 'Ouvrir le playbook',
+          target: 'resources',
+        },
+        {
+          id: 'kb2',
+          name: 'Atelier chorégraphie des signaux',
+          format: 'Briefing vidéo + transcription',
+          length: 'Parcours de 9 minutes',
+          summary:
+            'Comprenez comment nous fusionnons sentiment, search et marketplaces en une narration d’escalade que les conseils peuvent activer immédiatement.',
+          cta: 'Regarder le briefing',
+          target: 'blog',
+        },
+        {
+          id: 'kb3',
+          name: 'Session de répétition exécutive',
+          format: 'Session live réservée aux fondateurs',
+          length: 'Agenda de 20 minutes',
+          summary:
+            'Réservez un passage privé avec Artur Ziganshin pour adapter rituels, métriques de succès et drills du prochain trimestre.',
+          cta: 'Réserver une session',
+          target: 'contact',
+        },
+      ],
+    },
     casefiles: {
       title: 'Dossiers terrain en cours',
       description:
@@ -2185,6 +2278,43 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           trigger: 'Dominios lookalike o apps de mensajería spoofeadas imitan identidades de liderazgo.',
           automation: 'Pone en cuarentena dominios, refuerza DMARC y difunde scripts de alerta a partners.',
           human: 'La mesa del fundador graba una alerta personalizada y prioriza el contacto directo con stakeholders.',
+        },
+      ],
+    },
+    knowledgeBase: {
+      title: 'Base de conocimiento dirigida por fundadores',
+      description:
+        'Playbooks, plantillas de comunicación y guías de ensayo escritos por el founder desk para mantener a tus equipos listos ante las señales del observatorio.',
+      resources: [
+        {
+          id: 'kb1',
+          name: 'Espacio de interceptación de crisis',
+          format: 'Playbook interactivo en Notion',
+          length: '42 páginas',
+          summary:
+            'Rituales paso a paso, aperturas bilingües para mensajes y macros de escalación actualizadas cada semana por el founder desk.',
+          cta: 'Abrir el playbook',
+          target: 'resources',
+        },
+        {
+          id: 'kb2',
+          name: 'Taller de coreografía de señales',
+          format: 'Briefing en video + transcripción',
+          length: 'Recorrido de 9 minutos',
+          summary:
+            'Descubre cómo combinamos sentimiento, búsqueda y marketplaces en una narrativa de escalación que los directorios activan de inmediato.',
+          cta: 'Ver el briefing',
+          target: 'blog',
+        },
+        {
+          id: 'kb3',
+          name: 'Huddle de ensayo ejecutivo',
+          format: 'Sesión en vivo solo fundadores',
+          length: 'Agenda de 20 minutos',
+          summary:
+            'Agenda una sesión privada con Artur Ziganshin para ajustar rituales, métricas de éxito y simulacros del próximo trimestre.',
+          cta: 'Reservar consultoría',
+          target: 'contact',
         },
       ],
     },

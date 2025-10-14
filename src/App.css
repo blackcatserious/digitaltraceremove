@@ -14860,7 +14860,8 @@ a {
 .observatory__field-notes-grid,
 .observatory__intercepts-grid,
 .observatory__rhythms-grid,
-.observatory__escalation-grid {
+.observatory__escalation-grid,
+.observatory__knowledge-grid {
   display: grid;
   gap: clamp(1.2rem, 2.8vw, 1.8rem);
 }
@@ -14921,6 +14922,10 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
+.observatory__knowledge-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
 .observatory__casefiles-grid {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
@@ -14979,6 +14984,15 @@ a {
 .observatory-card--request::before {
   inset: -32% 54% auto -6%;
   background: radial-gradient(circle at center, rgba(45, 212, 191, 0.38), transparent 70%);
+}
+
+.observatory-card--resource {
+  border-color: rgba(14, 165, 233, 0.28);
+}
+
+.observatory-card--resource::before {
+  inset: -38% 58% auto -10%;
+  background: radial-gradient(circle at center, rgba(96, 165, 250, 0.38), transparent 72%);
 }
 
 .observatory-card--responder {
@@ -16795,7 +16809,8 @@ a {
   .observatory__casefiles-grid,
   .observatory__requests-grid,
   .observatory__field-notes-grid,
-  .observatory__escalation-grid {
+  .observatory__escalation-grid,
+  .observatory__knowledge-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 

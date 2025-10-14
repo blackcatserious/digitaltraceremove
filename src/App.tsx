@@ -39,7 +39,7 @@ import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
-import { observatoryCopy } from './data/observatory'
+import { observatoryCopy, type ObservatoryResourceTarget } from './data/observatory'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -127,6 +127,23 @@ const getCommandCenterPath = (language: Language) =>
 
 const getObservatoryPath = (language: Language) =>
   language === 'en' ? '/observatory' : `/${language}/observatory`
+
+const resolveObservatoryResourceHref = (
+  target: ObservatoryResourceTarget,
+  language: Language
+) => {
+  switch (target) {
+    case 'contact':
+      return getContactPath(language)
+    case 'servicesPricing':
+      return getServicesPricingPath(language)
+    case 'blog':
+      return getBlogBasePath(language)
+    case 'resources':
+    default:
+      return getResourcesPath(language)
+  }
+}
 
 const getAcademyPath = (language: Language) =>
   language === 'en' ? '/academy' : `/${language}/academy`
@@ -5032,6 +5049,8 @@ const observatoryMetaLabels: Record<Language, {
   trend: string
   signal: string
   recommendation: string
+  format: string
+  length: string
 }> = {
   en: {
     cadence: 'Cadence',
@@ -5064,6 +5083,8 @@ const observatoryMetaLabels: Record<Language, {
     trend: 'Trend',
     signal: 'Signal',
     recommendation: 'Recommendation',
+    format: 'Format',
+    length: 'Length',
   },
   fr: {
     cadence: 'Cadence',
@@ -5096,6 +5117,8 @@ const observatoryMetaLabels: Record<Language, {
     trend: 'Tendance',
     signal: 'Signal',
     recommendation: 'Recommandation',
+    format: 'Format',
+    length: 'Durée',
   },
   es: {
     cadence: 'Cadencia',
@@ -5128,6 +5151,8 @@ const observatoryMetaLabels: Record<Language, {
     trend: 'Tendencia',
     signal: 'Señal',
     recommendation: 'Recomendación',
+    format: 'Formato',
+    length: 'Duración',
   },
 }
 
@@ -5908,6 +5933,48 @@ const ObservatoryPage = () => {
           ))}
         </div>
         <p className="observatory__escalation-note">{copy.escalation.note}</p>
+      </section>
+
+      <section
+        className="observatory__section observatory__section--knowledge"
+        aria-labelledby="observatory-knowledge-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-knowledge-heading">{copy.knowledgeBase.title}</h2>
+            <p>{copy.knowledgeBase.description}</p>
+          </div>
+        </div>
+        <div className="observatory__knowledge-grid">
+          {copy.knowledgeBase.resources.map((resource, index) => {
+            const href = resolveObservatoryResourceHref(resource.target, language)
+            return (
+              <article
+                key={resource.id}
+                className="observatory-card observatory-card--resource"
+                style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+              >
+                <header>
+                  <h3>{resource.name}</h3>
+                </header>
+                <p className="observatory-card__summary">{resource.summary}</p>
+                <dl className="observatory-card__meta">
+                  <div>
+                    <dt>{labels.format}</dt>
+                    <dd>{resource.format}</dd>
+                  </div>
+                  <div>
+                    <dt>{labels.length}</dt>
+                    <dd>{resource.length}</dd>
+                  </div>
+                </dl>
+                <Link className="button ghost observatory-card__action" to={href}>
+                  {resource.cta}
+                </Link>
+              </article>
+            )
+          })}
+        </div>
       </section>
 
       <section className="observatory__cta" aria-labelledby="observatory-cta-heading">
