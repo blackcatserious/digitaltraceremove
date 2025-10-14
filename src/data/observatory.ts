@@ -164,6 +164,26 @@ export interface ObservatoryCopy {
       owner: string
     }[]
   }
+  fieldNotes: {
+    title: string
+    description: string
+    regionLabel: string
+    windowLabel: string
+    ownerLabel: string
+    observationLabel: string
+    actionLabel: string
+    followUpLabel: string
+    notes: {
+      id: string
+      headline: string
+      region: string
+      window: string
+      owner: string
+      observation: string
+      action: string
+      followUp: string
+    }[]
+  }
   intercepts: {
     title: string
     description: string
@@ -730,6 +750,58 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           summary:
             'Preparing reputation trendlines and next-quarter risk projections for the audit and risk committee.',
           owner: 'Artur Ziganshin · Founder desk',
+        },
+      ],
+    },
+    fieldNotes: {
+      title: 'Analyst field notes',
+      description:
+        'Live dispatches from the observatory floor capturing nuance that dashboards alone can miss — the texture behind the signals.',
+      regionLabel: 'Region',
+      windowLabel: 'Observation window',
+      ownerLabel: 'Observer',
+      observationLabel: 'What we\'re seeing',
+      actionLabel: 'Action taken',
+      followUpLabel: 'Next follow-up',
+      notes: [
+        {
+          id: 'fn1',
+          headline: 'Creator sting neutralised before escalation',
+          region: 'North America · DTC',
+          window: '04:00 – 07:00 ET',
+          owner: 'Diego Santos',
+          observation:
+            'Influencer Discord servers circulating a falsified “exposé” deck seeded by a disgruntled ex-agency partner.',
+          action:
+            'Issued a quiet truth set with receipts to trusted creators, triggered marketplace watchlists, and prepped executive talking points.',
+          followUp:
+            'Schedule a live town hall with our top 20 creators and push refreshed guardrails into the affiliate kit within 24 hours.',
+        },
+        {
+          id: 'fn2',
+          headline: 'Marketplace whisper campaign diffused',
+          region: 'EMEA · Luxury',
+          window: '09:30 – 11:00 CET',
+          owner: 'Clara Martel',
+          observation:
+            'WhatsApp voice notes hinting at a supposed quality recall were traced to a reseller syndicate trying to undercut flagship pricing.',
+          action:
+            'Captured forensic audio, escalated takedowns, and armed client concierges with personalised reassurances in French, English, and Arabic.',
+          followUp:
+            'Deploy undercover buys to confirm stock authenticity claims and review loyalty churn metrics during the next sunrise triage.',
+        },
+        {
+          id: 'fn3',
+          headline: 'Regional banking rumour contained',
+          region: 'LATAM · Financial services',
+          window: '18:00 – 20:00 BRT',
+          owner: 'Artur Ziganshin',
+          observation:
+            'Coordinated Reddit threads alleging insolvency picked up traction among fintech founders and venture groups.',
+          action:
+            'Activated the founder bridge, published liquidity proof points, and synchronised with regulators and payment partners before market open.',
+          followUp:
+            'Maintain hourly monitoring overnight and prepare an executive Q&A pack for next-morning investor calls.',
         },
       ],
     },
@@ -1370,6 +1442,58 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
         },
       ],
     },
+    fieldNotes: {
+      title: 'Notes terrain des analystes',
+      description:
+        'Des dépêches brutes depuis la salle d’observation qui capturent les nuances humaines derrière nos signaux automatisés.',
+      regionLabel: 'Région',
+      windowLabel: 'Fenêtre d’observation',
+      ownerLabel: 'Observateur',
+      observationLabel: 'Ce que nous constatons',
+      actionLabel: 'Action engagée',
+      followUpLabel: 'Suite prévue',
+      notes: [
+        {
+          id: 'fn1',
+          headline: 'Manœuvre créateur désamorcée à temps',
+          region: 'Amérique du Nord · DNVB',
+          window: '04 h 00 – 07 h 00 ET',
+          owner: 'Diego Santos',
+          observation:
+            'Serveurs Discord d’influenceurs diffusant un faux dossier “révélations” semé par un ancien partenaire agence.',
+          action:
+            'Partage des preuves aux créateurs de confiance, déclenchement des watchlists marketplace et préparation de points de langage exécutifs.',
+          followUp:
+            'Organiser un town hall avec le top 20 créateurs et mettre à jour le kit affiliés sous 24 h.',
+        },
+        {
+          id: 'fn2',
+          headline: 'Campagne de rumeurs marketplace neutralisée',
+          region: 'EMEA · Luxe',
+          window: '09 h 30 – 11 h 00 CET',
+          owner: 'Clara Martel',
+          observation:
+            'Notes vocales WhatsApp laissant entendre un rappel qualité, traquées jusqu’à un réseau de revendeurs opportunistes.',
+          action:
+            'Collecte audio médico-légale, demandes de retrait, et script de réassurance personnalisé FR/EN/AR pour les concierges clients.',
+          followUp:
+            'Effectuer des achats mystère pour valider l’authenticité et surveiller la fidélité lors du prochain triage matinal.',
+        },
+        {
+          id: 'fn3',
+          headline: 'Rumeur bancaire régionale contenue',
+          region: 'LATAM · Services financiers',
+          window: '18 h 00 – 20 h 00 BRT',
+          owner: 'Artur Ziganshin',
+          observation:
+            'Threads Reddit coordonnés évoquant une insolvabilité, relayés par fondateurs fintech et fonds de capital-risque.',
+          action:
+            'Activation du pont fondateur, publication de preuves de liquidité et synchronisation avec régulateurs et partenaires de paiement avant l’ouverture des marchés.',
+          followUp:
+            'Maintenir une veille horaire nocturne et préparer une FAQ exécutive pour les investisseurs du lendemain matin.',
+        },
+      ],
+    },
     intercepts: {
       title: 'Journal des interceptions critiques',
       description:
@@ -2006,6 +2130,58 @@ export const observatoryCopy: Record<Language, ObservatoryCopy> = {
           summary:
             'Preparamos tendencias de reputación y proyecciones de riesgo para el comité de auditoría y riesgos.',
           owner: 'Artur Ziganshin · Mesa del fundador',
+        },
+      ],
+    },
+    fieldNotes: {
+      title: 'Bitácora de campo de analistas',
+      description:
+        'Despachos en vivo desde el observatorio que documentan la textura humana detrás de los tableros: qué ocurre, quién lo lidera y cómo se sostiene la respuesta.',
+      regionLabel: 'Región',
+      windowLabel: 'Ventana de observación',
+      ownerLabel: 'Observador',
+      observationLabel: 'Qué vemos',
+      actionLabel: 'Acción ejecutada',
+      followUpLabel: 'Próximo seguimiento',
+      notes: [
+        {
+          id: 'fn1',
+          headline: 'Emboscada de creadores desactivada',
+          region: 'Norteamérica · DTC',
+          window: '04:00 – 07:00 ET',
+          owner: 'Diego Santos',
+          observation:
+            'Servidores de Discord de influencers compartiendo un supuesto dossier filtrado sembrado por un ex socio de agencia.',
+          action:
+            'Distribuimos el set de hechos a creadores aliados, activamos alertas en marketplaces y preparamos líneas ejecutivas.',
+          followUp:
+            'Realizar town hall con los 20 creadores clave y actualizar el kit de afiliados en menos de 24 horas.',
+        },
+        {
+          id: 'fn2',
+          headline: 'Campaña de susurros en marketplaces contenida',
+          region: 'EMEA · Lujo',
+          window: '09:30 – 11:00 CET',
+          owner: 'Clara Martel',
+          observation:
+            'Notas de voz en WhatsApp insinuando un retiro de calidad, originadas en un sindicato de revendedores.',
+          action:
+            'Se documentó audio forense, se cursaron retiros y se equipó a los concierges con mensajes de tranquilidad en francés, inglés y árabe.',
+          followUp:
+            'Ejecutar compras encubiertas para validar inventario y revisar churn de fidelidad en el próximo triage matutino.',
+        },
+        {
+          id: 'fn3',
+          headline: 'Rumor bancario regional bajo control',
+          region: 'LATAM · Servicios financieros',
+          window: '18:00 – 20:00 BRT',
+          owner: 'Artur Ziganshin',
+          observation:
+            'Hilos coordinados en Reddit insinuando insolvencia que empezaban a permear entre founders fintech e inversores.',
+          action:
+            'Se activó el puente fundador, se publicaron pruebas de liquidez y se coordinó con reguladores y partners de pago antes de la apertura.',
+          followUp:
+            'Mantener monitoreo horario nocturno y preparar paquete de Q&A ejecutivo para llamadas con inversores al amanecer.',
         },
       ],
     },

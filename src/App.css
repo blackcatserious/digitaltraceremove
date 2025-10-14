@@ -14856,6 +14856,7 @@ a {
 .observatory__automations-grid,
 .observatory__casefiles-grid,
 .observatory__requests-grid,
+.observatory__field-notes-grid,
 .observatory__intercepts-grid,
 .observatory__rhythms-grid,
 .observatory__escalation-grid {
@@ -14923,6 +14924,10 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.observatory__field-notes-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
 .observatory__intercepts-grid {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
@@ -14971,6 +14976,15 @@ a {
   background: radial-gradient(circle at center, rgba(45, 212, 191, 0.38), transparent 70%);
 }
 
+.observatory-card--field-note {
+  border-color: rgba(129, 140, 248, 0.28);
+}
+
+.observatory-card--field-note::before {
+  inset: -28% 58% auto -12%;
+  background: radial-gradient(circle at center, rgba(165, 180, 252, 0.35), transparent 70%);
+}
+
 .observatory-card header {
   position: relative;
   z-index: 1;
@@ -15015,6 +15029,16 @@ a {
 .observatory-card__summary {
   font-size: 0.95rem;
   color: rgba(226, 232, 240, 0.86);
+}
+
+.observatory-card--field-note strong {
+  display: block;
+  font-family: 'Suisse Intl', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.78);
+  margin-bottom: 0.3rem;
 }
 
 .observatory-card__insight {
@@ -16752,6 +16776,7 @@ a {
   .observatory__automations-grid,
   .observatory__casefiles-grid,
   .observatory__requests-grid,
+  .observatory__field-notes-grid,
   .observatory__escalation-grid {
     grid-template-columns: minmax(0, 1fr);
   }

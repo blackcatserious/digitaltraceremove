@@ -5702,6 +5702,54 @@ const ObservatoryPage = () => {
       </section>
 
       <section
+        className="observatory__section observatory__section--field-notes"
+        aria-labelledby="observatory-field-notes-heading"
+      >
+        <div className="observatory__section-header">
+          <div>
+            <h2 id="observatory-field-notes-heading">{copy.fieldNotes.title}</h2>
+            <p>{copy.fieldNotes.description}</p>
+          </div>
+        </div>
+        <div className="observatory__field-notes-grid">
+          {copy.fieldNotes.notes.map((note, index) => (
+            <article
+              key={note.id}
+              className="observatory-card observatory-card--field-note"
+              style={{ animationDelay: `${index * 0.12}s` } as CSSProperties}
+            >
+              <header>
+                <h3>{note.headline}</h3>
+              </header>
+              <dl className="observatory-card__meta">
+                <div>
+                  <dt>{copy.fieldNotes.regionLabel}</dt>
+                  <dd>{note.region}</dd>
+                </div>
+                <div>
+                  <dt>{copy.fieldNotes.windowLabel}</dt>
+                  <dd>{note.window}</dd>
+                </div>
+                <div>
+                  <dt>{copy.fieldNotes.ownerLabel}</dt>
+                  <dd>{note.owner}</dd>
+                </div>
+              </dl>
+              <p className="observatory-card__summary">
+                <strong>{copy.fieldNotes.observationLabel}</strong> {note.observation}
+              </p>
+              <p className="observatory-card__insight">
+                <strong>{copy.fieldNotes.actionLabel}</strong> {note.action}
+              </p>
+              <p className="observatory-card__note">
+                <strong>{copy.fieldNotes.followUpLabel}</strong> {note.followUp}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
         className="observatory__section observatory__section--intercepts"
         aria-labelledby="observatory-intercepts-heading"
       >
