@@ -9712,11 +9712,33 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   )
 }
 
+const GOOGLE_ADS_ID = 'AW-17638437186'
+
+const GoogleAdsTracker = () => {
+  const location = useLocation()
+  const { pathname, search, hash } = location
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+      return
+    }
+
+    const pagePath = `${pathname}${search}${hash}`
+
+    window.gtag('config', GOOGLE_ADS_ID, {
+      page_path: pagePath,
+    })
+  }, [hash, pathname, search])
+
+  return null
+}
+
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const currentLanguage = useCurrentLanguage()
 
   return (
     <div className="app-layout">
+      <GoogleAdsTracker />
       <div className="app-visuals" aria-hidden="true">
         <span className="app-visual app-visual--one" />
         <span className="app-visual app-visual--two" />
