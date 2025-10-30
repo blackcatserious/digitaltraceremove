@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=/" />
+    <title>Redirecting…</title>
+    <script>
+      (function () {
+        try {
+          var path = window.location.pathname + window.location.search + window.location.hash
+          sessionStorage.setItem('vite-spa-fallback', path)
+        } catch (error) {
+          console.error('Failed to persist SPA fallback path', error)
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p>Redirecting…</p>
+    </noscript>
+  </body>
+</html>
