@@ -3,7 +3,7 @@ import './App.css'
 
 const MAPS_API_KEY = 'YOUR_API_KEY_HERE'
 
-const CONFIGURATION = {
+export const CONFIGURATION = {
   locations: [
     {
       title: 'Escondido Grill',
@@ -160,13 +160,11 @@ function App() {
 
     const configureLocator = async () => {
       await customElements.whenDefined('gmpx-store-locator')
-      const locator = document.querySelector('gmpx-store-locator') as
-        | HTMLElement
-        | null
+      const locator = document.querySelector(
+        'gmpx-store-locator',
+      ) as GmpxStoreLocatorElement | null
       if (locator) {
-        ;(locator as { configureFromQuickBuilder: (config: typeof CONFIGURATION) => void }).configureFromQuickBuilder(
-          CONFIGURATION,
-        )
+        locator.configureFromQuickBuilder(CONFIGURATION)
       }
     }
 
