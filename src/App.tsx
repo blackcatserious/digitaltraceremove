@@ -455,17 +455,14 @@ const navCopy: Record<
 const InsightShowcase = ({ variant = 'default' }: { variant?: 'default' | 'case' }) => {
   const language = useCurrentLanguage()
   const copy = insightDashboards[language]
+  const fallbackPanel = { id: '', title: '', metricDelta: '', trend: [] as number[] }
   const [activeId, setActiveId] = useState(() => copy.panels[0]?.id ?? '')
 
   useEffect(() => {
     setActiveId(copy.panels[0]?.id ?? '')
   }, [copy])
 
-  if (!copy.panels.length) {
-    return null
-  }
-
-  const activePanel = copy.panels.find((panel) => panel.id === activeId) ?? copy.panels[0]
+  const activePanel = copy.panels.find((panel) => panel.id === activeId) ?? copy.panels[0] ?? fallbackPanel
 
   const linePoints = useMemo(() => {
     if (activePanel.trend.length <= 1) {
@@ -483,6 +480,10 @@ const InsightShowcase = ({ variant = 'default' }: { variant?: 'default' | 'case'
       })
       .join(' ')
   }, [activePanel])
+
+  if (!copy.panels.length) {
+    return null
+  }
 
   return (
     <section className={`insight-showcase${variant === 'case' ? ' insight-showcase--case' : ''}`}>
@@ -6630,43 +6631,46 @@ const BlogPage = ({ language }: { language: Language }) => {
 const BlogArticlePage = ({ language }: { language: Language }) => {
   const { slug } = useParams<{ slug: string }>()
   const copy = blogArticleCopy[language]
+  const resolvedSlug = slug ?? ''
+  const article = useMemo(
+    () => blogArticles.find((item) => item.slug === resolvedSlug),
+    [resolvedSlug]
+  )
+  const emptyTranslation: BlogArticleTranslation = {
+    title: '',
+    summary: '',
+    topicLabel: '',
+    heroKicker: '',
+    readTime: '',
+    seoTitle: '',
+    seoDescription: '',
+    author: '',
+    heroAlt: '',
+    body: [],
+  }
+  const translation = article?.translations[language]
+  const resolvedTranslation = translation ?? emptyTranslation
+  const articlePath = article ? getBlogArticlePath(language, article.slug) : getBlogBasePath(language)
   const [shareUrl, setShareUrl] = useState('')
   const [copied, setCopied] = useState(false)
   const [readingProgress, setReadingProgress] = useState(0)
   const bodyRef = useRef<HTMLDivElement | null>(null)
 
-  if (!slug) {
-    return <NotFound />
-  }
-
-  const article = blogArticles.find((item) => item.slug === slug)
-
-  if (!article) {
-    return <NotFound />
-  }
-
-  const translation = article.translations[language]
-  const articlePath = getBlogArticlePath(language, article.slug)
-
-  if (!translation) {
-    return <NotFound />
-  }
-
-  const authorProfile = authorProfiles[article.authorId]
-  const authorHeadingId = `${slug}-author`
+  const authorProfile = article ? authorProfiles[article.authorId] : undefined
+  const authorHeadingId = `${resolvedSlug}-author`
   const authorBioParagraphs = authorProfile ? authorProfile.bio[language] : []
   const authorFocusItems = authorProfile ? authorProfile.focusAreas[language] : []
 
   const sections = useMemo(
     () =>
-      translation.body.map((section, index) => {
+      resolvedTranslation.body.map((section, index) => {
         const base = section.heading ? slugifyHeading(section.heading) : `section-${index + 1}`
         return {
           ...section,
-          id: `${slug}-${base}`,
+          id: `${resolvedSlug}-${base}`,
         }
       }),
-    [slug, translation.body]
+    [resolvedSlug, resolvedTranslation.body]
   )
 
   const tocSections = useMemo(() => sections.filter((section) => Boolean(section.heading)), [sections])
@@ -6675,6 +6679,9 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   const activeSectionRef = useRef(defaultActiveSection)
 
   const relatedArticles = useMemo(() => {
+    if (!article) {
+      return []
+    }
     const ranked = blogArticles
       .filter((item) => item.slug !== article.slug)
       .map((item) => {
@@ -6713,9 +6720,9 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
       seen.add(item.slug)
       return true
     })
-  }, [article.slug, article.topic, language])
+  }, [article, language])
 
-  const formattedDate = formatLocaleDate(language, article.publishedAt)
+  const formattedDate = article ? formatLocaleDate(language, article.publishedAt) : ''
 
   useEffect(() => {
     setActiveSection(defaultActiveSection)
@@ -6830,6 +6837,10 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
       window.removeEventListener('resize', requestUpdate)
     }
   }, [sections])
+
+  if (!slug || !article || !translation) {
+    return <NotFound />
+  }
 
   const handleCopyLink = () => {
     if (!shareUrl) {
