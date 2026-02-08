@@ -1,4 +1,4 @@
-export type Language = 'en' | 'fr' | 'es'
+export type Language = 'en' | 'fr' | 'es' | 'ru'
 
 export interface ServicePackage {
   name: string
@@ -78,12 +78,14 @@ interface LocalizedString {
   en: string
   fr: string
   es: string
+  ru?: string
 }
 
 interface LocalizedList {
   en: string[]
   fr: string[]
   es: string[]
+  ru?: string[]
 }
 
 interface ServiceConfig {
@@ -111,9 +113,18 @@ const locales: Record<Language, string> = {
   en: 'en-US',
   fr: 'fr-FR',
   es: 'es-ES',
+  ru: 'ru-RU',
 }
 
-const translations: Record<Language, Record<string, string>> = {
+export const withRussianFallback = <T>(data: Record<'en' | 'fr' | 'es', T>, ru?: T): Record<Language, T> => ({
+  ...data,
+  ru: ru ?? data.en,
+})
+
+const getLocalized = <T>(value: { en: T; fr: T; es: T; ru?: T }, language: Language): T =>
+  value[language] ?? value.en
+
+const translations: Record<Language, Record<string, string>> = withRussianFallback({
   en: {
     agencyName: 'Traceremove Digital Agency',
     discover: 'Discovery & Insight',
@@ -282,7 +293,7 @@ const translations: Record<Language, Record<string, string>> = {
     processDescription4:
       'Iteramos a partir de los aprendizajes de experimentos, afinando mensajes, audiencias e integraciones.',
   },
-}
+})
 
 const serviceConfigs: ServiceConfig[] = [
   {
@@ -1019,8 +1030,8 @@ const buildPage = (
   index: number,
 ): ServicePageContent => {
   const t = translations[language]
-  const serviceName = service.names[language]
-  const industryName = industry.names[language]
+  const serviceName = getLocalized(service.names, language)
+  const industryName = getLocalized(industry.names, language)
   const id = `${service.key}-${industry.key}-${language}-${index}`
   const slug = `${service.key}-${industry.key}`
   const path = `/${language}/${slug}`
@@ -1044,37 +1055,37 @@ const buildPage = (
 
   const overview = [
     sentence(
-      `${service.summary[language]} ${industry.challenge[language]}`,
+      `${getLocalized(service.summary, language)} ${getLocalized(industry.challenge, language)}`,
     ),
     sentence(
-      `${service.promise[language]} ${industry.nuance[language]}`,
+      `${getLocalized(service.promise, language)} ${getLocalized(industry.nuance, language)}`,
     ),
-    sentence(`${industry.audience[language]} ${service.proof[language]}`),
+    sentence(`${getLocalized(industry.audience, language)} ${getLocalized(service.proof, language)}`),
   ]
 
   const serviceHighlights = [
-    sentence(`${t.highlightService}: ${service.summary[language]}`),
-    sentence(`${t.highlightChallenge}: ${industry.challenge[language]}`),
-    sentence(`${t.highlightAcceleration}: ${industry.accelerators[language][0]}`),
-    sentence(`${t.highlightEnablement}: ${industry.accelerators[language][1]}`),
-    sentence(`${t.highlightMomentum}: ${industry.accelerators[language][2]}`),
+    sentence(`${t.highlightService}: ${getLocalized(service.summary, language)}`),
+    sentence(`${t.highlightChallenge}: ${getLocalized(industry.challenge, language)}`),
+    sentence(`${t.highlightAcceleration}: ${getLocalized(industry.accelerators, language)[0]}`),
+    sentence(`${t.highlightEnablement}: ${getLocalized(industry.accelerators, language)[1]}`),
+    sentence(`${t.highlightMomentum}: ${getLocalized(industry.accelerators, language)[2]}`),
   ]
 
   const basePrice = service.basePrice * industry.multiplier
-  const starterDeliverables = service.deliverables[language]
+  const starterDeliverables = getLocalized(service.deliverables, language)
     .slice(0, 3)
-    .concat(industry.accelerators[language][0])
+    .concat(getLocalized(industry.accelerators, language)[0])
 
-  const growthDeliverables = service.deliverables[language]
+  const growthDeliverables = getLocalized(service.deliverables, language)
     .slice(0, 4)
-    .concat(industry.accelerators[language][1])
-  const additionalGrowthItem = service.deliverables[language][4]
+    .concat(getLocalized(industry.accelerators, language)[1])
+  const additionalGrowthItem = getLocalized(service.deliverables, language)[4]
   if (additionalGrowthItem) {
     growthDeliverables.push(additionalGrowthItem)
   }
 
-  const scaleDeliverables = service.deliverables[language]
-    .concat(industry.accelerators[language][2])
+  const scaleDeliverables = getLocalized(service.deliverables, language)
+    .concat(getLocalized(industry.accelerators, language)[2])
     .filter(Boolean)
 
   const packages = [
@@ -1124,25 +1135,25 @@ const buildPage = (
     },
   ]
 
-  const metrics = service.metrics[language]
+  const metrics = getLocalized(service.metrics, language)
 
   const faq: FaqItem[] = [
     {
       question: t.faq1q,
       answer: sentence(
-        `${t.faq1aIntro} ${industry.accelerators[language][0]} ${serviceName}.`,
+        `${t.faq1aIntro} ${getLocalized(industry.accelerators, language)[0]} ${serviceName}.`,
       ),
     },
     {
       question: t.faq2q,
       answer: sentence(
-        `${t.faq2aIntro} ${service.metrics[language][0]} and ${service.metrics[language][1]} stay front and center.`,
+        `${t.faq2aIntro} ${getLocalized(service.metrics, language)[0]} and ${getLocalized(service.metrics, language)[1]} stay front and center.`,
       ),
     },
     {
       question: t.faq3q,
       answer: sentence(
-        `${t.faq3aIntro} ${industry.accelerators[language][2]} extends coverage as priorities evolve.`,
+        `${t.faq3aIntro} ${getLocalized(industry.accelerators, language)[2]} extends coverage as priorities evolve.`,
       ),
     },
   ]
@@ -1161,7 +1172,7 @@ const buildPage = (
     ),
     impact: sentence(
       replaceTokens(t.caseStudyImpact, {
-        result: service.metrics[language][2],
+        result: getLocalized(service.metrics, language)[2],
       }),
     ),
   }
@@ -1225,12 +1236,13 @@ serviceConfigs.forEach((service, serviceIndex) => {
 
 export const servicePages: ServicePageContent[] = pagesUntrimmed
 
-export const languages: Language[] = ['en', 'fr', 'es']
+export const languages: Language[] = ['en', 'fr', 'es', 'ru']
 
 export const languageLabels: Record<Language, string> = {
   en: 'English',
   fr: 'Français',
   es: 'Español',
+  ru: 'Русский',
 }
 
 export const interfaceCopy: Record<
@@ -1251,58 +1263,76 @@ export const interfaceCopy: Record<
     services: string
     noMatches: string
   }
-> = {
-  en: {
+> = withRussianFallback(
+  {
+    en: {
+      overview: translations.en.overviewLabel,
+      highlights: translations.en.highlightsLabel,
+      packages: 'Packages & Pricing',
+      differentiators: translations.en.differentiatorsLabel,
+      process: translations.en.processLabel,
+      metrics: translations.en.metricsLabel,
+      caseStudy: 'Case Study Snapshot',
+      faq: translations.en.faqLabel,
+      contactHeading: 'Let’s collaborate',
+      searchPlaceholder: 'Search services',
+      searchResults: 'Search results',
+      languages: 'Languages',
+      services: 'Services',
+      noMatches: 'No matches yet',
+    },
+    fr: {
+      overview: translations.fr.overviewLabel,
+      highlights: translations.fr.highlightsLabel,
+      packages: 'Offres & tarifs',
+      differentiators: translations.fr.differentiatorsLabel,
+      process: translations.fr.processLabel,
+      metrics: translations.fr.metricsLabel,
+      caseStudy: 'Cas client',
+      faq: translations.fr.faqLabel,
+      contactHeading: 'Co-créons votre prochaine étape',
+      searchPlaceholder: 'Rechercher un service',
+      searchResults: 'Résultats de recherche',
+      languages: 'Langues',
+      services: 'Services',
+      noMatches: 'Aucun résultat',
+    },
+    es: {
+      overview: translations.es.overviewLabel,
+      highlights: translations.es.highlightsLabel,
+      packages: 'Planes y tarifas',
+      differentiators: translations.es.differentiatorsLabel,
+      process: translations.es.processLabel,
+      metrics: translations.es.metricsLabel,
+      caseStudy: 'Caso destacado',
+      faq: translations.es.faqLabel,
+      contactHeading: 'Construyamos juntos',
+      searchPlaceholder: 'Buscar servicios',
+      searchResults: 'Resultados de búsqueda',
+      languages: 'Idiomas',
+      services: 'Servicios',
+      noMatches: 'Sin coincidencias',
+    },
+  },
+  {
     overview: translations.en.overviewLabel,
     highlights: translations.en.highlightsLabel,
-    packages: 'Packages & Pricing',
+    packages: 'Пакеты и цены',
     differentiators: translations.en.differentiatorsLabel,
     process: translations.en.processLabel,
     metrics: translations.en.metricsLabel,
-    caseStudy: 'Case Study Snapshot',
+    caseStudy: 'Кейс',
     faq: translations.en.faqLabel,
-    contactHeading: 'Let’s collaborate',
-    searchPlaceholder: 'Search services',
-    searchResults: 'Search results',
-    languages: 'Languages',
-    services: 'Services',
-    noMatches: 'No matches yet',
-  },
-  fr: {
-    overview: translations.fr.overviewLabel,
-    highlights: translations.fr.highlightsLabel,
-    packages: 'Offres & tarifs',
-    differentiators: translations.fr.differentiatorsLabel,
-    process: translations.fr.processLabel,
-    metrics: translations.fr.metricsLabel,
-    caseStudy: 'Cas client',
-    faq: translations.fr.faqLabel,
-    contactHeading: 'Co-créons votre prochaine étape',
-    searchPlaceholder: 'Rechercher un service',
-    searchResults: 'Résultats de recherche',
-    languages: 'Langues',
-    services: 'Services',
-    noMatches: 'Aucun résultat',
-  },
-  es: {
-    overview: translations.es.overviewLabel,
-    highlights: translations.es.highlightsLabel,
-    packages: 'Planes y tarifas',
-    differentiators: translations.es.differentiatorsLabel,
-    process: translations.es.processLabel,
-    metrics: translations.es.metricsLabel,
-    caseStudy: 'Caso destacado',
-    faq: translations.es.faqLabel,
-    contactHeading: 'Construyamos juntos',
-    searchPlaceholder: 'Buscar servicios',
-    searchResults: 'Resultados de búsqueda',
-    languages: 'Idiomas',
-    services: 'Servicios',
-    noMatches: 'Sin coincidencias',
-  },
-}
+    contactHeading: 'Давайте работать вместе',
+    searchPlaceholder: 'Поиск услуг',
+    searchResults: 'Результаты поиска',
+    languages: 'Языки',
+    services: 'Сервисы',
+    noMatches: 'Совпадений нет',
+  }
+)
 
-export const insightDashboards: Record<Language, InsightDashboardContent> = {
+export const insightDashboards: Record<Language, InsightDashboardContent> = withRussianFallback({
   en: {
     eyebrow: 'Realtime insight stacks',
     heading: 'Visualize your brand defense velocity',
@@ -1448,5 +1478,4 @@ export const insightDashboards: Record<Language, InsightDashboardContent> = {
       },
     ],
   },
-}
-
+})

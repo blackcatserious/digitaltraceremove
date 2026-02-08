@@ -1,5 +1,5 @@
 import { defaultAuthorId, type AuthorId } from './authors'
-import { type Language } from './pages'
+import { type Language, withRussianFallback } from './pages'
 
 export type BlogTopic = 'orm' | 'ai' | 'cybersecurity' | 'seo' | 'web-design'
 
@@ -35,6 +35,7 @@ interface MultilingualText {
   en: string
   fr: string
   es: string
+  ru: string
 }
 
 interface BodySeed {
@@ -67,7 +68,7 @@ interface ArticleSeed {
   authorId?: AuthorId
 }
 
-const t = (en: string, fr: string, es: string): MultilingualText => ({ en, fr, es })
+const t = (en: string, fr: string, es: string, ru: string = en): MultilingualText => ({ en, fr, es, ru })
 
 const defaultAuthor = t(
   'Artur Ziganshin — Founder & CEO',
@@ -108,6 +109,8 @@ const formatReadTime = (language: Language, minutes: number): string => {
       return `Lecture de ${minutes} min`
     case 'es':
       return `Lectura de ${minutes} min`
+    case 'ru':
+      return `Чтение ${minutes} мин`
     default:
       return `${minutes} min read`
   }
@@ -115,7 +118,7 @@ const formatReadTime = (language: Language, minutes: number): string => {
 
 export const blogTopics: BlogTopic[] = ['orm', 'ai', 'cybersecurity', 'seo', 'web-design']
 
-export const blogTopicLabels: Record<Language, Record<BlogTopic, string>> = {
+export const blogTopicLabels: Record<Language, Record<BlogTopic, string>> = withRussianFallback({
   en: {
     orm: 'Online Reputation Management',
     ai: 'Artificial Intelligence',
@@ -137,7 +140,7 @@ export const blogTopicLabels: Record<Language, Record<BlogTopic, string>> = {
     seo: 'Posicionamiento en buscadores',
     'web-design': 'Diseño web',
   },
-}
+})
 
 const buildEnglishBody = (seed: BodySeed): BlogArticleSection[] => [
   {
@@ -290,6 +293,85 @@ const buildTranslation = (
     body,
   }
 }
+
+const parseMarkdownFrontmatter = (raw: string) => {
+  if (!raw.startsWith('---')) {
+    return { frontmatter: {}, body: raw }
+  }
+  const endIndex = raw.indexOf('---', 3)
+  if (endIndex === -1) {
+    return { frontmatter: {}, body: raw }
+  }
+  const frontmatterBlock = raw.slice(3, endIndex).trim()
+  const body = raw.slice(endIndex + 3).trim()
+  const frontmatter: Record<string, string> = {}
+  frontmatterBlock.split('\n').forEach((line) => {
+    const [key, ...rest] = line.split(':')
+    if (!key || !rest.length) {
+      return
+    }
+    frontmatter[key.trim()] = rest.join(':').trim()
+  })
+  return { frontmatter, body }
+}
+
+const buildMarkdownTranslation = (language: Language, topic: BlogTopic, raw: string): BlogArticleTranslation => {
+  const { frontmatter, body } = parseMarkdownFrontmatter(raw)
+  const title = frontmatter.title ?? 'Traceremove update'
+  const summary = frontmatter.summary ?? 'Traceremove publishes a new update on brand protection.'
+  const heroKicker = frontmatter.kicker ?? 'Press release'
+  const seoTitle = frontmatter.seoTitle ?? title
+  const seoDescription = frontmatter.seoDescription ?? summary
+  const author = frontmatter.author ?? defaultAuthor[language]
+  const heroAlt = frontmatter.heroAlt ?? 'Traceremove blog article'
+  const paragraphs = body
+    .split(/\n{2,}/g)
+    .map((chunk) => chunk.replace(/\n/g, ' ').trim())
+    .filter(Boolean)
+  const sections: BlogArticleSection[] = [
+    {
+      paragraphs: paragraphs.length ? paragraphs : [summary],
+    },
+  ]
+  const summaryWordCount = countWords(summary)
+  const totalWords = summaryWordCount + computeSectionWordCount(sections)
+  const minutes = Math.max(2, Math.round(totalWords / WORDS_PER_MINUTE))
+
+  return {
+    title,
+    summary,
+    topicLabel: blogTopicLabels[language][topic],
+    heroKicker,
+    readTime: formatReadTime(language, minutes),
+    seoTitle,
+    seoDescription,
+    author,
+    heroAlt,
+    body: sections,
+  }
+}
+
+const markdownModules = import.meta.glob('../content/blog/*.md', { eager: true, query: '?raw', import: 'default' })
+const markdownArticles: BlogArticle[] = Object.entries(markdownModules).map(([path, raw]) => {
+  const slug = path.split('/').pop()?.replace(/\\.md$/, '') ?? 'traceremove-update'
+  const { frontmatter } = parseMarkdownFrontmatter(raw as string)
+  const topic = (frontmatter.topic as BlogTopic) ?? 'orm'
+  const publishedAt = frontmatter.publishedAt ?? new Date().toISOString().slice(0, 10)
+  const authorId = (frontmatter.authorId as AuthorId) ?? defaultAuthorId
+  return {
+    id: `md-${slug}`,
+    slug,
+    topic,
+    publishedAt,
+    authorId,
+    translations: {
+      en: buildMarkdownTranslation('en', topic, raw as string),
+      fr: buildMarkdownTranslation('fr', topic, raw as string),
+      es: buildMarkdownTranslation('es', topic, raw as string),
+      ru: buildMarkdownTranslation('ru', topic, raw as string),
+    },
+  }
+})
 
 const articleSeeds: ArticleSeed[] = [
   {
@@ -1382,18 +1464,22 @@ const articleSeeds: ArticleSeed[] = [
   },
 ]
 
-export const blogArticles: BlogArticle[] = articleSeeds.map((seed) => ({
-  id: seed.id,
-  slug: seed.slug,
-  topic: seed.topic,
-  publishedAt: seed.publishedAt,
-  authorId: seed.authorId ?? defaultAuthorId,
-  translations: {
-    en: buildTranslation('en', seed.topic, seed.translation),
-    fr: buildTranslation('fr', seed.topic, seed.translation),
-    es: buildTranslation('es', seed.topic, seed.translation),
-  },
-}))
+export const blogArticles: BlogArticle[] = [
+  ...articleSeeds.map((seed) => ({
+    id: seed.id,
+    slug: seed.slug,
+    topic: seed.topic,
+    publishedAt: seed.publishedAt,
+    authorId: seed.authorId ?? defaultAuthorId,
+    translations: {
+      en: buildTranslation('en', seed.topic, seed.translation),
+      fr: buildTranslation('fr', seed.topic, seed.translation),
+      es: buildTranslation('es', seed.topic, seed.translation),
+      ru: buildTranslation('ru', seed.topic, seed.translation),
+    },
+  })),
+  ...markdownArticles,
+]
 
 export const getBlogBasePath = (language: Language) =>
   language === 'en' ? '/blog' : `/${language}/blog`

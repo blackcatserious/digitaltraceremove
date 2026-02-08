@@ -18,6 +18,7 @@ import {
   languageLabels,
   languages,
   servicePages,
+  withRussianFallback,
   type Language,
   type ServicePageContent,
 } from './data/pages'
@@ -38,6 +39,12 @@ import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
+import { coreServices } from './data/coreServices'
+import { CoreServicePage } from './components/CoreServicePage'
+import { NotFound } from './components/NotFound'
+import { Testimonials } from './components/Testimonials'
+import { trackEvent } from './utils/analytics'
+import { submitHubspotLead } from './utils/hubspot'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -79,6 +86,7 @@ const buildNavigation = () => {
     en: [],
     fr: [],
     es: [],
+    ru: [],
   }
 
   languages.forEach((language) => {
@@ -114,6 +122,9 @@ const getCaseStudiesPath = (language: Language) =>
 const getServicesPricingPath = (language: Language) =>
   language === 'en' ? '/services' : `/${language}/services`
 
+const getCoreServicePath = (language: Language, slug: string) =>
+  language === 'en' ? `/services/${slug}` : `/${language}/services/${slug}`
+
 const getResourcesPath = (language: Language) =>
   language === 'en' ? '/resources' : `/${language}/resources`
 
@@ -144,6 +155,7 @@ const localeMap: Record<Language, string> = {
   en: 'en-US',
   fr: 'fr-FR',
   es: 'es-ES',
+  ru: 'ru-RU',
 }
 
 const formatLocaleDate = (language: Language, value: string) =>
@@ -157,6 +169,7 @@ const currencyConfig: Record<Language, { locale: string; currency: string }> = {
   en: { locale: 'en-US', currency: 'USD' },
   fr: { locale: 'fr-FR', currency: 'EUR' },
   es: { locale: 'es-ES', currency: 'EUR' },
+  ru: { locale: 'ru-RU', currency: 'USD' },
 }
 
 const formatCurrency = (language: Language, value: number) =>
@@ -170,6 +183,8 @@ const formatNumber = (language: Language, value: number) =>
   new Intl.NumberFormat(localeMap[language], {
     maximumFractionDigits: 0,
   }).format(value)
+
+const withRu = <T,>(value: { en: T; fr: T; es: T }, ru?: T) => withRussianFallback(value, ru)
 
 const escapeRegExp = (value: string) => value.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
 
@@ -271,7 +286,7 @@ const momentumTickerCopy: Record<
     highlights: string[]
     cta: string
   }
-> = {
+> = withRussianFallback({
   en: {
     eyebrow: 'Momentum signals',
     highlights: [
@@ -305,7 +320,7 @@ const momentumTickerCopy: Record<
     ],
     cta: 'Activar un sprint de protección',
   },
-}
+})
 
 const MomentumTicker = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
   const language = useCurrentLanguage()
@@ -374,7 +389,7 @@ const navCopy: Record<
     languages: string
     languageSwitcherLabel: string
   }
-> = {
+> = withRussianFallback({
   en: {
     services: 'Services',
     about: 'About us',
@@ -450,7 +465,31 @@ const navCopy: Record<
     languages: 'Idiomas',
     languageSwitcherLabel: 'Cambiar idioma',
   },
-}
+}, {
+  services: 'Сервисы',
+  about: 'О нас',
+  caseStudies: 'Кейсы',
+  servicesPricing: 'Сервисы и цены',
+  team: 'Команда',
+  resources: 'Ресурсы',
+  academy: 'Академия',
+  media: 'Медиа',
+  commandCenter: 'Командный центр',
+  trust: 'Центр доверия',
+  faq: 'FAQ',
+  blog: 'Блог',
+  partners: 'Партнёры',
+  contact: 'Контакт',
+  callToAction: 'Запланировать консультацию',
+  tagline: 'Управление репутацией, быстрые удаления и security takedown для срочных задач.',
+  joinUs: 'Присоединиться',
+  openMenu: 'Открыть меню',
+  closeMenu: 'Закрыть меню',
+  home: 'Главная',
+  navigationTitle: 'Навигация',
+  languages: 'Языки',
+  languageSwitcherLabel: 'Сменить язык',
+})
 
 const InsightShowcase = ({ variant = 'default' }: { variant?: 'default' | 'case' }) => {
   const language = useCurrentLanguage()
@@ -567,7 +606,7 @@ const teamCopy: Record<
     culturePoints: string[]
     contactPrompt: string
   }
-> = {
+> = withRussianFallback({
   en: {
     title: 'Meet the Traceremove team',
     subtitle: 'A multilingual collective led by Founder & CEO Artur Ziganshin',
@@ -607,7 +646,7 @@ const teamCopy: Record<
     ],
     contactPrompt: '¿Listo para colaborar? Escríbenos y respondemos en un día hábil.',
   },
-}
+})
 
 const aboutCopy: Record<
   Language,
@@ -647,7 +686,7 @@ const aboutCopy: Record<
     }
     closing: { heading: string; body: string; cta: string }
   }
-> = {
+> = withRussianFallback({
   en: {
     hero: {
       title: 'About Traceremove',
@@ -1218,7 +1257,7 @@ const aboutCopy: Record<
       cta: 'Agenda una sesión estratégica',
     },
   },
-}
+})
 
 const caseStudiesCopy: Record<
   Language,
@@ -1260,7 +1299,7 @@ const caseStudiesCopy: Record<
     }
     cta: { heading: string; body: string; primary: string; secondary: string }
   }
-> = {
+> = withRussianFallback({
   en: {
     hero: {
       kicker: 'Proof of impact',
@@ -1819,7 +1858,7 @@ const caseStudiesCopy: Record<
       secondary: 'Explora nuestro programa de partners',
     },
   },
-}
+})
 
 const partnersCopy: Record<
   Language,
@@ -1836,7 +1875,7 @@ const partnersCopy: Record<
     ctaHeading: string
     ctaBody: string
   }
-> = {
+> = withRussianFallback({
   en: {
     title: 'Partner with Traceremove',
     subtitle: 'Co-create go-to-market velocity across brand, demand, and product growth.',
@@ -1972,7 +2011,7 @@ const partnersCopy: Record<
     ctaHeading: '¿Nos asociamos?',
     ctaBody: 'Cuéntanos sobre tu organización en contact@traceremove.com — coordinamos una llamada en dos días hábiles.',
   },
-}
+})
 
 const joinCopy: Record<
   Language,
@@ -1989,7 +2028,7 @@ const joinCopy: Record<
     ctaHeading: string
     ctaBody: string
   }
-> = {
+> = withRussianFallback({
   en: {
     title: 'Join the Traceremove collective',
     subtitle: 'Remote-first growth operators shaping reputation, revenue, and product stories.',
@@ -2101,7 +2140,7 @@ const joinCopy: Record<
     ctaHeading: 'Preséntate',
     ctaBody: 'Comparte tu portfolio, casos o LinkedIn en join@traceremove.com. Cuéntanos los mercados que mejor conoces y los resultados que disfrutas conseguir.',
   },
-}
+})
 
 interface TeamMember {
   name: string
@@ -2112,7 +2151,12 @@ interface TeamMember {
   color: string
 }
 
-const teamMembers: TeamMember[] = [
+type TeamMemberRaw = Omit<TeamMember, 'bio' | 'focus'> & {
+  bio: { en: string; fr: string; es: string }
+  focus: { en: string[]; fr: string[]; es: string[] }
+}
+
+const teamMembersRaw: TeamMemberRaw[] = [
   {
     name: 'Artur Ziganshin',
     role: 'Founder & CEO',
@@ -2179,6 +2223,12 @@ const teamMembers: TeamMember[] = [
   },
 ]
 
+const teamMembers: TeamMember[] = teamMembersRaw.map((member) => ({
+  ...member,
+  bio: withRu(member.bio),
+  focus: withRu(member.focus),
+}))
+
 type ServiceAccent = 'cyan' | 'violet' | 'emerald' | 'amber' | 'blue'
 
 interface PrimaryService {
@@ -2191,7 +2241,15 @@ interface PrimaryService {
   bullets: Record<Language, string[]>
 }
 
-const primaryServices: PrimaryService[] = [
+type PrimaryServiceRaw = Omit<PrimaryService, 'badge' | 'title' | 'description' | 'price' | 'bullets'> & {
+  badge: { en: string; fr: string; es: string }
+  title: { en: string; fr: string; es: string }
+  description: { en: string; fr: string; es: string }
+  price: { en: string; fr: string; es: string }
+  bullets: { en: string[]; fr: string[]; es: string[] }
+}
+
+const primaryServicesRaw: PrimaryServiceRaw[] = [
   {
     key: 'trace-removal',
     accent: 'cyan',
@@ -2399,13 +2457,22 @@ const primaryServices: PrimaryService[] = [
   },
 ]
 
+const primaryServices: PrimaryService[] = primaryServicesRaw.map((service) => ({
+  ...service,
+  badge: withRu(service.badge),
+  title: withRu(service.title),
+  description: withRu(service.description),
+  price: withRu(service.price),
+  bullets: withRu(service.bullets),
+}))
+
 const homeServicesCopy: Record<
   Language,
   {
     title: string
     description: string
   }
-> = {
+> = withRussianFallback({
   en: {
     title: 'Precision programs that protect and accelerate your brand',
     description:
@@ -2421,31 +2488,57 @@ const homeServicesCopy: Record<
     description:
       'Cada colaboración está liderada por Artur Ziganshin con un pod senior de reputación, seguridad, diseño y tecnología para lanzar con confianza.',
   },
-}
+})
 
 const homeHeroHeading: Record<Language, string> = {
-  en: 'Multilingual service blueprints engineered for momentum.',
-  fr: 'Des plans de services multilingues conçus pour accélérer votre momentum.',
-  es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
+  en: 'Emergency Online Reputation Management: remove negative content in 24–48 hours.',
+  fr: 'Gestion d’urgence de réputation en ligne : suppression du contenu négatif en 24–48 heures.',
+  es: 'Gestión urgente de reputación online: elimina contenido negativo en 24–48 horas.',
+  ru: 'Экстренное управление репутацией: удаление негативного контента за 24–48 часов.',
 }
 
-const homeFounderCopy: Record<Language, string> = {
+const homeHeroSubheading: Record<Language, string> = {
+  en: 'Packages for link removal, rapid response, and security takedowns with clear timelines and pricing.',
+  fr: 'Des packages pour retraits de liens, réponses rapides et retraits sécurité avec délais clairs.',
+  es: 'Paquetes para retirar enlaces, respuesta rápida y takedowns de seguridad con plazos claros.',
+  ru: 'Пакеты удаления ссылок, срочной реакции и security takedown с понятными сроками и ценами.',
+}
+
+const coreServicesIntro = withRussianFallback({
+  en: {
+    title: 'Core emergency services',
+    body: 'Pick a rapid-response package built for 24–48h removals, security takedowns, and stabilization.',
+    cta: 'View service details',
+  },
+  fr: {
+    title: 'Services d’urgence',
+    body: 'Choisissez un package conçu pour les retraits 24–48h, les takedowns sécurité et la stabilisation.',
+    cta: 'Voir les détails',
+  },
+  es: {
+    title: 'Servicios de emergencia',
+    body: 'Elige un paquete para retiradas 24–48h, takedowns de seguridad y estabilización.',
+    cta: 'Ver detalles',
+  },
+})
+
+const homeFounderCopy: Record<Language, string> = withRussianFallback({
   en: 'Founder & CEO leading every engagement with a senior core team operating across English, French, and Spanish markets.',
   fr: 'Fondateur et CEO pilotant chaque mission avec un noyau senior actif sur les marchés anglophone, francophone et hispanophone.',
   es: 'Fundador y CEO que lidera cada proyecto con un núcleo senior que opera en los mercados anglófono, francófono e hispanohablante.',
-}
+})
 
-const homeTeamLinkCopy: Record<Language, string> = {
+const homeTeamLinkCopy: Record<Language, string> = withRussianFallback({
   en: 'Meet the team',
   fr: "Rencontrer l'équipe",
   es: 'Conoce al equipo',
-}
+})
 
-const serviceCardCta: Record<Language, string> = {
+const serviceCardCta: Record<Language, string> = withRussianFallback({
   en: 'Book this service',
   fr: 'Réserver ce service',
   es: 'Reservar este servicio',
-}
+})
 
 const HomePage = () => {
   const currentLanguage = useCurrentLanguage()
@@ -2456,6 +2549,7 @@ const HomePage = () => {
 
   const heroCta = navCopy[currentLanguage].callToAction
   const heroHeading = homeHeroHeading[currentLanguage]
+  const heroSubheading = homeHeroSubheading[currentLanguage]
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
   const founderNote = homeFounderCopy[currentLanguage]
@@ -2477,12 +2571,16 @@ const HomePage = () => {
         <div className="home-hero-copy">
           <span className="home-badge">Traceremove · Digital Agency</span>
           <h1>{heroHeading}</h1>
-          <p>{navCopy[currentLanguage].tagline}</p>
+          <p>{heroSubheading}</p>
           <div className="home-cta">
             <a className="button primary" href="mailto:contact@traceremove.com">
               contact@traceremove.com
             </a>
-            <a className="button secondary" href="tel:+16063022958">
+            <a
+              className="button secondary"
+              href="tel:+16063022958"
+              onClick={() => trackEvent('phone_click', { location: 'home-hero', language: currentLanguage })}
+            >
               +1 606 302 2958
             </a>
           </div>
@@ -2497,11 +2595,13 @@ const HomePage = () => {
         </div>
         <div className="home-hero-visual" aria-hidden="true">
           <div className="home-hero-visual__field" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
           <GrowthSpark variant="light" size="md" className="home-hero-graph" />
           <GrowthSpark variant="dark" size="sm" className="home-hero-graph home-hero-graph--offset" />
         </div>
       </div>
+
+      <Testimonials language={currentLanguage} />
 
       <MomentumTicker variant="light" />
 
@@ -2581,7 +2681,12 @@ const HomePage = () => {
       <div className="home-banner">
         <p>
           {heroCta} — <a href="mailto:contact@traceremove.com">contact@traceremove.com</a> ·{' '}
-          <a href="tel:+16063022958">+1 606 302 2958</a>
+          <a
+            href="tel:+16063022958"
+            onClick={() => trackEvent('phone_click', { location: 'footer-contact', language: currentLanguage })}
+          >
+            +1 606 302 2958
+          </a>
         </p>
       </div>
     </section>
@@ -2608,7 +2713,7 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
         </div>
         <div className="service-hero-visual" aria-hidden="true">
           <GrowthSpark variant="light" size="sm" className="service-hero-graph" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
         </div>
       </header>
 
@@ -2720,6 +2825,7 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
 const ServicesPricingPage = () => {
   const language = useCurrentLanguage()
   const copy = servicesPricingCopy[language]
+  const coreCopy = coreServicesIntro[language]
   const tiers = copy.pricing.tiers
   const [activeTierId, setActiveTierId] = useState(tiers[0]?.id ?? '')
   const [incidentCount, setIncidentCount] = useState(copy.roi.inputs.incidents.defaultValue)
@@ -2783,6 +2889,27 @@ const ServicesPricingPage = () => {
       </header>
 
       <MomentumTicker variant="dark" />
+
+      <section className="services-pricing__core" aria-labelledby="services-pricing-core">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-core">{coreCopy.title}</h2>
+          <p>{coreCopy.body}</p>
+        </div>
+        <div className="services-pricing__core-grid">
+          {coreServices.map((service) => {
+            const serviceCopy = service.copy[language] ?? service.copy.en
+            return (
+              <article key={service.slug} className="services-pricing__core-card">
+                <h3>{serviceCopy.title}</h3>
+                <p>{serviceCopy.summary}</p>
+                <Link className="button tertiary" to={getCoreServicePath(language, service.slug)}>
+                  {coreCopy.cta}
+                </Link>
+              </article>
+            )
+          })}
+        </div>
+      </section>
 
       <section className="services-pricing__promise" aria-labelledby="services-pricing-promise">
         <div className="services-pricing__section-header">
@@ -3792,7 +3919,7 @@ const AboutPage = () => {
         <div className="about-hero__visual" aria-hidden="true">
           <div className="about-hero__badge">{copy.hero.highlight}</div>
           <GrowthSpark variant="light" size="lg" className="about-hero__graph" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
         </div>
       </header>
 
@@ -3972,7 +4099,7 @@ const TeamPage = () => {
         </div>
         <div className="team-hero-visual" aria-hidden="true">
           <GrowthSpark variant="light" size="md" className="team-hero-graph" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
         </div>
       </header>
 
@@ -5956,7 +6083,7 @@ const contactCopy: Record<
       message: { label: string; placeholder: string }
     }
   }
-> = {
+> = withRussianFallback({
   en: {
     kicker: 'Contact Traceremove',
     title: 'Design your next reputation breakthrough',
@@ -6032,7 +6159,7 @@ const contactCopy: Record<
       message: { label: '¿Cómo podemos ayudar?', placeholder: 'Comparte objetivos, plazos o riesgos de reputación…' },
     },
   },
-}
+})
 
 const ContactPage = ({ language }: { language: Language }) => {
   const copy = contactCopy[language]
@@ -6044,11 +6171,16 @@ const ContactPage = ({ language }: { language: Language }) => {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (field: keyof typeof formData) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       if (submitted) {
         setSubmitted(false)
+      }
+      if (submitError) {
+        setSubmitError(null)
       }
       const value = event.target.value
       setFormData((prev) => ({
@@ -6057,10 +6189,31 @@ const ContactPage = ({ language }: { language: Language }) => {
       }))
     }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSubmitted(true)
-    setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+    if (isSubmitting) {
+      return
+    }
+    setIsSubmitting(true)
+    setSubmitError(null)
+    try {
+      await submitHubspotLead({
+        source: 'contact',
+        language,
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        message: formData.message,
+      })
+      trackEvent('contact_form_submit', { language })
+      setSubmitted(true)
+      setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+    } catch {
+      setSubmitError('We could not submit the form. Please try again or email contact@traceremove.com.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -6141,13 +6294,18 @@ const ContactPage = ({ language }: { language: Language }) => {
               />
             </div>
           </div>
-          <button type="submit" className="button primary contact-submit">
-            {copy.submit}
+          <button type="submit" className="button primary contact-submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting…' : copy.submit}
           </button>
           {submitted && (
             <div className="contact-success" role="status" aria-live="polite">
               <h3>{copy.successTitle}</h3>
               <p>{copy.successMessage}</p>
+            </div>
+          )}
+          {submitError && (
+            <div className="contact-error" role="alert">
+              {submitError}
             </div>
           )}
           <p className="contact-legal">{copy.legal}</p>
@@ -6173,24 +6331,6 @@ const ContactPage = ({ language }: { language: Language }) => {
   )
 }
 
-const NotFound = () => (
-  <section className="service-page">
-    <header className="service-hero">
-      <div className="service-hero-copy">
-        <p className="service-preheading">Traceremove</p>
-        <h1>We couldn&apos;t find that page.</h1>
-        <p className="service-subheading">Explore our services and choose the program that fits your roadmap.</p>
-        <Link className="button primary" to="/">
-          Back to overview
-        </Link>
-      </div>
-      <div className="service-hero-visual" aria-hidden="true">
-        <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
-      </div>
-    </header>
-  </section>
-)
-
 const blogListCopy: Record<
   Language,
   {
@@ -6213,7 +6353,7 @@ const blogListCopy: Record<
     resetFilters: string
     featuredLabel: string
   }
-> = {
+> = withRussianFallback({
   en: {
     kicker: 'Traceremove Blog',
     title: 'Journal for reputation-led teams',
@@ -6280,7 +6420,7 @@ const blogListCopy: Record<
     resetFilters: 'Restablecer filtros',
     featuredLabel: 'Insight destacado',
   },
-}
+})
 
 type BlogListEntry = {
   slug: string
@@ -6316,7 +6456,7 @@ const blogArticleCopy: Record<
     authorQuoteLabel: string
     authorAvailabilityLabel: string
   }
-> = {
+> = withRussianFallback({
   en: {
     backToBlog: 'Back to articles',
     publishedOn: 'Published on',
@@ -6392,7 +6532,7 @@ const blogArticleCopy: Record<
     authorQuoteLabel: 'Punto de vista',
     authorAvailabilityLabel: 'Actualmente asesora a:',
   },
-}
+})
 
 
 const BlogPage = ({ language }: { language: Language }) => {
@@ -6839,7 +6979,7 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   }, [sections])
 
   if (!slug || !article || !translation) {
-    return <NotFound />
+    return <NotFound language={language} />
   }
 
   const handleCopyLink = () => {
@@ -7167,18 +7307,8 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   const navLinks = useMemo(
     () => [
-      { label: copy.about, href: getAboutPath(currentLanguage) },
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
-      { label: copy.servicesPricing, href: getServicesPricingPath(currentLanguage) },
       { label: copy.resources, href: getResourcesPath(currentLanguage) },
-      { label: copy.academy, href: getAcademyPath(currentLanguage) },
-      { label: copy.media, href: getMediaPath(currentLanguage) },
-      { label: copy.commandCenter, href: getCommandCenterPath(currentLanguage) },
-      { label: copy.trust, href: getTrustPath(currentLanguage) },
-      { label: copy.team, href: getTeamPath(currentLanguage) },
-      { label: copy.partners, href: getPartnersPath(currentLanguage) },
-      { label: copy.faq, href: getFaqPath(currentLanguage) },
-      { label: copy.blog, href: getBlogBasePath(currentLanguage) },
       { label: copy.contact, href: getContactPath(currentLanguage) },
     ],
     [copy, currentLanguage]
@@ -7188,6 +7318,18 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     setMegaOpen(false)
     setMobileOpen(false)
   }, [location.pathname])
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMegaOpen(false)
+        setMobileOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   useEffect(() => {
     if (!megaOpen) {
@@ -7274,7 +7416,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       languages.reduce<Record<Language, string>>((acc, lang) => {
         acc[lang] = getHomePath(lang)
         return acc
-      }, { en: '/', fr: '/fr', es: '/es' }),
+      }, { en: '/', fr: '/fr', es: '/es', ru: '/ru' }),
     []
   )
 
@@ -7347,7 +7489,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
+            <img src="/traceremove-mark.svg" alt="Traceremove logo" />
             <span>Traceremove</span>
           </Link>
           <button
@@ -7391,6 +7533,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               onMouseEnter={handleServiceClose}
               onFocus={handleServiceClose}
               onClick={handleServiceClose}
+              aria-label={item.label}
             >
               <span className="tr-nav__label">{item.label}</span>
               <span className="tr-nav__indicator" aria-hidden="true" />
@@ -7402,7 +7545,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
             {copy.joinUs}
           </NavLink>
-          <a className="button ghost" href="tel:+16063022958">
+          <a
+            className="button ghost"
+            href="tel:+16063022958"
+            onClick={() => trackEvent('phone_click', { location: 'header', language: currentLanguage })}
+          >
             +1 606 302 2958
           </a>
         </div>
@@ -7499,13 +7646,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 {copy.home}
               </NavLink>
               <NavLink
-                to={getAboutPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.about}
-              </NavLink>
-              <NavLink
                 to={getCaseStudiesPath(currentLanguage)}
                 className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
@@ -7513,74 +7653,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 {copy.caseStudies}
               </NavLink>
               <NavLink
-                to={getServicesPricingPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.servicesPricing}
-              </NavLink>
-              <NavLink
                 to={getResourcesPath(currentLanguage)}
                 className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.resources}
-              </NavLink>
-              <NavLink
-                to={getAcademyPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.academy}
-              </NavLink>
-              <NavLink
-                to={getMediaPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.media}
-              </NavLink>
-              <NavLink
-                to={getCommandCenterPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.commandCenter}
-              </NavLink>
-              <NavLink
-                to={getTrustPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.trust}
-              </NavLink>
-              <NavLink
-                to={getTeamPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.team}
-              </NavLink>
-              <NavLink
-                to={getPartnersPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.partners}
-              </NavLink>
-              <NavLink
-                to={getBlogBasePath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.blog}
-              </NavLink>
-              <NavLink
-                to={getFaqPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.faq}
               </NavLink>
               <NavLink
                 to={getContactPath(currentLanguage)}
@@ -7601,7 +7678,14 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               <a className="tr-mobile-link" href="mailto:contact@traceremove.com" onClick={handleCloseMobile}>
                 contact@traceremove.com
               </a>
-              <a className="tr-mobile-link" href="tel:+16063022958" onClick={handleCloseMobile}>
+              <a
+                className="tr-mobile-link"
+                href="tel:+16063022958"
+                onClick={() => {
+                  trackEvent('phone_click', { location: 'mobile-menu', language: currentLanguage })
+                  handleCloseMobile()
+                }}
+              >
                 +1 606 302 2958
               </a>
             </div>
@@ -7645,7 +7729,7 @@ const legalCopy: Record<
       supportPhone: { label: string; href: string }
     }
   >
-> = {
+> = withRussianFallback({
   en: {
     privacy: {
       kicker: 'Legal center',
@@ -8018,7 +8102,7 @@ const legalCopy: Record<
       supportPhone: { label: 'Habla con nosotros en el +1 606 302 2958 para resolver preguntas contractuales urgentes.', href: 'tel:+16063022958' },
     },
   },
-}
+})
 
 const LegalPage = ({ language, variant }: { language: Language; variant: 'privacy' | 'terms' }) => {
   const copy = legalCopy[language][variant]
@@ -8102,7 +8186,7 @@ const footerCopy: Record<
     subscribeCta: string
     subscribeSuccess: string
   }
-> = {
+> = withRussianFallback({
   en: {
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
@@ -8215,12 +8299,13 @@ const footerCopy: Record<
     subscribeCta: 'Suscribirme',
     subscribeSuccess: 'Gracias por suscribirte — revisa tu bandeja de entrada para confirmar.',
   },
-}
+})
 
 const callWidgetCopy: Record<Language, { label: string; assist: string }> = {
   en: { label: 'Call +1 606 302 2958', assist: 'Speak with Artur Ziganshin' },
   fr: { label: 'Appelez +1 606 302 2958', assist: 'Échangez avec Artur Ziganshin' },
   es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con Artur Ziganshin' },
+  ru: { label: 'Позвонить +1 606 302 2958', assist: 'Связаться с Artur Ziganshin' },
 }
 
 type SocialKey =
@@ -8274,6 +8359,16 @@ const footerSocialLabels: Record<Language, Record<SocialKey, string>> = {
     linkedin: 'Traceremove en LinkedIn',
     behance: 'Portafolio de Traceremove en Behance',
     dribbble: 'Proyectos de Traceremove en Dribbble',
+  },
+  ru: {
+    whatsapp: 'Написать в WhatsApp',
+    instagram: 'Traceremove в Instagram',
+    facebook: 'Traceremove на Facebook',
+    medium: 'Traceremove на Medium',
+    substack: 'Traceremove на Substack',
+    linkedin: 'Traceremove в LinkedIn',
+    behance: 'Портфолио Traceremove на Behance',
+    dribbble: 'Работы Traceremove на Dribbble',
   },
 }
 
@@ -8336,7 +8431,12 @@ const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = callWidgetCopy[currentLanguage]
 
   return (
-    <a className="call-widget" href="tel:+16063022958" aria-label={`${copy.label}. ${copy.assist}`}>
+    <a
+      className="call-widget"
+      href="tel:+16063022958"
+      aria-label={`${copy.label}. ${copy.assist}`}
+      onClick={() => trackEvent('phone_click', { location: 'call-widget', language: currentLanguage })}
+    >
       <span className="call-widget__icon" aria-hidden="true">📞</span>
       <span className="call-widget__text">
         <span className="call-widget__label">{copy.label}</span>
@@ -8350,16 +8450,39 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = footerCopy[currentLanguage]
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [subscribeError, setSubscribeError] = useState<string | null>(null)
+  const [subscribeLoading, setSubscribeLoading] = useState(false)
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSubscribed(true)
-    setEmail('')
+    if (subscribeLoading) {
+      return
+    }
+    setSubscribeLoading(true)
+    setSubscribeError(null)
+    try {
+      await submitHubspotLead({
+        source: 'footer-subscribe',
+        language: currentLanguage,
+        name: 'Newsletter Subscriber',
+        email,
+      })
+      trackEvent('footer_subscribe', { language: currentLanguage })
+      setSubscribed(true)
+      setEmail('')
+    } catch {
+      setSubscribeError('Subscription failed. Please try again or email contact@traceremove.com.')
+    } finally {
+      setSubscribeLoading(false)
+    }
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (subscribed) {
       setSubscribed(false)
+    }
+    if (subscribeError) {
+      setSubscribeError(null)
     }
     setEmail(event.target.value)
   }
@@ -8390,7 +8513,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
       <div className="tr-footer__inner">
         <div className="tr-footer__brand">
-          <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
+          <img src="/traceremove-mark.svg" alt="Traceremove logo" />
           <div>
             <p className="tr-footer__title">Traceremove</p>
             <p className="tr-footer__tagline">{copy.studio}</p>
@@ -8414,13 +8537,18 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onChange={handleChange}
                 required
               />
-              <button type="submit" className="button tertiary">
-                {copy.subscribeCta}
+              <button type="submit" className="button tertiary" disabled={subscribeLoading}>
+                {subscribeLoading ? 'Submitting…' : copy.subscribeCta}
               </button>
             </div>
             {subscribed && (
               <p className="tr-footer__subscribe-success" role="status" aria-live="polite">
                 {copy.subscribeSuccess}
+              </p>
+            )}
+            {subscribeError && (
+              <p className="tr-footer__subscribe-error" role="alert">
+                {subscribeError}
               </p>
             )}
           </form>
@@ -8458,7 +8586,11 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
               <span>{label}</span>
             </NavLink>
           ))}
-          <a className="tr-footer__menu-link tr-footer__menu-link--call" href="tel:+16063022958">
+          <a
+            className="tr-footer__menu-link tr-footer__menu-link--call"
+            href="tel:+16063022958"
+            onClick={() => trackEvent('phone_click', { location: 'footer-menu', language: currentLanguage })}
+          >
             <span>{copy.call}</span>
           </a>
         </div>
@@ -8488,6 +8620,239 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const currentLanguage = useCurrentLanguage()
+  useEffect(() => {
+    const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined
+    if (!measurementId || typeof window === 'undefined') {
+      return
+    }
+    if (document.querySelector(`script[data-gtag="${measurementId}"]`)) {
+      return
+    }
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
+    script.setAttribute('data-gtag', measurementId)
+    document.head.appendChild(script)
+    window.dataLayer = window.dataLayer || []
+    window.gtag = function gtag(...args: unknown[]) {
+      window.dataLayer?.push(args)
+    }
+    window.gtag('js', new Date())
+    window.gtag('config', measurementId)
+  }, [])
+
+  useEffect(() => {
+    const { pathname } = window.location
+    const pathSegments = pathname.split('/').filter(Boolean)
+    const currentLang = languages.includes(pathSegments[0] as Language)
+      ? (pathSegments.shift() as Language)
+      : ('en' as Language)
+    const neutralPath = `/${pathSegments.join('/')}`.replace(/\/$/, '')
+    const buildPath = (language: Language) => {
+      const prefix = language === 'en' ? '' : `/${language}`
+      if (!neutralPath || neutralPath === '/') {
+        return `${prefix}/`.replace(/\/$/, '') || '/'
+      }
+      return `${prefix}${neutralPath}`
+    }
+
+    const existing = Array.from(document.querySelectorAll('link[data-hreflang]'))
+    existing.forEach((node) => node.remove())
+
+    languages.forEach((language) => {
+      const link = document.createElement('link')
+      link.rel = 'alternate'
+      link.hreflang = language
+      link.href = `${window.location.origin}${buildPath(language)}`
+      link.setAttribute('data-hreflang', 'true')
+      document.head.appendChild(link)
+    })
+
+    const xDefault = document.createElement('link')
+    xDefault.rel = 'alternate'
+    xDefault.hreflang = 'x-default'
+    xDefault.href = `${window.location.origin}${buildPath(currentLang)}`
+    xDefault.setAttribute('data-hreflang', 'true')
+    document.head.appendChild(xDefault)
+  }, [currentLanguage])
+
+  useEffect(() => {
+    const { pathname } = window.location
+    const pathSegments = pathname.split('/').filter(Boolean)
+    const currentLang = languages.includes(pathSegments[0] as Language)
+      ? (pathSegments.shift() as Language)
+      : ('en' as Language)
+    const path = `/${pathSegments.join('/')}`.replace(/\/$/, '')
+    const defaultTitle = 'Traceremove'
+    const defaultDescription = homeHeroSubheading[currentLang]
+
+    let title = defaultTitle
+    let description = defaultDescription
+    let jsonLd: Record<string, unknown> | null = null
+
+    if (!path || path === '/') {
+      title = `${defaultTitle} · ${homeHeroHeading[currentLang]}`
+      description = homeHeroSubheading[currentLang]
+    } else if (path.startsWith('/services/')) {
+      const slug = path.split('/')[2]
+      const service = coreServices.find((item) => item.slug === slug)
+      if (service) {
+        const copy = service.copy[currentLang] ?? service.copy.en
+        title = `${copy.title} · ${defaultTitle}`
+        description = copy.summary
+        jsonLd = {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: copy.title,
+          description: copy.summary,
+          provider: {
+            '@type': 'Organization',
+            name: 'Traceremove',
+          },
+        }
+      }
+    } else if (path.startsWith('/blog/')) {
+      const slug = path.split('/')[2]
+      const article = blogArticles.find((item) => item.slug === slug)
+      if (article) {
+        const translation = article.translations[currentLang] ?? article.translations.en
+        title = `${translation.title} · ${defaultTitle}`
+        description = translation.summary
+      }
+    } else if (path === '/blog') {
+      title = `${navCopy[currentLang].blog} · ${defaultTitle}`
+      description = 'Press releases, case studies, and thought leadership from Traceremove.'
+    } else if (path === '/case-studies') {
+      title = `${navCopy[currentLang].caseStudies} · ${defaultTitle}`
+      description = 'Proof of impact across removals, security takedowns, and ORM programs.'
+    } else if (path === '/resources') {
+      title = `${navCopy[currentLang].resources} · ${defaultTitle}`
+    } else if (path === '/contact') {
+      title = `${navCopy[currentLang].contact} · ${defaultTitle}`
+    } else if (path === '/faq') {
+      title = `${navCopy[currentLang].faq} · ${defaultTitle}`
+      const faq = faqCopy[currentLang] ?? faqCopy.en
+      const questions = faq.categories.flatMap((category) => category.items)
+      jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: questions.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer.join(' ') },
+        })),
+      }
+    }
+
+    document.title = title
+    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta')
+    metaDescription.setAttribute('name', 'description')
+    metaDescription.setAttribute('content', description)
+    if (!metaDescription.parentElement) {
+      document.head.appendChild(metaDescription)
+    }
+
+    const existingJsonLd = document.querySelector('script[data-jsonld]')
+    if (existingJsonLd) {
+      existingJsonLd.remove()
+    }
+    if (jsonLd) {
+      const script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.textContent = JSON.stringify(jsonLd)
+      script.setAttribute('data-jsonld', 'true')
+      document.head.appendChild(script)
+    }
+  }, [currentLanguage])
+
+  useEffect(() => {
+    const { pathname } = window.location
+    const pathSegments = pathname.split('/').filter(Boolean)
+    const currentLang = languages.includes(pathSegments[0] as Language)
+      ? (pathSegments.shift() as Language)
+      : ('en' as Language)
+    const path = `/${pathSegments.join('/')}`.replace(/\/$/, '')
+    const defaultTitle = 'Traceremove'
+    const defaultDescription = homeHeroSubheading[currentLang]
+
+    let title = defaultTitle
+    let description = defaultDescription
+    let jsonLd: Record<string, unknown> | null = null
+
+    if (!path || path === '/') {
+      title = `${defaultTitle} · ${homeHeroHeading[currentLang]}`
+      description = homeHeroSubheading[currentLang]
+    } else if (path.startsWith('/services/')) {
+      const slug = path.split('/')[2]
+      const service = coreServices.find((item) => item.slug === slug)
+      if (service) {
+        const copy = service.copy[currentLang] ?? service.copy.en
+        title = `${copy.title} · ${defaultTitle}`
+        description = copy.summary
+        jsonLd = {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: copy.title,
+          description: copy.summary,
+          provider: {
+            '@type': 'Organization',
+            name: 'Traceremove',
+          },
+        }
+      }
+    } else if (path.startsWith('/blog/')) {
+      const slug = path.split('/')[2]
+      const article = blogArticles.find((item) => item.slug === slug)
+      if (article) {
+        const translation = article.translations[currentLang] ?? article.translations.en
+        title = `${translation.title} · ${defaultTitle}`
+        description = translation.summary
+      }
+    } else if (path === '/blog') {
+      title = `${navCopy[currentLang].blog} · ${defaultTitle}`
+      description = 'Press releases, case studies, and thought leadership from Traceremove.'
+    } else if (path === '/case-studies') {
+      title = `${navCopy[currentLang].caseStudies} · ${defaultTitle}`
+      description = 'Proof of impact across removals, security takedowns, and ORM programs.'
+    } else if (path === '/resources') {
+      title = `${navCopy[currentLang].resources} · ${defaultTitle}`
+    } else if (path === '/contact') {
+      title = `${navCopy[currentLang].contact} · ${defaultTitle}`
+    } else if (path === '/faq') {
+      title = `${navCopy[currentLang].faq} · ${defaultTitle}`
+      const faq = faqCopy[currentLang] ?? faqCopy.en
+      const questions = faq.categories.flatMap((category) => category.items)
+      jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: questions.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer.join(' ') },
+        })),
+      }
+    }
+
+    document.title = title
+    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta')
+    metaDescription.setAttribute('name', 'description')
+    metaDescription.setAttribute('content', description)
+    if (!metaDescription.parentElement) {
+      document.head.appendChild(metaDescription)
+    }
+
+    const existingJsonLd = document.querySelector('script[data-jsonld]')
+    if (existingJsonLd) {
+      existingJsonLd.remove()
+    }
+    if (jsonLd) {
+      const script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.textContent = JSON.stringify(jsonLd)
+      script.setAttribute('data-jsonld', 'true')
+      document.head.appendChild(script)
+    }
+  }, [currentLanguage])
 
   return (
     <div className="app-layout">
@@ -8512,6 +8877,7 @@ function App() {
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
         <Route path="services" element={<ServicesPricingPage />} />
+        <Route path="services/:slug" element={<CoreServicePage language="en" />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="academy" element={<AcademyPage />} />
         <Route path="faq" element={<FaqPage />} />
@@ -8532,6 +8898,7 @@ function App() {
             <Route path={`${language}/about`} element={<AboutPage />} />
             <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
             <Route path={`${language}/services`} element={<ServicesPricingPage />} />
+            <Route path={`${language}/services/:slug`} element={<CoreServicePage language={language} />} />
             <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
             <Route path={`${language}/academy`} element={<AcademyPage />} />
             <Route path={`${language}/faq`} element={<FaqPage />} />

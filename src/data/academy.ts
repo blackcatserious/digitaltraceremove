@@ -1,4 +1,4 @@
-import { type Language } from './pages'
+import { type Language, withRussianFallback } from './pages'
 
 export type AcademyMetric = {
   label: string
@@ -199,7 +199,7 @@ export const academyCopy: Record<
       secondary: string
     }
   }
-> = {
+> = withRussianFallback({
   en: {
     hero: {
       eyebrow: 'Traceremove Academy',
@@ -1871,4 +1871,4 @@ export const academyCopy: Record<
       secondary: 'Revisar servicios gestionados',
     },
   },
-}
+})

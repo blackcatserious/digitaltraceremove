@@ -1,4 +1,4 @@
-import { type Language } from './pages'
+import { type Language, withRussianFallback } from './pages'
 
 export interface CommandCenterCopy {
   hero: {
@@ -139,7 +139,7 @@ export interface CommandCenterCopy {
   }
 }
 
-export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
+export const commandCenterCopy: Record<Language, CommandCenterCopy> = withRussianFallback({
   en: {
     hero: {
       eyebrow: 'Command center',
@@ -1580,4 +1580,4 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
       secondaryHref: 'mailto:command@traceremove.com',
     },
   },
-}
+})
