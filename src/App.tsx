@@ -7411,6 +7411,10 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       return
     }
 
+    if (!mobileExpandedGroup && groups[0]?.serviceName) {
+      setMobileExpandedGroup(groups[0].serviceName)
+    }
+
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setMobileOpen(false)
@@ -7425,7 +7429,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     return () => {
       window.removeEventListener('keydown', handleEscape)
     }
-  }, [mobileOpen])
+  }, [groups, mobileExpandedGroup, mobileOpen])
 
   useEffect(() => {
     const originalOverflow = document.body.style.overflow
@@ -7496,6 +7500,10 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
         setMobileOpen(false)
         setMegaOpen(true)
       }
+      window.setTimeout(() => {
+        const firstLink = document.querySelector('.tr-megamenu__link') as HTMLAnchorElement | null
+        firstLink?.focus()
+      }, 30)
       return
     }
 
@@ -8894,6 +8902,48 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     }
     canonical.href = `${window.location.origin}${location.pathname}`
   }, [currentLanguage, location.pathname])
+
+  useEffect(() => {
+    const schemaId = 'traceremove-structured-data'
+    const script = (document.getElementById(schemaId) as HTMLScriptElement | null) ?? document.createElement('script')
+    script.id = schemaId
+    script.type = 'application/ld+json'
+
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          name: 'Traceremove',
+          url: window.location.origin,
+          logo: `${window.location.origin}/traceremove-mark.svg`,
+          sameAs: ['https://www.linkedin.com', 'https://medium.com/@traceremove'],
+          contactPoint: [{
+            '@type': 'ContactPoint',
+            telephone: '+1-606-302-2958',
+            contactType: 'customer support',
+            availableLanguage: ['English', 'French', 'Spanish'],
+          }],
+        },
+        {
+          '@type': 'Service',
+          name: 'Digital footprint cleanup and information removal',
+          provider: {
+            '@type': 'Organization',
+            name: 'Traceremove',
+          },
+          areaServed: 'Global',
+          serviceType: 'Online reputation management',
+          url: `${window.location.origin}${location.pathname}`,
+        },
+      ],
+    }
+
+    script.text = JSON.stringify(schema)
+    if (!script.parentNode) {
+      document.head.appendChild(script)
+    }
+  }, [location.pathname])
 
   return (
     <div className="app-layout">
