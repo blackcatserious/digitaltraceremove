@@ -1,0 +1,15 @@
+{
+  "name": "Traceremove",
+  "short_name": "Traceremove",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#0b1120",
+  "icons": [
+    {
+      "src": "/traceremove-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

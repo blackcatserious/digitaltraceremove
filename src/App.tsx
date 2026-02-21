@@ -2569,6 +2569,47 @@ const HomePage = () => {
         </div>
       </section>
 
+      <section className="home-production" aria-labelledby="home-production-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">Production-grade reputation operations</p>
+          <h2 id="home-production-heading">End-to-end digital footprint cleanup, from detection to verified removal</h2>
+        </header>
+        <div className="home-production__grid">
+          <article>
+            <h3>What we remove</h3>
+            <ul>
+              <li>Defamatory pages and fake review clusters</li>
+              <li>Doxxing snippets, leaked personal data, and impersonation pages</li>
+              <li>Legacy negative SERP entries hurting hiring and sales</li>
+            </ul>
+          </article>
+          <article>
+            <h3>How we execute</h3>
+            <ul>
+              <li>Forensic discovery + legal-ready evidence pack in 24h</li>
+              <li>Platform takedowns, de-indexing flows, and suppression strategy</li>
+              <li>Weekly proof reports with links, timestamps, and status</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Client outcomes</h3>
+            <ul>
+              <li>Clearer branded search results and trust recovery</li>
+              <li>Reduced churn from negative reputation events</li>
+              <li>Faster conversion in high-intent inbound channels</li>
+            </ul>
+          </article>
+        </div>
+        <div className="home-production__actions">
+          <Link className="button primary" to={getContactPath(currentLanguage)}>
+            Request full digital cleanup
+          </Link>
+          <Link className="button tertiary" to={getCaseStudiesPath(currentLanguage)}>
+            View verified removals
+          </Link>
+        </div>
+      </section>
+
       <section className="home-services">
         <header className="home-services__header">
           <h2>{serviceIntro.title}</h2>

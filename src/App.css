@@ -15749,3 +15749,53 @@ a {
   margin: 0 0 0.7rem;
   color: rgba(226, 232, 240, 0.78);
 }
+
+.home-production {
+  border-radius: 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.18), transparent 46%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(2, 6, 23, 0.75));
+}
+
+.home-production__header h2 {
+  margin: 0.4rem 0 0;
+}
+
+.home-production__kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  color: rgba(147, 197, 253, 0.9);
+}
+
+.home-production__grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.home-production__grid article {
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.7);
+  padding: 1rem;
+}
+
+.home-production__grid ul {
+  margin: 0.7rem 0 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.42rem;
+  color: rgba(226, 232, 240, 0.88);
+}
+
+.home-production__actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
