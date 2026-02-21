@@ -2503,6 +2503,17 @@ const HomePage = () => {
           <span className="home-badge">Traceremove · Digital Agency</span>
           <h1>{heroHeading}</h1>
           <p>{navCopy[currentLanguage].tagline}</p>
+          <div className="home-removal-cta">
+            <p className="home-removal-cta__label">We remove harmful information and clean digital footprints.</p>
+            <ul>
+              <li>Removal of defamatory and fake content</li>
+              <li>Digital footprint cleanup across search and social</li>
+              <li>Fast takedown workflows with legal-ready evidence</li>
+            </ul>
+            <Link className="button primary" to={getContactPath(currentLanguage)}>
+              Start information removal now
+            </Link>
+          </div>
           <div className="home-cta">
             <a className="button primary" href="mailto:contact@traceremove.com">
               contact@traceremove.com
@@ -2525,6 +2536,11 @@ const HomePage = () => {
           <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
           <GrowthSpark variant="light" size="md" className="home-hero-graph" />
           <GrowthSpark variant="dark" size="sm" className="home-hero-graph home-hero-graph--offset" />
+          <div className="data-removal-animation" aria-hidden="true">
+            <span className="data-removal-animation__line">old harmful result</span>
+            <span className="data-removal-animation__line">fake review attack</span>
+            <span className="data-removal-animation__line">sensitive data leak</span>
+          </div>
         </div>
       </div>
 
