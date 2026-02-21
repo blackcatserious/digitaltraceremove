@@ -8624,16 +8624,31 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const currentLanguage = useCurrentLanguage()
+  const location = useLocation()
+  const [isRouting, setIsRouting] = useState(false)
+
+  useEffect(() => {
+    setIsRouting(true)
+    const timer = window.setTimeout(() => setIsRouting(false), 360)
+    return () => window.clearTimeout(timer)
+  }, [location.pathname])
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [location.pathname])
 
   return (
     <div className="app-layout">
+      <div className="app-route-progress" aria-hidden="true">
+        <span className={isRouting ? 'is-active' : ''} />
+      </div>
       <div className="app-visuals" aria-hidden="true">
         <span className="app-visual app-visual--one" />
         <span className="app-visual app-visual--two" />
         <span className="app-visual app-visual--three" />
       </div>
       <Header currentLanguage={currentLanguage} />
-      <main className="content">{children}</main>
+      <main className={`content${isRouting ? ' is-routing' : ''}`}>{children}</main>
       <Footer currentLanguage={currentLanguage} />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
