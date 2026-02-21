@@ -2537,9 +2537,11 @@ const HomePage = () => {
           <GrowthSpark variant="light" size="md" className="home-hero-graph" />
           <GrowthSpark variant="dark" size="sm" className="home-hero-graph home-hero-graph--offset" />
           <div className="data-removal-animation" aria-hidden="true">
-            <span className="data-removal-animation__line">old harmful result</span>
-            <span className="data-removal-animation__line">fake review attack</span>
-            <span className="data-removal-animation__line">sensitive data leak</span>
+            <p className="data-removal-animation__title">How removal works</p>
+            <span className="data-removal-animation__line">❌ old harmful result</span>
+            <span className="data-removal-animation__line">❌ fake review attack</span>
+            <span className="data-removal-animation__line">❌ sensitive data leak</span>
+            <span className="data-removal-animation__status">✅ cleaned and de-indexed</span>
           </div>
         </div>
       </div>
@@ -7442,21 +7444,8 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   }
 
   const handleServiceClose = () => {
-    if (megaOpen) {
-      setMegaOpen(false)
-    }
-  }
-
-  const handleHeaderMouseLeave = (event: ReactMouseEvent<HTMLElement>) => {
-    if (!headerRef.current) {
-      return
-    }
-
-    const nextTarget = event.relatedTarget as Node | null
-
-    if (!nextTarget || !headerRef.current.contains(nextTarget)) {
-      setMegaOpen(false)
-    }
+    setMegaOpen(false)
+    setMegaSearch('')
   }
 
   const handleServiceKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
@@ -7481,11 +7470,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   }
 
   return (
-    <header
-      ref={headerRef}
-      className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}
-      onMouseLeave={handleHeaderMouseLeave}
-    >
+    <header ref={headerRef} className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}>
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
@@ -7558,7 +7543,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
         </div>
       </div>
 
-      <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`} onMouseLeave={handleServiceClose}>
+      <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
         <div className="tr-megamenu__tools">
           <input
             type="search"
@@ -7588,6 +7573,15 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               </ul>
             </div>
           ))}
+          {filteredGroups.length === 0 ? (
+            <div className="tr-megamenu__empty">
+              <h3>No matching services</h3>
+              <p>Try another keyword or open our full services overview.</p>
+              <NavLink to={getServicesPricingPath(currentLanguage)} className="button secondary" onClick={handleServiceClose}>
+                Open services page
+              </NavLink>
+            </div>
+          ) : null}
           <aside className="tr-megamenu__insight">
             <h3>Reputation pulse</h3>
             <p>Track removals, reviews, and sentiment risks in one live command layer.</p>
