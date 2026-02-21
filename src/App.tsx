@@ -102,6 +102,32 @@ const navigation = buildNavigation()
 
 type NavLinkRenderArgs = { isActive: boolean }
 
+
+const pageSeoDefaults: Record<Language, { titleSuffix: string; description: string }> = {
+  en: {
+    titleSuffix: 'Traceremove · Reputation Growth Systems',
+    description:
+      'Traceremove helps founders and enterprises protect reputation, remove harmful content, and scale trusted growth.',
+  },
+  fr: {
+    titleSuffix: 'Traceremove · Systèmes de croissance réputationnelle',
+    description:
+      'Traceremove aide les fondateurs et les entreprises à protéger leur réputation, retirer les contenus nocifs et accélérer une croissance crédible.',
+  },
+  es: {
+    titleSuffix: 'Traceremove · Sistemas de crecimiento reputacional',
+    description:
+      'Traceremove ayuda a fundadores y empresas a proteger su reputación, retirar contenido dañino y escalar crecimiento confiable.',
+  },
+}
+
+type MediumPost = {
+  title: string
+  link: string
+  pubDate: string
+  description: string
+}
+
 const getHomePath = (language: Language) => (language === 'en' ? '/' : `/${language}`)
 
 const getTeamPath = (language: Language) => (language === 'en' ? '/team' : `/${language}/team`)
@@ -2503,6 +2529,27 @@ const HomePage = () => {
       </div>
 
       <MomentumTicker variant="light" />
+
+      <section className="home-reputation" aria-labelledby="home-reputation-heading">
+        <header>
+          <p className="home-reputation__kicker">Reputation intelligence · 2026</p>
+          <h2 id="home-reputation-heading">Always-on trust architecture for AI-era search and social</h2>
+        </header>
+        <div className="home-reputation__grid">
+          <article>
+            <h3>AI result monitoring</h3>
+            <p>We monitor brand mentions across search, LLM snapshots, social feeds, and review ecosystems every hour.</p>
+          </article>
+          <article>
+            <h3>Crisis-ready playbooks</h3>
+            <p>Escalation templates for legal, comms, and growth teams with 24/7 multilingual activation.</p>
+          </article>
+          <article>
+            <h3>Trust-growth loop</h3>
+            <p>Review generation, authority publishing, and removal workflows tied to revenue dashboards.</p>
+          </article>
+        </div>
+      </section>
 
       <section className="home-services">
         <header className="home-services__header">
@@ -6058,6 +6105,7 @@ const ContactPage = ({ language }: { language: Language }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const params = new URLSearchParams(window.location.search)
     await persistLead({
       source: 'contact',
       name: formData.name,
@@ -6065,6 +6113,9 @@ const ContactPage = ({ language }: { language: Language }) => {
       company: formData.company,
       message: formData.message,
       createdAt: new Date().toISOString(),
+      page: window.location.pathname,
+      utmSource: params.get('utm_source') ?? 'direct',
+      leadScore: Math.min(100, 40 + (formData.company ? 20 : 0) + (formData.phone ? 20 : 0) + (formData.message.length > 60 ? 20 : 0)),
     })
     setSubmitted(true)
     setFormData({ name: '', email: '', company: '', phone: '', message: '' })
@@ -6407,6 +6458,8 @@ const BlogPage = ({ language }: { language: Language }) => {
   const [topicFilter, setTopicFilter] = useState<'all' | BlogTopic>('all')
   const [authorFilter, setAuthorFilter] = useState<'all' | AuthorId>('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [mediumPosts, setMediumPosts] = useState<MediumPost[]>([])
+  const [mediumStatus, setMediumStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle')
 
   const topics = useMemo(
     () =>
@@ -6478,6 +6531,42 @@ const BlogPage = ({ language }: { language: Language }) => {
 
   const topicGroupId = `blog-${language}-topics`
   const authorGroupId = `blog-${language}-authors`
+
+  useEffect(() => {
+    let active = true
+    const loadMedium = async () => {
+      setMediumStatus('loading')
+      try {
+        const response = await fetch(
+          'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@traceremove',
+        )
+        const data = await response.json()
+        if (!active) {
+          return
+        }
+        const items = Array.isArray(data.items) ? data.items.slice(0, 4) : []
+        const mapped = items.map((item: { title: string; link: string; pubDate: string; description: string }) => ({
+          title: item.title,
+          link: item.link,
+          pubDate: item.pubDate,
+          description: item.description?.replace(/<[^>]*>/g, '').slice(0, 180) ?? '',
+        }))
+        setMediumPosts(mapped)
+        setMediumStatus('ready')
+      } catch {
+        if (active) {
+          setMediumStatus('error')
+        }
+      }
+    }
+
+    loadMedium()
+    const refreshTimer = window.setInterval(loadMedium, 1000 * 60 * 10)
+    return () => {
+      active = false
+      window.clearInterval(refreshTimer)
+    }
+  }, [])
 
   return (
     <section className="blog-page">
@@ -6632,6 +6721,31 @@ const BlogPage = ({ language }: { language: Language }) => {
           </button>
         </div>
       )}
+
+      <section className="blog-medium" aria-live="polite">
+        <div className="blog-medium__header">
+          <h2>Live from Medium</h2>
+          <a href="https://medium.com/@traceremove" target="_blank" rel="noreferrer">
+            Open Medium →
+          </a>
+        </div>
+        {mediumStatus === 'loading' ? <p>Syncing latest publications…</p> : null}
+        {mediumStatus === 'error' ? <p>Medium sync is temporarily unavailable. Please check back soon.</p> : null}
+        {mediumPosts.length > 0 ? (
+          <div className="blog-medium__grid">
+            {mediumPosts.map((post) => (
+              <article key={post.link} className="blog-medium__card">
+                <p>{formatLocaleDate(language, post.pubDate)}</p>
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+                <a href={post.link} target="_blank" rel="noreferrer">
+                  Read on Medium
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : null}
+      </section>
     </section>
   )
 }
@@ -7156,9 +7270,23 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
 const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [megaSearch, setMegaSearch] = useState('')
+  const [mobileExpandedGroup, setMobileExpandedGroup] = useState('')
   const location = useLocation()
   const copy = navCopy[currentLanguage]
   const groups = navigation[currentLanguage] ?? []
+  const filteredGroups = useMemo(() => {
+    const query = megaSearch.trim().toLowerCase()
+    if (!query) return groups
+    return groups
+      .map((group) => ({
+        ...group,
+        pages: group.pages.filter((page) =>
+          `${group.serviceName} ${page.industryName}`.toLowerCase().includes(query)
+        ),
+      }))
+      .filter((group) => group.pages.length > 0)
+  }, [groups, megaSearch])
   const headerRef = useRef<HTMLElement | null>(null)
   const mobileCloseRef = useRef<HTMLButtonElement | null>(null)
 
@@ -7184,6 +7312,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   useEffect(() => {
     setMegaOpen(false)
     setMobileOpen(false)
+    setMegaSearch('')
   }, [location.pathname])
 
   useEffect(() => {
@@ -7414,8 +7543,18 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`} onMouseLeave={handleServiceClose}>
+        <div className="tr-megamenu__tools">
+          <input
+            type="search"
+            value={megaSearch}
+            onChange={(event) => setMegaSearch(event.target.value)}
+            placeholder="Search service or industry…"
+            aria-label="Search services"
+          />
+          <p>Live reputation response playbooks, updated for 2026 channels.</p>
+        </div>
         <div className="tr-megamenu__inner">
-          {groups.map((group) => (
+          {filteredGroups.map((group) => (
             <div key={group.serviceName} className="tr-megamenu__column">
               <h3>{group.serviceName}</h3>
               <ul>
@@ -7433,6 +7572,13 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               </ul>
             </div>
           ))}
+          <aside className="tr-megamenu__insight">
+            <h3>Reputation pulse</h3>
+            <p>Track removals, reviews, and sentiment risks in one live command layer.</p>
+            <Link className="button ghost" to={getCommandCenterPath(currentLanguage)} onClick={handleServiceClose}>
+              Open command center
+            </Link>
+          </aside>
         </div>
       </div>
 
@@ -7466,24 +7612,37 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <div className="tr-mobile-menu__inner">
             <div className="tr-mobile-section">
               <h3>{copy.services}</h3>
-              {groups.map((group) => (
-                <Fragment key={group.serviceName}>
-                  <p className="tr-mobile-group-title">{group.serviceName}</p>
-                  <ul>
-                    {group.pages.map((page) => (
-                      <li key={page.path}>
-                        <NavLink
-                          to={page.path}
-                          className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                          onClick={handleCloseMobile}
-                        >
-                          {page.industryName}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                </Fragment>
-              ))}
+              {groups.map((group) => {
+                const isOpen = mobileExpandedGroup === group.serviceName
+                return (
+                  <Fragment key={group.serviceName}>
+                    <button
+                      type="button"
+                      className={`tr-mobile-group-toggle${isOpen ? ' is-open' : ''}`}
+                      onClick={() =>
+                        setMobileExpandedGroup((value) =>
+                          value === group.serviceName ? '' : group.serviceName
+                        )
+                      }
+                    >
+                      {group.serviceName}
+                    </button>
+                    <ul className={`tr-mobile-group-list${isOpen ? ' is-open' : ''}`}>
+                      {group.pages.map((page) => (
+                        <li key={page.path}>
+                          <NavLink
+                            to={page.path}
+                            className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
+                            onClick={handleCloseMobile}
+                          >
+                            {page.industryName}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </Fragment>
+                )
+              })}
             </div>
             <div className="tr-mobile-section">
               <h3>{copy.navigationTitle}</h3>
@@ -8350,6 +8509,9 @@ type LeadPayload = {
   company: string
   message: string
   createdAt: string
+  page: string
+  utmSource: string
+  leadScore: number
 }
 
 const persistLead = async (lead: LeadPayload) => {
@@ -8358,13 +8520,25 @@ const persistLead = async (lead: LeadPayload) => {
   localStorage.setItem('traceremove_leads', JSON.stringify([lead, ...parsed].slice(0, 100)))
 
   try {
-    await fetch('/api/leads', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(lead),
-    })
+    await Promise.allSettled([
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead),
+      }),
+      fetch('/api/crm/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead),
+      }),
+    ])
   } catch {
     // Offline-safe fallback already handled via localStorage.
+  }
+
+  const win = window as Window & { dataLayer?: unknown[] }
+  if (Array.isArray(win.dataLayer)) {
+    win.dataLayer.push({ event: 'lead_capture', payload: lead })
   }
 }
 
@@ -8438,6 +8612,7 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
       return
     }
     const latestMessage = [...messages].reverse().find((message) => message.role === 'user')?.text ?? ''
+    const params = new URLSearchParams(window.location.search)
     await persistLead({
       source: 'chatbot',
       name: lead.name,
@@ -8445,6 +8620,9 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
       company: lead.company,
       message: latestMessage,
       createdAt: new Date().toISOString(),
+      page: window.location.pathname,
+      utmSource: params.get('utm_source') ?? 'direct',
+      leadScore: Math.min(100, 50 + (latestMessage.length > 40 ? 25 : 0) + (lead.company ? 25 : 0)),
     })
     setSaved(true)
   }
@@ -8636,6 +8814,35 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [location.pathname])
+
+  useEffect(() => {
+    const seo = pageSeoDefaults[currentLanguage]
+    const path = location.pathname === '/' ? '' : location.pathname
+    const readablePath = path.split('/').join(' ').trim()
+    const title = path ? `${seo.titleSuffix} · ${readablePath}` : seo.titleSuffix
+    document.title = title
+
+    const ensureMeta = (name: string, content: string) => {
+      let element = document.head.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null
+      if (!element) {
+        element = document.createElement('meta')
+        element.setAttribute('name', name)
+        document.head.appendChild(element)
+      }
+      element.setAttribute('content', content)
+    }
+
+    ensureMeta('description', seo.description)
+    ensureMeta('robots', 'index, follow, max-image-preview:large')
+
+    let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.setAttribute('rel', 'canonical')
+      document.head.appendChild(canonical)
+    }
+    canonical.href = `${window.location.origin}${location.pathname}`
+  }, [currentLanguage, location.pathname])
 
   return (
     <div className="app-layout">

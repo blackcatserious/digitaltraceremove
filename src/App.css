@@ -15526,3 +15526,119 @@ a {
     opacity: 0.7;
   }
 }
+
+.tr-megamenu__tools {
+  width: min(1280px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.8rem 0.4rem;
+}
+
+.tr-megamenu__tools input {
+  width: min(360px, 100%);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.7);
+  color: #e2e8f0;
+  padding: 0.6rem 0.9rem;
+}
+
+.tr-megamenu__tools p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.75);
+  font-size: 0.85rem;
+}
+
+.tr-megamenu__insight {
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: rgba(2, 6, 23, 0.72);
+}
+
+.tr-mobile-group-toggle {
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.52);
+  color: #dbeafe;
+  padding: 0.6rem 0.75rem;
+  margin: 0.5rem 0 0.35rem;
+  font-weight: 600;
+}
+
+.tr-mobile-group-list {
+  display: none;
+}
+
+.tr-mobile-group-list.is-open {
+  display: block;
+}
+
+.home-reputation {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 1.8rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background:
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.2), transparent 60%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.7));
+}
+
+.home-reputation__kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(147, 197, 253, 0.8);
+  font-size: 0.74rem;
+}
+
+.home-reputation__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.home-reputation__grid article {
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.66);
+  padding: 1rem;
+}
+
+.blog-medium {
+  margin-top: 1rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 1.25rem;
+  background: rgba(2, 6, 23, 0.7);
+}
+
+.blog-medium__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.blog-medium__grid {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.blog-medium__card {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 0.9rem;
+  padding: 0.9rem;
+  background: rgba(15, 23, 42, 0.75);
+}
+
+@media (max-width: 960px) {
+  .tr-megamenu__tools {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
