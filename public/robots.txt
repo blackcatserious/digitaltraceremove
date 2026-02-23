@@ -1,3 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /process.php
+
 Sitemap: https://traceremove.com/sitemap.xml
+Sitemap: https://traceremove.com/sitemap-fr.xml
+Sitemap: https://traceremove.com/sitemap-es.xml
