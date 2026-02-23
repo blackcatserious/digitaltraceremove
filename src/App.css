@@ -15532,3 +15532,57 @@ a {
 .services-pricing__core-card h3 {
   margin-top: 0;
 }
+
+.reputation-score-page {
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+}
+
+.reputation-score-page__card {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 1px solid var(--surface-outline);
+  border-radius: 1.25rem;
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.reputation-score-page__trust {
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+.exit-intent {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.exit-intent__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(2, 6, 23, 0.74);
+}
+
+.exit-intent__card {
+  position: relative;
+  max-width: 640px;
+  width: min(100%, 640px);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 1.25rem;
+  border: 1px solid var(--surface-outline);
+  background: linear-gradient(155deg, rgba(15, 23, 42, 0.96), rgba(17, 24, 39, 0.92));
+  box-shadow: 0 24px 48px rgba(2, 6, 23, 0.45);
+}
+
+.exit-intent__dismiss {
+  margin-top: 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+}

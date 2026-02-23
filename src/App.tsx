@@ -147,6 +147,9 @@ const getJoinPath = (language: Language) => (language === 'en' ? '/join' : `/${l
 
 const getContactPath = (language: Language) => (language === 'en' ? '/contact' : `/${language}/contact`)
 
+const getReputationScorePath = (language: Language) =>
+  language === 'en' ? '/reputation-score' : `/${language}/reputation-score`
+
 const getPrivacyPath = (language: Language) => (language === 'en' ? '/privacy' : `/${language}/privacy`)
 
 const getTermsPath = (language: Language) => (language === 'en' ? '/terms' : `/${language}/terms`)
@@ -6535,7 +6538,58 @@ const blogArticleCopy: Record<
 })
 
 
+const reputationScoreCopy: Record<
+  Language,
+  {
+    kicker: string
+    title: string
+    subtitle: string
+    cta: string
+    trust: string
+  }
+> = withRussianFallback({
+  en: {
+    kicker: 'Free reputation score',
+    title: 'Check your reputation score in 60 seconds',
+    subtitle: 'Answer a few questions and we will send a practical action plan for improving search trust, reviews, and privacy hygiene.',
+    cta: 'Start assessment',
+    trust: '100% confidential. No spam. Results delivered fast.',
+  },
+  fr: {
+    kicker: 'Score réputation gratuit',
+    title: 'Évaluez votre score réputation en 60 secondes',
+    subtitle: 'Répondez à quelques questions et recevez un plan d’action concret pour la recherche, les avis et la protection des données.',
+    cta: 'Démarrer l’évaluation',
+    trust: '100 % confidentiel. Aucun spam. Résultats rapides.',
+  },
+  es: {
+    kicker: 'Score reputacional gratis',
+    title: 'Evalúa tu reputación en 60 segundos',
+    subtitle: 'Responde unas preguntas y te enviaremos un plan práctico para mejorar confianza en buscadores, reseñas y privacidad.',
+    cta: 'Empezar evaluación',
+    trust: '100% confidencial. Sin spam. Resultados rápidos.',
+  },
+})
+
+const ReputationScorePage = ({ language }: { language: Language }) => {
+  const copy = reputationScoreCopy[language]
+  return (
+    <section className="reputation-score-page">
+      <div className="reputation-score-page__card">
+        <p className="page-kicker">{copy.kicker}</p>
+        <h1>{copy.title}</h1>
+        <p>{copy.subtitle}</p>
+        <Link className="button primary" to={getContactPath(language)}>
+          {copy.cta}
+        </Link>
+        <p className="reputation-score-page__trust">{copy.trust}</p>
+      </div>
+    </section>
+  )
+}
+
 const BlogPage = ({ language }: { language: Language }) => {
+
   const copy = blogListCopy[language]
   const [topicFilter, setTopicFilter] = useState<'all' | BlogTopic>('all')
   const [authorFilter, setAuthorFilter] = useState<'all' | AuthorId>('all')
@@ -8446,7 +8500,124 @@ const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
   )
 }
 
+
+const exitIntentCopy: Record<Language, { title: string; subtitle: string; cta: string; dismiss: string }> = withRussianFallback({
+  en: {
+    title: 'Wait! Get Your Free Reputation Score Before You Go',
+    subtitle: 'Takes 60 seconds. See what the internet says about you.',
+    cta: 'Check My Score',
+    dismiss: "No thanks, I'm not concerned about my reputation",
+  },
+  fr: {
+    title: 'Attendez ! Obtenez votre score réputation gratuit avant de partir',
+    subtitle: '60 secondes suffisent pour voir ce qu’internet dit de vous.',
+    cta: 'Voir mon score',
+    dismiss: 'Non merci, je ne suis pas préoccupé par ma réputation',
+  },
+  es: {
+    title: '¡Espera! Obtén tu score de reputación gratis antes de irte',
+    subtitle: 'Toma 60 segundos. Descubre qué dice internet de ti.',
+    cta: 'Ver mi score',
+    dismiss: 'No gracias, no me preocupa mi reputación',
+  },
+})
+
+const EXIT_INTENT_COOKIE = 'tr_exit_intent_suppressed'
+
+const ExitIntentPopup = ({ currentLanguage }: { currentLanguage: Language }) => {
+  const { pathname } = useLocation()
+  const [isReady, setIsReady] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const normalizedPath = useMemo(() => {
+    const parts = pathname.split('/').filter(Boolean)
+    if (parts.length > 0 && languages.includes(parts[0] as Language)) {
+      parts.shift()
+    }
+    return `/${parts.join('/')}`.replace(/\/$/, '') || '/'
+  }, [pathname])
+
+  useEffect(() => {
+    setIsOpen(false)
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    if (normalizedPath === '/free-audit' || normalizedPath === '/reputation-score') {
+      return
+    }
+
+    if (window.sessionStorage.getItem('tr-exit-intent-shown') === 'true') {
+      return
+    }
+
+    if (document.cookie.includes(`${EXIT_INTENT_COOKIE}=1`)) {
+      return
+    }
+
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches
+    if (coarsePointer || window.innerWidth < 960) {
+      return
+    }
+
+    const timer = window.setTimeout(() => {
+      canTrigger = true
+      setIsReady(true)
+    }, 30000)
+    let canTrigger = false
+    const onMouseOut = (event: MouseEvent) => {
+      if (!canTrigger || isOpen) {
+        return
+      }
+      const related = event.relatedTarget as Node | null
+      if (event.clientY <= 8 && !related) {
+        setIsOpen(true)
+        window.sessionStorage.setItem('tr-exit-intent-shown', 'true')
+      }
+    }
+
+
+    document.addEventListener('mouseout', onMouseOut)
+
+    return () => {
+      if (timer) {
+        window.clearTimeout(timer)
+      }
+      document.removeEventListener('mouseout', onMouseOut)
+    }
+  }, [isOpen, normalizedPath])
+
+  const dismiss = () => {
+    setIsOpen(false)
+    const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()
+    document.cookie = `${EXIT_INTENT_COOKIE}=1; expires=${expires}; path=/; SameSite=Lax`
+  }
+
+  if (!isReady || !isOpen) {
+    return null
+  }
+
+  const copy = exitIntentCopy[currentLanguage]
+
+  return (
+    <div className="exit-intent" role="dialog" aria-modal="true" aria-labelledby="exit-intent-title">
+      <button type="button" className="exit-intent__backdrop" aria-label="Close popup" onClick={dismiss} />
+      <div className="exit-intent__card">
+        <h2 id="exit-intent-title">{copy.title}</h2>
+        <p>{copy.subtitle}</p>
+        <Link className="button primary" to={getReputationScorePath(currentLanguage)} onClick={dismiss}>
+          {copy.cta}
+        </Link>
+        <button type="button" className="exit-intent__dismiss" onClick={dismiss}>
+          {copy.dismiss}
+        </button>
+      </div>
+    </div>
+  )
+}
+
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
+
   const copy = footerCopy[currentLanguage]
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
@@ -8933,6 +9104,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <main className="content">{children}</main>
       <Footer currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
+      <ExitIntentPopup currentLanguage={currentLanguage} />
     </div>
   )
 }
@@ -8956,6 +9128,7 @@ function App() {
         <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<ContactPage language="en" />} />
+        <Route path="reputation-score" element={<ReputationScorePage language="en" />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         <Route path="privacy" element={<LegalPage language="en" variant="privacy" />} />
@@ -8977,6 +9150,7 @@ function App() {
             <Route path={`${language}/partners`} element={<PartnersPage />} />
             <Route path={`${language}/join`} element={<JoinPage />} />
             <Route path={`${language}/contact`} element={<ContactPage language={language} />} />
+            <Route path={`${language}/reputation-score`} element={<ReputationScorePage language={language} />} />
             <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
             <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
             <Route path={`${language}/privacy`} element={<LegalPage language={language} variant="privacy" />} />
