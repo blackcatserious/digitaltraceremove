@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/process.php",
-      "destination": "/",
-      "statusCode": 410
+      "destination": "/contact",
+      "statusCode": 301
     },
     {
       "source": "/:path*",
