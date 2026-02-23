@@ -8620,6 +8620,8 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const currentLanguage = useCurrentLanguage()
+  const location = useLocation()
+
   useEffect(() => {
     const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined
     if (!measurementId || typeof window === 'undefined') {
@@ -8642,28 +8644,28 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   }, [])
 
   useEffect(() => {
-    const { pathname } = window.location
+    const { pathname, origin } = window.location
     const pathSegments = pathname.split('/').filter(Boolean)
     const currentLang = languages.includes(pathSegments[0] as Language)
       ? (pathSegments.shift() as Language)
       : ('en' as Language)
-    const neutralPath = `/${pathSegments.join('/')}`.replace(/\/$/, '')
+    const path = `/${pathSegments.join('/')}`.replace(/\/$/, '')
     const buildPath = (language: Language) => {
       const prefix = language === 'en' ? '' : `/${language}`
-      if (!neutralPath || neutralPath === '/') {
+      if (!path || path === '/') {
         return `${prefix}/`.replace(/\/$/, '') || '/'
       }
-      return `${prefix}${neutralPath}`
+      return `${prefix}${path}`
     }
 
-    const existing = Array.from(document.querySelectorAll('link[data-hreflang]'))
-    existing.forEach((node) => node.remove())
+    const existingHreflang = Array.from(document.querySelectorAll('link[data-hreflang]'))
+    existingHreflang.forEach((node) => node.remove())
 
     languages.forEach((language) => {
       const link = document.createElement('link')
       link.rel = 'alternate'
       link.hreflang = language
-      link.href = `${window.location.origin}${buildPath(language)}`
+      link.href = `${origin}${buildPath(language)}`
       link.setAttribute('data-hreflang', 'true')
       document.head.appendChild(link)
     })
@@ -8671,77 +8673,233 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     const xDefault = document.createElement('link')
     xDefault.rel = 'alternate'
     xDefault.hreflang = 'x-default'
-    xDefault.href = `${window.location.origin}${buildPath(currentLang)}`
+    xDefault.href = `${origin}${buildPath('en')}`
     xDefault.setAttribute('data-hreflang', 'true')
     document.head.appendChild(xDefault)
-  }, [currentLanguage])
 
-  useEffect(() => {
-    const { pathname } = window.location
-    const pathSegments = pathname.split('/').filter(Boolean)
-    const currentLang = languages.includes(pathSegments[0] as Language)
-      ? (pathSegments.shift() as Language)
-      : ('en' as Language)
-    const path = `/${pathSegments.join('/')}`.replace(/\/$/, '')
     const defaultTitle = 'Traceremove'
     const defaultDescription = homeHeroSubheading[currentLang]
 
     let title = defaultTitle
     let description = defaultDescription
-    let jsonLd: Record<string, unknown> | null = null
 
-    if (!path || path === '/') {
+    const breadcrumbName = (segment: string) =>
+      segment
+        .split('-')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ')
+
+    const normalizedPath = !path || path === '/' ? '/' : path
+    const localizedPrefix = currentLang === 'en' ? '' : `/${currentLang}`
+    const localizedPath = normalizedPath === '/' ? `${localizedPrefix}/` : `${localizedPrefix}${normalizedPath}`
+    const localizedUrl = `${origin}${localizedPath === '/' ? '/' : localizedPath}`
+    const breadcrumbSegments = normalizedPath === '/' ? [] : normalizedPath.split('/').filter(Boolean)
+    const breadcrumbItems = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: navCopy[currentLang].home,
+        item: `${origin}${localizedPrefix || '/'}`,
+      },
+      ...breadcrumbSegments.map((segment, index) => ({
+        '@type': 'ListItem',
+        position: index + 2,
+        name: breadcrumbName(segment),
+        item: `${origin}${localizedPrefix}${`/${breadcrumbSegments.slice(0, index + 1).join('/')}`}`,
+      })),
+    ]
+
+    const schemas: Record<string, unknown>[] = [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        inLanguage: currentLang,
+        itemListElement:
+          normalizedPath === '/'
+            ? [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: localizedUrl,
+                },
+              ]
+            : breadcrumbItems,
+      },
+    ]
+
+    if (normalizedPath === '/') {
       title = `${defaultTitle} · ${homeHeroHeading[currentLang]}`
       description = homeHeroSubheading[currentLang]
-    } else if (path.startsWith('/services/')) {
-      const slug = path.split('/')[2]
+      schemas.push(
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'TraceRemove',
+          url: origin,
+          logo: `${origin}/traceremove-mark.svg`,
+          description: 'Multilingual digital reputation management agency',
+          telephone: '+16063022958',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '5840 E 2nd St, Ste 7000',
+            addressLocality: 'Casper',
+            addressRegion: 'WY',
+            postalCode: '82609',
+            addressCountry: 'US',
+          },
+          sameAs: ['https://instagram.com/traceremove', 'https://linkedin.com/company/traceremove'],
+          knowsLanguage: ['en', 'fr', 'es'],
+          areaServed: ['US', 'CA', 'FR', 'ES', 'GB'],
+          inLanguage: currentLang,
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'TraceRemove',
+          url: origin,
+          telephone: '+16063022958',
+          inLanguage: currentLang,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '5840 E 2nd St, Ste 7000',
+            addressLocality: 'Casper',
+            addressRegion: 'WY',
+            postalCode: '82609',
+            addressCountry: 'US',
+          },
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'TraceRemove',
+          url: origin,
+          inLanguage: currentLang,
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: `${origin}/resources?query={search_term_string}`,
+            'query-input': 'required name=search_term_string',
+          },
+        }
+      )
+    } else if (normalizedPath.startsWith('/services/')) {
+      const slug = normalizedPath.split('/')[2]
       const service = coreServices.find((item) => item.slug === slug)
       if (service) {
         const copy = service.copy[currentLang] ?? service.copy.en
         title = `${copy.title} · ${defaultTitle}`
         description = copy.summary
-        jsonLd = {
+        schemas.push({
           '@context': 'https://schema.org',
           '@type': 'Service',
           name: copy.title,
+          serviceType: 'Online Reputation Management',
           description: copy.summary,
-          provider: {
-            '@type': 'Organization',
-            name: 'Traceremove',
+          provider: { '@type': 'Organization', name: 'TraceRemove', url: origin },
+          areaServed: { '@type': 'Country', name: 'United States' },
+          availableLanguage: ['English', 'French', 'Spanish'],
+          inLanguage: currentLang,
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            description: 'Free initial reputation audit',
           },
-        }
+        })
       }
-    } else if (path.startsWith('/blog/')) {
-      const slug = path.split('/')[2]
+    } else if (normalizedPath.startsWith('/blog/')) {
+      const slug = normalizedPath.split('/')[2]
       const article = blogArticles.find((item) => item.slug === slug)
       if (article) {
         const translation = article.translations[currentLang] ?? article.translations.en
+        const author = authorProfiles[article.authorId]
         title = `${translation.title} · ${defaultTitle}`
         description = translation.summary
+        schemas.push({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: translation.title,
+          description: translation.summary,
+          datePublished: article.publishedAt,
+          dateModified: article.publishedAt,
+          inLanguage: currentLang,
+          image: `${origin}/traceremove-orbit.svg`,
+          author: {
+            '@type': 'Person',
+            name: author.name[currentLang] ?? author.name.en,
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'TraceRemove',
+            logo: { '@type': 'ImageObject', url: `${origin}/traceremove-mark.svg` },
+          },
+          mainEntityOfPage: localizedUrl,
+        })
       }
-    } else if (path === '/blog') {
-      title = `${navCopy[currentLang].blog} · ${defaultTitle}`
-      description = 'Press releases, case studies, and thought leadership from Traceremove.'
-    } else if (path === '/case-studies') {
-      title = `${navCopy[currentLang].caseStudies} · ${defaultTitle}`
-      description = 'Proof of impact across removals, security takedowns, and ORM programs.'
-    } else if (path === '/resources') {
-      title = `${navCopy[currentLang].resources} · ${defaultTitle}`
-    } else if (path === '/contact') {
-      title = `${navCopy[currentLang].contact} · ${defaultTitle}`
-    } else if (path === '/faq') {
+    } else if (normalizedPath === '/faq') {
       title = `${navCopy[currentLang].faq} · ${defaultTitle}`
       const faq = faqCopy[currentLang] ?? faqCopy.en
       const questions = faq.categories.flatMap((category) => category.items)
-      jsonLd = {
+      schemas.push({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
+        inLanguage: currentLang,
         mainEntity: questions.map((item) => ({
           '@type': 'Question',
           name: item.question,
           acceptedAnswer: { '@type': 'Answer', text: item.answer.join(' ') },
         })),
-      }
+      })
+    } else if (normalizedPath === '/contact') {
+      title = `${navCopy[currentLang].contact} · ${defaultTitle}`
+      schemas.push(
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          name: `${defaultTitle} Contact`,
+          inLanguage: currentLang,
+          url: localizedUrl,
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'TraceRemove',
+          url: origin,
+          telephone: '+16063022958',
+          inLanguage: currentLang,
+        }
+      )
+    } else if (normalizedPath === '/about' || normalizedPath === '/team') {
+      title = `${normalizedPath === '/about' ? navCopy[currentLang].about : navCopy[currentLang].team} · ${defaultTitle}`
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: `${defaultTitle} ${normalizedPath === '/about' ? 'About' : 'Team'}`,
+        inLanguage: currentLang,
+        mainEntity:
+          normalizedPath === '/team'
+            ? teamMembers.map((member) => ({
+                '@type': 'Person',
+                name: member.name,
+                jobTitle: member.role,
+              }))
+            : undefined,
+      })
+    } else if (normalizedPath === '/case-studies') {
+      title = `${navCopy[currentLang].caseStudies} · ${defaultTitle}`
+      description = 'Proof of impact across removals, security takedowns, and ORM programs.'
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: `${defaultTitle} Case Studies`,
+        inLanguage: currentLang,
+        description,
+      })
+    } else if (normalizedPath === '/blog') {
+      title = `${navCopy[currentLang].blog} · ${defaultTitle}`
+      description = 'Press releases, case studies, and thought leadership from Traceremove.'
+    } else if (normalizedPath === '/resources') {
+      title = `${navCopy[currentLang].resources} · ${defaultTitle}`
     }
 
     document.title = title
@@ -8752,107 +8910,17 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       document.head.appendChild(metaDescription)
     }
 
-    const existingJsonLd = document.querySelector('script[data-jsonld]')
-    if (existingJsonLd) {
-      existingJsonLd.remove()
-    }
-    if (jsonLd) {
+    const existingJsonLd = Array.from(document.querySelectorAll('script[data-jsonld]'))
+    existingJsonLd.forEach((node) => node.remove())
+
+    schemas.forEach((schema, index) => {
       const script = document.createElement('script')
       script.type = 'application/ld+json'
-      script.textContent = JSON.stringify(jsonLd)
-      script.setAttribute('data-jsonld', 'true')
+      script.textContent = JSON.stringify(schema)
+      script.setAttribute('data-jsonld', String(index))
       document.head.appendChild(script)
-    }
-  }, [currentLanguage])
-
-  useEffect(() => {
-    const { pathname } = window.location
-    const pathSegments = pathname.split('/').filter(Boolean)
-    const currentLang = languages.includes(pathSegments[0] as Language)
-      ? (pathSegments.shift() as Language)
-      : ('en' as Language)
-    const path = `/${pathSegments.join('/')}`.replace(/\/$/, '')
-    const defaultTitle = 'Traceremove'
-    const defaultDescription = homeHeroSubheading[currentLang]
-
-    let title = defaultTitle
-    let description = defaultDescription
-    let jsonLd: Record<string, unknown> | null = null
-
-    if (!path || path === '/') {
-      title = `${defaultTitle} · ${homeHeroHeading[currentLang]}`
-      description = homeHeroSubheading[currentLang]
-    } else if (path.startsWith('/services/')) {
-      const slug = path.split('/')[2]
-      const service = coreServices.find((item) => item.slug === slug)
-      if (service) {
-        const copy = service.copy[currentLang] ?? service.copy.en
-        title = `${copy.title} · ${defaultTitle}`
-        description = copy.summary
-        jsonLd = {
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: copy.title,
-          description: copy.summary,
-          provider: {
-            '@type': 'Organization',
-            name: 'Traceremove',
-          },
-        }
-      }
-    } else if (path.startsWith('/blog/')) {
-      const slug = path.split('/')[2]
-      const article = blogArticles.find((item) => item.slug === slug)
-      if (article) {
-        const translation = article.translations[currentLang] ?? article.translations.en
-        title = `${translation.title} · ${defaultTitle}`
-        description = translation.summary
-      }
-    } else if (path === '/blog') {
-      title = `${navCopy[currentLang].blog} · ${defaultTitle}`
-      description = 'Press releases, case studies, and thought leadership from Traceremove.'
-    } else if (path === '/case-studies') {
-      title = `${navCopy[currentLang].caseStudies} · ${defaultTitle}`
-      description = 'Proof of impact across removals, security takedowns, and ORM programs.'
-    } else if (path === '/resources') {
-      title = `${navCopy[currentLang].resources} · ${defaultTitle}`
-    } else if (path === '/contact') {
-      title = `${navCopy[currentLang].contact} · ${defaultTitle}`
-    } else if (path === '/faq') {
-      title = `${navCopy[currentLang].faq} · ${defaultTitle}`
-      const faq = faqCopy[currentLang] ?? faqCopy.en
-      const questions = faq.categories.flatMap((category) => category.items)
-      jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: questions.map((item) => ({
-          '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: { '@type': 'Answer', text: item.answer.join(' ') },
-        })),
-      }
-    }
-
-    document.title = title
-    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta')
-    metaDescription.setAttribute('name', 'description')
-    metaDescription.setAttribute('content', description)
-    if (!metaDescription.parentElement) {
-      document.head.appendChild(metaDescription)
-    }
-
-    const existingJsonLd = document.querySelector('script[data-jsonld]')
-    if (existingJsonLd) {
-      existingJsonLd.remove()
-    }
-    if (jsonLd) {
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.textContent = JSON.stringify(jsonLd)
-      script.setAttribute('data-jsonld', 'true')
-      document.head.appendChild(script)
-    }
-  }, [currentLanguage])
+    })
+  }, [currentLanguage, location.pathname])
 
   return (
     <div className="app-layout">
