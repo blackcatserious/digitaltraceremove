@@ -15534,21 +15534,190 @@ a {
 }
 
 .reputation-score-page {
-  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+  padding: clamp(2rem, 5vw, 4rem) 1rem;
 }
 
-.reputation-score-page__card {
-  max-width: 720px;
+.reputation-score-wizard {
+  width: min(880px, 100%);
   margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 2.25rem);
-  border: 1px solid var(--surface-outline);
   border-radius: 1.25rem;
-  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid var(--surface-outline);
+  background: linear-gradient(160deg, rgba(10, 22, 40, 0.92), rgba(12, 20, 34, 0.78));
+  box-shadow: 0 22px 50px rgba(2, 6, 23, 0.42);
+  overflow: hidden;
 }
 
-.reputation-score-page__trust {
+.reputation-score-progress {
+  height: 8px;
+  background: rgba(148, 163, 184, 0.2);
+}
+
+.reputation-score-progress > div {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #60e6ff);
+  transition: width 250ms ease;
+}
+
+.reputation-score-screen {
+  padding: clamp(1.1rem, 4vw, 2rem);
+  display: grid;
+  gap: 1rem;
+  animation: scoreSlideIn 250ms ease;
+}
+
+.reputation-score-wizard.is-backward .reputation-score-screen {
+  animation-name: scoreSlideInBack;
+}
+
+@keyframes scoreSlideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scoreSlideInBack {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.reputation-score-screen h1,
+.reputation-score-screen h2 {
+  margin: 0;
+}
+
+.reputation-score-note {
+  margin: 0;
   color: var(--text-muted);
-  margin-top: 1rem;
+}
+
+.reputation-score-step-label {
+  margin: 0;
+  color: #8fe8fb;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.reputation-score-options {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.reputation-score-option {
+  text-align: left;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 0.85rem;
+  background: rgba(15, 23, 42, 0.62);
+  color: var(--text-primary);
+  padding: 0.85rem 0.95rem;
+  cursor: pointer;
+}
+
+.reputation-score-option:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.reputation-score-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.reputation-score-form label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.reputation-score-form input {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 0.7rem;
+  padding: 0.75rem 0.8rem;
+  background: rgba(15, 23, 42, 0.65);
+  color: var(--text-primary);
+}
+
+.reputation-score-error {
+  margin: 0;
+  color: #fca5a5;
+}
+
+.reputation-score-gauge {
+  position: relative;
+  width: 160px;
+  margin: 0 auto;
+}
+
+.reputation-score-gauge svg {
+  width: 160px;
+  height: 160px;
+  transform: rotate(-90deg);
+}
+
+.reputation-score-gauge__track,
+.reputation-score-gauge__value {
+  fill: none;
+  stroke-width: 10;
+}
+
+.reputation-score-gauge__track { stroke: rgba(148, 163, 184, 0.24); }
+
+.reputation-score-gauge__value {
+  stroke: var(--score-color, #00d4ff);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 500ms ease;
+}
+
+.reputation-score-gauge__label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.reputation-score-gauge__label strong { font-size: 2rem; line-height: 1; }
+.reputation-score-gauge__label span { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.07em; }
+
+.reputation-score-band {
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+.reputation-score-breakdown {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.reputation-score-breakdown__label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.92rem;
+}
+
+.reputation-score-breakdown__bar {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.22);
+  overflow: hidden;
+}
+
+.reputation-score-breakdown__bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #6be8ff);
+}
+
+.reputation-score-recommendations ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.reputation-score-results-cta div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
 }
 
 .exit-intent {

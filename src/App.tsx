@@ -6553,55 +6553,336 @@ const blogArticleCopy: Record<
 })
 
 
-const reputationScoreCopy: Record<
-  Language,
+const reputationQuestions = [
   {
-    kicker: string
-    title: string
-    subtitle: string
-    cta: string
-    trust: string
-  }
-> = withRussianFallback({
-  en: {
-    kicker: 'Free reputation score',
-    title: 'Check your reputation score in 60 seconds',
-    subtitle: 'Answer a few questions and we will send a practical action plan for improving search trust, reviews, and privacy hygiene.',
-    cta: 'Start assessment',
-    trust: '100% confidential. No spam. Results delivered fast.',
+    id: 'searchResults',
+    prompt: 'When someone Googles your name or business, what do they see?',
+    options: [
+      { label: 'All positive results', points: 10 },
+      { label: 'Mostly positive, some neutral', points: 7 },
+      { label: 'Mix of positive and negative', points: 4 },
+      { label: 'Mostly negative or nothing relevant', points: 1 },
+    ],
   },
-  fr: {
-    kicker: 'Score réputation gratuit',
-    title: 'Évaluez votre score réputation en 60 secondes',
-    subtitle: 'Répondez à quelques questions et recevez un plan d’action concret pour la recherche, les avis et la protection des données.',
-    cta: 'Démarrer l’évaluation',
-    trust: '100 % confidentiel. Aucun spam. Résultats rapides.',
+  {
+    id: 'reviews',
+    prompt: "What's your average Google review rating?",
+    options: [
+      { label: '4.5+ stars', points: 10 },
+      { label: '4.0–4.4 stars', points: 7 },
+      { label: '3.0–3.9 stars', points: 4 },
+      { label: 'Below 3 or no reviews', points: 1 },
+    ],
   },
-  es: {
-    kicker: 'Score reputacional gratis',
-    title: 'Evalúa tu reputación en 60 segundos',
-    subtitle: 'Responde unas preguntas y te enviaremos un plan práctico para mejorar confianza en buscadores, reseñas y privacidad.',
-    cta: 'Empezar evaluación',
-    trust: '100% confidencial. Sin spam. Resultados rápidos.',
+  {
+    id: 'platformPresence',
+    prompt: 'How many review platforms show your business?',
+    options: [
+      { label: '5+ platforms', points: 10 },
+      { label: '3–4 platforms', points: 7 },
+      { label: '1–2 platforms', points: 4 },
+      { label: 'None', points: 1 },
+    ],
   },
-})
+  {
+    id: 'dataSecurity',
+    prompt: 'Has your email appeared in a data breach?',
+    options: [
+      { label: 'No', points: 10 },
+      { label: 'Yes, but I changed passwords', points: 6 },
+      { label: "Yes, I haven't addressed it", points: 2 },
+      { label: "I don't know", points: 4 },
+    ],
+  },
+  {
+    id: 'monitoring',
+    prompt: 'Do you monitor your online mentions?',
+    options: [
+      { label: 'Yes, with professional tools', points: 10 },
+      { label: 'I Google myself occasionally', points: 5 },
+      { label: 'No monitoring at all', points: 2 },
+    ],
+  },
+  {
+    id: 'professionalProfile',
+    prompt: 'How optimized is your LinkedIn profile?',
+    options: [
+      { label: 'Fully optimized with recommendations', points: 10 },
+      { label: 'Basic, up-to-date profile', points: 6 },
+      { label: 'Outdated or no profile', points: 2 },
+    ],
+  },
+  {
+    id: 'crisisResponse',
+    prompt: 'How do you handle negative reviews or mentions?',
+    options: [
+      { label: 'Respond professionally within 24 hours', points: 10 },
+      { label: 'Respond sometimes', points: 5 },
+      { label: 'Ignore or argue publicly', points: 1 },
+    ],
+  },
+] as const
+
+type ReputationQuestionId = (typeof reputationQuestions)[number]['id']
+type ReputationAnswers = Partial<Record<ReputationQuestionId, number>>
+
+const scoreBands = [
+  { min: 0, max: 30, label: '🔴 CRITICAL', color: '#ef4444', message: 'Your reputation needs immediate attention' },
+  { min: 31, max: 50, label: '🟠 AT RISK', color: '#f97316', message: 'Significant vulnerabilities detected' },
+  { min: 51, max: 70, label: '🟡 FAIR', color: '#facc15', message: 'Room for improvement' },
+  { min: 71, max: 85, label: '🟢 GOOD', color: '#22c55e', message: 'Solid foundation, minor optimizations needed' },
+  { min: 86, max: 100, label: '🔵 EXCELLENT', color: '#00d4ff', message: 'Strong reputation, keep monitoring' },
+]
+
+const recommendationByCategory: Record<ReputationQuestionId, string> = {
+  searchResults: 'Publish authoritative profile pages and optimize title/meta so positive pages dominate page one.',
+  reviews: 'Implement a weekly review generation workflow and respond to every new review within 24 hours.',
+  platformPresence: 'Claim and optimize profiles on key directories (Google, Trustpilot, Yelp, and niche platforms).',
+  dataSecurity: 'Run breach monitoring and rotate credentials with MFA enabled on all business-critical accounts.',
+  monitoring: 'Set up continuous mention monitoring with alerts for brand terms, executives, and priority keywords.',
+  professionalProfile: 'Refresh LinkedIn headline, proof points, and recommendations to increase trust signals.',
+  crisisResponse: 'Use response templates and escalation rules to handle negative mentions quickly and professionally.',
+}
 
 const ReputationScorePage = ({ language }: { language: Language }) => {
-  const copy = reputationScoreCopy[language]
+  const [step, setStep] = useState(0)
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward')
+  const [answers, setAnswers] = useState<ReputationAnswers>({})
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [company, setCompany] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+
+  const totalQuestionPoints = reputationQuestions.length * 10
+  const answeredPoints = reputationQuestions.reduce((sum, question) => sum + (answers[question.id] ?? 0), 0)
+  const score = Math.round((answeredPoints / totalQuestionPoints) * 100)
+
+  const band = scoreBands.find((item) => score >= item.min && score <= item.max) ?? scoreBands[0]
+
+  const categoryBreakdown = reputationQuestions.map((question) => ({
+    id: question.id,
+    label:
+      question.id === 'searchResults'
+        ? 'Search Results'
+        : question.id === 'reviews'
+          ? 'Reviews'
+          : question.id === 'platformPresence'
+            ? 'Platform Presence'
+            : question.id === 'dataSecurity'
+              ? 'Data Security'
+              : question.id === 'monitoring'
+                ? 'Monitoring'
+                : question.id === 'professionalProfile'
+                  ? 'Professional Profile'
+                  : 'Crisis Response',
+    value: answers[question.id] ?? 0,
+  }))
+
+  const topRecommendations = categoryBreakdown
+    .slice()
+    .sort((a, b) => a.value - b.value)
+    .slice(0, 3)
+    .map((item) => ({ label: item.label, tip: recommendationByCategory[item.id] }))
+
+  const progressPercent = Math.round((Math.min(step, reputationQuestions.length + 1) / (reputationQuestions.length + 1)) * 100)
+
+  const goToStep = (nextStep: number, nextDirection: 'forward' | 'backward') => {
+    setDirection(nextDirection)
+    setStep(nextStep)
+  }
+
+  const handleStart = () => {
+    trackEvent('assessment_start', { language })
+    goToStep(1, 'forward')
+  }
+
+  const handleAnswer = (questionIndex: number, points: number) => {
+    const question = reputationQuestions[questionIndex]
+    setAnswers((previous) => ({ ...previous, [question.id]: points }))
+    trackEvent(`assessment_step_${questionIndex + 1}`, { language, points })
+    if (questionIndex === reputationQuestions.length - 1) {
+      goToStep(reputationQuestions.length + 1, 'forward')
+      return
+    }
+    goToStep(step + 1, 'forward')
+  }
+
+  const handleBack = () => {
+    if (step <= 0) return
+    goToStep(step - 1, 'backward')
+  }
+
+  const handleEmailSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (isSubmitting) return
+
+    setIsSubmitting(true)
+    setSubmitError(null)
+
+    const serializedAnswers = reputationQuestions.map((question, index) => ({
+      question: `Q${index + 1}: ${question.prompt}`,
+      score: answers[question.id] ?? 0,
+      selectedOption: question.options.find((option) => option.points === (answers[question.id] ?? -1))?.label || 'Unknown',
+    }))
+
+    try {
+      await submitHubspotLead({
+        source: 'reputation-score-assessment',
+        language,
+        name: fullName,
+        email,
+        company: company || undefined,
+        service: `score-${score}`,
+        message: JSON.stringify({ score, answers: serializedAnswers }),
+      })
+
+      trackEvent('assessment_email_submit', { language })
+      trackEvent('assessment_complete', { language, score })
+      if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead')
+      }
+      goToStep(reputationQuestions.length + 2, 'forward')
+    } catch {
+      setSubmitError('Could not submit your details. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const circleCircumference = 2 * Math.PI * 54
+  const circleOffset = circleCircumference - (score / 100) * circleCircumference
+
   return (
     <section className="reputation-score-page">
-      <div className="reputation-score-page__card">
-        <p className="page-kicker">{copy.kicker}</p>
-        <h1>{copy.title}</h1>
-        <p>{copy.subtitle}</p>
-        <Link
-          className="button primary"
-          to={getContactPath(language)}
-          onClick={() => trackEvent('reputation_score_started', { language })}
-        >
-          {copy.cta}
-        </Link>
-        <p className="reputation-score-page__trust">{copy.trust}</p>
+      <div className={`reputation-score-wizard is-${direction}`}>
+        {step > 0 && step < reputationQuestions.length + 2 ? (
+          <div className="reputation-score-progress" aria-label="Assessment progress">
+            <div style={{ width: `${progressPercent}%` }} />
+          </div>
+        ) : null}
+
+        {step === 0 ? (
+          <div className="reputation-score-screen reputation-score-screen--intro">
+            <h1>What's Your Reputation Score?</h1>
+            <p>7 questions. 60 seconds. Instant results.</p>
+            <button className="button primary" type="button" onClick={handleStart}>
+              Start Free Assessment →
+            </button>
+            <p className="reputation-score-note">No signup required to start. Over 500 assessments completed.</p>
+          </div>
+        ) : null}
+
+        {step >= 1 && step <= reputationQuestions.length ? (
+          <div className="reputation-score-screen reputation-score-screen--question" key={step}>
+            <p className="reputation-score-step-label">Question {step} of {reputationQuestions.length}</p>
+            <h2>{reputationQuestions[step - 1].prompt}</h2>
+            <div className="reputation-score-options">
+              {reputationQuestions[step - 1].options.map((option) => (
+                <button
+                  key={option.label}
+                  type="button"
+                  className="reputation-score-option"
+                  onClick={() => handleAnswer(step - 1, option.points)}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            <button type="button" className="button tertiary" onClick={handleBack}>
+              ← Back
+            </button>
+          </div>
+        ) : null}
+
+        {step === reputationQuestions.length + 1 ? (
+          <div className="reputation-score-screen reputation-score-screen--gate">
+            <h2>Your score is calculated! Enter your email to see full results.</h2>
+            <form className="reputation-score-form" onSubmit={handleEmailSubmit}>
+              <label>
+                <span>Full Name</span>
+                <input value={fullName} onChange={(event) => setFullName(event.target.value)} required />
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+              </label>
+              <label>
+                <span>Company (optional)</span>
+                <input value={company} onChange={(event) => setCompany(event.target.value)} />
+              </label>
+              <button className="button primary" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting…' : 'See My Score →'}
+              </button>
+              <p className="reputation-score-note">We'll also send a personalized improvement checklist.</p>
+              {submitError ? <p className="reputation-score-error">{submitError}</p> : null}
+            </form>
+            <button type="button" className="button tertiary" onClick={handleBack}>
+              ← Back
+            </button>
+          </div>
+        ) : null}
+
+        {step === reputationQuestions.length + 2 ? (
+          <div className="reputation-score-screen reputation-score-screen--results">
+            <h2>Your Reputation Score</h2>
+            <div className="reputation-score-gauge" style={{ ['--score-color' as string]: band.color } as CSSProperties}>
+              <svg viewBox="0 0 140 140" aria-label={`Reputation score ${score}`}>
+                <circle cx="70" cy="70" r="54" className="reputation-score-gauge__track" />
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="54"
+                  className="reputation-score-gauge__value"
+                  strokeDasharray={circleCircumference}
+                  strokeDashoffset={circleOffset}
+                />
+              </svg>
+              <div className="reputation-score-gauge__label">
+                <strong>{score}</strong>
+                <span>{band.label}</span>
+              </div>
+            </div>
+            <p className="reputation-score-band" style={{ color: band.color }}>{band.message}</p>
+
+            <div className="reputation-score-breakdown">
+              {categoryBreakdown.map((item) => (
+                <div key={item.id} className="reputation-score-breakdown__row">
+                  <div className="reputation-score-breakdown__label">
+                    <span>{item.label}</span>
+                    <span>{item.value}/10</span>
+                  </div>
+                  <div className="reputation-score-breakdown__bar">
+                    <span style={{ width: `${item.value * 10}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="reputation-score-recommendations">
+              <h3>YOUR TOP 3 RECOMMENDATIONS</h3>
+              <ul>
+                {topRecommendations.map((item) => (
+                  <li key={item.label}>
+                    <strong>{item.label}:</strong> {item.tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="reputation-score-results-cta">
+              <p>Want expert help improving your score?</p>
+              <div>
+                <a className="button primary" href="https://calendly.com/traceremove/free-consultation" target="_blank" rel="noreferrer">
+                  Book Free Consultation
+                </a>
+                <Link className="button secondary" to={`/free-audit${email ? `?email=${encodeURIComponent(email)}` : ''}`}>
+                  Get Full Audit Report
+                </Link>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   )
