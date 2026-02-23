@@ -2582,7 +2582,7 @@ const HomePage = () => {
             <a
               className="button secondary"
               href="tel:+16063022958"
-              onClick={() => trackEvent('phone_click', { location: 'home-hero', language: currentLanguage })}
+              onClick={() => trackEvent('phone_click', { page: 'home', language: currentLanguage })}
             >
               +1 606 302 2958
             </a>
@@ -2686,7 +2686,7 @@ const HomePage = () => {
           {heroCta} — <a href="mailto:contact@traceremove.com">contact@traceremove.com</a> ·{' '}
           <a
             href="tel:+16063022958"
-            onClick={() => trackEvent('phone_click', { location: 'footer-contact', language: currentLanguage })}
+            onClick={() => trackEvent('phone_click', { page: 'home-footer-contact', language: currentLanguage })}
           >
             +1 606 302 2958
           </a>
@@ -6209,7 +6209,7 @@ const ContactPage = ({ language }: { language: Language }) => {
         phone: formData.phone,
         message: formData.message,
       })
-      trackEvent('contact_form_submit', { language })
+      trackEvent('form_submit', { form_name: 'contact_form', form_location: 'contact_page', language })
       setSubmitted(true)
       setFormData({ name: '', email: '', company: '', phone: '', message: '' })
     } catch {
@@ -6579,7 +6579,11 @@ const ReputationScorePage = ({ language }: { language: Language }) => {
         <p className="page-kicker">{copy.kicker}</p>
         <h1>{copy.title}</h1>
         <p>{copy.subtitle}</p>
-        <Link className="button primary" to={getContactPath(language)}>
+        <Link
+          className="button primary"
+          to={getContactPath(language)}
+          onClick={() => trackEvent('reputation_score_started', { language })}
+        >
           {copy.cta}
         </Link>
         <p className="reputation-score-page__trust">{copy.trust}</p>
@@ -7602,7 +7606,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <a
             className="button ghost"
             href="tel:+16063022958"
-            onClick={() => trackEvent('phone_click', { location: 'header', language: currentLanguage })}
+            onClick={() => trackEvent('phone_click', { page: 'header', language: currentLanguage })}
           >
             +1 606 302 2958
           </a>
@@ -7736,7 +7740,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 className="tr-mobile-link"
                 href="tel:+16063022958"
                 onClick={() => {
-                  trackEvent('phone_click', { location: 'mobile-menu', language: currentLanguage })
+                  trackEvent('phone_click', { page: 'mobile-menu', language: currentLanguage })
                   handleCloseMobile()
                 }}
               >
@@ -8489,7 +8493,7 @@ const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
       className="call-widget"
       href="tel:+16063022958"
       aria-label={`${copy.label}. ${copy.assist}`}
-      onClick={() => trackEvent('phone_click', { location: 'call-widget', language: currentLanguage })}
+      onClick={() => trackEvent('phone_click', { page: 'call-widget', language: currentLanguage })}
     >
       <span className="call-widget__icon" aria-hidden="true">📞</span>
       <span className="call-widget__text">
@@ -8605,7 +8609,19 @@ const ExitIntentPopup = ({ currentLanguage }: { currentLanguage: Language }) => 
       <div className="exit-intent__card">
         <h2 id="exit-intent-title">{copy.title}</h2>
         <p>{copy.subtitle}</p>
-        <Link className="button primary" to={getReputationScorePath(currentLanguage)} onClick={dismiss}>
+        <Link
+          className="button primary"
+          to={getReputationScorePath(currentLanguage)}
+          onClick={() => {
+            trackEvent('cta_click', {
+              cta_text: copy.cta,
+              cta_location: 'exit_intent_popup',
+              page: normalizedPath,
+              language: currentLanguage,
+            })
+            dismiss()
+          }}
+        >
           {copy.cta}
         </Link>
         <button type="button" className="exit-intent__dismiss" onClick={dismiss}>
@@ -8638,7 +8654,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         name: 'Newsletter Subscriber',
         email,
       })
-      trackEvent('footer_subscribe', { language: currentLanguage })
+      trackEvent('form_submit', { form_name: 'newsletter_subscribe', form_location: 'footer', language: currentLanguage })
       setSubscribed(true)
       setEmail('')
     } catch {
@@ -8760,7 +8776,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           <a
             className="tr-footer__menu-link tr-footer__menu-link--call"
             href="tel:+16063022958"
-            onClick={() => trackEvent('phone_click', { location: 'footer-menu', language: currentLanguage })}
+            onClick={() => trackEvent('phone_click', { page: 'footer-menu', language: currentLanguage })}
           >
             <span>{copy.call}</span>
           </a>
@@ -8794,24 +8810,25 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   const location = useLocation()
 
   useEffect(() => {
-    const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined
-    if (!measurementId || typeof window === 'undefined') {
+    const gtmContainerId = import.meta.env.VITE_GTM_CONTAINER_ID as string | undefined
+    if (!gtmContainerId || typeof window === 'undefined') {
       return
     }
-    if (document.querySelector(`script[data-gtag="${measurementId}"]`)) {
+    if (document.querySelector(`script[data-gtm="${gtmContainerId}"]`)) {
       return
     }
+
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      'gtm.start': Date.now(),
+      event: 'gtm.js',
+    })
+
     const script = document.createElement('script')
     script.async = true
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
-    script.setAttribute('data-gtag', measurementId)
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmContainerId}`
+    script.setAttribute('data-gtm', gtmContainerId)
     document.head.appendChild(script)
-    window.dataLayer = window.dataLayer || []
-    window.gtag = function gtag(...args: unknown[]) {
-      window.dataLayer?.push(args)
-    }
-    window.gtag('js', new Date())
-    window.gtag('config', measurementId)
   }, [])
 
   useEffect(() => {

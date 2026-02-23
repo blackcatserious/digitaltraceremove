@@ -48,7 +48,7 @@ export const CoreServicePage = ({ language }: { language: Language }) => {
         language,
         ...formData,
       })
-      trackEvent('service_form_submit', { service: service.slug, language })
+      trackEvent('form_submit', { form_name: 'core_service_form', form_location: service.slug, language })
       setStatus('success')
       setFormData({ name: '', email: '', urgency: '', links: '', deadline: '' })
     } catch {

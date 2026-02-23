@@ -2,14 +2,17 @@ export type AnalyticsParams = Record<string, unknown>
 
 declare global {
   interface Window {
-    gtag?: (...args: unknown[]) => void
-    dataLayer?: unknown[]
+    dataLayer?: Array<Record<string, unknown>>
   }
 }
 
 export const trackEvent = (eventName: string, params?: AnalyticsParams) => {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+  if (typeof window === 'undefined') {
     return
   }
-  window.gtag('event', eventName, params ?? {})
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
+    event: eventName,
+    ...(params ?? {}),
+  })
 }
