@@ -188,6 +188,237 @@ const homeByLang = {
   },
 }
 
+const organizationId = `${siteUrl}/#organization`
+
+const makeBreadcrumbSchema = (basePath, routePath) => {
+  const segments = basePath === '/' ? [] : basePath.split('/').filter(Boolean)
+  const itemListElement = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: siteUrl,
+    },
+    ...segments.map((segment, index) => ({
+      '@type': 'ListItem',
+      position: index + 2,
+      name: segment
+        .split('-')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' '),
+      item:
+        index === segments.length - 1
+          ? `${siteUrl}${routePath === '/' ? '/' : routePath}`
+          : `${siteUrl}/${segments.slice(0, index + 1).join('/')}`,
+    })),
+  ]
+
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement,
+  }
+}
+
+const makeHomepageGraph = () => ({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: 'TraceRemove',
+      url: siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/logo.png`,
+      },
+      description: 'Multilingual digital reputation management agency',
+      telephone: '+16063022958',
+      email: 'artur@traceremove.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '5840 E 2nd St, Ste 7000',
+        addressLocality: 'Casper',
+        addressRegion: 'WY',
+        postalCode: '82609',
+        addressCountry: 'US',
+      },
+      founder: {
+        '@type': 'Person',
+        name: 'Artur Ziganshin',
+        url: 'https://traceremove.dev/about',
+      },
+      sameAs: [
+        'https://instagram.com/traceremove',
+        'https://linkedin.com/in/arthur-ziganshin',
+        'https://twitter.com/traceremove',
+        'https://github.com/blackcatserious',
+        'https://traceremove.dev',
+      ],
+      knowsLanguage: ['en', 'fr', 'es'],
+      areaServed: [
+        { '@type': 'Country', name: 'United States' },
+        { '@type': 'Country', name: 'Canada' },
+        { '@type': 'Country', name: 'France' },
+        { '@type': 'Country', name: 'Spain' },
+        { '@type': 'Country', name: 'United Kingdom' },
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: siteUrl,
+      name: 'TraceRemove',
+      publisher: { '@id': organizationId },
+      inLanguage: ['en', 'fr', 'es'],
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${siteUrl}/search?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'LocalBusiness',
+      name: 'TraceRemove',
+      image: `${siteUrl}/logo.png`,
+      telephone: '+16063022958',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '5840 E 2nd St, Ste 7000',
+        addressLocality: 'Casper',
+        addressRegion: 'WY',
+        postalCode: '82609',
+        addressCountry: 'US',
+      },
+      priceRange: '$$',
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '18:00',
+      },
+    },
+  ],
+})
+
+const makePageJsonLd = (basePath, routePath, lang, title, description) => {
+  const breadcrumb = makeBreadcrumbSchema(basePath, routePath)
+
+  if (basePath === '/') {
+    const graph = makeHomepageGraph()
+    graph['@graph'].push(breadcrumb)
+    return graph
+  }
+
+  if (basePath.startsWith('/services/')) {
+    const serviceName = title.replace(' | TraceRemove', '')
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Service',
+          name: serviceName,
+          serviceType: serviceName,
+          description,
+          provider: { '@id': organizationId },
+          areaServed: { '@type': 'Country', name: 'United States' },
+          availableLanguage: ['English', 'French', 'Spanish'],
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            description: 'Free initial consultation and reputation audit',
+          },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: `How quickly can ${serviceName} start?`,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'We typically begin with an intake call and action plan within one business day.',
+              },
+            },
+          ],
+        },
+        breadcrumb,
+      ],
+    }
+  }
+
+  if (basePath.startsWith('/blog/')) {
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          headline: title,
+          description,
+          datePublished: '2026-02-23',
+          dateModified: '2026-02-23',
+          author: {
+            '@type': 'Person',
+            name: 'Artur Ziganshin',
+            url: 'https://traceremove.dev/about',
+          },
+          publisher: { '@id': organizationId },
+          image: `${siteUrl}/images/og-default.jpg`,
+          inLanguage: lang,
+          mainEntityOfPage: `${siteUrl}${routePath}`,
+        },
+        breadcrumb,
+      ],
+    }
+  }
+
+  if (basePath === '/team') {
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Person',
+          name: 'Artur Ziganshin',
+          jobTitle: 'Founder & CEO',
+          worksFor: { '@id': organizationId },
+          image: `${siteUrl}/images/team-artur.jpg`,
+          sameAs: ['https://linkedin.com/in/arthur-ziganshin'],
+        },
+        {
+          '@type': 'Person',
+          name: 'Maya Lavoie',
+          jobTitle: 'Design Systems Director',
+          worksFor: { '@id': organizationId },
+          image: `${siteUrl}/images/team-maya.jpg`,
+          sameAs: ['https://linkedin.com/company/traceremove'],
+        },
+        {
+          '@type': 'Person',
+          name: 'Luis Mendoza',
+          jobTitle: 'Growth Engineering Lead',
+          worksFor: { '@id': organizationId },
+          image: `${siteUrl}/images/team-luis.jpg`,
+          sameAs: ['https://linkedin.com/company/traceremove'],
+        },
+        {
+          '@type': 'Person',
+          name: 'Sofia Martínez',
+          jobTitle: 'Client Strategy Partner',
+          worksFor: { '@id': organizationId },
+          image: `${siteUrl}/images/team-sofia.jpg`,
+          sameAs: ['https://linkedin.com/company/traceremove'],
+        },
+        breadcrumb,
+      ],
+    }
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [breadcrumb],
+  }
+}
+
 const getMeta = (route) => {
   const basePath = stripLang(route)
   const lang = getLang(route)
@@ -213,6 +444,7 @@ const getMeta = (route) => {
     .join('\n')
 
   const absoluteUrl = `${siteUrl}${route === '/' ? '/' : route}`
+  const jsonLd = makePageJsonLd(basePath, route, lang, title, description)
 
   return `
 <title>${title}</title>
@@ -231,6 +463,7 @@ ${hreflang}
 <meta name="twitter:title" content="${title}" />
 <meta name="twitter:description" content="${description}" />
 <meta name="twitter:image" content="${ogImage}" />
+<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 `
 }
 
