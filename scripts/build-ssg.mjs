@@ -30,6 +30,8 @@ const baseRoutes = [
   'join',
   'academy',
   'reputation-score',
+  'free-audit',
+  'free-audit/thank-you',
 ]
 const coreServices = [
   'emergency-orm',
@@ -76,6 +78,9 @@ const getBlogSlugs = () => {
 const blogSlugs = getBlogSlugs()
 const allRoutes = new Set(['/'])
 
+allRoutes.add('/fr/audit-gratuit')
+allRoutes.add('/es/auditoria-gratis')
+
 for (const language of languages) {
   const prefix = language === 'en' ? '' : `/${language}`
   for (const route of baseRoutes) {
@@ -103,6 +108,11 @@ const getLang = (route) => {
 }
 
 const buildPathForLang = (basePath, lang) => {
+  if (basePath === '/free-audit') {
+    if (lang === 'fr') return '/fr/audit-gratuit'
+    if (lang === 'es') return '/es/auditoria-gratis'
+    return '/free-audit'
+  }
   const prefix = lang === 'en' ? '' : `/${lang}`
   const normalized = basePath === '/' ? '/' : basePath
   return normalized === '/' ? `${prefix || '/'}` : `${prefix}${normalized}`

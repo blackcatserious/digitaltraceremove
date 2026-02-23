@@ -45,7 +45,14 @@ import { NotFound } from './components/NotFound'
 import { Testimonials } from './components/Testimonials'
 import { trackEvent } from './utils/analytics'
 import { submitHubspotLead } from './utils/hubspot'
+import { submitAuditRequest, type AuditTarget } from './utils/auditRequest'
 import './App.css'
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void
+  }
+}
 
 const useCurrentLanguage = (): Language => {
   const location = useLocation()
@@ -149,6 +156,14 @@ const getContactPath = (language: Language) => (language === 'en' ? '/contact' :
 
 const getReputationScorePath = (language: Language) =>
   language === 'en' ? '/reputation-score' : `/${language}/reputation-score`
+
+const getFreeAuditPath = (language: Language) => {
+  if (language === 'fr') return '/fr/audit-gratuit'
+  if (language === 'es') return '/es/auditoria-gratis'
+  return '/free-audit'
+}
+
+const getFreeAuditThankYouPath = () => '/free-audit/thank-you'
 
 const getPrivacyPath = (language: Language) => (language === 'en' ? '/privacy' : `/${language}/privacy`)
 
@@ -8512,6 +8527,295 @@ const renderSocialIcon = (key: SocialKey): JSX.Element | null => {
   }
 }
 
+const freeAuditCopy: Record<Language, {
+  badge: string
+  title: string
+  subtitle: string
+  trust: string
+  confidentiality: string
+  sectionTitle: string
+  receiveTitle: string
+  receiveCards: Array<{ title: string; description: string }>
+  stepsTitle: string
+  steps: string[]
+  testimonialsTitle: string
+  testimonials: Array<{ quote: string; author: string }>
+  finalCtaTitle: string
+  submit: string
+  successTitle: string
+  successSubtitle: string
+  calendlyCta: string
+}> = withRussianFallback({
+  en: {
+    badge: 'Welcome from Instagram! 🎉',
+    title: 'Discover What the Internet Really Says About You',
+    subtitle: 'Free reputation audit in 24 hours. We analyze Google, reviews, data brokers, and social media.',
+    trust: '500+ audits completed • 4.9/5 rating • EN/FR/ES',
+    confidentiality: '🔒 100% confidential. No spam. Results within 24 hours.',
+    sectionTitle: "What you'll receive",
+    receiveTitle: 'What we review in your audit',
+    receiveCards: [
+      { title: '🔍 Google Analysis', description: 'What appears on pages 1-3 for your name' },
+      { title: '⭐ Review Scan', description: 'Your ratings across Google, Trustpilot, Yelp' },
+      { title: '🛡️ Data Exposure Check', description: 'Your data on 50+ broker sites' },
+    ],
+    stepsTitle: 'How it works',
+    steps: ['Submit your details', 'We analyze 100+ sources', 'Get your report in 24h'],
+    testimonialsTitle: 'Trusted by executives and founders',
+    testimonials: [
+      {
+        quote:
+          'The audit was far more detailed than expected. We had a clear risk map and exact priorities for week one.',
+        author: 'Sarah M., Healthcare Executive',
+      },
+      {
+        quote:
+          'In one document we got actionable insights for search, reviews, and narrative control. It accelerated every decision.',
+        author: 'CEO, Mid-Size Tech Company',
+      },
+      {
+        quote:
+          'Très professionnel et vraiment multilingue. Le rapport nous a aidés à corriger rapidement notre présence en ligne.',
+        author: 'Marc D., Avocat, Paris',
+      },
+    ],
+    finalCtaTitle: 'Get your free audit now',
+    submit: 'Get My Free Audit →',
+    successTitle: 'Your request is in. We will deliver your audit within 24 hours.',
+    successSubtitle: 'Want to discuss your results? Book a free consultation.',
+    calendlyCta: 'Open booking calendar',
+  },
+  fr: {
+    badge: 'Bienvenue depuis Instagram ! 🎉',
+    title: 'Découvrez vraiment ce qu’internet dit de vous',
+    subtitle: 'Audit de réputation gratuit en 24 heures. Nous analysons Google, les avis, les data brokers et les réseaux sociaux.',
+    trust: '500+ audits complétés • note 4,9/5 • EN/FR/ES',
+    confidentiality: '🔒 100% confidentiel. Aucun spam. Résultats sous 24 heures.',
+    sectionTitle: 'Ce que vous recevrez',
+    receiveTitle: 'Ce que nous analysons dans votre audit',
+    receiveCards: [
+      { title: '🔍 Analyse Google', description: 'Ce qui apparaît en pages 1 à 3 sur votre nom' },
+      { title: '⭐ Scan des avis', description: 'Vos notes sur Google, Trustpilot, Yelp' },
+      { title: '🛡️ Vérification des données', description: 'Vos données sur 50+ sites de courtiers en données' },
+    ],
+    stepsTitle: 'Comment ça marche',
+    steps: ['Envoyez vos informations', 'Nous analysons 100+ sources', 'Recevez votre rapport en 24h'],
+    testimonialsTitle: 'Déjà adopté par dirigeants et fondateurs',
+    testimonials: [
+      {
+        quote:
+          'The audit was far more detailed than expected. We had a clear risk map and exact priorities for week one.',
+        author: 'Sarah M., Healthcare Executive',
+      },
+      {
+        quote:
+          'In one document we got actionable insights for search, reviews, and narrative control. It accelerated every decision.',
+        author: 'CEO, Mid-Size Tech Company',
+      },
+      {
+        quote:
+          'Très professionnel et vraiment multilingue. Le rapport nous a aidés à corriger rapidement notre présence en ligne.',
+        author: 'Marc D., Avocat, Paris',
+      },
+    ],
+    finalCtaTitle: 'Obtenez votre audit gratuit maintenant',
+    submit: 'Get My Free Audit →',
+    successTitle: 'Votre demande est envoyée. Audit livré sous 24 heures.',
+    successSubtitle: 'Vous voulez discuter de vos résultats ? Réservez une consultation gratuite.',
+    calendlyCta: 'Ouvrir le calendrier',
+  },
+  es: {
+    badge: '¡Bienvenido desde Instagram! 🎉',
+    title: 'Descubre lo que Internet realmente dice sobre ti',
+    subtitle: 'Auditoría de reputación gratis en 24 horas. Analizamos Google, reseñas, brokers de datos y redes sociales.',
+    trust: '500+ auditorías completadas • 4.9/5 • EN/FR/ES',
+    confidentiality: '🔒 100% confidencial. Sin spam. Resultados en 24 horas.',
+    sectionTitle: 'Lo que recibirás',
+    receiveTitle: 'Qué revisamos en tu auditoría',
+    receiveCards: [
+      { title: '🔍 Análisis de Google', description: 'Qué aparece en las páginas 1-3 para tu nombre' },
+      { title: '⭐ Escaneo de reseñas', description: 'Tus calificaciones en Google, Trustpilot, Yelp' },
+      { title: '🛡️ Verificación de exposición', description: 'Tus datos en más de 50 sitios de data brokers' },
+    ],
+    stepsTitle: 'Cómo funciona',
+    steps: ['Envía tus datos', 'Analizamos 100+ fuentes', 'Recibe tu informe en 24h'],
+    testimonialsTitle: 'Confiado por ejecutivos y founders',
+    testimonials: [
+      {
+        quote:
+          'The audit was far more detailed than expected. We had a clear risk map and exact priorities for week one.',
+        author: 'Sarah M., Healthcare Executive',
+      },
+      {
+        quote:
+          'In one document we got actionable insights for search, reviews, and narrative control. It accelerated every decision.',
+        author: 'CEO, Mid-Size Tech Company',
+      },
+      {
+        quote:
+          'Très professionnel et vraiment multilingue. Le rapport nous a aidés à corriger rapidement notre présence en ligne.',
+        author: 'Marc D., Avocat, Paris',
+      },
+    ],
+    finalCtaTitle: 'Solicita tu auditoría gratis ahora',
+    submit: 'Get My Free Audit →',
+    successTitle: 'Tu solicitud fue enviada. Recibirás tu auditoría en 24 horas.',
+    successSubtitle: '¿Quieres comentar tus resultados? Reserva una consulta gratuita.',
+    calendlyCta: 'Abrir calendario',
+  },
+})
+
+const FreeAuditForm = ({ language, formLocation }: { language: Language; formLocation: string }) => {
+  const location = useLocation()
+  const copy = freeAuditCopy[language]
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [auditTarget, setAuditTarget] = useState<AuditTarget>('My Personal Name')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const utmSource = useMemo(() => new URLSearchParams(location.search).get('utm_source') ?? '', [location.search])
+  const utmMedium = useMemo(() => new URLSearchParams(location.search).get('utm_medium') ?? '', [location.search])
+  const utmCampaign = useMemo(() => new URLSearchParams(location.search).get('utm_campaign') ?? '', [location.search])
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (isLoading) return
+
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      await submitAuditRequest({
+        fullName,
+        email,
+        auditTarget,
+        language: language === 'ru' ? 'en' : language,
+        source: `free-audit-${formLocation}`,
+        utmSource,
+        utmMedium,
+        utmCampaign,
+      })
+
+      trackEvent('audit_request', { language, audit_target: auditTarget, form_location: formLocation, utm_source: utmSource || undefined })
+      if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead')
+      }
+
+      window.location.assign(getFreeAuditThankYouPath())
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : 'Unable to submit. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <form className="free-audit-form" onSubmit={onSubmit}>
+      {utmSource === 'instagram' ? <div className="free-audit-instagram-badge">{copy.badge}</div> : null}
+      <label>
+        <span>Full Name</span>
+        <input type="text" value={fullName} onChange={(event) => setFullName(event.target.value)} required />
+      </label>
+      <label>
+        <span>Email</span>
+        <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+      </label>
+      <label>
+        <span>What to audit</span>
+        <select value={auditTarget} onChange={(event) => setAuditTarget(event.target.value as AuditTarget)}>
+          <option value="My Personal Name">My Personal Name</option>
+          <option value="My Business">My Business</option>
+          <option value="Both">Both</option>
+        </select>
+      </label>
+      <button className="free-audit-submit" type="submit" disabled={isLoading}>
+        {isLoading ? 'Sending…' : copy.submit}
+      </button>
+      <p className="free-audit-confidential">{copy.confidentiality}</p>
+      <p className="free-audit-trust">{copy.trust}</p>
+      {error ? <p className="free-audit-error">{error}</p> : null}
+    </form>
+  )
+}
+
+const FreeAuditLandingPage = ({ language }: { language: Language }) => {
+  const copy = freeAuditCopy[language]
+
+  return (
+    <section className="free-audit-page">
+      <div className="free-audit-hero glass-card">
+        <h1>{copy.title}</h1>
+        <p>{copy.subtitle}</p>
+        <FreeAuditForm language={language} formLocation="hero" />
+      </div>
+
+      <section className="free-audit-section">
+        <p className="free-audit-kicker">{copy.sectionTitle}</p>
+        <h2>{copy.receiveTitle}</h2>
+        <div className="free-audit-grid">
+          {copy.receiveCards.map((card) => (
+            <article key={card.title} className="glass-card free-audit-card">
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="free-audit-section">
+        <p className="free-audit-kicker">{copy.stepsTitle}</p>
+        <div className="free-audit-steps">
+          {copy.steps.map((step, index) => (
+            <div key={step} className="glass-card free-audit-step">
+              <span className="free-audit-step__icon" aria-hidden="true">{index === 0 ? '📝' : index === 1 ? '🔎' : '📄'}</span>
+              <p>{step}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="free-audit-section">
+        <p className="free-audit-kicker">{copy.testimonialsTitle}</p>
+        <div className="free-audit-grid">
+          {copy.testimonials.map((item) => (
+            <blockquote key={item.author} className="glass-card free-audit-testimonial">
+              <p>“{item.quote}”</p>
+              <cite>{item.author}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      <section className="free-audit-section">
+        <h2>{copy.finalCtaTitle}</h2>
+        <FreeAuditForm language={language} formLocation="final" />
+      </section>
+    </section>
+  )
+}
+
+const FreeAuditThankYouPage = ({ language }: { language: Language }) => {
+  const copy = freeAuditCopy[language]
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.setTimeout(() => {
+      window.open('https://calendly.com/traceremove/free-consultation', '_blank', 'noopener,noreferrer,width=960,height=760')
+    }, 250)
+  }, [])
+
+  return (
+    <section className="free-audit-thank-you glass-card">
+      <h1>{copy.successTitle}</h1>
+      <p>{copy.successSubtitle}</p>
+      <a className="button primary" href="https://calendly.com/traceremove/free-consultation" target="_blank" rel="noreferrer">
+        {copy.calendlyCta}
+      </a>
+    </section>
+  )
+}
+
 const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = callWidgetCopy[currentLanguage]
 
@@ -8835,6 +9139,19 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const currentLanguage = useCurrentLanguage()
   const location = useLocation()
+  const normalizedPath = useMemo(() => {
+    const parts = location.pathname.split('/').filter(Boolean)
+    if (parts.length > 0 && languages.includes(parts[0] as Language)) {
+      parts.shift()
+    }
+    return `/${parts.join('/')}`.replace(/\/$/, '') || '/'
+  }, [location.pathname])
+
+  const isFreeAuditLayout =
+    normalizedPath === '/free-audit' ||
+    normalizedPath === '/audit-gratuit' ||
+    normalizedPath === '/auditoria-gratis' ||
+    normalizedPath === '/free-audit/thank-you'
 
   useEffect(() => {
     const gtmContainerId = import.meta.env.VITE_GTM_CONTAINER_ID as string | undefined
@@ -8866,6 +9183,12 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       : ('en' as Language)
     const path = `/${pathSegments.join('/')}`.replace(/\/$/, '')
     const buildPath = (language: Language) => {
+      if (path === '/free-audit' || path === '/audit-gratuit' || path === '/auditoria-gratis') {
+        return getFreeAuditPath(language)
+      }
+      if (path === '/free-audit/thank-you') {
+        return getFreeAuditThankYouPath()
+      }
       const prefix = language === 'en' ? '' : `/${language}`
       if (!path || path === '/') {
         return `${prefix}/`.replace(/\/$/, '') || '/'
@@ -9113,6 +9436,20 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     } else if (normalizedPath === '/blog') {
       title = `${navCopy[currentLang].blog} · ${defaultTitle}`
       description = 'Press releases, case studies, and thought leadership from Traceremove.'
+    } else if (normalizedPath === '/free-audit' || normalizedPath === '/audit-gratuit' || normalizedPath === '/auditoria-gratis') {
+      title = 'Discover What the Internet Really Says About You · TraceRemove'
+      description = 'Free reputation audit in 24 hours. We analyze Google, reviews, data brokers, and social media.'
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: title,
+        description,
+        inLanguage: currentLang,
+        url: localizedUrl,
+      })
+    } else if (normalizedPath === '/free-audit/thank-you') {
+      title = 'Audit request received · TraceRemove'
+      description = 'Your free audit request was received. Book a consultation to discuss your results.'
     } else if (normalizedPath === '/resources') {
       title = `${navCopy[currentLang].resources} · ${defaultTitle}`
     }
@@ -9144,11 +9481,11 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         <span className="app-visual app-visual--two" />
         <span className="app-visual app-visual--three" />
       </div>
-      <Header currentLanguage={currentLanguage} />
-      <main className="content">{children}</main>
-      <Footer currentLanguage={currentLanguage} />
-      <CallWidget currentLanguage={currentLanguage} />
-      <ExitIntentPopup currentLanguage={currentLanguage} />
+      {isFreeAuditLayout ? null : <Header currentLanguage={currentLanguage} />}
+      <main className={`content${isFreeAuditLayout ? ' content--landing' : ''}`}>{children}</main>
+      {isFreeAuditLayout ? null : <Footer currentLanguage={currentLanguage} />}
+      {isFreeAuditLayout ? null : <CallWidget currentLanguage={currentLanguage} />}
+      {isFreeAuditLayout ? null : <ExitIntentPopup currentLanguage={currentLanguage} />}
     </div>
   )
 }
@@ -9173,6 +9510,8 @@ function App() {
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<ContactPage language="en" />} />
         <Route path="reputation-score" element={<ReputationScorePage language="en" />} />
+        <Route path="free-audit" element={<FreeAuditLandingPage language="en" />} />
+        <Route path="free-audit/thank-you" element={<FreeAuditThankYouPage language="en" />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         <Route path="privacy" element={<LegalPage language="en" variant="privacy" />} />
@@ -9195,6 +9534,8 @@ function App() {
             <Route path={`${language}/join`} element={<JoinPage />} />
             <Route path={`${language}/contact`} element={<ContactPage language={language} />} />
             <Route path={`${language}/reputation-score`} element={<ReputationScorePage language={language} />} />
+            {language === 'fr' ? <Route path="fr/audit-gratuit" element={<FreeAuditLandingPage language="fr" />} /> : null}
+            {language === 'es' ? <Route path="es/auditoria-gratis" element={<FreeAuditLandingPage language="es" />} /> : null}
             <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
             <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
             <Route path={`${language}/privacy`} element={<LegalPage language={language} variant="privacy" />} />
