@@ -1,4 +1,4 @@
-import { type Language } from './pages'
+import { type Language, withRussianFallback } from './pages'
 
 export interface FaqMetric {
   label: string
@@ -70,7 +70,7 @@ export interface FaqPageCopy {
   support: FaqSupport
 }
 
-export const faqCopy: Record<Language, FaqPageCopy> = {
+export const faqCopy: Record<Language, FaqPageCopy> = withRussianFallback({
   en: {
     hero: {
       eyebrow: 'Knowledge centre',
@@ -625,5 +625,4 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
       ctaSecondaryHref: 'https://wa.me/16063022958',
     },
   },
-}
-
+})

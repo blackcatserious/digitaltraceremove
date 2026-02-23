@@ -1,4 +1,4 @@
-import type { Language } from './pages'
+import { type Language, withRussianFallback } from './pages'
 
 export interface TrustSignal {
   label: string
@@ -64,7 +64,7 @@ export interface TrustCenterContent {
   }
 }
 
-export const trustCenterCopy: Record<Language, TrustCenterContent> = {
+export const trustCenterCopy: Record<Language, TrustCenterContent> = withRussianFallback({
   en: {
     hero: {
       kicker: 'Trust center',
@@ -505,4 +505,4 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       hours: 'Cobertura 24/7 en Norteamérica, Europa y LATAM.',
     },
   },
-}
+})
