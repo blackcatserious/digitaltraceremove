@@ -6598,6 +6598,7 @@ const BlogPage = ({ language }: { language: Language }) => {
   const [topicFilter, setTopicFilter] = useState<'all' | BlogTopic>('all')
   const [authorFilter, setAuthorFilter] = useState<'all' | AuthorId>('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
   const topics = useMemo(
     () =>
@@ -6654,8 +6655,15 @@ const BlogPage = ({ language }: { language: Language }) => {
     })
   }, [articles, authorFilter, searchTerm, topicFilter])
 
-  const featuredArticle = filteredArticles[0]
-  const remainingArticles = filteredArticles.slice(1)
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [topicFilter, authorFilter, searchTerm, language])
+
+  const totalPages = Math.max(1, Math.ceil(filteredArticles.length / 12))
+  const pagedArticles = filteredArticles.slice((currentPage - 1) * 12, currentPage * 12)
+
+  const featuredArticle = pagedArticles[0]
+  const remainingArticles = pagedArticles.slice(1)
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
@@ -6823,6 +6831,25 @@ const BlogPage = ({ language }: { language: Language }) => {
           </button>
         </div>
       )}
+
+      {filteredArticles.length > 12 ? (
+        <nav className="blog-pagination" aria-label="Blog pagination">
+          <button type="button" className="button tertiary" onClick={() => setCurrentPage((page) => Math.max(1, page - 1))} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            type="button"
+            className="button tertiary"
+            onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </nav>
+      ) : null}
     </section>
   )
 }

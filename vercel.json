@@ -3,6 +3,26 @@
   "outputDirectory": "dist/client",
   "redirects": [
     {
+      "source": "/blog/en/:slug.php",
+      "destination": "/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/fr/:slug.php",
+      "destination": "/fr/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/es/:slug.php",
+      "destination": "/es/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/:slug.php",
+      "destination": "/blog/:slug",
+      "statusCode": 301
+    },
+    {
       "source": "/process.php",
       "destination": "/contact",
       "statusCode": 301

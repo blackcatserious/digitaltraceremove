@@ -15586,3 +15586,15 @@ a {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.blog-pagination {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.blog-pagination span {
+  color: var(--text-muted);
+}

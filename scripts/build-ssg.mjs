@@ -46,17 +46,31 @@ const coreServices = [
 ]
 
 const getBlogSlugs = () => {
+  const slugs = new Set()
+
   try {
-    return readdirSync(resolve('src/content/blog'))
+    readdirSync(resolve('src/content/blog'))
       .filter((name) => name.endsWith('.md'))
-      .map((name) => {
+      .forEach((name) => {
         const content = readFileSync(resolve('src/content/blog', name), 'utf8')
         const slugMatch = content.match(/^slug:\s*"?([\w-]+)"?$/m)
-        return slugMatch?.[1] || name.replace(/\.md$/, '')
+        slugs.add(slugMatch?.[1] || name.replace(/\.md$/, ''))
       })
   } catch {
-    return []
+    // ignore markdown lookup errors
   }
+
+  try {
+    const dataSource = readFileSync(resolve('src/data/blog.ts'), 'utf8')
+    const matches = dataSource.matchAll(/slug:\s*'([\w-]+)'/g)
+    for (const match of matches) {
+      slugs.add(match[1])
+    }
+  } catch {
+    // ignore data source lookup errors
+  }
+
+  return Array.from(slugs)
 }
 
 const blogSlugs = getBlogSlugs()
@@ -300,7 +314,7 @@ const makeHomepageGraph = () => ({
   ],
 })
 
-const makePageJsonLd = (basePath, routePath, lang, title, description) => {
+const makePageJsonLd = (basePath, routePath, lang, title, description, blogMeta) => {
   const breadcrumb = makeBreadcrumbSchema(basePath, routePath)
 
   if (basePath === '/') {
@@ -355,8 +369,8 @@ const makePageJsonLd = (basePath, routePath, lang, title, description) => {
           '@type': 'BlogPosting',
           headline: title,
           description,
-          datePublished: '2026-02-23',
-          dateModified: '2026-02-23',
+          datePublished: blogMeta?.publishedAt || '2026-02-23',
+          dateModified: blogMeta?.publishedAt || '2026-02-23',
           author: {
             '@type': 'Person',
             name: 'Artur Ziganshin',
@@ -419,6 +433,36 @@ const makePageJsonLd = (basePath, routePath, lang, title, description) => {
   }
 }
 
+
+const parseBlogFrontmatterBySlug = () => {
+  const bySlug = new Map()
+  try {
+    readdirSync(resolve('src/content/blog'))
+      .filter((name) => name.endsWith('.md'))
+      .forEach((name) => {
+        const content = readFileSync(resolve('src/content/blog', name), 'utf8')
+        const slug = (content.match(/^slug:\s*"?([\w-]+)"?$/m)?.[1] || name.replace(/\.md$/, ''))
+        const seoTitle = content.match(/^seoTitle:\s*(.+)$/m)?.[1]?.trim().replace(/^"|"$/g, '')
+        const seoDescription = content.match(/^seoDescription:\s*(.+)$/m)?.[1]?.trim().replace(/^"|"$/g, '')
+        const title = content.match(/^title:\s*(.+)$/m)?.[1]?.trim().replace(/^"|"$/g, '')
+        const summary = content.match(/^summary:\s*(.+)$/m)?.[1]?.trim().replace(/^"|"$/g, '')
+        const publishedAt = content.match(/^publishedAt:\s*(.+)$/m)?.[1]?.trim().replace(/^"|"$/g, '')
+        bySlug.set(slug, { seoTitle, seoDescription, title, summary, publishedAt })
+      })
+  } catch {
+    // ignore markdown read errors
+  }
+  return bySlug
+}
+
+const blogFrontmatterBySlug = parseBlogFrontmatterBySlug()
+
+const slugToTitle = (slug) =>
+  slug
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ')
+
 const getMeta = (route) => {
   const basePath = stripLang(route)
   const lang = getLang(route)
@@ -426,16 +470,24 @@ const getMeta = (route) => {
   const home = homeByLang[lang] ?? homeByLang.en
   const shared = sharedByPath[basePath]
 
+  const blogSlug = basePath.startsWith('/blog/') ? basePath.split('/')[2] : ''
+  const blogMeta = blogFrontmatterBySlug.get(blogSlug)
+
   const title =
     basePath === '/'
       ? home.title
-      : shared?.title || `TraceRemove | ${basePath.replace('/', '').replace(/-/g, ' ')}`
+      : basePath.startsWith('/blog/')
+        ? blogMeta?.seoTitle || `${slugToTitle(blogSlug)} | TraceRemove Blog`
+        : shared?.title || `TraceRemove | ${basePath.replace('/', '').replace(/-/g, ' ')}`
 
   const description =
     basePath === '/'
       ? home.description
-      : shared?.description ||
-        'Multilingual reputation management in English, French & Spanish. Remove negative content and protect your digital image. Free consultation.'
+      : basePath.startsWith('/blog/')
+        ? blogMeta?.seoDescription ||
+          `${blogMeta?.summary || `Read ${slugToTitle(blogSlug)} with practical steps for reputation management.`} Contact TraceRemove for a free consultation.`
+        : shared?.description ||
+          'Multilingual reputation management in English, French & Spanish. Remove negative content and protect your digital image. Free consultation.'
 
   const ogImage = basePath === '/' ? `${siteUrl}/images/og-home.jpg` : defaultImage
 
@@ -444,7 +496,7 @@ const getMeta = (route) => {
     .join('\n')
 
   const absoluteUrl = `${siteUrl}${route === '/' ? '/' : route}`
-  const jsonLd = makePageJsonLd(basePath, route, lang, title, description)
+  const jsonLd = makePageJsonLd(basePath, route, lang, title, description, blogMeta)
 
   return `
 <title>${title}</title>
