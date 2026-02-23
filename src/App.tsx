@@ -8816,6 +8816,84 @@ const FreeAuditThankYouPage = ({ language }: { language: Language }) => {
   )
 }
 
+
+const InstagramLinkInBioPage = () => {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+      window.fbq('track', 'ViewContent')
+    }
+  }, [])
+
+  const buttons = [
+    {
+      label: '🔍 Get Your FREE Reputation Audit',
+      href: '/free-audit?utm_source=instagram&utm_medium=linkinbio',
+      primary: true,
+    },
+    {
+      label: '📥 Download: Privacy Protection Guide',
+      href: '/resources/privacy-guide?utm_source=instagram',
+    },
+    {
+      label: '📞 Book a Free Consultation',
+      href: '/contact?utm_source=instagram#booking',
+    },
+    {
+      label: '📚 Read Our Blog',
+      href: '/blog?utm_source=instagram',
+    },
+    {
+      label: '🌐 Visit Our Website',
+      href: '/?utm_source=instagram',
+    },
+  ]
+
+  const handleClick = (label: string) => {
+    trackEvent('link_in_bio_click', { button_name: label })
+  }
+
+  return (
+    <section className="instagram-page">
+      <div className="instagram-card">
+        <div className="instagram-logo-wrap" aria-hidden="true">
+          <span className="instagram-logo-glow" />
+          <img src="/traceremove-mark.svg" alt="TraceRemove" />
+        </div>
+        <h1>TraceRemove</h1>
+        <p className="instagram-tagline">Digital Reputation Management</p>
+        <p className="instagram-languages">EN 🇬🇧 | FR 🇫🇷 | ES 🇪🇸</p>
+
+        <div className="instagram-links">
+          {buttons.map((button) => (
+            <a
+              key={button.label}
+              className={`instagram-link-button${button.primary ? ' is-primary' : ''}`}
+              href={button.href}
+              onClick={() => handleClick(button.label)}
+            >
+              {button.label}
+            </a>
+          ))}
+        </div>
+
+        <div className="instagram-socials">
+          <a href="https://instagram.com/traceremove" target="_blank" rel="noreferrer" aria-label="Instagram">
+            {renderSocialIcon('instagram')}
+          </a>
+          <a href="https://linkedin.com/in/arthur-ziganshin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            {renderSocialIcon('linkedin')}
+          </a>
+          <a href="https://twitter.com/traceremove" target="_blank" rel="noreferrer" aria-label="X/Twitter">
+            <span className="instagram-social-x" aria-hidden="true">𝕏</span>
+          </a>
+        </div>
+
+        <p className="instagram-copyright">© 2026 TraceRemove</p>
+      </div>
+    </section>
+  )
+}
+
 const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = callWidgetCopy[currentLanguage]
 
@@ -9153,6 +9231,9 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     normalizedPath === '/auditoria-gratis' ||
     normalizedPath === '/free-audit/thank-you'
 
+  const isInstagramLayout = normalizedPath === '/instagram'
+  const isDistractionFreeLayout = isFreeAuditLayout || isInstagramLayout
+
   useEffect(() => {
     const gtmContainerId = import.meta.env.VITE_GTM_CONTAINER_ID as string | undefined
     if (!gtmContainerId || typeof window === 'undefined') {
@@ -9450,6 +9531,9 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     } else if (normalizedPath === '/free-audit/thank-you') {
       title = 'Audit request received · TraceRemove'
       description = 'Your free audit request was received. Book a consultation to discuss your results.'
+    } else if (normalizedPath === '/instagram') {
+      title = 'TraceRemove Instagram Links · TraceRemove'
+      description = 'Official TraceRemove link-in-bio page for audits, consultation, resources, and blog.'
     } else if (normalizedPath === '/resources') {
       title = `${navCopy[currentLang].resources} · ${defaultTitle}`
     }
@@ -9481,11 +9565,11 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         <span className="app-visual app-visual--two" />
         <span className="app-visual app-visual--three" />
       </div>
-      {isFreeAuditLayout ? null : <Header currentLanguage={currentLanguage} />}
-      <main className={`content${isFreeAuditLayout ? ' content--landing' : ''}`}>{children}</main>
-      {isFreeAuditLayout ? null : <Footer currentLanguage={currentLanguage} />}
-      {isFreeAuditLayout ? null : <CallWidget currentLanguage={currentLanguage} />}
-      {isFreeAuditLayout ? null : <ExitIntentPopup currentLanguage={currentLanguage} />}
+      {isDistractionFreeLayout ? null : <Header currentLanguage={currentLanguage} />}
+      <main className={`content${isDistractionFreeLayout ? ' content--landing' : ''}`}>{children}</main>
+      {isDistractionFreeLayout ? null : <Footer currentLanguage={currentLanguage} />}
+      {isDistractionFreeLayout ? null : <CallWidget currentLanguage={currentLanguage} />}
+      {isDistractionFreeLayout ? null : <ExitIntentPopup currentLanguage={currentLanguage} />}
     </div>
   )
 }
@@ -9512,6 +9596,7 @@ function App() {
         <Route path="reputation-score" element={<ReputationScorePage language="en" />} />
         <Route path="free-audit" element={<FreeAuditLandingPage language="en" />} />
         <Route path="free-audit/thank-you" element={<FreeAuditThankYouPage language="en" />} />
+        <Route path="instagram" element={<InstagramLinkInBioPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         <Route path="privacy" element={<LegalPage language="en" variant="privacy" />} />

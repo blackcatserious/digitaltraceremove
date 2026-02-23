@@ -32,6 +32,7 @@ const baseRoutes = [
   'reputation-score',
   'free-audit',
   'free-audit/thank-you',
+  'instagram',
 ]
 const coreServices = [
   'emergency-orm',
@@ -186,6 +187,10 @@ const sharedByPath = {
   '/media': {
     title: 'Media & Press | TraceRemove in the News',
     description: 'Press releases, media appearances, and news about TraceRemove. Download press kit and brand assets.',
+  },
+  '/instagram': {
+    title: 'TraceRemove Instagram Links | Free Audit, Blog, Contact',
+    description: 'Official TraceRemove link-in-bio: start your free reputation audit, book a consultation, and access resources.',
   },
 }
 

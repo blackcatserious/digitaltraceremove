@@ -15724,3 +15724,121 @@ a {
   gap: 1rem;
   text-align: center;
 }
+
+.instagram-page {
+  min-height: calc(100vh - 4rem);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.instagram-card {
+  width: min(560px, 100%);
+  text-align: center;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.instagram-logo-wrap {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  margin: 0 auto;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 30% 20%, rgba(107, 232, 255, 0.65), rgba(0, 212, 255, 0.25));
+  border: 2px solid rgba(107, 232, 255, 0.75);
+}
+
+.instagram-logo-wrap img {
+  width: 70px;
+  height: 70px;
+  border-radius: 999px;
+  background: #0a1628;
+  padding: 10px;
+}
+
+.instagram-logo-glow {
+  position: absolute;
+  inset: -14px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.35), transparent 65%);
+  z-index: -1;
+}
+
+.instagram-tagline,
+.instagram-languages,
+.instagram-copyright {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.instagram-links {
+  margin-top: 0.4rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.instagram-link-button {
+  display: block;
+  width: 100%;
+  border-radius: 0.9rem;
+  padding: 0.95rem 1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: linear-gradient(160deg, rgba(10, 22, 40, 0.88), rgba(9, 18, 34, 0.7));
+  backdrop-filter: blur(12px);
+  font-weight: 600;
+  transition: transform 140ms ease, border-color 140ms ease;
+}
+
+.instagram-link-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+.instagram-link-button.is-primary {
+  color: #001222;
+  background: linear-gradient(135deg, #00d4ff, #74ecff);
+  font-size: 1.04rem;
+  animation: instagramPulse 2.6s ease-in-out infinite;
+  box-shadow: 0 0 0 rgba(0, 212, 255, 0);
+}
+
+@keyframes instagramPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.22);
+  }
+  50% {
+    box-shadow: 0 0 22px 3px rgba(0, 212, 255, 0.28);
+  }
+}
+
+.instagram-socials {
+  margin-top: 0.6rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.instagram-socials a {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: var(--text-primary);
+  background: rgba(10, 22, 40, 0.7);
+}
+
+.instagram-socials svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.instagram-social-x { font-size: 1rem; font-weight: 700; line-height: 1; }
