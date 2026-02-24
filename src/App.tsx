@@ -8068,8 +8068,8 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             <div className="tr-mobile-section">
               <h3>{copy.services}</h3>
               {groups.map((group) => (
-                <Fragment key={group.serviceName}>
-                  <p className="tr-mobile-group-title">{group.serviceName}</p>
+                <details key={group.serviceName} className="tr-mobile-accordion">
+                  <summary className="tr-mobile-group-title">{group.serviceName}</summary>
                   <ul>
                     {group.pages.map((page) => (
                       <li key={page.path}>
@@ -8083,7 +8083,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                       </li>
                     ))}
                   </ul>
-                </Fragment>
+                </details>
               ))}
             </div>
             <div className="tr-mobile-section">
