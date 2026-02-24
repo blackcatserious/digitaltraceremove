@@ -42,6 +42,11 @@ export default async function handler(req, res) {
     const deadline = sanitize(payload.deadline)
     const service = sanitize(payload.service)
     const source = sanitize(payload.source)
+    const utmSource = sanitize(payload.utm_source || payload.utmSource)
+    const utmMedium = sanitize(payload.utm_medium || payload.utmMedium)
+    const utmCampaign = sanitize(payload.utm_campaign || payload.utmCampaign)
+    const utmTerm = sanitize(payload.utm_term || payload.utmTerm)
+    const utmContent = sanitize(payload.utm_content || payload.utmContent)
 
     if (!email || !EMAIL_REGEX.test(email)) {
       res.statusCode = 400
@@ -58,7 +63,7 @@ export default async function handler(req, res) {
         hs_lead_status: 'NEW',
         lifecyclestage: 'lead',
         lead_source: source || 'website',
-        hs_notes: [message, links, urgency, deadline, service].filter(Boolean).join(' | '),
+        hs_notes: [message, links, urgency, deadline, service, utmSource && `utm_source=${utmSource}`, utmMedium && `utm_medium=${utmMedium}`, utmCampaign && `utm_campaign=${utmCampaign}`, utmTerm && `utm_term=${utmTerm}`, utmContent && `utm_content=${utmContent}`].filter(Boolean).join(' | '),
       },
     }
 

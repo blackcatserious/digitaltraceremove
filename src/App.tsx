@@ -43,16 +43,11 @@ import { coreServices } from './data/coreServices'
 import { CoreServicePage } from './components/CoreServicePage'
 import { NotFound } from './components/NotFound'
 import { Testimonials } from './components/Testimonials'
-import { trackEvent } from './utils/analytics'
+import { captureUtmParamsFromUrl, getStoredUtmParams, trackEvent } from './utils/analytics'
 import { submitHubspotLead } from './utils/hubspot'
 import { submitAuditRequest, type AuditTarget } from './utils/auditRequest'
 import './App.css'
 
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void
-  }
-}
 
 const useCurrentLanguage = (): Language => {
   const location = useLocation()
@@ -6224,7 +6219,7 @@ const ContactPage = ({ language }: { language: Language }) => {
         phone: formData.phone,
         message: formData.message,
       })
-      trackEvent('form_submit', { form_name: 'contact_form', form_location: 'contact_page', language })
+      trackEvent('form_submit', { form_name: 'contact_form', form_page: 'contact_page', language })
       setSubmitted(true)
       setFormData({ name: '', email: '', company: '', phone: '', message: '' })
     } catch {
@@ -6738,10 +6733,7 @@ const ReputationScorePage = ({ language }: { language: Language }) => {
       })
 
       trackEvent('assessment_email_submit', { language })
-      trackEvent('assessment_complete', { language, score })
-      if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-        window.fbq('track', 'Lead')
-      }
+      trackEvent('assessment_complete', { language, score, risk_level: band.label.replace(/^[^A-Z]+/, '').trim() })
       goToStep(reputationQuestions.length + 2, 'forward')
     } catch {
       setSubmitError('Could not submit your details. Please try again.')
@@ -8967,21 +8959,19 @@ const FreeAuditForm = ({ language, formLocation }: { language: Language; formLoc
     setError(null)
 
     try {
+      const storedUtm = getStoredUtmParams()
       await submitAuditRequest({
         fullName,
         email,
         auditTarget,
         language: language === 'ru' ? 'en' : language,
         source: `free-audit-${formLocation}`,
-        utmSource,
-        utmMedium,
-        utmCampaign,
+        utmSource: utmSource || storedUtm.utm_source,
+        utmMedium: utmMedium || storedUtm.utm_medium,
+        utmCampaign: utmCampaign || storedUtm.utm_campaign,
       })
 
-      trackEvent('audit_request', { language, audit_target: auditTarget, form_location: formLocation, utm_source: utmSource || undefined })
-      if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-        window.fbq('track', 'Lead')
-      }
+      trackEvent('audit_request', { language, audit_target: auditTarget, form_page: formLocation, utm_source: utmSource || undefined })
 
       window.location.assign(getFreeAuditThankYouPath())
     } catch (submitError) {
@@ -9137,11 +9127,14 @@ const DataBreachCheckerPage = () => {
       }
 
       if (body?.breached) {
-        setResult({ status: 'breached', breaches: body.breaches || [] })
+        const breaches = body.breaches || []
+        setResult({ status: 'breached', breaches })
+        trackEvent('breach_check', { breached: true, breach_count: breaches.length, page: 'breach-check' })
         return
       }
 
       setResult({ status: 'clean' })
+      trackEvent('breach_check', { breached: false, breach_count: 0, page: 'breach-check' })
     } catch {
       await new Promise((resolve) => window.setTimeout(resolve, 2200))
       setResult({ status: 'error', message: 'Service temporarily unavailable. Please try again in a moment.' })
@@ -9234,9 +9227,7 @@ const DataBreachCheckerPage = () => {
 
 const InstagramLinkInBioPage = () => {
   useEffect(() => {
-    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-      window.fbq('track', 'ViewContent')
-    }
+    trackEvent('view_content', { page: '/instagram' })
   }, [])
 
   const buttons = [
@@ -9439,7 +9430,7 @@ const ExitIntentPopup = ({ currentLanguage }: { currentLanguage: Language }) => 
           onClick={() => {
             trackEvent('cta_click', {
               cta_text: copy.cta,
-              cta_location: 'exit_intent_popup',
+              cta_position: 'exit_intent_popup',
               page: normalizedPath,
               language: currentLanguage,
             })
@@ -9478,7 +9469,8 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         name: 'Newsletter Subscriber',
         email,
       })
-      trackEvent('form_submit', { form_name: 'newsletter_subscribe', form_location: 'footer', language: currentLanguage })
+      trackEvent('form_submit', { form_name: 'newsletter_subscribe', form_page: 'footer', language: currentLanguage })
+      trackEvent('complete_registration', { page: 'footer', language: currentLanguage })
       setSubscribed(true)
       setEmail('')
     } catch {
@@ -9618,6 +9610,11 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
               target="_blank"
               rel="noreferrer"
               aria-label={footerSocialLabels[currentLanguage][key]}
+              onClick={() => {
+                if (key === 'whatsapp') {
+                  trackEvent('chat_start', { page: 'footer-social', language: currentLanguage })
+                }
+              }}
             >
               {renderSocialIcon(key)}
             </a>
@@ -9649,8 +9646,9 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   const isInstagramLayout = normalizedPath === '/instagram'
   const isDistractionFreeLayout = isFreeAuditLayout || isInstagramLayout
 
+  const gtmContainerId = import.meta.env.VITE_GTM_CONTAINER_ID as string | undefined
+
   useEffect(() => {
-    const gtmContainerId = import.meta.env.VITE_GTM_CONTAINER_ID as string | undefined
     if (!gtmContainerId || typeof window === 'undefined') {
       return
     }
@@ -9669,7 +9667,44 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmContainerId}`
     script.setAttribute('data-gtm', gtmContainerId)
     document.head.appendChild(script)
-  }, [])
+  }, [gtmContainerId])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    captureUtmParamsFromUrl()
+    trackEvent('page_view', { page: location.pathname, language: currentLanguage })
+
+    const normalized = normalizedPath
+    if (normalized.startsWith('/services/') || normalized === '/case-studies' || normalized.startsWith('/blog/')) {
+      trackEvent('view_content', { page: normalized, language: currentLanguage })
+    }
+  }, [location.pathname, location.search, currentLanguage, normalizedPath])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const onCalendlyMessage = (event: MessageEvent) => {
+      const eventName = (event.data as { event?: string })?.event
+      if (eventName === 'calendly.event_scheduled') {
+        trackEvent('consultation_booked', { service_interest: 'general', language: currentLanguage })
+      }
+    }
+
+    const onDocumentClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null
+      const anchor = target?.closest('a[href$=".pdf"]') as HTMLAnchorElement | null
+      if (!anchor) return
+      const magnetName = anchor.getAttribute('download') || anchor.textContent?.trim() || 'pdf'
+      trackEvent('lead_magnet_download', { magnet_name: magnetName })
+    }
+
+    window.addEventListener('message', onCalendlyMessage)
+    document.addEventListener('click', onDocumentClick)
+    return () => {
+      window.removeEventListener('message', onCalendlyMessage)
+      document.removeEventListener('click', onDocumentClick)
+    }
+  }, [currentLanguage])
 
   useEffect(() => {
     const { pathname, origin } = window.location
@@ -9978,6 +10013,17 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="app-layout">
+      {gtmContainerId ? (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            title="gtm"
+          />
+        </noscript>
+      ) : null}
       <div className="app-visuals" aria-hidden="true">
         <span className="app-visual app-visual--one" />
         <span className="app-visual app-visual--two" />
