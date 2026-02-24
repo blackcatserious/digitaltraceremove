@@ -1,0 +1,102 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/client",
+  "redirects": [
+    {
+      "source": "/blog/en/:slug.php",
+      "destination": "/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/fr/:slug.php",
+      "destination": "/fr/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/es/:slug.php",
+      "destination": "/es/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/:slug.php",
+      "destination": "/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/process.php",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.traceremove.com"
+        }
+      ],
+      "destination": "https://traceremove.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.traceremove.com"
+        }
+      ],
+      "destination": "https://traceremove.com/:path*",
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(js|mjs|css|svg|png|jpg|jpeg|webp|avif|woff2|woff)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.html|$)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'none'; base-uri 'self'"
+        }
+      ]
+    }
+  ]
+}

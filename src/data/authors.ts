@@ -24,11 +24,11 @@ export interface AuthorProfile {
   initials: string
 }
 
-const t = (en: string, fr: string, es: string): MultilingualText => ({ en, fr, es })
+const t = (en: string, fr: string, es: string, ru: string = en): MultilingualText => ({ en, fr, es, ru })
 
-const p = (en: string[], fr: string[], es: string[]): MultilingualParagraphs => ({ en, fr, es })
+const p = (en: string[], fr: string[], es: string[], ru: string[] = en): MultilingualParagraphs => ({ en, fr, es, ru })
 
-const l = (en: string[], fr: string[], es: string[]): MultilingualList => ({ en, fr, es })
+const l = (en: string[], fr: string[], es: string[], ru: string[] = en): MultilingualList => ({ en, fr, es, ru })
 
 export const authorProfiles: Record<AuthorId, AuthorProfile> = {
   'artur-ziganshin': {

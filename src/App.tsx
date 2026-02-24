@@ -18,6 +18,7 @@ import {
   languageLabels,
   languages,
   servicePages,
+  withRussianFallback,
   type Language,
   type ServicePageContent,
 } from './data/pages'
@@ -38,7 +39,17 @@ import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
+import { coreServices } from './data/coreServices'
+import { CoreServicePage } from './components/CoreServicePage'
+import { NotFound } from './components/NotFound'
+import { Testimonials } from './components/Testimonials'
+import { captureUtmParamsFromUrl, getStoredUtmParams, trackEvent } from './utils/analytics'
+import { submitHubspotLead } from './utils/hubspot'
+import { submitAuditRequest, type AuditTarget } from './utils/auditRequest'
+import { getCalendlyLink, loadCalendlyScript, openCalendlyPopup } from './utils/calendly'
+import { submitLeadMagnetRequest } from './utils/leadMagnet'
 import './App.css'
+
 
 const useCurrentLanguage = (): Language => {
   const location = useLocation()
@@ -79,6 +90,7 @@ const buildNavigation = () => {
     en: [],
     fr: [],
     es: [],
+    ru: [],
   }
 
   languages.forEach((language) => {
@@ -114,6 +126,9 @@ const getCaseStudiesPath = (language: Language) =>
 const getServicesPricingPath = (language: Language) =>
   language === 'en' ? '/services' : `/${language}/services`
 
+const getCoreServicePath = (language: Language, slug: string) =>
+  language === 'en' ? `/services/${slug}` : `/${language}/services/${slug}`
+
 const getResourcesPath = (language: Language) =>
   language === 'en' ? '/resources' : `/${language}/resources`
 
@@ -136,6 +151,17 @@ const getJoinPath = (language: Language) => (language === 'en' ? '/join' : `/${l
 
 const getContactPath = (language: Language) => (language === 'en' ? '/contact' : `/${language}/contact`)
 
+const getReputationScorePath = (language: Language) =>
+  language === 'en' ? '/reputation-score' : `/${language}/reputation-score`
+
+const getFreeAuditPath = (language: Language) => {
+  if (language === 'fr') return '/fr/audit-gratuit'
+  if (language === 'es') return '/es/auditoria-gratis'
+  return '/free-audit'
+}
+
+const getFreeAuditThankYouPath = () => '/free-audit/thank-you'
+
 const getPrivacyPath = (language: Language) => (language === 'en' ? '/privacy' : `/${language}/privacy`)
 
 const getTermsPath = (language: Language) => (language === 'en' ? '/terms' : `/${language}/terms`)
@@ -144,6 +170,7 @@ const localeMap: Record<Language, string> = {
   en: 'en-US',
   fr: 'fr-FR',
   es: 'es-ES',
+  ru: 'ru-RU',
 }
 
 const formatLocaleDate = (language: Language, value: string) =>
@@ -157,6 +184,7 @@ const currencyConfig: Record<Language, { locale: string; currency: string }> = {
   en: { locale: 'en-US', currency: 'USD' },
   fr: { locale: 'fr-FR', currency: 'EUR' },
   es: { locale: 'es-ES', currency: 'EUR' },
+  ru: { locale: 'ru-RU', currency: 'USD' },
 }
 
 const formatCurrency = (language: Language, value: number) =>
@@ -170,6 +198,8 @@ const formatNumber = (language: Language, value: number) =>
   new Intl.NumberFormat(localeMap[language], {
     maximumFractionDigits: 0,
   }).format(value)
+
+const withRu = <T,>(value: { en: T; fr: T; es: T }, ru?: T) => withRussianFallback(value, ru)
 
 const escapeRegExp = (value: string) => value.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
 
@@ -271,7 +301,7 @@ const momentumTickerCopy: Record<
     highlights: string[]
     cta: string
   }
-> = {
+> = withRussianFallback({
   en: {
     eyebrow: 'Momentum signals',
     highlights: [
@@ -305,7 +335,7 @@ const momentumTickerCopy: Record<
     ],
     cta: 'Activar un sprint de protección',
   },
-}
+})
 
 const MomentumTicker = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
   const language = useCurrentLanguage()
@@ -374,7 +404,7 @@ const navCopy: Record<
     languages: string
     languageSwitcherLabel: string
   }
-> = {
+> = withRussianFallback({
   en: {
     services: 'Services',
     about: 'About us',
@@ -450,22 +480,43 @@ const navCopy: Record<
     languages: 'Idiomas',
     languageSwitcherLabel: 'Cambiar idioma',
   },
-}
+}, {
+  services: 'Сервисы',
+  about: 'О нас',
+  caseStudies: 'Кейсы',
+  servicesPricing: 'Сервисы и цены',
+  team: 'Команда',
+  resources: 'Ресурсы',
+  academy: 'Академия',
+  media: 'Медиа',
+  commandCenter: 'Командный центр',
+  trust: 'Центр доверия',
+  faq: 'FAQ',
+  blog: 'Блог',
+  partners: 'Партнёры',
+  contact: 'Контакт',
+  callToAction: 'Запланировать консультацию',
+  tagline: 'Управление репутацией, быстрые удаления и security takedown для срочных задач.',
+  joinUs: 'Присоединиться',
+  openMenu: 'Открыть меню',
+  closeMenu: 'Закрыть меню',
+  home: 'Главная',
+  navigationTitle: 'Навигация',
+  languages: 'Языки',
+  languageSwitcherLabel: 'Сменить язык',
+})
 
 const InsightShowcase = ({ variant = 'default' }: { variant?: 'default' | 'case' }) => {
   const language = useCurrentLanguage()
   const copy = insightDashboards[language]
+  const fallbackPanel = { id: '', title: '', metricDelta: '', trend: [] as number[] }
   const [activeId, setActiveId] = useState(() => copy.panels[0]?.id ?? '')
 
   useEffect(() => {
     setActiveId(copy.panels[0]?.id ?? '')
   }, [copy])
 
-  if (!copy.panels.length) {
-    return null
-  }
-
-  const activePanel = copy.panels.find((panel) => panel.id === activeId) ?? copy.panels[0]
+  const activePanel = copy.panels.find((panel) => panel.id === activeId) ?? copy.panels[0] ?? fallbackPanel
 
   const linePoints = useMemo(() => {
     if (activePanel.trend.length <= 1) {
@@ -483,6 +534,10 @@ const InsightShowcase = ({ variant = 'default' }: { variant?: 'default' | 'case'
       })
       .join(' ')
   }, [activePanel])
+
+  if (!copy.panels.length) {
+    return null
+  }
 
   return (
     <section className={`insight-showcase${variant === 'case' ? ' insight-showcase--case' : ''}`}>
@@ -566,7 +621,7 @@ const teamCopy: Record<
     culturePoints: string[]
     contactPrompt: string
   }
-> = {
+> = withRussianFallback({
   en: {
     title: 'Meet the Traceremove team',
     subtitle: 'A multilingual collective led by Founder & CEO Artur Ziganshin',
@@ -606,7 +661,7 @@ const teamCopy: Record<
     ],
     contactPrompt: '¿Listo para colaborar? Escríbenos y respondemos en un día hábil.',
   },
-}
+})
 
 const aboutCopy: Record<
   Language,
@@ -646,7 +701,7 @@ const aboutCopy: Record<
     }
     closing: { heading: string; body: string; cta: string }
   }
-> = {
+> = withRussianFallback({
   en: {
     hero: {
       title: 'About Traceremove',
@@ -1217,7 +1272,7 @@ const aboutCopy: Record<
       cta: 'Agenda una sesión estratégica',
     },
   },
-}
+})
 
 const caseStudiesCopy: Record<
   Language,
@@ -1259,7 +1314,7 @@ const caseStudiesCopy: Record<
     }
     cta: { heading: string; body: string; primary: string; secondary: string }
   }
-> = {
+> = withRussianFallback({
   en: {
     hero: {
       kicker: 'Proof of impact',
@@ -1818,7 +1873,7 @@ const caseStudiesCopy: Record<
       secondary: 'Explora nuestro programa de partners',
     },
   },
-}
+})
 
 const partnersCopy: Record<
   Language,
@@ -1835,7 +1890,7 @@ const partnersCopy: Record<
     ctaHeading: string
     ctaBody: string
   }
-> = {
+> = withRussianFallback({
   en: {
     title: 'Partner with Traceremove',
     subtitle: 'Co-create go-to-market velocity across brand, demand, and product growth.',
@@ -1971,7 +2026,7 @@ const partnersCopy: Record<
     ctaHeading: '¿Nos asociamos?',
     ctaBody: 'Cuéntanos sobre tu organización en contact@traceremove.com — coordinamos una llamada en dos días hábiles.',
   },
-}
+})
 
 const joinCopy: Record<
   Language,
@@ -1988,7 +2043,7 @@ const joinCopy: Record<
     ctaHeading: string
     ctaBody: string
   }
-> = {
+> = withRussianFallback({
   en: {
     title: 'Join the Traceremove collective',
     subtitle: 'Remote-first growth operators shaping reputation, revenue, and product stories.',
@@ -2100,7 +2155,7 @@ const joinCopy: Record<
     ctaHeading: 'Preséntate',
     ctaBody: 'Comparte tu portfolio, casos o LinkedIn en join@traceremove.com. Cuéntanos los mercados que mejor conoces y los resultados que disfrutas conseguir.',
   },
-}
+})
 
 interface TeamMember {
   name: string
@@ -2111,7 +2166,12 @@ interface TeamMember {
   color: string
 }
 
-const teamMembers: TeamMember[] = [
+type TeamMemberRaw = Omit<TeamMember, 'bio' | 'focus'> & {
+  bio: { en: string; fr: string; es: string }
+  focus: { en: string[]; fr: string[]; es: string[] }
+}
+
+const teamMembersRaw: TeamMemberRaw[] = [
   {
     name: 'Artur Ziganshin',
     role: 'Founder & CEO',
@@ -2178,6 +2238,12 @@ const teamMembers: TeamMember[] = [
   },
 ]
 
+const teamMembers: TeamMember[] = teamMembersRaw.map((member) => ({
+  ...member,
+  bio: withRu(member.bio),
+  focus: withRu(member.focus),
+}))
+
 type ServiceAccent = 'cyan' | 'violet' | 'emerald' | 'amber' | 'blue'
 
 interface PrimaryService {
@@ -2190,7 +2256,15 @@ interface PrimaryService {
   bullets: Record<Language, string[]>
 }
 
-const primaryServices: PrimaryService[] = [
+type PrimaryServiceRaw = Omit<PrimaryService, 'badge' | 'title' | 'description' | 'price' | 'bullets'> & {
+  badge: { en: string; fr: string; es: string }
+  title: { en: string; fr: string; es: string }
+  description: { en: string; fr: string; es: string }
+  price: { en: string; fr: string; es: string }
+  bullets: { en: string[]; fr: string[]; es: string[] }
+}
+
+const primaryServicesRaw: PrimaryServiceRaw[] = [
   {
     key: 'trace-removal',
     accent: 'cyan',
@@ -2398,13 +2472,22 @@ const primaryServices: PrimaryService[] = [
   },
 ]
 
+const primaryServices: PrimaryService[] = primaryServicesRaw.map((service) => ({
+  ...service,
+  badge: withRu(service.badge),
+  title: withRu(service.title),
+  description: withRu(service.description),
+  price: withRu(service.price),
+  bullets: withRu(service.bullets),
+}))
+
 const homeServicesCopy: Record<
   Language,
   {
     title: string
     description: string
   }
-> = {
+> = withRussianFallback({
   en: {
     title: 'Precision programs that protect and accelerate your brand',
     description:
@@ -2420,31 +2503,57 @@ const homeServicesCopy: Record<
     description:
       'Cada colaboración está liderada por Artur Ziganshin con un pod senior de reputación, seguridad, diseño y tecnología para lanzar con confianza.',
   },
-}
+})
 
 const homeHeroHeading: Record<Language, string> = {
-  en: 'Multilingual service blueprints engineered for momentum.',
-  fr: 'Des plans de services multilingues conçus pour accélérer votre momentum.',
-  es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
+  en: 'Emergency Online Reputation Management: remove negative content in 24–48 hours.',
+  fr: 'Gestion d’urgence de réputation en ligne : suppression du contenu négatif en 24–48 heures.',
+  es: 'Gestión urgente de reputación online: elimina contenido negativo en 24–48 horas.',
+  ru: 'Экстренное управление репутацией: удаление негативного контента за 24–48 часов.',
 }
 
-const homeFounderCopy: Record<Language, string> = {
+const homeHeroSubheading: Record<Language, string> = {
+  en: 'Packages for link removal, rapid response, and security takedowns with clear timelines and pricing.',
+  fr: 'Des packages pour retraits de liens, réponses rapides et retraits sécurité avec délais clairs.',
+  es: 'Paquetes para retirar enlaces, respuesta rápida y takedowns de seguridad con plazos claros.',
+  ru: 'Пакеты удаления ссылок, срочной реакции и security takedown с понятными сроками и ценами.',
+}
+
+const coreServicesIntro = withRussianFallback({
+  en: {
+    title: 'Core emergency services',
+    body: 'Pick a rapid-response package built for 24–48h removals, security takedowns, and stabilization.',
+    cta: 'View service details',
+  },
+  fr: {
+    title: 'Services d’urgence',
+    body: 'Choisissez un package conçu pour les retraits 24–48h, les takedowns sécurité et la stabilisation.',
+    cta: 'Voir les détails',
+  },
+  es: {
+    title: 'Servicios de emergencia',
+    body: 'Elige un paquete para retiradas 24–48h, takedowns de seguridad y estabilización.',
+    cta: 'Ver detalles',
+  },
+})
+
+const homeFounderCopy: Record<Language, string> = withRussianFallback({
   en: 'Founder & CEO leading every engagement with a senior core team operating across English, French, and Spanish markets.',
   fr: 'Fondateur et CEO pilotant chaque mission avec un noyau senior actif sur les marchés anglophone, francophone et hispanophone.',
   es: 'Fundador y CEO que lidera cada proyecto con un núcleo senior que opera en los mercados anglófono, francófono e hispanohablante.',
-}
+})
 
-const homeTeamLinkCopy: Record<Language, string> = {
+const homeTeamLinkCopy: Record<Language, string> = withRussianFallback({
   en: 'Meet the team',
   fr: "Rencontrer l'équipe",
   es: 'Conoce al equipo',
-}
+})
 
-const serviceCardCta: Record<Language, string> = {
+const serviceCardCta: Record<Language, string> = withRussianFallback({
   en: 'Book this service',
   fr: 'Réserver ce service',
   es: 'Reservar este servicio',
-}
+})
 
 const HomePage = () => {
   const currentLanguage = useCurrentLanguage()
@@ -2455,6 +2564,7 @@ const HomePage = () => {
 
   const heroCta = navCopy[currentLanguage].callToAction
   const heroHeading = homeHeroHeading[currentLanguage]
+  const heroSubheading = homeHeroSubheading[currentLanguage]
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
   const founderNote = homeFounderCopy[currentLanguage]
@@ -2476,12 +2586,16 @@ const HomePage = () => {
         <div className="home-hero-copy">
           <span className="home-badge">Traceremove · Digital Agency</span>
           <h1>{heroHeading}</h1>
-          <p>{navCopy[currentLanguage].tagline}</p>
+          <p>{heroSubheading}</p>
           <div className="home-cta">
             <a className="button primary" href="mailto:contact@traceremove.com">
               contact@traceremove.com
             </a>
-            <a className="button secondary" href="tel:+16063022958">
+            <a
+              className="button secondary"
+              href="tel:+16063022958"
+              onClick={() => trackEvent('phone_click', { page: 'home', language: currentLanguage })}
+            >
               +1 606 302 2958
             </a>
           </div>
@@ -2496,11 +2610,13 @@ const HomePage = () => {
         </div>
         <div className="home-hero-visual" aria-hidden="true">
           <div className="home-hero-visual__field" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="eager" decoding="async" />
           <GrowthSpark variant="light" size="md" className="home-hero-graph" />
           <GrowthSpark variant="dark" size="sm" className="home-hero-graph home-hero-graph--offset" />
         </div>
       </div>
+
+      <Testimonials language={currentLanguage} />
 
       <MomentumTicker variant="light" />
 
@@ -2580,7 +2696,12 @@ const HomePage = () => {
       <div className="home-banner">
         <p>
           {heroCta} — <a href="mailto:contact@traceremove.com">contact@traceremove.com</a> ·{' '}
-          <a href="tel:+16063022958">+1 606 302 2958</a>
+          <a
+            href="tel:+16063022958"
+            onClick={() => trackEvent('phone_click', { page: 'home-footer-contact', language: currentLanguage })}
+          >
+            +1 606 302 2958
+          </a>
         </p>
       </div>
     </section>
@@ -2607,7 +2728,7 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
         </div>
         <div className="service-hero-visual" aria-hidden="true">
           <GrowthSpark variant="light" size="sm" className="service-hero-graph" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="lazy" decoding="async" />
         </div>
       </header>
 
@@ -2719,6 +2840,7 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
 const ServicesPricingPage = () => {
   const language = useCurrentLanguage()
   const copy = servicesPricingCopy[language]
+  const coreCopy = coreServicesIntro[language]
   const tiers = copy.pricing.tiers
   const [activeTierId, setActiveTierId] = useState(tiers[0]?.id ?? '')
   const [incidentCount, setIncidentCount] = useState(copy.roi.inputs.incidents.defaultValue)
@@ -2782,6 +2904,27 @@ const ServicesPricingPage = () => {
       </header>
 
       <MomentumTicker variant="dark" />
+
+      <section className="services-pricing__core" aria-labelledby="services-pricing-core">
+        <div className="services-pricing__section-header">
+          <h2 id="services-pricing-core">{coreCopy.title}</h2>
+          <p>{coreCopy.body}</p>
+        </div>
+        <div className="services-pricing__core-grid">
+          {coreServices.map((service) => {
+            const serviceCopy = service.copy[language] ?? service.copy.en
+            return (
+              <article key={service.slug} className="services-pricing__core-card">
+                <h3>{serviceCopy.title}</h3>
+                <p>{serviceCopy.summary}</p>
+                <Link className="button tertiary" to={getCoreServicePath(language, service.slug)}>
+                  {coreCopy.cta}
+                </Link>
+              </article>
+            )
+          })}
+        </div>
+      </section>
 
       <section className="services-pricing__promise" aria-labelledby="services-pricing-promise">
         <div className="services-pricing__section-header">
@@ -3770,6 +3913,9 @@ const ServicesPricingPage = () => {
 const AboutPage = () => {
   const language = useCurrentLanguage()
   const copy = aboutCopy[language]
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : 'traceremove.com'
+  const isDotCom = hostname.includes('traceremove.com')
+  const isDotDev = hostname.includes('traceremove.dev')
 
   return (
     <article className="about-page">
@@ -3791,7 +3937,7 @@ const AboutPage = () => {
         <div className="about-hero__visual" aria-hidden="true">
           <div className="about-hero__badge">{copy.hero.highlight}</div>
           <GrowthSpark variant="light" size="lg" className="about-hero__graph" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="lazy" decoding="async" />
         </div>
       </header>
 
@@ -3805,6 +3951,24 @@ const AboutPage = () => {
           {copy.story.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+          {isDotCom ? (
+            <p>
+              Traceremove was founded by{' '}
+              <a href="https://traceremove.dev/about" target="_blank" rel="noreferrer noopener">
+                Artur Ziganshin
+              </a>
+              .
+            </p>
+          ) : null}
+          {isDotDev ? (
+            <p>
+              For reputation management services, visit{' '}
+              <a href="https://traceremove.com" target="_blank" rel="noreferrer noopener">
+                traceremove.com
+              </a>
+              .
+            </p>
+          ) : null}
         </div>
       </section>
 
@@ -3971,7 +4135,7 @@ const TeamPage = () => {
         </div>
         <div className="team-hero-visual" aria-hidden="true">
           <GrowthSpark variant="light" size="md" className="team-hero-graph" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="lazy" decoding="async" />
         </div>
       </header>
 
@@ -5955,7 +6119,7 @@ const contactCopy: Record<
       message: { label: string; placeholder: string }
     }
   }
-> = {
+> = withRussianFallback({
   en: {
     kicker: 'Contact Traceremove',
     title: 'Design your next reputation breakthrough',
@@ -6031,7 +6195,7 @@ const contactCopy: Record<
       message: { label: '¿Cómo podemos ayudar?', placeholder: 'Comparte objetivos, plazos o riesgos de reputación…' },
     },
   },
-}
+})
 
 const ContactPage = ({ language }: { language: Language }) => {
   const copy = contactCopy[language]
@@ -6043,11 +6207,16 @@ const ContactPage = ({ language }: { language: Language }) => {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (field: keyof typeof formData) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       if (submitted) {
         setSubmitted(false)
+      }
+      if (submitError) {
+        setSubmitError(null)
       }
       const value = event.target.value
       setFormData((prev) => ({
@@ -6056,11 +6225,34 @@ const ContactPage = ({ language }: { language: Language }) => {
       }))
     }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSubmitted(true)
-    setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+    if (isSubmitting) {
+      return
+    }
+    setIsSubmitting(true)
+    setSubmitError(null)
+    try {
+      await submitHubspotLead({
+        source: 'contact',
+        language,
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        message: formData.message,
+      })
+      trackEvent('form_submit', { form_name: 'contact_form', form_page: 'contact_page', language })
+      setSubmitted(true)
+      setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+    } catch {
+      setSubmitError('We could not submit the form. Please try again or email contact@traceremove.com.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
+
+  const calendlyUrl = getCalendlyLink({ language })
 
   return (
     <section className="contact-page">
@@ -6072,6 +6264,29 @@ const ContactPage = ({ language }: { language: Language }) => {
       </header>
 
       <MomentumTicker variant="dark" />
+
+      <section className="contact-calendly" aria-label="Calendly booking">
+        <h2>Book your free reputation consultation</h2>
+        <p>Choose a time that works for you. 30-minute strategy call.</p>
+        <iframe
+          className="contact-calendly__embed"
+          src={calendlyUrl}
+          title="Calendly booking widget"
+          loading="lazy"
+        />
+      </section>
+
+      <section className="contact-map" aria-label="TraceRemove office location">
+        <h2>Find TraceRemove in Casper, Wyoming</h2>
+        <p>5840 E 2nd St, Ste 7000, Casper, WY 82609</p>
+        <iframe
+          className="contact-map__embed"
+          title="TraceRemove Google Maps location"
+          src="https://www.google.com/maps?q=5840+E+2nd+St+Ste+7000,+Casper,+WY+82609&output=embed"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </section>
 
       <div className="contact-grid">
         <form className="contact-form" onSubmit={handleSubmit} noValidate>
@@ -6140,13 +6355,18 @@ const ContactPage = ({ language }: { language: Language }) => {
               />
             </div>
           </div>
-          <button type="submit" className="button primary contact-submit">
-            {copy.submit}
+          <button type="submit" className="button primary contact-submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting…' : copy.submit}
           </button>
           {submitted && (
             <div className="contact-success" role="status" aria-live="polite">
               <h3>{copy.successTitle}</h3>
               <p>{copy.successMessage}</p>
+            </div>
+          )}
+          {submitError && (
+            <div className="contact-error" role="alert">
+              {submitError}
             </div>
           )}
           <p className="contact-legal">{copy.legal}</p>
@@ -6172,24 +6392,6 @@ const ContactPage = ({ language }: { language: Language }) => {
   )
 }
 
-const NotFound = () => (
-  <section className="service-page">
-    <header className="service-hero">
-      <div className="service-hero-copy">
-        <p className="service-preheading">Traceremove</p>
-        <h1>We couldn&apos;t find that page.</h1>
-        <p className="service-subheading">Explore our services and choose the program that fits your roadmap.</p>
-        <Link className="button primary" to="/">
-          Back to overview
-        </Link>
-      </div>
-      <div className="service-hero-visual" aria-hidden="true">
-        <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
-      </div>
-    </header>
-  </section>
-)
-
 const blogListCopy: Record<
   Language,
   {
@@ -6212,7 +6414,7 @@ const blogListCopy: Record<
     resetFilters: string
     featuredLabel: string
   }
-> = {
+> = withRussianFallback({
   en: {
     kicker: 'Traceremove Blog',
     title: 'Journal for reputation-led teams',
@@ -6279,7 +6481,7 @@ const blogListCopy: Record<
     resetFilters: 'Restablecer filtros',
     featuredLabel: 'Insight destacado',
   },
-}
+})
 
 type BlogListEntry = {
   slug: string
@@ -6315,7 +6517,7 @@ const blogArticleCopy: Record<
     authorQuoteLabel: string
     authorAvailabilityLabel: string
   }
-> = {
+> = withRussianFallback({
   en: {
     backToBlog: 'Back to articles',
     publishedOn: 'Published on',
@@ -6391,14 +6593,348 @@ const blogArticleCopy: Record<
     authorQuoteLabel: 'Punto de vista',
     authorAvailabilityLabel: 'Actualmente asesora a:',
   },
+})
+
+
+const reputationQuestions = [
+  {
+    id: 'searchResults',
+    prompt: 'When someone Googles your name or business, what do they see?',
+    options: [
+      { label: 'All positive results', points: 10 },
+      { label: 'Mostly positive, some neutral', points: 7 },
+      { label: 'Mix of positive and negative', points: 4 },
+      { label: 'Mostly negative or nothing relevant', points: 1 },
+    ],
+  },
+  {
+    id: 'reviews',
+    prompt: "What's your average Google review rating?",
+    options: [
+      { label: '4.5+ stars', points: 10 },
+      { label: '4.0–4.4 stars', points: 7 },
+      { label: '3.0–3.9 stars', points: 4 },
+      { label: 'Below 3 or no reviews', points: 1 },
+    ],
+  },
+  {
+    id: 'platformPresence',
+    prompt: 'How many review platforms show your business?',
+    options: [
+      { label: '5+ platforms', points: 10 },
+      { label: '3–4 platforms', points: 7 },
+      { label: '1–2 platforms', points: 4 },
+      { label: 'None', points: 1 },
+    ],
+  },
+  {
+    id: 'dataSecurity',
+    prompt: 'Has your email appeared in a data breach?',
+    options: [
+      { label: 'No', points: 10 },
+      { label: 'Yes, but I changed passwords', points: 6 },
+      { label: "Yes, I haven't addressed it", points: 2 },
+      { label: "I don't know", points: 4 },
+    ],
+  },
+  {
+    id: 'monitoring',
+    prompt: 'Do you monitor your online mentions?',
+    options: [
+      { label: 'Yes, with professional tools', points: 10 },
+      { label: 'I Google myself occasionally', points: 5 },
+      { label: 'No monitoring at all', points: 2 },
+    ],
+  },
+  {
+    id: 'professionalProfile',
+    prompt: 'How optimized is your LinkedIn profile?',
+    options: [
+      { label: 'Fully optimized with recommendations', points: 10 },
+      { label: 'Basic, up-to-date profile', points: 6 },
+      { label: 'Outdated or no profile', points: 2 },
+    ],
+  },
+  {
+    id: 'crisisResponse',
+    prompt: 'How do you handle negative reviews or mentions?',
+    options: [
+      { label: 'Respond professionally within 24 hours', points: 10 },
+      { label: 'Respond sometimes', points: 5 },
+      { label: 'Ignore or argue publicly', points: 1 },
+    ],
+  },
+] as const
+
+type ReputationQuestionId = (typeof reputationQuestions)[number]['id']
+type ReputationAnswers = Partial<Record<ReputationQuestionId, number>>
+
+const scoreBands = [
+  { min: 0, max: 30, label: '🔴 CRITICAL', color: '#ef4444', message: 'Your reputation needs immediate attention' },
+  { min: 31, max: 50, label: '🟠 AT RISK', color: '#f97316', message: 'Significant vulnerabilities detected' },
+  { min: 51, max: 70, label: '🟡 FAIR', color: '#facc15', message: 'Room for improvement' },
+  { min: 71, max: 85, label: '🟢 GOOD', color: '#22c55e', message: 'Solid foundation, minor optimizations needed' },
+  { min: 86, max: 100, label: '🔵 EXCELLENT', color: '#00d4ff', message: 'Strong reputation, keep monitoring' },
+]
+
+const recommendationByCategory: Record<ReputationQuestionId, string> = {
+  searchResults: 'Publish authoritative profile pages and optimize title/meta so positive pages dominate page one.',
+  reviews: 'Implement a weekly review generation workflow and respond to every new review within 24 hours.',
+  platformPresence: 'Claim and optimize profiles on key directories (Google, Trustpilot, Yelp, and niche platforms).',
+  dataSecurity: 'Run breach monitoring and rotate credentials with MFA enabled on all business-critical accounts.',
+  monitoring: 'Set up continuous mention monitoring with alerts for brand terms, executives, and priority keywords.',
+  professionalProfile: 'Refresh LinkedIn headline, proof points, and recommendations to increase trust signals.',
+  crisisResponse: 'Use response templates and escalation rules to handle negative mentions quickly and professionally.',
 }
 
+const ReputationScorePage = ({ language }: { language: Language }) => {
+  const [step, setStep] = useState(0)
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward')
+  const [answers, setAnswers] = useState<ReputationAnswers>({})
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [company, setCompany] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+
+  const totalQuestionPoints = reputationQuestions.length * 10
+  const answeredPoints = reputationQuestions.reduce((sum, question) => sum + (answers[question.id] ?? 0), 0)
+  const score = Math.round((answeredPoints / totalQuestionPoints) * 100)
+
+  const band = scoreBands.find((item) => score >= item.min && score <= item.max) ?? scoreBands[0]
+
+  const categoryBreakdown = reputationQuestions.map((question) => ({
+    id: question.id,
+    label:
+      question.id === 'searchResults'
+        ? 'Search Results'
+        : question.id === 'reviews'
+          ? 'Reviews'
+          : question.id === 'platformPresence'
+            ? 'Platform Presence'
+            : question.id === 'dataSecurity'
+              ? 'Data Security'
+              : question.id === 'monitoring'
+                ? 'Monitoring'
+                : question.id === 'professionalProfile'
+                  ? 'Professional Profile'
+                  : 'Crisis Response',
+    value: answers[question.id] ?? 0,
+  }))
+
+  const topRecommendations = categoryBreakdown
+    .slice()
+    .sort((a, b) => a.value - b.value)
+    .slice(0, 3)
+    .map((item) => ({ label: item.label, tip: recommendationByCategory[item.id] }))
+
+  const progressPercent = Math.round((Math.min(step, reputationQuestions.length + 1) / (reputationQuestions.length + 1)) * 100)
+
+  const goToStep = (nextStep: number, nextDirection: 'forward' | 'backward') => {
+    setDirection(nextDirection)
+    setStep(nextStep)
+  }
+
+  const handleStart = () => {
+    trackEvent('assessment_start', { language })
+    goToStep(1, 'forward')
+  }
+
+  const handleAnswer = (questionIndex: number, points: number) => {
+    const question = reputationQuestions[questionIndex]
+    setAnswers((previous) => ({ ...previous, [question.id]: points }))
+    trackEvent(`assessment_step_${questionIndex + 1}`, { language, points })
+    if (questionIndex === reputationQuestions.length - 1) {
+      goToStep(reputationQuestions.length + 1, 'forward')
+      return
+    }
+    goToStep(step + 1, 'forward')
+  }
+
+  const handleBack = () => {
+    if (step <= 0) return
+    goToStep(step - 1, 'backward')
+  }
+
+  const handleEmailSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (isSubmitting) return
+
+    setIsSubmitting(true)
+    setSubmitError(null)
+
+    const serializedAnswers = reputationQuestions.map((question, index) => ({
+      question: `Q${index + 1}: ${question.prompt}`,
+      score: answers[question.id] ?? 0,
+      selectedOption: question.options.find((option) => option.points === (answers[question.id] ?? -1))?.label || 'Unknown',
+    }))
+
+    try {
+      await submitHubspotLead({
+        source: 'reputation-score-assessment',
+        language,
+        name: fullName,
+        email,
+        company: company || undefined,
+        service: `score-${score}`,
+        message: JSON.stringify({ score, answers: serializedAnswers }),
+      })
+
+      trackEvent('assessment_email_submit', { language })
+      trackEvent('assessment_complete', { language, score, risk_level: band.label.replace(/^[^A-Z]+/, '').trim() })
+      goToStep(reputationQuestions.length + 2, 'forward')
+    } catch {
+      setSubmitError('Could not submit your details. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const circleCircumference = 2 * Math.PI * 54
+  const circleOffset = circleCircumference - (score / 100) * circleCircumference
+
+  return (
+    <section className="reputation-score-page">
+      <div className={`reputation-score-wizard is-${direction}`}>
+        {step > 0 && step < reputationQuestions.length + 2 ? (
+          <div className="reputation-score-progress" aria-label="Assessment progress">
+            <div style={{ width: `${progressPercent}%` }} />
+          </div>
+        ) : null}
+
+        {step === 0 ? (
+          <div className="reputation-score-screen reputation-score-screen--intro">
+            <h1>What's Your Reputation Score?</h1>
+            <p>7 questions. 60 seconds. Instant results.</p>
+            <button className="button primary" type="button" onClick={handleStart}>
+              Start Free Assessment →
+            </button>
+            <p className="reputation-score-note">No signup required to start. Over 500 assessments completed.</p>
+          </div>
+        ) : null}
+
+        {step >= 1 && step <= reputationQuestions.length ? (
+          <div className="reputation-score-screen reputation-score-screen--question" key={step}>
+            <p className="reputation-score-step-label">Question {step} of {reputationQuestions.length}</p>
+            <h2>{reputationQuestions[step - 1].prompt}</h2>
+            <div className="reputation-score-options">
+              {reputationQuestions[step - 1].options.map((option) => (
+                <button
+                  key={option.label}
+                  type="button"
+                  className="reputation-score-option"
+                  onClick={() => handleAnswer(step - 1, option.points)}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            <button type="button" className="button tertiary" onClick={handleBack}>
+              ← Back
+            </button>
+          </div>
+        ) : null}
+
+        {step === reputationQuestions.length + 1 ? (
+          <div className="reputation-score-screen reputation-score-screen--gate">
+            <h2>Your score is calculated! Enter your email to see full results.</h2>
+            <form className="reputation-score-form" onSubmit={handleEmailSubmit}>
+              <label>
+                <span>Full Name</span>
+                <input value={fullName} onChange={(event) => setFullName(event.target.value)} required />
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+              </label>
+              <label>
+                <span>Company (optional)</span>
+                <input value={company} onChange={(event) => setCompany(event.target.value)} />
+              </label>
+              <button className="button primary" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting…' : 'See My Score →'}
+              </button>
+              <p className="reputation-score-note">We'll also send a personalized improvement checklist.</p>
+              {submitError ? <p className="reputation-score-error">{submitError}</p> : null}
+            </form>
+            <button type="button" className="button tertiary" onClick={handleBack}>
+              ← Back
+            </button>
+          </div>
+        ) : null}
+
+        {step === reputationQuestions.length + 2 ? (
+          <div className="reputation-score-screen reputation-score-screen--results">
+            <h2>Your Reputation Score</h2>
+            <div className="reputation-score-gauge" style={{ ['--score-color' as string]: band.color } as CSSProperties}>
+              <svg viewBox="0 0 140 140" aria-label={`Reputation score ${score}`}>
+                <circle cx="70" cy="70" r="54" className="reputation-score-gauge__track" />
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="54"
+                  className="reputation-score-gauge__value"
+                  strokeDasharray={circleCircumference}
+                  strokeDashoffset={circleOffset}
+                />
+              </svg>
+              <div className="reputation-score-gauge__label">
+                <strong>{score}</strong>
+                <span>{band.label}</span>
+              </div>
+            </div>
+            <p className="reputation-score-band" style={{ color: band.color }}>{band.message}</p>
+
+            <div className="reputation-score-breakdown">
+              {categoryBreakdown.map((item) => (
+                <div key={item.id} className="reputation-score-breakdown__row">
+                  <div className="reputation-score-breakdown__label">
+                    <span>{item.label}</span>
+                    <span>{item.value}/10</span>
+                  </div>
+                  <div className="reputation-score-breakdown__bar">
+                    <span style={{ width: `${item.value * 10}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="reputation-score-recommendations">
+              <h3>YOUR TOP 3 RECOMMENDATIONS</h3>
+              <ul>
+                {topRecommendations.map((item) => (
+                  <li key={item.label}>
+                    <strong>{item.label}:</strong> {item.tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="reputation-score-results-cta">
+              <p>Want expert help improving your score?</p>
+              <div>
+                <a className="button primary" href={getCalendlyLink({ language })} target="_blank" rel="noreferrer">
+                  Book Free Consultation
+                </a>
+                <Link className="button secondary" to={`/free-audit${email ? `?email=${encodeURIComponent(email)}` : ''}`}>
+                  Get Full Audit Report
+                </Link>
+              </div>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  )
+}
 
 const BlogPage = ({ language }: { language: Language }) => {
+
   const copy = blogListCopy[language]
   const [topicFilter, setTopicFilter] = useState<'all' | BlogTopic>('all')
   const [authorFilter, setAuthorFilter] = useState<'all' | AuthorId>('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
   const topics = useMemo(
     () =>
@@ -6455,8 +6991,15 @@ const BlogPage = ({ language }: { language: Language }) => {
     })
   }, [articles, authorFilter, searchTerm, topicFilter])
 
-  const featuredArticle = filteredArticles[0]
-  const remainingArticles = filteredArticles.slice(1)
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [topicFilter, authorFilter, searchTerm, language])
+
+  const totalPages = Math.max(1, Math.ceil(filteredArticles.length / 12))
+  const pagedArticles = filteredArticles.slice((currentPage - 1) * 12, currentPage * 12)
+
+  const featuredArticle = pagedArticles[0]
+  const remainingArticles = pagedArticles.slice(1)
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
@@ -6624,49 +7167,74 @@ const BlogPage = ({ language }: { language: Language }) => {
           </button>
         </div>
       )}
+
+      {filteredArticles.length > 12 ? (
+        <nav className="blog-pagination" aria-label="Blog pagination">
+          <button type="button" className="button tertiary" onClick={() => setCurrentPage((page) => Math.max(1, page - 1))} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            type="button"
+            className="button tertiary"
+            onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </nav>
+      ) : null}
     </section>
   )
 }
 const BlogArticlePage = ({ language }: { language: Language }) => {
   const { slug } = useParams<{ slug: string }>()
   const copy = blogArticleCopy[language]
+  const resolvedSlug = slug ?? ''
+  const article = useMemo(
+    () => blogArticles.find((item) => item.slug === resolvedSlug),
+    [resolvedSlug]
+  )
+  const emptyTranslation: BlogArticleTranslation = {
+    title: '',
+    summary: '',
+    topicLabel: '',
+    heroKicker: '',
+    readTime: '',
+    seoTitle: '',
+    seoDescription: '',
+    author: '',
+    heroAlt: '',
+    body: [],
+  }
+  const translation = article?.translations[language]
+  const resolvedTranslation = translation ?? emptyTranslation
+  const articlePath = article ? getBlogArticlePath(language, article.slug) : getBlogBasePath(language)
   const [shareUrl, setShareUrl] = useState('')
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : 'traceremove.com'
+  const isDotCom = hostname.includes('traceremove.com')
+  const isDotDev = hostname.includes('traceremove.dev')
   const [copied, setCopied] = useState(false)
   const [readingProgress, setReadingProgress] = useState(0)
   const bodyRef = useRef<HTMLDivElement | null>(null)
 
-  if (!slug) {
-    return <NotFound />
-  }
-
-  const article = blogArticles.find((item) => item.slug === slug)
-
-  if (!article) {
-    return <NotFound />
-  }
-
-  const translation = article.translations[language]
-  const articlePath = getBlogArticlePath(language, article.slug)
-
-  if (!translation) {
-    return <NotFound />
-  }
-
-  const authorProfile = authorProfiles[article.authorId]
-  const authorHeadingId = `${slug}-author`
+  const authorProfile = article ? authorProfiles[article.authorId] : undefined
+  const authorHeadingId = `${resolvedSlug}-author`
   const authorBioParagraphs = authorProfile ? authorProfile.bio[language] : []
   const authorFocusItems = authorProfile ? authorProfile.focusAreas[language] : []
 
   const sections = useMemo(
     () =>
-      translation.body.map((section, index) => {
+      resolvedTranslation.body.map((section, index) => {
         const base = section.heading ? slugifyHeading(section.heading) : `section-${index + 1}`
         return {
           ...section,
-          id: `${slug}-${base}`,
+          id: `${resolvedSlug}-${base}`,
         }
       }),
-    [slug, translation.body]
+    [resolvedSlug, resolvedTranslation.body]
   )
 
   const tocSections = useMemo(() => sections.filter((section) => Boolean(section.heading)), [sections])
@@ -6675,6 +7243,9 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   const activeSectionRef = useRef(defaultActiveSection)
 
   const relatedArticles = useMemo(() => {
+    if (!article) {
+      return []
+    }
     const ranked = blogArticles
       .filter((item) => item.slug !== article.slug)
       .map((item) => {
@@ -6713,9 +7284,9 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
       seen.add(item.slug)
       return true
     })
-  }, [article.slug, article.topic, language])
+  }, [article, language])
 
-  const formattedDate = formatLocaleDate(language, article.publishedAt)
+  const formattedDate = article ? formatLocaleDate(language, article.publishedAt) : ''
 
   useEffect(() => {
     setActiveSection(defaultActiveSection)
@@ -6831,6 +7402,10 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
     }
   }, [sections])
 
+  if (!slug || !article || !translation) {
+    return <NotFound language={language} />
+  }
+
   const handleCopyLink = () => {
     if (!shareUrl) {
       return
@@ -6929,6 +7504,16 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   }
 
   const progressPercentage = Math.round(readingProgress * 100)
+  const researchLink =
+    isDotCom && article
+      ? article.topic === 'ai'
+        ? 'https://traceremove.dev/research/ai-search'
+        : article.topic === 'cybersecurity'
+          ? 'https://traceremove.dev/research/threat-intelligence'
+          : article.topic === 'seo'
+            ? 'https://traceremove.dev/research/serp-intelligence'
+            : null
+      : null
 
   return (
     <article className="blog-article">
@@ -6952,6 +7537,23 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
         </div>
         <h1>{translation.title}</h1>
         <p className="blog-article__summary">{translation.summary}</p>
+        {researchLink ? (
+          <p className="blog-article__meta">
+            Research reference:{' '}
+            <a href={researchLink} target="_blank" rel="noreferrer noopener">
+              traceremove.dev research lab
+            </a>
+          </p>
+        ) : null}
+        {isDotDev && (article?.topic === 'ai' || article?.topic === 'cybersecurity' || article?.topic === 'seo') ? (
+          <p className="blog-article__meta">
+            For reputation management services, visit{' '}
+            <a href="https://traceremove.com" target="_blank" rel="noreferrer noopener">
+              traceremove.com
+            </a>
+            .
+          </p>
+        ) : null}
         <p className="blog-article__meta">
           <span>{copy.publishedOn}</span> {formattedDate}
         </p>
@@ -7156,18 +7758,8 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   const navLinks = useMemo(
     () => [
-      { label: copy.about, href: getAboutPath(currentLanguage) },
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
-      { label: copy.servicesPricing, href: getServicesPricingPath(currentLanguage) },
       { label: copy.resources, href: getResourcesPath(currentLanguage) },
-      { label: copy.academy, href: getAcademyPath(currentLanguage) },
-      { label: copy.media, href: getMediaPath(currentLanguage) },
-      { label: copy.commandCenter, href: getCommandCenterPath(currentLanguage) },
-      { label: copy.trust, href: getTrustPath(currentLanguage) },
-      { label: copy.team, href: getTeamPath(currentLanguage) },
-      { label: copy.partners, href: getPartnersPath(currentLanguage) },
-      { label: copy.faq, href: getFaqPath(currentLanguage) },
-      { label: copy.blog, href: getBlogBasePath(currentLanguage) },
       { label: copy.contact, href: getContactPath(currentLanguage) },
     ],
     [copy, currentLanguage]
@@ -7177,6 +7769,18 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     setMegaOpen(false)
     setMobileOpen(false)
   }, [location.pathname])
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMegaOpen(false)
+        setMobileOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   useEffect(() => {
     if (!megaOpen) {
@@ -7263,7 +7867,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       languages.reduce<Record<Language, string>>((acc, lang) => {
         acc[lang] = getHomePath(lang)
         return acc
-      }, { en: '/', fr: '/fr', es: '/es' }),
+      }, { en: '/', fr: '/fr', es: '/es', ru: '/ru' }),
     []
   )
 
@@ -7336,7 +7940,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
+            <img src="/traceremove-mark.svg" alt="Traceremove logo" width="160" height="40" loading="lazy" decoding="async" />
             <span>Traceremove</span>
           </Link>
           <button
@@ -7380,6 +7984,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               onMouseEnter={handleServiceClose}
               onFocus={handleServiceClose}
               onClick={handleServiceClose}
+              aria-label={item.label}
             >
               <span className="tr-nav__label">{item.label}</span>
               <span className="tr-nav__indicator" aria-hidden="true" />
@@ -7391,7 +7996,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
             {copy.joinUs}
           </NavLink>
-          <a className="button ghost" href="tel:+16063022958">
+          <a
+            className="button ghost"
+            href="tel:+16063022958"
+            onClick={() => trackEvent('phone_click', { page: 'header', language: currentLanguage })}
+          >
             +1 606 302 2958
           </a>
         </div>
@@ -7459,8 +8068,8 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             <div className="tr-mobile-section">
               <h3>{copy.services}</h3>
               {groups.map((group) => (
-                <Fragment key={group.serviceName}>
-                  <p className="tr-mobile-group-title">{group.serviceName}</p>
+                <details key={group.serviceName} className="tr-mobile-accordion">
+                  <summary className="tr-mobile-group-title">{group.serviceName}</summary>
                   <ul>
                     {group.pages.map((page) => (
                       <li key={page.path}>
@@ -7474,7 +8083,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                       </li>
                     ))}
                   </ul>
-                </Fragment>
+                </details>
               ))}
             </div>
             <div className="tr-mobile-section">
@@ -7488,13 +8097,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 {copy.home}
               </NavLink>
               <NavLink
-                to={getAboutPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.about}
-              </NavLink>
-              <NavLink
                 to={getCaseStudiesPath(currentLanguage)}
                 className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
@@ -7502,74 +8104,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 {copy.caseStudies}
               </NavLink>
               <NavLink
-                to={getServicesPricingPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.servicesPricing}
-              </NavLink>
-              <NavLink
                 to={getResourcesPath(currentLanguage)}
                 className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
                 {copy.resources}
-              </NavLink>
-              <NavLink
-                to={getAcademyPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.academy}
-              </NavLink>
-              <NavLink
-                to={getMediaPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.media}
-              </NavLink>
-              <NavLink
-                to={getCommandCenterPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.commandCenter}
-              </NavLink>
-              <NavLink
-                to={getTrustPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.trust}
-              </NavLink>
-              <NavLink
-                to={getTeamPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.team}
-              </NavLink>
-              <NavLink
-                to={getPartnersPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.partners}
-              </NavLink>
-              <NavLink
-                to={getBlogBasePath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.blog}
-              </NavLink>
-              <NavLink
-                to={getFaqPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.faq}
               </NavLink>
               <NavLink
                 to={getContactPath(currentLanguage)}
@@ -7590,7 +8129,14 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               <a className="tr-mobile-link" href="mailto:contact@traceremove.com" onClick={handleCloseMobile}>
                 contact@traceremove.com
               </a>
-              <a className="tr-mobile-link" href="tel:+16063022958" onClick={handleCloseMobile}>
+              <a
+                className="tr-mobile-link"
+                href="tel:+16063022958"
+                onClick={() => {
+                  trackEvent('phone_click', { page: 'mobile-menu', language: currentLanguage })
+                  handleCloseMobile()
+                }}
+              >
                 +1 606 302 2958
               </a>
             </div>
@@ -7634,7 +8180,7 @@ const legalCopy: Record<
       supportPhone: { label: string; href: string }
     }
   >
-> = {
+> = withRussianFallback({
   en: {
     privacy: {
       kicker: 'Legal center',
@@ -8007,7 +8553,7 @@ const legalCopy: Record<
       supportPhone: { label: 'Habla con nosotros en el +1 606 302 2958 para resolver preguntas contractuales urgentes.', href: 'tel:+16063022958' },
     },
   },
-}
+})
 
 const LegalPage = ({ language, variant }: { language: Language; variant: 'privacy' | 'terms' }) => {
   const copy = legalCopy[language][variant]
@@ -8091,7 +8637,7 @@ const footerCopy: Record<
     subscribeCta: string
     subscribeSuccess: string
   }
-> = {
+> = withRussianFallback({
   en: {
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
@@ -8204,12 +8750,13 @@ const footerCopy: Record<
     subscribeCta: 'Suscribirme',
     subscribeSuccess: 'Gracias por suscribirte — revisa tu bandeja de entrada para confirmar.',
   },
-}
+})
 
 const callWidgetCopy: Record<Language, { label: string; assist: string }> = {
   en: { label: 'Call +1 606 302 2958', assist: 'Speak with Artur Ziganshin' },
   fr: { label: 'Appelez +1 606 302 2958', assist: 'Échangez avec Artur Ziganshin' },
   es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con Artur Ziganshin' },
+  ru: { label: 'Позвонить +1 606 302 2958', assist: 'Связаться с Artur Ziganshin' },
 }
 
 type SocialKey =
@@ -8263,6 +8810,16 @@ const footerSocialLabels: Record<Language, Record<SocialKey, string>> = {
     linkedin: 'Traceremove en LinkedIn',
     behance: 'Portafolio de Traceremove en Behance',
     dribbble: 'Proyectos de Traceremove en Dribbble',
+  },
+  ru: {
+    whatsapp: 'Написать в WhatsApp',
+    instagram: 'Traceremove в Instagram',
+    facebook: 'Traceremove на Facebook',
+    medium: 'Traceremove на Medium',
+    substack: 'Traceremove на Substack',
+    linkedin: 'Traceremove в LinkedIn',
+    behance: 'Портфолио Traceremove на Behance',
+    dribbble: 'Работы Traceremove на Dribbble',
   },
 }
 
@@ -8321,11 +8878,631 @@ const renderSocialIcon = (key: SocialKey): JSX.Element | null => {
   }
 }
 
+const freeAuditCopy: Record<Language, {
+  badge: string
+  title: string
+  subtitle: string
+  trust: string
+  confidentiality: string
+  sectionTitle: string
+  receiveTitle: string
+  receiveCards: Array<{ title: string; description: string }>
+  stepsTitle: string
+  steps: string[]
+  testimonialsTitle: string
+  testimonials: Array<{ quote: string; author: string }>
+  finalCtaTitle: string
+  submit: string
+  successTitle: string
+  successSubtitle: string
+  calendlyCta: string
+}> = withRussianFallback({
+  en: {
+    badge: 'Welcome from Instagram! 🎉',
+    title: 'Discover What the Internet Really Says About You',
+    subtitle: 'Free reputation audit in 24 hours. We analyze Google, reviews, data brokers, and social media.',
+    trust: '500+ audits completed • 4.9/5 rating • EN/FR/ES',
+    confidentiality: '🔒 100% confidential. No spam. Results within 24 hours.',
+    sectionTitle: "What you'll receive",
+    receiveTitle: 'What we review in your audit',
+    receiveCards: [
+      { title: '🔍 Google Analysis', description: 'What appears on pages 1-3 for your name' },
+      { title: '⭐ Review Scan', description: 'Your ratings across Google, Trustpilot, Yelp' },
+      { title: '🛡️ Data Exposure Check', description: 'Your data on 50+ broker sites' },
+    ],
+    stepsTitle: 'How it works',
+    steps: ['Submit your details', 'We analyze 100+ sources', 'Get your report in 24h'],
+    testimonialsTitle: 'Trusted by executives and founders',
+    testimonials: [
+      {
+        quote:
+          'The audit was far more detailed than expected. We had a clear risk map and exact priorities for week one.',
+        author: 'Sarah M., Healthcare Executive',
+      },
+      {
+        quote:
+          'In one document we got actionable insights for search, reviews, and narrative control. It accelerated every decision.',
+        author: 'CEO, Mid-Size Tech Company',
+      },
+      {
+        quote:
+          'Très professionnel et vraiment multilingue. Le rapport nous a aidés à corriger rapidement notre présence en ligne.',
+        author: 'Marc D., Avocat, Paris',
+      },
+    ],
+    finalCtaTitle: 'Get your free audit now',
+    submit: 'Get My Free Audit →',
+    successTitle: 'Your request is in. We will deliver your audit within 24 hours.',
+    successSubtitle: 'Want to discuss your results? Book a free consultation.',
+    calendlyCta: 'Open booking calendar',
+  },
+  fr: {
+    badge: 'Bienvenue depuis Instagram ! 🎉',
+    title: 'Découvrez vraiment ce qu’internet dit de vous',
+    subtitle: 'Audit de réputation gratuit en 24 heures. Nous analysons Google, les avis, les data brokers et les réseaux sociaux.',
+    trust: '500+ audits complétés • note 4,9/5 • EN/FR/ES',
+    confidentiality: '🔒 100% confidentiel. Aucun spam. Résultats sous 24 heures.',
+    sectionTitle: 'Ce que vous recevrez',
+    receiveTitle: 'Ce que nous analysons dans votre audit',
+    receiveCards: [
+      { title: '🔍 Analyse Google', description: 'Ce qui apparaît en pages 1 à 3 sur votre nom' },
+      { title: '⭐ Scan des avis', description: 'Vos notes sur Google, Trustpilot, Yelp' },
+      { title: '🛡️ Vérification des données', description: 'Vos données sur 50+ sites de courtiers en données' },
+    ],
+    stepsTitle: 'Comment ça marche',
+    steps: ['Envoyez vos informations', 'Nous analysons 100+ sources', 'Recevez votre rapport en 24h'],
+    testimonialsTitle: 'Déjà adopté par dirigeants et fondateurs',
+    testimonials: [
+      {
+        quote:
+          'The audit was far more detailed than expected. We had a clear risk map and exact priorities for week one.',
+        author: 'Sarah M., Healthcare Executive',
+      },
+      {
+        quote:
+          'In one document we got actionable insights for search, reviews, and narrative control. It accelerated every decision.',
+        author: 'CEO, Mid-Size Tech Company',
+      },
+      {
+        quote:
+          'Très professionnel et vraiment multilingue. Le rapport nous a aidés à corriger rapidement notre présence en ligne.',
+        author: 'Marc D., Avocat, Paris',
+      },
+    ],
+    finalCtaTitle: 'Obtenez votre audit gratuit maintenant',
+    submit: 'Get My Free Audit →',
+    successTitle: 'Votre demande est envoyée. Audit livré sous 24 heures.',
+    successSubtitle: 'Vous voulez discuter de vos résultats ? Réservez une consultation gratuite.',
+    calendlyCta: 'Ouvrir le calendrier',
+  },
+  es: {
+    badge: '¡Bienvenido desde Instagram! 🎉',
+    title: 'Descubre lo que Internet realmente dice sobre ti',
+    subtitle: 'Auditoría de reputación gratis en 24 horas. Analizamos Google, reseñas, brokers de datos y redes sociales.',
+    trust: '500+ auditorías completadas • 4.9/5 • EN/FR/ES',
+    confidentiality: '🔒 100% confidencial. Sin spam. Resultados en 24 horas.',
+    sectionTitle: 'Lo que recibirás',
+    receiveTitle: 'Qué revisamos en tu auditoría',
+    receiveCards: [
+      { title: '🔍 Análisis de Google', description: 'Qué aparece en las páginas 1-3 para tu nombre' },
+      { title: '⭐ Escaneo de reseñas', description: 'Tus calificaciones en Google, Trustpilot, Yelp' },
+      { title: '🛡️ Verificación de exposición', description: 'Tus datos en más de 50 sitios de data brokers' },
+    ],
+    stepsTitle: 'Cómo funciona',
+    steps: ['Envía tus datos', 'Analizamos 100+ fuentes', 'Recibe tu informe en 24h'],
+    testimonialsTitle: 'Confiado por ejecutivos y founders',
+    testimonials: [
+      {
+        quote:
+          'The audit was far more detailed than expected. We had a clear risk map and exact priorities for week one.',
+        author: 'Sarah M., Healthcare Executive',
+      },
+      {
+        quote:
+          'In one document we got actionable insights for search, reviews, and narrative control. It accelerated every decision.',
+        author: 'CEO, Mid-Size Tech Company',
+      },
+      {
+        quote:
+          'Très professionnel et vraiment multilingue. Le rapport nous a aidés à corriger rapidement notre présence en ligne.',
+        author: 'Marc D., Avocat, Paris',
+      },
+    ],
+    finalCtaTitle: 'Solicita tu auditoría gratis ahora',
+    submit: 'Get My Free Audit →',
+    successTitle: 'Tu solicitud fue enviada. Recibirás tu auditoría en 24 horas.',
+    successSubtitle: '¿Quieres comentar tus resultados? Reserva una consulta gratuita.',
+    calendlyCta: 'Abrir calendario',
+  },
+})
+
+const FreeAuditForm = ({ language, formLocation }: { language: Language; formLocation: string }) => {
+  const location = useLocation()
+  const copy = freeAuditCopy[language]
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [auditTarget, setAuditTarget] = useState<AuditTarget>('My Personal Name')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const utmSource = useMemo(() => new URLSearchParams(location.search).get('utm_source') ?? '', [location.search])
+  const utmMedium = useMemo(() => new URLSearchParams(location.search).get('utm_medium') ?? '', [location.search])
+  const utmCampaign = useMemo(() => new URLSearchParams(location.search).get('utm_campaign') ?? '', [location.search])
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (isLoading) return
+
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const storedUtm = getStoredUtmParams()
+      await submitAuditRequest({
+        fullName,
+        email,
+        auditTarget,
+        language: language === 'ru' ? 'en' : language,
+        source: `free-audit-${formLocation}`,
+        utmSource: utmSource || storedUtm.utm_source,
+        utmMedium: utmMedium || storedUtm.utm_medium,
+        utmCampaign: utmCampaign || storedUtm.utm_campaign,
+      })
+
+      trackEvent('audit_request', { language, audit_target: auditTarget, form_page: formLocation, utm_source: utmSource || undefined })
+
+      window.location.assign(getFreeAuditThankYouPath())
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : 'Unable to submit. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <form className="free-audit-form" onSubmit={onSubmit}>
+      {utmSource === 'instagram' ? <div className="free-audit-instagram-badge">{copy.badge}</div> : null}
+      <label>
+        <span>Full Name</span>
+        <input type="text" value={fullName} onChange={(event) => setFullName(event.target.value)} required />
+      </label>
+      <label>
+        <span>Email</span>
+        <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+      </label>
+      <label>
+        <span>What to audit</span>
+        <select value={auditTarget} onChange={(event) => setAuditTarget(event.target.value as AuditTarget)}>
+          <option value="My Personal Name">My Personal Name</option>
+          <option value="My Business">My Business</option>
+          <option value="Both">Both</option>
+        </select>
+      </label>
+      <button className="free-audit-submit" type="submit" disabled={isLoading}>
+        {isLoading ? 'Sending…' : copy.submit}
+      </button>
+      <p className="free-audit-confidential">{copy.confidentiality}</p>
+      <p className="free-audit-trust">{copy.trust}</p>
+      {error ? <p className="free-audit-error">{error}</p> : null}
+    </form>
+  )
+}
+
+const FreeAuditLandingPage = ({ language }: { language: Language }) => {
+  const copy = freeAuditCopy[language]
+
+  return (
+    <section className="free-audit-page">
+      <div className="free-audit-hero glass-card">
+        <h1>{copy.title}</h1>
+        <p>{copy.subtitle}</p>
+        <FreeAuditForm language={language} formLocation="hero" />
+      </div>
+
+      <section className="free-audit-section">
+        <p className="free-audit-kicker">{copy.sectionTitle}</p>
+        <h2>{copy.receiveTitle}</h2>
+        <div className="free-audit-grid">
+          {copy.receiveCards.map((card) => (
+            <article key={card.title} className="glass-card free-audit-card">
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="free-audit-section">
+        <p className="free-audit-kicker">{copy.stepsTitle}</p>
+        <div className="free-audit-steps">
+          {copy.steps.map((step, index) => (
+            <div key={step} className="glass-card free-audit-step">
+              <span className="free-audit-step__icon" aria-hidden="true">{index === 0 ? '📝' : index === 1 ? '🔎' : '📄'}</span>
+              <p>{step}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="free-audit-section">
+        <p className="free-audit-kicker">{copy.testimonialsTitle}</p>
+        <div className="free-audit-grid">
+          {copy.testimonials.map((item) => (
+            <blockquote key={item.author} className="glass-card free-audit-testimonial">
+              <p>“{item.quote}”</p>
+              <cite>{item.author}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      <section className="free-audit-section">
+        <h2>{copy.finalCtaTitle}</h2>
+        <FreeAuditForm language={language} formLocation="final" />
+      </section>
+    </section>
+  )
+}
+
+const FreeAuditThankYouPage = ({ language }: { language: Language }) => {
+  const copy = freeAuditCopy[language]
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const timer = window.setTimeout(() => {
+      openCalendlyPopup({ language })
+    }, 3000)
+    return () => window.clearTimeout(timer)
+  }, [language])
+
+  return (
+    <section className="free-audit-thank-you glass-card">
+      <h1>{copy.successTitle}</h1>
+      <p>{copy.successSubtitle}</p>
+      <a className="button primary" href={getCalendlyLink({ language })} target="_blank" rel="noreferrer">
+        {copy.calendlyCta}
+      </a>
+    </section>
+  )
+}
+
+
+const leadMagnetConfig: Record<string, { title: string; previewTitle: string; previewItems: string[] }> = {
+  'privacy-guide': {
+    title: 'The Ultimate Privacy Protection Checklist',
+    previewTitle: 'Preview checklist (3 of 20)',
+    previewItems: [
+      'Harden every account with strong, unique passwords and MFA.',
+      'Review data broker listings and remove exposed records.',
+      'Audit social profiles for personal info leakage and metadata.',
+    ],
+  },
+  'chatgpt-prompts': {
+    title: '20 ChatGPT Prompts for Reputation Management',
+    previewTitle: 'Preview prompts (3 of 20)',
+    previewItems: [
+      '“Analyze this search result page for reputation risks and opportunities.”',
+      '“Draft a calm, factual response to a negative review in 120 words.”',
+      '“Build a 30-day content plan to outrank negative mentions.”',
+    ],
+  },
+  'review-templates': {
+    title: 'Negative Review Response Templates',
+    previewTitle: 'Preview templates (1 of 5)',
+    previewItems: ['Thank you for your feedback. We take this seriously and want to make it right—please contact us directly so we can resolve this today.'],
+  },
+  'gdpr-template': {
+    title: 'GDPR Data Removal Request Template',
+    previewTitle: 'Template structure preview',
+    previewItems: [
+      'Subject: GDPR Article 17 Erasure Request',
+      'Identity details and records to remove',
+      'Legal basis and response timeline request',
+    ],
+  },
+  '90-day-plan': {
+    title: '90-Day Reputation Transformation Roadmap',
+    previewTitle: 'Phase 1 overview',
+    previewItems: [
+      'Week 1-2: Baseline audit and risk prioritization.',
+      'Week 3-4: Suppression and authority content launch.',
+      'Week 5-6: Review generation and response operations.',
+    ],
+  },
+}
+
+const LeadMagnetPage = ({ magnet, language }: { magnet: keyof typeof leadMagnetConfig; language: Language }) => {
+  const config = leadMagnetConfig[magnet]
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (isSubmitting) return
+
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      await submitLeadMagnetRequest({ name, email, magnet, language })
+      trackEvent('lead_magnet_download', { magnet_name: magnet, form_name: 'lead_magnet_form', form_page: `/resources/${magnet}`, language })
+      trackEvent('lead', { source: 'lead_magnet', magnet_name: magnet })
+      setSubmitted(true)
+      setName('')
+      setEmail('')
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : 'Unable to submit. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return (
+    <section className="lead-magnet-page">
+      <div className="lead-magnet-card glass-card">
+        <h1>{config.title}</h1>
+        <div className="lead-magnet-preview">
+          <p>{config.previewTitle}</p>
+          <ul>
+            {config.previewItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        {submitted ? (
+          <div className="lead-magnet-success" role="status">
+            <p>Check your inbox! While you wait, check your reputation score:</p>
+            <Link className="button secondary" to={getReputationScorePath(language)}>
+              Open Reputation Score →
+            </Link>
+          </div>
+        ) : (
+          <form className="lead-magnet-form" onSubmit={handleSubmit}>
+            <label>
+              <span>Name</span>
+              <input type="text" value={name} onChange={(event) => setName(event.target.value)} required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+            </label>
+            <button type="submit" className="button primary" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending…' : 'Send me the resource'}
+            </button>
+            {error ? <p className="lead-magnet-error">{error}</p> : null}
+          </form>
+        )}
+      </div>
+    </section>
+  )
+}
+
+const DataBreachCheckerPage = () => {
+  const [email, setEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [result, setResult] = useState<
+    | { status: 'breached'; breaches: Array<{ Name: string; BreachDate?: string; DataClasses?: string[] }> }
+    | { status: 'clean' }
+    | { status: 'error'; message: string }
+    | null
+  >(null)
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!email.trim() || isLoading) {
+      return
+    }
+
+    setIsLoading(true)
+    setResult(null)
+
+    try {
+      const started = Date.now()
+      const response = await fetch('/api/breach-check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim() }),
+      })
+
+      const body = await response.json().catch(() => ({}))
+      const elapsed = Date.now() - started
+      if (elapsed < 2200) {
+        await new Promise((resolve) => window.setTimeout(resolve, 2200 - elapsed))
+      }
+
+      if (!response.ok) {
+        setResult({ status: 'error', message: body?.message || 'Unable to complete the check right now. Please try again.' })
+        return
+      }
+
+      if (body?.breached) {
+        const breaches = body.breaches || []
+        setResult({ status: 'breached', breaches })
+        trackEvent('breach_check', { breached: true, breach_count: breaches.length, page: 'breach-check' })
+        return
+      }
+
+      setResult({ status: 'clean' })
+      trackEvent('breach_check', { breached: false, breach_count: 0, page: 'breach-check' })
+    } catch {
+      await new Promise((resolve) => window.setTimeout(resolve, 2200))
+      setResult({ status: 'error', message: 'Service temporarily unavailable. Please try again in a moment.' })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const breachedCount = result?.status === 'breached' ? result.breaches.length : 0
+
+  return (
+    <section className="breach-check-page">
+      <div className="breach-check-card glass-card">
+        <h1>Has Your Data Been Leaked?</h1>
+        <p>Check if your email appears in known data breaches. Free. Instant.</p>
+
+        <form className="breach-check-form" onSubmit={handleSubmit}>
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit" className="button primary" disabled={isLoading}>
+            {isLoading ? 'Scanning…' : 'Check Now →'}
+          </button>
+        </form>
+
+        <p className="breach-check-disclaimer">
+          We use the Have I Been Pwned database. Your email is NOT stored or logged.
+        </p>
+
+        {isLoading ? (
+          <div className="breach-check-loading" role="status" aria-live="polite">
+            <div className="breach-check-loading__bar" />
+            <p>Scanning 700+ known breaches...</p>
+          </div>
+        ) : null}
+
+        {result?.status === 'breached' ? (
+          <div className="breach-check-result breach-check-result--breached">
+            <h2>🔴 Oh no — your email was found in {breachedCount} data breaches!</h2>
+            <ul>
+              {result.breaches.map((breach) => (
+                <li key={`${breach.Name}-${breach.BreachDate || 'unknown'}`}>
+                  <strong>{breach.Name}</strong>
+                  <span>{breach.BreachDate || 'Unknown date'}</span>
+                  <span>{breach.DataClasses?.join(', ') || 'Data classes unavailable'}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="breach-check-warning">
+              Your personal information may also be listed on data broker sites like Spokeo, WhitePages, and BeenVerified.
+            </div>
+            <Link
+              className="button primary"
+              to={`/free-audit?utm_source=breach_checker&breaches=${breachedCount}${email ? `&email=${encodeURIComponent(email)}` : ''}`}
+            >
+              Get a Free Reputation Audit →
+            </Link>
+          </div>
+        ) : null}
+
+        {result?.status === 'clean' ? (
+          <div className="breach-check-result breach-check-result--clean">
+            <h2>🟢 Good news — no known breaches found for this email!</h2>
+            <p>Stay protected:</p>
+            <ul>
+              <li>Enable 2FA on all accounts</li>
+              <li>Use unique passwords</li>
+              <li>Monitor your reputation regularly</li>
+            </ul>
+            <Link className="button secondary" to="/reputation-score">
+              Check Your Full Reputation Score →
+            </Link>
+          </div>
+        ) : null}
+
+        {result?.status === 'error' ? (
+          <div className="breach-check-result breach-check-result--error" role="alert">
+            <h2>We couldn't complete your scan</h2>
+            <p>{result.message}</p>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  )
+}
+
+const InstagramLinkInBioPage = () => {
+  useEffect(() => {
+    trackEvent('view_content', { page: '/instagram' })
+  }, [])
+
+  const buttons = [
+    {
+      label: '🔍 Get Your FREE Reputation Audit',
+      href: '/free-audit?utm_source=instagram&utm_medium=linkinbio',
+      primary: true,
+    },
+    {
+      label: '📥 Download: Privacy Protection Guide',
+      href: '/resources/privacy-guide?utm_source=instagram',
+    },
+    {
+      label: '📞 Book a Free Consultation',
+      href: `${getCalendlyLink({ utm_source: 'instagram', utm_medium: 'linkinbio' })}`,
+    },
+    {
+      label: '📚 Read Our Blog',
+      href: '/blog?utm_source=instagram',
+    },
+    {
+      label: '🌐 Visit Our Website',
+      href: '/?utm_source=instagram',
+    },
+  ]
+
+  const handleClick = (label: string) => {
+    trackEvent('link_in_bio_click', { button_name: label })
+  }
+
+  return (
+    <section className="instagram-page">
+      <div className="instagram-card">
+        <div className="instagram-logo-wrap" aria-hidden="true">
+          <span className="instagram-logo-glow" />
+          <img src="/traceremove-mark.svg" alt="TraceRemove" width="160" height="40" loading="eager" decoding="async" />
+        </div>
+        <h1>TraceRemove</h1>
+        <p className="instagram-tagline">Digital Reputation Management</p>
+        <p className="instagram-languages">EN 🇬🇧 | FR 🇫🇷 | ES 🇪🇸</p>
+
+        <div className="instagram-links">
+          {buttons.map((button) => (
+            <a
+              key={button.label}
+              className={`instagram-link-button${button.primary ? ' is-primary' : ''}`}
+              href={button.href}
+              onClick={() => handleClick(button.label)}
+            >
+              {button.label}
+            </a>
+          ))}
+        </div>
+
+        <div className="instagram-socials">
+          <a href="https://instagram.com/traceremove" target="_blank" rel="noreferrer" aria-label="Instagram">
+            {renderSocialIcon('instagram')}
+          </a>
+          <a href="https://linkedin.com/in/arthur-ziganshin" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            {renderSocialIcon('linkedin')}
+          </a>
+          <a href="https://twitter.com/traceremove" target="_blank" rel="noreferrer" aria-label="X/Twitter">
+            <span className="instagram-social-x" aria-hidden="true">𝕏</span>
+          </a>
+        </div>
+
+        <p className="instagram-copyright">© 2026 TraceRemove</p>
+      </div>
+    </section>
+  )
+}
+
 const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
   const copy = callWidgetCopy[currentLanguage]
 
   return (
-    <a className="call-widget" href="tel:+16063022958" aria-label={`${copy.label}. ${copy.assist}`}>
+    <a
+      className="call-widget"
+      href="tel:+16063022958"
+      aria-label={`${copy.label}. ${copy.assist}`}
+      onClick={() => trackEvent('phone_click', { page: 'call-widget', language: currentLanguage })}
+    >
       <span className="call-widget__icon" aria-hidden="true">📞</span>
       <span className="call-widget__text">
         <span className="call-widget__label">{copy.label}</span>
@@ -8335,20 +9512,266 @@ const CallWidget = ({ currentLanguage }: { currentLanguage: Language }) => {
   )
 }
 
+
+const exitIntentCopy: Record<Language, { title: string; subtitle: string; cta: string; dismiss: string }> = withRussianFallback({
+  en: {
+    title: 'Wait! Get Your Free Reputation Score Before You Go',
+    subtitle: 'Takes 60 seconds. See what the internet says about you.',
+    cta: 'Check My Score',
+    dismiss: "No thanks, I'm not concerned about my reputation",
+  },
+  fr: {
+    title: 'Attendez ! Obtenez votre score réputation gratuit avant de partir',
+    subtitle: '60 secondes suffisent pour voir ce qu’internet dit de vous.',
+    cta: 'Voir mon score',
+    dismiss: 'Non merci, je ne suis pas préoccupé par ma réputation',
+  },
+  es: {
+    title: '¡Espera! Obtén tu score de reputación gratis antes de irte',
+    subtitle: 'Toma 60 segundos. Descubre qué dice internet de ti.',
+    cta: 'Ver mi score',
+    dismiss: 'No gracias, no me preocupa mi reputación',
+  },
+})
+
+const EXIT_INTENT_COOKIE = 'tr_exit_intent_suppressed'
+
+const ExitIntentPopup = ({ currentLanguage }: { currentLanguage: Language }) => {
+  const { pathname } = useLocation()
+  const [isReady, setIsReady] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const normalizedPath = useMemo(() => {
+    const parts = pathname.split('/').filter(Boolean)
+    if (parts.length > 0 && languages.includes(parts[0] as Language)) {
+      parts.shift()
+    }
+    return `/${parts.join('/')}`.replace(/\/$/, '') || '/'
+  }, [pathname])
+
+  useEffect(() => {
+    setIsOpen(false)
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    if (normalizedPath === '/free-audit' || normalizedPath === '/reputation-score') {
+      return
+    }
+
+    if (window.sessionStorage.getItem('tr-exit-intent-shown') === 'true') {
+      return
+    }
+
+    if (document.cookie.includes(`${EXIT_INTENT_COOKIE}=1`)) {
+      return
+    }
+
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches
+    if (coarsePointer || window.innerWidth < 960) {
+      return
+    }
+
+    const timer = window.setTimeout(() => {
+      canTrigger = true
+      setIsReady(true)
+    }, 30000)
+    let canTrigger = false
+    const onMouseOut = (event: MouseEvent) => {
+      if (!canTrigger || isOpen) {
+        return
+      }
+      const related = event.relatedTarget as Node | null
+      if (event.clientY <= 8 && !related) {
+        setIsOpen(true)
+        window.sessionStorage.setItem('tr-exit-intent-shown', 'true')
+      }
+    }
+
+
+    document.addEventListener('mouseout', onMouseOut)
+
+    return () => {
+      if (timer) {
+        window.clearTimeout(timer)
+      }
+      document.removeEventListener('mouseout', onMouseOut)
+    }
+  }, [isOpen, normalizedPath])
+
+  const dismiss = () => {
+    setIsOpen(false)
+    const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()
+    document.cookie = `${EXIT_INTENT_COOKIE}=1; expires=${expires}; path=/; SameSite=Lax`
+  }
+
+  if (!isReady || !isOpen) {
+    return null
+  }
+
+  const copy = exitIntentCopy[currentLanguage]
+
+  return (
+    <div className="exit-intent" role="dialog" aria-modal="true" aria-labelledby="exit-intent-title">
+      <button type="button" className="exit-intent__backdrop" aria-label="Close popup" onClick={dismiss} />
+      <div className="exit-intent__card">
+        <h2 id="exit-intent-title">{copy.title}</h2>
+        <p>{copy.subtitle}</p>
+        <Link
+          className="button primary"
+          to={getReputationScorePath(currentLanguage)}
+          onClick={() => {
+            trackEvent('cta_click', {
+              cta_text: copy.cta,
+              cta_position: 'exit_intent_popup',
+              page: normalizedPath,
+              language: currentLanguage,
+            })
+            dismiss()
+          }}
+        >
+          {copy.cta}
+        </Link>
+        <button type="button" className="exit-intent__dismiss" onClick={dismiss}>
+          {copy.dismiss}
+        </button>
+      </div>
+    </div>
+  )
+}
+
+const NEWSLETTER_COOKIE = 'tr_newsletter_popup_hidden'
+
+const NewsletterPopup = () => {
+  const { pathname } = useLocation()
+  const [isOpen, setIsOpen] = useState(false)
+  const [email, setEmail] = useState('')
+  const [languageChoice, setLanguageChoice] = useState<'en' | 'fr' | 'es'>('en')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const normalizedPath = useMemo(() => {
+    const parts = pathname.split('/').filter(Boolean)
+    if (parts.length > 0 && languages.includes(parts[0] as Language)) parts.shift()
+    return `/${parts.join('/')}`.replace(/\/$/, '') || '/'
+  }, [pathname])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (normalizedPath === '/free-audit' || normalizedPath === '/reputation-score') return
+    if (window.sessionStorage.getItem('tr-newsletter-shown') === 'true') return
+    if (document.cookie.includes(`${NEWSLETTER_COOKIE}=1`)) return
+
+    let opened = false
+    const open = () => {
+      if (opened) return
+      opened = true
+      window.sessionStorage.setItem('tr-newsletter-shown', 'true')
+      setIsOpen(true)
+    }
+
+    const timer = window.setTimeout(open, 30000)
+    const onScroll = () => {
+      const ratio = (window.scrollY + window.innerHeight) / Math.max(document.body.scrollHeight, 1)
+      if (ratio >= 0.5) open()
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.clearTimeout(timer)
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [normalizedPath])
+
+  const dismiss = () => {
+    const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()
+    document.cookie = `${NEWSLETTER_COOKIE}=1; expires=${expires}; path=/; SameSite=Lax`
+    setIsOpen(false)
+  }
+
+
+  if (!isOpen) return null
+
+  return (
+    <div className="newsletter-popup" role="dialog" aria-modal="true" aria-labelledby="newsletter-popup-title">
+      <button type="button" className="newsletter-popup__backdrop" onClick={dismiss} aria-label="Dismiss" />
+      <form className="newsletter-popup__card" onSubmit={async (event) => {
+        event.preventDefault()
+        if (isSubmitting) return
+        setIsSubmitting(true)
+        try {
+          await submitHubspotLead({
+            source: 'newsletter-popup',
+            language: languageChoice,
+            name: 'Newsletter Subscriber',
+            email,
+          })
+          trackEvent('form_submit', { form_name: 'newsletter_popup', form_page: 'sitewide_popup', language: languageChoice })
+          trackEvent('complete_registration', { page: normalizedPath, language: languageChoice })
+          dismiss()
+        } finally {
+          setIsSubmitting(false)
+        }
+      }}>
+        <h2 id="newsletter-popup-title">Get Weekly Reputation & Privacy Tips</h2>
+        <p>Join 500+ subscribers. Choose your language.</p>
+        <label>
+          <span>Email</span>
+          <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+        </label>
+        <fieldset>
+          <legend>Language</legend>
+          <label><input type="radio" name="newsletter-language" value="en" checked={languageChoice === 'en'} onChange={() => setLanguageChoice('en')} /> EN</label>
+          <label><input type="radio" name="newsletter-language" value="fr" checked={languageChoice === 'fr'} onChange={() => setLanguageChoice('fr')} /> FR</label>
+          <label><input type="radio" name="newsletter-language" value="es" checked={languageChoice === 'es'} onChange={() => setLanguageChoice('es')} /> ES</label>
+        </fieldset>
+        <button type="submit" className="button primary" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Subscribe Free'}</button>
+        <button type="button" className="newsletter-popup__dismiss" onClick={dismiss}>No thanks</button>
+      </form>
+    </div>
+  )
+}
+
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : 'traceremove.com'
+  const isDotCom = hostname.includes('traceremove.com')
+  const isDotDev = hostname.includes('traceremove.dev')
   const copy = footerCopy[currentLanguage]
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [subscribeError, setSubscribeError] = useState<string | null>(null)
+  const [subscribeLoading, setSubscribeLoading] = useState(false)
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSubscribed(true)
-    setEmail('')
+    if (subscribeLoading) {
+      return
+    }
+    setSubscribeLoading(true)
+    setSubscribeError(null)
+    try {
+      await submitHubspotLead({
+        source: 'footer-subscribe',
+        language: currentLanguage,
+        name: 'Newsletter Subscriber',
+        email,
+      })
+      trackEvent('form_submit', { form_name: 'newsletter_subscribe', form_page: 'footer', language: currentLanguage })
+      trackEvent('complete_registration', { page: 'footer', language: currentLanguage })
+      setSubscribed(true)
+      setEmail('')
+    } catch {
+      setSubscribeError('Subscription failed. Please try again or email contact@traceremove.com.')
+    } finally {
+      setSubscribeLoading(false)
+    }
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (subscribed) {
       setSubscribed(false)
+    }
+    if (subscribeError) {
+      setSubscribeError(null)
     }
     setEmail(event.target.value)
   }
@@ -8379,7 +9802,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
       <div className="tr-footer__inner">
         <div className="tr-footer__brand">
-          <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
+          <img src="/traceremove-mark.svg" alt="Traceremove logo" width="160" height="40" loading="lazy" decoding="async" />
           <div>
             <p className="tr-footer__title">Traceremove</p>
             <p className="tr-footer__tagline">{copy.studio}</p>
@@ -8403,13 +9826,18 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 onChange={handleChange}
                 required
               />
-              <button type="submit" className="button tertiary">
-                {copy.subscribeCta}
+              <button type="submit" className="button tertiary" disabled={subscribeLoading}>
+                {subscribeLoading ? 'Submitting…' : copy.subscribeCta}
               </button>
             </div>
             {subscribed && (
               <p className="tr-footer__subscribe-success" role="status" aria-live="polite">
                 {copy.subscribeSuccess}
+              </p>
+            )}
+            {subscribeError && (
+              <p className="tr-footer__subscribe-error" role="alert">
+                {subscribeError}
               </p>
             )}
           </form>
@@ -8447,13 +9875,27 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
               <span>{label}</span>
             </NavLink>
           ))}
-          <a className="tr-footer__menu-link tr-footer__menu-link--call" href="tel:+16063022958">
+          <a
+            className="tr-footer__menu-link tr-footer__menu-link--call"
+            href="tel:+16063022958"
+            onClick={() => trackEvent('phone_click', { page: 'footer-menu', language: currentLanguage })}
+          >
             <span>{copy.call}</span>
           </a>
         </div>
         <div className="tr-footer__legal">
           <NavLink to={getPrivacyPath(currentLanguage)}>{copy.privacy}</NavLink>
           <NavLink to={getTermsPath(currentLanguage)}>{copy.terms}</NavLink>
+          {isDotCom ? (
+            <a href="https://traceremove.dev" target="_blank" rel="noreferrer noopener">
+              Research Lab: traceremove.dev
+            </a>
+          ) : null}
+          {isDotDev ? (
+            <a href="https://traceremove.com" target="_blank" rel="noreferrer noopener">
+              Agency: traceremove.com
+            </a>
+          ) : null}
         </div>
         <div className="tr-footer__social">
           {socialLinks.map(({ key, href }) => (
@@ -8464,6 +9906,11 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
               target="_blank"
               rel="noreferrer"
               aria-label={footerSocialLabels[currentLanguage][key]}
+              onClick={() => {
+                if (key === 'whatsapp') {
+                  trackEvent('chat_start', { page: 'footer-social', language: currentLanguage })
+                }
+              }}
             >
               {renderSocialIcon(key)}
             </a>
@@ -8477,18 +9924,478 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const currentLanguage = useCurrentLanguage()
+  const location = useLocation()
+  const normalizedPath = useMemo(() => {
+    const parts = location.pathname.split('/').filter(Boolean)
+    if (parts.length > 0 && languages.includes(parts[0] as Language)) {
+      parts.shift()
+    }
+    return `/${parts.join('/')}`.replace(/\/$/, '') || '/'
+  }, [location.pathname])
+
+  const isFreeAuditLayout =
+    normalizedPath === '/free-audit' ||
+    normalizedPath === '/audit-gratuit' ||
+    normalizedPath === '/auditoria-gratis' ||
+    normalizedPath === '/free-audit/thank-you'
+
+  const isInstagramLayout = normalizedPath === '/instagram'
+  const isDistractionFreeLayout = isFreeAuditLayout || isInstagramLayout
+
+  const gtmContainerId = import.meta.env.VITE_GTM_CONTAINER_ID as string | undefined
+
+  useEffect(() => {
+    if (!gtmContainerId || typeof window === 'undefined') {
+      return
+    }
+    if (document.querySelector(`script[data-gtm="${gtmContainerId}"]`)) {
+      return
+    }
+
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      'gtm.start': Date.now(),
+      event: 'gtm.js',
+    })
+
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmContainerId}`
+    script.setAttribute('data-gtm', gtmContainerId)
+    document.head.appendChild(script)
+  }, [gtmContainerId])
+
+  useEffect(() => {
+    loadCalendlyScript().catch(() => undefined)
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    captureUtmParamsFromUrl()
+    trackEvent('page_view', { page: location.pathname, language: currentLanguage })
+
+    const normalized = normalizedPath
+    if (normalized.startsWith('/services/') || normalized === '/case-studies' || normalized.startsWith('/blog/')) {
+      trackEvent('view_content', { page: normalized, language: currentLanguage })
+    }
+  }, [location.pathname, location.search, currentLanguage, normalizedPath])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const onCalendlyMessage = (event: MessageEvent) => {
+      const eventName = (event.data as { event?: string })?.event
+      if (eventName === 'calendly.event_scheduled') {
+        trackEvent('consultation_booked', { service_interest: 'general', language: currentLanguage })
+        trackEvent('schedule', { page: normalizedPath, language: currentLanguage })
+      }
+    }
+
+    const onDocumentClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null
+      const anchor = target?.closest('a[href$=".pdf"]') as HTMLAnchorElement | null
+      if (!anchor) return
+      const magnetName = anchor.getAttribute('download') || anchor.textContent?.trim() || 'pdf'
+      trackEvent('lead_magnet_download', { magnet_name: magnetName })
+    }
+
+    window.addEventListener('message', onCalendlyMessage)
+    document.addEventListener('click', onDocumentClick)
+    return () => {
+      window.removeEventListener('message', onCalendlyMessage)
+      document.removeEventListener('click', onDocumentClick)
+    }
+  }, [currentLanguage, normalizedPath])
+
+  useEffect(() => {
+    const { pathname, origin } = window.location
+    const pathSegments = pathname.split('/').filter(Boolean)
+    const currentLang = languages.includes(pathSegments[0] as Language)
+      ? (pathSegments.shift() as Language)
+      : ('en' as Language)
+    const path = `/${pathSegments.join('/')}`.replace(/\/$/, '')
+    const buildPath = (language: Language) => {
+      if (path === '/free-audit' || path === '/audit-gratuit' || path === '/auditoria-gratis') {
+        return getFreeAuditPath(language)
+      }
+      if (path === '/free-audit/thank-you') {
+        return getFreeAuditThankYouPath()
+      }
+      const prefix = language === 'en' ? '' : `/${language}`
+      if (!path || path === '/') {
+        return `${prefix}/`.replace(/\/$/, '') || '/'
+      }
+      return `${prefix}${path}`
+    }
+
+    const existingHreflang = Array.from(document.querySelectorAll('link[data-hreflang]'))
+    existingHreflang.forEach((node) => node.remove())
+
+    languages.forEach((language) => {
+      const link = document.createElement('link')
+      link.rel = 'alternate'
+      link.hreflang = language
+      link.href = `${origin}${buildPath(language)}`
+      link.setAttribute('data-hreflang', 'true')
+      document.head.appendChild(link)
+    })
+
+    const xDefault = document.createElement('link')
+    xDefault.rel = 'alternate'
+    xDefault.hreflang = 'x-default'
+    xDefault.href = `${origin}${buildPath('en')}`
+    xDefault.setAttribute('data-hreflang', 'true')
+    document.head.appendChild(xDefault)
+
+    const defaultTitle = 'Traceremove'
+    const defaultDescription = homeHeroSubheading[currentLang]
+
+    let title = defaultTitle
+    let description = defaultDescription
+
+    const breadcrumbName = (segment: string) =>
+      segment
+        .split('-')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ')
+
+    const normalizedPath = !path || path === '/' ? '/' : path
+    const localizedPrefix = currentLang === 'en' ? '' : `/${currentLang}`
+    const localizedPath = normalizedPath === '/' ? `${localizedPrefix}/` : `${localizedPrefix}${normalizedPath}`
+    const localizedUrl = `${origin}${localizedPath === '/' ? '/' : localizedPath}`
+    const breadcrumbSegments = normalizedPath === '/' ? [] : normalizedPath.split('/').filter(Boolean)
+    const breadcrumbItems = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: navCopy[currentLang].home,
+        item: `${origin}${localizedPrefix || '/'}`,
+      },
+      ...breadcrumbSegments.map((segment, index) => ({
+        '@type': 'ListItem',
+        position: index + 2,
+        name: breadcrumbName(segment),
+        item: `${origin}${localizedPrefix}${`/${breadcrumbSegments.slice(0, index + 1).join('/')}`}`,
+      })),
+    ]
+
+    const hostName = typeof window !== 'undefined' ? window.location.hostname : 'traceremove.com'
+    const isDotDevHost = hostName.includes('traceremove.dev')
+    const agencyUrl = 'https://traceremove.com'
+    const researchLabUrl = 'https://traceremove.dev'
+
+    const schemas: Record<string, unknown>[] = [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        inLanguage: currentLang,
+        itemListElement:
+          normalizedPath === '/'
+            ? [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: localizedUrl,
+                },
+              ]
+            : breadcrumbItems,
+      },
+    ]
+
+    if (normalizedPath === '/') {
+      title = `${defaultTitle} · ${homeHeroHeading[currentLang]}`
+      description = homeHeroSubheading[currentLang]
+      schemas.push(
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'TraceRemove - Digital Reputation Agency',
+          alternateName: 'TraceRemove',
+          url: origin,
+          logo: `${origin}/traceremove-mark.svg`,
+          description: 'Multilingual digital reputation management agency',
+          telephone: '+16063022958',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '5840 E 2nd St, Ste 7000',
+            addressLocality: 'Casper',
+            addressRegion: 'WY',
+            postalCode: '82609',
+            addressCountry: 'US',
+          },
+          sameAs: [
+            'https://instagram.com/traceremove',
+            'https://linkedin.com/company/traceremove',
+            isDotDevHost ? agencyUrl : researchLabUrl,
+          ],
+          knowsLanguage: ['en', 'fr', 'es'],
+          areaServed: ['US', 'CA', 'FR', 'ES', 'GB'],
+          inLanguage: currentLang,
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ProfessionalService',
+          name: 'TraceRemove - Digital Reputation Agency',
+          url: origin,
+          image: `${origin}/traceremove-mark.svg`,
+          telephone: '+16063022958',
+          priceRange: '$2,500 - $25,000+',
+          serviceType: ['Internet marketing service', 'Reputation management service', 'SEO service'],
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+              opens: '09:00',
+              closes: '18:00',
+            },
+          ],
+          areaServed: ['United States', 'Canada', 'France', 'Spain', 'United Kingdom'],
+          hasMap: 'https://www.google.com/maps?q=5840+E+2nd+St+Ste+7000,+Casper,+WY+82609',
+          inLanguage: currentLang,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '5840 E 2nd St, Ste 7000',
+            addressLocality: 'Casper',
+            addressRegion: 'WY',
+            postalCode: '82609',
+            addressCountry: 'US',
+          },
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'TraceRemove',
+          url: origin,
+          inLanguage: currentLang,
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: `${origin}/resources?query={search_term_string}`,
+            'query-input': 'required name=search_term_string',
+          },
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Artur Ziganshin',
+          url: isDotDevHost ? `${researchLabUrl}/about` : `${agencyUrl}/about`,
+          sameAs: [
+            `${agencyUrl}/about`,
+            `${researchLabUrl}/about`,
+            'https://linkedin.com/in/arthur-ziganshin',
+          ],
+          worksFor: {
+            '@type': 'Organization',
+            name: 'TraceRemove',
+            url: origin,
+          },
+          alumniOf: {
+            '@type': 'Organization',
+            name: 'TraceRemove Research Lab',
+            url: researchLabUrl,
+          },
+        }
+      )
+    } else if (normalizedPath.startsWith('/services/')) {
+      const slug = normalizedPath.split('/')[2]
+      const service = coreServices.find((item) => item.slug === slug)
+      if (service) {
+        const copy = service.copy[currentLang] ?? service.copy.en
+        title = `${copy.title} · ${defaultTitle}`
+        description = copy.summary
+        schemas.push({
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: copy.title,
+          serviceType: 'Online Reputation Management',
+          description: copy.summary,
+          provider: { '@type': 'Organization', name: 'TraceRemove', url: origin },
+          areaServed: { '@type': 'Country', name: 'United States' },
+          availableLanguage: ['English', 'French', 'Spanish'],
+          inLanguage: currentLang,
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            description: 'Free initial reputation audit',
+          },
+        })
+      }
+    } else if (normalizedPath.startsWith('/blog/')) {
+      const slug = normalizedPath.split('/')[2]
+      const article = blogArticles.find((item) => item.slug === slug)
+      if (article) {
+        const translation = article.translations[currentLang] ?? article.translations.en
+        const author = authorProfiles[article.authorId]
+        title = `${translation.title} · ${defaultTitle}`
+        description = translation.summary
+        schemas.push({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: translation.title,
+          description: translation.summary,
+          datePublished: article.publishedAt,
+          dateModified: article.publishedAt,
+          inLanguage: currentLang,
+          image: `${origin}/traceremove-orbit.svg`,
+          author: {
+            '@type': 'Person',
+            name: author.name[currentLang] ?? author.name.en,
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'TraceRemove',
+            logo: { '@type': 'ImageObject', url: `${origin}/traceremove-mark.svg` },
+          },
+          mainEntityOfPage: localizedUrl,
+        })
+      }
+    } else if (normalizedPath === '/faq') {
+      title = `${navCopy[currentLang].faq} · ${defaultTitle}`
+      const faq = faqCopy[currentLang] ?? faqCopy.en
+      const questions = faq.categories.flatMap((category) => category.items)
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        inLanguage: currentLang,
+        mainEntity: questions.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer.join(' ') },
+        })),
+      })
+    } else if (normalizedPath === '/contact') {
+      title = `${navCopy[currentLang].contact} · ${defaultTitle}`
+      schemas.push(
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          name: `${defaultTitle} Contact`,
+          inLanguage: currentLang,
+          url: localizedUrl,
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'TraceRemove',
+          url: origin,
+          telephone: '+16063022958',
+          inLanguage: currentLang,
+        }
+      )
+    } else if (normalizedPath === '/about' || normalizedPath === '/team') {
+      title = `${normalizedPath === '/about' ? navCopy[currentLang].about : navCopy[currentLang].team} · ${defaultTitle}`
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: `${defaultTitle} ${normalizedPath === '/about' ? 'About' : 'Team'}`,
+        inLanguage: currentLang,
+        mainEntity:
+          normalizedPath === '/team'
+            ? [
+                {
+                  '@type': 'Person',
+                  name: 'Artur Ziganshin',
+                  url: isDotDevHost ? `${researchLabUrl}/about` : `${agencyUrl}/about`,
+                  sameAs: [`${agencyUrl}/about`, `${researchLabUrl}/about`, 'https://linkedin.com/in/arthur-ziganshin'],
+                },
+                ...teamMembers.map((member) => ({
+                  '@type': 'Person',
+                  name: member.name,
+                  jobTitle: member.role,
+                })),
+              ]
+            : {
+                '@type': 'Person',
+                name: 'Artur Ziganshin',
+                url: isDotDevHost ? `${researchLabUrl}/about` : `${agencyUrl}/about`,
+                sameAs: [`${agencyUrl}/about`, `${researchLabUrl}/about`, 'https://linkedin.com/in/arthur-ziganshin'],
+              },
+      })
+    } else if (normalizedPath === '/case-studies') {
+      title = `${navCopy[currentLang].caseStudies} · ${defaultTitle}`
+      description = 'Proof of impact across removals, security takedowns, and ORM programs.'
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: `${defaultTitle} Case Studies`,
+        inLanguage: currentLang,
+        description,
+      })
+    } else if (normalizedPath === '/blog') {
+      title = `${navCopy[currentLang].blog} · ${defaultTitle}`
+      description = 'Press releases, case studies, and thought leadership from Traceremove.'
+    } else if (normalizedPath === '/free-audit' || normalizedPath === '/audit-gratuit' || normalizedPath === '/auditoria-gratis') {
+      title = 'Discover What the Internet Really Says About You · TraceRemove'
+      description = 'Free reputation audit in 24 hours. We analyze Google, reviews, data brokers, and social media.'
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: title,
+        description,
+        inLanguage: currentLang,
+        url: localizedUrl,
+      })
+    } else if (normalizedPath === '/free-audit/thank-you') {
+      title = 'Audit request received · TraceRemove'
+      description = 'Your free audit request was received. Book a consultation to discuss your results.'
+    } else if (normalizedPath === '/instagram') {
+      title = 'TraceRemove Instagram Links · TraceRemove'
+      description = 'Official TraceRemove link-in-bio page for audits, consultation, resources, and blog.'
+    } else if (normalizedPath === '/breach-check') {
+      title = 'Data Breach Checker | TraceRemove'
+      description = 'Check if your email appears in known data breaches using Have I Been Pwned.'
+    } else if (normalizedPath === '/resources') {
+      title = `${navCopy[currentLang].resources} · ${defaultTitle}`
+    } else if (normalizedPath.startsWith('/resources/')) {
+      title = 'Download Resource · TraceRemove'
+      description = 'Get practical reputation and privacy resources delivered by email.'
+    }
+
+    document.title = title
+    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta')
+    metaDescription.setAttribute('name', 'description')
+    metaDescription.setAttribute('content', description)
+    if (!metaDescription.parentElement) {
+      document.head.appendChild(metaDescription)
+    }
+
+    const existingJsonLd = Array.from(document.querySelectorAll('script[data-jsonld]'))
+    existingJsonLd.forEach((node) => node.remove())
+
+    schemas.forEach((schema, index) => {
+      const script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.textContent = JSON.stringify(schema)
+      script.setAttribute('data-jsonld', String(index))
+      document.head.appendChild(script)
+    })
+  }, [currentLanguage, location.pathname])
 
   return (
     <div className="app-layout">
+      {gtmContainerId ? (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            title="gtm"
+          />
+        </noscript>
+      ) : null}
       <div className="app-visuals" aria-hidden="true">
         <span className="app-visual app-visual--one" />
         <span className="app-visual app-visual--two" />
         <span className="app-visual app-visual--three" />
       </div>
-      <Header currentLanguage={currentLanguage} />
-      <main className="content">{children}</main>
-      <Footer currentLanguage={currentLanguage} />
-      <CallWidget currentLanguage={currentLanguage} />
+      {isDistractionFreeLayout ? null : <Header currentLanguage={currentLanguage} />}
+      <main className={`content${isDistractionFreeLayout ? ' content--landing' : ''}`}>{children}</main>
+      {isDistractionFreeLayout ? null : <Footer currentLanguage={currentLanguage} />}
+      {isDistractionFreeLayout ? null : <CallWidget currentLanguage={currentLanguage} />}
+      {isDistractionFreeLayout ? null : <ExitIntentPopup currentLanguage={currentLanguage} />}
+      <NewsletterPopup />
     </div>
   )
 }
@@ -8501,7 +10408,13 @@ function App() {
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
         <Route path="services" element={<ServicesPricingPage />} />
+        <Route path="services/:slug" element={<CoreServicePage language="en" />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
+        <Route path="resources/privacy-guide" element={<LeadMagnetPage magnet="privacy-guide" language="en" />} />
+        <Route path="resources/chatgpt-prompts" element={<LeadMagnetPage magnet="chatgpt-prompts" language="en" />} />
+        <Route path="resources/review-templates" element={<LeadMagnetPage magnet="review-templates" language="en" />} />
+        <Route path="resources/gdpr-template" element={<LeadMagnetPage magnet="gdpr-template" language="en" />} />
+        <Route path="resources/90-day-plan" element={<LeadMagnetPage magnet="90-day-plan" language="en" />} />
         <Route path="academy" element={<AcademyPage />} />
         <Route path="faq" element={<FaqPage />} />
         <Route path="media" element={<MediaPage />} />
@@ -8511,6 +10424,11 @@ function App() {
         <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<ContactPage language="en" />} />
+        <Route path="reputation-score" element={<ReputationScorePage language="en" />} />
+        <Route path="free-audit" element={<FreeAuditLandingPage language="en" />} />
+        <Route path="free-audit/thank-you" element={<FreeAuditThankYouPage language="en" />} />
+        <Route path="instagram" element={<InstagramLinkInBioPage />} />
+        <Route path="breach-check" element={<DataBreachCheckerPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         <Route path="privacy" element={<LegalPage language="en" variant="privacy" />} />
@@ -8521,7 +10439,13 @@ function App() {
             <Route path={`${language}/about`} element={<AboutPage />} />
             <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
             <Route path={`${language}/services`} element={<ServicesPricingPage />} />
+            <Route path={`${language}/services/:slug`} element={<CoreServicePage language={language} />} />
             <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
+            <Route path={`${language}/resources/privacy-guide`} element={<LeadMagnetPage magnet="privacy-guide" language={language} />} />
+            <Route path={`${language}/resources/chatgpt-prompts`} element={<LeadMagnetPage magnet="chatgpt-prompts" language={language} />} />
+            <Route path={`${language}/resources/review-templates`} element={<LeadMagnetPage magnet="review-templates" language={language} />} />
+            <Route path={`${language}/resources/gdpr-template`} element={<LeadMagnetPage magnet="gdpr-template" language={language} />} />
+            <Route path={`${language}/resources/90-day-plan`} element={<LeadMagnetPage magnet="90-day-plan" language={language} />} />
             <Route path={`${language}/academy`} element={<AcademyPage />} />
             <Route path={`${language}/faq`} element={<FaqPage />} />
             <Route path={`${language}/media`} element={<MediaPage />} />
@@ -8531,6 +10455,9 @@ function App() {
             <Route path={`${language}/partners`} element={<PartnersPage />} />
             <Route path={`${language}/join`} element={<JoinPage />} />
             <Route path={`${language}/contact`} element={<ContactPage language={language} />} />
+            <Route path={`${language}/reputation-score`} element={<ReputationScorePage language={language} />} />
+            {language === 'fr' ? <Route path="fr/audit-gratuit" element={<FreeAuditLandingPage language="fr" />} /> : null}
+            {language === 'es' ? <Route path="es/auditoria-gratis" element={<FreeAuditLandingPage language="es" />} /> : null}
             <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
             <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
             <Route path={`${language}/privacy`} element={<LegalPage language={language} variant="privacy" />} />

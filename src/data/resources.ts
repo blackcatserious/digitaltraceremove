@@ -1,4 +1,4 @@
-import { type Language } from './pages'
+import { type Language, withRussianFallback } from './pages'
 
 export interface ResourceAsset {
   id: string
@@ -58,7 +58,7 @@ export interface ResourceLibraryContent {
   faq: { question: string; answer: string }[]
 }
 
-export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
+export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = withRussianFallback({
   en: {
     hero: {
       eyebrow: 'Resource library',
@@ -746,4 +746,4 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
       },
     ],
   },
-}
+})

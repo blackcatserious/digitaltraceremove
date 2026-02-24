@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /process.php
+
+Sitemap: https://traceremove.com/sitemap.xml
