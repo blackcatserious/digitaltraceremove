@@ -1,6 +1,1995 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>https://traceremove.com/sitemap-en.xml</loc></sitemap>
-  <sitemap><loc>https://traceremove.com/sitemap-fr.xml</loc></sitemap>
-  <sitemap><loc>https://traceremove.com/sitemap-es.xml</loc></sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://traceremove.com/</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/about</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/about"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/academy</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/academy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/academy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/academy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/academy"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/ai-seo-safeguards</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/ai-seo-safeguards"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/brand-safety-search-command-center</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/brand-safety-search-command-center"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/executive-personal-brand-seo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/executive-personal-brand-seo"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/fake-review-fallout-and-customer-loss</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/fake-review-fallout-and-customer-loss"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/global-brand-reputation-defence</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/global-brand-reputation-defence"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/incident-response-seo-war-rooms</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/incident-response-seo-war-rooms"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/insider-brand-habits-for-seo-agility</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/insider-brand-habits-for-seo-agility"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/local-search-fortification</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/local-search-fortification"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/modern-seo-intent-architecture</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/modern-seo-intent-architecture"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/press-update</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/press-update"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/search-visual-persuasion</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/search-visual-persuasion"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/seo-governance-blueprint</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/seo-governance-blueprint"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/seo-war-room-playbook</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/seo-war-room-playbook"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/serp-lifecycle-optimization</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/serp-lifecycle-optimization"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/social-proof-integrity</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/social-proof-integrity"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/blog/voice-of-customer-seo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/voice-of-customer-seo"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/breach-check</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/breach-check"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/case-studies</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/case-studies"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/command-center</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/command-center"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/command-center"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/command-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/command-center"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/contact</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/contact"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/about</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/about"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/academy</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/academy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/academy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/academy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/academy"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/auditoria-gratis</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/auditoria-gratis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/es/auditoria-gratis"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/ai-seo-safeguards</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/ai-seo-safeguards"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/brand-safety-search-command-center</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/brand-safety-search-command-center"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/executive-personal-brand-seo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/executive-personal-brand-seo"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/fake-review-fallout-and-customer-loss</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/fake-review-fallout-and-customer-loss"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/global-brand-reputation-defence</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/global-brand-reputation-defence"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/incident-response-seo-war-rooms</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/incident-response-seo-war-rooms"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/insider-brand-habits-for-seo-agility</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/insider-brand-habits-for-seo-agility"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/local-search-fortification</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/local-search-fortification"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/modern-seo-intent-architecture</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/modern-seo-intent-architecture"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/press-update</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/press-update"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/search-visual-persuasion</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/search-visual-persuasion"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/seo-governance-blueprint</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/seo-governance-blueprint"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/seo-war-room-playbook</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/seo-war-room-playbook"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/serp-lifecycle-optimization</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/serp-lifecycle-optimization"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/social-proof-integrity</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/social-proof-integrity"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/blog/voice-of-customer-seo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/voice-of-customer-seo"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/breach-check</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/breach-check"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/case-studies</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/case-studies"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/command-center</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/command-center"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/command-center"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/command-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/command-center"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/contact</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/contact"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/faq</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/faq"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/faq"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/faq"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/free-audit</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/free-audit"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/free-audit/thank-you</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/free-audit/thank-you"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/instagram</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/instagram"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/instagram"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/instagram"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/instagram"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/join</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/join"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/join"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/join"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/join"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/media</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/media"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/media"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/media"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/media"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/partners</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/partners"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/partners"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/partners"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/partners"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/reputation-score</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/reputation-score"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/90-day-plan</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/90-day-plan"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/chatgpt-prompts</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/chatgpt-prompts"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/gdpr-template</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/gdpr-template"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/privacy-guide</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/privacy-guide"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/review-templates</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/review-templates"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/content-suppression</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/content-suppression"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/crisis-management</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/crisis-management"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/data-broker-removal</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/data-broker-removal"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/design-ops</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/design-ops"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/emergency-orm</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/emergency-orm"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/personal-branding</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/personal-branding"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/removal-packages</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/removal-packages"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/reputation-monitoring</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/reputation-monitoring"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/review-management</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/review-management"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/security-takedown</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/security-takedown"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/services/trace-removal</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/trace-removal"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/team</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/team"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/team"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/team"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/team"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/trust</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/trust"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/trust"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/trust"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/trust"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/faq</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/faq"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/faq"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/faq"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/about</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/about"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/academy</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/academy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/academy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/academy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/academy"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/audit-gratuit</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/audit-gratuit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/fr/audit-gratuit"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/ai-seo-safeguards</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/ai-seo-safeguards"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/brand-safety-search-command-center</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/brand-safety-search-command-center"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/executive-personal-brand-seo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/executive-personal-brand-seo"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/fake-review-fallout-and-customer-loss</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/fake-review-fallout-and-customer-loss"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/global-brand-reputation-defence</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/global-brand-reputation-defence"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/incident-response-seo-war-rooms</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/incident-response-seo-war-rooms"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/insider-brand-habits-for-seo-agility</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/insider-brand-habits-for-seo-agility"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/local-search-fortification</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/local-search-fortification"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/modern-seo-intent-architecture</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/modern-seo-intent-architecture"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/press-update</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/press-update"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/search-visual-persuasion</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/search-visual-persuasion"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/seo-governance-blueprint</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/seo-governance-blueprint"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/seo-war-room-playbook</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/seo-war-room-playbook"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/serp-lifecycle-optimization</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/serp-lifecycle-optimization"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/social-proof-integrity</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/social-proof-integrity"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/blog/voice-of-customer-seo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/blog/voice-of-customer-seo"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/breach-check</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/breach-check"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/case-studies</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/case-studies"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/command-center</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/command-center"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/command-center"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/command-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/command-center"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/contact</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/contact"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/faq</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/faq"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/faq"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/faq"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/free-audit</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/free-audit"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/free-audit/thank-you</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/free-audit/thank-you"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/instagram</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/instagram"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/instagram"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/instagram"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/instagram"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/join</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/join"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/join"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/join"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/join"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/media</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/media"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/media"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/media"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/media"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/partners</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/partners"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/partners"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/partners"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/partners"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/reputation-score</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/reputation-score"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/resources</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/resources/90-day-plan</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/90-day-plan"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/resources/chatgpt-prompts</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/chatgpt-prompts"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/resources/gdpr-template</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/gdpr-template"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/resources/privacy-guide</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/privacy-guide"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/resources/review-templates</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/review-templates"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/content-suppression</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/content-suppression"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/crisis-management</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/crisis-management"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/data-broker-removal</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/data-broker-removal"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/design-ops</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/design-ops"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/emergency-orm</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/emergency-orm"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/personal-branding</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/personal-branding"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/removal-packages</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/removal-packages"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/reputation-monitoring</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/reputation-monitoring"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/review-management</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/review-management"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/security-takedown</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/security-takedown"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/services/trace-removal</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/trace-removal"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/team</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/team"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/team"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/team"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/team"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/fr/trust</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/trust"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/trust"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/trust"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/trust"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/free-audit</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/free-audit"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/free-audit/thank-you</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/free-audit/thank-you"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/instagram</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/instagram"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/instagram"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/instagram"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/instagram"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/join</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/join"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/join"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/join"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/join"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/media</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/media"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/media"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/media"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/media"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/partners</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/partners"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/partners"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/partners"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/partners"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/reputation-score</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/reputation-score"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/resources</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/resources/90-day-plan</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/90-day-plan"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/resources/chatgpt-prompts</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/chatgpt-prompts"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/resources/gdpr-template</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/gdpr-template"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/resources/privacy-guide</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/privacy-guide"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/resources/review-templates</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/review-templates"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/about</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/about"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/academy</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/academy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/academy"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/ai-seo-safeguards</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/ai-seo-safeguards"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/ai-seo-safeguards"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/brand-safety-search-command-center</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/brand-safety-search-command-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/brand-safety-search-command-center"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/executive-personal-brand-seo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/executive-personal-brand-seo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/executive-personal-brand-seo"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/fake-review-fallout-and-customer-loss</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/fake-review-fallout-and-customer-loss"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/fake-review-fallout-and-customer-loss"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/global-brand-reputation-defence</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/global-brand-reputation-defence"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/global-brand-reputation-defence"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/incident-response-seo-war-rooms</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/incident-response-seo-war-rooms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/incident-response-seo-war-rooms"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/insider-brand-habits-for-seo-agility</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/insider-brand-habits-for-seo-agility"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/insider-brand-habits-for-seo-agility"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/local-search-fortification</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/local-search-fortification"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/local-search-fortification"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/modern-seo-intent-architecture</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/modern-seo-intent-architecture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/modern-seo-intent-architecture"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/press-update</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/press-update"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/press-update"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/search-visual-persuasion</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/search-visual-persuasion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/search-visual-persuasion"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/seo-governance-blueprint</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/seo-governance-blueprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/seo-governance-blueprint"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/seo-war-room-playbook</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/seo-war-room-playbook"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/seo-war-room-playbook"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/serp-lifecycle-optimization</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/serp-lifecycle-optimization"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/serp-lifecycle-optimization"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/social-proof-integrity</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/social-proof-integrity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/social-proof-integrity"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/blog/voice-of-customer-seo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/blog/voice-of-customer-seo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/blog/voice-of-customer-seo"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/breach-check</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/breach-check"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/breach-check"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/case-studies</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/case-studies"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/case-studies"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/command-center</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/command-center"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/command-center"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/contact</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/contact"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/faq</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/faq"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/free-audit</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/free-audit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/free-audit"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/free-audit/thank-you</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/free-audit/thank-you"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/free-audit/thank-you"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/instagram</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/instagram"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/instagram"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/join</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/join"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/join"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/media</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/media"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/media"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/partners</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/partners"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/partners"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/reputation-score</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/reputation-score"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/reputation-score"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/resources</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/resources"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/resources"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/resources/90-day-plan</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/resources/90-day-plan"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/resources/chatgpt-prompts</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/resources/chatgpt-prompts"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/resources/gdpr-template</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/resources/gdpr-template"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/resources/privacy-guide</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/resources/privacy-guide"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/resources/review-templates</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/resources/review-templates"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/content-suppression</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/content-suppression"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/crisis-management</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/crisis-management"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/data-broker-removal</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/data-broker-removal"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/design-ops</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/design-ops"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/emergency-orm</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/emergency-orm"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/personal-branding</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/personal-branding"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/removal-packages</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/removal-packages"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/reputation-monitoring</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/reputation-monitoring"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/review-management</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/review-management"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/security-takedown</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/security-takedown"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/services/trace-removal</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/services/trace-removal"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/team</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/team"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/team"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/ru/trust</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/ru/trust"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/ru/trust"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/content-suppression</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/content-suppression"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/content-suppression"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/crisis-management</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/crisis-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/crisis-management"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/data-broker-removal</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/data-broker-removal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/data-broker-removal"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/design-ops</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/design-ops"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/design-ops"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/emergency-orm</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/emergency-orm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/emergency-orm"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/personal-branding</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/personal-branding"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/removal-packages</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/removal-packages"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/removal-packages"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/reputation-monitoring</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/reputation-monitoring"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/reputation-monitoring"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/review-management</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/review-management"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/review-management"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/security-takedown</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/security-takedown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/security-takedown"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/services/trace-removal</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/services/trace-removal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/services/trace-removal"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/team</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/team"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/team"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/team"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/team"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/trust</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/trust"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/trust"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/trust"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/trust"/>
+  </url>
+</urlset>

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/generate-sitemap.mjs",
-    "build": "tsc -b && node scripts/build-ssg.mjs",
+    "build": "tsc -b && node scripts/build-ssg.mjs && node scripts/generate-sitemap-from-dist.mjs",
     "lint": "eslint .",
     "preview": "vite preview --outDir dist/client",
     "test": "vitest run"
