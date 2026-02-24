@@ -2610,7 +2610,7 @@ const HomePage = () => {
         </div>
         <div className="home-hero-visual" aria-hidden="true">
           <div className="home-hero-visual__field" />
-          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="eager" decoding="async" />
           <GrowthSpark variant="light" size="md" className="home-hero-graph" />
           <GrowthSpark variant="dark" size="sm" className="home-hero-graph home-hero-graph--offset" />
         </div>
@@ -2728,7 +2728,7 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
         </div>
         <div className="service-hero-visual" aria-hidden="true">
           <GrowthSpark variant="light" size="sm" className="service-hero-graph" />
-          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="lazy" decoding="async" />
         </div>
       </header>
 
@@ -3937,7 +3937,7 @@ const AboutPage = () => {
         <div className="about-hero__visual" aria-hidden="true">
           <div className="about-hero__badge">{copy.hero.highlight}</div>
           <GrowthSpark variant="light" size="lg" className="about-hero__graph" />
-          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="lazy" decoding="async" />
         </div>
       </header>
 
@@ -4135,7 +4135,7 @@ const TeamPage = () => {
         </div>
         <div className="team-hero-visual" aria-hidden="true">
           <GrowthSpark variant="light" size="md" className="team-hero-graph" />
-          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
+          <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="lazy" decoding="async" />
         </div>
       </header>
 
@@ -7928,7 +7928,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img src="/traceremove-mark.svg" alt="Traceremove logo" />
+            <img src="/traceremove-mark.svg" alt="Traceremove logo" width="160" height="40" loading="lazy" decoding="async" />
             <span>Traceremove</span>
           </Link>
           <button
@@ -9444,7 +9444,7 @@ const InstagramLinkInBioPage = () => {
       <div className="instagram-card">
         <div className="instagram-logo-wrap" aria-hidden="true">
           <span className="instagram-logo-glow" />
-          <img src="/traceremove-mark.svg" alt="TraceRemove" />
+          <img src="/traceremove-mark.svg" alt="TraceRemove" width="160" height="40" loading="eager" decoding="async" />
         </div>
         <h1>TraceRemove</h1>
         <p className="instagram-tagline">Digital Reputation Management</p>
@@ -9790,7 +9790,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
       <div className="tr-footer__inner">
         <div className="tr-footer__brand">
-          <img src="/traceremove-mark.svg" alt="Traceremove logo" />
+          <img src="/traceremove-mark.svg" alt="Traceremove logo" width="160" height="40" loading="lazy" decoding="async" />
           <div>
             <p className="tr-footer__title">Traceremove</p>
             <p className="tr-footer__tagline">{copy.studio}</p>

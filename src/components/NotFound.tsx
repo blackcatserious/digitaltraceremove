@@ -15,7 +15,7 @@ export const NotFound = ({ language = 'en' as Language }: { language?: Language 
         </Link>
       </div>
       <div className="service-hero-visual" aria-hidden="true">
-        <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" loading="lazy" />
+        <img src="/traceremove-orbit.svg" alt="Traceremove orbit illustration" width="640" height="640" loading="lazy" decoding="async" />
       </div>
     </header>
   </section>

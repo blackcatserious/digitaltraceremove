@@ -1,8 +1,6 @@
 import { StrictMode } from 'react'
-import { hydrateRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { SpeedInsights } from '@vercel/speed-insights/react'
-import { Analytics } from '@vercel/analytics/react'
 import App from './App'
 import './index.css'
 
@@ -12,7 +10,27 @@ hydrateRoot(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    <SpeedInsights />
-    <Analytics />
   </StrictMode>,
 )
+
+if (typeof window !== 'undefined') {
+  const schedule = window.requestIdleCallback ?? ((cb: IdleRequestCallback) => window.setTimeout(() => cb({} as IdleDeadline), 1))
+
+  schedule(async () => {
+    const [{ SpeedInsights }, { Analytics }] = await Promise.all([
+      import('@vercel/speed-insights/react'),
+      import('@vercel/analytics/react'),
+    ])
+
+    const telemetryMount = document.createElement('div')
+    telemetryMount.id = 'telemetry-root'
+    document.body.appendChild(telemetryMount)
+
+    createRoot(telemetryMount).render(
+      <StrictMode>
+        <SpeedInsights />
+        <Analytics />
+      </StrictMode>,
+    )
+  })
+}
