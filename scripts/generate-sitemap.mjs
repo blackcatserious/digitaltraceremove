@@ -18,6 +18,11 @@ const routeConfig = [
   { path: 'command-center', changefreq: 'monthly', priority: '0.7', source: 'src/App.tsx' },
   { path: 'partners', changefreq: 'monthly', priority: '0.7', source: 'src/App.tsx' },
   { path: 'media', changefreq: 'monthly', priority: '0.7', source: 'src/App.tsx' },
+  { path: 'resources/privacy-guide', changefreq: 'monthly', priority: '0.8', source: 'src/App.tsx' },
+  { path: 'resources/chatgpt-prompts', changefreq: 'monthly', priority: '0.8', source: 'src/App.tsx' },
+  { path: 'resources/review-templates', changefreq: 'monthly', priority: '0.8', source: 'src/App.tsx' },
+  { path: 'resources/gdpr-template', changefreq: 'monthly', priority: '0.8', source: 'src/App.tsx' },
+  { path: 'resources/90-day-plan', changefreq: 'monthly', priority: '0.8', source: 'src/App.tsx' },
   { path: 'breach-check', changefreq: 'weekly', priority: '0.8', source: 'src/App.tsx' },
 ]
 

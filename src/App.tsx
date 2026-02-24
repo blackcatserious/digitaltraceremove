@@ -47,6 +47,7 @@ import { captureUtmParamsFromUrl, getStoredUtmParams, trackEvent } from './utils
 import { submitHubspotLead } from './utils/hubspot'
 import { submitAuditRequest, type AuditTarget } from './utils/auditRequest'
 import { getCalendlyLink, loadCalendlyScript, openCalendlyPopup } from './utils/calendly'
+import { submitLeadMagnetRequest } from './utils/leadMagnet'
 import './App.css'
 
 
@@ -9103,6 +9104,120 @@ const FreeAuditThankYouPage = ({ language }: { language: Language }) => {
 }
 
 
+const leadMagnetConfig: Record<string, { title: string; previewTitle: string; previewItems: string[] }> = {
+  'privacy-guide': {
+    title: 'The Ultimate Privacy Protection Checklist',
+    previewTitle: 'Preview checklist (3 of 20)',
+    previewItems: [
+      'Harden every account with strong, unique passwords and MFA.',
+      'Review data broker listings and remove exposed records.',
+      'Audit social profiles for personal info leakage and metadata.',
+    ],
+  },
+  'chatgpt-prompts': {
+    title: '20 ChatGPT Prompts for Reputation Management',
+    previewTitle: 'Preview prompts (3 of 20)',
+    previewItems: [
+      '“Analyze this search result page for reputation risks and opportunities.”',
+      '“Draft a calm, factual response to a negative review in 120 words.”',
+      '“Build a 30-day content plan to outrank negative mentions.”',
+    ],
+  },
+  'review-templates': {
+    title: 'Negative Review Response Templates',
+    previewTitle: 'Preview templates (1 of 5)',
+    previewItems: ['Thank you for your feedback. We take this seriously and want to make it right—please contact us directly so we can resolve this today.'],
+  },
+  'gdpr-template': {
+    title: 'GDPR Data Removal Request Template',
+    previewTitle: 'Template structure preview',
+    previewItems: [
+      'Subject: GDPR Article 17 Erasure Request',
+      'Identity details and records to remove',
+      'Legal basis and response timeline request',
+    ],
+  },
+  '90-day-plan': {
+    title: '90-Day Reputation Transformation Roadmap',
+    previewTitle: 'Phase 1 overview',
+    previewItems: [
+      'Week 1-2: Baseline audit and risk prioritization.',
+      'Week 3-4: Suppression and authority content launch.',
+      'Week 5-6: Review generation and response operations.',
+    ],
+  },
+}
+
+const LeadMagnetPage = ({ magnet, language }: { magnet: keyof typeof leadMagnetConfig; language: Language }) => {
+  const config = leadMagnetConfig[magnet]
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (isSubmitting) return
+
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      await submitLeadMagnetRequest({ name, email, magnet, language })
+      trackEvent('lead_magnet_download', { magnet_name: magnet, form_name: 'lead_magnet_form', form_page: `/resources/${magnet}`, language })
+      trackEvent('lead', { source: 'lead_magnet', magnet_name: magnet })
+      setSubmitted(true)
+      setName('')
+      setEmail('')
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : 'Unable to submit. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return (
+    <section className="lead-magnet-page">
+      <div className="lead-magnet-card glass-card">
+        <h1>{config.title}</h1>
+        <div className="lead-magnet-preview">
+          <p>{config.previewTitle}</p>
+          <ul>
+            {config.previewItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        {submitted ? (
+          <div className="lead-magnet-success" role="status">
+            <p>Check your inbox! While you wait, check your reputation score:</p>
+            <Link className="button secondary" to={getReputationScorePath(language)}>
+              Open Reputation Score →
+            </Link>
+          </div>
+        ) : (
+          <form className="lead-magnet-form" onSubmit={handleSubmit}>
+            <label>
+              <span>Name</span>
+              <input type="text" value={name} onChange={(event) => setName(event.target.value)} required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+            </label>
+            <button type="submit" className="button primary" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending…' : 'Send me the resource'}
+            </button>
+            {error ? <p className="lead-magnet-error">{error}</p> : null}
+          </form>
+        )}
+      </div>
+    </section>
+  )
+}
+
 const DataBreachCheckerPage = () => {
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -9458,6 +9573,97 @@ const ExitIntentPopup = ({ currentLanguage }: { currentLanguage: Language }) => 
           {copy.dismiss}
         </button>
       </div>
+    </div>
+  )
+}
+
+const NEWSLETTER_COOKIE = 'tr_newsletter_popup_hidden'
+
+const NewsletterPopup = () => {
+  const { pathname } = useLocation()
+  const [isOpen, setIsOpen] = useState(false)
+  const [email, setEmail] = useState('')
+  const [languageChoice, setLanguageChoice] = useState<'en' | 'fr' | 'es'>('en')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const normalizedPath = useMemo(() => {
+    const parts = pathname.split('/').filter(Boolean)
+    if (parts.length > 0 && languages.includes(parts[0] as Language)) parts.shift()
+    return `/${parts.join('/')}`.replace(/\/$/, '') || '/'
+  }, [pathname])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (normalizedPath === '/free-audit' || normalizedPath === '/reputation-score') return
+    if (window.sessionStorage.getItem('tr-newsletter-shown') === 'true') return
+    if (document.cookie.includes(`${NEWSLETTER_COOKIE}=1`)) return
+
+    let opened = false
+    const open = () => {
+      if (opened) return
+      opened = true
+      window.sessionStorage.setItem('tr-newsletter-shown', 'true')
+      setIsOpen(true)
+    }
+
+    const timer = window.setTimeout(open, 30000)
+    const onScroll = () => {
+      const ratio = (window.scrollY + window.innerHeight) / Math.max(document.body.scrollHeight, 1)
+      if (ratio >= 0.5) open()
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.clearTimeout(timer)
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [normalizedPath])
+
+  const dismiss = () => {
+    const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()
+    document.cookie = `${NEWSLETTER_COOKIE}=1; expires=${expires}; path=/; SameSite=Lax`
+    setIsOpen(false)
+  }
+
+
+  if (!isOpen) return null
+
+  return (
+    <div className="newsletter-popup" role="dialog" aria-modal="true" aria-labelledby="newsletter-popup-title">
+      <button type="button" className="newsletter-popup__backdrop" onClick={dismiss} aria-label="Dismiss" />
+      <form className="newsletter-popup__card" onSubmit={async (event) => {
+        event.preventDefault()
+        if (isSubmitting) return
+        setIsSubmitting(true)
+        try {
+          await submitHubspotLead({
+            source: 'newsletter-popup',
+            language: languageChoice,
+            name: 'Newsletter Subscriber',
+            email,
+          })
+          trackEvent('form_submit', { form_name: 'newsletter_popup', form_page: 'sitewide_popup', language: languageChoice })
+          trackEvent('complete_registration', { page: normalizedPath, language: languageChoice })
+          dismiss()
+        } finally {
+          setIsSubmitting(false)
+        }
+      }}>
+        <h2 id="newsletter-popup-title">Get Weekly Reputation & Privacy Tips</h2>
+        <p>Join 500+ subscribers. Choose your language.</p>
+        <label>
+          <span>Email</span>
+          <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+        </label>
+        <fieldset>
+          <legend>Language</legend>
+          <label><input type="radio" name="newsletter-language" value="en" checked={languageChoice === 'en'} onChange={() => setLanguageChoice('en')} /> EN</label>
+          <label><input type="radio" name="newsletter-language" value="fr" checked={languageChoice === 'fr'} onChange={() => setLanguageChoice('fr')} /> FR</label>
+          <label><input type="radio" name="newsletter-language" value="es" checked={languageChoice === 'es'} onChange={() => setLanguageChoice('es')} /> ES</label>
+        </fieldset>
+        <button type="submit" className="button primary" disabled={isSubmitting}>{isSubmitting ? 'Submitting…' : 'Subscribe Free'}</button>
+        <button type="button" className="newsletter-popup__dismiss" onClick={dismiss}>No thanks</button>
+      </form>
     </div>
   )
 }
@@ -10009,6 +10215,9 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       description = 'Check if your email appears in known data breaches using Have I Been Pwned.'
     } else if (normalizedPath === '/resources') {
       title = `${navCopy[currentLang].resources} · ${defaultTitle}`
+    } else if (normalizedPath.startsWith('/resources/')) {
+      title = 'Download Resource · TraceRemove'
+      description = 'Get practical reputation and privacy resources delivered by email.'
     }
 
     document.title = title
@@ -10054,6 +10263,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       {isDistractionFreeLayout ? null : <Footer currentLanguage={currentLanguage} />}
       {isDistractionFreeLayout ? null : <CallWidget currentLanguage={currentLanguage} />}
       {isDistractionFreeLayout ? null : <ExitIntentPopup currentLanguage={currentLanguage} />}
+      <NewsletterPopup />
     </div>
   )
 }
@@ -10068,6 +10278,11 @@ function App() {
         <Route path="services" element={<ServicesPricingPage />} />
         <Route path="services/:slug" element={<CoreServicePage language="en" />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
+        <Route path="resources/privacy-guide" element={<LeadMagnetPage magnet="privacy-guide" language="en" />} />
+        <Route path="resources/chatgpt-prompts" element={<LeadMagnetPage magnet="chatgpt-prompts" language="en" />} />
+        <Route path="resources/review-templates" element={<LeadMagnetPage magnet="review-templates" language="en" />} />
+        <Route path="resources/gdpr-template" element={<LeadMagnetPage magnet="gdpr-template" language="en" />} />
+        <Route path="resources/90-day-plan" element={<LeadMagnetPage magnet="90-day-plan" language="en" />} />
         <Route path="academy" element={<AcademyPage />} />
         <Route path="faq" element={<FaqPage />} />
         <Route path="media" element={<MediaPage />} />
@@ -10094,6 +10309,11 @@ function App() {
             <Route path={`${language}/services`} element={<ServicesPricingPage />} />
             <Route path={`${language}/services/:slug`} element={<CoreServicePage language={language} />} />
             <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
+            <Route path={`${language}/resources/privacy-guide`} element={<LeadMagnetPage magnet="privacy-guide" language={language} />} />
+            <Route path={`${language}/resources/chatgpt-prompts`} element={<LeadMagnetPage magnet="chatgpt-prompts" language={language} />} />
+            <Route path={`${language}/resources/review-templates`} element={<LeadMagnetPage magnet="review-templates" language={language} />} />
+            <Route path={`${language}/resources/gdpr-template`} element={<LeadMagnetPage magnet="gdpr-template" language={language} />} />
+            <Route path={`${language}/resources/90-day-plan`} element={<LeadMagnetPage magnet="90-day-plan" language={language} />} />
             <Route path={`${language}/academy`} element={<AcademyPage />} />
             <Route path={`${language}/faq`} element={<FaqPage />} />
             <Route path={`${language}/media`} element={<MediaPage />} />

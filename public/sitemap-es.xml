@@ -131,6 +131,56 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/media"/>
   </url>
   <url>
+    <loc>https://traceremove.com/es/resources/privacy-guide</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/privacy-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/privacy-guide"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/chatgpt-prompts</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/chatgpt-prompts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/chatgpt-prompts"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/review-templates</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/review-templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/review-templates"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/gdpr-template</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/gdpr-template"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/gdpr-template"/>
+  </url>
+  <url>
+    <loc>https://traceremove.com/es/resources/90-day-plan</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://traceremove.com/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://traceremove.com/es/resources/90-day-plan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://traceremove.com/resources/90-day-plan"/>
+  </url>
+  <url>
     <loc>https://traceremove.com/es/breach-check</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
