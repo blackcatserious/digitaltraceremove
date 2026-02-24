@@ -28,6 +28,17 @@
       "statusCode": 301
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.traceremove.com"
+        }
+      ],
+      "destination": "https://traceremove.com/",
+      "statusCode": 301
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -36,7 +47,7 @@
         }
       ],
       "destination": "https://traceremove.com/:path*",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "headers": [
