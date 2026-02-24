@@ -3913,6 +3913,9 @@ const ServicesPricingPage = () => {
 const AboutPage = () => {
   const language = useCurrentLanguage()
   const copy = aboutCopy[language]
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : 'traceremove.com'
+  const isDotCom = hostname.includes('traceremove.com')
+  const isDotDev = hostname.includes('traceremove.dev')
 
   return (
     <article className="about-page">
@@ -3948,6 +3951,24 @@ const AboutPage = () => {
           {copy.story.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+          {isDotCom ? (
+            <p>
+              Traceremove was founded by{' '}
+              <a href="https://traceremove.dev/about" target="_blank" rel="noreferrer noopener">
+                Artur Ziganshin
+              </a>
+              .
+            </p>
+          ) : null}
+          {isDotDev ? (
+            <p>
+              For reputation management services, visit{' '}
+              <a href="https://traceremove.com" target="_blank" rel="noreferrer noopener">
+                traceremove.com
+              </a>
+              .
+            </p>
+          ) : null}
         </div>
       </section>
 
@@ -7180,6 +7201,9 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   const resolvedTranslation = translation ?? emptyTranslation
   const articlePath = article ? getBlogArticlePath(language, article.slug) : getBlogBasePath(language)
   const [shareUrl, setShareUrl] = useState('')
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : 'traceremove.com'
+  const isDotCom = hostname.includes('traceremove.com')
+  const isDotDev = hostname.includes('traceremove.dev')
   const [copied, setCopied] = useState(false)
   const [readingProgress, setReadingProgress] = useState(0)
   const bodyRef = useRef<HTMLDivElement | null>(null)
@@ -7468,6 +7492,16 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
   }
 
   const progressPercentage = Math.round(readingProgress * 100)
+  const researchLink =
+    isDotCom && article
+      ? article.topic === 'ai'
+        ? 'https://traceremove.dev/research/ai-search'
+        : article.topic === 'cybersecurity'
+          ? 'https://traceremove.dev/research/threat-intelligence'
+          : article.topic === 'seo'
+            ? 'https://traceremove.dev/research/serp-intelligence'
+            : null
+      : null
 
   return (
     <article className="blog-article">
@@ -7491,6 +7525,23 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
         </div>
         <h1>{translation.title}</h1>
         <p className="blog-article__summary">{translation.summary}</p>
+        {researchLink ? (
+          <p className="blog-article__meta">
+            Research reference:{' '}
+            <a href={researchLink} target="_blank" rel="noreferrer noopener">
+              traceremove.dev research lab
+            </a>
+          </p>
+        ) : null}
+        {isDotDev && (article?.topic === 'ai' || article?.topic === 'cybersecurity' || article?.topic === 'seo') ? (
+          <p className="blog-article__meta">
+            For reputation management services, visit{' '}
+            <a href="https://traceremove.com" target="_blank" rel="noreferrer noopener">
+              traceremove.com
+            </a>
+            .
+          </p>
+        ) : null}
         <p className="blog-article__meta">
           <span>{copy.publishedOn}</span> {formattedDate}
         </p>
@@ -9669,7 +9720,9 @@ const NewsletterPopup = () => {
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
-
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : 'traceremove.com'
+  const isDotCom = hostname.includes('traceremove.com')
+  const isDotDev = hostname.includes('traceremove.dev')
   const copy = footerCopy[currentLanguage]
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
@@ -9821,6 +9874,16 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         <div className="tr-footer__legal">
           <NavLink to={getPrivacyPath(currentLanguage)}>{copy.privacy}</NavLink>
           <NavLink to={getTermsPath(currentLanguage)}>{copy.terms}</NavLink>
+          {isDotCom ? (
+            <a href="https://traceremove.dev" target="_blank" rel="noreferrer noopener">
+              Research Lab: traceremove.dev
+            </a>
+          ) : null}
+          {isDotDev ? (
+            <a href="https://traceremove.com" target="_blank" rel="noreferrer noopener">
+              Agency: traceremove.com
+            </a>
+          ) : null}
         </div>
         <div className="tr-footer__social">
           {socialLinks.map(({ key, href }) => (
@@ -10004,6 +10067,11 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       })),
     ]
 
+    const hostName = typeof window !== 'undefined' ? window.location.hostname : 'traceremove.com'
+    const isDotDevHost = hostName.includes('traceremove.dev')
+    const agencyUrl = 'https://traceremove.com'
+    const researchLabUrl = 'https://traceremove.dev'
+
     const schemas: Record<string, unknown>[] = [
       {
         '@context': 'https://schema.org',
@@ -10043,7 +10111,11 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
             postalCode: '82609',
             addressCountry: 'US',
           },
-          sameAs: ['https://instagram.com/traceremove', 'https://linkedin.com/company/traceremove'],
+          sameAs: [
+            'https://instagram.com/traceremove',
+            'https://linkedin.com/company/traceremove',
+            isDotDevHost ? agencyUrl : researchLabUrl,
+          ],
           knowsLanguage: ['en', 'fr', 'es'],
           areaServed: ['US', 'CA', 'FR', 'ES', 'GB'],
           inLanguage: currentLang,
@@ -10074,6 +10146,27 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
             '@type': 'SearchAction',
             target: `${origin}/resources?query={search_term_string}`,
             'query-input': 'required name=search_term_string',
+          },
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Artur Ziganshin',
+          url: isDotDevHost ? `${researchLabUrl}/about` : `${agencyUrl}/about`,
+          sameAs: [
+            `${agencyUrl}/about`,
+            `${researchLabUrl}/about`,
+            'https://linkedin.com/in/arthur-ziganshin',
+          ],
+          worksFor: {
+            '@type': 'Organization',
+            name: 'TraceRemove',
+            url: origin,
+          },
+          alumniOf: {
+            '@type': 'Organization',
+            name: 'TraceRemove Research Lab',
+            url: researchLabUrl,
           },
         }
       )
@@ -10173,12 +10266,25 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         inLanguage: currentLang,
         mainEntity:
           normalizedPath === '/team'
-            ? teamMembers.map((member) => ({
+            ? [
+                {
+                  '@type': 'Person',
+                  name: 'Artur Ziganshin',
+                  url: isDotDevHost ? `${researchLabUrl}/about` : `${agencyUrl}/about`,
+                  sameAs: [`${agencyUrl}/about`, `${researchLabUrl}/about`, 'https://linkedin.com/in/arthur-ziganshin'],
+                },
+                ...teamMembers.map((member) => ({
+                  '@type': 'Person',
+                  name: member.name,
+                  jobTitle: member.role,
+                })),
+              ]
+            : {
                 '@type': 'Person',
-                name: member.name,
-                jobTitle: member.role,
-              }))
-            : undefined,
+                name: 'Artur Ziganshin',
+                url: isDotDevHost ? `${researchLabUrl}/about` : `${agencyUrl}/about`,
+                sameAs: [`${agencyUrl}/about`, `${researchLabUrl}/about`, 'https://linkedin.com/in/arthur-ziganshin'],
+              },
       })
     } else if (normalizedPath === '/case-studies') {
       title = `${navCopy[currentLang].caseStudies} · ${defaultTitle}`
