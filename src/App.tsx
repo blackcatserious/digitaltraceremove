@@ -46,6 +46,7 @@ import { Testimonials } from './components/Testimonials'
 import { captureUtmParamsFromUrl, getStoredUtmParams, trackEvent } from './utils/analytics'
 import { submitHubspotLead } from './utils/hubspot'
 import { submitAuditRequest, type AuditTarget } from './utils/auditRequest'
+import { getCalendlyLink, loadCalendlyScript, openCalendlyPopup } from './utils/calendly'
 import './App.css'
 
 
@@ -6229,6 +6230,8 @@ const ContactPage = ({ language }: { language: Language }) => {
     }
   }
 
+  const calendlyUrl = getCalendlyLink({ language })
+
   return (
     <section className="contact-page">
       <header className="contact-hero">
@@ -6239,6 +6242,17 @@ const ContactPage = ({ language }: { language: Language }) => {
       </header>
 
       <MomentumTicker variant="dark" />
+
+      <section className="contact-calendly" aria-label="Calendly booking">
+        <h2>Book your free reputation consultation</h2>
+        <p>Choose a time that works for you. 30-minute strategy call.</p>
+        <iframe
+          className="contact-calendly__embed"
+          src={calendlyUrl}
+          title="Calendly booking widget"
+          loading="lazy"
+        />
+      </section>
 
       <div className="contact-grid">
         <form className="contact-form" onSubmit={handleSubmit} noValidate>
@@ -6865,7 +6879,7 @@ const ReputationScorePage = ({ language }: { language: Language }) => {
             <div className="reputation-score-results-cta">
               <p>Want expert help improving your score?</p>
               <div>
-                <a className="button primary" href="https://calendly.com/traceremove/free-consultation" target="_blank" rel="noreferrer">
+                <a className="button primary" href={getCalendlyLink({ language })} target="_blank" rel="noreferrer">
                   Book Free Consultation
                 </a>
                 <Link className="button secondary" to={`/free-audit${email ? `?email=${encodeURIComponent(email)}` : ''}`}>
@@ -9071,16 +9085,17 @@ const FreeAuditThankYouPage = ({ language }: { language: Language }) => {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    window.setTimeout(() => {
-      window.open('https://calendly.com/traceremove/free-consultation', '_blank', 'noopener,noreferrer,width=960,height=760')
-    }, 250)
-  }, [])
+    const timer = window.setTimeout(() => {
+      openCalendlyPopup({ language })
+    }, 3000)
+    return () => window.clearTimeout(timer)
+  }, [language])
 
   return (
     <section className="free-audit-thank-you glass-card">
       <h1>{copy.successTitle}</h1>
       <p>{copy.successSubtitle}</p>
-      <a className="button primary" href="https://calendly.com/traceremove/free-consultation" target="_blank" rel="noreferrer">
+      <a className="button primary" href={getCalendlyLink({ language })} target="_blank" rel="noreferrer">
         {copy.calendlyCta}
       </a>
     </section>
@@ -9242,7 +9257,7 @@ const InstagramLinkInBioPage = () => {
     },
     {
       label: '📞 Book a Free Consultation',
-      href: '/contact?utm_source=instagram#booking',
+      href: `${getCalendlyLink({ utm_source: 'instagram', utm_medium: 'linkinbio' })}`,
     },
     {
       label: '📚 Read Our Blog',
@@ -9670,6 +9685,10 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   }, [gtmContainerId])
 
   useEffect(() => {
+    loadCalendlyScript().catch(() => undefined)
+  }, [])
+
+  useEffect(() => {
     if (typeof window === 'undefined') return
     captureUtmParamsFromUrl()
     trackEvent('page_view', { page: location.pathname, language: currentLanguage })
@@ -9687,6 +9706,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       const eventName = (event.data as { event?: string })?.event
       if (eventName === 'calendly.event_scheduled') {
         trackEvent('consultation_booked', { service_interest: 'general', language: currentLanguage })
+        trackEvent('schedule', { page: normalizedPath, language: currentLanguage })
       }
     }
 
@@ -9704,7 +9724,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       window.removeEventListener('message', onCalendlyMessage)
       document.removeEventListener('click', onDocumentClick)
     }
-  }, [currentLanguage])
+  }, [currentLanguage, normalizedPath])
 
   useEffect(() => {
     const { pathname, origin } = window.location

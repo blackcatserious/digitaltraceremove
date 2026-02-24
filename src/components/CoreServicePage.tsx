@@ -4,6 +4,7 @@ import { coreServices } from '../data/coreServices'
 import type { Language } from '../data/pages'
 import { submitHubspotLead } from '../utils/hubspot'
 import { trackEvent } from '../utils/analytics'
+import { openCalendlyPopup } from '../utils/calendly'
 import { NotFound } from './NotFound'
 import { Testimonials } from './Testimonials'
 
@@ -133,6 +134,21 @@ export const CoreServicePage = ({ language }: { language: Language }) => {
             <button type="submit" className="button primary" disabled={status === 'submitting'}>
               {status === 'submitting' ? 'Submitting…' : copy.submit}
             </button>
+          <button
+            type="button"
+            className="button secondary"
+            onClick={() => {
+              trackEvent('cta_click', {
+                cta_text: 'Book Free Consultation',
+                cta_position: 'service_page',
+                page: service.slug,
+                language,
+              })
+              openCalendlyPopup({ language, service_interest: service.slug })
+            }}
+          >
+            Book Free Consultation
+          </button>
             {status === 'success' && (
               <div className="form-status form-status--success" role="status" aria-live="polite">
                 <strong>{copy.successTitle}</strong>
