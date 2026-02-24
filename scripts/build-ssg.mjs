@@ -125,6 +125,29 @@ const buildPathForLang = (basePath, lang) => {
   return normalized === '/' ? `${prefix || '/'}` : `${prefix}${normalized}`
 }
 
+const buildHrefLangPath = (basePath, lang) => {
+  if (basePath === '/') {
+    if (lang === 'fr') return '/fr/'
+    if (lang === 'es') return '/es/'
+    return '/'
+  }
+
+  if (lang === 'en') {
+    return `/en${basePath}`
+  }
+
+  return buildPathForLang(basePath, lang)
+}
+
+const canonicalForRoute = (route) => {
+  if (route === '/' || route === '') return '/'
+  if (route === '/en' || route.startsWith('/en/')) {
+    const stripped = route.replace(/^\/en(?=\/|$)/, '')
+    return stripped || '/'
+  }
+  return route
+}
+
 const localeMap = {
   en: 'en_US',
   fr: 'fr_FR',
@@ -517,11 +540,12 @@ const getMeta = (route) => {
   const ogImage = basePath === '/' ? `${siteUrl}/images/og-home.jpg` : defaultImage
 
   const hreflang = seoLanguages
-    .map((language) => `<link rel="alternate" hreflang="${language}" href="${siteUrl}${buildPathForLang(basePath, language)}" />`)
+    .map((language) => `<link rel="alternate" hreflang="${language}" href="${siteUrl}${buildHrefLangPath(basePath, language)}" />`)
     .join('\n')
 
-  const absoluteUrl = `${siteUrl}${route === '/' ? '/' : route}`
-  const jsonLd = makePageJsonLd(basePath, route, lang, title, description, blogMeta)
+  const canonicalPath = canonicalForRoute(route)
+  const absoluteUrl = `${siteUrl}${canonicalPath}`
+  const jsonLd = makePageJsonLd(basePath, canonicalPath, lang, title, description, blogMeta)
 
   return `
 <title>${title}</title>
@@ -529,7 +553,7 @@ const getMeta = (route) => {
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="${absoluteUrl}" />
 ${hreflang}
-<link rel="alternate" hreflang="x-default" href="${siteUrl}${buildPathForLang(basePath, 'en')}" />
+<link rel="alternate" hreflang="x-default" href="${siteUrl}${buildHrefLangPath(basePath, 'en')}" />
 <meta property="og:title" content="${title}" />
 <meta property="og:description" content="${description}" />
 <meta property="og:image" content="${ogImage}" />
