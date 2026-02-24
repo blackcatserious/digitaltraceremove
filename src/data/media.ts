@@ -1,4 +1,4 @@
-import { type Language } from './pages'
+import { type Language, withRussianFallback } from './pages'
 
 export interface MediaMetric {
   value: string
@@ -86,7 +86,7 @@ export interface MediaCenterContent {
   }
 }
 
-export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
+export const mediaCenterCopy: Record<Language, MediaCenterContent> = withRussianFallback({
   en: {
     hero: {
       eyebrow: 'Press & media hub',
@@ -606,4 +606,4 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       note: '¿Prefieres WhatsApp o Signal? Indícalo y responderemos en minutos.',
     },
   },
-}
+})

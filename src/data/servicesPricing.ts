@@ -1,4 +1,4 @@
-import { type Language } from './pages'
+import { type Language, withRussianFallback } from './pages'
 
 export type PricingTier = {
   id: string
@@ -410,7 +410,7 @@ export type ServicesPricingCopy = {
   }
 }
 
-export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
+export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = withRussianFallback({
   en: {
     hero: {
       eyebrow: 'Services & Pricing',
@@ -3841,4 +3841,4 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       secondary: 'Escribir directamente a Artur',
     },
   },
-}
+})
