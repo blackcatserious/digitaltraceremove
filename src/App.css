@@ -16138,6 +16138,29 @@ a {
   background: #ffffff;
 }
 
+
+.contact-map {
+  margin: 0 auto 2rem;
+  max-width: 960px;
+  padding: 1rem;
+  border: 1px solid var(--surface-outline);
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.contact-map h2,
+.contact-map p {
+  margin: 0 0 0.6rem;
+}
+
+.contact-map__embed {
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
 .lead-magnet-page {
   padding: clamp(2rem, 5vw, 4rem) 1rem;
 }

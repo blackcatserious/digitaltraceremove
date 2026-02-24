@@ -6276,6 +6276,18 @@ const ContactPage = ({ language }: { language: Language }) => {
         />
       </section>
 
+      <section className="contact-map" aria-label="TraceRemove office location">
+        <h2>Find TraceRemove in Casper, Wyoming</h2>
+        <p>5840 E 2nd St, Ste 7000, Casper, WY 82609</p>
+        <iframe
+          className="contact-map__embed"
+          title="TraceRemove Google Maps location"
+          src="https://www.google.com/maps?q=5840+E+2nd+St+Ste+7000,+Casper,+WY+82609&output=embed"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </section>
+
       <div className="contact-grid">
         <form className="contact-form" onSubmit={handleSubmit} noValidate>
           <h2>{copy.formTitle}</h2>
@@ -10098,7 +10110,8 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         {
           '@context': 'https://schema.org',
           '@type': 'Organization',
-          name: 'TraceRemove',
+          name: 'TraceRemove - Digital Reputation Agency',
+          alternateName: 'TraceRemove',
           url: origin,
           logo: `${origin}/traceremove-mark.svg`,
           description: 'Multilingual digital reputation management agency',
@@ -10122,10 +10135,23 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         },
         {
           '@context': 'https://schema.org',
-          '@type': 'LocalBusiness',
-          name: 'TraceRemove',
+          '@type': 'ProfessionalService',
+          name: 'TraceRemove - Digital Reputation Agency',
           url: origin,
+          image: `${origin}/traceremove-mark.svg`,
           telephone: '+16063022958',
+          priceRange: '$2,500 - $25,000+',
+          serviceType: ['Internet marketing service', 'Reputation management service', 'SEO service'],
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+              opens: '09:00',
+              closes: '18:00',
+            },
+          ],
+          areaServed: ['United States', 'Canada', 'France', 'Spain', 'United Kingdom'],
+          hasMap: 'https://www.google.com/maps?q=5840+E+2nd+St+Ste+7000,+Casper,+WY+82609',
           inLanguage: currentLang,
           address: {
             '@type': 'PostalAddress',
