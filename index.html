@@ -2,9 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0A1628" />
+
+    <title>TraceRemove</title>
+    <meta name="description" content="TraceRemove helps clean and optimize digital traces quickly and securely." />
+
+    <link rel="canonical" href="https://traceremove.com/" />
+    <link rel="alternate" hreflang="en" href="https://traceremove.com/en/" />
+    <link rel="alternate" hreflang="fr" href="https://traceremove.com/fr/" />
+    <link rel="alternate" hreflang="es" href="https://traceremove.com/es/" />
+    <link rel="alternate" hreflang="x-default" href="https://traceremove.com/" />
+
+    <meta property="og:title" content="TraceRemove" />
+    <meta property="og:description" content="TraceRemove helps clean and optimize digital traces quickly and securely." />
+    <meta property="og:url" content="https://traceremove.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TraceRemove" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TraceRemove" />
+    <meta name="twitter:description" content="TraceRemove helps clean and optimize digital traces quickly and securely." />
+    <meta name="twitter:url" content="https://traceremove.com/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230A1628'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%2300D4FF' font-family='Arial' font-size='18' font-weight='bold'>T</text></svg>" type="image/svg+xml" />
+
+    <script>
+      (function () {
+        var baseUrl = 'https://traceremove.com';
+        var path = window.location.pathname || '/';
+        var cleanPath = path.replace(/\/{2,}/g, '/');
+        var canonicalUrl = baseUrl + cleanPath;
+
+        var canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', canonicalUrl);
+
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+
+        var twitterUrl = document.querySelector('meta[name="twitter:url"]');
+        if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
+
+        var pathWithoutLang = cleanPath.replace(/^\/(en|fr|es)(\/|$)/, '/');
+        ['en', 'fr', 'es'].forEach(function (lang) {
+          var hreflangLink = document.querySelector('link[rel="alternate"][hreflang="' + lang + '"]');
+          if (hreflangLink) {
+            hreflangLink.setAttribute('href', baseUrl + '/' + lang + pathWithoutLang);
+          }
+        });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
