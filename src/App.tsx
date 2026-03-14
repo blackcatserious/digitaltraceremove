@@ -3864,7 +3864,7 @@ const ServicesPricingPage = () => {
           <Link className="button primary" to={getContactPath(language)}>
             {copy.cta.primary}
           </Link>
-          <a className="button ghost" href="mailto:artur@traceremove.com">
+          <a className="button ghost" href="mailto:artur@traceremove.dev">
             {copy.cta.secondary}
           </a>
         </div>
