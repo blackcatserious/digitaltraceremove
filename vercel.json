@@ -12,6 +12,16 @@
       "permanent": true
     },
     {
+      "source": "/blog/fr/:slug*.php",
+      "destination": "/fr/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/es/:slug*.php",
+      "destination": "/es/blog",
+      "permanent": true
+    },
+    {
       "source": "/blog/:lang/:slug*.php",
       "destination": "/blog",
       "permanent": true
@@ -24,6 +34,31 @@
     {
       "source": "/process.php",
       "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/services-pricing",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/free-audit",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/reputation-score",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/breach-check",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/instagram",
+      "destination": "/",
       "permanent": true
     }
   ],
