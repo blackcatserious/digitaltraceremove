@@ -7,6 +7,11 @@
       "permanent": true
     },
     {
+      "source": "/process.php",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
       "source": "/blog/en/:slug*.php",
       "destination": "/blog",
       "permanent": true
@@ -22,50 +27,60 @@
       "permanent": true
     },
     {
-      "source": "/blog/:lang/:slug*.php",
-      "destination": "/blog",
+      "source": "/reputation-kit/:path*",
+      "destination": "/",
       "permanent": true
     },
     {
-      "source": "/blog/:slug*.php",
-      "destination": "/blog",
+      "source": "/portfolio-collections/:path*",
+      "destination": "/",
       "permanent": true
     },
     {
-      "source": "/process.php",
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/accessibility-statement",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/es/accessibility-statement",
+      "destination": "/es/",
+      "permanent": true
+    },
+    {
+      "source": "/consultation",
       "destination": "/contact",
       "permanent": true
     },
     {
-      "source": "/services-pricing",
-      "destination": "/services",
+      "source": "/resources/guides",
+      "destination": "/resources",
       "permanent": true
     },
     {
-      "source": "/free-audit",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/reputation-score",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/breach-check",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/instagram",
+      "source": "/industries/:path*",
       "destination": "/",
       "permanent": true
     }
   ],
-  "routes": [
+  "rewrites": [
+    { "source": "/((?!assets|api|favicon|robots\\.txt|sitemap\\.xml).*)", "destination": "/index.html" }
+  ],
+  "headers": [
     {
-      "src": "/(.*)\\.php",
-      "status": 410
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
     }
   ]
 }
