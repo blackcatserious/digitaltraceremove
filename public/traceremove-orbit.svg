@@ -1,19 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
-  <defs>
-    <linearGradient id="orbitStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="40%" stop-color="#818cf8" />
-      <stop offset="100%" stop-color="#f97316" />
-    </linearGradient>
-    <radialGradient id="orbitGlow" cx="50%" cy="45%" r="60%">
-      <stop offset="0%" stop-color="#cffafe" stop-opacity="0.9" />
-      <stop offset="100%" stop-color="#0f172a" stop-opacity="0" />
-    </radialGradient>
-  </defs>
-  <rect width="320" height="320" rx="80" fill="#0f172a" />
-  <circle cx="160" cy="150" r="120" fill="url(#orbitGlow)" />
-  <circle cx="160" cy="160" r="96" fill="none" stroke="url(#orbitStroke)" stroke-width="14" stroke-dasharray="60 24" />
-  <circle cx="100" cy="120" r="16" fill="#38bdf8" />
-  <circle cx="220" cy="190" r="22" fill="#6366f1" />
-  <circle cx="138" cy="220" r="12" fill="#f97316" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <circle cx="60" cy="60" r="54" fill="none" stroke="#2a2a35" stroke-width="4"/>
+  <circle cx="60" cy="12" r="6" fill="#ef5044"/>
 </svg>
