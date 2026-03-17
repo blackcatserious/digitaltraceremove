@@ -5,6 +5,32 @@
       "has": [{ "type": "host", "value": "www.traceremove.com" }],
       "destination": "https://traceremove.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/blog/en/:slug*.php",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:lang/:slug*.php",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug*.php",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/process.php",
+      "destination": "/contact",
+      "permanent": true
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)\\.php",
+      "status": 410
     }
   ]
 }
