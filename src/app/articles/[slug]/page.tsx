@@ -38,7 +38,7 @@ export default function Page(props: { params: { slug: string } }) {
         <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 13, color: "#4a4a58", marginTop: 32 }}><time>{fmt(article.date)}</time><span style={{ width: 3, height: 3, borderRadius: "50%", background: "#3a3a45" }} /><span>{article.readingTime}</span></div>
         <h1 style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontSize: "clamp(1.8rem,4vw,2.8rem)", marginTop: 16, lineHeight: 1.12 }}>{article.title}</h1>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 20 }}>{article.tags.map((tag) => <span key={tag} style={{ padding: "2px 10px", borderRadius: 20, fontSize: 11, background: "rgba(255,255,255,0.03)", color: "#6a6a78", border: "1px solid rgba(255,255,255,0.04)" }}>{tag}</span>)}</div>
-        <div style={{ marginTop: 24, paddingBottom: 24, borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 14, color: "#5a5a68" }}>By <span style={{ color: "#b0b0bc" }}>Artur Ziganshin</span></div>
+        <div style={{ marginTop: 24, paddingBottom: 24, borderBottom: "1px solid rgba(255,255,255,0.06)", fontSize: 14, color: "#5a5a68" }}>By <span style={{ color: "#b0b0bc" }}>TraceRemove Advisor</span></div>
       </div>
       <div style={{ maxWidth: 680, margin: "0 auto", padding: "40px 24px 60px" }}>{render(article.content)}</div>
       <div style={{ maxWidth: 680, margin: "0 auto", padding: "0 24px 80px", borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: 40 }}>

@@ -72,7 +72,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'We protect high-velocity brands against manipulation, outages, and data exposure while keeping every market compliant.',
       body:
-        'Artur Ziganshin and our senior trust core lead every engagement. We blend security engineering, legal counsel, and customer operations so brand protection becomes a reflex for your teams.',
+        'TraceRemove Advisor and our senior trust core lead every engagement. We blend security engineering, legal counsel, and customer operations so brand protection becomes a reflex for your teams.',
       primaryCta: 'Book a security workshop',
       secondaryCta: 'Download control checklist',
     },
@@ -218,7 +218,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Nous protégeons les marques à forte croissance contre la manipulation, les interruptions et les fuites de données tout en restant conformes dans chaque marché.',
       body:
-        'Artur Ziganshin et notre cellule trust senior pilotent chaque mission. Ingénierie sécurité, juridique et opérations clients travaillent ensemble pour faire de la protection de marque un réflexe.',
+        'TraceRemove Advisor et notre cellule trust senior pilotent chaque mission. Ingénierie sécurité, juridique et opérations clients travaillent ensemble pour faire de la protection de marque un réflexe.',
       primaryCta: 'Planifier un atelier sécurité',
       secondaryCta: 'Télécharger la checklist de contrôle',
     },
@@ -365,7 +365,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Protegemos marcas de alto crecimiento contra manipulaciones, caídas y filtraciones de datos manteniendo la conformidad en cada mercado.',
       body:
-        'Artur Ziganshin y nuestro núcleo senior de trust lideran cada proyecto. Ingeniería de seguridad, asesoría legal y operaciones de clientes trabajan juntos para que la protección de marca sea automática.',
+        'TraceRemove Advisor y nuestro núcleo senior de trust lideran cada proyecto. Ingeniería de seguridad, asesoría legal y operaciones de clientes trabajan juntos para que la protección de marca sea automática.',
       primaryCta: 'Agenda un workshop de seguridad',
       secondaryCta: 'Descarga la checklist de controles',
     },

@@ -305,7 +305,7 @@ const momentumTickerCopy: Record<
       'Recovered $18.4M in pipeline by reversing fake-review attacks',
       '60-day brand vault protecting 80+ executive identities',
       'Live sentiment command center in English, French, and Spanish',
-      '24/7 escalation team orchestrated by Founder & CEO Artur Ziganshin',
+      '24/7 escalation team orchestrated by Founder & CEO TraceRemove Advisor',
     ],
     cta: 'Activate a protection sprint',
   },
@@ -316,7 +316,7 @@ const momentumTickerCopy: Record<
       '18,4 M $ de pipeline récupérés après des attaques de faux avis',
       'Coffre-fort de marque sur 60 jours couvrant plus de 80 dirigeants',
       'Centre de commande du sentiment en français, anglais et espagnol',
-      'Équipe d’escalade 24/7 pilotée par Artur Ziganshin, Founder & CEO',
+      'Équipe d’escalade 24/7 pilotée par TraceRemove Advisor, Founder & CEO',
     ],
     cta: 'Activer un sprint de protection',
   },
@@ -327,7 +327,7 @@ const momentumTickerCopy: Record<
       'Recuperamos 18,4 M USD de pipeline tras ataques de reseñas falsas',
       'Bóveda de marca de 60 días cubriendo a más de 80 ejecutivos',
       'Centro de comando de sentimiento en inglés, francés y español',
-      'Equipo de escalación 24/7 liderado por el Founder & CEO Artur Ziganshin',
+      'Equipo de escalación 24/7 liderado por el Founder & CEO TraceRemove Advisor',
     ],
     cta: 'Activar un sprint de protección',
   },
@@ -595,7 +595,7 @@ const teamCopy: Record<
 > = {
   en: {
     title: 'Meet the Traceremove team',
-    subtitle: 'A multilingual collective led by Founder & CEO Artur Ziganshin',
+    subtitle: 'A multilingual collective led by Founder & CEO TraceRemove Advisor',
     intro:
       'We are designers, strategists, technologists, and analysts who build compounding growth systems across North America and Europe. Our studio thrives on experimentation, data fluency, and cross-cultural empathy.',
     cultureHeading: 'How we collaborate',
@@ -608,7 +608,7 @@ const teamCopy: Record<
   },
   fr: {
     title: "Rencontrez l'équipe Traceremove",
-    subtitle: 'Un collectif multilingue dirigé par le fondateur et CEO Artur Ziganshin',
+    subtitle: 'Un collectif multilingue dirigé par le fondateur et CEO TraceRemove Advisor',
     intro:
       'Nous sommes designers, stratèges, technologues et analystes. Nous bâtissons des systèmes de croissance cumulée pour l’Amérique du Nord et l’Europe, en misant sur l’expérimentation, la donnée et l’empathie interculturelle.',
     cultureHeading: 'Notre manière de travailler',
@@ -621,7 +621,7 @@ const teamCopy: Record<
   },
   es: {
     title: 'Conoce al equipo de Traceremove',
-    subtitle: 'Un colectivo multilingüe liderado por el fundador y CEO Artur Ziganshin',
+    subtitle: 'Un colectivo multilingüe liderado por el fundador y CEO TraceRemove Advisor',
     intro:
       'Somos diseñadores, estrategas, tecnólogos y analistas que construyen sistemas de crecimiento compuesto en Norteamérica y Europa. Nuestro estudio prospera gracias a la experimentación, los datos y la empatía intercultural.',
     cultureHeading: 'Cómo colaboramos',
@@ -868,7 +868,7 @@ const aboutCopy: Record<
       title: 'À propos de Traceremove',
       subtitle: 'Protection de marque et accélération de croissance sans frontières',
       body:
-        'Artur Ziganshin, fondateur et CEO, pilote chaque mission avec une équipe senior opérant en anglais, français et espagnol. Nous combinons veille réputationnelle et expérimentations revenue pour faire grandir votre marque en toute sécurité.',
+        'TraceRemove Advisor, fondateur et CEO, pilote chaque mission avec une équipe senior opérant en anglais, français et espagnol. Nous combinons veille réputationnelle et expérimentations revenue pour faire grandir votre marque en toute sécurité.',
       primaryCta: 'Échanger avec notre équipe',
       secondaryCta: 'Explorer nos insights',
       highlight: 'Marchés EN · FR · ES',
@@ -1058,7 +1058,7 @@ const aboutCopy: Record<
       title: 'Sobre Traceremove',
       subtitle: 'Protección de marca y aceleración del crecimiento sin fronteras',
       body:
-        'Artur Ziganshin, fundador y CEO, lidera cada proyecto con un equipo senior que opera en inglés, francés y español. Unimos guardianes de reputación y experimentos de revenue para que tu marca escale con seguridad.',
+        'TraceRemove Advisor, fundador y CEO, lidera cada proyecto con un equipo senior que opera en inglés, francés y español. Unimos guardianes de reputación y experimentos de revenue para que tu marca escale con seguridad.',
       primaryCta: 'Habla con nuestro equipo',
       secondaryCta: 'Explora nuestras ideas',
       highlight: 'Mercados EN · FR · ES',
@@ -2139,13 +2139,13 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: 'Artur Ziganshin',
+    name: 'TraceRemove Advisor',
     role: 'Founder & CEO',
     location: 'Toronto · Montréal',
     bio: {
-      en: 'Artur steers brand, lifecycle, and product GTM initiatives for venture-backed SaaS and commerce teams. He leads multilingual strategy rooms and keeps every engagement grounded in measurable impact.',
-      fr: 'Artur pilote les initiatives de marque, lifecycle et go-to-market produit pour des équipes SaaS et e-commerce financées. Il orchestre des workshops multilingues et relie chaque programme à des métriques tangibles.',
-      es: 'Artur dirige iniciativas de marca, lifecycle y go-to-market de producto para equipos SaaS y comercio respaldados por venture capital. Conduce workshops multilingües y ancla cada programa en métricas claras.',
+      en: 'TraceRemove Advisor steers brand, lifecycle, and product GTM initiatives for venture-backed SaaS and commerce teams. He leads multilingual strategy rooms and keeps every engagement grounded in measurable impact.',
+      fr: 'TraceRemove Advisor pilote les initiatives de marque, lifecycle et go-to-market produit pour des équipes SaaS et e-commerce financées. Il orchestre des workshops multilingues et relie chaque programme à des métriques tangibles.',
+      es: 'TraceRemove Advisor dirige iniciativas de marca, lifecycle y go-to-market de producto para equipos SaaS y comercio respaldados por venture capital. Conduce workshops multilingües y ancla cada programa en métricas claras.',
     },
     focus: {
       en: ['Strategic narrative architecture', 'Revenue operations modelling', 'Executive advisory'],
@@ -2439,12 +2439,12 @@ const homeServicesCopy: Record<
   fr: {
     title: 'Des programmes précis pour protéger et accélérer votre marque',
     description:
-      'Chaque mission est menée par Artur Ziganshin avec un pod senior couvrant réputation, sécurité, design et engineering pour lancer avec confiance.',
+      'Chaque mission est menée par TraceRemove Advisor avec un pod senior couvrant réputation, sécurité, design et engineering pour lancer avec confiance.',
   },
   es: {
     title: 'Programas precisos que protegen y aceleran tu marca',
     description:
-      'Cada colaboración está liderada por Artur Ziganshin con un pod senior de reputación, seguridad, diseño y tecnología para lanzar con confianza.',
+      'Cada colaboración está liderada por TraceRemove Advisor con un pod senior de reputación, seguridad, diseño y tecnología para lanzar con confianza.',
   },
 }
 
@@ -2685,7 +2685,7 @@ const HomePage = () => {
         <article className="home-panel">
           <h3>Leadership-level partnership</h3>
           <p>
-            You work directly with Artur Ziganshin and our senior partners—no hand-offs, just outcomes delivered with
+            You work directly with TraceRemove Advisor and our senior partners—no hand-offs, just outcomes delivered with
             precision.
           </p>
         </article>
@@ -8376,7 +8376,7 @@ const footerCopy: Record<
   en: {
     rights: 'All rights reserved.',
     studio: 'Traceremove is a multilingual digital platform crafting growth systems for bold teams.',
-    founder: 'Founder & CEO Artur Ziganshin',
+    founder: 'Founder & CEO TraceRemove Advisor',
     detailHeading: 'Rapid protection details',
     detailPoints: [
       '24/7 brand protection hotline across English, French, and Spanish markets.',
@@ -8415,7 +8415,7 @@ const footerCopy: Record<
     rights: 'Tous droits réservés.',
     studio:
       "Traceremove est une plateforme digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
-    founder: 'Fondateur & CEO Artur Ziganshin',
+    founder: 'Fondateur & CEO TraceRemove Advisor',
     detailHeading: 'Détails de protection',
     detailPoints: [
       'Hotline brand safety 24/7 en anglais, français et espagnol.',
@@ -8453,7 +8453,7 @@ const footerCopy: Record<
   es: {
     rights: 'Todos los derechos reservados.',
     studio: 'Traceremove es una plataforma digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
-    founder: 'Fundador y CEO Artur Ziganshin',
+    founder: 'Fundador y CEO TraceRemove Advisor',
     detailHeading: 'Detalles de protección',
     detailPoints: [
       'Línea directa de protección de marca 24/7 en inglés, francés y español.',
@@ -8491,9 +8491,9 @@ const footerCopy: Record<
 }
 
 const callWidgetCopy: Record<Language, { label: string; assist: string }> = {
-  en: { label: 'Call +1 606 302 2958', assist: 'Speak with Artur Ziganshin' },
-  fr: { label: 'Appelez +1 606 302 2958', assist: 'Échangez avec Artur Ziganshin' },
-  es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con Artur Ziganshin' },
+  en: { label: 'Call +1 606 302 2958', assist: 'Speak with TraceRemove Advisor' },
+  fr: { label: 'Appelez +1 606 302 2958', assist: 'Échangez avec TraceRemove Advisor' },
+  es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con TraceRemove Advisor' },
 }
 
 type SocialKey =

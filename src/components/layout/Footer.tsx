@@ -9,7 +9,7 @@ export default function Footer(){return(
 <div><h4 style={{fontSize:11,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.15em",color:"#4a4a58",marginBottom:16}}>Connect</h4><FL h="mailto:artur@traceremove.dev">Email</FL><FL h="https://philarchive.org/s/artur%20ziganshin" x>PhilArchive</FL></div>
 </div>
 <div style={{borderTop:"1px solid rgba(255,255,255,0.03)",paddingTop:20,display:"flex",flexWrap:"wrap",justifyContent:"space-between",gap:8}}>
-<span style={{fontSize:12,color:"#3a3a45"}}>&copy; 2026 Artur Ziganshin</span>
+<span style={{fontSize:12,color:"#3a3a45"}}>&copy; 2026 TraceRemove Advisor</span>
 <span style={{fontSize:12,color:"#3a3a45"}}>Master of Philosophy &middot; PhD of Philosophy</span>
 <span style={{fontSize:12,color:"#3a3a45",whiteSpace:"pre-line"}}>{"TRACEREMOVE LLC\n750 Manhattan Ave\nBrooklyn, NY 11222, USA\nsupport@traceremove.com"}</span>
 </div></div></footer>);}

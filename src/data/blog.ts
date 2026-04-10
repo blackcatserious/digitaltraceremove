@@ -70,9 +70,9 @@ interface ArticleSeed {
 const t = (en: string, fr: string, es: string): MultilingualText => ({ en, fr, es })
 
 const defaultAuthor = t(
-  'Artur Ziganshin — Founder & CEO',
-  'Artur Ziganshin — Fondateur et CEO',
-  'Artur Ziganshin — Fundador y CEO',
+  'TraceRemove Advisor — Founder & CEO',
+  'TraceRemove Advisor — Fondateur et CEO',
+  'TraceRemove Advisor — Fundador y CEO',
 )
 
 const WORDS_PER_MINUTE = 220

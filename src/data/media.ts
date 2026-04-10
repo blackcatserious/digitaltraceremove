@@ -195,7 +195,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
           title: 'Founder photography',
           format: 'JPEG set · 4K',
           size: '12.4 MB',
-          usage: 'Portraits of Artur Ziganshin for press, conferences, and digital use.',
+          usage: 'Portraits of TraceRemove Advisor for press, conferences, and digital use.',
         },
         {
           id: 'motion',
@@ -222,7 +222,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       people: [
         {
           id: 'artur',
-          name: 'Artur Ziganshin',
+          name: 'TraceRemove Advisor',
           role: 'Founder & CEO',
           bio: 'Leads crisis response, growth acceleration, and executive communications across English, French, and Spanish markets.',
           topics: 'We help manage and resolve online data exposure',
@@ -368,7 +368,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
           title: 'Photographies du fondateur',
           format: 'Série JPEG · 4K',
           size: '12,4 Mo',
-          usage: 'Portraits d’Artur Ziganshin pour la presse et la scène.',
+          usage: 'Portraits d’TraceRemove Advisor pour la presse et la scène.',
         },
         {
           id: 'motion',
@@ -395,7 +395,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       people: [
         {
           id: 'artur',
-          name: 'Artur Ziganshin',
+          name: 'TraceRemove Advisor',
           role: 'Fondateur & CEO',
           bio: 'Pilote réponses de crise, accélération growth et communication exécutive en anglais, français et espagnol.',
           topics: 'Protection de marque, réputation des dirigeants, war room',
@@ -541,7 +541,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
           title: 'Fotografías del fundador',
           format: 'Set JPEG · 4K',
           size: '12,4 MB',
-          usage: 'Retratos de Artur Ziganshin para prensa y eventos.',
+          usage: 'Retratos de TraceRemove Advisor para prensa y eventos.',
         },
         {
           id: 'motion',
@@ -568,7 +568,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       people: [
         {
           id: 'artur',
-          name: 'Artur Ziganshin',
+          name: 'TraceRemove Advisor',
           role: 'Fundador & CEO',
           bio: 'Dirige respuestas de crisis, aceleración growth y comunicación ejecutiva en inglés, francés y español.',
           topics: 'Protección de marca, reputación ejecutiva, war rooms',

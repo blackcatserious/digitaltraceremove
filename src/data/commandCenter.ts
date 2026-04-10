@@ -189,7 +189,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         {
           id: 'eu-desk',
           name: 'European response desk',
-          lead: 'Lead: Artur Ziganshin — Paris war room',
+          lead: 'Lead: TraceRemove Advisor — Paris war room',
           availability: 'Availability: 06:00–22:00 CET with overnight watch',
           specialties: [
             'Domain recovery and registrar diplomacy across EU jurisdictions',
@@ -211,7 +211,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         {
           id: 'global-escalation',
           name: 'Founder escalation bridge',
-          lead: 'Lead: Artur Ziganshin — direct escalation line',
+          lead: 'Lead: TraceRemove Advisor — direct escalation line',
           availability: 'Availability: Founder-on-call for severity one incidents',
           specialties: [
             'Immediate executive alignment and stakeholder comms drafting',
@@ -463,7 +463,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           name: 'Executive reporting studio',
           description:
             'Generates Looker Studio and PowerPoint exports that track protected revenue, trust signals, and mitigation velocity.',
-          automation: 'Delivers refreshed dashboards before every leadership check-in with personalised commentary from Artur Ziganshin.',
+          automation: 'Delivers refreshed dashboards before every leadership check-in with personalised commentary from TraceRemove Advisor.',
         },
       ],
     },
@@ -555,7 +555,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           id: 'jan',
           month: 'January',
           focus: 'Cross-market misinformation cascade',
-          lead: 'Hosted by Artur with regional leads running live newsroom drills.',
+          lead: 'Hosted by TraceRemove Advisor with regional leads running live newsroom drills.',
           readiness: 'We help manage and resolve online data exposure',
         },
         {
@@ -590,7 +590,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           id: 'p0',
           level: 'Priority zero',
           response:
-            'Artur activates the executive bridge, aligns legal and communications, and deploys multilingual spokespeople to contain the threat.',
+            'TraceRemove Advisor activates the executive bridge, aligns legal and communications, and deploys multilingual spokespeople to contain the threat.',
           channels: ['Direct Signal bridge', 'Founder WhatsApp hotline', 'Emergency Zoom room'],
         },
         {
@@ -669,7 +669,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         {
           id: 'eu-desk',
           name: 'Desk Europe',
-          lead: 'Lead : Artur Ziganshin — war room Paris',
+          lead: 'Lead : TraceRemove Advisor — war room Paris',
           availability: 'Disponibilité : 06h00–22h00 CET avec astreinte nocturne',
           specialties: [
             'Récupération de domaines et négociations registrars multi-pays',
@@ -691,7 +691,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         {
           id: 'global-escalation',
           name: 'Bridge d’escalade fondateur',
-          lead: 'Lead : Artur Ziganshin — ligne directe',
+          lead: 'Lead : TraceRemove Advisor — ligne directe',
           availability: 'Disponibilité : fondateur on-call pour incidents sévérité 1',
           specialties: [
             'Alignement exécutif immédiat et rédaction de messages officiels',
@@ -943,7 +943,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           name: 'Studio de reporting exécutif',
           description:
             'Génère exports Looker Studio et PowerPoint suivantrent revenus protégés, signaux de confiance et vélocité de mitigation.',
-          automation: 'Diffuse des dashboards actualisés avant chaque point leadership avec commentaire personnalisé d’Artur Ziganshin.',
+          automation: 'Diffuse des dashboards actualisés avant chaque point leadership avec commentaire personnalisé d’TraceRemove Advisor.',
         },
       ],
     },
@@ -1035,7 +1035,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           id: 'jan',
           month: 'Janvier',
           focus: 'Cascade de désinformation multimarques',
-          lead: 'Animé par Artur et les leads régionaux en configuration newsroom.',
+          lead: 'Animé par TraceRemove Advisor et les leads régionaux en configuration newsroom.',
           readiness: 'Aligne paid, RP et juridique face aux chocs réputationnels multilingues.',
         },
         {
@@ -1070,7 +1070,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           id: 'p0',
           level: 'Priorité zéro',
           response:
-            'Artur ouvre le bridge exécutif, aligne juridique et communication et déploie des porte-parole multilingues pour contenir la menace.',
+            'TraceRemove Advisor ouvre le bridge exécutif, aligne juridique et communication et déploie des porte-parole multilingues pour contenir la menace.',
           channels: ['Bridge Signal direct', 'Hotline WhatsApp fondateur', 'Salle Zoom d’urgence'],
         },
         {
@@ -1149,7 +1149,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         {
           id: 'eu-desk',
           name: 'Desk Europa',
-          lead: 'Lead: Artur Ziganshin — war room París',
+          lead: 'Lead: TraceRemove Advisor — war room París',
           availability: 'Disponibilidad: 06:00–22:00 CET con guardia nocturna',
           specialties: [
             'Recuperación de dominios y diplomacia con registradores europeos',
@@ -1171,7 +1171,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         {
           id: 'global-escalation',
           name: 'Puente de escalación fundador',
-          lead: 'Lead: Artur Ziganshin — línea directa',
+          lead: 'Lead: TraceRemove Advisor — línea directa',
           availability: 'Disponibilidad: fundador on-call para incidentes severidad uno',
           specialties: [
             'Alineación ejecutiva inmediata y redacción de mensajes oficiales',
@@ -1423,7 +1423,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           name: 'Estudio de reportes ejecutivos',
           description:
             'Genera exports de Looker Studio y PowerPoint que miden ingresos protegidos, señales de confianza y velocidad de mitigación.',
-          automation: 'Entrega dashboards actualizados antes de cada checkpoint con comentarios personalizados de Artur Ziganshin.',
+          automation: 'Entrega dashboards actualizados antes de cada checkpoint con comentarios personalizados de TraceRemove Advisor.',
         },
       ],
     },
@@ -1515,7 +1515,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           id: 'jan',
           month: 'Enero',
           focus: 'Cascada de desinformación multirregional',
-          lead: 'Artur y los leads regionales dirigen un ejercicio estilo sala de redacción.',
+          lead: 'TraceRemove Advisor y los leads regionales dirigen un ejercicio estilo sala de redacción.',
           readiness: 'Alinea paid, PR y legal ante crisis reputacionales multilingües.',
         },
         {
@@ -1550,7 +1550,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           id: 'p0',
           level: 'Prioridad cero',
           response:
-            'Artur abre el bridge ejecutivo, alinea legal y comunicación y despliega portavoces multilingües para contener la amenaza.',
+            'TraceRemove Advisor abre el bridge ejecutivo, alinea legal y comunicación y despliega portavoces multilingües para contener la amenaza.',
           channels: ['Bridge Signal directo', 'Hotline WhatsApp del fundador', 'Sala Zoom de emergencia'],
         },
         {

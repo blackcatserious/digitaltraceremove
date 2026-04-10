@@ -428,7 +428,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         'We help manage and resolve online data exposure',
       ],
       bullets: [
-        'Founder-led diagnostics with direct access to Artur Ziganshin throughout the engagement.',
+        'Founder-led diagnostics with direct access to TraceRemove Advisor throughout the engagement.',
         'Weekly performance rooms that surface insights, blockers, and next experiments in one animated command center.',
         'Clear measurement frameworks with Looker Studio dashboards, guardrail alerts, and executive-ready recaps.',
       ],
@@ -533,7 +533,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           label: 'Leadership access',
           traceremove:
-            'Founder & CEO Artur Ziganshin drives every diagnostic, playbook review, and crisis huddle with the core team.',
+            'Founder & CEO TraceRemove Advisor drives every diagnostic, playbook review, and crisis huddle with the core team.',
           traditional:
             'Layers of account managers filter insights before they reach senior operators, slowing decisions.',
         },
@@ -779,7 +779,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           name: 'Critical escalation hotline',
           availability: '24/7 · English / Français / Español',
-          description: 'Immediate access to Artur Ziganshin and the response unit for domain spoofing, data leaks, or viral crises.',
+          description: 'Immediate access to TraceRemove Advisor and the response unit for domain spoofing, data leaks, or viral crises.',
         },
         {
           name: 'Traceremove Command Center',
@@ -917,7 +917,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           outcome:
             'Recovered a 4.8★ blended rating inside six days and generated a 22% lift in qualified pipeline during the same quarter.',
           quote:
-            'Traceremove choreographed growth, legal, and CX into one war room—we stayed on offense with motion-rich proof while Artur’s team deleted the noise.',
+            'Traceremove choreographed growth, legal, and CX into one war room—we stayed on offense with motion-rich proof while TraceRemove Advisor’s team deleted the noise.',
           speaker: 'Chief Growth Officer, LatAm fintech marketplace',
         },
         {
@@ -953,7 +953,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           outcome:
             'Closed 94% of at-risk renewals and landed two net-new Fortune 500 deals within the quarter while the brand sentiment index rose 18 points.',
           quote:
-            'Artur’s core team made sure our truth moved faster than speculation—the animations, dashboards, and rehearsed responses turned fear into momentum.',
+            'TraceRemove Advisor’s core team made sure our truth moved faster than speculation—the animations, dashboards, and rehearsed responses turned fear into momentum.',
           speaker: 'Chief Revenue Officer, cybersecurity SaaS',
         },
       ],
@@ -968,7 +968,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           duration: '60 minutes',
           focus: 'Threat sweeps, demand pacing, and experiment approvals',
           attendees: [
-            'Artur Ziganshin',
+            'TraceRemove Advisor',
             'Growth lead',
             'Security engineer',
             'Lifecycle strategist',
@@ -1089,13 +1089,13 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
     executive: {
       title: 'Executive briefing rituals',
       subtitle:
-        'Founder & CEO Artur Ziganshin keeps leadership in the loop with motion-rich recaps, decision logs, and proactive asks.',
+        'Founder & CEO TraceRemove Advisor keeps leadership in the loop with motion-rich recaps, decision logs, and proactive asks.',
       briefings: [
         {
           title: 'Monday command briefing',
           cadence: 'Weekly · 30 minutes',
           description:
-            'Kick off the week with Artur guiding threat updates, campaign momentum, and approvals required to stay ahead.',
+            'Kick off the week with TraceRemove Advisor guiding threat updates, campaign momentum, and approvals required to stay ahead.',
           takeaways: [
             'Risk radar review with critical incidents, status, and escalation paths.',
             'Growth and retention dashboard pulses highlighting revenue being protected.',
@@ -1145,7 +1145,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       cta: {
         label: 'Book an executive preview',
         description:
-          'Request a private walkthrough with Artur Ziganshin to see how our briefings keep leadership aligned during high velocity moments.',
+          'Request a private walkthrough with TraceRemove Advisor to see how our briefings keep leadership aligned during high velocity moments.',
       },
     },
     concierge: {
@@ -1160,7 +1160,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
         {
           title: 'Founder escalation lane',
-          description: 'Direct access to Artur Ziganshin for board reviews, sensitive negotiations, or press briefings.',
+          description: 'Direct access to TraceRemove Advisor for board reviews, sensitive negotiations, or press briefings.',
           availability: 'Immediate callbacks for critical items, daily sync during active incidents.',
           channel: 'Secure phone · Signal',
         },
@@ -1422,7 +1422,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           title: 'Founder on-call guarantee',
           description:
-            'Artur Ziganshin joins every critical escalation and weekly performance room—no handoffs to junior account layers.',
+            'TraceRemove Advisor joins every critical escalation and weekly performance room—no handoffs to junior account layers.',
         },
         {
           title: '30-day momentum checkpoint',
@@ -1542,7 +1542,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       body:
         'Share your goals and current pressure points. We will return within 24 hours with a tailored agenda and the specialists we recommend embedding with your team.',
       primary: 'Book a strategy call',
-      secondary: 'Email Artur directly',
+      secondary: 'Email TraceRemove Advisor directly',
     },
   },
   fr: {
@@ -1550,7 +1550,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       eyebrow: 'Services & Tarifs',
       heading: 'Choisissez le squad qui protège votre marque tout en accélérant la croissance.',
       body:
-        'Chaque mission est dirigée par le Fondateur & CEO Artur Ziganshin avec une équipe centrale multilingue couvrant réputation, génération de demande et storytelling produit. Utilisez les offres ci-dessous pour cadrer l’investissement, puis nous ajustons le périmètre à votre rythme.',
+        'Chaque mission est dirigée par le Fondateur & CEO TraceRemove Advisor avec une équipe centrale multilingue couvrant réputation, génération de demande et storytelling produit. Utilisez les offres ci-dessous pour cadrer l’investissement, puis nous ajustons le périmètre à votre rythme.',
       primaryCta: 'Construire un devis sur mesure',
       secondaryCta: 'Télécharger la grille tarifaire',
       note: 'Temps moyen de déploiement : 10 jours ouvrés après le kick-off.',
@@ -1562,7 +1562,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         'Chaque offre combine storytelling animé, expérimentation performance et réponse incident rapide afin que votre réputation soit protégée pendant que le pipeline s’amplifie.',
       ],
       bullets: [
-        'Diagnostic piloté par le fondateur avec accès direct à Artur Ziganshin pendant toute la mission.',
+        'Diagnostic piloté par le fondateur avec accès direct à TraceRemove Advisor pendant toute la mission.',
         'Rooms hebdomadaires où insights, blocages et prochaines expérimentations sont synchronisés dans un centre de commande animé.',
         'Cadres de mesure clairs avec dashboards Looker Studio, alertes de garde-fous et synthèses exécutives.',
       ],
@@ -1674,7 +1674,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           label: 'Accès à la direction',
           traceremove:
-            'Le fondateur & CEO Artur Ziganshin anime chaque diagnostic, revue de playbook et cellule de crise avec l’équipe cœur.',
+            'Le fondateur & CEO TraceRemove Advisor anime chaque diagnostic, revue de playbook et cellule de crise avec l’équipe cœur.',
           traditional:
             'Des couches de chefs de projet filtrent l’information avant qu’elle n’atteigne les décideurs, ce qui ralentit tout.',
         },
@@ -1927,7 +1927,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           name: 'Hotline d’escalade critique',
           availability: '24/7 · Français / English / Español',
-          description: 'Accès immédiat à Artur Ziganshin et à l’unité de réponse pour usurpation de domaine, fuite de données ou crise virale.',
+          description: 'Accès immédiat à TraceRemove Advisor et à l’unité de réponse pour usurpation de domaine, fuite de données ou crise virale.',
         },
         {
           name: 'Command Center Traceremove',
@@ -2065,7 +2065,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           outcome:
             'Note moyenne revenue à 4,8★ en six jours et +22 % de pipeline qualifié sur le trimestre.',
           quote:
-            'Traceremove a mis croissance, juridique et CX dans la même war room — Artur et son équipe ont supprimé le bruit pendant que nous gardions l’offensive.',
+            'Traceremove a mis croissance, juridique et CX dans la même war room — TraceRemove Advisor et son équipe ont supprimé le bruit pendant que nous gardions l’offensive.',
           speaker: 'Chief Growth Officer, marketplace fintech LATAM',
         },
         {
@@ -2101,7 +2101,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           outcome:
             '94 % des renouvellements à risque sécurisés et deux nouveaux comptes Fortune 500 signés sur le trimestre, avec +18 pts d’indice de sentiment.',
           quote:
-            'L’équipe d’Artur a fait circuler notre vérité plus vite que la rumeur — animations, dashboards et répétitions ont transformé la peur en momentum.',
+            'L’équipe d’TraceRemove Advisor a fait circuler notre vérité plus vite que la rumeur — animations, dashboards et répétitions ont transformé la peur en momentum.',
           speaker: 'Chief Revenue Officer, éditeur SaaS cybersécurité',
         },
       ],
@@ -2116,7 +2116,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           duration: '60 minutes',
           focus: 'Veille des menaces, pilotage de la demande et arbitrage des expériences',
           attendees: [
-            'Artur Ziganshin',
+            'TraceRemove Advisor',
             'Lead croissance',
             'Ingénieur sécurité',
             'Stratège lifecycle',
@@ -2237,7 +2237,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
     executive: {
       title: 'Rituels de briefing exécutif',
       subtitle:
-        'Artur Ziganshin pilote des syncs animés qui gardent le comité de direction aligné sur la protection de marque et la vitesse de croissance.',
+        'TraceRemove Advisor pilote des syncs animés qui gardent le comité de direction aligné sur la protection de marque et la vitesse de croissance.',
       briefings: [
         {
           title: 'Briefing de commandement du lundi',
@@ -2293,7 +2293,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       cta: {
         label: 'Planifier un briefing exécutif',
         description:
-          'Demandez une session privée avec Artur Ziganshin afin de découvrir comment nos briefings maintiennent l’alignement en phase critique.',
+          'Demandez une session privée avec TraceRemove Advisor afin de découvrir comment nos briefings maintiennent l’alignement en phase critique.',
       },
     },
     concierge: {
@@ -2308,7 +2308,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
         {
           title: 'Voie d’escalade fondateur',
-          description: 'Accès direct à Artur Ziganshin pour updates board, négociations sensibles ou briefings presse.',
+          description: 'Accès direct à TraceRemove Advisor pour updates board, négociations sensibles ou briefings presse.',
           availability: 'Rappel immédiat sur sujets critiques, point quotidien pendant incident.',
           channel: 'Téléphone sécurisé · Signal',
         },
@@ -2570,7 +2570,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           title: 'Fondateur en première ligne',
           description:
-            'Artur Ziganshin participe à chaque escalade critique et aux rooms hebdomadaires — aucun relais à une couche junior.',
+            'TraceRemove Advisor participe à chaque escalade critique et aux rooms hebdomadaires — aucun relais à une couche junior.',
         },
         {
           title: 'Checkpoint momentum à 30 jours',
@@ -2690,7 +2690,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       body:
         'Partagez vos objectifs et points de pression. Nous revenons sous 24 h avec un agenda personnalisé et les spécialistes à embarquer.',
       primary: 'Planifier un call stratégique',
-      secondary: 'Écrire directement à Artur',
+      secondary: 'Écrire directement à TraceRemove Advisor',
     },
   },
   es: {
@@ -2698,7 +2698,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       eyebrow: 'Servicios y precios',
       heading: 'Elige el squad que protege tu marca mientras acelera el crecimiento.',
       body:
-        'Cada colaboración está liderada por el Fundador y CEO Artur Ziganshin junto a un núcleo senior multilingüe que cubre reputación, generación de demanda y storytelling de producto. Usa los paquetes como referencia y luego ajustamos el alcance a tu velocidad.',
+        'Cada colaboración está liderada por el Fundador y CEO TraceRemove Advisor junto a un núcleo senior multilingüe que cubre reputación, generación de demanda y storytelling de producto. Usa los paquetes como referencia y luego ajustamos el alcance a tu velocidad.',
       primaryCta: 'Solicitar propuesta a medida',
       secondaryCta: 'Descargar tabla de precios',
       note: 'Tiempo medio de puesta en marcha: 10 días hábiles desde el kickoff.',
@@ -2710,7 +2710,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         'Cada plan combina storytelling animado, experimentación de performance y respuesta rápida a incidentes para defender tu reputación mientras el pipeline sigue escalando.',
       ],
       bullets: [
-        'Diagnóstico liderado por el fundador con acceso directo a Artur Ziganshin durante toda la colaboración.',
+        'Diagnóstico liderado por el fundador con acceso directo a TraceRemove Advisor durante toda la colaboración.',
         'Salas semanales donde insights, bloqueos y próximos experimentos se sincronizan en un centro de mando animado.',
         'Marcos de medición claros con dashboards en Looker Studio, alertas preventivas y resúmenes ejecutivos.',
       ],
@@ -2822,7 +2822,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           label: 'Acceso al liderazgo',
           traceremove:
-            'El fundador y CEO Artur Ziganshin dirige cada diagnóstico, revisión de playbooks y war room junto al equipo central.',
+            'El fundador y CEO TraceRemove Advisor dirige cada diagnóstico, revisión de playbooks y war room junto al equipo central.',
           traditional:
             'Capas de accounts filtran la información antes de llegar a los decisores senior, lo que frena las decisiones.',
         },
@@ -3075,7 +3075,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           name: 'Hotline de escalación crítica',
           availability: '24/7 · English / Français / Español',
-          description: 'Acceso inmediato a Artur Ziganshin y a la unidad de respuesta ante dominios clonados, filtraciones o crisis virales.',
+          description: 'Acceso inmediato a TraceRemove Advisor y a la unidad de respuesta ante dominios clonados, filtraciones o crisis virales.',
         },
         {
           name: 'Traceremove Command Center',
@@ -3213,7 +3213,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           outcome:
             'El rating promedio volvió a 4,8★ en seis días y el pipeline calificado creció 22 % ese trimestre.',
           quote:
-            'Traceremove alineó growth, legal y CX en una sola war room; mientras Artur limpiaba el ruido seguimos generando confianza en público.',
+            'Traceremove alineó growth, legal y CX en una sola war room; mientras TraceRemove Advisor limpiaba el ruido seguimos generando confianza en público.',
           speaker: 'Chief Growth Officer, marketplace fintech LATAM',
         },
         {
@@ -3249,7 +3249,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           outcome:
             'Cerramos 94 % de renovaciones en riesgo y sumamos dos Fortune 500 nuevos mientras el índice de sentimiento subió 18 puntos.',
           quote:
-            'El equipo de Artur hizo que nuestra versión corriera más rápido que el rumor; dashboards y prácticas animadas convirtieron el miedo en impulso.',
+            'El equipo de TraceRemove Advisor hizo que nuestra versión corriera más rápido que el rumor; dashboards y prácticas animadas convirtieron el miedo en impulso.',
           speaker: 'Chief Revenue Officer, SaaS de ciberseguridad',
         },
       ],
@@ -3264,7 +3264,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           duration: '60 minutos',
           focus: 'Barridos de amenazas, pacing de demanda y aprobaciones de experimentos',
           attendees: [
-            'Artur Ziganshin',
+            'TraceRemove Advisor',
             'Lead de growth',
             'Ingeniero de seguridad',
             'Estratega de lifecycle',
@@ -3385,7 +3385,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
     executive: {
       title: 'Rituales de briefing ejecutivo',
       subtitle:
-        'Artur Ziganshin mantiene al liderazgo sincronizado con resúmenes animados, bitácoras de decisión y pedidos proactivos.',
+        'TraceRemove Advisor mantiene al liderazgo sincronizado con resúmenes animados, bitácoras de decisión y pedidos proactivos.',
       briefings: [
         {
           title: 'Briefing de comando de los lunes',
@@ -3441,7 +3441,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       cta: {
         label: 'Agenda un preview ejecutivo',
         description:
-          'Solicitá una sesión privada con Artur Ziganshin y descubrí cómo los briefings sostienen la alineación en momentos de alta velocidad.',
+          'Solicitá una sesión privada con TraceRemove Advisor y descubrí cómo los briefings sostienen la alineación en momentos de alta velocidad.',
       },
     },
     concierge: {
@@ -3456,7 +3456,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         },
         {
           title: 'Vía de escalación con el fundador',
-          description: 'Acceso directo a Artur Ziganshin para comités de directorio, negociaciones sensibles o briefings de prensa.',
+          description: 'Acceso directo a TraceRemove Advisor para comités de directorio, negociaciones sensibles o briefings de prensa.',
           availability: 'Callbacks inmediatos en incidentes y touchpoint diario mientras dure la crisis.',
           channel: 'Teléfono seguro · Signal',
         },
@@ -3718,7 +3718,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           title: 'Fundador siempre disponible',
           description:
-            'Artur Ziganshin participa en cada escalación crítica y en las rooms semanales; nunca delegamos en capas junior.',
+            'TraceRemove Advisor participa en cada escalación crítica y en las rooms semanales; nunca delegamos en capas junior.',
         },
         {
           title: 'Checkpoint de momentum a 30 días',
@@ -3838,7 +3838,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       body:
         'Comparte tus objetivos y puntos de presión. En menos de 24 horas respondemos con una agenda personalizada y los especialistas que recomendamos integrar.',
       primary: 'Agendar llamada estratégica',
-      secondary: 'Escribir directamente a Artur',
+      secondary: 'Escribir directamente a TraceRemove Advisor',
     },
   },
 }
