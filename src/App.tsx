@@ -6308,6 +6308,17 @@ const NotFound = () => (
   </section>
 )
 
+const SimpleContactPage = () => (
+  <section style={{ padding: '48px 24px' }}>
+    <div style={{ maxWidth: 720, margin: '0 auto', fontSize: '14px', lineHeight: 1.7, opacity: 0.8 }}>
+      <div>TRACEREMOVE LLC</div>
+      <div>750 Manhattan Ave</div>
+      <div>Brooklyn, NY 11222, USA</div>
+      <div>support@traceremove.com</div>
+    </div>
+  </section>
+)
+
 const blogListCopy: Record<
   Language,
   {
@@ -8987,7 +8998,7 @@ function App() {
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
-        <Route path="contact" element={<ContactPage language="en" />} />
+        <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         <Route path="privacy" element={<LegalPage language="en" variant="privacy" />} />
