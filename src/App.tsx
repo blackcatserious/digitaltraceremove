@@ -8960,6 +8960,12 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <Footer currentLanguage={currentLanguage} />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
+      <div style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>
+        <div>TRACEREMOVE LLC</div>
+        <div>750 Manhattan Ave</div>
+        <div>Brooklyn, NY 11222, USA</div>
+        <div>support@traceremove.com</div>
+      </div>
     </div>
   )
 }
