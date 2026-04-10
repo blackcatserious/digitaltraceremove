@@ -1,19 +1,71 @@
 "use client";
-export default function Footer(){return(
-<footer style={{borderTop:"1px solid rgba(255,255,255,0.04)"}}>
-<div style={{maxWidth:1152,margin:"0 auto",padding:"64px 24px 24px"}}>
-<div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:40,marginBottom:48}}>
-<div><span style={{fontFamily:"'Instrument Serif',Georgia,serif",fontStyle:"italic",fontSize:"1.15rem",color:"#f0f0f3"}}>traceremove</span><p style={{fontSize:13,color:"#5a5a68",marginTop:12,lineHeight:1.6}}>AI philosophy research.</p></div>
-<div><h4 style={{fontSize:11,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.15em",color:"#4a4a58",marginBottom:16}}>Research</h4><FL h="/research">Papers</FL><FL h="/articles">Articles</FL><FL h="/cv">CV</FL></div>
-<div><h4 style={{fontSize:11,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.15em",color:"#4a4a58",marginBottom:16}}>More</h4><FL h="/newsletter">Newsletter</FL><FL h="/services">Services</FL><FL h="/contact">Contact</FL></div>
-<div><h4 style={{fontSize:11,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.15em",color:"#4a4a58",marginBottom:16}}>Connect</h4><FL h="mailto:artur@traceremove.dev">Email</FL><FL h="https://philarchive.org/s/artur%20ziganshin" x>PhilArchive</FL></div>
-</div>
-<div style={{borderTop:"1px solid rgba(255,255,255,0.03)",paddingTop:20,display:"flex",flexWrap:"wrap",justifyContent:"space-between",gap:8}}>
-<span style={{fontSize:12,color:"#3a3a45"}}>&copy; 2026 TraceRemove Advisor</span>
-<span style={{fontSize:12,color:"#3a3a45"}}>TraceRemove LLC · 750 Manhattan Ave, Brooklyn, NY 11222</span>
-<span style={{fontSize:12,color:"#3a3a45"}}>Master of Philosophy &middot; PhD of Philosophy</span>
-<span style={{fontSize:12,color:"#3a3a45",whiteSpace:"pre-line"}}>{"TRACEREMOVE LLC\n750 Manhattan Ave\nBrooklyn, NY 11222, USA\nsupport@traceremove.com"}</span>
-<a href="/privacy-policy" style={{fontSize:12,color:"#3a3a45",textDecoration:"none"}}>Privacy Policy</a>
-<a href="/terms" style={{fontSize:12,color:"#3a3a45",textDecoration:"none"}}>Terms of Service</a>
-</div></div></footer>);}
-function FL({h,children,x}:{h:string;children:React.ReactNode;x?:boolean}){return<a href={h} target={x?"_blank":undefined} rel={x?"noopener noreferrer":undefined} style={{display:"block",fontSize:13,color:"#6a6a78",textDecoration:"none",padding:"4px 0"}}>{children}</a>;}
+import { useState } from 'react'
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const [hover, setHover] = useState(false)
+  return (
+    <a
+      href={href}
+      style={{ display: 'block', color: hover ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', textDecoration: 'none', padding: '4px 0', fontSize: 13 }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      {children}
+    </a>
+  )
+}
+
+export default function Footer() {
+  return (
+    <footer style={{ background: '#070B16', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div style={{ maxWidth: 1152, margin: '0 auto', padding: '64px 24px 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 32, marginBottom: 32 }}>
+          <div>
+            <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: 'italic', fontSize: '1.2rem', color: '#f0f0f3' }}>Traceremove</span>
+            <p style={{ marginTop: 12, color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, fontSize: 13 }}>
+              Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
+              businesses and agency partners worldwide.
+            </p>
+            <p style={{ marginTop: 14, whiteSpace: 'pre-line', fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.62)', fontSize: 12, lineHeight: 1.6 }}>
+              {"TRACEREMOVE LLC\n750 Manhattan Ave\nBrooklyn, NY 11222, USA\nsupport@traceremove.com"}
+            </p>
+          </div>
+
+          <div>
+            <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Services</h4>
+            <FooterLink href="#">Monitoring & Alerts</FooterLink>
+            <FooterLink href="#">Workflow Credits</FooterLink>
+            <FooterLink href="#">Managed Programmes</FooterLink>
+            <FooterLink href="#">Cybersecurity Module</FooterLink>
+          </div>
+
+          <div>
+            <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Partners</h4>
+            <FooterLink href="#">Partner Overview</FooterLink>
+            <FooterLink href="#">Silver Gold Platinum</FooterLink>
+            <FooterLink href="#">Apply as Partner</FooterLink>
+            <FooterLink href="#">Partner Portal</FooterLink>
+          </div>
+
+          <div>
+            <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Company</h4>
+            <FooterLink href="#">About</FooterLink>
+            <FooterLink href="#">Case Studies</FooterLink>
+            <FooterLink href="#">Trust Center</FooterLink>
+            <FooterLink href="#">Blog</FooterLink>
+            <FooterLink href="#">Contact</FooterLink>
+          </div>
+        </div>
+
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 16, display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12 }}>
+            © 2025 TraceRemove LLC · Privacy Policy · Terms of Service · Refund Policy
+          </span>
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, fontFamily: 'var(--font-mono)' }}>
+            New York, NY · Serving clients globally
+          </span>
+        </div>
+      </div>
+    </footer>
+  )
+}
