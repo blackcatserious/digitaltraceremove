@@ -2509,9 +2509,9 @@ const HomePage = () => {
           <div className="home-removal-cta">
             <p className="home-removal-cta__label">We help manage and resolve online data exposure.</p>
             <ul>
-              <li>Removal of defamatory and fake content</li>
-              <li>Digital footprint cleanup across search and social</li>
-              <li>Fast takedown workflows with legal-ready evidence</li>
+              <li>Data exposure monitoring</li>
+              <li>Digital footprint analysis</li>
+              <li>Structured resolution workflows</li>
             </ul>
             <Link className="button primary" to={getContactPath(currentLanguage)}>
               Start information removal now
