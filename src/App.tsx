@@ -2514,7 +2514,7 @@ const HomePage = () => {
               <li>Structured resolution workflows</li>
             </ul>
             <Link className="button primary" to={getContactPath(currentLanguage)}>
-              Start information removal now
+              Get started
             </Link>
           </div>
           <div className="home-cta">
