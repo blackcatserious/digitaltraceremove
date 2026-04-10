@@ -2522,10 +2522,7 @@ const HomePage = () => {
         </div>
       </div>
       <div>
-        <p>
-          Traceremove is a digital platform that helps individuals and businesses monitor and manage their online
-          data footprint.
-        </p>
+        <p>{''}</p>
         <p>
           Users access structured tools and managed workflows to identify and resolve data exposure issues.
         </p>
