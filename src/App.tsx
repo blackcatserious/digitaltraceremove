@@ -2449,7 +2449,7 @@ const homeServicesCopy: Record<
 }
 
 const homeHeroHeading: Record<Language, string> = {
-  en: 'We Remove Harmful Google Results for Businesses & Executives',
+  en: 'Monitor and Manage Online Data Exposure',
   fr: 'Des plans de services multilingues conçus pour accélérer votre momentum.',
   es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
 }
@@ -2488,8 +2488,9 @@ const HomePage = () => {
         <div className="home-hero-copy">
           <h1>{heroHeading}</h1>
           <p>
-            Negative press, false reviews, damaging forum posts — removed or permanently suppressed. Trusted by law
-            firms, PR agencies, and corporate clients across North America and Europe.
+            Traceremove provides structured tools and managed workflows to identify, monitor, and resolve online data
+            exposure — for businesses, executives, and agency partners across North America, Europe, Latin America,
+            Asia-Pacific, and Africa.
           </p>
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link
