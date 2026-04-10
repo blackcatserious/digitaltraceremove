@@ -45,6 +45,7 @@ import ProcessSection from './components/ProcessSection'
 import ROICalculator from './components/ROICalculator'
 import ScanSection from './components/ScanSection'
 import CaseStudiesSection from './components/CaseStudiesSection'
+import FAQSection from './components/FAQSection'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
@@ -2544,6 +2545,7 @@ const HomePage = () => {
       <ROICalculator />
       <ScanSection />
       <CaseStudiesSection />
+      <FAQSection />
       <PricingSection />
       <div>
         <p>{''}</p>
