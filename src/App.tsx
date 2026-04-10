@@ -6319,6 +6319,39 @@ const SimpleContactPage = () => (
   </section>
 )
 
+const SimpleLegalPage = ({ type }: { type: 'terms' | 'privacy' | 'refund' }) => {
+  const copy = {
+    terms: {
+      title: 'Terms of Service',
+      text: 'By using this digital platform, you agree to use our services lawfully and responsibly. We may update or suspend features at any time.',
+    },
+    privacy: {
+      title: 'Privacy Policy',
+      text: 'We collect only the data needed to provide and improve our services. We do not sell personal data and apply reasonable safeguards to protect it.',
+    },
+    refund: {
+      title: 'Refund Policy',
+      text: 'Refund requests are reviewed case by case for digital services. Contact support within 14 days of purchase for assistance.',
+    },
+  }[type]
+
+  return (
+    <section style={{ padding: '48px 24px' }}>
+      <div style={{ maxWidth: 720, margin: '0 auto', fontSize: '14px', lineHeight: 1.7, opacity: 0.82 }}>
+        <h1 style={{ fontSize: '24px', margin: '0 0 16px' }}>{copy.title}</h1>
+        <p style={{ margin: '0 0 16px' }}>{copy.text}</p>
+        <p style={{ margin: 0 }}>
+          TRACEREMOVE LLC
+          <br />
+          750 Manhattan Ave
+          <br />
+          Brooklyn, NY 11222, USA
+        </p>
+      </div>
+    </section>
+  )
+}
+
 const blogListCopy: Record<
   Language,
   {
@@ -9001,8 +9034,9 @@ function App() {
         <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
-        <Route path="privacy" element={<LegalPage language="en" variant="privacy" />} />
-        <Route path="terms" element={<LegalPage language="en" variant="terms" />} />
+        <Route path="privacy" element={<SimpleLegalPage type="privacy" />} />
+        <Route path="terms" element={<SimpleLegalPage type="terms" />} />
+        <Route path="refund" element={<SimpleLegalPage type="refund" />} />
         {languages.map((language) => (
           <Fragment key={language}>
             <Route path={language} element={<HomePage />} />
