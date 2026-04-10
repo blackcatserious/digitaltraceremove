@@ -2613,61 +2613,61 @@ const HomePage = () => {
       <section className="home-reputation" aria-labelledby="home-reputation-heading">
         <header>
           <p className="home-reputation__kicker">We help manage and resolve online data exposure</p>
-          <h2 id="home-reputation-heading">Always-on trust architecture for AI-era search and social</h2>
+          <h2 id="home-reputation-heading">Simple monitoring and resolution for online data exposure</h2>
         </header>
         <div className="home-reputation__grid">
           <article>
-            <h3>AI result monitoring</h3>
-            <p>We monitor brand mentions across search, LLM snapshots, social feeds, and review ecosystems every hour.</p>
+            <h3>Data exposure monitoring</h3>
+            <p>We monitor your online data exposure across search, social, and review platforms.</p>
           </article>
           <article>
-            <h3>Crisis-ready playbooks</h3>
-            <p>Escalation templates for legal, comms, and growth teams with 24/7 multilingual activation.</p>
+            <h3>Risk analysis</h3>
+            <p>We analyze risk and prioritize what to fix first.</p>
           </article>
           <article>
-            <h3>Trust-growth loop</h3>
-            <p>Review generation, authority publishing, and removal workflows tied to revenue dashboards.</p>
+            <h3>Structured resolution</h3>
+            <p>We use structured workflows to resolve issues and track progress.</p>
           </article>
         </div>
       </section>
 
       <section className="home-production" aria-labelledby="home-production-heading">
         <header className="home-production__header">
-          <p className="home-production__kicker">Production-grade reputation operations</p>
-          <h2 id="home-production-heading">End-to-end digital footprint cleanup, from detection to verified removal</h2>
+          <p className="home-production__kicker">Simple data exposure operations</p>
+          <h2 id="home-production-heading">From monitoring to resolution in one structured workflow</h2>
         </header>
         <div className="home-production__grid">
           <article>
-            <h3>What we remove</h3>
+            <h3>What we monitor</h3>
             <ul>
-              <li>Defamatory pages and fake review clusters</li>
-              <li>Doxxing snippets, leaked personal data, and impersonation pages</li>
-              <li>Legacy negative SERP entries hurting hiring and sales</li>
+              <li>Exposed personal or business data</li>
+              <li>Misleading profile and listing content</li>
+              <li>High-risk pages affecting trust</li>
             </ul>
           </article>
           <article>
-            <h3>How we execute</h3>
+            <h3>How we work</h3>
             <ul>
-              <li>Forensic discovery + legal-ready evidence pack in 24h</li>
-              <li>Platform takedowns, de-indexing flows, and suppression strategy</li>
-              <li>Weekly proof reports with links, timestamps, and status</li>
+              <li>Identify and monitor exposure points</li>
+              <li>Analyze risk and select the best workflow</li>
+              <li>Resolve issues with documented actions and status updates</li>
             </ul>
           </article>
           <article>
             <h3>Client outcomes</h3>
             <ul>
-              <li>Clearer branded search results and trust recovery</li>
-              <li>Reduced churn from negative reputation events</li>
-              <li>Faster conversion in high-intent inbound channels</li>
+              <li>Clearer visibility into online data exposure</li>
+              <li>Faster risk response with ongoing monitoring</li>
+              <li>Measurable resolution progress across platforms</li>
             </ul>
           </article>
         </div>
         <div className="home-production__actions">
           <Link className="button primary" to={getContactPath(currentLanguage)}>
-            Request full digital cleanup
+            Start analysis
           </Link>
           <Link className="button tertiary" to={getCaseStudiesPath(currentLanguage)}>
-            View verified removals
+            View resolution examples
           </Link>
         </div>
       </section>
