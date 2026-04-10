@@ -41,6 +41,7 @@ import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
 import PricingSection from './components/PricingSection'
 import PlatformsSection from './components/PlatformsSection'
 import AgenciesSection from './components/AgenciesSection'
+import ProcessSection from './components/ProcessSection'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
@@ -2536,6 +2537,7 @@ const HomePage = () => {
       </div>
       <PlatformsSection />
       <AgenciesSection />
+      <ProcessSection />
       <PricingSection />
       <div>
         <p>{''}</p>
