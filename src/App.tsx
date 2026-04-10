@@ -40,6 +40,7 @@ import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
 import PricingSection from './components/PricingSection'
 import PlatformsSection from './components/PlatformsSection'
+import AgenciesSection from './components/AgenciesSection'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
@@ -2534,6 +2535,7 @@ const HomePage = () => {
         </div>
       </div>
       <PlatformsSection />
+      <AgenciesSection />
       <PricingSection />
       <div>
         <p>{''}</p>
