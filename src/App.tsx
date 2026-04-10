@@ -6210,12 +6210,37 @@ const ContactPage = ({ language }: { language: Language }) => {
     phone: '',
     message: '',
   })
-  const [submitted, setSubmitted] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
+
+  async function submitForm(data: { name: string; company: string; email: string; message: string }) {
+    try {
+      await fetch(
+        // TODO: Replace with actual Make.com webhook URL
+        'https://hook.us1.make.com/YOUR_WEBHOOK_ID',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.name,
+            company: data.company,
+            email: data.email,
+            message: data.message,
+            source: 'traceremove.com',
+            timestamp: new Date().toISOString(),
+            language: navigator.language,
+          }),
+        }
+      )
+      return { success: true }
+    } catch (e) {
+      return { success: false }
+    }
+  }
 
   const handleChange = (field: keyof typeof formData) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      if (submitted) {
-        setSubmitted(false)
+      if (submitStatus) {
+        setSubmitStatus(null)
       }
       const value = event.target.value
       setFormData((prev) => ({
@@ -6226,20 +6251,20 @@ const ContactPage = ({ language }: { language: Language }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const params = new URLSearchParams(window.location.search)
-    await persistLead({
-      source: 'contact',
+    const result = await submitForm({
       name: formData.name,
-      email: formData.email,
       company: formData.company,
+      email: formData.email,
       message: formData.message,
-      createdAt: new Date().toISOString(),
-      page: window.location.pathname,
-      utmSource: params.get('utm_source') ?? 'direct',
-      leadScore: Math.min(100, 40 + (formData.company ? 20 : 0) + (formData.phone ? 20 : 0) + (formData.message.length > 60 ? 20 : 0)),
     })
-    setSubmitted(true)
-    setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+
+    if (result.success) {
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+      return
+    }
+
+    setSubmitStatus('error')
   }
 
   return (
@@ -6323,10 +6348,15 @@ const ContactPage = ({ language }: { language: Language }) => {
           <button type="submit" className="button primary contact-submit">
             {copy.submit}
           </button>
-          {submitted && (
+          {submitStatus === 'success' && (
             <div className="contact-success" role="status" aria-live="polite">
-              <h3>{copy.successTitle}</h3>
-              <p>{copy.successMessage}</p>
+              <h3>Assessment request received.</h3>
+              <p>Check your email — an NDA will arrive within 5 minutes for your signature before we proceed.</p>
+            </div>
+          )}
+          {submitStatus === 'error' && (
+            <div className="contact-success" role="alert" aria-live="assertive">
+              <p>There was an issue submitting. Please email us directly at support@traceremove.com</p>
             </div>
           )}
           <p className="contact-legal">{copy.legal}</p>
