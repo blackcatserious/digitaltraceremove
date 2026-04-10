@@ -42,6 +42,7 @@ import PricingSection from './components/PricingSection'
 import PlatformsSection from './components/PlatformsSection'
 import AgenciesSection from './components/AgenciesSection'
 import ProcessSection from './components/ProcessSection'
+import ROICalculator from './components/ROICalculator'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
@@ -2538,6 +2539,7 @@ const HomePage = () => {
       <PlatformsSection />
       <AgenciesSection />
       <ProcessSection />
+      <ROICalculator />
       <PricingSection />
       <div>
         <p>{''}</p>
