@@ -105,9 +105,9 @@ type NavLinkRenderArgs = { isActive: boolean }
 
 const pageSeoDefaults: Record<Language, { titleSuffix: string; description: string }> = {
   en: {
-    titleSuffix: 'Traceremove · Reputation Growth Systems',
+    titleSuffix: 'We help manage and resolve online data exposure',
     description:
-      'Traceremove helps founders and enterprises protect reputation, remove harmful content, and scale trusted growth.',
+      'We help manage and resolve online data exposure',
   },
   fr: {
     titleSuffix: 'Traceremove · Systèmes de croissance réputationnelle',
@@ -678,7 +678,7 @@ const aboutCopy: Record<
       title: 'About Traceremove',
       subtitle: 'Brand protection and growth acceleration without borders',
       body:
-        'Founder & CEO Artur Ziganshin leads every engagement with a senior core team operating in English, French, and Spanish. We pair reputation guardianship with revenue experiments so your brand scales safely.',
+        'We help manage and resolve online data exposure',
       primaryCta: 'Talk with our team',
       secondaryCta: 'Explore our insights',
       highlight: 'English · French · Spanish markets',
@@ -719,10 +719,10 @@ const aboutCopy: Record<
     },
     reasons: {
       heading: 'Why teams choose us',
-      summary: 'We blend proactive reputation defense with compounding growth experiments.',
+      summary: 'We help manage and resolve online data exposure',
       items: [
         {
-          title: 'Reputation guardians',
+          title: 'We help manage and resolve online data exposure',
           description:
             'We monitor search, review, and social landscapes in real time to detect risk and defend your brand narrative before issues escalate.',
         },
@@ -751,7 +751,7 @@ const aboutCopy: Record<
         },
         {
           name: 'Europe',
-          focus: 'Reputation architecture',
+          focus: 'We help manage and resolve online data exposure',
           description:
             'Paris and Barcelona strategists blend regulatory awareness with multilingual content, PR narratives, and partner enablement.',
         },
@@ -859,7 +859,7 @@ const aboutCopy: Record<
     },
     closing: {
       heading: 'Ready to protect and accelerate your brand?',
-      body: 'Let’s design a roadmap that shields your reputation and compounds growth across every market you serve.',
+      body: 'We help manage and resolve online data exposure',
       cta: 'Book a strategy call',
     },
   },
@@ -1329,7 +1329,7 @@ const caseStudiesCopy: Record<
     },
     stories: [
       {
-        title: 'Marketplace reputation reset in 14 days',
+        title: 'We help manage and resolve online data exposure',
         industry: 'Consumer electronics marketplace',
         summary:
           'Removed 1,200 counterfeit listings and replaced top-of-funnel results with owned, high-converting experiences.',
@@ -1426,7 +1426,7 @@ const caseStudiesCopy: Record<
         challenge:
           'Competing vendors seeded fake outage rumours across Reddit, Discord, and niche forums, stalling pipeline velocity.',
         approach:
-          'Equipped exec spokespeople with rapid-response content, distributed insider guides via Substack and LinkedIn, and automated reputation listening.',
+          'We help manage and resolve online data exposure',
         impact:
           'Enterprise win rate improved 21%, sales cycle shortened by 11 days, and share of voice doubled.',
         metrics: [
@@ -2017,7 +2017,7 @@ const joinCopy: Record<
 > = {
   en: {
     title: 'Join the Traceremove collective',
-    subtitle: 'Remote-first growth operators shaping reputation, revenue, and product stories.',
+    subtitle: 'We help manage and resolve online data exposure',
     description:
       'We are always meeting strategists, storytellers, analysts, and builders who thrive in autonomous teams. If you love shipping experiments quickly and collaborating across languages, introduce yourself.',
     valuesHeading: 'How we work',
@@ -2267,7 +2267,7 @@ const primaryServices: PrimaryService[] = [
       es: 'SERM',
     },
     title: {
-      en: 'Search reputation management',
+      en: 'We help manage and resolve online data exposure',
       fr: 'Gestion de réputation search',
       es: 'Gestión de reputación en buscadores',
     },
@@ -2434,7 +2434,7 @@ const homeServicesCopy: Record<
   en: {
     title: 'Precision programs that protect and accelerate your brand',
     description:
-      'Every engagement is staffed by Artur Ziganshin and a senior pod covering reputation, security, design, and engineering so you launch with confidence.',
+      'We help manage and resolve online data exposure',
   },
   fr: {
     title: 'Des programmes précis pour protéger et accélérer votre marque',
@@ -2559,7 +2559,7 @@ const HomePage = () => {
 
       <section className="home-reputation" aria-labelledby="home-reputation-heading">
         <header>
-          <p className="home-reputation__kicker">Reputation intelligence · 2026</p>
+          <p className="home-reputation__kicker">We help manage and resolve online data exposure</p>
           <h2 id="home-reputation-heading">Always-on trust architecture for AI-era search and social</h2>
         </header>
         <div className="home-reputation__grid">
@@ -6073,10 +6073,10 @@ const contactCopy: Record<
 > = {
   en: {
     kicker: 'Contact Traceremove',
-    title: 'Design your next reputation breakthrough',
+    title: 'We help manage and resolve online data exposure',
     subtitle: 'Share your objectives and we will craft a tailored response within one business day.',
     intro:
-      'Tell us about your roadmap, KPIs, and reputation challenges. Our multilingual team will assemble a bespoke growth and risk mitigation program.',
+      'We help manage and resolve online data exposure',
     formTitle: 'Send us a note',
     detailTitle: 'Prefer a direct line?',
     detailPoints: [
@@ -6093,7 +6093,7 @@ const contactCopy: Record<
       email: { label: 'Work email', placeholder: 'jane@company.com' },
       company: { label: 'Company or team', placeholder: 'Acme Corp' },
       phone: { label: 'Phone (optional)', placeholder: '+1 555 555 5555' },
-      message: { label: 'How can we help?', placeholder: 'Share goals, timelines, or reputation risks…' },
+      message: { label: 'How can we help?', placeholder: 'We help manage and resolve online data exposure' },
     },
   },
   fr: {
@@ -6386,7 +6386,7 @@ const blogListCopy: Record<
 > = {
   en: {
     kicker: 'Traceremove Blog',
-    title: 'Journal for reputation-led teams',
+    title: 'We help manage and resolve online data exposure',
     subtitle: 'Frameworks across ORM, AI, cybersecurity, SEO, and web design.',
     intro:
       'Explore the operating manuals we use with clients shipping fast. Every article includes actionable workflows, checklists, and measurement rituals you can adapt today.',
@@ -6499,7 +6499,7 @@ const blogArticleCopy: Record<
     copied: 'Link copied',
     ctaTitle: 'Need a rapid response team?',
     ctaBody:
-      'Bring Traceremove into your brand room to design counter-narratives, remove fake reviews, and harden search trust across markets.',
+      'We help manage and resolve online data exposure',
     ctaButton: 'Book a strategy call',
     tocTitle: 'Navigate this playbook',
     tocHint: 'Jump to any section while the growth meter tracks your read.',
@@ -7947,7 +7947,7 @@ const legalCopy: Record<
           heading: 'Data protection commitments',
           body: [
             'We implement role-based access controls, hardware security keys, and continuous monitoring so only the right people can see the right records at the right time.',
-            'Our data retention schedules ensure we delete or anonymise records when contracts end or regulations require it, and every vendor undergoes annual security reviews.',
+            'We help manage and resolve online data exposure',
           ],
         },
         {
@@ -8405,7 +8405,7 @@ const footerCopy: Record<
     terms: 'Terms of service',
     refund: 'Refund policy',
     subscribeTitle: 'Stay in the loop',
-    subscribeSubtitle: 'Receive frameworks, playbooks, and release notes from our growth and reputation lab.',
+    subscribeSubtitle: 'We help manage and resolve online data exposure',
     subscribePlaceholder: 'Your email address',
     subscribeCta: 'Subscribe',
     subscribeSuccess: 'Thanks for subscribing — check your inbox for a confirmation.',
@@ -8991,7 +8991,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
             name: 'Traceremove',
           },
           areaServed: 'Global',
-          serviceType: 'Online reputation management',
+          serviceType: 'We help manage and resolve online data exposure',
           url: `${window.location.origin}${location.pathname}`,
         },
       ],

@@ -117,7 +117,7 @@ export const blogTopics: BlogTopic[] = ['orm', 'ai', 'cybersecurity', 'seo', 'we
 
 export const blogTopicLabels: Record<Language, Record<BlogTopic, string>> = {
   en: {
-    orm: 'Online Reputation Management',
+    orm: 'We help manage and resolve online data exposure',
     ai: 'Artificial Intelligence',
     cybersecurity: 'Cybersecurity',
     seo: 'Search Engine Optimization',
@@ -153,7 +153,7 @@ const buildEnglishBody = (seed: BodySeed): BlogArticleSection[] => [
     ],
   },
   {
-    heading: 'Data guardrails against reputation shocks',
+    heading: 'We help manage and resolve online data exposure',
     paragraphs: [
       `Our engineering pod automates ${seed.dataHook.en}, instrumenting connectors that stream Search Console, review platforms, ad transparency reports, and scraped SERP features into a unified lakehouse. Machine learning models highlight anomalies—the sudden arrival of templated fake reviews, the appearance of policy disclaimers, or the loss of FAQ markup—so the marketing lead knows where to intervene before conversion drops. We pair these dashboards with human QA, replaying incognito searches, cross-referencing with social listening, and attaching screenshots to every alert so no stakeholder has to imagine the threat. Because each insight is timestamped and contextualized, you can brief legal, PR, and product with a shared artifact rather than a guess, keeping remediation aligned and defensible.`,
     ],
@@ -372,7 +372,7 @@ const articleSeeds: ArticleSeed[] = [
     publishedAt: '2024-03-07',
     translation: {
       title: t(
-        'Brand Safety Search Command Center: Protecting Revenue from Reputation Shocks',
+        'We help manage and resolve online data exposure',
         'Centre de commandement de la sécurité de marque : protéger les revenus des chocs de réputation',
         'Centro de comando de seguridad de marca: proteger ingresos de sobresaltos reputacionales',
       ),
@@ -400,7 +400,7 @@ const articleSeeds: ArticleSeed[] = [
       ),
       bodySeed: {
         titleContext: t(
-          'enterprise brand safety programmes focused on search and reputation',
+          'We help manage and resolve online data exposure',
           'des programmes de sécurité de marque orientés search et réputation pour les grandes entreprises',
           'programas de seguridad de marca enfocados en search y reputación para empresas',
         ),
@@ -517,7 +517,7 @@ const articleSeeds: ArticleSeed[] = [
     publishedAt: '2024-03-11',
     translation: {
       title: t(
-        'Insider Brand Habits: Micro-Moves that Keep SEO and Reputation Agile',
+        'We help manage and resolve online data exposure',
         'Habitudes d’initiés : micro-actions pour une SEO et une réputation agiles',
         'Hábitos internos: micromovimientos para una SEO y reputación ágiles',
       ),
@@ -874,13 +874,13 @@ const articleSeeds: ArticleSeed[] = [
     },
   },
   {
-    id: 'global-brand-reputation',
-    slug: 'global-brand-reputation-defence',
+    id: 'We help manage and resolve online data exposure',
+    slug: 'We help manage and resolve online data exposure',
     topic: 'orm',
     publishedAt: '2024-03-21',
     translation: {
       title: t(
-        'Global Brand Reputation: Synchronising SEO Defences Across Markets',
+        'We help manage and resolve online data exposure',
         'Réputation globale : synchroniser les défenses SEO sur tous les marchés',
         'Reputación global: sincronizar defensas SEO en todos los mercados',
       ),
@@ -891,7 +891,7 @@ const articleSeeds: ArticleSeed[] = [
       ),
       heroKicker: t('Global Strategy Dossier', 'Dossier stratégie globale', 'Dossier de estrategia global'),
       seoTitle: t(
-        'Global Brand Reputation Defence | Traceremove',
+        'We help manage and resolve online data exposure',
         'Défense de réputation globale | Traceremove',
         'Defensa de reputación global | Traceremove',
       ),
@@ -908,7 +908,7 @@ const articleSeeds: ArticleSeed[] = [
       ),
       bodySeed: {
         titleContext: t(
-          'multinational reputation programmes spanning continents',
+          'We help manage and resolve online data exposure',
           'des programmes de réputation multinationaux couvrant plusieurs continents',
           'programas de reputación multinacionales que abarcan continentes',
         ),
@@ -938,9 +938,9 @@ const articleSeeds: ArticleSeed[] = [
           'gremios regionales de respuesta rápida que unen traductores, abogados y directores creativos',
         ),
         service: t(
-          'Traceremove’s Global Reputation Command programme orchestrating 24/7 coverage',
-          'le programme Global Reputation Command de Traceremove orchestrant une couverture 24/7',
-          'el programa Global Reputation Command de Traceremove que orquesta cobertura 24/7',
+          'We help manage and resolve online data exposure',
+          'We help manage and resolve online data exposure',
+          'We help manage and resolve online data exposure',
         ),
       },
     },
@@ -968,7 +968,7 @@ const articleSeeds: ArticleSeed[] = [
         'SEO de marca personal ejecutiva | Traceremove',
       ),
       seoDescription: t(
-        'Craft authoritative executive search results with Traceremove’s blend of storytelling, visual identity, and reputation defence.',
+        'We help manage and resolve online data exposure',
         'Façonnez des résultats exécutifs crédibles grâce au mix storytelling, identité visuelle et défense de réputation de Traceremove.',
         'Construya resultados ejecutivos autorizados con la combinación de storytelling, identidad visual y defensa reputacional de Traceremove.',
       ),

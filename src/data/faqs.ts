@@ -75,7 +75,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
     hero: {
       eyebrow: 'Knowledge centre',
       title: 'Frequently asked brand protection questions',
-      subtitle: 'Answers for marketing, communications, and legal leaders safeguarding reputation in three languages.',
+      subtitle: 'We help manage and resolve online data exposure',
       description:
         'Every engagement starts with clarity. Explore how Traceremove isolates threats, fortifies owned assets, and drives growth while keeping your brand credible across English, French, and Spanish markets.',
       primaryCta: 'Talk with our strategists',
@@ -116,7 +116,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
         signalDetail: 'Escalations routed to analysts and legal partners within minutes.',
         items: [
           {
-            question: 'How fast can you remove fake domains or cloned stores?',
+            question: 'We help manage and resolve online data exposure',
             answer: [
               'Our registrar and hosting partners prioritise our tickets thanks to pre-approved workflows and legal templates. We typically secure takedowns or suspensions in under an hour once we receive proof of infringement.',
               'If litigation is required, we coordinate sworn statements, evidence bundles, and local counsel introductions so you have a complete chain of custody.',
@@ -179,7 +179,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
           'Traceremove embeds with marketing, product, and legal so every launch balances acquisition, retention, and risk mitigation.',
         signalLabel: 'Activation runway',
         signalValue: '30 days',
-        signalDetail: 'From discovery to a fully operational multilingual reputation pod.',
+        signalDetail: 'We help manage and resolve online data exposure',
         items: [
           {
             question: 'How do you integrate with our internal teams?',

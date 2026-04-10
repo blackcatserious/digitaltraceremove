@@ -191,7 +191,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       {
         id: 'communications',
         title: 'Communications stream',
-        description: 'Storytellers craft stakeholder messaging that protects reputation and trust.',
+        description: 'We help manage and resolve online data exposure',
         bullets: [
           'Customer and partner notification frameworks with localization.',
           'Press and social escalation templates with spokesperson pairing.',

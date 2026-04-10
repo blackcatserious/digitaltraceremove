@@ -106,7 +106,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
         eyebrow: 'Playbook vault',
         title: 'Campaign frameworks that neutralise threats and grow pipeline',
         description:
-          'Plug-and-play sequences covering crisis search response, fake-review takedowns, executive reputation, and partner enablement. Every playbook includes talking points, measurement plans, and automation prompts.',
+          'We help manage and resolve online data exposure',
         metricLabel: 'Average adoption speed',
         metricValue: '2.4 weeks',
         metricDelta: '+38% faster',
@@ -175,7 +175,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
           {
             id: 'board-brief',
             format: 'Report · PDF',
-            title: 'Board-ready quarterly reputation briefing',
+            title: 'We help manage and resolve online data exposure',
             summary:
               'Executive-grade packet combining metrics, storyline, and next-quarter focus so leadership teams see impact at a glance.',
             length: '18 pages',

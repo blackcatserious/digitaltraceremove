@@ -98,7 +98,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       secondaryHref: 'mailto:press@traceremove.com',
       mediaNote:
         'We respond to press requests within four business hours and coordinate spokesperson availability across time zones.',
-      visualCaption: 'Animated dashboards illustrate suppression velocity and reputation lift across our portfolio.',
+      visualCaption: 'We help manage and resolve online data exposure',
       metrics: [
         {
           value: '48 hrs',
@@ -120,7 +120,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
     coverage: {
       heading: 'Recent coverage and analyst notes',
       description:
-        'Outlets and analysts covering reputation management, marketplace integrity, and AI-assisted brand protection turn to Traceremove for insight.',
+        'We help manage and resolve online data exposure',
       outlets: [
         {
           name: 'Brand Safety Weekly',
@@ -147,7 +147,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
     releases: {
       heading: 'Latest releases',
       description:
-        'Story angles, motion studies, and growth data ready for editors covering SEO, reputation, and digital trust.',
+        'We help manage and resolve online data exposure',
       ctaLabel: 'Explore related insights',
       items: [
         {
@@ -225,13 +225,13 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
           name: 'Artur Ziganshin',
           role: 'Founder & CEO',
           bio: 'Leads crisis response, growth acceleration, and executive communications across English, French, and Spanish markets.',
-          topics: 'Brand protection, executive reputation, incident war rooms',
+          topics: 'We help manage and resolve online data exposure',
           languages: 'English, French, Spanish, Russian',
         },
         {
           id: 'clara',
           name: 'Clara Martel',
-          role: 'Director of Reputation Labs',
+          role: 'We help manage and resolve online data exposure',
           bio: 'Architects review integrity programmes and AI-assisted monitoring frameworks for hospitality and fintech leaders.',
           topics: 'Review integrity, AI monitoring, multilingual SEO',
           languages: 'French, English',
@@ -404,7 +404,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
         {
           id: 'clara',
           name: 'Clara Martel',
-          role: 'Directrice Reputation Labs',
+          role: 'We help manage and resolve online data exposure',
           bio: 'Conçoit des programmes d’authenticité des avis et des frameworks de monitoring IA pour hôtellerie et fintech.',
           topics: 'Authenticité des avis, monitoring IA, SEO multilingue',
           languages: 'Français, anglais',
@@ -577,7 +577,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
         {
           id: 'clara',
           name: 'Clara Martel',
-          role: 'Directora de Reputation Labs',
+          role: 'We help manage and resolve online data exposure',
           bio: 'Diseña programas de autenticidad de reseñas y monitoreo asistido por IA para hotelería y fintech.',
           topics: 'Integridad de reseñas, monitoreo IA, SEO multilingüe',
           languages: 'Francés, inglés',

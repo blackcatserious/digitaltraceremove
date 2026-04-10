@@ -416,7 +416,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       eyebrow: 'Services & Pricing',
       heading: 'Choose the squad that protects your brand while shipping growth.',
       body:
-        'Every engagement is led by Founder & CEO Artur Ziganshin with a multilingual core team covering reputation recovery, demand generation, and product storytelling. Use the packages below to benchmark investment, then we tailor the scope to your velocity.',
+        'We help manage and resolve online data exposure',
       primaryCta: 'Start a custom scope',
       secondaryCta: 'Download pricing PDF',
       note: 'Average ramp time: 10 business days from kickoff.',
@@ -425,7 +425,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       title: 'What you unlock with Traceremove',
       paragraphs: [
         'We operate as an extension of your leadership team, pairing growth strategists, security engineers, and creative directors who already collaborate across English, French, and Spanish markets.',
-        'Every plan combines motion-rich storytelling, performance experimentation, and rapid incident response so your reputation is defended while pipeline keeps scaling.',
+        'We help manage and resolve online data exposure',
       ],
       bullets: [
         'Founder-led diagnostics with direct access to Artur Ziganshin throughout the engagement.',
@@ -438,7 +438,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       subtitle: 'Blend the pods you need—each plan includes these building blocks.',
       items: [
         {
-          title: 'Brand defense & reputation control',
+          title: 'We help manage and resolve online data exposure',
           description:
             'Monitoring, takedowns, and community management that keep fake reviews, phishing domains, and negative narratives from compounding.',
           bullets: [
@@ -479,7 +479,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           price: '$6,800 / month',
           cadence: '3-month minimum',
           description: 'Rapid response squad to clean risk, relaunch trust signals, and prime growth experiments.',
-          highlight: 'Best for teams entering a new market or recovering from reputation shocks.',
+          highlight: 'We help manage and resolve online data exposure',
           features: [
             'Daily monitoring + takedown execution across three priority channels.',
             'Two motion-enabled campaign launches per month with creative + analytics support.',
@@ -629,7 +629,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           duration: 'Week 1',
           description: 'Stakeholder interviews, data access, and threat inventory to map the current state.',
           outputs: [
-            'Reputation & growth diagnostic with prioritized risks.',
+            'We help manage and resolve online data exposure',
             'Access checklist + instrumentation readiness score.',
           ],
         },
@@ -645,7 +645,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           title: 'Activation sprints',
           duration: 'Weeks 4-12',
-          description: 'Cross-functional pods launch campaigns, harden reputation layers, and automate reporting.',
+          description: 'We help manage and resolve online data exposure',
           outputs: [
             'Weekly releases across creative, lifecycle, and product surfaces.',
             'Looker Studio dashboard suite with live commentary.',
@@ -850,7 +850,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           title: 'Always-on observability',
           cadence: 'Real-time',
           description:
-            'Motion dashboards push live alerts, review queues, and reputation health scores across devices.',
+            'We help manage and resolve online data exposure',
           deliverables: [
             'Slack + email notifications for threat detections and SLA checkpoints.',
             '24/7 analytics portal with localized drilldowns and audit-ready exports.',
@@ -875,7 +875,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           id: 'hospitality',
           name: 'Luxury hospitality groups',
           challenge: 'Viral rumor cycles suppressing direct bookings across EMEA and the Americas.',
-          approach: 'On-site reputation SWAT pairs UGC activations with concierge enablement in English, French, and Spanish.',
+          approach: 'We help manage and resolve online data exposure',
           metric: '+22% direct bookings restored within eight weeks.',
           proof: 'Paris & Barcelona flagships regained share post influencer partnerships.',
         },
@@ -900,7 +900,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
     transformations: {
       title: 'Transformation stories from the field',
       subtitle:
-        'Representative engagements showing how our pods blend reputation defense, growth momentum, and executive enablement.',
+        'We help manage and resolve online data exposure',
       stories: [
         {
           id: 'latam-fintech',
@@ -1029,7 +1029,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       ],
     },
     resilience: {
-      title: 'War-room simulations that harden your reputation perimeter',
+      title: 'We help manage and resolve online data exposure',
       subtitle:
         'We choreograph full-spectrum drills with your comms, legal, and product squads so every threat triggers decisive action.',
       drills: [
@@ -1293,7 +1293,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           title: 'Spoofed domain takedown',
           responseTime: '15-minute first action',
           description:
-            'Domain desk synchronizes legal counsel, paid media, and registrar partners to remove or reroute malicious clones.',
+            'We help manage and resolve online data exposure',
           stages: [
             'Signal detection flags registrar, hosting, and DNS data with screenshots.',
             'Automated outreach packages dispatch to registrar and ad platforms.',
@@ -1323,7 +1323,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
             'Stakeholder comms kit with scripts deploys to investors, partners, and teams.',
             'Trust campaigns refresh paid/owned channels with verified messaging.',
           ],
-          outcome: 'False persona removed and reputation pulse stabilised within hours.',
+          outcome: 'We help manage and resolve online data exposure',
         },
       ],
     },
@@ -1357,14 +1357,14 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
           name: 'Trustpilot · Google Business Profile',
           category: 'Review ecosystems',
           description:
-            'Authenticate reviews, dispute fraud, and publish proof points directly from the platforms where prospects validate your reputation.',
+            'We help manage and resolve online data exposure',
           coverage: 'Content policies aligned in English, French, and Spanish with daily monitoring.',
         },
         {
           name: 'Zendesk · Intercom · Gorgias',
           category: 'Customer care',
           description:
-            'Loop CS and reputation squads together so escalations, macros, and proactive outreach live inside the tools your agents use every hour.',
+            'We help manage and resolve online data exposure',
           coverage: 'Playbooks and automations deployed within 10 days including localization.',
         },
         {

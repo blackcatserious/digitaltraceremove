@@ -299,7 +299,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
         },
         {
           id: 'marketing',
-          title: 'Growth & reputation view',
+          title: 'We help manage and resolve online data exposure',
           description:
             'Maps SERP shifts, paid spend protections, and review authenticity trends so marketing teams can reallocate budget confidently.',
           metric: 'Connects to GA4, Search Console, and marketplace APIs.',
@@ -556,7 +556,7 @@ export const commandCenterCopy: Record<Language, CommandCenterCopy> = {
           month: 'January',
           focus: 'Cross-market misinformation cascade',
           lead: 'Hosted by Artur with regional leads running live newsroom drills.',
-          readiness: 'Aligns paid, PR, and legal messaging for multilingual reputation shocks.',
+          readiness: 'We help manage and resolve online data exposure',
         },
         {
           id: 'apr',
