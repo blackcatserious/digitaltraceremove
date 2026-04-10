@@ -39,6 +39,9 @@ import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
 import PricingSection from './components/PricingSection'
+import TermsPage from './pages/Terms'
+import PrivacyPage from './pages/Privacy'
+import RefundPage from './pages/Refund'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -9070,9 +9073,9 @@ function App() {
         <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
-        <Route path="privacy" element={<SimpleLegalPage type="privacy" />} />
-        <Route path="terms" element={<SimpleLegalPage type="terms" />} />
-        <Route path="refund" element={<SimpleLegalPage type="refund" />} />
+        <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="terms" element={<TermsPage />} />
+        <Route path="refund" element={<RefundPage />} />
         {languages.map((language) => (
           <Fragment key={language}>
             <Route path={language} element={<HomePage />} />
