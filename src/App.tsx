@@ -47,6 +47,7 @@ import ScanSection from './components/ScanSection'
 import CaseStudiesSection from './components/CaseStudiesSection'
 import FAQSection from './components/FAQSection'
 import FinalCTA from './components/FinalCTA'
+import HeroCanvas from './components/HeroCanvas'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
@@ -2497,7 +2498,8 @@ const HomePage = () => {
   return (
     <section className="home">
       <div className="home-hero">
-        <div className="home-hero-copy">
+        <HeroCanvas />
+        <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
           <h1>{heroHeading}</h1>
           <p>
             Traceremove provides structured tools and managed workflows to identify, monitor, and resolve online data
