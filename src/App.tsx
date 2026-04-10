@@ -2499,8 +2499,11 @@ const HomePage = () => {
           </a>
           <div className="trust-strip">
             <span><strong>500+</strong> cases resolved</span>
+            <span className="trust-sep">·</span>
             <span><strong>98%</strong> success rate</span>
+            <span className="trust-sep">·</span>
             <span><strong>30–90 day</strong> results</span>
+            <span className="trust-sep">·</span>
             <span><strong>New York, NY</strong></span>
           </div>
         </div>

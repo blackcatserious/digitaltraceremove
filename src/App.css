@@ -15823,6 +15823,11 @@ body,
   overflow-wrap: anywhere;
 }
 
+.trust-strip { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.trust-sep { color: rgba(255,255,255,0.3); font-size: 14px; }
+.trust-strip span { font-size: 13px; opacity: 0.85; }
+.trust-strip strong { opacity: 1; font-weight: 600; }
+
 @media (max-width: 900px) {
   .content {
     gap: 2.25rem;
