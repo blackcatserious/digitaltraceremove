@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --navy: #0A0F1E;
+  --navy-mid: #131929;
+  --navy-light: #1C2540;
+  --white: #FAFAFA;
+  --gold: #C8A96E;
+  --gold-light: #E2C99A;
+  --blue: #1854E8;
+  --blue-light: #4A7CF0;
+  --gray: #6B7280;
+  --border: #E5E7EB;
+  --text: #1A1A2E;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
 :root {
   color-scheme: dark;
 }
