@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.site-footer {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.site-footer p {
+  margin: 0.125rem 0;
+}
