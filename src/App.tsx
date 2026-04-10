@@ -2491,25 +2491,31 @@ const HomePage = () => {
             Negative press, false reviews, damaging forum posts — removed or permanently suppressed. Trusted by law
             firms, PR agencies, and corporate clients across North America and Europe.
           </p>
-          <Link className="button primary" to={getContactPath(currentLanguage)}>
-            Request Confidential Assessment →
-          </Link>
-          <a
-            className="button secondary"
-            href="/case-studies"
-            style={{
-              background: 'transparent',
-              border: '1px solid rgba(255,255,255,0.5)',
-              color: '#ffffff',
-              padding: '12px 24px',
-              borderRadius: '8px',
-              fontSize: '14px',
-              cursor: 'pointer',
-              opacity: 1,
-            }}
-          >
-            View Case Studies
-          </a>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <Link
+              className="button primary"
+              to={getContactPath(currentLanguage)}
+              style={{ display: 'inline-flex', width: 'auto', padding: '14px 32px' }}
+            >
+              Request Confidential Assessment →
+            </Link>
+            <a
+              className="button secondary"
+              href="/case-studies"
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.5)',
+                color: '#ffffff',
+                padding: '12px 24px',
+                borderRadius: '8px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                opacity: 1,
+              }}
+            >
+              View Case Studies
+            </a>
+          </div>
           <div className="trust-strip">
             <span><strong>500+</strong> cases resolved</span>
             <span className="trust-sep">·</span>
