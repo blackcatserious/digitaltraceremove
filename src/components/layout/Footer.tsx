@@ -11,5 +11,6 @@ export default function Footer(){return(
 <div style={{borderTop:"1px solid rgba(255,255,255,0.03)",paddingTop:20,display:"flex",flexWrap:"wrap",justifyContent:"space-between",gap:8}}>
 <span style={{fontSize:12,color:"#3a3a45"}}>&copy; 2026 Artur Ziganshin</span>
 <span style={{fontSize:12,color:"#3a3a45"}}>Master of Philosophy &middot; PhD of Philosophy</span>
+<span style={{fontSize:12,color:"#3a3a45",whiteSpace:"pre-line"}}>{"TRACEREMOVE LLC\n750 Manhattan Ave\nBrooklyn, NY 11222, USA\nsupport@traceremove.com"}</span>
 </div></div></footer>);}
 function FL({h,children,x}:{h:string;children:React.ReactNode;x?:boolean}){return<a href={h} target={x?"_blank":undefined} rel={x?"noopener noreferrer":undefined} style={{display:"block",fontSize:13,color:"#6a6a78",textDecoration:"none",padding:"4px 0"}}>{children}</a>;}
