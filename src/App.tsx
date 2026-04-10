@@ -2705,7 +2705,7 @@ const HomePage = () => {
       <div className="home-banner">
         <p>
           {heroCta} — <a href="mailto:contact@traceremove.com">contact@traceremove.com</a> ·{' '}
-          <a href="tel:+16063022958">+1 606 302 2958</a>
+          <a href="tel:+16063022958">+1 (472) 248 0235</a>
         </p>
       </div>
     </section>
@@ -2833,7 +2833,7 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
             contact@traceremove.com
           </a>
           <a className="button secondary" href="tel:+16063022958">
-            +1 606 302 2958
+            +1 (472) 248 0235
           </a>
         </div>
       </section>
@@ -4137,7 +4137,7 @@ const TeamPage = () => {
               contact@traceremove.com
             </a>
             <a className="button secondary" href="tel:+16063022958">
-              +1 606 302 2958
+              +1 (472) 248 0235
             </a>
           </div>
         </div>
@@ -5979,7 +5979,7 @@ const PartnersPage = () => {
             contact@traceremove.com
           </a>
           <a className="button secondary" href="tel:+16063022958">
-            +1 606 302 2958
+            +1 (472) 248 0235
           </a>
         </div>
       </section>
@@ -6091,7 +6091,7 @@ const contactCopy: Record<
     detailTitle: 'Prefer a direct line?',
     detailPoints: [
       'Email contact@traceremove.com for quick scoping questions and proposals.',
-      'Call +1 606 302 2958 Monday to Friday, 9am–6pm EST for immediate assistance.',
+      'Call +1 (472) 248 0235 Monday to Friday, 9am–6pm EST for immediate assistance.',
       'Book a 30-minute strategy session to leave with a prioritised roadmap and next steps.',
     ],
     successTitle: 'Thanks for reaching out',
@@ -6116,7 +6116,7 @@ const contactCopy: Record<
     detailTitle: 'Besoin d’un échange direct ?',
     detailPoints: [
       'Écrivez à contact@traceremove.com pour un cadrage rapide de votre projet.',
-      'Appelez le +1 606 302 2958 du lundi au vendredi, 9h–18h EST.',
+      'Appelez le +1 (472) 248 0235 du lundi au vendredi, 9h–18h EST.',
       'Réservez une session stratégique de 30 minutes pour repartir avec un plan priorisé.',
     ],
     successTitle: 'Merci pour votre message',
@@ -6141,7 +6141,7 @@ const contactCopy: Record<
     detailTitle: '¿Prefieres un contacto directo?',
     detailPoints: [
       'Escribe a contact@traceremove.com para dudas rápidas sobre alcance y propuestas.',
-      'Llama al +1 606 302 2958 de lunes a viernes, 9h–18h EST.',
+      'Llama al +1 (472) 248 0235 de lunes a viernes, 9h–18h EST.',
       'Agenda una sesión estratégica de 30 minutos y obtén un plan priorizado.',
     ],
     successTitle: 'Gracias por escribirnos',
@@ -6300,7 +6300,7 @@ const ContactPage = ({ language }: { language: Language }) => {
               contact@traceremove.com
             </a>
             <a className="button secondary" href="tel:+16063022958">
-              +1 606 302 2958
+              +1 (472) 248 0235
             </a>
           </div>
         </aside>
@@ -7632,7 +7632,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             Request Assessment
           </NavLink>
           <a className="button ghost" href="tel:+16063022958">
-            +1 606 302 2958
+            +1 (472) 248 0235
           </a>
         </div>
 
@@ -7870,7 +7870,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 contact@traceremove.com
               </a>
               <a className="tr-mobile-link" href="tel:+16063022958" onClick={handleCloseMobile}>
-                +1 606 302 2958
+                +1 (472) 248 0235
               </a>
             </div>
             <div className="tr-mobile-section">
@@ -7974,7 +7974,7 @@ const legalCopy: Record<
       ctaLabel: 'Open the contact form',
       secondaryLabel: 'Email privacy@traceremove.com',
       secondaryHref: 'mailto:privacy@traceremove.com',
-      supportPhone: { label: 'Call +1 606 302 2958 to reach our privacy desk.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Call +1 (472) 248 0235 to reach our privacy desk.', href: 'tel:+16063022958' },
     },
     terms: {
       kicker: 'Legal center',
@@ -8035,7 +8035,7 @@ const legalCopy: Record<
       ctaLabel: 'Discuss an engagement',
       secondaryLabel: 'Email legal@traceremove.com',
       secondaryHref: 'mailto:legal@traceremove.com',
-      supportPhone: { label: 'Call +1 606 302 2958 for urgent contract questions.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Call +1 (472) 248 0235 for urgent contract questions.', href: 'tel:+16063022958' },
     },
   },
   fr: {
@@ -8098,7 +8098,7 @@ const legalCopy: Record<
       ctaLabel: 'Accéder au formulaire de contact',
       secondaryLabel: 'Écrire à privacy@traceremove.com',
       secondaryHref: 'mailto:privacy@traceremove.com',
-      supportPhone: { label: 'Appelez le +1 606 302 2958 pour joindre notre cellule conformité.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Appelez le +1 (472) 248 0235 pour joindre notre cellule conformité.', href: 'tel:+16063022958' },
     },
     terms: {
       kicker: 'Espace légal',
@@ -8159,7 +8159,7 @@ const legalCopy: Record<
       ctaLabel: 'Discuter d’une collaboration',
       secondaryLabel: 'Écrire à legal@traceremove.com',
       secondaryHref: 'mailto:legal@traceremove.com',
-      supportPhone: { label: 'Appelez le +1 606 302 2958 pour toute question contractuelle urgente.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Appelez le +1 (472) 248 0235 pour toute question contractuelle urgente.', href: 'tel:+16063022958' },
     },
   },
   es: {
@@ -8222,7 +8222,7 @@ const legalCopy: Record<
       ctaLabel: 'Abrir el formulario de contacto',
       secondaryLabel: 'Escribe a privacy@traceremove.com',
       secondaryHref: 'mailto:privacy@traceremove.com',
-      supportPhone: { label: 'Llámanos al +1 606 302 2958 y pide hablar con nuestro equipo de privacidad.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Llámanos al +1 (472) 248 0235 y pide hablar con nuestro equipo de privacidad.', href: 'tel:+16063022958' },
     },
     terms: {
       kicker: 'Centro legal',
@@ -8283,7 +8283,7 @@ const legalCopy: Record<
       ctaLabel: 'Hablar sobre una colaboración',
       secondaryLabel: 'Comparte términos en legal@traceremove.com',
       secondaryHref: 'mailto:legal@traceremove.com',
-      supportPhone: { label: 'Habla con nosotros en el +1 606 302 2958 para resolver preguntas contractuales urgentes.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Habla con nosotros en el +1 (472) 248 0235 para resolver preguntas contractuales urgentes.', href: 'tel:+16063022958' },
     },
   },
 }
@@ -8385,7 +8385,7 @@ const footerCopy: Record<
     officeHeading: 'Presence hubs',
     officeLocations: ['Montréal · North America HQ', 'Paris · EU lead desk', 'Madrid · Iberia growth pod'],
     hotlineHeading: 'Critical escalation',
-    hotlineBody: 'Message or call +1 606 302 2958 for urgent takedowns — we respond within 60 minutes.',
+    hotlineBody: 'Message or call +1 (472) 248 0235 for urgent takedowns — we respond within 60 minutes.',
     servicesPricing: 'Services & pricing',
     about: 'About us',
     caseStudies: 'Case studies',
@@ -8424,7 +8424,7 @@ const footerCopy: Record<
     officeHeading: 'Pôles de présence',
     officeLocations: ['Montréal · QG Amériques', 'Paris · Hub Europe', 'Madrid · Cellule Ibérie'],
     hotlineHeading: 'Escalade critique',
-    hotlineBody: 'Écrivez ou appelez le +1 606 302 2958 pour une suppression urgente — réponse sous 60 minutes.',
+    hotlineBody: 'Écrivez ou appelez le +1 (472) 248 0235 pour une suppression urgente — réponse sous 60 minutes.',
     servicesPricing: 'Services & tarifs',
     about: 'À propos',
     caseStudies: 'Études de cas',
@@ -8462,7 +8462,7 @@ const footerCopy: Record<
     officeHeading: 'Centros de presencia',
     officeLocations: ['Montreal · HQ Norteamérica', 'París · Oficina Europa', 'Madrid · Equipo Iberia'],
     hotlineHeading: 'Escalada crítica',
-    hotlineBody: 'Escríbenos o llama al +1 606 302 2958 para urgencias — respondemos en menos de 60 minutos.',
+    hotlineBody: 'Escríbenos o llama al +1 (472) 248 0235 para urgencias — respondemos en menos de 60 minutos.',
     servicesPricing: 'Servicios y precios',
     about: 'Sobre nosotros',
     caseStudies: 'Casos de éxito',
@@ -8490,9 +8490,9 @@ const footerCopy: Record<
 }
 
 const callWidgetCopy: Record<Language, { label: string; assist: string }> = {
-  en: { label: 'Call +1 606 302 2958', assist: 'Speak with TraceRemove Advisor' },
-  fr: { label: 'Appelez +1 606 302 2958', assist: 'Échangez avec TraceRemove Advisor' },
-  es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con TraceRemove Advisor' },
+  en: { label: 'Call +1 (472) 248 0235', assist: 'Speak with TraceRemove Advisor' },
+  fr: { label: 'Appelez +1 (472) 248 0235', assist: 'Échangez avec TraceRemove Advisor' },
+  es: { label: 'Llama al +1 (472) 248 0235', assist: 'Habla con TraceRemove Advisor' },
 }
 
 type SocialKey =
@@ -8828,7 +8828,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         </div>
         <div className="tr-footer__contact">
           <a href="mailto:contact@traceremove.com">contact@traceremove.com</a>
-          <a href="tel:+16063022958">+1 606 302 2958</a>
+          <a href="tel:+16063022958">+1 (472) 248 0235</a>
           <p>{copy.founder}</p>
           <form className="tr-footer__subscribe" onSubmit={handleSubmit} noValidate>
             <div>

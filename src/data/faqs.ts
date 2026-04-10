@@ -246,8 +246,8 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
         'Urgent matters trigger our 24/7 escalation desk with registrar, marketplace, and legal partners looped in instantly.',
       ],
       channels: [
-        { label: 'Escalation hotline', detail: '+1 606 302 2958 · 24/7' },
-        { label: 'WhatsApp command desk', detail: '+1 606 302 2958' },
+        { label: 'Escalation hotline', detail: '+1 (472) 248 0235 · 24/7' },
+        { label: 'WhatsApp command desk', detail: '+1 (472) 248 0235' },
         { label: 'Email', detail: 'contact@traceremove.com' },
       ],
       ctaLabel: 'Open the contact form',
@@ -431,8 +431,8 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
         'Les urgences déclenchent notre desk 24/7 avec registraires, marketplaces et partenaires juridiques mobilisés instantanément.',
       ],
       channels: [
-        { label: 'Hotline d’escalade', detail: '+1 606 302 2958 · 24/7' },
-        { label: 'WhatsApp command desk', detail: '+1 606 302 2958' },
+        { label: 'Hotline d’escalade', detail: '+1 (472) 248 0235 · 24/7' },
+        { label: 'WhatsApp command desk', detail: '+1 (472) 248 0235' },
         { label: 'Email', detail: 'contact@traceremove.com' },
       ],
       ctaLabel: 'Ouvrir le formulaire',
@@ -616,8 +616,8 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
         'Las urgencias activan nuestra mesa 24/7 con registradores, marketplaces y aliados legales listos para intervenir.',
       ],
       channels: [
-        { label: 'Línea de escalación', detail: '+1 606 302 2958 · 24/7' },
-        { label: 'Desk WhatsApp', detail: '+1 606 302 2958' },
+        { label: 'Línea de escalación', detail: '+1 (472) 248 0235 · 24/7' },
+        { label: 'Desk WhatsApp', detail: '+1 (472) 248 0235' },
         { label: 'Email', detail: 'contact@traceremove.com' },
       ],
       ctaLabel: 'Abrir el formulario',
