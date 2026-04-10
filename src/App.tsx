@@ -28,6 +28,14 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <footer className="site-footer">
+        <p>TRACEREMOVE LLC</p>
+        <p>750 Manhattan Ave</p>
+        <p>Brooklyn, NY 11222, USA</p>
+        <p>
+          <a href="mailto:support@traceremove.com">support@traceremove.com</a>
+        </p>
+      </footer>
     </>
   )
 }
