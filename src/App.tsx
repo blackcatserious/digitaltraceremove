@@ -2449,7 +2449,7 @@ const homeServicesCopy: Record<
 }
 
 const homeHeroHeading: Record<Language, string> = {
-  en: 'Take control of your online data footprint',
+  en: 'We Remove Harmful Google Results for Businesses & Executives',
   fr: 'Des plans de services multilingues conçus pour accélérer votre momentum.',
   es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
 }
@@ -2488,12 +2488,21 @@ const HomePage = () => {
         <div className="home-hero-copy">
           <h1>{heroHeading}</h1>
           <p>
-            Traceremove is a digital platform that helps individuals and businesses monitor and manage online data
-            exposure.
+            Negative press, false reviews, damaging forum posts — removed or permanently suppressed. Trusted by law
+            firms, PR agencies, and corporate clients across North America and Europe.
           </p>
           <Link className="button primary" to={getContactPath(currentLanguage)}>
-            Get started
+            Request Confidential Assessment →
           </Link>
+          <a className="button secondary" href="/case-studies">
+            View Case Studies
+          </a>
+          <div className="trust-strip">
+            <span><strong>500+</strong> cases resolved</span>
+            <span><strong>98%</strong> success rate</span>
+            <span><strong>30–90 day</strong> results</span>
+            <span><strong>New York, NY</strong></span>
+          </div>
         </div>
       </div>
       <div>
