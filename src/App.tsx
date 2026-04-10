@@ -2454,18 +2454,6 @@ const homeHeroHeading: Record<Language, string> = {
   es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
 }
 
-const homeFounderCopy: Record<Language, string> = {
-  en: 'Founder & CEO leading every engagement with a senior core team operating across English, French, and Spanish markets.',
-  fr: 'Fondateur et CEO pilotant chaque mission avec un noyau senior actif sur les marchés anglophone, francophone et hispanophone.',
-  es: 'Fundador y CEO que lidera cada proyecto con un núcleo senior que opera en los mercados anglófono, francófono e hispanohablante.',
-}
-
-const homeTeamLinkCopy: Record<Language, string> = {
-  en: 'Meet the team',
-  fr: "Rencontrer l'équipe",
-  es: 'Conoce al equipo',
-}
-
 const serviceCardCta: Record<Language, string> = {
   en: 'Book this service',
   fr: 'Réserver ce service',
@@ -2483,8 +2471,6 @@ const HomePage = () => {
   const heroHeading = homeHeroHeading[currentLanguage]
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
-  const founderNote = homeFounderCopy[currentLanguage]
-  const teamLinkCopy = homeTeamLinkCopy[currentLanguage]
   const localizedServices = primaryServices.map((service) => ({
     key: service.key,
     accent: service.accent,
@@ -2500,52 +2486,14 @@ const HomePage = () => {
     <section className="home">
       <div className="home-hero">
         <div className="home-hero-copy">
-          <span className="home-badge">Traceremove · Digital Platform</span>
           <h1>{heroHeading}</h1>
           <p>
             Traceremove is a digital platform that helps individuals and businesses monitor and manage online data
             exposure.
           </p>
-          <div className="home-removal-cta">
-            <p className="home-removal-cta__label">We help manage and resolve online data exposure.</p>
-            <ul>
-              <li>Data exposure monitoring</li>
-              <li>Digital footprint analysis</li>
-              <li>Structured resolution workflows</li>
-            </ul>
-            <Link className="button primary" to={getContactPath(currentLanguage)}>
-              Get started
-            </Link>
-          </div>
-          <div className="home-cta">
-            <a className="button primary" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
-            </a>
-            <a className="button secondary" href="tel:+16063022958">
-              +1 606 302 2958
-            </a>
-          </div>
-          <div className="home-contact">
-            <p>
-              <strong>Artur Ziganshin</strong> — {founderNote}
-            </p>
-            <Link className="button ghost" to={getTeamPath(currentLanguage)}>
-              {teamLinkCopy}
-            </Link>
-          </div>
-        </div>
-        <div className="home-hero-visual" aria-hidden="true">
-          <div className="home-hero-visual__field" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
-          <GrowthSpark variant="light" size="md" className="home-hero-graph" />
-          <GrowthSpark variant="dark" size="sm" className="home-hero-graph home-hero-graph--offset" />
-          <div className="data-removal-animation" aria-hidden="true">
-            <p className="data-removal-animation__title">How removal works</p>
-            <span className="data-removal-animation__line">❌ old harmful result</span>
-            <span className="data-removal-animation__line">❌ fake review attack</span>
-            <span className="data-removal-animation__line">❌ sensitive data leak</span>
-            <span className="data-removal-animation__status">✅ cleaned and de-indexed</span>
-          </div>
+          <Link className="button primary" to={getContactPath(currentLanguage)}>
+            Get started
+          </Link>
         </div>
       </div>
       <div>
