@@ -38,6 +38,7 @@ import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
+import PricingSection from './components/PricingSection'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -2528,6 +2529,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <PricingSection />
       <div>
         <p>{''}</p>
         <p>
