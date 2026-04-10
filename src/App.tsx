@@ -39,6 +39,7 @@ import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
 import PricingSection from './components/PricingSection'
+import PlatformsSection from './components/PlatformsSection'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
@@ -2532,6 +2533,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <PlatformsSection />
       <PricingSection />
       <div>
         <p>{''}</p>
