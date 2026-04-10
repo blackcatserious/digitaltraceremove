@@ -15843,6 +15843,20 @@ body,
 }
 
 @media (max-width: 720px) {
+  .content * {
+    min-width: 0;
+  }
+
+  .content [class*='grid'],
+  .content [class*='__grid'] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .content section > div,
+  .content section > header {
+    width: 100%;
+  }
+
   .content {
     padding: 4rem 1rem 2.5rem;
     gap: 1.75rem;

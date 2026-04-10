@@ -2555,6 +2555,56 @@ const HomePage = () => {
         </p>
       </div>
 
+      <section className="home-production" aria-labelledby="home-provides-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">What Traceremove Provides</p>
+          <h2 id="home-provides-heading">What Traceremove Provides</h2>
+        </header>
+        <p>Traceremove provides structured digital solutions for managing online data exposure.</p>
+        <p>
+          Customers access tools and managed workflows to identify, monitor, and resolve data-related risks.
+        </p>
+      </section>
+
+      <section className="home-production" aria-labelledby="home-how-it-works-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">How it works</p>
+          <h2 id="home-how-it-works-heading">How it works</h2>
+        </header>
+        <div className="home-production__grid">
+          <article>
+            <h3>1. Identify data exposure</h3>
+          </article>
+          <article>
+            <h3>2. Analyze risk</h3>
+          </article>
+          <article>
+            <h3>3. Resolve through structured workflows</h3>
+          </article>
+        </div>
+      </section>
+
+      <section className="home-production" aria-labelledby="home-pricing-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">Simple pricing</p>
+          <h2 id="home-pricing-heading">Simple pricing</h2>
+        </header>
+        <div className="home-production__grid">
+          <article>
+            <h3>Starter</h3>
+            <p>$99/month</p>
+          </article>
+          <article>
+            <h3>Professional</h3>
+            <p>$299/month</p>
+          </article>
+          <article>
+            <h3>Advanced</h3>
+            <p>$799/month</p>
+          </article>
+        </div>
+      </section>
+
       <MomentumTicker variant="light" />
 
       <section className="home-reputation" aria-labelledby="home-reputation-heading">
