@@ -7405,19 +7405,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   const navLinks = useMemo(
     () => [
-      { label: copy.about, href: getAboutPath(currentLanguage) },
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
-      { label: copy.servicesPricing, href: getServicesPricingPath(currentLanguage) },
-      { label: copy.resources, href: getResourcesPath(currentLanguage) },
-      { label: copy.academy, href: getAcademyPath(currentLanguage) },
-      { label: copy.media, href: getMediaPath(currentLanguage) },
-      { label: copy.commandCenter, href: getCommandCenterPath(currentLanguage) },
-      { label: copy.trust, href: getTrustPath(currentLanguage) },
-      { label: copy.team, href: getTeamPath(currentLanguage) },
-      { label: copy.partners, href: getPartnersPath(currentLanguage) },
-      { label: copy.faq, href: getFaqPath(currentLanguage) },
-      { label: copy.blog, href: getBlogBasePath(currentLanguage) },
-      { label: copy.contact, href: getContactPath(currentLanguage) },
+      { label: 'For Agencies', href: getPartnersPath(currentLanguage) },
+      { label: 'Pricing', href: '/pricing' },
     ],
     [copy, currentLanguage]
   )
@@ -7630,7 +7620,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div className="tr-header__cta">
           <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
-            {copy.joinUs}
+            Request Assessment
           </NavLink>
           <a className="button ghost" href="tel:+16063022958">
             +1 606 302 2958
