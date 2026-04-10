@@ -2500,11 +2500,11 @@ const HomePage = () => {
     <section className="home">
       <div className="home-hero">
         <div className="home-hero-copy">
-          <span className="home-badge">Traceremove · Digital Agency</span>
+          <span className="home-badge">Traceremove · Digital Platform</span>
           <h1>{heroHeading}</h1>
           <p>{navCopy[currentLanguage].tagline}</p>
           <div className="home-removal-cta">
-            <p className="home-removal-cta__label">We remove harmful information and clean digital footprints.</p>
+            <p className="home-removal-cta__label">We help manage and resolve online data exposure.</p>
             <ul>
               <li>Removal of defamatory and fake content</li>
               <li>Digital footprint cleanup across search and social</li>
@@ -2544,6 +2544,15 @@ const HomePage = () => {
             <span className="data-removal-animation__status">✅ cleaned and de-indexed</span>
           </div>
         </div>
+      </div>
+      <div>
+        <p>
+          Traceremove is a digital platform that helps individuals and businesses monitor and manage their online
+          data footprint.
+        </p>
+        <p>
+          Users access structured tools and managed workflows to identify and resolve data exposure issues.
+        </p>
       </div>
 
       <MomentumTicker variant="light" />
@@ -8355,6 +8364,7 @@ const footerCopy: Record<
     join: string
     privacy: string
     terms: string
+    refund: string
     subscribeTitle: string
     subscribeSubtitle: string
     subscribePlaceholder: string
@@ -8364,7 +8374,7 @@ const footerCopy: Record<
 > = {
   en: {
     rights: 'All rights reserved.',
-    studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
+    studio: 'Traceremove is a multilingual digital platform crafting growth systems for bold teams.',
     founder: 'Founder & CEO Artur Ziganshin',
     detailHeading: 'Rapid protection details',
     detailPoints: [
@@ -8393,6 +8403,7 @@ const footerCopy: Record<
     join: 'Join us',
     privacy: 'Privacy policy',
     terms: 'Terms of service',
+    refund: 'Refund policy',
     subscribeTitle: 'Stay in the loop',
     subscribeSubtitle: 'Receive frameworks, playbooks, and release notes from our growth and reputation lab.',
     subscribePlaceholder: 'Your email address',
@@ -8402,7 +8413,7 @@ const footerCopy: Record<
   fr: {
     rights: 'Tous droits réservés.',
     studio:
-      "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
+      "Traceremove est une plateforme digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
     founder: 'Fondateur & CEO Artur Ziganshin',
     detailHeading: 'Détails de protection',
     detailPoints: [
@@ -8431,6 +8442,7 @@ const footerCopy: Record<
     join: 'Rejoignez-nous',
     privacy: 'Politique de confidentialité',
     terms: 'Conditions générales',
+    refund: 'Politique de remboursement',
     subscribeTitle: 'Restez informé',
     subscribeSubtitle: 'Recevez frameworks, playbooks et notes de version de notre laboratoire growth & réputation.',
     subscribePlaceholder: 'Votre adresse email',
@@ -8439,7 +8451,7 @@ const footerCopy: Record<
   },
   es: {
     rights: 'Todos los derechos reservados.',
-    studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
+    studio: 'Traceremove es una plataforma digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
     founder: 'Fundador y CEO Artur Ziganshin',
     detailHeading: 'Detalles de protección',
     detailPoints: [
@@ -8468,6 +8480,7 @@ const footerCopy: Record<
     join: 'Únete',
     privacy: 'Política de privacidad',
     terms: 'Términos del servicio',
+    refund: 'Política de reembolso',
     subscribeTitle: 'Mantente al día',
     subscribeSubtitle: 'Recibe frameworks, playbooks y notas de lanzamiento de nuestro laboratorio de crecimiento y reputación.',
     subscribePlaceholder: 'Tu correo electrónico',
@@ -8882,6 +8895,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         <div className="tr-footer__legal">
           <NavLink to={getPrivacyPath(currentLanguage)}>{copy.privacy}</NavLink>
           <NavLink to={getTermsPath(currentLanguage)}>{copy.terms}</NavLink>
+          <NavLink to="/refund">{copy.refund}</NavLink>
         </div>
         <div className="tr-footer__social">
           {socialLinks.map(({ key, href }) => (

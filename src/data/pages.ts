@@ -115,7 +115,7 @@ const locales: Record<Language, string> = {
 
 const translations: Record<Language, Record<string, string>> = {
   en: {
-    agencyName: 'Traceremove Digital Agency',
+    agencyName: 'Traceremove Digital Platform',
     discover: 'Discovery & Insight',
     blueprint: 'Go-to-market Blueprint',
     activation: 'Full-funnel Activation',
@@ -1449,4 +1449,3 @@ export const insightDashboards: Record<Language, InsightDashboardContent> = {
     ],
   },
 }
-
