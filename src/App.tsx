@@ -2494,7 +2494,20 @@ const HomePage = () => {
           <Link className="button primary" to={getContactPath(currentLanguage)}>
             Request Confidential Assessment →
           </Link>
-          <a className="button secondary" href="/case-studies">
+          <a
+            className="button secondary"
+            href="/case-studies"
+            style={{
+              background: 'transparent',
+              border: '1px solid rgba(255,255,255,0.5)',
+              color: '#ffffff',
+              padding: '12px 24px',
+              borderRadius: '8px',
+              fontSize: '14px',
+              cursor: 'pointer',
+              opacity: 1,
+            }}
+          >
             View Case Studies
           </a>
           <div className="trust-strip">
