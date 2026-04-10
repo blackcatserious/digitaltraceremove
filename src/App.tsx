@@ -2449,7 +2449,7 @@ const homeServicesCopy: Record<
 }
 
 const homeHeroHeading: Record<Language, string> = {
-  en: 'Multilingual service blueprints engineered for momentum.',
+  en: 'Take control of your online data footprint',
   fr: 'Des plans de services multilingues conçus pour accélérer votre momentum.',
   es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
 }
@@ -2502,7 +2502,10 @@ const HomePage = () => {
         <div className="home-hero-copy">
           <span className="home-badge">Traceremove · Digital Platform</span>
           <h1>{heroHeading}</h1>
-          <p>{navCopy[currentLanguage].tagline}</p>
+          <p>
+            Traceremove is a digital platform that helps individuals and businesses monitor and manage online data
+            exposure.
+          </p>
           <div className="home-removal-cta">
             <p className="home-removal-cta__label">We help manage and resolve online data exposure.</p>
             <ul>
