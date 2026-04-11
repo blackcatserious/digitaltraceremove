@@ -80,7 +80,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
         'Every engagement starts with clarity. Explore how Traceremove isolates threats, fortifies owned assets, and drives growth while keeping your brand credible across English, French, and Spanish markets.',
       primaryCta: 'Talk with our strategists',
       secondaryCta: 'Download the full FAQ deck',
-      secondaryHref: 'mailto:contact@traceremove.com?subject=Traceremove%20FAQ%20deck',
+      secondaryHref: 'mailto:support@traceremove.com?subject=Traceremove%20FAQ%20deck',
       assurance: 'Real practitioners respond within one business day with next steps tailored to your escalation level.',
       visualLabel: 'Animated dashboard showing incident response velocity',
       metrics: [
@@ -248,7 +248,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
       channels: [
         { label: 'Escalation hotline', detail: '+1 (472) 248 0235 · 24/7' },
         { label: 'WhatsApp command desk', detail: '+1 (472) 248 0235' },
-        { label: 'Email', detail: 'contact@traceremove.com' },
+        { label: 'Email', detail: 'support@traceremove.com' },
       ],
       ctaLabel: 'Open the contact form',
       ctaSecondary: 'Message us on WhatsApp',
@@ -265,7 +265,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
         'Chaque mission commence par la clarté. Découvrez comment Traceremove neutralise les menaces, sécurise vos actifs et stimule la croissance tout en préservant la crédibilité de votre marque en français, anglais et espagnol.',
       primaryCta: 'Parler à nos stratèges',
       secondaryCta: 'Télécharger le guide complet',
-      secondaryHref: 'mailto:contact@traceremove.com?subject=Guide%20FAQ%20Traceremove',
+      secondaryHref: 'mailto:support@traceremove.com?subject=Guide%20FAQ%20Traceremove',
       assurance: 'Nos spécialistes répondent sous un jour ouvré avec un plan adapté au niveau d’urgence.',
       visualLabel: 'Tableau de bord animé illustrant la vitesse de réponse aux incidents',
       metrics: [
@@ -433,7 +433,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
       channels: [
         { label: 'Hotline d’escalade', detail: '+1 (472) 248 0235 · 24/7' },
         { label: 'WhatsApp command desk', detail: '+1 (472) 248 0235' },
-        { label: 'Email', detail: 'contact@traceremove.com' },
+        { label: 'Email', detail: 'support@traceremove.com' },
       ],
       ctaLabel: 'Ouvrir le formulaire',
       ctaSecondary: 'Nous écrire sur WhatsApp',
@@ -450,7 +450,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
         'Cada colaboración comienza con claridad. Descubre cómo Traceremove neutraliza amenazas, refuerza tus activos y acelera el crecimiento sin perder credibilidad en inglés, francés y español.',
       primaryCta: 'Habla con nuestros estrategas',
       secondaryCta: 'Descargar el dossier completo',
-      secondaryHref: 'mailto:contact@traceremove.com?subject=FAQ%20Traceremove',
+      secondaryHref: 'mailto:support@traceremove.com?subject=FAQ%20Traceremove',
       assurance: 'Respondemos en menos de un día hábil con los siguientes pasos adecuados a tu nivel de urgencia.',
       visualLabel: 'Panel animado que muestra la velocidad de respuesta ante incidentes',
       metrics: [
@@ -618,7 +618,7 @@ export const faqCopy: Record<Language, FaqPageCopy> = {
       channels: [
         { label: 'Línea de escalación', detail: '+1 (472) 248 0235 · 24/7' },
         { label: 'Desk WhatsApp', detail: '+1 (472) 248 0235' },
-        { label: 'Email', detail: 'contact@traceremove.com' },
+        { label: 'Email', detail: 'support@traceremove.com' },
       ],
       ctaLabel: 'Abrir el formulario',
       ctaSecondary: 'Escríbenos por WhatsApp',

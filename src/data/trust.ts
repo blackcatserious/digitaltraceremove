@@ -204,7 +204,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Escalate to our incident desk for verified takedowns or book a proactive audit to stress test your defenses.',
       actions: [
-        { label: 'Chat with an incident lead', href: 'mailto:contact@traceremove.com' },
+        { label: 'Chat with an incident lead', href: 'mailto:support@traceremove.com' },
         { label: 'Call the trust hotline', href: 'tel:+16063022958' },
       ],
       phone: '+1 (472) 248 0235',
@@ -351,7 +351,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Escaladez vers notre cellule incident pour un retrait vérifié ou réservez un audit proactif.',
       actions: [
-        { label: 'Écrire à un incident lead', href: 'mailto:contact@traceremove.com' },
+        { label: 'Écrire à un incident lead', href: 'mailto:support@traceremove.com' },
         { label: 'Appeler la hotline trust', href: 'tel:+16063022958' },
       ],
       phone: '+1 (472) 248 0235',
@@ -498,7 +498,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Escala a nuestra mesa de incidentes para retiradas verificadas o agenda una auditoría proactiva.',
       actions: [
-        { label: 'Habla con un incident lead', href: 'mailto:contact@traceremove.com' },
+        { label: 'Habla con un incident lead', href: 'mailto:support@traceremove.com' },
         { label: 'Llama a la hotline trust', href: 'tel:+16063022958' },
       ],
       phone: '+1 (472) 248 0235',

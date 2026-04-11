@@ -1918,7 +1918,7 @@ const partnersCopy: Record<
       },
     ],
     ctaHeading: 'Ready to explore a partnership?',
-    ctaBody: 'Introduce your team and goals at contact@traceremove.com — we will schedule an alignment session within two business days.',
+    ctaBody: 'Introduce your team and goals at support@traceremove.com — we will schedule an alignment session within two business days.',
   },
   fr: {
     title: 'Collaborez avec Traceremove',
@@ -1963,7 +1963,7 @@ const partnersCopy: Record<
       },
     ],
     ctaHeading: 'Discutons de votre partenariat',
-    ctaBody: 'Présentez-nous votre structure et vos objectifs via contact@traceremove.com — réponse garantie sous deux jours ouvrés.',
+    ctaBody: 'Présentez-nous votre structure et vos objectifs via support@traceremove.com — réponse garantie sous deux jours ouvrés.',
   },
   es: {
     title: 'Haz equipo con Traceremove',
@@ -2008,7 +2008,7 @@ const partnersCopy: Record<
       },
     ],
     ctaHeading: '¿Nos asociamos?',
-    ctaBody: 'Cuéntanos sobre tu organización en contact@traceremove.com — coordinamos una llamada en dos días hábiles.',
+    ctaBody: 'Cuéntanos sobre tu organización en support@traceremove.com — coordinamos una llamada en dos días hábiles.',
   },
 }
 
@@ -2492,7 +2492,7 @@ const HomePage = () => {
     description: service.description[currentLanguage],
     price: service.price[currentLanguage],
     bullets: service.bullets[currentLanguage],
-    contactHref: `mailto:contact@traceremove.com?subject=${encodeURIComponent(service.title[currentLanguage])}`,
+    contactHref: `mailto:support@traceremove.com?subject=${encodeURIComponent(service.title[currentLanguage])}`,
   }))
 
   return (
@@ -2747,7 +2747,7 @@ const HomePage = () => {
 
       <div className="home-banner">
         <p>
-          {heroCta} — <a href="mailto:contact@traceremove.com">contact@traceremove.com</a> ·{' '}
+          {heroCta} — <a href="mailto:support@traceremove.com">support@traceremove.com</a> ·{' '}
           <a href="tel:+16063022958">+1 (472) 248 0235</a>
         </p>
       </div>
@@ -2872,8 +2872,8 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
         <h2>{labels.contactHeading}</h2>
         <p>{page.contactPrompt}</p>
         <div className="contact-actions">
-          <a className="button primary" href="mailto:contact@traceremove.com">
-            contact@traceremove.com
+          <a className="button primary" href="mailto:support@traceremove.com">
+            support@traceremove.com
           </a>
           <a className="button secondary" href="tel:+16063022958">
             +1 (472) 248 0235
@@ -3047,8 +3047,8 @@ const ServicesPricingPage = () => {
               <Link className="button primary" to={getContactPath(language)}>
                 {copy.hero.primaryCta}
               </Link>
-              <a className="button ghost" href="mailto:contact@traceremove.com">
-                contact@traceremove.com
+              <a className="button ghost" href="mailto:support@traceremove.com">
+                support@traceremove.com
               </a>
             </div>
           </article>
@@ -3926,7 +3926,7 @@ const ServicesPricingPage = () => {
           <Link className="button primary" to={getContactPath(language)}>
             {copy.cta.primary}
           </Link>
-          <a className="button ghost" href="mailto:artur@traceremove.dev">
+          <a className="button ghost" href="mailto:support@traceremove.com">
             {copy.cta.secondary}
           </a>
         </div>
@@ -4176,8 +4176,8 @@ const TeamPage = () => {
         <div className="team-contact">
           <p>{copy.contactPrompt}</p>
           <div className="team-contact-actions">
-            <a className="button primary" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
+            <a className="button primary" href="mailto:support@traceremove.com">
+              support@traceremove.com
             </a>
             <a className="button secondary" href="tel:+16063022958">
               +1 (472) 248 0235
@@ -6018,8 +6018,8 @@ const PartnersPage = () => {
           <p>{copy.ctaBody}</p>
         </div>
         <div className="partners-cta__actions">
-          <a className="button primary" href="mailto:contact@traceremove.com?subject=Partnership inquiry">
-            contact@traceremove.com
+          <a className="button primary" href="mailto:support@traceremove.com?subject=Partnership inquiry">
+            support@traceremove.com
           </a>
           <a className="button secondary" href="tel:+16063022958">
             +1 (472) 248 0235
@@ -6133,7 +6133,7 @@ const contactCopy: Record<
     formTitle: 'Send us a note',
     detailTitle: 'Prefer a direct line?',
     detailPoints: [
-      'Email contact@traceremove.com for quick scoping questions and proposals.',
+      'Email support@traceremove.com for quick scoping questions and proposals.',
       'Call +1 (472) 248 0235 Monday to Friday, 9am–6pm EST for immediate assistance.',
       'Book a 30-minute strategy session to leave with a prioritised roadmap and next steps.',
     ],
@@ -6158,7 +6158,7 @@ const contactCopy: Record<
     formTitle: 'Écrivez-nous',
     detailTitle: 'Besoin d’un échange direct ?',
     detailPoints: [
-      'Écrivez à contact@traceremove.com pour un cadrage rapide de votre projet.',
+      'Écrivez à support@traceremove.com pour un cadrage rapide de votre projet.',
       'Appelez le +1 (472) 248 0235 du lundi au vendredi, 9h–18h EST.',
       'Réservez une session stratégique de 30 minutes pour repartir avec un plan priorisé.',
     ],
@@ -6183,7 +6183,7 @@ const contactCopy: Record<
     formTitle: 'Escríbenos',
     detailTitle: '¿Prefieres un contacto directo?',
     detailPoints: [
-      'Escribe a contact@traceremove.com para dudas rápidas sobre alcance y propuestas.',
+      'Escribe a support@traceremove.com para dudas rápidas sobre alcance y propuestas.',
       'Llama al +1 (472) 248 0235 de lunes a viernes, 9h–18h EST.',
       'Agenda una sesión estratégica de 30 minutos y obtén un plan priorizado.',
     ],
@@ -6369,8 +6369,8 @@ const ContactPage = ({ language }: { language: Language }) => {
             ))}
           </ul>
           <div className="contact-direct">
-            <a className="button primary" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
+            <a className="button primary" href="mailto:support@traceremove.com">
+              support@traceremove.com
             </a>
             <a className="button secondary" href="tel:+16063022958">
               +1 (472) 248 0235
@@ -7939,8 +7939,8 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               >
                 {copy.joinUs}
               </NavLink>
-              <a className="tr-mobile-link" href="mailto:contact@traceremove.com" onClick={handleCloseMobile}>
-                contact@traceremove.com
+              <a className="tr-mobile-link" href="mailto:support@traceremove.com" onClick={handleCloseMobile}>
+                support@traceremove.com
               </a>
               <a className="tr-mobile-link" href="tel:+16063022958" onClick={handleCloseMobile}>
                 +1 (472) 248 0235
@@ -8900,7 +8900,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           </div>
         </div>
         <div className="tr-footer__contact">
-          <a href="mailto:contact@traceremove.com">contact@traceremove.com</a>
+          <a href="mailto:support@traceremove.com">support@traceremove.com</a>
           <a href="tel:+16063022958">+1 (472) 248 0235</a>
           <p>{copy.founder}</p>
           <form className="tr-footer__subscribe" onSubmit={handleSubmit} noValidate>
