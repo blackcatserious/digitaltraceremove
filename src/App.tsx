@@ -9102,6 +9102,18 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
 }
 
 function App() {
+  const RouteNoIndex = ({ children }: { children: ReactNode }) => {
+    useEffect(() => {
+      const m = document.createElement('meta')
+      m.name = 'robots'
+      m.content = 'noindex, nofollow'
+      document.head.appendChild(m)
+      return () => document.head.removeChild(m)
+    }, [])
+
+    return <>{children}</>
+  }
+
   return (
     <AppLayout>
       <Routes>
@@ -9124,28 +9136,39 @@ function App() {
         <Route path="privacy" element={<PrivacyPage />} />
         <Route path="terms" element={<TermsPage />} />
         <Route path="refund" element={<RefundPage />} />
-        {languages.map((language) => (
-          <Fragment key={language}>
-            <Route path={language} element={<HomePage />} />
-            <Route path={`${language}/about`} element={<AboutPage />} />
-            <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
-            <Route path={`${language}/services`} element={<ServicesPricingPage />} />
-            <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
-            <Route path={`${language}/academy`} element={<AcademyPage />} />
-            <Route path={`${language}/faq`} element={<FaqPage />} />
-            <Route path={`${language}/media`} element={<MediaPage />} />
-            <Route path={`${language}/command-center`} element={<CommandCenterPage />} />
-            <Route path={`${language}/trust`} element={<TrustCenterPage />} />
-            <Route path={`${language}/team`} element={<TeamPage />} />
-            <Route path={`${language}/partners`} element={<PartnersPage />} />
-            <Route path={`${language}/join`} element={<JoinPage />} />
-            <Route path={`${language}/contact`} element={<ContactPage language={language} />} />
-            <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
-            <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
-            <Route path={`${language}/privacy`} element={<LegalPage language={language} variant="privacy" />} />
-            <Route path={`${language}/terms`} element={<LegalPage language={language} variant="terms" />} />
-          </Fragment>
-        ))}
+        {languages.map((language) => {
+          const withNoIndex = (element: ReactNode) =>
+            language === 'ru' ? <RouteNoIndex>{element}</RouteNoIndex> : element
+
+          return (
+            <Fragment key={language}>
+              <Route path={language} element={withNoIndex(<HomePage />)} />
+              <Route path={`${language}/about`} element={withNoIndex(<AboutPage />)} />
+              <Route path={`${language}/case-studies`} element={withNoIndex(<CaseStudiesPage />)} />
+              <Route path={`${language}/services`} element={withNoIndex(<ServicesPricingPage />)} />
+              <Route path={`${language}/resources`} element={withNoIndex(<ResourceLibraryPage />)} />
+              <Route path={`${language}/academy`} element={withNoIndex(<AcademyPage />)} />
+              <Route path={`${language}/faq`} element={withNoIndex(<FaqPage />)} />
+              <Route path={`${language}/media`} element={withNoIndex(<MediaPage />)} />
+              <Route path={`${language}/command-center`} element={withNoIndex(<CommandCenterPage />)} />
+              <Route path={`${language}/trust`} element={withNoIndex(<TrustCenterPage />)} />
+              <Route path={`${language}/team`} element={withNoIndex(<TeamPage />)} />
+              <Route path={`${language}/partners`} element={withNoIndex(<PartnersPage />)} />
+              <Route path={`${language}/join`} element={withNoIndex(<JoinPage />)} />
+              <Route path={`${language}/contact`} element={withNoIndex(<ContactPage language={language} />)} />
+              <Route path={`${language}/blog`} element={withNoIndex(<BlogPage language={language} />)} />
+              <Route path={`${language}/blog/:slug`} element={withNoIndex(<BlogArticlePage language={language} />)} />
+              <Route
+                path={`${language}/privacy`}
+                element={withNoIndex(<LegalPage language={language} variant="privacy" />)}
+              />
+              <Route
+                path={`${language}/terms`}
+                element={withNoIndex(<LegalPage language={language} variant="terms" />)}
+              />
+            </Fragment>
+          )
+        })}
         {servicePages.map((page) => (
           <Route key={page.id} path={page.path.slice(1)} element={<ServicePageView page={page} />} />
         ))}
