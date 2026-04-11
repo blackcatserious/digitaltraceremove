@@ -1,62 +1,76 @@
+import React from 'react'
+
 const platformCards = [
   {
-    title: 'Google Search Results',
+    title: 'Google',
     description:
-      'News articles, knowledge panels, autocomplete suggestions, and organic search results.',
+      'Search results, knowledge panels, autocomplete suggestions, and indexed references.',
     timeline: '30–60 days',
     success: '96%',
   },
   {
-    title: 'Glassdoor and Indeed',
+    title: 'Glassdoor',
     description:
-      'Employer review platforms that affect hiring, partnerships, and investor perception.',
+      'Employer-review visibility that can affect hiring cycles, candidate confidence, and partnerships.',
     timeline: '21–45 days',
     success: '91%',
   },
   {
-    title: 'Trustpilot and Google Reviews',
+    title: 'Trustpilot',
     description:
-      'Review content that impacts conversion rates and B2B due diligence outcomes.',
+      'Review narratives that influence conversion rates and procurement diligence decisions.',
     timeline: '14–30 days',
     success: '94%',
   },
   {
-    title: 'YouTube and Video Content',
+    title: 'YouTube',
     description:
-      'Damaging video content, misleading thumbnails, and associated metadata.',
+      'Video pages, metadata, and recommendation-surface signals requiring structured escalation.',
     timeline: '30–75 days',
     success: '88%',
   },
   {
-    title: 'Forum and Community Posts',
+    title: 'Forums',
     description:
-      'Reddit, Quora, industry forums with indexed negative content.',
+      'Community threads across major discussion platforms and industry message boards.',
     timeline: '45–90 days',
     success: '87%',
   },
   {
-    title: 'News and Press Articles',
+    title: 'News',
     description:
-      'Online news coverage and editorial content requiring structured resolution.',
+      'Editorial publications and syndicated content requiring documented correction workflows.',
     timeline: '60–90 days',
     success: '85%',
   },
 ]
 
 export default function PlatformsSection() {
+  const [isMobile, setIsMobile] = React.useState(() => window.innerWidth <= 640)
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 640)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <section className="home-production" aria-labelledby="platforms-section-heading">
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: 'space-between',
+          alignItems: isMobile ? 'flex-start' : 'center',
           gap: '24px',
-          alignItems: 'start',
           marginBottom: '24px',
         }}
       >
-        <header>
-          <p style={{ color: 'var(--gold)', margin: '0 0 8px', fontWeight: 600 }}>What We Resolve</p>
+        <header style={{ display: 'grid', gap: '8px', maxWidth: '560px' }}>
+          <p style={{ color: 'var(--gold)', margin: 0, fontWeight: 600 }}>What We Resolve</p>
           <h2
             id="platforms-section-heading"
             style={{ margin: 0, fontFamily: 'var(--font-display)', color: 'var(--navy)' }}
@@ -65,16 +79,16 @@ export default function PlatformsSection() {
           </h2>
         </header>
 
-        <p style={{ color: 'var(--blue)', margin: 0 }}>
-          From Google News and third-party review sites to forum posts and video content — we manage data exposure
-          with monitoring, workflows, and resolution across the full digital surface.
+        <p style={{ color: 'var(--blue)', margin: 0, maxWidth: '520px' }}>
+          From search surfaces and review sites to forums, video, and news publications — we manage data exposure with
+          monitoring, workflows, and documented resolution operations.
         </p>
       </div>
 
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
           gap: '16px',
         }}
       >
