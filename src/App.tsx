@@ -2548,12 +2548,12 @@ const HomePage = () => {
       <PlatformsSection />
       <AgenciesSection />
       <ProcessSection />
+      <PricingSection />
       <ROICalculator />
       <ScanSection />
       <CaseStudiesSection />
       <FAQSection />
       <FinalCTA />
-      <PricingSection />
       <div>
         <p>{''}</p>
         <p>
