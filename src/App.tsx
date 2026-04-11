@@ -2531,13 +2531,13 @@ const HomePage = () => {
               View Case Studies
             </a>
           </div>
-          <div className="trust-strip">
+          <div className="trust-strip" style={{ display: 'flex', alignItems: 'center', gap: '0', flexWrap: 'wrap' }}>
             <span><strong>500+</strong> cases resolved</span>
-            <span className="trust-sep">·</span>
+            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
             <span><strong>98%</strong> success rate</span>
-            <span className="trust-sep">·</span>
+            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
             <span><strong>30–90 day</strong> results</span>
-            <span className="trust-sep">·</span>
+            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
             <span><strong>New York, NY</strong></span>
           </div>
         </div>
