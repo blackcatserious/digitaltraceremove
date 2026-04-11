@@ -8850,142 +8850,124 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
-  const copy = footerCopy[currentLanguage]
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setSubscribed(true)
-    setEmail('')
-  }
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (subscribed) {
-      setSubscribed(false)
-    }
-    setEmail(event.target.value)
-  }
-
-  const menuLinks = [
-    { to: getAboutPath(currentLanguage), label: copy.about },
-    { to: getCaseStudiesPath(currentLanguage), label: copy.caseStudies },
-    { to: getServicesPricingPath(currentLanguage), label: copy.servicesPricing },
-    { to: getResourcesPath(currentLanguage), label: copy.resources },
-    { to: getAcademyPath(currentLanguage), label: copy.academy },
-    { to: getMediaPath(currentLanguage), label: copy.media },
-    { to: getCommandCenterPath(currentLanguage), label: copy.commandCenter },
-    { to: getTrustPath(currentLanguage), label: copy.trust },
-    { to: getTeamPath(currentLanguage), label: copy.team },
-    { to: getPartnersPath(currentLanguage), label: copy.partners },
-    { to: getFaqPath(currentLanguage), label: copy.faq },
-    { to: getBlogBasePath(currentLanguage), label: copy.blog },
-    { to: getContactPath(currentLanguage), label: copy.contact },
-    { to: getJoinPath(currentLanguage), label: copy.join },
-  ]
-
   return (
-    <footer className="tr-footer">
-      <div className="tr-footer__visuals" aria-hidden="true">
-        <span className="tr-footer__orb tr-footer__orb--one" />
-        <span className="tr-footer__orb tr-footer__orb--two" />
-        <span className="tr-footer__orb tr-footer__orb--three" />
-      </div>
-      <div className="tr-footer__inner">
-        <div className="tr-footer__brand">
-          <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
-          <div>
-            <p className="tr-footer__title">Traceremove</p>
-            <p className="tr-footer__tagline">{copy.studio}</p>
+    <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: '1.35fr 1fr 1fr 1fr',
+          gap: '24px',
+        }}
+      >
+        <div>
+          <p style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '30px', color: 'var(--white)' }}>Traceremove</p>
+          <p style={{ margin: '12px 0 18px', color: 'rgba(255,255,255,0.72)', lineHeight: 1.6 }}>
+            Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
+            businesses and agency partners worldwide.
+          </p>
+          <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.82)', fontSize: '13px', lineHeight: 1.7 }}>
+            <div>TRACEREMOVE LLC</div>
+            <div>750 Manhattan Ave</div>
+            <div>Brooklyn, NY 11222, USA</div>
+            <div>support@traceremove.com</div>
           </div>
         </div>
-        <div className="tr-footer__contact">
-          <a href="mailto:support@traceremove.com">support@traceremove.com</a>
-          <a href="tel:+16063022958">+1 (472) 248 0235</a>
-          <p>{copy.founder}</p>
-          <form className="tr-footer__subscribe" onSubmit={handleSubmit} noValidate>
-            <div>
-              <h3>{copy.subscribeTitle}</h3>
-              <p>{copy.subscribeSubtitle}</p>
-            </div>
-            <div className="tr-footer__subscribe-form">
-              <input
-                type="email"
-                name="footer-email"
-                placeholder={copy.subscribePlaceholder}
-                value={email}
-                onChange={handleChange}
-                required
-              />
-              <button type="submit" className="button tertiary">
-                {copy.subscribeCta}
-              </button>
-            </div>
-            {subscribed && (
-              <p className="tr-footer__subscribe-success" role="status" aria-live="polite">
-                {copy.subscribeSuccess}
-              </p>
-            )}
-          </form>
-        </div>
-        <div className="tr-footer__details">
-          <div className="tr-footer__detail">
-            <h3>{copy.detailHeading}</h3>
-            <ul>
-              {copy.detailPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="tr-footer__detail">
-            <h3>{copy.officeHeading}</h3>
-            <ul>
-              {copy.officeLocations.map((location) => (
-                <li key={location}>{location}</li>
-              ))}
-            </ul>
-            <p className="tr-footer__hotline">
-              <strong>{copy.hotlineHeading}:</strong> {copy.hotlineBody}
-            </p>
-          </div>
-        </div>
-        <div className="tr-footer__links">
-          {menuLinks.map(({ to, label }) => (
-            <NavLink
-              key={label}
-              to={to}
-              className={({ isActive }: NavLinkRenderArgs) =>
-                `tr-footer__menu-link${isActive ? ' tr-footer__menu-link--active' : ''}`
-              }
-            >
-              <span>{label}</span>
-            </NavLink>
-          ))}
-          <a className="tr-footer__menu-link tr-footer__menu-link--call" href="tel:+16063022958">
-            <span>{copy.call}</span>
-          </a>
-        </div>
-        <div className="tr-footer__legal">
-          <NavLink to={getPrivacyPath(currentLanguage)}>{copy.privacy}</NavLink>
-          <NavLink to={getTermsPath(currentLanguage)}>{copy.terms}</NavLink>
-          <NavLink to="/refund">{copy.refund}</NavLink>
-        </div>
-        <div className="tr-footer__social">
-          {socialLinks.map(({ key, href }) => (
+
+        <div>
+          <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
+          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
             <a
-              key={key}
-              className={`tr-footer__social-link tr-footer__social-link--${key}`}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={footerSocialLabels[currentLanguage][key]}
+              key={item}
+              href="#"
+              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+              }}
             >
-              {renderSocialIcon(key)}
+              {item}
+            </a>
+          ))}
+        </div>
+
+        <div>
+          <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
+          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
+            <a
+              key={item}
+              href="#"
+              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+              }}
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+
+        <div>
+          <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
+          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href="#"
+              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+              }}
+            >
+              {item}
             </a>
           ))}
         </div>
       </div>
-      <p className="tr-footer__rights">© {new Date().getFullYear()} Traceremove. {copy.rights}</p>
+
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '28px auto 0',
+          paddingTop: '16px',
+          borderTop: '1px solid rgba(255,255,255,0.14)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
+          <span>2025 TraceRemove LLC</span>
+          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
+            <a
+              key={item}
+              href="#"
+              style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+              }}
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+        <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.72)' }}>
+          New York, NY / Serving clients globally
+        </div>
+      </div>
     </footer>
   )
 }
