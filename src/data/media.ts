@@ -98,7 +98,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       secondaryHref: 'mailto:press@traceremove.com',
       mediaNote:
         'We respond to press requests within four business hours and coordinate spokesperson availability across time zones.',
-      visualCaption: 'Animated dashboards illustrate suppression velocity and reputation lift across our portfolio.',
+      visualCaption: 'We help manage and resolve online data exposure',
       metrics: [
         {
           value: '48 hrs',
@@ -120,7 +120,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
     coverage: {
       heading: 'Recent coverage and analyst notes',
       description:
-        'Outlets and analysts covering reputation management, marketplace integrity, and AI-assisted brand protection turn to Traceremove for insight.',
+        'We help manage and resolve online data exposure',
       outlets: [
         {
           name: 'Brand Safety Weekly',
@@ -147,7 +147,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
     releases: {
       heading: 'Latest releases',
       description:
-        'Story angles, motion studies, and growth data ready for editors covering SEO, reputation, and digital trust.',
+        'We help manage and resolve online data exposure',
       ctaLabel: 'Explore related insights',
       items: [
         {
@@ -195,7 +195,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
           title: 'Founder photography',
           format: 'JPEG set · 4K',
           size: '12.4 MB',
-          usage: 'Portraits of Artur Ziganshin for press, conferences, and digital use.',
+          usage: 'Portraits of TraceRemove Advisor for press, conferences, and digital use.',
         },
         {
           id: 'motion',
@@ -222,16 +222,16 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       people: [
         {
           id: 'artur',
-          name: 'Artur Ziganshin',
+          name: 'TraceRemove Advisor',
           role: 'Founder & CEO',
           bio: 'Leads crisis response, growth acceleration, and executive communications across English, French, and Spanish markets.',
-          topics: 'Brand protection, executive reputation, incident war rooms',
+          topics: 'We help manage and resolve online data exposure',
           languages: 'English, French, Spanish, Russian',
         },
         {
           id: 'clara',
           name: 'Clara Martel',
-          role: 'Director of Reputation Labs',
+          role: 'We help manage and resolve online data exposure',
           bio: 'Architects review integrity programmes and AI-assisted monitoring frameworks for hospitality and fintech leaders.',
           topics: 'Review integrity, AI monitoring, multilingual SEO',
           languages: 'French, English',
@@ -255,7 +255,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       ],
       emailLabel: 'Email press@traceremove.com',
       emailHref: 'mailto:press@traceremove.com',
-      phoneLabel: 'Call +1 606 302 2958',
+      phoneLabel: 'Call +1 (472) 248 0235',
       phoneHref: 'tel:+16063022958',
       note: 'Prefer WhatsApp or Signal? Mention it in your email and we will respond within minutes.',
     },
@@ -368,7 +368,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
           title: 'Photographies du fondateur',
           format: 'Série JPEG · 4K',
           size: '12,4 Mo',
-          usage: 'Portraits d’Artur Ziganshin pour la presse et la scène.',
+          usage: 'Portraits d’TraceRemove Advisor pour la presse et la scène.',
         },
         {
           id: 'motion',
@@ -395,7 +395,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       people: [
         {
           id: 'artur',
-          name: 'Artur Ziganshin',
+          name: 'TraceRemove Advisor',
           role: 'Fondateur & CEO',
           bio: 'Pilote réponses de crise, accélération growth et communication exécutive en anglais, français et espagnol.',
           topics: 'Protection de marque, réputation des dirigeants, war room',
@@ -404,7 +404,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
         {
           id: 'clara',
           name: 'Clara Martel',
-          role: 'Directrice Reputation Labs',
+          role: 'We help manage and resolve online data exposure',
           bio: 'Conçoit des programmes d’authenticité des avis et des frameworks de monitoring IA pour hôtellerie et fintech.',
           topics: 'Authenticité des avis, monitoring IA, SEO multilingue',
           languages: 'Français, anglais',
@@ -428,7 +428,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       ],
       emailLabel: 'Écrire à press@traceremove.com',
       emailHref: 'mailto:press@traceremove.com',
-      phoneLabel: 'Appeler le +1 606 302 2958',
+      phoneLabel: 'Appeler le +1 (472) 248 0235',
       phoneHref: 'tel:+16063022958',
       note: 'Besoin de WhatsApp ou Signal ? Mentionnez-le et nous répondrons en quelques minutes.',
     },
@@ -541,7 +541,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
           title: 'Fotografías del fundador',
           format: 'Set JPEG · 4K',
           size: '12,4 MB',
-          usage: 'Retratos de Artur Ziganshin para prensa y eventos.',
+          usage: 'Retratos de TraceRemove Advisor para prensa y eventos.',
         },
         {
           id: 'motion',
@@ -568,7 +568,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       people: [
         {
           id: 'artur',
-          name: 'Artur Ziganshin',
+          name: 'TraceRemove Advisor',
           role: 'Fundador & CEO',
           bio: 'Dirige respuestas de crisis, aceleración growth y comunicación ejecutiva en inglés, francés y español.',
           topics: 'Protección de marca, reputación ejecutiva, war rooms',
@@ -577,7 +577,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
         {
           id: 'clara',
           name: 'Clara Martel',
-          role: 'Directora de Reputation Labs',
+          role: 'We help manage and resolve online data exposure',
           bio: 'Diseña programas de autenticidad de reseñas y monitoreo asistido por IA para hotelería y fintech.',
           topics: 'Integridad de reseñas, monitoreo IA, SEO multilingüe',
           languages: 'Francés, inglés',
@@ -601,7 +601,7 @@ export const mediaCenterCopy: Record<Language, MediaCenterContent> = {
       ],
       emailLabel: 'Escribir a press@traceremove.com',
       emailHref: 'mailto:press@traceremove.com',
-      phoneLabel: 'Llamar al +1 606 302 2958',
+      phoneLabel: 'Llamar al +1 (472) 248 0235',
       phoneHref: 'tel:+16063022958',
       note: '¿Prefieres WhatsApp o Signal? Indícalo y responderemos en minutos.',
     },

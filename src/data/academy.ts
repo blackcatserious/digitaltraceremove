@@ -219,7 +219,7 @@ export const academyCopy: Record<
         {
           label: 'Playbooks shipped',
           value: '180+',
-          annotation: 'SEO, reputation, and escalation frameworks updated quarterly',
+          annotation: 'We help manage and resolve online data exposure',
         },
         {
           label: 'Markets covered',
@@ -275,8 +275,8 @@ export const academyCopy: Record<
         ],
       },
       {
-        id: 'reputation-ops',
-        title: 'Reputation operations pods',
+        id: 'We help manage and resolve online data exposure',
+        title: 'We help manage and resolve online data exposure',
         description:
           'Customer experience and community teams master authenticity verification, review takedowns, and escalation choreography.',
         duration: '4 weeks',
@@ -297,7 +297,7 @@ export const academyCopy: Record<
     ],
     workshopsHeading: 'Live workshops & clinics',
     workshopsSubtitle:
-      'Join tactical deep dives led by Artur Ziganshin and our multilingual pod leads. Every session includes templates you can deploy the same day.',
+      'Join tactical deep dives led by TraceRemove Advisor and our multilingual pod leads. Every session includes templates you can deploy the same day.',
     workshopTakeawayLabel: 'Takeaways',
     workshops: [
       {
@@ -361,7 +361,7 @@ export const academyCopy: Record<
       {
         title: 'Growth storytelling lab',
         description: 'Transform regained visibility into measurable revenue through conversion storytelling.',
-        lead: 'Artur Ziganshin · Founder & CEO',
+        lead: 'TraceRemove Advisor · Founder & CEO',
         cadence: 'Monthly',
         deliverables: [
           'Launch campaign storyboard.',
@@ -392,7 +392,7 @@ export const academyCopy: Record<
         description:
           'Leadership cohort covering enterprise risk steering, stakeholder assurance, and rapid takedown orchestration alongside our core team.',
         highlights: [
-          'Board-level incident simulation with Artur Ziganshin.',
+          'Board-level incident simulation with TraceRemove Advisor.',
           'Live dark web and SERP threat review lab.',
           'Stakeholder assurance storytelling sprint.',
         ],
@@ -437,9 +437,9 @@ export const academyCopy: Record<
     mentorNoteLabel: 'Best for',
     mentors: [
       {
-        name: 'Artur Ziganshin',
+        name: 'TraceRemove Advisor',
         role: 'Founder & CEO',
-        bio: 'Artur directs Traceremove response programmes across three continents, blending executive comms, platform escalations, and growth reactivation.',
+        bio: 'TraceRemove Advisor directs Traceremove response programmes across three continents, blending executive comms, platform escalations, and growth reactivation.',
         expertise: [
           'Board and investor assurance frameworks',
           'Domain & marketplace takedowns',
@@ -486,7 +486,7 @@ export const academyCopy: Record<
     officeHoursTakeawayLabel: 'You will leave with',
     officeHours: [
       {
-        title: 'Reputation triage stand-up',
+        title: 'We help manage and resolve online data exposure',
         facilitator: 'Clara Martel',
         cadence: 'Weekly',
         format: 'Live working session',
@@ -511,7 +511,7 @@ export const academyCopy: Record<
       },
       {
         title: 'Executive assurance huddle',
-        facilitator: 'Artur Ziganshin',
+        facilitator: 'TraceRemove Advisor',
         cadence: 'Monthly',
         format: 'Leadership roundtable',
         focus: 'Shape board-ready updates that connect defence wins to commercial impact.',
@@ -534,7 +534,7 @@ export const academyCopy: Record<
         title: 'Strategic Brand Defender',
         description: 'Confirms executives can lead multidisciplinary war rooms, negotiate platform enforcement, and report to boards.',
         badgeLabel: 'Badge: Strategic Brand Defender',
-        validation: 'Assessed by Artur Ziganshin and external legal advisors.',
+        validation: 'Assessed by TraceRemove Advisor and external legal advisors.',
         requirements: [
           'Complete the Brand defense leadership track.',
           'Lead a live incident simulation with passing score.',
@@ -571,7 +571,7 @@ export const academyCopy: Record<
     ],
     scholarshipsHeading: 'Scholarships & sponsorships',
     scholarshipsSubtitle:
-      'We remove barriers for teams safeguarding essential services, community platforms, and underfunded founders.',
+      'We help manage and resolve online data exposure',
     scholarshipValueLabel: 'Coverage',
     scholarshipEligibilityLabel: 'Eligibility',
     scholarshipSupportLabel: 'Support included',
@@ -581,7 +581,7 @@ export const academyCopy: Record<
         id: 'essential-services',
         title: 'Essential services fellowship',
         description:
-          'For hospitals, utilities, and civic platforms facing persistent reputation attacks across multiple markets.',
+          'We help manage and resolve online data exposure',
         value: '100% tuition covered',
         eligibility: [
           'Operate in a critical infrastructure or public trust sector.',
@@ -603,12 +603,12 @@ export const academyCopy: Record<
         value: '50% tuition covered + travel stipend',
         eligibility: [
           'Founder-led company under 50 employees.',
-          'Documented reputation attack impacting revenue.',
+          'We help manage and resolve online data exposure',
           'Ability to attend at least three live sessions.',
         ],
         support: [
           'Access to search authority rebuild studio.',
-          'One-on-one mentoring with Artur Ziganshin.',
+          'One-on-one mentoring with TraceRemove Advisor.',
           'Conversion storytelling audit with our growth pod.',
         ],
         cta: 'Request sponsorship',
@@ -625,7 +625,7 @@ export const academyCopy: Record<
           'Commitment to publish public impact summary within 90 days.',
         ],
         support: [
-          'Seat bundle for reputation operations pods cohort.',
+          'We help manage and resolve online data exposure',
           'Template pack translated across English, French, Spanish.',
           'Quarterly office hour passes for volunteer leads.',
         ],
@@ -634,7 +634,7 @@ export const academyCopy: Record<
     ],
     communityHeading: 'Community & support',
     communitySubtitle:
-      'Enrollment unlocks persistent guidance so your team never navigates reputation risk alone.',
+      'We help manage and resolve online data exposure',
     communityHighlights: [
       {
         label: 'Office hours',
@@ -752,7 +752,7 @@ export const academyCopy: Record<
     cta: {
       title: 'Ready to embed the Academy inside your organisation?',
       subtitle:
-        'Connect with Artur Ziganshin’s team to tailor curricula, schedule private cohorts, or pair Academy access with managed services.',
+        'Connect with TraceRemove Advisor’s team to tailor curricula, schedule private cohorts, or pair Academy access with managed services.',
       primary: 'Plan a curriculum mapping',
       secondary: 'Review managed services',
     },
@@ -832,7 +832,7 @@ export const academyCopy: Record<
         ],
       },
       {
-        id: 'reputation-ops',
+        id: 'We help manage and resolve online data exposure',
         title: 'Pods opérations réputation',
         description:
           'Équipes relation client et communautés maîtrisent la vérification d’authenticité, les retraits d’avis et la chorégraphie des escalades.',
@@ -854,7 +854,7 @@ export const academyCopy: Record<
     ],
     workshopsHeading: 'Workshops & cliniques live',
     workshopsSubtitle:
-      'Plongez dans des sessions tactiques animées par Artur Ziganshin et nos leads multilingues. Chaque workshop inclut des modèles déployables immédiatement.',
+      'Plongez dans des sessions tactiques animées par TraceRemove Advisor et nos leads multilingues. Chaque workshop inclut des modèles déployables immédiatement.',
     workshopTakeawayLabel: 'Livrables',
     workshops: [
       {
@@ -918,7 +918,7 @@ export const academyCopy: Record<
       {
         title: 'Growth storytelling lab',
         description: 'Transformez la visibilité regagnée en revenus mesurables via la narration.',
-        lead: 'Artur Ziganshin · Fondateur & CEO',
+        lead: 'TraceRemove Advisor · Fondateur & CEO',
         cadence: 'Mensuel',
         deliverables: [
           'Storyboard de campagne de relance.',
@@ -949,7 +949,7 @@ export const academyCopy: Record<
         description:
           'Programme de direction couvrant pilotage du risque, assurance parties prenantes et orchestration accélérée des retraits aux côtés de notre équipe cœur.',
         highlights: [
-          'Simulation de crise niveau conseil avec Artur Ziganshin.',
+          'Simulation de crise niveau conseil avec TraceRemove Advisor.',
           'Analyse live des menaces dark web et SERP.',
           'Sprint storytelling assurance parties prenantes.',
         ],
@@ -994,9 +994,9 @@ export const academyCopy: Record<
     mentorNoteLabel: 'Idéal pour',
     mentors: [
       {
-        name: 'Artur Ziganshin',
+        name: 'TraceRemove Advisor',
         role: 'Fondateur & CEO',
-        bio: 'Artur orchestre les programmes de réponse Traceremove sur trois continents en combinant communication exécutive, escalades plateformes et relance de la croissance.',
+        bio: 'TraceRemove Advisor orchestre les programmes de réponse Traceremove sur trois continents en combinant communication exécutive, escalades plateformes et relance de la croissance.',
         expertise: [
           'Cadres d’assurance pour conseils et investisseurs',
           'Retraits domaines & marketplaces',
@@ -1068,7 +1068,7 @@ export const academyCopy: Record<
       },
       {
         title: 'Huddle assurance exécutive',
-        facilitator: 'Artur Ziganshin',
+        facilitator: 'TraceRemove Advisor',
         cadence: 'Mensuel',
         format: 'Table ronde direction',
         focus: 'Construire des updates board-ready reliant défense et impact business.',
@@ -1091,7 +1091,7 @@ export const academyCopy: Record<
         title: 'Strategic Brand Defender',
         description: 'Atteste que les dirigeants peuvent mener des war-rooms pluridisciplinaires, négocier les plateformes et reporter aux conseils.',
         badgeLabel: 'Badge : Strategic Brand Defender',
-        validation: 'Évalué par Artur Ziganshin et des conseillers juridiques externes.',
+        validation: 'Évalué par TraceRemove Advisor et des conseillers juridiques externes.',
         requirements: [
           'Suivre le parcours Leadership brand defense.',
           'Diriger une simulation d’incident validée.',
@@ -1165,7 +1165,7 @@ export const academyCopy: Record<
         ],
         support: [
           'Accès au studio reconstruction d’autorité SEO.',
-          'Mentorat individuel avec Artur Ziganshin.',
+          'Mentorat individuel avec TraceRemove Advisor.',
           'Audit storytelling conversion avec notre pod growth.',
         ],
         cta: 'Demander un sponsorship',
@@ -1309,7 +1309,7 @@ export const academyCopy: Record<
     cta: {
       title: 'Prêt à intégrer l’Academy dans votre organisation ?',
       subtitle:
-        'Contactez l’équipe d’Artur Ziganshin pour adapter le programme, planifier des cohortes privées ou combiner Academy et services gérés.',
+        'Contactez l’équipe d’TraceRemove Advisor pour adapter le programme, planifier des cohortes privées ou combiner Academy et services gérés.',
       primary: 'Planifier un mapping pédagogique',
       secondary: 'Explorer nos services gérés',
     },
@@ -1389,7 +1389,7 @@ export const academyCopy: Record<
         ],
       },
       {
-        id: 'reputation-ops',
+        id: 'We help manage and resolve online data exposure',
         title: 'Pods de operaciones de reputación',
         description:
           'Equipos de experiencia cliente y comunidad dominan la verificación de autenticidad, retiros de reseñas y coreografía de escaladas.',
@@ -1411,7 +1411,7 @@ export const academyCopy: Record<
     ],
     workshopsHeading: 'Workshops y clínicas en vivo',
     workshopsSubtitle:
-      'Participa en sesiones tácticas dirigidas por Artur Ziganshin y nuestros líderes multilingües. Cada workshop entrega plantillas listas para usar.',
+      'Participa en sesiones tácticas dirigidas por TraceRemove Advisor y nuestros líderes multilingües. Cada workshop entrega plantillas listas para usar.',
     workshopTakeawayLabel: 'Entregables',
     workshops: [
       {
@@ -1475,7 +1475,7 @@ export const academyCopy: Record<
       {
         title: 'Growth storytelling lab',
         description: 'Convierte visibilidad recuperada en ingresos medibles con storytelling.',
-        lead: 'Artur Ziganshin · Fundador & CEO',
+        lead: 'TraceRemove Advisor · Fundador & CEO',
         cadence: 'Mensual',
         deliverables: [
           'Storyboard de campaña de relanzamiento.',
@@ -1506,7 +1506,7 @@ export const academyCopy: Record<
         description:
           'Cohorte de liderazgo que cubre dirección de riesgo, aseguramiento de stakeholders y orquestación rápida de retiros junto a nuestro equipo central.',
         highlights: [
-          'Simulación de crisis a nivel directorio con Artur Ziganshin.',
+          'Simulación de crisis a nivel directorio con TraceRemove Advisor.',
           'Laboratorio en vivo de amenazas dark web y SERP.',
           'Sprint de storytelling para tranquilizar a stakeholders.',
         ],
@@ -1551,9 +1551,9 @@ export const academyCopy: Record<
     mentorNoteLabel: 'Ideal para',
     mentors: [
       {
-        name: 'Artur Ziganshin',
+        name: 'TraceRemove Advisor',
         role: 'Fundador & CEO',
-        bio: 'Artur dirige los programas de respuesta de Traceremove en tres continentes combinando comunicación ejecutiva, escalaciones de plataforma y reactivación del crecimiento.',
+        bio: 'TraceRemove Advisor dirige los programas de respuesta de Traceremove en tres continentes combinando comunicación ejecutiva, escalaciones de plataforma y reactivación del crecimiento.',
         expertise: [
           'Marcos de aseguramiento para directorios e inversores',
           'Retiro de dominios y marketplaces',
@@ -1625,7 +1625,7 @@ export const academyCopy: Record<
       },
       {
         title: 'Huddle de confianza ejecutiva',
-        facilitator: 'Artur Ziganshin',
+        facilitator: 'TraceRemove Advisor',
         cadence: 'Mensual',
         format: 'Mesa redonda directiva',
         focus: 'Construir actualizaciones para el directorio que conecten defensa con impacto comercial.',
@@ -1648,7 +1648,7 @@ export const academyCopy: Record<
         title: 'Strategic Brand Defender',
         description: 'Confirma que los ejecutivos pueden liderar war-rooms multidisciplinarios, negociar con plataformas y reportar a directorios.',
         badgeLabel: 'Insignia: Strategic Brand Defender',
-        validation: 'Evaluado por Artur Ziganshin y asesores legales externos.',
+        validation: 'Evaluado por TraceRemove Advisor y asesores legales externos.',
         requirements: [
           'Completar el track Leadership brand defense.',
           'Dirigir una simulación de incidente aprobada.',
@@ -1722,7 +1722,7 @@ export const academyCopy: Record<
         ],
         support: [
           'Acceso al estudio de reconstrucción de autoridad SEO.',
-          'Mentoría individual con Artur Ziganshin.',
+          'Mentoría individual con TraceRemove Advisor.',
           'Auditoría de storytelling de conversión con nuestro pod de growth.',
         ],
         cta: 'Solicitar patrocinio',
@@ -1866,7 +1866,7 @@ export const academyCopy: Record<
     cta: {
       title: '¿Listo para integrar la Academy en tu organización?',
       subtitle:
-        'Contacta al equipo de Artur Ziganshin para adaptar currículos, programar cohortes privadas o combinar Academy con servicios gestionados.',
+        'Contacta al equipo de TraceRemove Advisor para adaptar currículos, programar cohortes privadas o combinar Academy con servicios gestionados.',
       primary: 'Planificar mapping curricular',
       secondary: 'Revisar servicios gestionados',
     },

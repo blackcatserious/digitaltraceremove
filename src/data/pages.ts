@@ -115,7 +115,7 @@ const locales: Record<Language, string> = {
 
 const translations: Record<Language, Record<string, string>> = {
   en: {
-    agencyName: 'Traceremove Digital Agency',
+    agencyName: 'Traceremove Digital Platform',
     discover: 'Discovery & Insight',
     blueprint: 'Go-to-market Blueprint',
     activation: 'Full-funnel Activation',
@@ -769,7 +769,7 @@ const serviceConfigs: ServiceConfig[] = [
       es: 'Optimización de conversiones',
     },
     summary: {
-      en: 'We run experimentation programs that remove friction across key journeys.',
+      en: 'We help manage and resolve online data exposure',
       fr: 'Nous pilotons des programmes d’expérimentation qui lèvent les frictions clés.',
       es: 'Dirigimos programas de experimentación que eliminan fricciones clave.',
     },
@@ -803,7 +803,7 @@ const serviceConfigs: ServiceConfig[] = [
       es: 'Automatización de inteligencia de marca',
     },
     summary: {
-      en: 'We connect monitoring, takedown, and response workflows so your reputation ops stay always-on.',
+      en: 'We help manage and resolve online data exposure',
       fr: 'Nous connectons veille, retrait et réponse pour que vos opérations de réputation restent en éveil permanent.',
       es: 'Conectamos monitorización, retirada y respuesta para mantener tus operaciones de reputación siempre activas.',
     },
@@ -1449,4 +1449,3 @@ export const insightDashboards: Record<Language, InsightDashboardContent> = {
     ],
   },
 }
-

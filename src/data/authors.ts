@@ -33,8 +33,8 @@ const l = (en: string[], fr: string[], es: string[]): MultilingualList => ({ en,
 export const authorProfiles: Record<AuthorId, AuthorProfile> = {
   'artur-ziganshin': {
     id: 'artur-ziganshin',
-    name: t('Artur Ziganshin', 'Artur Ziganshin', 'Artur Ziganshin'),
-    shortName: t('Artur', 'Artur', 'Artur'),
+    name: t('TraceRemove Advisor', 'TraceRemove Advisor', 'TraceRemove Advisor'),
+    shortName: t('TraceRemove Advisor', 'TraceRemove Advisor', 'TraceRemove Advisor'),
     role: t('Founder & CEO', 'Fondateur et CEO', 'Fundador y CEO'),
     quote: t(
       'Every engagement deserves a core team that has already defended brands through the hardest weeks of their journey.',
@@ -48,15 +48,15 @@ export const authorProfiles: Record<AuthorId, AuthorProfile> = {
     ),
     bio: p(
       [
-        'Artur dirige Traceremove comme un bureau stratégique intégré qui accompagne fondateurs, directions marketing et équipes juridiques lorsque la réputation devient critique.',
+        'TraceRemove Advisor dirige Traceremove comme un bureau stratégique intégré qui accompagne fondateurs, directions marketing et équipes juridiques lorsque la réputation devient critique.',
         'Il structure des PMO de réponse rapide, des flux créatifs et des cellules de renseignements de marque capables de fonctionner en anglais, français et espagnol sans perdre de rythme.',
       ],
       [
-        'Artur conduit Traceremove comme un bureau stratégique intégré qui accompagne fondateurs, directions marketing et équipes juridiques lorsque la réputation devient critique.',
+        'TraceRemove Advisor conduit Traceremove comme un bureau stratégique intégré qui accompagne fondateurs, directions marketing et équipes juridiques lorsque la réputation devient critique.',
         'Il structure des PMO de riposte, des flux créatifs et des cellules de renseignement de marque capables d’opérer en anglais, français et espagnol sans ralentissement.',
       ],
       [
-        'Artur dirige Traceremove como un despacho estratégico integrado que acompaña a fundadores, marketing y legal cuando la reputación se vuelve crítica.',
+        'TraceRemove Advisor dirige Traceremove como un despacho estratégico integrado que acompaña a fundadores, marketing y legal cuando la reputación se vuelve crítica.',
         'Diseña PMO de respuesta rápida, flujos creativos y células de inteligencia de marca que operan en inglés, francés y español sin perder ritmo.',
       ],
     ),
@@ -77,7 +77,7 @@ export const authorProfiles: Record<AuthorId, AuthorProfile> = {
         'Comunicación a directorio, modelado de escenarios y retroalimentación.',
       ],
     ),
-    ctaLabel: t('Book time with Artur', 'Planifier un échange avec Artur', 'Agendar con Artur'),
+    ctaLabel: t('Book time with TraceRemove Advisor', 'Planifier un échange avec TraceRemove Advisor', 'Agendar con TraceRemove Advisor'),
     secondaryLabel: t('Connect on LinkedIn', 'Se connecter sur LinkedIn', 'Conectar en LinkedIn'),
     secondaryHref: 'https://www.linkedin.com/in/arturziganshin/',
     accent: 'violet',

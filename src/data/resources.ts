@@ -106,7 +106,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
         eyebrow: 'Playbook vault',
         title: 'Campaign frameworks that neutralise threats and grow pipeline',
         description:
-          'Plug-and-play sequences covering crisis search response, fake-review takedowns, executive reputation, and partner enablement. Every playbook includes talking points, measurement plans, and automation prompts.',
+          'We help manage and resolve online data exposure',
         metricLabel: 'Average adoption speed',
         metricValue: '2.4 weeks',
         metricDelta: '+38% faster',
@@ -175,7 +175,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
           {
             id: 'board-brief',
             format: 'Report · PDF',
-            title: 'Board-ready quarterly reputation briefing',
+            title: 'We help manage and resolve online data exposure',
             summary:
               'Executive-grade packet combining metrics, storyline, and next-quarter focus so leadership teams see impact at a glance.',
             length: '18 pages',
@@ -266,7 +266,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
     cta: {
       title: 'Ready for guided access?',
       subtitle:
-        'Book a walkthrough with Artur Ziganshin and the strategist squad to align on the assets that match your next quarter objectives.',
+        'Book a walkthrough with TraceRemove Advisor and the strategist squad to align on the assets that match your next quarter objectives.',
       primary: 'Book a walkthrough',
       secondary: 'Download overview pack',
     },
@@ -495,7 +495,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
     cta: {
       title: 'Prêt pour un accès guidé ?',
       subtitle:
-        'Réservez une walkthrough avec Artur Ziganshin et les stratèges pour aligner les assets sur vos objectifs du prochain trimestre.',
+        'Réservez une walkthrough avec TraceRemove Advisor et les stratèges pour aligner les assets sur vos objectifs du prochain trimestre.',
       primary: 'Réserver une walkthrough',
       secondary: 'Télécharger la synthèse',
     },
@@ -724,7 +724,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
     cta: {
       title: '¿Listo para un acceso guiado?',
       subtitle:
-        'Agenda una sesión con Artur Ziganshin y el equipo de estrategas para alinear los assets con tus objetivos del próximo trimestre.',
+        'Agenda una sesión con TraceRemove Advisor y el equipo de estrategas para alinear los assets con tus objetivos del próximo trimestre.',
       primary: 'Agendar walkthrough',
       secondary: 'Descargar dossier',
     },
