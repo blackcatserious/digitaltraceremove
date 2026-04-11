@@ -1422,7 +1422,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
         {
           title: 'Founder on-call guarantee',
           description:
-            'TraceRemove Advisor joins every critical escalation and weekly performance room—no handoffs to junior account layers.',
+            'TraceRemove Advisor joins every priority escalation and weekly performance room—no handoffs to junior account layers.',
         },
         {
           title: '30-day momentum checkpoint',
@@ -1442,7 +1442,7 @@ export const servicesPricingCopy: Record<Language, ServicesPricingCopy> = {
       inputs: {
         incidents: {
           label: 'Monthly critical incidents',
-          help: 'Fake reviews, phishing domains, urgent takedowns we resolve for your team.',
+          help: 'Fake reviews, phishing domains, structured workflow sprints we resolve for your team.',
           suffix: '/mo',
           min: 0,
           max: 120,

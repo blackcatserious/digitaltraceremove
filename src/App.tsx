@@ -8458,7 +8458,7 @@ const footerCopy: Record<
     officeHeading: 'Presence hubs',
     officeLocations: ['Montréal · North America HQ', 'Paris · EU lead desk', 'Madrid · Iberia growth pod'],
     hotlineHeading: 'Critical escalation',
-    hotlineBody: 'Message or call +1 (472) 248 0235 for urgent takedowns — we respond within 60 minutes.',
+    hotlineBody: 'Message or call +1 (472) 248 0235 for structured workflow sprints — priority response SLA.',
     servicesPricing: 'Services & pricing',
     about: 'About us',
     caseStudies: 'Case studies',
