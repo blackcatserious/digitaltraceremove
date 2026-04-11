@@ -52,6 +52,7 @@ import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
+import PartnersLandingPage from './pages/Partners'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -9114,7 +9115,7 @@ function App() {
         <Route path="command-center" element={<CommandCenterPage />} />
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
-        <Route path="partners" element={<PartnersPage />} />
+        <Route path="partners" element={<PartnersLandingPage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
