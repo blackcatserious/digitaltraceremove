@@ -6213,11 +6213,12 @@ const ContactPage = ({ language }: { language: Language }) => {
   })
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
-  async function submitForm(data: { name: string; company: string; email: string; message: string }) {
+  async function submitToMake(data: {
+    name: string; company: string; email: string; message: string;
+  }): Promise<boolean> {
     try {
-      await fetch(
-        // TODO: Replace with actual Make.com webhook URL
-        'https://hook.us1.make.com/YOUR_WEBHOOK_ID',
+      const res = await fetch(
+        'WEBHOOK_PLACEHOLDER', // TODO: replace with actual Make.com webhook URL
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -6229,12 +6230,13 @@ const ContactPage = ({ language }: { language: Language }) => {
             source: 'traceremove.com',
             timestamp: new Date().toISOString(),
             language: navigator.language,
+            page: window.location.pathname,
           }),
         }
       )
-      return { success: true }
-    } catch (e) {
-      return { success: false }
+      return res.ok
+    } catch {
+      return false
     }
   }
 
@@ -6252,14 +6254,14 @@ const ContactPage = ({ language }: { language: Language }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const result = await submitForm({
+    const isSubmitted = await submitToMake({
       name: formData.name,
       company: formData.company,
       email: formData.email,
       message: formData.message,
     })
 
-    if (result.success) {
+    if (isSubmitted) {
       setSubmitStatus('success')
       setFormData({ name: '', email: '', company: '', phone: '', message: '' })
       return
@@ -6357,7 +6359,7 @@ const ContactPage = ({ language }: { language: Language }) => {
           )}
           {submitStatus === 'error' && (
             <div className="contact-success" role="alert" aria-live="assertive">
-              <p>There was an issue submitting. Please email us directly at support@traceremove.com</p>
+              <p>There was an issue. Please email us directly at support@traceremove.com</p>
             </div>
           )}
           <p className="contact-legal">{copy.legal}</p>
