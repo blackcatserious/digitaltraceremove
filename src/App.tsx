@@ -51,6 +51,7 @@ import HeroCanvas from './components/HeroCanvas'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
+import PricingPage from './pages/Pricing'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -9103,6 +9104,7 @@ function App() {
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
         <Route path="services" element={<ServicesPricingPage />} />
+        <Route path="pricing" element={<PricingPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="academy" element={<AcademyPage />} />
         <Route path="faq" element={<FaqPage />} />
