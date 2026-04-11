@@ -2498,7 +2498,7 @@ const HomePage = () => {
 
   return (
     <section className="home">
-      <div className="home-hero">
+      <div className="home-hero" style={{ position: 'relative' }}>
         <HeroCanvas />
         <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
           <h1>{heroHeading}</h1>
