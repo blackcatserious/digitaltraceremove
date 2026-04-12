@@ -202,6 +202,8 @@ const getPrivacyPath = (language: Language) => (language === 'en' ? '/privacy' :
 
 const getTermsPath = (language: Language) => (language === 'en' ? '/terms' : `/${language}/terms`)
 
+const getRefundPath = (language: Language) => (language === 'en' ? '/refund' : '/refund')
+
 const localeMap: Record<Language, string> = {
   en: 'en-US',
   fr: 'fr-FR',
@@ -6063,6 +6065,7 @@ const contactCopy: Record<
 
 const ContactPage = ({ language }: { language: Language }) => {
   const copy = contactCopy[language]
+  const contactWebhookUrl = import.meta.env.VITE_CONTACT_WEBHOOK_URL?.trim()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -6070,14 +6073,18 @@ const ContactPage = ({ language }: { language: Language }) => {
     phone: '',
     message: '',
   })
-  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | 'unconfigured' | null>(null)
 
   async function submitToMake(data: {
     name: string; company: string; email: string; message: string;
   }): Promise<boolean> {
+    if (!contactWebhookUrl) {
+      return false
+    }
+
     try {
       const res = await fetch(
-        'WEBHOOK_PLACEHOLDER', // TODO: replace with actual Make.com webhook URL
+        contactWebhookUrl,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -6113,6 +6120,11 @@ const ContactPage = ({ language }: { language: Language }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (!contactWebhookUrl) {
+      setSubmitStatus('unconfigured')
+      return
+    }
+
     const isSubmitted = await submitToMake({
       name: formData.name,
       company: formData.company,
@@ -6221,6 +6233,14 @@ const ContactPage = ({ language }: { language: Language }) => {
               <p>There was an issue. Please email us directly at support@traceremove.com</p>
             </div>
           )}
+          {submitStatus === 'unconfigured' && (
+            <div className="contact-success" role="alert" aria-live="assertive">
+              <p>
+                Contact submissions are not configured yet. Please email{' '}
+                <a href="mailto:support@traceremove.com">support@traceremove.com</a> so we can schedule your assessment.
+              </p>
+            </div>
+          )}
           <p className="contact-legal">{copy.legal}</p>
         </form>
         <aside className="contact-details">
@@ -6259,17 +6279,6 @@ const NotFound = () => (
         <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
       </div>
     </header>
-  </section>
-)
-
-const SimpleContactPage = () => (
-  <section style={{ padding: '48px 24px' }}>
-    <div style={{ maxWidth: 720, margin: '0 auto', fontSize: '14px', lineHeight: 1.7, opacity: 0.8 }}>
-      <div>TRACEREMOVE LLC</div>
-      <div>750 Manhattan Ave</div>
-      <div>Brooklyn, NY 11222, USA</div>
-      <div>support@traceremove.com</div>
-    </div>
   </section>
 )
 
@@ -8714,7 +8723,7 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const servicesLinks = [
     { label: 'Monitoring and Alerts', to: getServicesPricingPath(currentLanguage) },
-    { label: 'Workflow Credits', to: '/pricing' },
+    { label: 'Workflow Credits', to: getServicesPricingPath(currentLanguage) },
     { label: 'Managed Programmes', to: getServicesPricingPath(currentLanguage) },
     { label: 'Cybersecurity Module', to: getTrustPath(currentLanguage) },
   ]
@@ -8734,7 +8743,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const legalLinks = [
     { label: 'Privacy Policy', to: getPrivacyPath(currentLanguage) },
     { label: 'Terms of Service', to: getTermsPath(currentLanguage) },
-    { label: 'Refund Policy', to: '/refund' },
+    { label: 'Refund Policy', to: getRefundPath(currentLanguage) },
   ]
 
   return (
@@ -9013,7 +9022,7 @@ function App() {
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersLandingPage />} />
         <Route path="join" element={<JoinPage />} />
-        <Route path="contact" element={<SimpleContactPage />} />
+        <Route path="contact" element={<ContactPage language="en" />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         <Route path="privacy" element={<PrivacyPage />} />
