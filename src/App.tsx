@@ -8522,10 +8522,12 @@ function App() {
         <Route path="contact" element={<ContactPage language="en" />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
-        <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="privacy" element={<Navigate to="/en/privacy" replace />} />
+        <Route path="en/privacy" element={<PrivacyPage />} />
         <Route path="terms" element={<Navigate to="/en/terms" replace />} />
         <Route path="en/terms" element={<TermsPage />} />
-        <Route path="refund" element={<RefundPage />} />
+        <Route path="refund" element={<Navigate to="/en/refund" replace />} />
+        <Route path="en/refund" element={<RefundPage />} />
         {languages.map((language) => {
           const withNoIndex = (element: ReactNode) =>
             language === 'ru' ? <RouteNoIndex>{element}</RouteNoIndex> : element
@@ -8550,7 +8552,11 @@ function App() {
               <Route path={`${language}/blog/:slug`} element={withNoIndex(<BlogArticlePage language={language} />)} />
               <Route
                 path={`${language}/privacy`}
-                element={withNoIndex(<LegalPage language={language} variant="privacy" />)}
+                element={
+                  language === 'en'
+                    ? withNoIndex(<PrivacyPage />)
+                    : withNoIndex(<LegalPage language={language} variant="privacy" />)
+                }
               />
               <Route
                 path={`${language}/terms`}
