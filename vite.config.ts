@@ -18,16 +18,9 @@ export default defineConfig({
         '/en/privacy',
         '/en/refund',
       ],
-      renderer: '@prerenderer/renderer-puppeteer',
+      renderer: '@prerenderer/renderer-jsdom',
       rendererOptions: {
-        renderAfterTime: 4000,
-        headless: true,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-gpu',
-        ],
+        renderAfterTime: 2000,
       },
     }),
   ],
