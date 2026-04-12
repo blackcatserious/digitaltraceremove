@@ -2254,15 +2254,26 @@ const HomePage = () => {
       <div
         style={{
           position: 'relative',
-          background: '#0A0F1E',
+          background: 'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(24,84,232,0.12) 0%, rgba(10,15,30,0) 70%), #0A0F1E',
           width: '100%',
           borderRadius: 0,
           margin: 0,
-          padding: '80px 5%',
+          boxShadow: 'none',
+          overflow: 'hidden',
+          paddingTop: 'clamp(80px, 10vw, 140px)',
+          paddingBottom: 'clamp(80px, 10vw, 120px)',
         }}
       >
         <HeroCanvas />
-        <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
+        <div
+          className="home-hero-copy"
+          style={{
+            maxWidth: '720px',
+            paddingLeft: 'clamp(24px, 5%, 80px)',
+            position: 'relative',
+            zIndex: 3,
+          }}
+        >
           <h1
             style={{
               color: '#FFFFFF',
@@ -2344,6 +2355,19 @@ const HomePage = () => {
             </span>
           </div>
         </div>
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: '120px',
+            background: 'linear-gradient(to bottom, transparent, #0A0F1E)',
+            pointerEvents: 'none',
+            zIndex: 2,
+          }}
+        />
       </div>
       <ClientsStrip />
       <PlatformsSection />
