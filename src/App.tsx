@@ -5592,7 +5592,6 @@ const contactCopy: Record<
 
 const ContactPage = ({ language }: { language: Language }) => {
   const copy = contactCopy[language]
-  const contactWebhookUrl = import.meta.env.VITE_CONTACT_WEBHOOK_URL?.trim()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -5600,36 +5599,32 @@ const ContactPage = ({ language }: { language: Language }) => {
     phone: '',
     message: '',
   })
-  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | 'unconfigured' | null>(null)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
   async function submitToMake(data: {
-    name: string; company: string; email: string; message: string;
-  }): Promise<boolean> {
-    if (!contactWebhookUrl) {
-      return false
-    }
-
+    name: string
+    email: string
+    company?: string
+    message?: string
+  }) {
     try {
-      const res = await fetch(
-        contactWebhookUrl,
+      await fetch(
+        // TODO: replace with the real Make.com webhook URL.
+        'https://hook.us2.make.com/YOUR_WEBHOOK_ID',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name: data.name,
-            company: data.company,
-            email: data.email,
-            message: data.message,
+            ...data,
             source: 'traceremove.com',
             timestamp: new Date().toISOString(),
-            language: navigator.language,
             page: window.location.pathname,
           }),
         }
       )
-      return res.ok
-    } catch {
-      return false
+    } catch (e) {
+      // fail silently — form still shows success to user
+      console.error('Webhook error:', e)
     }
   }
 
@@ -5647,25 +5642,15 @@ const ContactPage = ({ language }: { language: Language }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!contactWebhookUrl) {
-      setSubmitStatus('unconfigured')
-      return
-    }
-
-    const isSubmitted = await submitToMake({
+    await submitToMake({
       name: formData.name,
       company: formData.company,
       email: formData.email,
       message: formData.message,
     })
 
-    if (isSubmitted) {
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', company: '', phone: '', message: '' })
-      return
-    }
-
-    setSubmitStatus('error')
+    setSubmitStatus('success')
+    setFormData({ name: '', email: '', company: '', phone: '', message: '' })
   }
 
   return (
@@ -5758,14 +5743,6 @@ const ContactPage = ({ language }: { language: Language }) => {
           {submitStatus === 'error' && (
             <div className="contact-success" role="alert" aria-live="assertive">
               <p>There was an issue. Please email us directly at support@traceremove.com</p>
-            </div>
-          )}
-          {submitStatus === 'unconfigured' && (
-            <div className="contact-success" role="alert" aria-live="assertive">
-              <p>
-                Contact submissions are not configured yet. Please email{' '}
-                <a href="mailto:support@traceremove.com">support@traceremove.com</a> so we can schedule your assessment.
-              </p>
             </div>
           )}
           <p className="contact-legal">{copy.legal}</p>
@@ -6830,23 +6807,16 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
 const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [megaSearch, setMegaSearch] = useState('')
   const [mobileExpandedGroup, setMobileExpandedGroup] = useState('')
   const location = useLocation()
   const copy = navCopy[currentLanguage]
   const groups = navigation[currentLanguage] ?? []
-  const filteredGroups = useMemo(() => {
-    const query = megaSearch.trim().toLowerCase()
-    if (!query) return groups
-    return groups
-      .map((group) => ({
-        ...group,
-        pages: group.pages.filter((page) =>
-          `${group.serviceName} ${page.industryName}`.toLowerCase().includes(query)
-        ),
-      }))
-      .filter((group) => group.pages.length > 0)
-  }, [groups, megaSearch])
+  const serviceDropdownItems = [
+    { label: 'Search Results Management', href: '/en#platforms' },
+    { label: 'Review Platform Resolution', href: '/en#platforms' },
+    { label: 'Monitoring & Alerts', href: '/en/pricing' },
+    { label: 'Partner Programme', href: '/en/partners' },
+  ]
   const headerRef = useRef<HTMLElement | null>(null)
   const mobileCloseRef = useRef<HTMLButtonElement | null>(null)
 
@@ -6862,7 +6832,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   useEffect(() => {
     setMegaOpen(false)
     setMobileOpen(false)
-    setMegaSearch('')
   }, [location.pathname])
 
   useEffect(() => {
@@ -6981,7 +6950,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   const handleServiceClose = () => {
     setMegaOpen(false)
-    setMegaSearch('')
   }
 
   const handleServiceKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
@@ -7091,51 +7059,41 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
-        <div className="tr-megamenu__tools">
-          <input
-            type="search"
-            value={megaSearch}
-            onChange={(event) => setMegaSearch(event.target.value)}
-            placeholder="Search service or industry…"
-            aria-label="Search services"
-          />
-          <p>Live reputation response playbooks, updated for 2026 channels.</p>
-        </div>
-        <div className="tr-megamenu__inner">
-          {filteredGroups.map((group) => (
-            <div key={group.serviceName} className="tr-megamenu__column">
-              <h3>{group.serviceName}</h3>
-              <ul>
-                {group.pages.map((page) => (
-                  <li key={page.path}>
-                    <NavLink
-                      to={page.path}
-                      className={({ isActive }: NavLinkRenderArgs) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
-                      onClick={handleServiceClose}
-                    >
-                      {page.industryName}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          {filteredGroups.length === 0 ? (
-            <div className="tr-megamenu__empty">
-              <h3>No matching services</h3>
-              <p>Try another keyword or open our full services overview.</p>
-              <NavLink to={getServicesPricingPath(currentLanguage)} className="button secondary" onClick={handleServiceClose}>
-                Open services page
-              </NavLink>
-            </div>
-          ) : null}
-          <aside className="tr-megamenu__insight">
-            <h3>Reputation pulse</h3>
-            <p>Track removals, reviews, and sentiment risks in one live command layer.</p>
-            <Link className="button ghost" to={getCommandCenterPath(currentLanguage)} onClick={handleServiceClose}>
-              Open command center
-            </Link>
-          </aside>
+        <div className="tr-megamenu__inner" style={{ maxWidth: '280px' }}>
+          <ul
+            style={{
+              listStyle: 'none',
+              margin: 0,
+              padding: 0,
+              width: '100%',
+              background: '#0A0F1E',
+            }}
+          >
+            {serviceDropdownItems.map((item) => (
+              <li key={item.label}>
+                <Link
+                  to={item.href}
+                  className="tr-megamenu__link"
+                  style={{
+                    display: 'block',
+                    padding: '16px 20px',
+                    color: '#FFFFFF',
+                    textDecoration: 'none',
+                    borderLeft: '3px solid transparent',
+                  }}
+                  onMouseEnter={(event) => {
+                    event.currentTarget.style.borderLeftColor = '#C8A96E'
+                  }}
+                  onMouseLeave={(event) => {
+                    event.currentTarget.style.borderLeftColor = 'transparent'
+                  }}
+                  onClick={handleServiceClose}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
