@@ -120,21 +120,40 @@ const navigation = buildNavigation()
 type NavLinkRenderArgs = { isActive: boolean }
 
 
-const pageSeoDefaults: Record<Language, { titleSuffix: string; description: string }> = {
-  en: {
-    titleSuffix: 'We help manage and resolve online data exposure',
+const baseSeo = {
+  title: 'TraceRemove — Monitor and Manage Online Data Exposure',
+  description:
+    'Structured tools and managed workflows to identify, monitor, and resolve online data exposure for businesses, executives, and agency partners. New York, NY.',
+}
+
+const routeSeo: Record<string, { title: string; description: string; ogUrl?: string }> = {
+  '/en': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/en/': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/fr': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/fr/': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/es': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/es/': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/en/pricing': {
+    title: 'Pricing — TraceRemove Data Exposure Management',
     description:
-      'We help manage and resolve online data exposure',
+      'Self-serve monitoring from $49/month. Managed programmes from $4,900/month. Transparent pricing for businesses and agency partners.',
   },
-  fr: {
-    titleSuffix: 'Traceremove · Systèmes de croissance réputationnelle',
+  '/en/partners': {
+    title: 'Partner Programme — TraceRemove',
     description:
-      'Traceremove aide les fondateurs et les entreprises à protéger leur réputation, retirer les contenus nocifs et accélérer une croissance crédible.',
+      'White-label data exposure management for law firms, PR agencies, and HR consultancies. Silver, Gold, and Platinum capacity tiers.',
   },
-  es: {
-    titleSuffix: 'Traceremove · Sistemas de crecimiento reputacional',
-    description:
-      'Traceremove ayuda a fundadores y empresas a proteger su reputación, retirar contenido dañino y escalar crecimiento confiable.',
+  '/en/terms': {
+    title: 'Terms — TraceRemove LLC',
+    description: 'TRACEREMOVE LLC, 750 Manhattan Ave, Brooklyn, NY 11222, USA.',
+  },
+  '/en/privacy': {
+    title: 'Privacy — TraceRemove LLC',
+    description: 'TRACEREMOVE LLC, 750 Manhattan Ave, Brooklyn, NY 11222, USA.',
+  },
+  '/en/refund': {
+    title: 'Refund — TraceRemove LLC',
+    description: 'TRACEREMOVE LLC, 750 Manhattan Ave, Brooklyn, NY 11222, USA.',
   },
 }
 
@@ -8831,11 +8850,10 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   }, [location.pathname])
 
   useEffect(() => {
-    const seo = pageSeoDefaults[currentLanguage]
-    const path = location.pathname === '/' ? '' : location.pathname
-    const readablePath = path.split('/').join(' ').trim()
-    const title = path ? `${seo.titleSuffix} · ${readablePath}` : seo.titleSuffix
-    document.title = title
+    const normalizedPath = location.pathname.endsWith('/') ? location.pathname : `${location.pathname}/`
+    const lookupPath = routeSeo[location.pathname] ? location.pathname : normalizedPath
+    const seo = routeSeo[lookupPath] ?? baseSeo
+    document.title = seo.title
 
     const ensureMeta = (name: string, content: string) => {
       let element = document.head.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null
@@ -8847,8 +8865,22 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       element.setAttribute('content', content)
     }
 
+    const ensurePropertyMeta = (property: string, content: string) => {
+      let element = document.head.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null
+      if (!element) {
+        element = document.createElement('meta')
+        element.setAttribute('property', property)
+        document.head.appendChild(element)
+      }
+      element.setAttribute('content', content)
+    }
+
     ensureMeta('description', seo.description)
     ensureMeta('robots', 'index, follow, max-image-preview:large')
+    ensurePropertyMeta('og:title', seo.title)
+    ensurePropertyMeta('og:description', seo.description)
+    ensurePropertyMeta('og:type', 'website')
+    ensurePropertyMeta('og:url', seo.ogUrl ?? `${window.location.origin}${location.pathname}`)
 
     let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
     if (!canonical) {
