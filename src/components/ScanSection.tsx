@@ -8,7 +8,10 @@ type FormErrors = {
 export default function ScanSection() {
   const [companyName, setCompanyName] = useState('')
   const [email, setEmail] = useState('')
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [result, setResult] = useState(false)
+  const [emailSubmitted, setEmailSubmitted] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
+  const [emailError, setEmailError] = useState('')
   const [errors, setErrors] = useState<FormErrors>({})
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -20,18 +23,32 @@ export default function ScanSection() {
       nextErrors.companyName = 'Company name or domain is required.'
     }
 
-    if (!email.trim()) {
-      nextErrors.email = 'Work email is required.'
-    }
-
     setErrors(nextErrors)
 
     if (Object.keys(nextErrors).length > 0) {
-      setIsSubmitted(false)
+      setResult(false)
       return
     }
 
-    setIsSubmitted(true)
+    setResult(true)
+  }
+
+  const submitEmail = async () => {
+    if (!email.trim()) {
+      setEmailError('Work email is required.')
+      return
+    }
+
+    try {
+      setEmailLoading(true)
+      setEmailError('')
+      await new Promise((resolve) => window.setTimeout(resolve, 600))
+      setEmailSubmitted(true)
+    } catch {
+      setEmailError('Unable to send right now. Please try again.')
+    } finally {
+      setEmailLoading(false)
+    }
   }
 
   return (
@@ -48,7 +65,7 @@ export default function ScanSection() {
         <h3 style={{ marginTop: 0 }}>Business Exposure Report</h3>
         <p>60 seconds. No credit card required. Report delivered to your email.</p>
 
-        {isSubmitted ? (
+        {result ? (
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '10px' }}>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="10" stroke="var(--blue)" strokeWidth="2" />
@@ -83,20 +100,6 @@ export default function ScanSection() {
               </div>
 
               <div>
-                <label>
-                  Work email
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    placeholder="you@company.com"
-                    style={{ display: 'block', width: '100%', marginTop: '6px' }}
-                  />
-                </label>
-                {errors.email ? <p style={{ color: '#b91c1c', margin: '6px 0 0' }}>{errors.email}</p> : null}
-              </div>
-
-              <div>
                 <button type="submit" className="button primary" style={{ width: '100%', marginTop: '24px' }}>
                   Generate Report
                 </button>
@@ -104,6 +107,47 @@ export default function ScanSection() {
             </div>
           </form>
         )}
+
+        {result && !emailSubmitted ? (
+          <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-slate-900">
+              Get the full audit
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Receive flagged URLs and recommended next steps by email.
+            </p>
+
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@company.com"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500"
+              />
+              <button
+                type="button"
+                onClick={submitEmail}
+                disabled={emailLoading || !email}
+                className="rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {emailLoading ? 'Sending...' : 'Email full audit'}
+              </button>
+            </div>
+
+            {emailError ? (
+              <div className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                {emailError}
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+
+        {emailSubmitted ? (
+          <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-green-200 bg-green-50 p-6 text-green-800 shadow-sm">
+            Full audit request received. Check your inbox.
+          </div>
+        ) : null}
 
         <p style={{ marginTop: '12px' }}>
           Confidential. Your data is never shared beyond report generation.
