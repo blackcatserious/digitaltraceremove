@@ -1,20 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import PrerenderPlugin from 'vite-plugin-prerender'
+import Prerenderer from '@prerenderer/vite-plugin'
 
 export default defineConfig({
   plugins: [
     react(),
-    PrerenderPlugin({
-      staticDir: 'dist',
+    Prerenderer({
       routes: [
-        '/',
         '/en',
-        '/en/',
         '/fr',
-        '/fr/',
         '/es',
-        '/es/',
         '/en/pricing',
         '/en/partners',
         '/en/case-studies',
@@ -23,10 +18,11 @@ export default defineConfig({
         '/en/privacy',
         '/en/refund',
       ],
-      renderer: new PrerenderPlugin.PuppeteerRenderer({
+      renderer: '@prerenderer/renderer-puppeteer',
+      rendererOptions: {
         renderAfterTime: 4000,
         headless: true,
-      }),
+      },
     }),
   ],
   build: {
