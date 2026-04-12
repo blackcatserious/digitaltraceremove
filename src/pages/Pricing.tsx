@@ -55,18 +55,49 @@ const partnerTiers = [
 ]
 
 export default function PricingPage() {
+  const pageStyle = {
+    minHeight: '100vh',
+    background: '#0A0F1E',
+    color: '#FAFAFA',
+    paddingTop: '80px',
+  } as const
+
+  const heroStyle = {
+    paddingTop: 'clamp(60px, 8vw, 100px)',
+    paddingBottom: 'clamp(40px, 5vw, 60px)',
+    paddingLeft: 'clamp(24px, 5%, 80px)',
+    paddingRight: 'clamp(24px, 5%, 80px)',
+    maxWidth: '1200px',
+    margin: '0 auto',
+  } as const
+
+  const sectionStyle = {
+    paddingTop: 'clamp(48px, 6vw, 80px)',
+    paddingBottom: 'clamp(48px, 6vw, 80px)',
+    paddingLeft: 'clamp(24px, 5%, 80px)',
+    paddingRight: 'clamp(24px, 5%, 80px)',
+    maxWidth: '1200px',
+    margin: '0 auto',
+  } as const
+
+  const bodyTextStyle = {
+    color: 'rgba(255,255,255,0.72)',
+    lineHeight: 1.75,
+    maxWidth: '680px',
+  } as const
+
   return (
-    <section className="home-production" aria-labelledby="pricing-page-heading">
-      <header className="home-production__header">
+    <section className="home-production" aria-labelledby="pricing-page-heading" style={pageStyle}>
+      <header className="home-production__header" style={heroStyle}>
         <p className="home-production__kicker">Self-Serve</p>
-        <h2 id="pricing-page-heading">Transparent Pricing. No Hidden Costs.</h2>
-        <p>Start with monitoring. Scale to managed programmes when ready.</p>
+        <h1 id="pricing-page-heading" style={{ fontFamily: "'Playfair Display', serif" }}>Pricing</h1>
+        <p style={bodyTextStyle}>Start with monitoring. Scale to managed programmes when ready.</p>
         <Link className="button primary" to="/en#assessment">
           Request Assessment
         </Link>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '16px' }}>
+      <div style={{ ...sectionStyle, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
         {selfServeTiers.map((tier) => (
           <article
             key={tier.name}
@@ -74,7 +105,7 @@ export default function PricingPage() {
               border: tier.featured ? '2px solid var(--blue)' : '1px solid var(--border)',
               borderRadius: '12px',
               padding: '18px',
-              background: '#fff',
+              background: 'rgba(255,255,255,0.04)',
             }}
           >
             {tier.featured ? (
@@ -82,7 +113,7 @@ export default function PricingPage() {
             ) : null}
             <h3 style={{ margin: 0 }}>{tier.name}</h3>
             <p style={{ margin: '8px 0', fontSize: '1.75rem', fontFamily: 'var(--font-mono)' }}>{tier.price}</p>
-            <p style={{ color: 'var(--gray)' }}>{tier.description}</p>
+            <p style={bodyTextStyle}>{tier.description}</p>
             <ul style={{ paddingLeft: '18px', marginBottom: '16px' }}>
               {tier.features.map((feature) => (
                 <li key={feature} style={{ marginBottom: '6px' }}>
@@ -97,7 +128,7 @@ export default function PricingPage() {
         ))}
       </div>
 
-      <section style={{ marginTop: '28px', background: 'var(--navy)', borderRadius: '14px', padding: '24px' }}>
+      <section style={{ ...sectionStyle, background: 'var(--navy)', borderRadius: '14px' }}>
         <p style={{ color: 'var(--white)', margin: 0 }}>
           Managed programmes from $4,900/month · Cybersecurity monitoring from $7,800/quarter
         </p>
@@ -106,15 +137,15 @@ export default function PricingPage() {
         </Link>
       </section>
 
-      <section style={{ marginTop: '24px' }}>
-        <h3>Partner Capacity Packages</h3>
+      <section style={sectionStyle}>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Partner Capacity Packages</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
           {partnerTiers.map((tier) => (
             <article key={tier.name} style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
               <h4 style={{ margin: '0 0 6px' }}>
                 {tier.name}: <span style={{ fontFamily: 'var(--font-mono)' }}>{tier.price}</span>
               </h4>
-              <p style={{ margin: 0, color: 'var(--gray)' }}>{tier.description}</p>
+              <p style={{ ...bodyTextStyle, margin: 0 }}>{tier.description}</p>
             </article>
           ))}
         </div>

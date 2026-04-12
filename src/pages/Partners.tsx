@@ -22,11 +22,39 @@ export default function PartnersPage() {
     })
   }
 
+  const pageStyle = {
+    minHeight: '100vh',
+    background: '#0A0F1E',
+    color: '#FAFAFA',
+    paddingTop: '80px',
+  } as const
+  const heroStyle = {
+    paddingTop: 'clamp(60px, 8vw, 100px)',
+    paddingBottom: 'clamp(40px, 5vw, 60px)',
+    paddingLeft: 'clamp(24px, 5%, 80px)',
+    paddingRight: 'clamp(24px, 5%, 80px)',
+    maxWidth: '1200px',
+    margin: '0 auto',
+  } as const
+  const sectionStyle = {
+    paddingTop: 'clamp(48px, 6vw, 80px)',
+    paddingBottom: 'clamp(48px, 6vw, 80px)',
+    paddingLeft: 'clamp(24px, 5%, 80px)',
+    paddingRight: 'clamp(24px, 5%, 80px)',
+    maxWidth: '1200px',
+    margin: '0 auto',
+  } as const
+  const bodyTextStyle = {
+    color: 'rgba(255,255,255,0.72)',
+    lineHeight: 1.75,
+    maxWidth: '680px',
+  } as const
+
   return (
-    <section className="home-production" aria-labelledby="partners-page-heading">
-      <header className="home-production__header">
-        <h1 id="partners-page-heading">The Partner Programme</h1>
-        <p>
+    <section className="home-production" aria-labelledby="partners-page-heading" style={pageStyle}>
+      <header className="home-production__header" style={heroStyle}>
+        <h1 id="partners-page-heading" style={{ fontFamily: "'Playfair Display', serif" }}>The Partner Programme</h1>
+        <p style={bodyTextStyle}>
           White-label data exposure management for law firms, PR agencies, and HR consultancies. Your brand. Our
           infrastructure.
         </p>
@@ -35,8 +63,8 @@ export default function PartnersPage() {
         </a>
       </header>
 
-      <section style={{ marginTop: '18px' }}>
-        <h2>How it works</h2>
+      <section style={sectionStyle}>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>How it works</h2>
         <ol style={{ display: 'grid', gap: '10px', paddingLeft: '20px' }}>
           <li>Apply and sign partner agreement</li>
           <li>Receive enablement kit and onboarding sprint</li>
@@ -44,52 +72,52 @@ export default function PartnersPage() {
         </ol>
       </section>
 
-      <section style={{ marginTop: '20px' }}>
-        <h2>Commercial models</h2>
+      <section style={sectionStyle}>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Commercial models</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>White-label capacity</h3>
-            <p>Monthly retainer for sprint credits. You deliver under your brand.</p>
+            <h3 style={{ fontFamily: "'Playfair Display', serif" }}>White-label capacity</h3>
+            <p style={bodyTextStyle}>Monthly retainer for sprint credits. You deliver under your brand.</p>
           </article>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Revenue share</h3>
-            <p>Margin split 20-30%. Joint delivery with reporting.</p>
+            <h3 style={{ fontFamily: "'Playfair Display', serif" }}>Revenue share</h3>
+            <p style={bodyTextStyle}>Margin split 20-30%. Joint delivery with reporting.</p>
           </article>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Referral</h3>
-            <p>Fixed bounty per qualified referral. Lightest operational overhead.</p>
+            <h3 style={{ fontFamily: "'Playfair Display', serif" }}>Referral</h3>
+            <p style={bodyTextStyle}>Fixed bounty per qualified referral. Lightest operational overhead.</p>
           </article>
         </div>
       </section>
 
-      <section style={{ marginTop: '20px' }}>
-        <h2>Capacity tiers</h2>
+      <section style={sectionStyle}>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Capacity tiers</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Silver</h3>
-            <p>$5,000/mo</p>
-            <p>Standard SLA</p>
-            <p>X workflow credits per month</p>
+            <h3 style={{ fontFamily: "'Playfair Display', serif" }}>Silver</h3>
+            <p style={bodyTextStyle}>$5,000/mo</p>
+            <p style={bodyTextStyle}>Standard SLA</p>
+            <p style={bodyTextStyle}>X workflow credits per month</p>
           </article>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Gold</h3>
-            <p>$10,000/mo</p>
-            <p>Priority queue</p>
-            <p>More credits</p>
-            <p>Quarterly enablement</p>
+            <h3 style={{ fontFamily: "'Playfair Display', serif" }}>Gold</h3>
+            <p style={bodyTextStyle}>$10,000/mo</p>
+            <p style={bodyTextStyle}>Priority queue</p>
+            <p style={bodyTextStyle}>More credits</p>
+            <p style={bodyTextStyle}>Quarterly enablement</p>
           </article>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Platinum</h3>
-            <p>$18,000/mo</p>
-            <p>Dedicated channel</p>
-            <p>Enterprise SLA</p>
-            <p>Custom credits</p>
+            <h3 style={{ fontFamily: "'Playfair Display', serif" }}>Platinum</h3>
+            <p style={bodyTextStyle}>$18,000/mo</p>
+            <p style={bodyTextStyle}>Dedicated channel</p>
+            <p style={bodyTextStyle}>Enterprise SLA</p>
+            <p style={bodyTextStyle}>Custom credits</p>
           </article>
         </div>
       </section>
 
-      <section id="partner-application" style={{ marginTop: '22px' }}>
-        <h2>Application form</h2>
+      <section id="partner-application" style={sectionStyle}>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Application form</h2>
         <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '10px', maxWidth: '760px' }}>
           <input
             type="text"
@@ -132,7 +160,7 @@ export default function PartnersPage() {
             Submit Application
           </button>
         </form>
-        <p style={{ marginTop: '10px', color: 'var(--gray)' }}>We review all applications within 2 business days.</p>
+        <p style={{ ...bodyTextStyle, marginTop: '10px' }}>We review all applications within 2 business days.</p>
         {submitted ? <p style={{ color: 'var(--blue)' }}>Application received. Our partner team will contact you shortly.</p> : null}
       </section>
     </section>
