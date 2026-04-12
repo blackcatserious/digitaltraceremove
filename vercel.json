@@ -1,3 +1,30 @@
 {
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "redirects": [
+    {
+      "source": "/:path*.php",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/guides/:path*",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/partners",
+      "destination": "/en/partners",
+      "permanent": true
+    },
+    {
+      "source": "/reputation-kit/:path*",
+      "destination": "/en",
+      "permanent": true
+    }
+  ]
 }
