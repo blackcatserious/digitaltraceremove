@@ -44,7 +44,7 @@ export default function ProcessSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: '20px',
             position: 'relative',
             zIndex: 1,

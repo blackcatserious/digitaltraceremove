@@ -139,7 +139,7 @@ export default function PricingPage() {
 
       <section style={sectionStyle}>
         <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Partner Capacity Packages</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
           {partnerTiers.map((tier) => (
             <article key={tier.name} style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
               <h4 style={{ margin: '0 0 6px' }}>

@@ -28,7 +28,7 @@ const partnerTiers = [
 export default function AgenciesSection() {
   return (
     <section className="home-production" style={{ background: 'var(--navy)' }} aria-labelledby="agencies-heading">
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '24px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
         <div>
           <p style={{ color: 'var(--gold)', margin: '0 0 8px', fontWeight: 600 }}>Partner Program</p>
           <h2 id="agencies-heading" style={{ margin: 0, fontFamily: 'var(--font-display)', color: 'var(--white)' }}>
@@ -51,7 +51,7 @@ export default function AgenciesSection() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
           {partnerTypes.map((item) => (
             <article
               key={item.title}

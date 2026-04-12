@@ -32,7 +32,7 @@ export default function FAQSection() {
         <h2 id="faq-section-heading">Answers to the Questions Every Client Asks First</h2>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '16px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
         {faqs.map((item) => (
           <article key={item.q} style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '16px' }}>
             <p style={{ color: 'var(--blue)', fontFamily: 'var(--font-mono)', fontWeight: 600, margin: '0 0 8px' }}>Q</p>

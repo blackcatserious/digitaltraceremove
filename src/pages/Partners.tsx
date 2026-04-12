@@ -74,7 +74,7 @@ export default function PartnersPage() {
 
       <section style={sectionStyle}>
         <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Commercial models</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
             <h3 style={{ fontFamily: "'Playfair Display', serif" }}>White-label capacity</h3>
             <p style={bodyTextStyle}>Monthly retainer for sprint credits. You deliver under your brand.</p>
@@ -92,7 +92,7 @@ export default function PartnersPage() {
 
       <section style={sectionStyle}>
         <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Capacity tiers</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
             <h3 style={{ fontFamily: "'Playfair Display', serif" }}>Silver</h3>
             <p style={bodyTextStyle}>$5,000/mo</p>

@@ -2252,6 +2252,7 @@ const HomePage = () => {
   return (
     <section className="home">
       <div
+        className="home-hero-shell"
         style={{
           position: 'relative',
           background: 'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(24,84,232,0.12) 0%, rgba(10,15,30,0) 70%), #0A0F1E',
@@ -2303,7 +2304,7 @@ const HomePage = () => {
             exposure — for businesses, executives, and agency partners across North America, Europe, Latin America,
             Asia-Pacific, and Africa.
           </p>
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div className="home-hero-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link
               className="button primary"
               to={getContactPath(currentLanguage)}
@@ -7120,7 +7121,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
         </div>
 
         <nav
-          className="tr-nav"
+          className="tr-nav desktop-nav"
           aria-label="Main"
           style={{
             display: 'flex',
@@ -7169,7 +7170,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           ))}
         </nav>
 
-        <div className="tr-header__cta">
+        <div className="tr-header__cta desktop-nav">
           <NavLink
             className="button primary"
             to={getContactPath(currentLanguage)}
@@ -8376,11 +8377,12 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   return (
     <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
       <div
+        className="footer-columns"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: '1.35fr 1fr 1fr 1fr',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '24px',
         }}
       >

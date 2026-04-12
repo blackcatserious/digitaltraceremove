@@ -29,7 +29,7 @@ export default function PricingSection() {
         <p>Start with self-serve monitoring. Scale to managed programmes when ready.</p>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
         {plans.map((plan) => (
           <article
             key={plan.name}
