@@ -48,6 +48,7 @@ import CaseStudiesSection from './components/CaseStudiesSection'
 import FAQSection from './components/FAQSection'
 import FinalCTA from './components/FinalCTA'
 import HeroCanvas from './components/HeroCanvas'
+import ClientsStrip from './components/ClientsStrip'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
@@ -2570,6 +2571,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <ClientsStrip />
       <PlatformsSection />
       <AgenciesSection />
       <ProcessSection />
