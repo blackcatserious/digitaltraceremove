@@ -11,7 +11,7 @@ const selfServeTiers = [
   {
     name: 'Protect',
     price: '$149/month',
-    description: 'Monitoring plus structured workflow credits each quarter',
+    description: 'Monitoring plus quarterly workflow credits',
     features: [
       'Everything in Monitor',
       'Quarterly workflow credits (3 sprints)',
@@ -34,12 +34,6 @@ const selfServeTiers = [
     ],
     featured: false,
   },
-]
-
-const managedPrograms = [
-  { label: 'Always-On Search Trust', price: 'From $4,900/month' },
-  { label: 'Cybersecurity Monitoring', price: 'From $7,800/quarter' },
-  { label: 'Enterprise Custom', price: 'Contact us' },
 ]
 
 const partnerTiers = [
@@ -65,7 +59,11 @@ export default function PricingPage() {
     <section className="home-production" aria-labelledby="pricing-page-heading">
       <header className="home-production__header">
         <p className="home-production__kicker">Self-Serve</p>
-        <h2 id="pricing-page-heading">Start With Monitoring. Scale When Ready.</h2>
+        <h2 id="pricing-page-heading">Transparent Pricing. No Hidden Costs.</h2>
+        <p>Start with monitoring. Scale to managed programmes when ready.</p>
+        <Link className="button primary" to="/en#assessment">
+          Request Assessment
+        </Link>
       </header>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '16px' }}>
@@ -92,44 +90,20 @@ export default function PricingPage() {
                 </li>
               ))}
             </ul>
-            <Link className="button primary" to="/contact">
+            <Link className="button primary" to="/en#assessment">
               Get Started
             </Link>
           </article>
         ))}
       </div>
 
-      <p style={{ marginTop: '14px', color: 'var(--gray)' }}>
-        Workflow credits represent time-boxed resolution cycles with progress tracking and end-of-cycle reporting.
-        Third-party outcomes depend on external systems — best-efforts execution with full transparency.
-      </p>
-
       <section style={{ marginTop: '28px', background: 'var(--navy)', borderRadius: '14px', padding: '24px' }}>
-        <p style={{ color: 'var(--gold)', margin: '0 0 8px' }}>For Enterprises and Partners</p>
-        <h2 style={{ color: 'var(--white)', marginTop: 0 }}>Always-On Managed Programmes</h2>
-        <p style={{ color: 'rgba(255,255,255,0.82)' }}>
-          High-volume or complex exposure cases handled by a dedicated team. Custom sprint plans, weekly reporting,
-          and direct account management.
+        <p style={{ color: 'var(--white)', margin: 0 }}>
+          Managed programmes from $4,900/month · Cybersecurity monitoring from $7,800/quarter
         </p>
-
-        <div style={{ display: 'grid', gap: '10px', marginTop: '14px' }}>
-          {managedPrograms.map((program) => (
-            <div
-              key={program.label}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderBottom: '1px solid rgba(255,255,255,0.2)',
-                paddingBottom: '8px',
-                color: 'var(--white)',
-              }}
-            >
-              <span>{program.label}</span>
-              <strong>{program.price}</strong>
-            </div>
-          ))}
-        </div>
+        <Link to="/en#assessment" style={{ color: 'var(--gold)', fontWeight: 600, textDecoration: 'none' }}>
+          Request managed programme →
+        </Link>
       </section>
 
       <section style={{ marginTop: '24px' }}>
