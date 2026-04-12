@@ -11,7 +11,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
+import { Link, NavLink, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import {
   interfaceCopy,
   insightDashboards,
@@ -8523,7 +8523,8 @@ function App() {
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
         <Route path="privacy" element={<PrivacyPage />} />
-        <Route path="terms" element={<TermsPage />} />
+        <Route path="terms" element={<Navigate to="/en/terms" replace />} />
+        <Route path="en/terms" element={<TermsPage />} />
         <Route path="refund" element={<RefundPage />} />
         {languages.map((language) => {
           const withNoIndex = (element: ReactNode) =>
@@ -8553,7 +8554,11 @@ function App() {
               />
               <Route
                 path={`${language}/terms`}
-                element={withNoIndex(<LegalPage language={language} variant="terms" />)}
+                element={
+                  language === 'en'
+                    ? withNoIndex(<TermsPage />)
+                    : withNoIndex(<LegalPage language={language} variant="terms" />)
+                }
               />
             </Fragment>
           )
