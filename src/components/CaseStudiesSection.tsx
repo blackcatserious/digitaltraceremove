@@ -31,7 +31,7 @@ export default function CaseStudiesSection() {
       <header
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '20px',
           alignItems: 'start',
           marginBottom: '18px',
@@ -45,7 +45,7 @@ export default function CaseStudiesSection() {
         </p>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '16px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
         {caseStudies.map((item) => (
           <article
             key={item.industry}

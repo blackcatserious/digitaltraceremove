@@ -1,34 +1,52 @@
+import { useEffect } from 'react'
+
 export default function PrivacyPage() {
+  useEffect(() => {
+    document.title = 'Privacy Policy — TraceRemove LLC'
+  }, [])
+
+  const pageStyle = {
+    minHeight: '100vh',
+    background: '#0A0F1E',
+    color: '#FAFAFA',
+    paddingTop: '80px',
+  } as const
+  const legalDocStyle = {
+    maxWidth: '720px',
+    margin: '0 auto',
+    padding: 'clamp(40px, 5vw, 80px) clamp(24px, 5%, 40px)',
+  } as const
+  const bodyTextStyle = {
+    color: 'rgba(255,255,255,0.72)',
+    lineHeight: 1.75,
+    maxWidth: '680px',
+  } as const
+
   return (
-    <main className="legal-page">
-      <section className="legal-content">
-        <h1>Privacy Policy</h1>
+    <main className="legal-page" style={pageStyle}>
+      <section className="legal-content" style={legalDocStyle}>
+        <h1 style={{ fontFamily: "'Playfair Display', serif" }}>Privacy Policy</h1>
 
-        <h2>Data collected</h2>
-        <p>We collect email address, company details, and usage data from your workspace activity and reports.</p>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Data collected</h2>
+        <p style={bodyTextStyle}>We collect name, email, company, and usage analytics needed to operate and improve the service.</p>
 
-        <h2>How data is used</h2>
-        <p>We use this data for service delivery, monitoring, workflows, resolution cycle reporting, and support.</p>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Third parties</h2>
+        <p style={bodyTextStyle}>We use Stripe and Calendly for billing and scheduling support. We do not sell personal data.</p>
 
-        <h2>Third parties</h2>
-        <p>We do not share personal data with third parties except where required for payment processing.</p>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>GDPR rights (EU users)</h2>
+        <p style={bodyTextStyle}>EU users can request access, correction, deletion, and portability under GDPR.</p>
 
-        <h2>GDPR rights (EU users)</h2>
-        <p>EU users can request access, correction, and erasure under GDPR.</p>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>CCPA rights (California users)</h2>
+        <p style={bodyTextStyle}>California users can request to know, delete, and opt out under CCPA.</p>
 
-        <h2>CCPA rights (California users)</h2>
-        <p>California users can request disclosure, deletion where applicable, and information about data handling.</p>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Retention</h2>
+        <p style={bodyTextStyle}>We retain personal data for 2 years after account closure.</p>
 
-        <h2>Data retention</h2>
-        <p>We retain account and workflow records for 2 years after account closure.</p>
+        <h2 style={{ fontFamily: "'Playfair Display', serif" }}>Contact</h2>
+        <p style={bodyTextStyle}>For privacy requests, contact support@traceremove.com.</p>
 
-        <h2>Privacy requests</h2>
-        <p>For privacy requests, contact support@traceremove.com.</p>
-
-        <p>
-          TRACEREMOVE LLC
-          <br />
-          750 Manhattan Ave, Brooklyn, NY 11222, USA
+        <p style={bodyTextStyle}>
+          TRACEREMOVE LLC, 750 Manhattan Ave, Brooklyn NY 11222
           <br />
           support@traceremove.com
         </p>

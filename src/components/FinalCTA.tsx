@@ -32,7 +32,7 @@ export default function FinalCTA() {
         }}
         onSubmit={handleSubmit}
       >
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px', marginBottom: '14px' }}>
           <div>
             <label
               style={{
