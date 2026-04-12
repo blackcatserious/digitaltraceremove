@@ -2251,10 +2251,19 @@ const HomePage = () => {
 
   return (
     <section className="home">
-      <div className="home-hero" style={{ position: 'relative' }}>
+      <div
+        style={{
+          position: 'relative',
+          background: '#0A0F1E',
+          width: '100%',
+          borderRadius: 0,
+          margin: 0,
+          padding: '80px 5%',
+        }}
+      >
         <HeroCanvas />
         <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
-          <h1>{heroHeading}</h1>
+          <h1 style={{ fontFamily: "'Playfair Display', serif" }}>{heroHeading}</h1>
           <div
             style={{
               width: '56px',
@@ -5609,13 +5618,15 @@ const ContactPage = ({ language }: { language: Language }) => {
   }) {
     try {
       await fetch(
-        // TODO: replace with the real Make.com webhook URL.
-        'https://hook.us2.make.com/YOUR_WEBHOOK_ID',
+        'https://hook.us2.make.com/142r6iwfygv7r3qisqneb3onfdihweqk',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            ...data,
+            name: data.name || '',
+            email: data.email || '',
+            company: data.company || '',
+            message: data.message || '',
             source: 'traceremove.com',
             timestamp: new Date().toISOString(),
             page: window.location.pathname,
