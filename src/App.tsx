@@ -51,7 +51,6 @@ import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
-import PartnersLandingPage from './pages/Partners'
 import AboutPage from './pages/About'
 import './App.css'
 
@@ -8218,15 +8217,15 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const servicesLinks = [
     { label: 'Services overview', to: getServicesPricingPath(currentLanguage) },
-    { label: 'Pricing plans', to: getServicesPricingPath(currentLanguage) },
-    { label: 'Managed programmes', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Case studies', to: getCaseStudiesPath(currentLanguage) },
+    { label: 'FAQ', to: getFaqPath(currentLanguage) },
     { label: 'Trust center', to: getTrustPath(currentLanguage) },
   ]
   const partnerLinks = [
     { label: 'Partner overview', to: getPartnersPath(currentLanguage) },
-    { label: 'Partner tiers', to: getPartnersPath(currentLanguage) },
+    { label: 'Partner case studies', to: getCaseStudiesPath(currentLanguage) },
     { label: 'Become a partner', to: getContactPath(currentLanguage) },
-    { label: 'Partner contact', to: getContactPath(currentLanguage) },
+    { label: 'Partner FAQ', to: getFaqPath(currentLanguage) },
   ]
   const companyLinks = [
     { label: 'About', to: getAboutPath(currentLanguage) },
@@ -8518,7 +8517,7 @@ function App() {
         <Route path="command-center" element={<CommandCenterPage />} />
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
-        <Route path="partners" element={<PartnersLandingPage />} />
+        <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<ContactPage language="en" />} />
         <Route path="blog" element={<BlogPage language="en" />} />
