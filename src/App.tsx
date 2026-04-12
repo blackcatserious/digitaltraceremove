@@ -2504,6 +2504,14 @@ const HomePage = () => {
         <HeroCanvas />
         <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
           <h1>{heroHeading}</h1>
+          <div
+            style={{
+              width: '56px',
+              height: '2px',
+              background: 'var(--gold, #C8A96E)',
+              margin: '20px 0',
+            }}
+          />
           <p>
             Traceremove provides structured tools and managed workflows to identify, monitor, and resolve online data
             exposure — for businesses, executives, and agency partners across North America, Europe, Latin America,
@@ -2542,6 +2550,23 @@ const HomePage = () => {
             <span><strong>30–90 day</strong> results</span>
             <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
             <span><strong>New York, NY</strong></span>
+          </div>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'rgba(200,169,110,0.06)',
+              border: '1px solid rgba(200,169,110,0.2)',
+              borderRadius: '100px',
+              padding: '8px 16px',
+              marginTop: '20px',
+            }}
+          >
+            <span style={{ color: '#C8A96E', fontSize: '14px' }}>🔒</span>
+            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)' }}>
+              <strong style={{ color: '#C8A96E', fontWeight: 500 }}>Full NDA provided</strong>{' '}at first contact. All assessments are strictly confidential.
+            </span>
           </div>
         </div>
       </div>
