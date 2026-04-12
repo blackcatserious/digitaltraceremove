@@ -7003,16 +7003,82 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     }
   }
 
+  const navPillBaseStyle: CSSProperties = {
+    background: 'transparent',
+    border: '1px solid rgba(255, 255, 255, 0.10)',
+    color: 'rgba(255, 255, 255, 0.75)',
+    padding: '7px 16px',
+    borderRadius: '100px',
+    fontSize: '13px',
+    fontWeight: 500,
+    cursor: 'pointer',
+    transition: 'all 0.15s ease',
+    whiteSpace: 'nowrap',
+    flexShrink: 0,
+    textDecoration: 'none',
+  }
+
+  const handleNavPillEnter = (event: ReactMouseEvent<HTMLElement>) => {
+    event.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
+    event.currentTarget.style.color = '#FFFFFF'
+    event.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)'
+  }
+
+  const handleNavPillLeave = (event: ReactMouseEvent<HTMLElement>) => {
+    event.currentTarget.style.background = navPillBaseStyle.background as string
+    event.currentTarget.style.color = navPillBaseStyle.color as string
+    event.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.10)'
+  }
+
+  const handlePrimaryCtaEnter = (event: ReactMouseEvent<HTMLElement>) => {
+    event.currentTarget.style.background = '#2460f0'
+    event.currentTarget.style.boxShadow = '0 0 30px rgba(24, 84, 232, 0.55)'
+    event.currentTarget.style.transform = 'translateY(-1px)'
+  }
+
+  const handlePrimaryCtaLeave = (event: ReactMouseEvent<HTMLElement>) => {
+    event.currentTarget.style.background = '#1854E8'
+    event.currentTarget.style.boxShadow = '0 0 20px rgba(24, 84, 232, 0.35)'
+    event.currentTarget.style.transform = 'translateY(0)'
+  }
+
   return (
-    <header ref={headerRef} className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}>
+    <header
+      ref={headerRef}
+      className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        background: 'rgba(10, 15, 30, 0.75)',
+        borderBottom: '1px solid rgba(200, 169, 110, 0.12)',
+        padding: '0 40px',
+        height: '64px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}
+    >
       <div
         className="tr-header__inner"
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
       >
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
             <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
-            <span>Traceremove</span>
+            <span
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: '18px',
+                fontWeight: 600,
+                color: '#FFFFFF',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Traceremove
+            </span>
           </Link>
           <button
             type="button"
@@ -7044,9 +7110,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <button
             type="button"
             className={`tr-nav__trigger ${megaOpen ? 'is-open' : ''}`}
-            style={{ whiteSpace: 'nowrap', flexShrink: 0, padding: '6px 12px' }}
+            style={navPillBaseStyle}
             onClick={handleServiceToggle}
             onMouseEnter={handleServiceOpen}
+            onMouseMove={handleNavPillEnter}
+            onMouseLeave={handleNavPillLeave}
             onFocus={handleServiceOpen}
             onKeyDown={handleServiceKeyDown}
             aria-expanded={megaOpen}
@@ -7064,8 +7132,10 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               className={({ isActive }: NavLinkRenderArgs) =>
                 `tr-nav__link${isActive ? ' is-active' : ''}` + ` tr-nav__link--${index}`
               }
-              style={{ whiteSpace: 'nowrap', flexShrink: 0, padding: '6px 12px' }}
+              style={navPillBaseStyle}
               onMouseEnter={handleServiceClose}
+              onMouseMove={handleNavPillEnter}
+              onMouseLeave={handleNavPillLeave}
               onFocus={handleServiceClose}
               onClick={handleServiceClose}
             >
@@ -7076,20 +7146,59 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
         </nav>
 
         <div className="tr-header__cta">
-          <NavLink className="button primary" to={getContactPath(currentLanguage)}>
+          <NavLink
+            className="button primary"
+            to={getContactPath(currentLanguage)}
+            style={{
+              background: '#1854E8',
+              border: 'none',
+              color: '#FFFFFF',
+              padding: '9px 22px',
+              borderRadius: '100px',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              boxShadow: '0 0 20px rgba(24, 84, 232, 0.35)',
+              transition: 'all 0.15s ease',
+            }}
+            onMouseEnter={handlePrimaryCtaEnter}
+            onMouseLeave={handlePrimaryCtaLeave}
+          >
             Request Assessment
           </NavLink>
-          <a className="button ghost" href="tel:+16063022958">
+          <a
+            className="button ghost"
+            href="tel:+16063022958"
+            style={{
+              color: 'rgba(255, 255, 255, 0.40)',
+              fontSize: '13px',
+              fontFamily: "'JetBrains Mono', monospace",
+            }}
+          >
             +1 (472) 248 0235
           </a>
-        </div>
-
-        <div className="tr-languages" aria-label={copy.languageSwitcherLabel}>
-          {languages.map((language) => (
-            <NavLink key={language} to={languageHomes[language]} className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}>
-              {languageLabels[language]}
-            </NavLink>
-          ))}
+          <div className="tr-languages" aria-label={copy.languageSwitcherLabel} style={{ display: 'flex', alignItems: 'center' }}>
+            {languages.map((language, index) => (
+              <Fragment key={language}>
+                {index > 0 ? (
+                  <span style={{ color: 'rgba(255, 255, 255, 0.15)', margin: '0 2px' }}>|</span>
+                ) : null}
+                <NavLink
+                  to={languageHomes[language]}
+                  className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}
+                  style={{
+                    fontSize: '11px',
+                    color: language === currentLanguage ? 'rgba(255, 255, 255, 0.85)' : 'rgba(255, 255, 255, 0.35)',
+                    padding: '4px 8px',
+                    cursor: 'pointer',
+                    fontWeight: language === currentLanguage ? 600 : 400,
+                  }}
+                >
+                  {languageLabels[language]}
+                </NavLink>
+              </Fragment>
+            ))}
+          </div>
         </div>
       </div>
 
