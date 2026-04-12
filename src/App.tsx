@@ -7011,7 +7011,10 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   return (
     <header ref={headerRef} className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}>
-      <div className="tr-header__inner">
+      <div
+        className="tr-header__inner"
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+      >
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
             <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
@@ -7032,7 +7035,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           </button>
         </div>
 
-        <nav className="tr-nav" aria-label="Main">
+        <nav
+          className="tr-nav"
+          aria-label="Main"
+          style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'nowrap', gap: '8px' }}
+        >
           <button
             type="button"
             className={`tr-nav__trigger ${megaOpen ? 'is-open' : ''}`}
