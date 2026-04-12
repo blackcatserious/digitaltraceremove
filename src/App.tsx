@@ -7017,11 +7017,19 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
         <nav
           className="tr-nav"
           aria-label="Main"
-          style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'nowrap', gap: '8px' }}
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            alignItems: 'center',
+            gap: '4px',
+            overflow: 'visible',
+          }}
         >
           <button
             type="button"
             className={`tr-nav__trigger ${megaOpen ? 'is-open' : ''}`}
+            style={{ whiteSpace: 'nowrap', flexShrink: 0, padding: '6px 12px' }}
             onClick={handleServiceToggle}
             onMouseEnter={handleServiceOpen}
             onFocus={handleServiceOpen}
@@ -7041,6 +7049,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               className={({ isActive }: NavLinkRenderArgs) =>
                 `tr-nav__link${isActive ? ' is-active' : ''}` + ` tr-nav__link--${index}`
               }
+              style={{ whiteSpace: 'nowrap', flexShrink: 0, padding: '6px 12px' }}
               onMouseEnter={handleServiceClose}
               onFocus={handleServiceClose}
               onClick={handleServiceClose}
