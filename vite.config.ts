@@ -1,29 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import Prerenderer from '@prerenderer/vite-plugin'
 
 export default defineConfig({
-  plugins: [
-    react(),
-    Prerenderer({
-      routes: [
-        '/en',
-        '/fr',
-        '/es',
-        '/en/pricing',
-        '/en/partners',
-        '/en/case-studies',
-        '/en/about',
-        '/en/terms',
-        '/en/privacy',
-        '/en/refund',
-      ],
-      renderer: '@prerenderer/renderer-jsdom',
-      rendererOptions: {
-        renderAfterTime: 2000,
-      },
-    }),
-  ],
+  plugins: [react()],
   build: {
     sourcemap: false,
     cssCodeSplit: true,

@@ -20,8 +20,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
-    "@prerenderer/renderer-jsdom": "^1.1.9",
-    "@prerenderer/vite-plugin": "npm:@prerenderer/rollup-plugin@^0.3.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-router-dom": "^5.3.3",
