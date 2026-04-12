@@ -200,7 +200,7 @@ const getPrivacyPath = (language: Language) => (language === 'en' ? '/privacy' :
 
 const getTermsPath = (language: Language) => (language === 'en' ? '/terms' : `/${language}/terms`)
 
-const getRefundPath = (language: Language) => (language === 'en' ? '/refund' : '/refund')
+const getRefundPath = () => '/refund'
 
 const localeMap: Record<Language, string> = {
   en: 'en-US',
@@ -5810,39 +5810,6 @@ const NotFound = () => (
   </section>
 )
 
-const SimpleLegalPage = ({ type }: { type: 'terms' | 'privacy' | 'refund' }) => {
-  const copy = {
-    terms: {
-      title: 'Terms of Service',
-      text: 'By using this digital platform, you agree to use our services lawfully and responsibly. We may update or suspend features at any time.',
-    },
-    privacy: {
-      title: 'Privacy Policy',
-      text: 'We collect only the data needed to provide and improve our services. We do not sell personal data and apply reasonable safeguards to protect it.',
-    },
-    refund: {
-      title: 'Refund Policy',
-      text: 'Refund requests are reviewed case by case for digital services. Contact support within 14 days of purchase for assistance.',
-    },
-  }[type]
-
-  return (
-    <section style={{ padding: '48px 24px' }}>
-      <div style={{ maxWidth: 720, margin: '0 auto', fontSize: '14px', lineHeight: 1.7, opacity: 0.82 }}>
-        <h1 style={{ fontSize: '24px', margin: '0 0 16px' }}>{copy.title}</h1>
-        <p style={{ margin: '0 0 16px' }}>{copy.text}</p>
-        <p style={{ margin: 0 }}>
-          TRACEREMOVE LLC
-          <br />
-          750 Manhattan Ave
-          <br />
-          Brooklyn, NY 11222, USA
-        </p>
-      </div>
-    </section>
-  )
-}
-
 const blogListCopy: Record<
   Language,
   {
@@ -8250,16 +8217,16 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const servicesLinks = [
-    { label: 'Monitoring and Alerts', to: getServicesPricingPath(currentLanguage) },
-    { label: 'Workflow Credits', to: getServicesPricingPath(currentLanguage) },
-    { label: 'Managed Programmes', to: getServicesPricingPath(currentLanguage) },
-    { label: 'Cybersecurity Module', to: getTrustPath(currentLanguage) },
+    { label: 'Services overview', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Pricing plans', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Managed programmes', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Trust center', to: getTrustPath(currentLanguage) },
   ]
   const partnerLinks = [
-    { label: 'Partner Overview', to: getPartnersPath(currentLanguage) },
-    { label: 'Silver / Gold / Platinum', to: getPartnersPath(currentLanguage) },
-    { label: 'Apply as Partner', to: getContactPath(currentLanguage) },
-    { label: 'Partner Portal', to: getPartnersPath(currentLanguage) },
+    { label: 'Partner overview', to: getPartnersPath(currentLanguage) },
+    { label: 'Partner tiers', to: getPartnersPath(currentLanguage) },
+    { label: 'Become a partner', to: getContactPath(currentLanguage) },
+    { label: 'Partner contact', to: getContactPath(currentLanguage) },
   ]
   const companyLinks = [
     { label: 'About', to: getAboutPath(currentLanguage) },
@@ -8271,7 +8238,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   const legalLinks = [
     { label: 'Privacy Policy', to: getPrivacyPath(currentLanguage) },
     { label: 'Terms of Service', to: getTermsPath(currentLanguage) },
-    { label: 'Refund Policy', to: getRefundPath(currentLanguage) },
+    { label: 'Refund Policy', to: getRefundPath() },
   ]
 
   return (
@@ -8295,7 +8262,16 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
             <div>TRACEREMOVE LLC</div>
             <div>750 Manhattan Ave</div>
             <div>Brooklyn, NY 11222, USA</div>
-            <div>support@traceremove.com</div>
+            <div>
+              <a href="mailto:support@traceremove.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+                support@traceremove.com
+              </a>
+            </div>
+            <div>
+              <a href="tel:+16063022958" style={{ color: 'inherit', textDecoration: 'none' }}>
+                +1 (472) 248 0235
+              </a>
+            </div>
           </div>
         </div>
 
@@ -8510,12 +8486,6 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <Footer currentLanguage={currentLanguage} />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
-      <div style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>
-        <div>TRACEREMOVE LLC</div>
-        <div>750 Manhattan Ave</div>
-        <div>Brooklyn, NY 11222, USA</div>
-        <div>support@traceremove.com</div>
-      </div>
     </div>
   )
 }
