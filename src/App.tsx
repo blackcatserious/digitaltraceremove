@@ -2263,7 +2263,22 @@ const HomePage = () => {
       >
         <HeroCanvas />
         <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
-          <h1 style={{ fontFamily: "'Playfair Display', serif" }}>{heroHeading}</h1>
+          <h1
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              visibility: 'visible',
+              fontFamily: "'Playfair Display', serif",
+              fontWeight: 700,
+              fontSize: 'clamp(32px, 5vw, 64px)',
+              lineHeight: 1.15,
+              display: 'block',
+              animation: 'none',
+              transform: 'none',
+            }}
+          >
+            {heroHeading}
+          </h1>
           <div
             style={{
               width: '56px',
