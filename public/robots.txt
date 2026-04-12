@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /ru/
+Disallow: /ru
 Disallow: /api/
 Disallow: /process.php
 Sitemap: https://traceremove.com/sitemap.xml

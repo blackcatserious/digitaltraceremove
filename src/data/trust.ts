@@ -72,7 +72,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'We protect high-velocity brands against manipulation, outages, and data exposure while keeping every market compliant.',
       body:
-        'Artur Ziganshin and our senior trust core lead every engagement. We blend security engineering, legal counsel, and customer operations so brand protection becomes a reflex for your teams.',
+        'TraceRemove Advisor and our senior trust core lead every engagement. We blend security engineering, legal counsel, and customer operations so brand protection becomes a reflex for your teams.',
       primaryCta: 'Book a security workshop',
       secondaryCta: 'Download control checklist',
     },
@@ -191,7 +191,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       {
         id: 'communications',
         title: 'Communications stream',
-        description: 'Storytellers craft stakeholder messaging that protects reputation and trust.',
+        description: 'We help manage and resolve online data exposure',
         bullets: [
           'Customer and partner notification frameworks with localization.',
           'Press and social escalation templates with spokesperson pairing.',
@@ -204,10 +204,10 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Escalate to our incident desk for verified takedowns or book a proactive audit to stress test your defenses.',
       actions: [
-        { label: 'Chat with an incident lead', href: 'mailto:contact@traceremove.com' },
+        { label: 'Chat with an incident lead', href: 'mailto:support@traceremove.com' },
         { label: 'Call the trust hotline', href: 'tel:+16063022958' },
       ],
-      phone: '+1 606 302 2958',
+      phone: '+1 (472) 248 0235',
       hours: '24/7 coverage across North America, Europe, and LATAM.',
     },
   },
@@ -218,7 +218,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Nous protégeons les marques à forte croissance contre la manipulation, les interruptions et les fuites de données tout en restant conformes dans chaque marché.',
       body:
-        'Artur Ziganshin et notre cellule trust senior pilotent chaque mission. Ingénierie sécurité, juridique et opérations clients travaillent ensemble pour faire de la protection de marque un réflexe.',
+        'TraceRemove Advisor et notre cellule trust senior pilotent chaque mission. Ingénierie sécurité, juridique et opérations clients travaillent ensemble pour faire de la protection de marque un réflexe.',
       primaryCta: 'Planifier un atelier sécurité',
       secondaryCta: 'Télécharger la checklist de contrôle',
     },
@@ -351,10 +351,10 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Escaladez vers notre cellule incident pour un retrait vérifié ou réservez un audit proactif.',
       actions: [
-        { label: 'Écrire à un incident lead', href: 'mailto:contact@traceremove.com' },
+        { label: 'Écrire à un incident lead', href: 'mailto:support@traceremove.com' },
         { label: 'Appeler la hotline trust', href: 'tel:+16063022958' },
       ],
-      phone: '+1 606 302 2958',
+      phone: '+1 (472) 248 0235',
       hours: 'Couverture 24/7 Amériques, Europe et Amérique latine.',
     },
   },
@@ -365,7 +365,7 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Protegemos marcas de alto crecimiento contra manipulaciones, caídas y filtraciones de datos manteniendo la conformidad en cada mercado.',
       body:
-        'Artur Ziganshin y nuestro núcleo senior de trust lideran cada proyecto. Ingeniería de seguridad, asesoría legal y operaciones de clientes trabajan juntos para que la protección de marca sea automática.',
+        'TraceRemove Advisor y nuestro núcleo senior de trust lideran cada proyecto. Ingeniería de seguridad, asesoría legal y operaciones de clientes trabajan juntos para que la protección de marca sea automática.',
       primaryCta: 'Agenda un workshop de seguridad',
       secondaryCta: 'Descarga la checklist de controles',
     },
@@ -498,10 +498,10 @@ export const trustCenterCopy: Record<Language, TrustCenterContent> = {
       subtitle:
         'Escala a nuestra mesa de incidentes para retiradas verificadas o agenda una auditoría proactiva.',
       actions: [
-        { label: 'Habla con un incident lead', href: 'mailto:contact@traceremove.com' },
+        { label: 'Habla con un incident lead', href: 'mailto:support@traceremove.com' },
         { label: 'Llama a la hotline trust', href: 'tel:+16063022958' },
       ],
-      phone: '+1 606 302 2958',
+      phone: '+1 (472) 248 0235',
       hours: 'Cobertura 24/7 en Norteamérica, Europa y LATAM.',
     },
   },

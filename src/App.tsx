@@ -38,6 +38,23 @@ import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
+import PricingSection from './components/PricingSection'
+import PlatformsSection from './components/PlatformsSection'
+import AgenciesSection from './components/AgenciesSection'
+import ProcessSection from './components/ProcessSection'
+import ROICalculator from './components/ROICalculator'
+import ScanSection from './components/ScanSection'
+import CaseStudiesSection from './components/CaseStudiesSection'
+import FAQSection from './components/FAQSection'
+import FinalCTA from './components/FinalCTA'
+import HeroCanvas from './components/HeroCanvas'
+import ClientsStrip from './components/ClientsStrip'
+import TermsPage from './pages/Terms'
+import PrivacyPage from './pages/Privacy'
+import RefundPage from './pages/Refund'
+import PricingPage from './pages/Pricing'
+import PartnersLandingPage from './pages/Partners'
+import AboutPage from './pages/About'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -103,21 +120,40 @@ const navigation = buildNavigation()
 type NavLinkRenderArgs = { isActive: boolean }
 
 
-const pageSeoDefaults: Record<Language, { titleSuffix: string; description: string }> = {
-  en: {
-    titleSuffix: 'Traceremove · Reputation Growth Systems',
+const baseSeo = {
+  title: 'TraceRemove — Monitor and Manage Online Data Exposure',
+  description:
+    'Structured tools and managed workflows to identify, monitor, and resolve online data exposure for businesses, executives, and agency partners. New York, NY.',
+}
+
+const routeSeo: Record<string, { title: string; description: string; ogUrl?: string }> = {
+  '/en': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/en/': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/fr': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/fr/': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/es': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/es/': { ...baseSeo, ogUrl: 'https://traceremove.com/en' },
+  '/en/pricing': {
+    title: 'Pricing — TraceRemove Data Exposure Management',
     description:
-      'Traceremove helps founders and enterprises protect reputation, remove harmful content, and scale trusted growth.',
+      'Self-serve monitoring from $49/month. Managed programmes from $4,900/month. Transparent pricing for businesses and agency partners.',
   },
-  fr: {
-    titleSuffix: 'Traceremove · Systèmes de croissance réputationnelle',
+  '/en/partners': {
+    title: 'Partner Programme — TraceRemove',
     description:
-      'Traceremove aide les fondateurs et les entreprises à protéger leur réputation, retirer les contenus nocifs et accélérer une croissance crédible.',
+      'White-label data exposure management for law firms, PR agencies, and HR consultancies. Silver, Gold, and Platinum capacity tiers.',
   },
-  es: {
-    titleSuffix: 'Traceremove · Sistemas de crecimiento reputacional',
-    description:
-      'Traceremove ayuda a fundadores y empresas a proteger su reputación, retirar contenido dañino y escalar crecimiento confiable.',
+  '/en/terms': {
+    title: 'Terms — TraceRemove LLC',
+    description: 'TRACEREMOVE LLC, 750 Manhattan Ave, Brooklyn, NY 11222, USA.',
+  },
+  '/en/privacy': {
+    title: 'Privacy — TraceRemove LLC',
+    description: 'TRACEREMOVE LLC, 750 Manhattan Ave, Brooklyn, NY 11222, USA.',
+  },
+  '/en/refund': {
+    title: 'Refund — TraceRemove LLC',
+    description: 'TRACEREMOVE LLC, 750 Manhattan Ave, Brooklyn, NY 11222, USA.',
   },
 }
 
@@ -305,7 +341,7 @@ const momentumTickerCopy: Record<
       'Recovered $18.4M in pipeline by reversing fake-review attacks',
       '60-day brand vault protecting 80+ executive identities',
       'Live sentiment command center in English, French, and Spanish',
-      '24/7 escalation team orchestrated by Founder & CEO Artur Ziganshin',
+      '24/7 escalation team orchestrated by Founder & CEO TraceRemove Advisor',
     ],
     cta: 'Activate a protection sprint',
   },
@@ -316,7 +352,7 @@ const momentumTickerCopy: Record<
       '18,4 M $ de pipeline récupérés après des attaques de faux avis',
       'Coffre-fort de marque sur 60 jours couvrant plus de 80 dirigeants',
       'Centre de commande du sentiment en français, anglais et espagnol',
-      'Équipe d’escalade 24/7 pilotée par Artur Ziganshin, Founder & CEO',
+      'Équipe d’escalade 24/7 pilotée par TraceRemove Advisor, Founder & CEO',
     ],
     cta: 'Activer un sprint de protection',
   },
@@ -327,7 +363,7 @@ const momentumTickerCopy: Record<
       'Recuperamos 18,4 M USD de pipeline tras ataques de reseñas falsas',
       'Bóveda de marca de 60 días cubriendo a más de 80 ejecutivos',
       'Centro de comando de sentimiento en inglés, francés y español',
-      'Equipo de escalación 24/7 liderado por el Founder & CEO Artur Ziganshin',
+      'Equipo de escalación 24/7 liderado por el Founder & CEO TraceRemove Advisor',
     ],
     cta: 'Activar un sprint de protección',
   },
@@ -595,7 +631,7 @@ const teamCopy: Record<
 > = {
   en: {
     title: 'Meet the Traceremove team',
-    subtitle: 'A multilingual collective led by Founder & CEO Artur Ziganshin',
+    subtitle: 'A multilingual collective led by Founder & CEO TraceRemove Advisor',
     intro:
       'We are designers, strategists, technologists, and analysts who build compounding growth systems across North America and Europe. Our studio thrives on experimentation, data fluency, and cross-cultural empathy.',
     cultureHeading: 'How we collaborate',
@@ -608,7 +644,7 @@ const teamCopy: Record<
   },
   fr: {
     title: "Rencontrez l'équipe Traceremove",
-    subtitle: 'Un collectif multilingue dirigé par le fondateur et CEO Artur Ziganshin',
+    subtitle: 'Un collectif multilingue dirigé par le fondateur et CEO TraceRemove Advisor',
     intro:
       'Nous sommes designers, stratèges, technologues et analystes. Nous bâtissons des systèmes de croissance cumulée pour l’Amérique du Nord et l’Europe, en misant sur l’expérimentation, la donnée et l’empathie interculturelle.',
     cultureHeading: 'Notre manière de travailler',
@@ -621,7 +657,7 @@ const teamCopy: Record<
   },
   es: {
     title: 'Conoce al equipo de Traceremove',
-    subtitle: 'Un colectivo multilingüe liderado por el fundador y CEO Artur Ziganshin',
+    subtitle: 'Un colectivo multilingüe liderado por el fundador y CEO TraceRemove Advisor',
     intro:
       'Somos diseñadores, estrategas, tecnólogos y analistas que construyen sistemas de crecimiento compuesto en Norteamérica y Europa. Nuestro estudio prospera gracias a la experimentación, los datos y la empatía intercultural.',
     cultureHeading: 'Cómo colaboramos',
@@ -678,7 +714,7 @@ const aboutCopy: Record<
       title: 'About Traceremove',
       subtitle: 'Brand protection and growth acceleration without borders',
       body:
-        'Founder & CEO Artur Ziganshin leads every engagement with a senior core team operating in English, French, and Spanish. We pair reputation guardianship with revenue experiments so your brand scales safely.',
+        'We help manage and resolve online data exposure',
       primaryCta: 'Talk with our team',
       secondaryCta: 'Explore our insights',
       highlight: 'English · French · Spanish markets',
@@ -719,10 +755,10 @@ const aboutCopy: Record<
     },
     reasons: {
       heading: 'Why teams choose us',
-      summary: 'We blend proactive reputation defense with compounding growth experiments.',
+      summary: 'We help manage and resolve online data exposure',
       items: [
         {
-          title: 'Reputation guardians',
+          title: 'We help manage and resolve online data exposure',
           description:
             'We monitor search, review, and social landscapes in real time to detect risk and defend your brand narrative before issues escalate.',
         },
@@ -751,7 +787,7 @@ const aboutCopy: Record<
         },
         {
           name: 'Europe',
-          focus: 'Reputation architecture',
+          focus: 'We help manage and resolve online data exposure',
           description:
             'Paris and Barcelona strategists blend regulatory awareness with multilingual content, PR narratives, and partner enablement.',
         },
@@ -859,7 +895,7 @@ const aboutCopy: Record<
     },
     closing: {
       heading: 'Ready to protect and accelerate your brand?',
-      body: 'Let’s design a roadmap that shields your reputation and compounds growth across every market you serve.',
+      body: 'We help manage and resolve online data exposure',
       cta: 'Book a strategy call',
     },
   },
@@ -868,7 +904,7 @@ const aboutCopy: Record<
       title: 'À propos de Traceremove',
       subtitle: 'Protection de marque et accélération de croissance sans frontières',
       body:
-        'Artur Ziganshin, fondateur et CEO, pilote chaque mission avec une équipe senior opérant en anglais, français et espagnol. Nous combinons veille réputationnelle et expérimentations revenue pour faire grandir votre marque en toute sécurité.',
+        'TraceRemove Advisor, fondateur et CEO, pilote chaque mission avec une équipe senior opérant en anglais, français et espagnol. Nous combinons veille réputationnelle et expérimentations revenue pour faire grandir votre marque en toute sécurité.',
       primaryCta: 'Échanger avec notre équipe',
       secondaryCta: 'Explorer nos insights',
       highlight: 'Marchés EN · FR · ES',
@@ -1058,7 +1094,7 @@ const aboutCopy: Record<
       title: 'Sobre Traceremove',
       subtitle: 'Protección de marca y aceleración del crecimiento sin fronteras',
       body:
-        'Artur Ziganshin, fundador y CEO, lidera cada proyecto con un equipo senior que opera en inglés, francés y español. Unimos guardianes de reputación y experimentos de revenue para que tu marca escale con seguridad.',
+        'TraceRemove Advisor, fundador y CEO, lidera cada proyecto con un equipo senior que opera en inglés, francés y español. Unimos guardianes de reputación y experimentos de revenue para que tu marca escale con seguridad.',
       primaryCta: 'Habla con nuestro equipo',
       secondaryCta: 'Explora nuestras ideas',
       highlight: 'Mercados EN · FR · ES',
@@ -1329,7 +1365,7 @@ const caseStudiesCopy: Record<
     },
     stories: [
       {
-        title: 'Marketplace reputation reset in 14 days',
+        title: 'We help manage and resolve online data exposure',
         industry: 'Consumer electronics marketplace',
         summary:
           'Removed 1,200 counterfeit listings and replaced top-of-funnel results with owned, high-converting experiences.',
@@ -1426,7 +1462,7 @@ const caseStudiesCopy: Record<
         challenge:
           'Competing vendors seeded fake outage rumours across Reddit, Discord, and niche forums, stalling pipeline velocity.',
         approach:
-          'Equipped exec spokespeople with rapid-response content, distributed insider guides via Substack and LinkedIn, and automated reputation listening.',
+          'We help manage and resolve online data exposure',
         impact:
           'Enterprise win rate improved 21%, sales cycle shortened by 11 days, and share of voice doubled.',
         metrics: [
@@ -1905,7 +1941,7 @@ const partnersCopy: Record<
       },
     ],
     ctaHeading: 'Ready to explore a partnership?',
-    ctaBody: 'Introduce your team and goals at contact@traceremove.com — we will schedule an alignment session within two business days.',
+    ctaBody: 'Introduce your team and goals at support@traceremove.com — we will schedule an alignment session within two business days.',
   },
   fr: {
     title: 'Collaborez avec Traceremove',
@@ -1950,7 +1986,7 @@ const partnersCopy: Record<
       },
     ],
     ctaHeading: 'Discutons de votre partenariat',
-    ctaBody: 'Présentez-nous votre structure et vos objectifs via contact@traceremove.com — réponse garantie sous deux jours ouvrés.',
+    ctaBody: 'Présentez-nous votre structure et vos objectifs via support@traceremove.com — réponse garantie sous deux jours ouvrés.',
   },
   es: {
     title: 'Haz equipo con Traceremove',
@@ -1995,7 +2031,7 @@ const partnersCopy: Record<
       },
     ],
     ctaHeading: '¿Nos asociamos?',
-    ctaBody: 'Cuéntanos sobre tu organización en contact@traceremove.com — coordinamos una llamada en dos días hábiles.',
+    ctaBody: 'Cuéntanos sobre tu organización en support@traceremove.com — coordinamos una llamada en dos días hábiles.',
   },
 }
 
@@ -2017,7 +2053,7 @@ const joinCopy: Record<
 > = {
   en: {
     title: 'Join the Traceremove collective',
-    subtitle: 'Remote-first growth operators shaping reputation, revenue, and product stories.',
+    subtitle: 'We help manage and resolve online data exposure',
     description:
       'We are always meeting strategists, storytellers, analysts, and builders who thrive in autonomous teams. If you love shipping experiments quickly and collaborating across languages, introduce yourself.',
     valuesHeading: 'How we work',
@@ -2139,13 +2175,13 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: 'Artur Ziganshin',
+    name: 'TraceRemove Advisor',
     role: 'Founder & CEO',
     location: 'Toronto · Montréal',
     bio: {
-      en: 'Artur steers brand, lifecycle, and product GTM initiatives for venture-backed SaaS and commerce teams. He leads multilingual strategy rooms and keeps every engagement grounded in measurable impact.',
-      fr: 'Artur pilote les initiatives de marque, lifecycle et go-to-market produit pour des équipes SaaS et e-commerce financées. Il orchestre des workshops multilingues et relie chaque programme à des métriques tangibles.',
-      es: 'Artur dirige iniciativas de marca, lifecycle y go-to-market de producto para equipos SaaS y comercio respaldados por venture capital. Conduce workshops multilingües y ancla cada programa en métricas claras.',
+      en: 'TraceRemove Advisor steers brand, lifecycle, and product GTM initiatives for venture-backed SaaS and commerce teams. He leads multilingual strategy rooms and keeps every engagement grounded in measurable impact.',
+      fr: 'TraceRemove Advisor pilote les initiatives de marque, lifecycle et go-to-market produit pour des équipes SaaS et e-commerce financées. Il orchestre des workshops multilingues et relie chaque programme à des métriques tangibles.',
+      es: 'TraceRemove Advisor dirige iniciativas de marca, lifecycle y go-to-market de producto para equipos SaaS y comercio respaldados por venture capital. Conduce workshops multilingües y ancla cada programa en métricas claras.',
     },
     focus: {
       en: ['Strategic narrative architecture', 'Revenue operations modelling', 'Executive advisory'],
@@ -2267,7 +2303,7 @@ const primaryServices: PrimaryService[] = [
       es: 'SERM',
     },
     title: {
-      en: 'Search reputation management',
+      en: 'We help manage and resolve online data exposure',
       fr: 'Gestion de réputation search',
       es: 'Gestión de reputación en buscadores',
     },
@@ -2434,36 +2470,24 @@ const homeServicesCopy: Record<
   en: {
     title: 'Precision programs that protect and accelerate your brand',
     description:
-      'Every engagement is staffed by Artur Ziganshin and a senior pod covering reputation, security, design, and engineering so you launch with confidence.',
+      'We help manage and resolve online data exposure',
   },
   fr: {
     title: 'Des programmes précis pour protéger et accélérer votre marque',
     description:
-      'Chaque mission est menée par Artur Ziganshin avec un pod senior couvrant réputation, sécurité, design et engineering pour lancer avec confiance.',
+      'Chaque mission est menée par TraceRemove Advisor avec un pod senior couvrant réputation, sécurité, design et engineering pour lancer avec confiance.',
   },
   es: {
     title: 'Programas precisos que protegen y aceleran tu marca',
     description:
-      'Cada colaboración está liderada por Artur Ziganshin con un pod senior de reputación, seguridad, diseño y tecnología para lanzar con confianza.',
+      'Cada colaboración está liderada por TraceRemove Advisor con un pod senior de reputación, seguridad, diseño y tecnología para lanzar con confianza.',
   },
 }
 
 const homeHeroHeading: Record<Language, string> = {
-  en: 'Multilingual service blueprints engineered for momentum.',
+  en: 'Monitor and Manage Online Data Exposure',
   fr: 'Des plans de services multilingues conçus pour accélérer votre momentum.',
   es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
-}
-
-const homeFounderCopy: Record<Language, string> = {
-  en: 'Founder & CEO leading every engagement with a senior core team operating across English, French, and Spanish markets.',
-  fr: 'Fondateur et CEO pilotant chaque mission avec un noyau senior actif sur les marchés anglophone, francophone et hispanophone.',
-  es: 'Fundador y CEO que lidera cada proyecto con un núcleo senior que opera en los mercados anglófono, francófono e hispanohablante.',
-}
-
-const homeTeamLinkCopy: Record<Language, string> = {
-  en: 'Meet the team',
-  fr: "Rencontrer l'équipe",
-  es: 'Conoce al equipo',
 }
 
 const serviceCardCta: Record<Language, string> = {
@@ -2483,8 +2507,6 @@ const HomePage = () => {
   const heroHeading = homeHeroHeading[currentLanguage]
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
-  const founderNote = homeFounderCopy[currentLanguage]
-  const teamLinkCopy = homeTeamLinkCopy[currentLanguage]
   const localizedServices = primaryServices.map((service) => ({
     key: service.key,
     accent: service.accent,
@@ -2493,119 +2515,208 @@ const HomePage = () => {
     description: service.description[currentLanguage],
     price: service.price[currentLanguage],
     bullets: service.bullets[currentLanguage],
-    contactHref: `mailto:contact@traceremove.com?subject=${encodeURIComponent(service.title[currentLanguage])}`,
+    contactHref: `mailto:support@traceremove.com?subject=${encodeURIComponent(service.title[currentLanguage])}`,
   }))
 
   return (
     <section className="home">
-      <div className="home-hero">
-        <div className="home-hero-copy">
-          <span className="home-badge">Traceremove · Digital Agency</span>
+      <div className="home-hero" style={{ position: 'relative' }}>
+        <HeroCanvas />
+        <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
           <h1>{heroHeading}</h1>
-          <p>{navCopy[currentLanguage].tagline}</p>
-          <div className="home-removal-cta">
-            <p className="home-removal-cta__label">We remove harmful information and clean digital footprints.</p>
-            <ul>
-              <li>Removal of defamatory and fake content</li>
-              <li>Digital footprint cleanup across search and social</li>
-              <li>Fast takedown workflows with legal-ready evidence</li>
-            </ul>
-            <Link className="button primary" to={getContactPath(currentLanguage)}>
-              Start information removal now
+          <div
+            style={{
+              width: '56px',
+              height: '2px',
+              background: 'var(--gold, #C8A96E)',
+              margin: '20px 0',
+            }}
+          />
+          <p>
+            Traceremove provides structured tools and managed workflows to identify, monitor, and resolve online data
+            exposure — for businesses, executives, and agency partners across North America, Europe, Latin America,
+            Asia-Pacific, and Africa.
+          </p>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <Link
+              className="button primary"
+              to={getContactPath(currentLanguage)}
+              style={{ display: 'inline-flex', width: 'auto', padding: '14px 32px' }}
+            >
+              Request Confidential Assessment →
             </Link>
-          </div>
-          <div className="home-cta">
-            <a className="button primary" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
+            <a
+              className="button secondary"
+              href="/case-studies"
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.5)',
+                color: '#ffffff',
+                padding: '12px 24px',
+                borderRadius: '8px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                opacity: 1,
+              }}
+            >
+              View Case Studies
             </a>
-            <a className="button secondary" href="tel:+16063022958">
-              +1 606 302 2958
-            </a>
           </div>
-          <div className="home-contact">
-            <p>
-              <strong>Artur Ziganshin</strong> — {founderNote}
-            </p>
-            <Link className="button ghost" to={getTeamPath(currentLanguage)}>
-              {teamLinkCopy}
-            </Link>
+          <div className="trust-strip" style={{ display: 'flex', alignItems: 'center', gap: '0', flexWrap: 'wrap' }}>
+            <span><strong>500+</strong> cases resolved</span>
+            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
+            <span><strong>98%</strong> success rate</span>
+            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
+            <span><strong>30–90 day</strong> results</span>
+            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
+            <span><strong>New York, NY</strong></span>
           </div>
-        </div>
-        <div className="home-hero-visual" aria-hidden="true">
-          <div className="home-hero-visual__field" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
-          <GrowthSpark variant="light" size="md" className="home-hero-graph" />
-          <GrowthSpark variant="dark" size="sm" className="home-hero-graph home-hero-graph--offset" />
-          <div className="data-removal-animation" aria-hidden="true">
-            <p className="data-removal-animation__title">How removal works</p>
-            <span className="data-removal-animation__line">❌ old harmful result</span>
-            <span className="data-removal-animation__line">❌ fake review attack</span>
-            <span className="data-removal-animation__line">❌ sensitive data leak</span>
-            <span className="data-removal-animation__status">✅ cleaned and de-indexed</span>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'rgba(200,169,110,0.06)',
+              border: '1px solid rgba(200,169,110,0.2)',
+              borderRadius: '100px',
+              padding: '8px 16px',
+              marginTop: '20px',
+            }}
+          >
+            <span style={{ color: '#C8A96E', fontSize: '14px' }}>🔒</span>
+            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)' }}>
+              <strong style={{ color: '#C8A96E', fontWeight: 500 }}>Full NDA provided</strong>{' '}at first contact. All assessments are strictly confidential.
+            </span>
           </div>
         </div>
       </div>
+      <ClientsStrip />
+      <PlatformsSection />
+      <AgenciesSection />
+      <ProcessSection />
+      <PricingSection />
+      <ROICalculator />
+      <ScanSection />
+      <CaseStudiesSection />
+      <FAQSection />
+      <FinalCTA />
+      <div>
+        <p>{''}</p>
+        <p>
+          Users access structured tools and managed workflows to identify and resolve data exposure issues.
+        </p>
+      </div>
+
+      <section className="home-production" aria-labelledby="home-provides-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">What Traceremove Provides</p>
+          <h2 id="home-provides-heading">What Traceremove Provides</h2>
+        </header>
+        <p>Traceremove provides structured digital solutions for managing online data exposure.</p>
+        <p>
+          Customers access tools and managed workflows to identify, monitor, and resolve data-related risks.
+        </p>
+      </section>
+
+      <section className="home-production" aria-labelledby="home-how-it-works-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">How it works</p>
+          <h2 id="home-how-it-works-heading">How it works</h2>
+        </header>
+        <div className="home-production__grid">
+          <article>
+            <h3>1. Identify data exposure</h3>
+          </article>
+          <article>
+            <h3>2. Analyze risk</h3>
+          </article>
+          <article>
+            <h3>3. Resolve through structured workflows</h3>
+          </article>
+        </div>
+      </section>
+
+      <section className="home-production" aria-labelledby="home-pricing-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">Simple pricing</p>
+          <h2 id="home-pricing-heading">Simple pricing</h2>
+        </header>
+        <div className="home-production__grid">
+          <article>
+            <h3>Starter</h3>
+            <p>$99/month</p>
+          </article>
+          <article>
+            <h3>Professional</h3>
+            <p>$299/month</p>
+          </article>
+          <article>
+            <h3>Advanced</h3>
+            <p>$799/month</p>
+          </article>
+        </div>
+      </section>
 
       <MomentumTicker variant="light" />
 
       <section className="home-reputation" aria-labelledby="home-reputation-heading">
         <header>
-          <p className="home-reputation__kicker">Reputation intelligence · 2026</p>
-          <h2 id="home-reputation-heading">Always-on trust architecture for AI-era search and social</h2>
+          <p className="home-reputation__kicker">We help manage and resolve online data exposure</p>
+          <h2 id="home-reputation-heading">Simple monitoring and resolution for online data exposure</h2>
         </header>
         <div className="home-reputation__grid">
           <article>
-            <h3>AI result monitoring</h3>
-            <p>We monitor brand mentions across search, LLM snapshots, social feeds, and review ecosystems every hour.</p>
+            <h3>Data exposure monitoring</h3>
+            <p>We monitor your online data exposure across search, social, and review platforms.</p>
           </article>
           <article>
-            <h3>Crisis-ready playbooks</h3>
-            <p>Escalation templates for legal, comms, and growth teams with 24/7 multilingual activation.</p>
+            <h3>Risk analysis</h3>
+            <p>We analyze risk and prioritize what to fix first.</p>
           </article>
           <article>
-            <h3>Trust-growth loop</h3>
-            <p>Review generation, authority publishing, and removal workflows tied to revenue dashboards.</p>
+            <h3>Structured resolution</h3>
+            <p>We use structured workflows to resolve issues and track progress.</p>
           </article>
         </div>
       </section>
 
       <section className="home-production" aria-labelledby="home-production-heading">
         <header className="home-production__header">
-          <p className="home-production__kicker">Production-grade reputation operations</p>
-          <h2 id="home-production-heading">End-to-end digital footprint cleanup, from detection to verified removal</h2>
+          <p className="home-production__kicker">Simple data exposure operations</p>
+          <h2 id="home-production-heading">From monitoring to resolution in one structured workflow</h2>
         </header>
         <div className="home-production__grid">
           <article>
-            <h3>What we remove</h3>
+            <h3>What we monitor</h3>
             <ul>
-              <li>Defamatory pages and fake review clusters</li>
-              <li>Doxxing snippets, leaked personal data, and impersonation pages</li>
-              <li>Legacy negative SERP entries hurting hiring and sales</li>
+              <li>Exposed personal or business data</li>
+              <li>Misleading profile and listing content</li>
+              <li>High-risk pages affecting trust</li>
             </ul>
           </article>
           <article>
-            <h3>How we execute</h3>
+            <h3>How we work</h3>
             <ul>
-              <li>Forensic discovery + legal-ready evidence pack in 24h</li>
-              <li>Platform takedowns, de-indexing flows, and suppression strategy</li>
-              <li>Weekly proof reports with links, timestamps, and status</li>
+              <li>Identify and monitor exposure points</li>
+              <li>Analyze risk and select the best workflow</li>
+              <li>Resolve issues with documented actions and status updates</li>
             </ul>
           </article>
           <article>
             <h3>Client outcomes</h3>
             <ul>
-              <li>Clearer branded search results and trust recovery</li>
-              <li>Reduced churn from negative reputation events</li>
-              <li>Faster conversion in high-intent inbound channels</li>
+              <li>Clearer visibility into online data exposure</li>
+              <li>Faster risk response with ongoing monitoring</li>
+              <li>Measurable resolution progress across platforms</li>
             </ul>
           </article>
         </div>
         <div className="home-production__actions">
           <Link className="button primary" to={getContactPath(currentLanguage)}>
-            Request full digital cleanup
+            Start analysis
           </Link>
           <Link className="button tertiary" to={getCaseStudiesPath(currentLanguage)}>
-            View verified removals
+            View resolution examples
           </Link>
         </div>
       </section>
@@ -2675,7 +2786,7 @@ const HomePage = () => {
         <article className="home-panel">
           <h3>Leadership-level partnership</h3>
           <p>
-            You work directly with Artur Ziganshin and our senior partners—no hand-offs, just outcomes delivered with
+            You work directly with TraceRemove Advisor and our senior partners—no hand-offs, just outcomes delivered with
             precision.
           </p>
         </article>
@@ -2685,8 +2796,8 @@ const HomePage = () => {
 
       <div className="home-banner">
         <p>
-          {heroCta} — <a href="mailto:contact@traceremove.com">contact@traceremove.com</a> ·{' '}
-          <a href="tel:+16063022958">+1 606 302 2958</a>
+          {heroCta} — <a href="mailto:support@traceremove.com">support@traceremove.com</a> ·{' '}
+          <a href="tel:+16063022958">+1 (472) 248 0235</a>
         </p>
       </div>
     </section>
@@ -2810,11 +2921,11 @@ const ServicePageView = ({ page }: { page: ServicePageContent }) => {
         <h2>{labels.contactHeading}</h2>
         <p>{page.contactPrompt}</p>
         <div className="contact-actions">
-          <a className="button primary" href="mailto:contact@traceremove.com">
-            contact@traceremove.com
+          <a className="button primary" href="mailto:support@traceremove.com">
+            support@traceremove.com
           </a>
           <a className="button secondary" href="tel:+16063022958">
-            +1 606 302 2958
+            +1 (472) 248 0235
           </a>
         </div>
       </section>
@@ -2985,8 +3096,8 @@ const ServicesPricingPage = () => {
               <Link className="button primary" to={getContactPath(language)}>
                 {copy.hero.primaryCta}
               </Link>
-              <a className="button ghost" href="mailto:contact@traceremove.com">
-                contact@traceremove.com
+              <a className="button ghost" href="mailto:support@traceremove.com">
+                support@traceremove.com
               </a>
             </div>
           </article>
@@ -3864,199 +3975,10 @@ const ServicesPricingPage = () => {
           <Link className="button primary" to={getContactPath(language)}>
             {copy.cta.primary}
           </Link>
-          <a className="button ghost" href="mailto:artur@traceremove.dev">
+          <a className="button ghost" href="mailto:support@traceremove.com">
             {copy.cta.secondary}
           </a>
         </div>
-      </section>
-    </article>
-  )
-}
-
-const AboutPage = () => {
-  const language = useCurrentLanguage()
-  const copy = aboutCopy[language]
-
-  return (
-    <article className="about-page">
-      <header className="about-hero">
-        <div className="about-hero__copy">
-          <p className="about-hero__kicker">Traceremove</p>
-          <h1>{copy.hero.title}</h1>
-          <p className="about-hero__subtitle">{copy.hero.subtitle}</p>
-          <p>{copy.hero.body}</p>
-          <div className="about-hero__actions">
-            <Link className="button primary" to={getContactPath(language)}>
-              {copy.hero.primaryCta}
-            </Link>
-            <Link className="button secondary" to={getBlogBasePath(language)}>
-              {copy.hero.secondaryCta}
-            </Link>
-          </div>
-        </div>
-        <div className="about-hero__visual" aria-hidden="true">
-          <div className="about-hero__badge">{copy.hero.highlight}</div>
-          <GrowthSpark variant="light" size="lg" className="about-hero__graph" />
-          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
-        </div>
-      </header>
-
-      <MomentumTicker variant="dark" />
-
-      <section className="about-story" aria-labelledby="about-story-heading">
-        <div className="about-section__header">
-          <h2 id="about-story-heading">{copy.story.heading}</h2>
-        </div>
-        <div className="about-story__body">
-          {copy.story.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-timeline" aria-labelledby="about-timeline-heading">
-        <div className="about-section__header">
-          <h2 id="about-timeline-heading">{copy.timeline.heading}</h2>
-          <p>{copy.timeline.summary}</p>
-        </div>
-        <ol className="about-timeline__list">
-          {copy.timeline.milestones.map((milestone, index) => (
-            <li key={milestone.title} className="about-timeline__item">
-              <div className="about-timeline__marker" aria-hidden="true">
-                <span className="about-timeline__dot" />
-                {index !== copy.timeline.milestones.length - 1 && <span className="about-timeline__line" />}
-              </div>
-              <div className="about-timeline__content">
-                <span className="about-timeline__year">{milestone.year}</span>
-                <h3>{milestone.title}</h3>
-                <p>{milestone.description}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="about-pillars" aria-labelledby="about-pillars-heading">
-        <div className="about-section__header">
-          <h2 id="about-pillars-heading">{copy.reasons.heading}</h2>
-          <p>{copy.reasons.summary}</p>
-        </div>
-        <div className="about-pillars__grid">
-          {copy.reasons.items.map((item) => (
-            <article key={item.title} className="about-card">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-presence" aria-labelledby="about-presence-heading">
-        <div className="about-section__header">
-          <h2 id="about-presence-heading">{copy.presence.heading}</h2>
-          <p>{copy.presence.summary}</p>
-        </div>
-        <div className="about-presence__grid">
-          {copy.presence.regions.map((region) => (
-            <article key={region.name} className="about-presence__card">
-              <header>
-                <span className="about-presence__region">{region.name}</span>
-                <span className="about-presence__focus">{region.focus}</span>
-              </header>
-              <p>{region.description}</p>
-            </article>
-          ))}
-        </div>
-        <div className="about-presence__signals">
-          {copy.presence.signals.map((signal) => (
-            <div key={signal.label} className="about-presence__signal">
-              <span className="about-presence__value">{signal.value}</span>
-              <span className="about-presence__label">{signal.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-metrics" aria-labelledby="about-metrics-heading">
-        <div className="about-section__header">
-          <h2 id="about-metrics-heading">{copy.metrics.heading}</h2>
-        </div>
-        <div className="about-metrics__grid">
-          {copy.metrics.items.map((item) => (
-            <article key={item.label} className="about-metric">
-              <span className="about-metric__value">{item.value}</span>
-              <span className="about-metric__label">{item.label}</span>
-              <p>{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-method" aria-labelledby="about-method-heading">
-        <div className="about-section__header">
-          <h2 id="about-method-heading">{copy.method.heading}</h2>
-          <p>{copy.method.summary}</p>
-        </div>
-        <ol className="about-method__steps">
-          {copy.method.steps.map((step, index) => (
-            <li key={step.title}>
-              <span className="about-method__step-index">{index + 1}</span>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="about-testimonials" aria-labelledby="about-testimonials-heading">
-        <div className="about-section__header">
-          <h2 id="about-testimonials-heading">{copy.testimonials.heading}</h2>
-          <p>{copy.testimonials.summary}</p>
-        </div>
-        <div className="about-testimonials__grid">
-          {copy.testimonials.stories.map((story) => (
-            <figure key={story.name} className="about-testimonial">
-              <blockquote>
-                <span aria-hidden="true" className="about-testimonial__quote">“</span>
-                {story.quote}
-              </blockquote>
-              <figcaption>
-                <span className="about-testimonial__name">{story.name}</span>
-                <span className="about-testimonial__role">{story.role}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-culture" aria-labelledby="about-culture-heading">
-        <div className="about-section__header">
-          <h2 id="about-culture-heading">{copy.culture.heading}</h2>
-          <p>{copy.culture.summary}</p>
-        </div>
-        <div className="about-culture__grid">
-          {copy.culture.principles.map((principle, index) => (
-            <article key={principle.title} className="about-culture__card">
-              <span className="about-culture__index">{index + 1}</span>
-              <div>
-                <h3>{principle.title}</h3>
-                <p>{principle.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-cta" aria-labelledby="about-cta-heading">
-        <div>
-          <h2 id="about-cta-heading">{copy.closing.heading}</h2>
-          <p>{copy.closing.body}</p>
-        </div>
-        <Link className="button primary" to={getContactPath(language)}>
-          {copy.closing.cta}
-        </Link>
       </section>
     </article>
   )
@@ -4114,11 +4036,11 @@ const TeamPage = () => {
         <div className="team-contact">
           <p>{copy.contactPrompt}</p>
           <div className="team-contact-actions">
-            <a className="button primary" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
+            <a className="button primary" href="mailto:support@traceremove.com">
+              support@traceremove.com
             </a>
             <a className="button secondary" href="tel:+16063022958">
-              +1 606 302 2958
+              +1 (472) 248 0235
             </a>
           </div>
         </div>
@@ -5956,11 +5878,11 @@ const PartnersPage = () => {
           <p>{copy.ctaBody}</p>
         </div>
         <div className="partners-cta__actions">
-          <a className="button primary" href="mailto:contact@traceremove.com?subject=Partnership inquiry">
-            contact@traceremove.com
+          <a className="button primary" href="mailto:support@traceremove.com?subject=Partnership inquiry">
+            support@traceremove.com
           </a>
           <a className="button secondary" href="tel:+16063022958">
-            +1 606 302 2958
+            +1 (472) 248 0235
           </a>
         </div>
       </section>
@@ -6064,15 +5986,15 @@ const contactCopy: Record<
 > = {
   en: {
     kicker: 'Contact Traceremove',
-    title: 'Design your next reputation breakthrough',
+    title: 'We help manage and resolve online data exposure',
     subtitle: 'Share your objectives and we will craft a tailored response within one business day.',
     intro:
-      'Tell us about your roadmap, KPIs, and reputation challenges. Our multilingual team will assemble a bespoke growth and risk mitigation program.',
+      'We help manage and resolve online data exposure',
     formTitle: 'Send us a note',
     detailTitle: 'Prefer a direct line?',
     detailPoints: [
-      'Email contact@traceremove.com for quick scoping questions and proposals.',
-      'Call +1 606 302 2958 Monday to Friday, 9am–6pm EST for immediate assistance.',
+      'Email support@traceremove.com for quick scoping questions and proposals.',
+      'Call +1 (472) 248 0235 Monday to Friday, 9am–6pm EST for immediate assistance.',
       'Book a 30-minute strategy session to leave with a prioritised roadmap and next steps.',
     ],
     successTitle: 'Thanks for reaching out',
@@ -6084,7 +6006,7 @@ const contactCopy: Record<
       email: { label: 'Work email', placeholder: 'jane@company.com' },
       company: { label: 'Company or team', placeholder: 'Acme Corp' },
       phone: { label: 'Phone (optional)', placeholder: '+1 555 555 5555' },
-      message: { label: 'How can we help?', placeholder: 'Share goals, timelines, or reputation risks…' },
+      message: { label: 'How can we help?', placeholder: 'We help manage and resolve online data exposure' },
     },
   },
   fr: {
@@ -6096,8 +6018,8 @@ const contactCopy: Record<
     formTitle: 'Écrivez-nous',
     detailTitle: 'Besoin d’un échange direct ?',
     detailPoints: [
-      'Écrivez à contact@traceremove.com pour un cadrage rapide de votre projet.',
-      'Appelez le +1 606 302 2958 du lundi au vendredi, 9h–18h EST.',
+      'Écrivez à support@traceremove.com pour un cadrage rapide de votre projet.',
+      'Appelez le +1 (472) 248 0235 du lundi au vendredi, 9h–18h EST.',
       'Réservez une session stratégique de 30 minutes pour repartir avec un plan priorisé.',
     ],
     successTitle: 'Merci pour votre message',
@@ -6121,8 +6043,8 @@ const contactCopy: Record<
     formTitle: 'Escríbenos',
     detailTitle: '¿Prefieres un contacto directo?',
     detailPoints: [
-      'Escribe a contact@traceremove.com para dudas rápidas sobre alcance y propuestas.',
-      'Llama al +1 606 302 2958 de lunes a viernes, 9h–18h EST.',
+      'Escribe a support@traceremove.com para dudas rápidas sobre alcance y propuestas.',
+      'Llama al +1 (472) 248 0235 de lunes a viernes, 9h–18h EST.',
       'Agenda una sesión estratégica de 30 minutos y obtén un plan priorizado.',
     ],
     successTitle: 'Gracias por escribirnos',
@@ -6148,12 +6070,39 @@ const ContactPage = ({ language }: { language: Language }) => {
     phone: '',
     message: '',
   })
-  const [submitted, setSubmitted] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
+
+  async function submitToMake(data: {
+    name: string; company: string; email: string; message: string;
+  }): Promise<boolean> {
+    try {
+      const res = await fetch(
+        'WEBHOOK_PLACEHOLDER', // TODO: replace with actual Make.com webhook URL
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.name,
+            company: data.company,
+            email: data.email,
+            message: data.message,
+            source: 'traceremove.com',
+            timestamp: new Date().toISOString(),
+            language: navigator.language,
+            page: window.location.pathname,
+          }),
+        }
+      )
+      return res.ok
+    } catch {
+      return false
+    }
+  }
 
   const handleChange = (field: keyof typeof formData) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      if (submitted) {
-        setSubmitted(false)
+      if (submitStatus) {
+        setSubmitStatus(null)
       }
       const value = event.target.value
       setFormData((prev) => ({
@@ -6164,20 +6113,20 @@ const ContactPage = ({ language }: { language: Language }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const params = new URLSearchParams(window.location.search)
-    await persistLead({
-      source: 'contact',
+    const isSubmitted = await submitToMake({
       name: formData.name,
-      email: formData.email,
       company: formData.company,
+      email: formData.email,
       message: formData.message,
-      createdAt: new Date().toISOString(),
-      page: window.location.pathname,
-      utmSource: params.get('utm_source') ?? 'direct',
-      leadScore: Math.min(100, 40 + (formData.company ? 20 : 0) + (formData.phone ? 20 : 0) + (formData.message.length > 60 ? 20 : 0)),
     })
-    setSubmitted(true)
-    setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+
+    if (isSubmitted) {
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', company: '', phone: '', message: '' })
+      return
+    }
+
+    setSubmitStatus('error')
   }
 
   return (
@@ -6261,10 +6210,15 @@ const ContactPage = ({ language }: { language: Language }) => {
           <button type="submit" className="button primary contact-submit">
             {copy.submit}
           </button>
-          {submitted && (
+          {submitStatus === 'success' && (
             <div className="contact-success" role="status" aria-live="polite">
-              <h3>{copy.successTitle}</h3>
-              <p>{copy.successMessage}</p>
+              <h3>Assessment request received.</h3>
+              <p>Check your email — an NDA will arrive within 5 minutes for your signature before we proceed.</p>
+            </div>
+          )}
+          {submitStatus === 'error' && (
+            <div className="contact-success" role="alert" aria-live="assertive">
+              <p>There was an issue. Please email us directly at support@traceremove.com</p>
             </div>
           )}
           <p className="contact-legal">{copy.legal}</p>
@@ -6277,11 +6231,11 @@ const ContactPage = ({ language }: { language: Language }) => {
             ))}
           </ul>
           <div className="contact-direct">
-            <a className="button primary" href="mailto:contact@traceremove.com">
-              contact@traceremove.com
+            <a className="button primary" href="mailto:support@traceremove.com">
+              support@traceremove.com
             </a>
             <a className="button secondary" href="tel:+16063022958">
-              +1 606 302 2958
+              +1 (472) 248 0235
             </a>
           </div>
         </aside>
@@ -6308,6 +6262,50 @@ const NotFound = () => (
   </section>
 )
 
+const SimpleContactPage = () => (
+  <section style={{ padding: '48px 24px' }}>
+    <div style={{ maxWidth: 720, margin: '0 auto', fontSize: '14px', lineHeight: 1.7, opacity: 0.8 }}>
+      <div>TRACEREMOVE LLC</div>
+      <div>750 Manhattan Ave</div>
+      <div>Brooklyn, NY 11222, USA</div>
+      <div>support@traceremove.com</div>
+    </div>
+  </section>
+)
+
+const SimpleLegalPage = ({ type }: { type: 'terms' | 'privacy' | 'refund' }) => {
+  const copy = {
+    terms: {
+      title: 'Terms of Service',
+      text: 'By using this digital platform, you agree to use our services lawfully and responsibly. We may update or suspend features at any time.',
+    },
+    privacy: {
+      title: 'Privacy Policy',
+      text: 'We collect only the data needed to provide and improve our services. We do not sell personal data and apply reasonable safeguards to protect it.',
+    },
+    refund: {
+      title: 'Refund Policy',
+      text: 'Refund requests are reviewed case by case for digital services. Contact support within 14 days of purchase for assistance.',
+    },
+  }[type]
+
+  return (
+    <section style={{ padding: '48px 24px' }}>
+      <div style={{ maxWidth: 720, margin: '0 auto', fontSize: '14px', lineHeight: 1.7, opacity: 0.82 }}>
+        <h1 style={{ fontSize: '24px', margin: '0 0 16px' }}>{copy.title}</h1>
+        <p style={{ margin: '0 0 16px' }}>{copy.text}</p>
+        <p style={{ margin: 0 }}>
+          TRACEREMOVE LLC
+          <br />
+          750 Manhattan Ave
+          <br />
+          Brooklyn, NY 11222, USA
+        </p>
+      </div>
+    </section>
+  )
+}
+
 const blogListCopy: Record<
   Language,
   {
@@ -6333,7 +6331,7 @@ const blogListCopy: Record<
 > = {
   en: {
     kicker: 'Traceremove Blog',
-    title: 'Journal for reputation-led teams',
+    title: 'We help manage and resolve online data exposure',
     subtitle: 'Frameworks across ORM, AI, cybersecurity, SEO, and web design.',
     intro:
       'Explore the operating manuals we use with clients shipping fast. Every article includes actionable workflows, checklists, and measurement rituals you can adapt today.',
@@ -6446,7 +6444,7 @@ const blogArticleCopy: Record<
     copied: 'Link copied',
     ctaTitle: 'Need a rapid response team?',
     ctaBody:
-      'Bring Traceremove into your brand room to design counter-narratives, remove fake reviews, and harden search trust across markets.',
+      'We help manage and resolve online data exposure',
     ctaButton: 'Book a strategy call',
     tocTitle: 'Navigate this playbook',
     tocHint: 'Jump to any section while the growth meter tracks your read.',
@@ -7351,19 +7349,9 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   const navLinks = useMemo(
     () => [
-      { label: copy.about, href: getAboutPath(currentLanguage) },
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
-      { label: copy.servicesPricing, href: getServicesPricingPath(currentLanguage) },
-      { label: copy.resources, href: getResourcesPath(currentLanguage) },
-      { label: copy.academy, href: getAcademyPath(currentLanguage) },
-      { label: copy.media, href: getMediaPath(currentLanguage) },
-      { label: copy.commandCenter, href: getCommandCenterPath(currentLanguage) },
-      { label: copy.trust, href: getTrustPath(currentLanguage) },
-      { label: copy.team, href: getTeamPath(currentLanguage) },
-      { label: copy.partners, href: getPartnersPath(currentLanguage) },
-      { label: copy.faq, href: getFaqPath(currentLanguage) },
-      { label: copy.blog, href: getBlogBasePath(currentLanguage) },
-      { label: copy.contact, href: getContactPath(currentLanguage) },
+      { label: 'For Agencies', href: getPartnersPath(currentLanguage) },
+      { label: 'Pricing', href: '/pricing' },
     ],
     [copy, currentLanguage]
   )
@@ -7576,10 +7564,10 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div className="tr-header__cta">
           <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
-            {copy.joinUs}
+            Request Assessment
           </NavLink>
           <a className="button ghost" href="tel:+16063022958">
-            +1 606 302 2958
+            +1 (472) 248 0235
           </a>
         </div>
 
@@ -7813,11 +7801,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
               >
                 {copy.joinUs}
               </NavLink>
-              <a className="tr-mobile-link" href="mailto:contact@traceremove.com" onClick={handleCloseMobile}>
-                contact@traceremove.com
+              <a className="tr-mobile-link" href="mailto:support@traceremove.com" onClick={handleCloseMobile}>
+                support@traceremove.com
               </a>
               <a className="tr-mobile-link" href="tel:+16063022958" onClick={handleCloseMobile}>
-                +1 606 302 2958
+                +1 (472) 248 0235
               </a>
             </div>
             <div className="tr-mobile-section">
@@ -7894,7 +7882,7 @@ const legalCopy: Record<
           heading: 'Data protection commitments',
           body: [
             'We implement role-based access controls, hardware security keys, and continuous monitoring so only the right people can see the right records at the right time.',
-            'Our data retention schedules ensure we delete or anonymise records when contracts end or regulations require it, and every vendor undergoes annual security reviews.',
+            'We help manage and resolve online data exposure',
           ],
         },
         {
@@ -7921,7 +7909,7 @@ const legalCopy: Record<
       ctaLabel: 'Open the contact form',
       secondaryLabel: 'Email privacy@traceremove.com',
       secondaryHref: 'mailto:privacy@traceremove.com',
-      supportPhone: { label: 'Call +1 606 302 2958 to reach our privacy desk.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Call +1 (472) 248 0235 to reach our privacy desk.', href: 'tel:+16063022958' },
     },
     terms: {
       kicker: 'Legal center',
@@ -7982,7 +7970,7 @@ const legalCopy: Record<
       ctaLabel: 'Discuss an engagement',
       secondaryLabel: 'Email legal@traceremove.com',
       secondaryHref: 'mailto:legal@traceremove.com',
-      supportPhone: { label: 'Call +1 606 302 2958 for urgent contract questions.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Call +1 (472) 248 0235 for urgent contract questions.', href: 'tel:+16063022958' },
     },
   },
   fr: {
@@ -8045,7 +8033,7 @@ const legalCopy: Record<
       ctaLabel: 'Accéder au formulaire de contact',
       secondaryLabel: 'Écrire à privacy@traceremove.com',
       secondaryHref: 'mailto:privacy@traceremove.com',
-      supportPhone: { label: 'Appelez le +1 606 302 2958 pour joindre notre cellule conformité.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Appelez le +1 (472) 248 0235 pour joindre notre cellule conformité.', href: 'tel:+16063022958' },
     },
     terms: {
       kicker: 'Espace légal',
@@ -8106,7 +8094,7 @@ const legalCopy: Record<
       ctaLabel: 'Discuter d’une collaboration',
       secondaryLabel: 'Écrire à legal@traceremove.com',
       secondaryHref: 'mailto:legal@traceremove.com',
-      supportPhone: { label: 'Appelez le +1 606 302 2958 pour toute question contractuelle urgente.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Appelez le +1 (472) 248 0235 pour toute question contractuelle urgente.', href: 'tel:+16063022958' },
     },
   },
   es: {
@@ -8169,7 +8157,7 @@ const legalCopy: Record<
       ctaLabel: 'Abrir el formulario de contacto',
       secondaryLabel: 'Escribe a privacy@traceremove.com',
       secondaryHref: 'mailto:privacy@traceremove.com',
-      supportPhone: { label: 'Llámanos al +1 606 302 2958 y pide hablar con nuestro equipo de privacidad.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Llámanos al +1 (472) 248 0235 y pide hablar con nuestro equipo de privacidad.', href: 'tel:+16063022958' },
     },
     terms: {
       kicker: 'Centro legal',
@@ -8230,7 +8218,7 @@ const legalCopy: Record<
       ctaLabel: 'Hablar sobre una colaboración',
       secondaryLabel: 'Comparte términos en legal@traceremove.com',
       secondaryHref: 'mailto:legal@traceremove.com',
-      supportPhone: { label: 'Habla con nosotros en el +1 606 302 2958 para resolver preguntas contractuales urgentes.', href: 'tel:+16063022958' },
+      supportPhone: { label: 'Habla con nosotros en el +1 (472) 248 0235 para resolver preguntas contractuales urgentes.', href: 'tel:+16063022958' },
     },
   },
 }
@@ -8311,6 +8299,7 @@ const footerCopy: Record<
     join: string
     privacy: string
     terms: string
+    refund: string
     subscribeTitle: string
     subscribeSubtitle: string
     subscribePlaceholder: string
@@ -8320,8 +8309,8 @@ const footerCopy: Record<
 > = {
   en: {
     rights: 'All rights reserved.',
-    studio: 'Traceremove is a multilingual digital agency crafting growth systems for bold teams.',
-    founder: 'Founder & CEO Artur Ziganshin',
+    studio: 'Traceremove is a multilingual digital platform crafting growth systems for bold teams.',
+    founder: 'Founder & CEO TraceRemove Advisor',
     detailHeading: 'Rapid protection details',
     detailPoints: [
       '24/7 brand protection hotline across English, French, and Spanish markets.',
@@ -8331,7 +8320,7 @@ const footerCopy: Record<
     officeHeading: 'Presence hubs',
     officeLocations: ['Montréal · North America HQ', 'Paris · EU lead desk', 'Madrid · Iberia growth pod'],
     hotlineHeading: 'Critical escalation',
-    hotlineBody: 'Message or call +1 606 302 2958 for urgent takedowns — we respond within 60 minutes.',
+    hotlineBody: 'Message or call +1 (472) 248 0235 for structured workflow sprints — priority response SLA.',
     servicesPricing: 'Services & pricing',
     about: 'About us',
     caseStudies: 'Case studies',
@@ -8349,8 +8338,9 @@ const footerCopy: Record<
     join: 'Join us',
     privacy: 'Privacy policy',
     terms: 'Terms of service',
+    refund: 'Refund policy',
     subscribeTitle: 'Stay in the loop',
-    subscribeSubtitle: 'Receive frameworks, playbooks, and release notes from our growth and reputation lab.',
+    subscribeSubtitle: 'We help manage and resolve online data exposure',
     subscribePlaceholder: 'Your email address',
     subscribeCta: 'Subscribe',
     subscribeSuccess: 'Thanks for subscribing — check your inbox for a confirmation.',
@@ -8358,8 +8348,8 @@ const footerCopy: Record<
   fr: {
     rights: 'Tous droits réservés.',
     studio:
-      "Traceremove est une agence digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
-    founder: 'Fondateur & CEO Artur Ziganshin',
+      "Traceremove est une plateforme digitale multilingue qui conçoit des systèmes de croissance pour les équipes ambitieuses.",
+    founder: 'Fondateur & CEO TraceRemove Advisor',
     detailHeading: 'Détails de protection',
     detailPoints: [
       'Hotline brand safety 24/7 en anglais, français et espagnol.',
@@ -8369,7 +8359,7 @@ const footerCopy: Record<
     officeHeading: 'Pôles de présence',
     officeLocations: ['Montréal · QG Amériques', 'Paris · Hub Europe', 'Madrid · Cellule Ibérie'],
     hotlineHeading: 'Escalade critique',
-    hotlineBody: 'Écrivez ou appelez le +1 606 302 2958 pour une suppression urgente — réponse sous 60 minutes.',
+    hotlineBody: 'Écrivez ou appelez le +1 (472) 248 0235 pour une suppression urgente — réponse sous 60 minutes.',
     servicesPricing: 'Services & tarifs',
     about: 'À propos',
     caseStudies: 'Études de cas',
@@ -8387,6 +8377,7 @@ const footerCopy: Record<
     join: 'Rejoignez-nous',
     privacy: 'Politique de confidentialité',
     terms: 'Conditions générales',
+    refund: 'Politique de remboursement',
     subscribeTitle: 'Restez informé',
     subscribeSubtitle: 'Recevez frameworks, playbooks et notes de version de notre laboratoire growth & réputation.',
     subscribePlaceholder: 'Votre adresse email',
@@ -8395,8 +8386,8 @@ const footerCopy: Record<
   },
   es: {
     rights: 'Todos los derechos reservados.',
-    studio: 'Traceremove es una agencia digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
-    founder: 'Fundador y CEO Artur Ziganshin',
+    studio: 'Traceremove es una plataforma digital multilingüe que crea sistemas de crecimiento para equipos ambiciosos.',
+    founder: 'Fundador y CEO TraceRemove Advisor',
     detailHeading: 'Detalles de protección',
     detailPoints: [
       'Línea directa de protección de marca 24/7 en inglés, francés y español.',
@@ -8406,7 +8397,7 @@ const footerCopy: Record<
     officeHeading: 'Centros de presencia',
     officeLocations: ['Montreal · HQ Norteamérica', 'París · Oficina Europa', 'Madrid · Equipo Iberia'],
     hotlineHeading: 'Escalada crítica',
-    hotlineBody: 'Escríbenos o llama al +1 606 302 2958 para urgencias — respondemos en menos de 60 minutos.',
+    hotlineBody: 'Escríbenos o llama al +1 (472) 248 0235 para urgencias — respondemos en menos de 60 minutos.',
     servicesPricing: 'Servicios y precios',
     about: 'Sobre nosotros',
     caseStudies: 'Casos de éxito',
@@ -8424,6 +8415,7 @@ const footerCopy: Record<
     join: 'Únete',
     privacy: 'Política de privacidad',
     terms: 'Términos del servicio',
+    refund: 'Política de reembolso',
     subscribeTitle: 'Mantente al día',
     subscribeSubtitle: 'Recibe frameworks, playbooks y notas de lanzamiento de nuestro laboratorio de crecimiento y reputación.',
     subscribePlaceholder: 'Tu correo electrónico',
@@ -8433,9 +8425,9 @@ const footerCopy: Record<
 }
 
 const callWidgetCopy: Record<Language, { label: string; assist: string }> = {
-  en: { label: 'Call +1 606 302 2958', assist: 'Speak with Artur Ziganshin' },
-  fr: { label: 'Appelez +1 606 302 2958', assist: 'Échangez avec Artur Ziganshin' },
-  es: { label: 'Llama al +1 606 302 2958', assist: 'Habla con Artur Ziganshin' },
+  en: { label: 'Call +1 (472) 248 0235', assist: 'Speak with TraceRemove Advisor' },
+  fr: { label: 'Appelez +1 (472) 248 0235', assist: 'Échangez avec TraceRemove Advisor' },
+  es: { label: 'Llama al +1 (472) 248 0235', assist: 'Habla con TraceRemove Advisor' },
 }
 
 type SocialKey =
@@ -8720,141 +8712,124 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
-  const copy = footerCopy[currentLanguage]
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setSubscribed(true)
-    setEmail('')
-  }
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (subscribed) {
-      setSubscribed(false)
-    }
-    setEmail(event.target.value)
-  }
-
-  const menuLinks = [
-    { to: getAboutPath(currentLanguage), label: copy.about },
-    { to: getCaseStudiesPath(currentLanguage), label: copy.caseStudies },
-    { to: getServicesPricingPath(currentLanguage), label: copy.servicesPricing },
-    { to: getResourcesPath(currentLanguage), label: copy.resources },
-    { to: getAcademyPath(currentLanguage), label: copy.academy },
-    { to: getMediaPath(currentLanguage), label: copy.media },
-    { to: getCommandCenterPath(currentLanguage), label: copy.commandCenter },
-    { to: getTrustPath(currentLanguage), label: copy.trust },
-    { to: getTeamPath(currentLanguage), label: copy.team },
-    { to: getPartnersPath(currentLanguage), label: copy.partners },
-    { to: getFaqPath(currentLanguage), label: copy.faq },
-    { to: getBlogBasePath(currentLanguage), label: copy.blog },
-    { to: getContactPath(currentLanguage), label: copy.contact },
-    { to: getJoinPath(currentLanguage), label: copy.join },
-  ]
-
   return (
-    <footer className="tr-footer">
-      <div className="tr-footer__visuals" aria-hidden="true">
-        <span className="tr-footer__orb tr-footer__orb--one" />
-        <span className="tr-footer__orb tr-footer__orb--two" />
-        <span className="tr-footer__orb tr-footer__orb--three" />
-      </div>
-      <div className="tr-footer__inner">
-        <div className="tr-footer__brand">
-          <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
-          <div>
-            <p className="tr-footer__title">Traceremove</p>
-            <p className="tr-footer__tagline">{copy.studio}</p>
+    <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: '1.35fr 1fr 1fr 1fr',
+          gap: '24px',
+        }}
+      >
+        <div>
+          <p style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '30px', color: 'var(--white)' }}>Traceremove</p>
+          <p style={{ margin: '12px 0 18px', color: 'rgba(255,255,255,0.72)', lineHeight: 1.6 }}>
+            Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
+            businesses and agency partners worldwide.
+          </p>
+          <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.82)', fontSize: '13px', lineHeight: 1.7 }}>
+            <div>TRACEREMOVE LLC</div>
+            <div>750 Manhattan Ave</div>
+            <div>Brooklyn, NY 11222, USA</div>
+            <div>support@traceremove.com</div>
           </div>
         </div>
-        <div className="tr-footer__contact">
-          <a href="mailto:contact@traceremove.com">contact@traceremove.com</a>
-          <a href="tel:+16063022958">+1 606 302 2958</a>
-          <p>{copy.founder}</p>
-          <form className="tr-footer__subscribe" onSubmit={handleSubmit} noValidate>
-            <div>
-              <h3>{copy.subscribeTitle}</h3>
-              <p>{copy.subscribeSubtitle}</p>
-            </div>
-            <div className="tr-footer__subscribe-form">
-              <input
-                type="email"
-                name="footer-email"
-                placeholder={copy.subscribePlaceholder}
-                value={email}
-                onChange={handleChange}
-                required
-              />
-              <button type="submit" className="button tertiary">
-                {copy.subscribeCta}
-              </button>
-            </div>
-            {subscribed && (
-              <p className="tr-footer__subscribe-success" role="status" aria-live="polite">
-                {copy.subscribeSuccess}
-              </p>
-            )}
-          </form>
-        </div>
-        <div className="tr-footer__details">
-          <div className="tr-footer__detail">
-            <h3>{copy.detailHeading}</h3>
-            <ul>
-              {copy.detailPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="tr-footer__detail">
-            <h3>{copy.officeHeading}</h3>
-            <ul>
-              {copy.officeLocations.map((location) => (
-                <li key={location}>{location}</li>
-              ))}
-            </ul>
-            <p className="tr-footer__hotline">
-              <strong>{copy.hotlineHeading}:</strong> {copy.hotlineBody}
-            </p>
-          </div>
-        </div>
-        <div className="tr-footer__links">
-          {menuLinks.map(({ to, label }) => (
-            <NavLink
-              key={label}
-              to={to}
-              className={({ isActive }: NavLinkRenderArgs) =>
-                `tr-footer__menu-link${isActive ? ' tr-footer__menu-link--active' : ''}`
-              }
-            >
-              <span>{label}</span>
-            </NavLink>
-          ))}
-          <a className="tr-footer__menu-link tr-footer__menu-link--call" href="tel:+16063022958">
-            <span>{copy.call}</span>
-          </a>
-        </div>
-        <div className="tr-footer__legal">
-          <NavLink to={getPrivacyPath(currentLanguage)}>{copy.privacy}</NavLink>
-          <NavLink to={getTermsPath(currentLanguage)}>{copy.terms}</NavLink>
-        </div>
-        <div className="tr-footer__social">
-          {socialLinks.map(({ key, href }) => (
+
+        <div>
+          <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
+          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
             <a
-              key={key}
-              className={`tr-footer__social-link tr-footer__social-link--${key}`}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={footerSocialLabels[currentLanguage][key]}
+              key={item}
+              href="#"
+              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+              }}
             >
-              {renderSocialIcon(key)}
+              {item}
+            </a>
+          ))}
+        </div>
+
+        <div>
+          <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
+          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
+            <a
+              key={item}
+              href="#"
+              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+              }}
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+
+        <div>
+          <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
+          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href="#"
+              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+              }}
+            >
+              {item}
             </a>
           ))}
         </div>
       </div>
-      <p className="tr-footer__rights">© {new Date().getFullYear()} Traceremove. {copy.rights}</p>
+
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '28px auto 0',
+          paddingTop: '16px',
+          borderTop: '1px solid rgba(255,255,255,0.14)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
+          <span>2025 TraceRemove LLC</span>
+          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
+            <a
+              key={item}
+              href="#"
+              style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+              }}
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+        <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.72)' }}>
+          New York, NY / Serving clients globally
+        </div>
+      </div>
     </footer>
   )
 }
@@ -8875,11 +8850,10 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   }, [location.pathname])
 
   useEffect(() => {
-    const seo = pageSeoDefaults[currentLanguage]
-    const path = location.pathname === '/' ? '' : location.pathname
-    const readablePath = path.split('/').join(' ').trim()
-    const title = path ? `${seo.titleSuffix} · ${readablePath}` : seo.titleSuffix
-    document.title = title
+    const normalizedPath = location.pathname.endsWith('/') ? location.pathname : `${location.pathname}/`
+    const lookupPath = routeSeo[location.pathname] ? location.pathname : normalizedPath
+    const seo = routeSeo[lookupPath] ?? baseSeo
+    document.title = seo.title
 
     const ensureMeta = (name: string, content: string) => {
       let element = document.head.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null
@@ -8891,8 +8865,22 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       element.setAttribute('content', content)
     }
 
+    const ensurePropertyMeta = (property: string, content: string) => {
+      let element = document.head.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null
+      if (!element) {
+        element = document.createElement('meta')
+        element.setAttribute('property', property)
+        document.head.appendChild(element)
+      }
+      element.setAttribute('content', content)
+    }
+
     ensureMeta('description', seo.description)
     ensureMeta('robots', 'index, follow, max-image-preview:large')
+    ensurePropertyMeta('og:title', seo.title)
+    ensurePropertyMeta('og:description', seo.description)
+    ensurePropertyMeta('og:type', 'website')
+    ensurePropertyMeta('og:url', seo.ogUrl ?? `${window.location.origin}${location.pathname}`)
 
     let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
     if (!canonical) {
@@ -8933,7 +8921,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
             name: 'Traceremove',
           },
           areaServed: 'Global',
-          serviceType: 'Online reputation management',
+          serviceType: 'We help manage and resolve online data exposure',
           url: `${window.location.origin}${location.pathname}`,
         },
       ],
@@ -8960,11 +8948,29 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <Footer currentLanguage={currentLanguage} />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
+      <div style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>
+        <div>TRACEREMOVE LLC</div>
+        <div>750 Manhattan Ave</div>
+        <div>Brooklyn, NY 11222, USA</div>
+        <div>support@traceremove.com</div>
+      </div>
     </div>
   )
 }
 
 function App() {
+  const RouteNoIndex = ({ children }: { children: ReactNode }) => {
+    useEffect(() => {
+      const m = document.createElement('meta')
+      m.name = 'robots'
+      m.content = 'noindex, nofollow'
+      document.head.appendChild(m)
+      return () => document.head.removeChild(m)
+    }, [])
+
+    return <>{children}</>
+  }
+
   return (
     <AppLayout>
       <Routes>
@@ -8972,6 +8978,7 @@ function App() {
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
         <Route path="services" element={<ServicesPricingPage />} />
+        <Route path="pricing" element={<PricingPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="academy" element={<AcademyPage />} />
         <Route path="faq" element={<FaqPage />} />
@@ -8979,35 +8986,47 @@ function App() {
         <Route path="command-center" element={<CommandCenterPage />} />
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
-        <Route path="partners" element={<PartnersPage />} />
+        <Route path="partners" element={<PartnersLandingPage />} />
         <Route path="join" element={<JoinPage />} />
-        <Route path="contact" element={<ContactPage language="en" />} />
+        <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
         <Route path="blog/:slug" element={<BlogArticlePage language="en" />} />
-        <Route path="privacy" element={<LegalPage language="en" variant="privacy" />} />
-        <Route path="terms" element={<LegalPage language="en" variant="terms" />} />
-        {languages.map((language) => (
-          <Fragment key={language}>
-            <Route path={language} element={<HomePage />} />
-            <Route path={`${language}/about`} element={<AboutPage />} />
-            <Route path={`${language}/case-studies`} element={<CaseStudiesPage />} />
-            <Route path={`${language}/services`} element={<ServicesPricingPage />} />
-            <Route path={`${language}/resources`} element={<ResourceLibraryPage />} />
-            <Route path={`${language}/academy`} element={<AcademyPage />} />
-            <Route path={`${language}/faq`} element={<FaqPage />} />
-            <Route path={`${language}/media`} element={<MediaPage />} />
-            <Route path={`${language}/command-center`} element={<CommandCenterPage />} />
-            <Route path={`${language}/trust`} element={<TrustCenterPage />} />
-            <Route path={`${language}/team`} element={<TeamPage />} />
-            <Route path={`${language}/partners`} element={<PartnersPage />} />
-            <Route path={`${language}/join`} element={<JoinPage />} />
-            <Route path={`${language}/contact`} element={<ContactPage language={language} />} />
-            <Route path={`${language}/blog`} element={<BlogPage language={language} />} />
-            <Route path={`${language}/blog/:slug`} element={<BlogArticlePage language={language} />} />
-            <Route path={`${language}/privacy`} element={<LegalPage language={language} variant="privacy" />} />
-            <Route path={`${language}/terms`} element={<LegalPage language={language} variant="terms" />} />
-          </Fragment>
-        ))}
+        <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="terms" element={<TermsPage />} />
+        <Route path="refund" element={<RefundPage />} />
+        {languages.map((language) => {
+          const withNoIndex = (element: ReactNode) =>
+            language === 'ru' ? <RouteNoIndex>{element}</RouteNoIndex> : element
+
+          return (
+            <Fragment key={language}>
+              <Route path={language} element={withNoIndex(<HomePage />)} />
+              <Route path={`${language}/about`} element={withNoIndex(<AboutPage />)} />
+              <Route path={`${language}/case-studies`} element={withNoIndex(<CaseStudiesPage />)} />
+              <Route path={`${language}/services`} element={withNoIndex(<ServicesPricingPage />)} />
+              <Route path={`${language}/resources`} element={withNoIndex(<ResourceLibraryPage />)} />
+              <Route path={`${language}/academy`} element={withNoIndex(<AcademyPage />)} />
+              <Route path={`${language}/faq`} element={withNoIndex(<FaqPage />)} />
+              <Route path={`${language}/media`} element={withNoIndex(<MediaPage />)} />
+              <Route path={`${language}/command-center`} element={withNoIndex(<CommandCenterPage />)} />
+              <Route path={`${language}/trust`} element={withNoIndex(<TrustCenterPage />)} />
+              <Route path={`${language}/team`} element={withNoIndex(<TeamPage />)} />
+              <Route path={`${language}/partners`} element={withNoIndex(<PartnersPage />)} />
+              <Route path={`${language}/join`} element={withNoIndex(<JoinPage />)} />
+              <Route path={`${language}/contact`} element={withNoIndex(<ContactPage language={language} />)} />
+              <Route path={`${language}/blog`} element={withNoIndex(<BlogPage language={language} />)} />
+              <Route path={`${language}/blog/:slug`} element={withNoIndex(<BlogArticlePage language={language} />)} />
+              <Route
+                path={`${language}/privacy`}
+                element={withNoIndex(<LegalPage language={language} variant="privacy" />)}
+              />
+              <Route
+                path={`${language}/terms`}
+                element={withNoIndex(<LegalPage language={language} variant="terms" />)}
+              />
+            </Fragment>
+          )
+        })}
         {servicePages.map((page) => (
           <Route key={page.id} path={page.path.slice(1)} element={<ServicePageView page={page} />} />
         ))}
