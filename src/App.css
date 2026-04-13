@@ -690,7 +690,7 @@ a {
   justify-self: center;
   position: relative;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .tr-nav::before {
@@ -1220,13 +1220,21 @@ a {
   align-items: center;
   gap: 3rem;
   padding: 3.5rem;
-  border-radius: 2.5rem;
-  background: linear-gradient(140deg, rgba(8, 47, 73, 0.92), rgba(30, 64, 175, 0.85));
+  border-radius: 0;
+  background: #0A0F1E;
   color: #f8fafc;
   box-shadow: 0 40px 70px rgba(2, 12, 35, 0.45);
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(148, 163, 184, 0.25);
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+
+.home-hero::before,
+.home-hero::after {
+  display: none;
 }
 
 .home-hero::before,
@@ -15993,6 +16001,7 @@ body,
   }
 
   .tr-nav__links,
+  .tr-nav__desktop-links,
   .tr-nav__desktop,
   .tr-header__nav,
   .tr-header .tr-nav__items {
