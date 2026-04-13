@@ -53,6 +53,7 @@ import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
+import ServicesPage from './pages/Services'
 import PartnersLandingPage from './pages/Partners'
 import AboutPage from './pages/About'
 import './App.css'
@@ -1344,7 +1345,7 @@ const caseStudiesCopy: Record<
         value: '4.6★',
         label: 'review health restored',
         description:
-          'Composite rating recovered after neutralising fake reviews and mobilising authentic advocacy programmes.',
+          'Composite rating recovered after neutralising negative content and mobilising authentic advocacy programmes.',
       },
       {
         value: '7.5×',
@@ -1382,7 +1383,7 @@ const caseStudiesCopy: Record<
         ],
         testimonial: {
           quote:
-            'Traceremove united legal, marketing, and marketplace operations so every takedown fed sustained demand.',
+            'Traceremove united legal, marketing, and marketplace operations so every workflow delivered sustained results.',
           attribution: 'COO, global marketplace collective',
         },
         visual: 'Animated marketplace map pulsing with removals',
@@ -1404,7 +1405,7 @@ const caseStudiesCopy: Record<
           { label: 'Response SLA', value: '<4h' },
         ],
         testimonial: {
-          quote: 'They turned a frightening spike in fake reviews into a storytelling moment our guests still mention.',
+          quote: 'They turned a frightening spike in negative content into a storytelling moment our guests still mention.',
           attribution: 'Chief Marketing Officer, global resort brand',
         },
         visual: 'Flow of review cards shifting from alert red to brand gradients',
@@ -1433,7 +1434,7 @@ const caseStudiesCopy: Record<
         visual: 'Animated shield protecting secure login flows',
       },
       {
-        title: 'Luxury retailer outranks knock-offs with SEO labs',
+        title: 'Luxury retailer restores search results across markets',
         industry: 'Luxury retail & fashion',
         summary:
           'Launched multilingual editorial programmes that reclaimed high-intent keywords from counterfeiters.',
@@ -1455,7 +1456,7 @@ const caseStudiesCopy: Record<
         visual: 'Rising line graph orbiting hero product imagery',
       },
       {
-        title: 'B2B SaaS unlocks multilingual thought leadership engine',
+        title: 'B2B SaaS unlocks managed data exposure resolution',
         industry: 'B2B SaaS & cybersecurity',
         summary:
           'Scaled insider commentary and social proof that wins enterprise trust while deterring misinformation.',
@@ -2523,7 +2524,20 @@ const HomePage = () => {
       <div className="home-hero" style={{ position: 'relative' }}>
         <HeroCanvas />
         <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
-          <h1>{heroHeading}</h1>
+          <h1
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              visibility: 'visible',
+              fontFamily: "'Playfair Display', serif",
+              fontWeight: 700,
+              fontSize: 'clamp(36px, 5vw, 72px)',
+              lineHeight: 1.1,
+              margin: '0 0 20px 0',
+            }}
+          >
+            Monitor and Manage Online Data Exposure
+          </h1>
           <div
             style={{
               width: '56px',
@@ -7480,6 +7494,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     setMegaOpen(false)
     setMegaSearch('')
   }
+  const closeMegaMenu = handleServiceClose
 
   const handleServiceKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'ArrowDown') {
@@ -7581,51 +7596,21 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
-        <div className="tr-megamenu__tools">
-          <input
-            type="search"
-            value={megaSearch}
-            onChange={(event) => setMegaSearch(event.target.value)}
-            placeholder="Search service or industry…"
-            aria-label="Search services"
-          />
-          <p>Live reputation response playbooks, updated for 2026 channels.</p>
-        </div>
         <div className="tr-megamenu__inner">
-          {filteredGroups.map((group) => (
-            <div key={group.serviceName} className="tr-megamenu__column">
-              <h3>{group.serviceName}</h3>
-              <ul>
-                {group.pages.map((page) => (
-                  <li key={page.path}>
-                    <NavLink
-                      to={page.path}
-                      className={({ isActive }: NavLinkRenderArgs) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
-                      onClick={handleServiceClose}
-                    >
-                      {page.industryName}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          {filteredGroups.length === 0 ? (
-            <div className="tr-megamenu__empty">
-              <h3>No matching services</h3>
-              <p>Try another keyword or open our full services overview.</p>
-              <NavLink to={getServicesPricingPath(currentLanguage)} className="button secondary" onClick={handleServiceClose}>
-                Open services page
-              </NavLink>
-            </div>
-          ) : null}
-          <aside className="tr-megamenu__insight">
-            <h3>Reputation pulse</h3>
-            <p>Track removals, reviews, and sentiment risks in one live command layer.</p>
-            <Link className="button ghost" to={getCommandCenterPath(currentLanguage)} onClick={handleServiceClose}>
-              Open command center
-            </Link>
-          </aside>
+          <div className="tr-megamenu__column">
+            <a href="/en/services#search-results" className="tr-megamenu__link" onClick={closeMegaMenu}>
+              Search Results Management
+            </a>
+            <a href="/en/services#review-platforms" className="tr-megamenu__link" onClick={closeMegaMenu}>
+              Review Platform Resolution
+            </a>
+            <a href="/en/services#monitoring" className="tr-megamenu__link" onClick={closeMegaMenu}>
+              Monitoring & Alerts
+            </a>
+            <a href="/en/services#partner-programme" className="tr-megamenu__link" onClick={closeMegaMenu}>
+              Partner Programme
+            </a>
+          </div>
         </div>
       </div>
 
@@ -8724,7 +8709,15 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         }}
       >
         <div>
-          <p style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '30px', color: 'var(--white)' }}>Traceremove</p>
+          <svg width="140" height="28" viewBox="0 0 140 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#1854E8" y="2" />
+            <text x="6" y="19" fontFamily="serif" fontSize="14" fontWeight="700" fill="white">
+              t
+            </text>
+            <text x="32" y="20" fontFamily="Playfair Display, serif" fontSize="15" fontWeight="600" fill="#FAFAFA">
+              Traceremove
+            </text>
+          </svg>
           <p style={{ margin: '12px 0 18px', color: 'rgba(255,255,255,0.72)', lineHeight: 1.6 }}>
             Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
             businesses and agency partners worldwide.
@@ -8739,10 +8732,14 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
-          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
+          {[
+            { label: 'Pricing', href: '/en/pricing' },
+            { label: 'For Partners', href: '/en/partners' },
+            { label: 'Request Assessment', href: '/en#assessment' },
+          ].map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8751,17 +8748,20 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
-          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
+          {[
+            { label: 'Partner Programme', href: '/en/partners' },
+            { label: 'Apply as Partner', href: '/en/partners' },
+          ].map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8770,17 +8770,21 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
-          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
+          {[
+            { label: 'About', href: '/en/about' },
+            { label: 'Case Studies', href: '/en/case-studies' },
+            { label: 'Contact', href: '/en#assessment' },
+          ].map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8789,7 +8793,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
@@ -8809,11 +8813,15 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
-          <span>2025 TraceRemove LLC</span>
-          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
+          <span>2026 TraceRemove LLC</span>
+          {[
+            { label: 'Privacy Policy', href: '/en/privacy' },
+            { label: 'Terms of Service', href: '/en/terms' },
+            { label: 'Refund Policy', href: '/en/refund' },
+          ].map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8822,7 +8830,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
@@ -8948,12 +8956,6 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <Footer currentLanguage={currentLanguage} />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
-      <div style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>
-        <div>TRACEREMOVE LLC</div>
-        <div>750 Manhattan Ave</div>
-        <div>Brooklyn, NY 11222, USA</div>
-        <div>support@traceremove.com</div>
-      </div>
     </div>
   )
 }
@@ -8977,7 +8979,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
-        <Route path="services" element={<ServicesPricingPage />} />
+        <Route path="services" element={<ServicesPage />} />
         <Route path="pricing" element={<PricingPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="academy" element={<AcademyPage />} />
@@ -8986,7 +8988,7 @@ function App() {
         <Route path="command-center" element={<CommandCenterPage />} />
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
-        <Route path="partners" element={<PartnersLandingPage />} />
+        <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
@@ -9003,7 +9005,9 @@ function App() {
               <Route path={language} element={withNoIndex(<HomePage />)} />
               <Route path={`${language}/about`} element={withNoIndex(<AboutPage />)} />
               <Route path={`${language}/case-studies`} element={withNoIndex(<CaseStudiesPage />)} />
-              <Route path={`${language}/services`} element={withNoIndex(<ServicesPricingPage />)} />
+              <Route path={`${language}/pricing`} element={withNoIndex(<PricingPage />)} />
+              <Route path={`${language}/refund`} element={withNoIndex(<RefundPage />)} />
+              <Route path={`${language}/services`} element={withNoIndex(<ServicesPage />)} />
               <Route path={`${language}/resources`} element={withNoIndex(<ResourceLibraryPage />)} />
               <Route path={`${language}/academy`} element={withNoIndex(<AcademyPage />)} />
               <Route path={`${language}/faq`} element={withNoIndex(<FaqPage />)} />

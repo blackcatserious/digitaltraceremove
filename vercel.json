@@ -1,79 +1,12 @@
 {
+  "buildCommand": "npm run build",
   "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.traceremove.com" }],
-      "destination": "https://traceremove.com/:path*",
-      "permanent": true
-    },
-    { "source": "/index.php", "destination": "/", "permanent": true },
-    { "source": "/process.php", "destination": "/contact", "permanent": true },
-    { "source": "/about.php", "destination": "/about", "permanent": true },
-    { "source": "/contact.php", "destination": "/contact", "permanent": true },
-    { "source": "/privacy.php", "destination": "/privacy", "permanent": true },
-    { "source": "/pricing.php", "destination": "/services", "permanent": true },
-    { "source": "/methodology.php", "destination": "/about", "permanent": true },
-    { "source": "/compliance.php", "destination": "/trust", "permanent": true },
-    { "source": "/ccpa.php", "destination": "/privacy", "permanent": true },
-    { "source": "/guides.php", "destination": "/resources", "permanent": true },
-    { "source": "/fr/services.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/about.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/contact.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/privacy.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/pricing.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/terms.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/resources.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/case-studies.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/industries.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/partners.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/media.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/careers.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/process.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/methodology.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/compliance.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/gdpr.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/dmca.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/ccpa.php", "destination": "/fr/", "permanent": true },
-    { "source": "/fr/guides.php", "destination": "/fr/", "permanent": true },
-    { "source": "/es/services.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/about.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/contact.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/privacy.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/pricing.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/terms.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/resources.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/case-studies.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/industries.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/partners.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/media.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/careers.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/process.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/gdpr.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/dmca.php", "destination": "/es/", "permanent": true },
-    { "source": "/es/ccpa.php", "destination": "/es/", "permanent": true },
-    { "source": "/blog/en/:slug*.php", "destination": "/blog", "permanent": true },
-    { "source": "/blog/fr/:slug*.php", "destination": "/fr/blog", "permanent": true },
-    { "source": "/blog/es/:slug*.php", "destination": "/es/blog", "permanent": true },
-    { "source": "/blog/:slug*.php", "destination": "/blog", "permanent": true },
-    { "source": "/reputation-kit/:path*", "destination": "/", "permanent": true },
-    { "source": "/portfolio-collections/:path*", "destination": "/", "permanent": true },
-    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
-    { "source": "/terms-and-conditions", "destination": "/terms", "permanent": true },
-    { "source": "/accessibility-statement", "destination": "/", "permanent": true },
-    { "source": "/es/accessibility-statement", "destination": "/es/", "permanent": true },
-    { "source": "/consultation", "destination": "/contact", "permanent": true },
-    { "source": "/resources/guides", "destination": "/resources", "permanent": true },
-    { "source": "/industries/:path*", "destination": "/", "permanent": true }
+    { "source": "/:path*.php", "destination": "/en", "permanent": true },
+    { "source": "/blog/:path*", "destination": "/en", "permanent": true },
+    { "source": "/guides/:path*", "destination": "/en", "permanent": true },
+    { "source": "/reputation-kit/:path*", "destination": "/en", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/((?!assets|api|favicon|robots\\.txt|sitemap\\.xml).*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
