@@ -1,150 +1,378 @@
-import { Link } from 'react-router-dom'
-
-const selfServeTiers = [
-  {
-    name: 'Monitor',
-    price: '$49/month',
-    description: 'Monitoring, alerts, and monthly exposure report',
-    features: ['Automated exposure monitoring', 'Monthly risk report', 'Email alerts', 'Dashboard access'],
-    featured: false,
-  },
-  {
-    name: 'Protect',
-    price: '$149/month',
-    description: 'Monitoring plus structured workflow credits each quarter',
-    features: [
-      'Everything in Monitor',
-      'Quarterly workflow credits (3 sprints)',
-      'Progress tracking',
-      'Priority email support',
-      'Monthly executive summary',
-    ],
-    featured: true,
-  },
-  {
-    name: 'Business',
-    price: '$399/month',
-    description: 'Team workspace with monthly workflow credits',
-    features: [
-      'Everything in Protect',
-      'Team workspace (5 users)',
-      'Monthly workflow credits (4 sprints)',
-      'Dedicated account support',
-      'API access for partner reporting',
-    ],
-    featured: false,
-  },
-]
-
-const managedPrograms = [
-  { label: 'Always-On Search Trust', price: 'From $4,900/month' },
-  { label: 'Cybersecurity Monitoring', price: 'From $7,800/quarter' },
-  { label: 'Enterprise Custom', price: 'Contact us' },
-]
-
-const partnerTiers = [
-  {
-    name: 'Silver',
-    price: '$5,000/month',
-    description: 'Entry capacity package for steady partner workflows and sprint-based execution support.',
-  },
-  {
-    name: 'Gold',
-    price: '$10,000/month',
-    description: 'Expanded capacity with higher monthly workflow throughput and accelerated sprint coordination.',
-  },
-  {
-    name: 'Platinum',
-    price: '$18,000/month',
-    description: 'Maximum delivery capacity for multi-team workflows, high-volume data exposure, and partner growth.',
-  },
-]
-
 export default function PricingPage() {
   return (
-    <section className="home-production" aria-labelledby="pricing-page-heading">
-      <header className="home-production__header">
-        <p className="home-production__kicker">Self-Serve</p>
-        <h2 id="pricing-page-heading">Start With Monitoring. Scale When Ready.</h2>
-      </header>
+    <main style={{ minHeight: '100vh', background: '#0A0F1E', color: '#FAFAFA', paddingTop: '80px' }}>
+      {/* Hero */}
+      <section
+        style={{
+          padding: 'clamp(60px,8vw,100px) clamp(24px,5%,80px)',
+          maxWidth: '1200px',
+          margin: '0 auto',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '11px',
+            fontWeight: 600,
+            letterSpacing: '.1em',
+            color: '#C8A96E',
+            marginBottom: '16px',
+            textTransform: 'uppercase',
+          }}
+        >
+          Pricing
+        </p>
+        <h1
+          style={{
+            fontFamily: "'Playfair Display',serif",
+            fontSize: 'clamp(36px,5vw,60px)',
+            fontWeight: 700,
+            color: '#FAFAFA',
+            marginBottom: '16px',
+            lineHeight: 1.15,
+          }}
+        >
+          Transparent Pricing. No Hidden Costs.
+        </h1>
+        <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.6)', maxWidth: '580px', lineHeight: 1.7 }}>
+          Start with self-serve monitoring. Scale to managed programmes when ready.
+        </p>
+      </section>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '16px' }}>
-        {selfServeTiers.map((tier) => (
-          <article
-            key={tier.name}
+      {/* Self-serve tiers */}
+      <section
+        style={{
+          padding: '0 clamp(24px,5%,80px) clamp(60px,8vw,80px)',
+          maxWidth: '1200px',
+          margin: '0 auto',
+        }}
+      >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '24px' }}>
+          {/* Monitor */}
+          <div
             style={{
-              border: tier.featured ? '2px solid var(--blue)' : '1px solid var(--border)',
-              borderRadius: '12px',
-              padding: '18px',
-              background: '#fff',
+              background: '#131929',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '16px',
+              padding: '32px',
             }}
           >
-            {tier.featured ? (
-              <p style={{ margin: '0 0 8px', color: 'var(--blue)', fontWeight: 700, fontSize: '12px' }}>Most Popular</p>
-            ) : null}
-            <h3 style={{ margin: 0 }}>{tier.name}</h3>
-            <p style={{ margin: '8px 0', fontSize: '1.75rem', fontFamily: 'var(--font-mono)' }}>{tier.price}</p>
-            <p style={{ color: 'var(--gray)' }}>{tier.description}</p>
-            <ul style={{ paddingLeft: '18px', marginBottom: '16px' }}>
-              {tier.features.map((feature) => (
-                <li key={feature} style={{ marginBottom: '6px' }}>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <Link className="button primary" to="/contact">
+            <p
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+                color: '#C8A96E',
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                marginBottom: '12px',
+              }}
+            >
+              Monitor
+            </p>
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono',monospace",
+                fontSize: '40px',
+                fontWeight: 500,
+                color: '#FAFAFA',
+                marginBottom: '4px',
+              }}
+            >
+              $49<span style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)' }}>/mo</span>
+            </p>
+            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', marginBottom: '28px' }}>
+              Monitoring, alerts, and monthly exposure report
+            </p>
+            {['Automated exposure monitoring', 'Monthly risk report', 'Email alerts', 'Dashboard access'].map((f) => (
+              <p
+                key={f}
+                style={{
+                  fontSize: '14px',
+                  color: 'rgba(255,255,255,0.65)',
+                  padding: '8px 0',
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                }}
+              >
+                ✓ {f}
+              </p>
+            ))}
+            <a
+              href="/en#assessment"
+              style={{
+                display: 'block',
+                marginTop: '28px',
+                padding: '12px',
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                borderRadius: '8px',
+                textAlign: 'center',
+                color: '#FAFAFA',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 500,
+              }}
+            >
               Get Started
-            </Link>
-          </article>
-        ))}
-      </div>
+            </a>
+          </div>
 
-      <p style={{ marginTop: '14px', color: 'var(--gray)' }}>
-        Workflow credits represent time-boxed resolution cycles with progress tracking and end-of-cycle reporting.
-        Third-party outcomes depend on external systems — best-efforts execution with full transparency.
-      </p>
+          {/* Protect — featured */}
+          <div
+            style={{
+              background: '#131929',
+              border: '2px solid #1854E8',
+              borderRadius: '16px',
+              padding: '32px',
+              position: 'relative',
+            }}
+          >
+            <span
+              style={{
+                position: 'absolute',
+                top: '-12px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: '#1854E8',
+                color: '#fff',
+                fontSize: '11px',
+                fontWeight: 600,
+                padding: '4px 16px',
+                borderRadius: '100px',
+              }}
+            >
+              Most Popular
+            </span>
+            <p
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+                color: '#C8A96E',
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                marginBottom: '12px',
+              }}
+            >
+              Protect
+            </p>
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono',monospace",
+                fontSize: '40px',
+                fontWeight: 500,
+                color: '#FAFAFA',
+                marginBottom: '4px',
+              }}
+            >
+              $149<span style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)' }}>/mo</span>
+            </p>
+            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', marginBottom: '28px' }}>
+              Monitoring plus quarterly workflow credits
+            </p>
+            {[
+              'Everything in Monitor',
+              'Quarterly workflow credits (3 sprints)',
+              'Progress tracking',
+              'Priority email support',
+              'Monthly executive summary',
+            ].map((f) => (
+              <p
+                key={f}
+                style={{
+                  fontSize: '14px',
+                  color: 'rgba(255,255,255,0.65)',
+                  padding: '8px 0',
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                }}
+              >
+                ✓ {f}
+              </p>
+            ))}
+            <a
+              href="/en#assessment"
+              style={{
+                display: 'block',
+                marginTop: '28px',
+                padding: '12px',
+                background: '#1854E8',
+                borderRadius: '8px',
+                textAlign: 'center',
+                color: '#fff',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 600,
+              }}
+            >
+              Get Started
+            </a>
+          </div>
 
-      <section style={{ marginTop: '28px', background: 'var(--navy)', borderRadius: '14px', padding: '24px' }}>
-        <p style={{ color: 'var(--gold)', margin: '0 0 8px' }}>For Enterprises and Partners</p>
-        <h2 style={{ color: 'var(--white)', marginTop: 0 }}>Always-On Managed Programmes</h2>
-        <p style={{ color: 'rgba(255,255,255,0.82)' }}>
+          {/* Business */}
+          <div
+            style={{
+              background: '#131929',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '16px',
+              padding: '32px',
+            }}
+          >
+            <p
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+                color: '#C8A96E',
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                marginBottom: '12px',
+              }}
+            >
+              Business
+            </p>
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono',monospace",
+                fontSize: '40px',
+                fontWeight: 500,
+                color: '#FAFAFA',
+                marginBottom: '4px',
+              }}
+            >
+              $399<span style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)' }}>/mo</span>
+            </p>
+            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', marginBottom: '28px' }}>
+              Team workspace with monthly workflow credits
+            </p>
+            {[
+              'Everything in Protect',
+              'Team workspace (5 users)',
+              'Monthly workflow credits (4 sprints)',
+              'Dedicated account support',
+              'API access for reporting',
+            ].map((f) => (
+              <p
+                key={f}
+                style={{
+                  fontSize: '14px',
+                  color: 'rgba(255,255,255,0.65)',
+                  padding: '8px 0',
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                }}
+              >
+                ✓ {f}
+              </p>
+            ))}
+            <a
+              href="/en#assessment"
+              style={{
+                display: 'block',
+                marginTop: '28px',
+                padding: '12px',
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                borderRadius: '8px',
+                textAlign: 'center',
+                color: '#FAFAFA',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 500,
+              }}
+            >
+              Get Started
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Managed programmes */}
+      <section
+        style={{
+          background: '#070B16',
+          padding: 'clamp(48px,6vw,80px) clamp(24px,5%,80px)',
+          textAlign: 'center',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '12px',
+            fontWeight: 600,
+            color: '#C8A96E',
+            letterSpacing: '.1em',
+            textTransform: 'uppercase',
+            marginBottom: '16px',
+          }}
+        >
+          Enterprise & Partners
+        </p>
+        <h2
+          style={{
+            fontFamily: "'Playfair Display',serif",
+            fontSize: 'clamp(28px,4vw,44px)',
+            color: '#FAFAFA',
+            marginBottom: '16px',
+          }}
+        >
+          Always-On Managed Programmes
+        </h2>
+        <p
+          style={{
+            fontSize: '16px',
+            color: 'rgba(255,255,255,0.55)',
+            maxWidth: '560px',
+            margin: '0 auto 32px',
+            lineHeight: 1.7,
+          }}
+        >
           High-volume or complex exposure cases handled by a dedicated team. Custom sprint plans, weekly reporting,
           and direct account management.
         </p>
-
-        <div style={{ display: 'grid', gap: '10px', marginTop: '14px' }}>
-          {managedPrograms.map((program) => (
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: '16px',
+            marginBottom: '32px',
+          }}
+        >
+          {[
+            ['Always-On Search Trust', 'From $4,900/month'],
+            ['Cybersecurity Monitoring', 'From $7,800/quarter'],
+            ['Enterprise Custom', 'Contact us'],
+          ].map(([name, price]) => (
             <div
-              key={program.label}
+              key={name}
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderBottom: '1px solid rgba(255,255,255,0.2)',
-                paddingBottom: '8px',
-                color: 'var(--white)',
+                background: '#131929',
+                border: '1px solid rgba(200,169,110,0.2)',
+                borderRadius: '12px',
+                padding: '20px 28px',
+                textAlign: 'left',
+                minWidth: '220px',
               }}
             >
-              <span>{program.label}</span>
-              <strong>{program.price}</strong>
+              <p style={{ fontSize: '13px', fontWeight: 500, color: '#FAFAFA', marginBottom: '6px' }}>{name}</p>
+              <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '16px', color: '#C8A96E' }}>{price}</p>
             </div>
           ))}
         </div>
+        <a
+          href="/en#assessment"
+          style={{
+            display: 'inline-block',
+            padding: '14px 32px',
+            background: '#1854E8',
+            borderRadius: '100px',
+            color: '#fff',
+            textDecoration: 'none',
+            fontSize: '15px',
+            fontWeight: 600,
+          }}
+        >
+          Request Managed Programme →
+        </a>
+        <p style={{ marginTop: '16px', fontSize: '12px', color: 'rgba(255,255,255,0.3)' }}>
+          Workflow credits represent time-boxed resolution cycles. Best-efforts delivery. Third-party outcomes not
+          guaranteed.
+        </p>
       </section>
-
-      <section style={{ marginTop: '24px' }}>
-        <h3>Partner Capacity Packages</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
-          {partnerTiers.map((tier) => (
-            <article key={tier.name} style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-              <h4 style={{ margin: '0 0 6px' }}>
-                {tier.name}: <span style={{ fontFamily: 'var(--font-mono)' }}>{tier.price}</span>
-              </h4>
-              <p style={{ margin: 0, color: 'var(--gray)' }}>{tier.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-    </section>
+    </main>
   )
 }
