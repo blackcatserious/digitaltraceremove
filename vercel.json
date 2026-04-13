@@ -1,12 +1,12 @@
 {
   "buildCommand": "npm run build",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
   "redirects": [
     { "source": "/:path*.php", "destination": "/en", "permanent": true },
     { "source": "/blog/:path*", "destination": "/en", "permanent": true },
     { "source": "/guides/:path*", "destination": "/en", "permanent": true },
     { "source": "/reputation-kit/:path*", "destination": "/en", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
