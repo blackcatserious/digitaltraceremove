@@ -16011,3 +16011,116 @@ body,
     display: none !important;
   }
 }
+
+/* ═══════════════════════════════════════
+   ENTRANCE ANIMATIONS — TraceRemove
+═══════════════════════════════════════ */
+
+/* Fade up — default entrance */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Gold line expand */
+@keyframes expandWidth {
+  from { width: 0; }
+  to   { width: 56px; }
+}
+
+/* Counter count up effect */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Apply to sections */
+[class*="platforms"],
+[class*="agencies"],
+[class*="process"],
+[class*="pricing"],
+[class*="scan"],
+[class*="cases"],
+[class*="case-studies"],
+[class*="faq"],
+[class*="roi"] {
+  animation: fadeUp 0.65s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 30%;
+}
+
+/* Cards stagger */
+[class*="platform-card"],
+[class*="card"]:not([class*="legal"]) {
+  animation: fadeUp 0.5s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 40%;
+}
+
+[class*="card"]:nth-child(1) { animation-delay: 0ms; }
+[class*="card"]:nth-child(2) { animation-delay: 80ms; }
+[class*="card"]:nth-child(3) { animation-delay: 160ms; }
+[class*="card"]:nth-child(4) { animation-delay: 240ms; }
+[class*="card"]:nth-child(5) { animation-delay: 320ms; }
+[class*="card"]:nth-child(6) { animation-delay: 400ms; }
+
+/* Trust strip numbers */
+[class*="trust"] strong,
+[class*="trust"] b,
+[class*="stats"] strong {
+  animation: countUp 0.5s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 25%;
+}
+
+/* Section headings */
+[class*="section"] h2,
+[class*="section"] h3 {
+  animation: fadeUp 0.6s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 25%;
+}
+
+/* Gold divider in hero */
+[class*="divider"],
+[class*="gold-line"] {
+  animation: expandWidth 0.8s ease-out 0.4s both;
+}
+
+/* Hover effects on cards */
+[class*="platform-card"]:hover,
+[class*="case-card"]:hover,
+[class*="pricing-card"]:hover {
+  transform: translateY(-4px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 40px rgba(24, 84, 232, 0.15);
+}
+
+/* CTA button pulse on hover */
+a[class*="primary"],
+button[class*="primary"] {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+a[class*="primary"]:hover,
+button[class*="primary"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(24, 84, 232, 0.4);
+}
+
+/* Fallback for browsers without animation-timeline support */
+@supports not (animation-timeline: view()) {
+  [class*="platforms"],
+  [class*="agencies"],
+  [class*="process"],
+  [class*="pricing"],
+  [class*="scan"],
+  [class*="faq"] {
+    animation: fadeIn 0.8s ease-out both;
+  }
+}
