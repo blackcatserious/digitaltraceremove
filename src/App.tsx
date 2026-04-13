@@ -7480,6 +7480,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     setMegaOpen(false)
     setMegaSearch('')
   }
+  const closeMegaMenu = handleServiceClose
 
   const handleServiceKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'ArrowDown') {
@@ -7581,51 +7582,21 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
-        <div className="tr-megamenu__tools">
-          <input
-            type="search"
-            value={megaSearch}
-            onChange={(event) => setMegaSearch(event.target.value)}
-            placeholder="Search service or industry…"
-            aria-label="Search services"
-          />
-          <p>Live reputation response playbooks, updated for 2026 channels.</p>
-        </div>
         <div className="tr-megamenu__inner">
-          {filteredGroups.map((group) => (
-            <div key={group.serviceName} className="tr-megamenu__column">
-              <h3>{group.serviceName}</h3>
-              <ul>
-                {group.pages.map((page) => (
-                  <li key={page.path}>
-                    <NavLink
-                      to={page.path}
-                      className={({ isActive }: NavLinkRenderArgs) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
-                      onClick={handleServiceClose}
-                    >
-                      {page.industryName}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          {filteredGroups.length === 0 ? (
-            <div className="tr-megamenu__empty">
-              <h3>No matching services</h3>
-              <p>Try another keyword or open our full services overview.</p>
-              <NavLink to={getServicesPricingPath(currentLanguage)} className="button secondary" onClick={handleServiceClose}>
-                Open services page
-              </NavLink>
-            </div>
-          ) : null}
-          <aside className="tr-megamenu__insight">
-            <h3>Reputation pulse</h3>
-            <p>Track removals, reviews, and sentiment risks in one live command layer.</p>
-            <Link className="button ghost" to={getCommandCenterPath(currentLanguage)} onClick={handleServiceClose}>
-              Open command center
-            </Link>
-          </aside>
+          <div className="tr-megamenu__column">
+            <a href="/en#platforms" className="tr-megamenu__link" onClick={closeMegaMenu}>
+              Search Results Management
+            </a>
+            <a href="/en#platforms" className="tr-megamenu__link" onClick={closeMegaMenu}>
+              Review Platform Resolution
+            </a>
+            <a href="/en/pricing" className="tr-megamenu__link" onClick={closeMegaMenu}>
+              Monitoring & Alerts
+            </a>
+            <a href="/en/partners" className="tr-megamenu__link" onClick={closeMegaMenu}>
+              Partner Programme
+            </a>
+          </div>
         </div>
       </div>
 
