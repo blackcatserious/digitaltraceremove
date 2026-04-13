@@ -1344,7 +1344,7 @@ const caseStudiesCopy: Record<
         value: '4.6★',
         label: 'review health restored',
         description:
-          'Composite rating recovered after neutralising fake reviews and mobilising authentic advocacy programmes.',
+          'Composite rating recovered after neutralising negative content and mobilising authentic advocacy programmes.',
       },
       {
         value: '7.5×',
@@ -1382,7 +1382,7 @@ const caseStudiesCopy: Record<
         ],
         testimonial: {
           quote:
-            'Traceremove united legal, marketing, and marketplace operations so every takedown fed sustained demand.',
+            'Traceremove united legal, marketing, and marketplace operations so every workflow delivered sustained results.',
           attribution: 'COO, global marketplace collective',
         },
         visual: 'Animated marketplace map pulsing with removals',
@@ -1404,7 +1404,7 @@ const caseStudiesCopy: Record<
           { label: 'Response SLA', value: '<4h' },
         ],
         testimonial: {
-          quote: 'They turned a frightening spike in fake reviews into a storytelling moment our guests still mention.',
+          quote: 'They turned a frightening spike in negative content into a storytelling moment our guests still mention.',
           attribution: 'Chief Marketing Officer, global resort brand',
         },
         visual: 'Flow of review cards shifting from alert red to brand gradients',
@@ -1433,7 +1433,7 @@ const caseStudiesCopy: Record<
         visual: 'Animated shield protecting secure login flows',
       },
       {
-        title: 'Luxury retailer outranks knock-offs with SEO labs',
+        title: 'Luxury retailer restores search results across markets',
         industry: 'Luxury retail & fashion',
         summary:
           'Launched multilingual editorial programmes that reclaimed high-intent keywords from counterfeiters.',
@@ -1455,7 +1455,7 @@ const caseStudiesCopy: Record<
         visual: 'Rising line graph orbiting hero product imagery',
       },
       {
-        title: 'B2B SaaS unlocks multilingual thought leadership engine',
+        title: 'B2B SaaS unlocks managed data exposure resolution',
         industry: 'B2B SaaS & cybersecurity',
         summary:
           'Scaled insider commentary and social proof that wins enterprise trust while deterring misinformation.',
