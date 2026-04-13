@@ -53,6 +53,7 @@ import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
+import ServicesPage from './pages/Services'
 import PartnersLandingPage from './pages/Partners'
 import AboutPage from './pages/About'
 import './App.css'
@@ -7597,16 +7598,16 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
         <div className="tr-megamenu__inner">
           <div className="tr-megamenu__column">
-            <a href="/en#platforms" className="tr-megamenu__link" onClick={closeMegaMenu}>
+            <a href="/en/services#search-results" className="tr-megamenu__link" onClick={closeMegaMenu}>
               Search Results Management
             </a>
-            <a href="/en#platforms" className="tr-megamenu__link" onClick={closeMegaMenu}>
+            <a href="/en/services#review-platforms" className="tr-megamenu__link" onClick={closeMegaMenu}>
               Review Platform Resolution
             </a>
-            <a href="/en/pricing" className="tr-megamenu__link" onClick={closeMegaMenu}>
+            <a href="/en/services#monitoring" className="tr-megamenu__link" onClick={closeMegaMenu}>
               Monitoring & Alerts
             </a>
-            <a href="/en/partners" className="tr-megamenu__link" onClick={closeMegaMenu}>
+            <a href="/en/services#partner-programme" className="tr-megamenu__link" onClick={closeMegaMenu}>
               Partner Programme
             </a>
           </div>
@@ -8978,7 +8979,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
-        <Route path="services" element={<ServicesPricingPage />} />
+        <Route path="services" element={<ServicesPage />} />
         <Route path="pricing" element={<PricingPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="academy" element={<AcademyPage />} />
@@ -9006,7 +9007,7 @@ function App() {
               <Route path={`${language}/case-studies`} element={withNoIndex(<CaseStudiesPage />)} />
               <Route path={`${language}/pricing`} element={withNoIndex(<PricingPage />)} />
               <Route path={`${language}/refund`} element={withNoIndex(<RefundPage />)} />
-              <Route path={`${language}/services`} element={withNoIndex(<ServicesPricingPage />)} />
+              <Route path={`${language}/services`} element={withNoIndex(<ServicesPage />)} />
               <Route path={`${language}/resources`} element={withNoIndex(<ResourceLibraryPage />)} />
               <Route path={`${language}/academy`} element={withNoIndex(<AcademyPage />)} />
               <Route path={`${language}/faq`} element={withNoIndex(<FaqPage />)} />
