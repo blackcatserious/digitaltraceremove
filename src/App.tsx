@@ -9004,6 +9004,8 @@ function App() {
               <Route path={language} element={withNoIndex(<HomePage />)} />
               <Route path={`${language}/about`} element={withNoIndex(<AboutPage />)} />
               <Route path={`${language}/case-studies`} element={withNoIndex(<CaseStudiesPage />)} />
+              <Route path={`${language}/pricing`} element={withNoIndex(<PricingPage />)} />
+              <Route path={`${language}/refund`} element={withNoIndex(<RefundPage />)} />
               <Route path={`${language}/services`} element={withNoIndex(<ServicesPricingPage />)} />
               <Route path={`${language}/resources`} element={withNoIndex(<ResourceLibraryPage />)} />
               <Route path={`${language}/academy`} element={withNoIndex(<AcademyPage />)} />
