@@ -44,6 +44,16 @@ body {
   --text-muted: rgba(148, 163, 184, 0.85);
 }
 
+body,
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 @keyframes fadeSlideUp {
   0% {
     opacity: 0;
@@ -851,6 +861,23 @@ a {
   white-space: nowrap;
   flex-shrink: 0;
   font-size: 13px;
+}
+
+.tr-header__cta .button.primary,
+.tr-nav__cta,
+[class*='nav'][class*='cta'],
+[class*='nav'] a[class*='primary'] {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1100px) {
+  .tr-nav__cta,
+  [class*='nav'][class*='cta'],
+  [class*='nav'] a[class*='primary'] {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+  }
 }
 
 .tr-languages {
