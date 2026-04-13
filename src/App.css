@@ -691,6 +691,7 @@ a {
   position: relative;
   justify-content: center;
   flex-wrap: nowrap !important;
+  overflow: visible;
 }
 
 .tr-nav::before {
@@ -731,6 +732,7 @@ a {
   opacity: 0;
   transform: translate3d(0, 16px, 0);
   animation: navLift 0.7s var(--motion-ease) forwards;
+  white-space: nowrap;
 }
 
 .tr-nav__label {
@@ -848,7 +850,7 @@ a {
   position: absolute;
   inset-inline-end: 1.5rem;
   bottom: -2.25rem;
-  display: none;
+  display: none !important;
   gap: 0.5rem;
   background: rgba(15, 23, 42, 0.8);
   padding: 0.35rem 0.5rem;
