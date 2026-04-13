@@ -8732,10 +8732,9 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
           {[
-            { label: 'Monitoring and Alerts', href: '/en/pricing' },
-            { label: 'Workflow Credits', href: '/en/pricing' },
-            { label: 'Managed Programmes', href: '/en/pricing' },
-            { label: 'Cybersecurity Module', href: '/en/pricing' },
+            { label: 'Pricing', href: '/en/pricing' },
+            { label: 'For Partners', href: '/en/partners' },
+            { label: 'Request Assessment', href: '/en#assessment' },
           ].map((item) => (
             <a
               key={item.label}
@@ -8756,10 +8755,8 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
           {[
-            { label: 'Partner Overview', href: '/en/partners' },
-            { label: 'Silver / Gold / Platinum', href: '/en/partners' },
+            { label: 'Partner Programme', href: '/en/partners' },
             { label: 'Apply as Partner', href: '/en/partners' },
-            { label: 'Partner Portal', href: '/en/partners' },
           ].map((item) => (
             <a
               key={item.label}
@@ -8782,11 +8779,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           {[
             { label: 'About', href: '/en/about' },
             { label: 'Case Studies', href: '/en/case-studies' },
-            { label: 'Trust Center', href: '/en#assessment' },
-            { label: 'Blog', href: '/en' },
             { label: 'Contact', href: '/en#assessment' },
-            { label: 'Team', href: '/en/about' },
-            { label: 'Pricing', href: '/en/pricing' },
           ].map((item) => (
             <a
               key={item.label}
