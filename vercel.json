@@ -1,15 +1,12 @@
 {
   "buildCommand": "npm run build",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "redirects": [
     { "source": "/:path*.php", "destination": "/en", "permanent": true },
     { "source": "/blog/:path*", "destination": "/en", "permanent": true },
     { "source": "/guides/:path*", "destination": "/en", "permanent": true },
-    { "source": "/reputation-kit/:path*", "destination": "/en", "permanent": true },
-    { "source": "/partners", "destination": "/en/partners", "permanent": true },
-    { "source": "/about", "destination": "/en/about", "permanent": true },
-    { "source": "/pricing", "destination": "/en/pricing", "permanent": true },
-    { "source": "/terms", "destination": "/en/terms", "permanent": true },
-    { "source": "/privacy", "destination": "/en/privacy", "permanent": true },
-    { "source": "/refund", "destination": "/en/refund", "permanent": true }
+    { "source": "/reputation-kit/:path*", "destination": "/en", "permanent": true }
   ]
 }
