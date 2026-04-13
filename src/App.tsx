@@ -8739,10 +8739,15 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
-          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
+          {[
+            { label: 'Monitoring and Alerts', href: '/en/pricing' },
+            { label: 'Workflow Credits', href: '/en/pricing' },
+            { label: 'Managed Programmes', href: '/en/pricing' },
+            { label: 'Cybersecurity Module', href: '/en/pricing' },
+          ].map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8751,17 +8756,22 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
-          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
+          {[
+            { label: 'Partner Overview', href: '/en/partners' },
+            { label: 'Silver / Gold / Platinum', href: '/en/partners' },
+            { label: 'Apply as Partner', href: '/en/partners' },
+            { label: 'Partner Portal', href: '/en/partners' },
+          ].map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8770,17 +8780,25 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
-          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
+          {[
+            { label: 'About', href: '/en/about' },
+            { label: 'Case Studies', href: '/en/case-studies' },
+            { label: 'Trust Center', href: '/en/about' },
+            { label: 'Blog', href: '/en' },
+            { label: 'Contact', href: '/en#assessment' },
+            { label: 'Team', href: '/en/about' },
+            { label: 'Pricing', href: '/en/pricing' },
+          ].map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8789,7 +8807,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
@@ -8810,10 +8828,14 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
           <span>2025 TraceRemove LLC</span>
-          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
+          {[
+            { label: 'Privacy Policy', href: '/en/privacy' },
+            { label: 'Terms of Service', href: '/en/terms' },
+            { label: 'Refund Policy', href: '/en/refund' },
+          ].map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8822,7 +8844,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
