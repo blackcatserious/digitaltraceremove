@@ -8988,7 +8988,7 @@ function App() {
         <Route path="command-center" element={<CommandCenterPage />} />
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
-        <Route path="partners" element={<PartnersLandingPage />} />
+        <Route path="partners" element={<PartnersPage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />

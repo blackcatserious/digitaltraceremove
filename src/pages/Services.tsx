@@ -1,9 +1,22 @@
 import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export default function ServicesPage() {
+  const location = useLocation()
+
   useEffect(() => {
     document.title = 'Services — TraceRemove'
   }, [])
+
+  useEffect(() => {
+    if (location.hash) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(location.hash.slice(1))
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 150)
+      return () => clearTimeout(timer)
+    }
+  }, [location.hash])
 
   const services = [
     {
