@@ -690,7 +690,7 @@ a {
   justify-self: center;
   position: relative;
   justify-content: center;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap !important;
 }
 
 .tr-nav::before {
@@ -848,7 +848,7 @@ a {
   position: absolute;
   inset-inline-end: 1.5rem;
   bottom: -2.25rem;
-  display: inline-flex;
+  display: none;
   gap: 0.5rem;
   background: rgba(15, 23, 42, 0.8);
   padding: 0.35rem 0.5rem;
@@ -1220,16 +1220,17 @@ a {
   align-items: center;
   gap: 3rem;
   padding: 3.5rem;
-  border-radius: 0;
-  background: #0A0F1E;
+  border-radius: 0 !important;
+  background: #0A0F1E !important;
   color: #f8fafc;
   box-shadow: 0 40px 70px rgba(2, 12, 35, 0.45);
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(148, 163, 184, 0.25);
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   max-width: 100%;
+  width: 100% !important;
 }
 
 .home-hero::before,
@@ -1280,9 +1281,9 @@ a {
 }
 
 .home-hero-copy > * {
-  opacity: 0;
+  opacity: 1 !important;
   transform: translate3d(0, 28px, 0);
-  animation: fadeSlideUp 0.9s var(--motion-ease) forwards;
+  animation: none !important;
 }
 
 .home-hero-copy > *:nth-child(2) {

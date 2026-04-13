@@ -2523,7 +2523,20 @@ const HomePage = () => {
       <div className="home-hero" style={{ position: 'relative' }}>
         <HeroCanvas />
         <div className="home-hero-copy" style={{ position: 'relative', zIndex: 1 }}>
-          <h1>{heroHeading}</h1>
+          <h1
+            style={{
+              color: '#FFFFFF',
+              opacity: 1,
+              visibility: 'visible',
+              fontFamily: "'Playfair Display', serif",
+              fontWeight: 700,
+              fontSize: 'clamp(36px, 5vw, 72px)',
+              lineHeight: 1.1,
+              margin: '0 0 20px 0',
+            }}
+          >
+            Monitor and Manage Online Data Exposure
+          </h1>
           <div
             style={{
               width: '56px',
