@@ -8695,7 +8695,15 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         }}
       >
         <div>
-          <p style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '30px', color: 'var(--white)' }}>Traceremove</p>
+          <svg width="140" height="28" viewBox="0 0 140 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#1854E8" y="2" />
+            <text x="6" y="19" fontFamily="serif" fontSize="14" fontWeight="700" fill="white">
+              t
+            </text>
+            <text x="32" y="20" fontFamily="Playfair Display, serif" fontSize="15" fontWeight="600" fill="#FAFAFA">
+              Traceremove
+            </text>
+          </svg>
           <p style={{ margin: '12px 0 18px', color: 'rgba(255,255,255,0.72)', lineHeight: 1.6 }}>
             Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
             businesses and agency partners worldwide.
@@ -8761,7 +8769,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           {[
             { label: 'About', href: '/en/about' },
             { label: 'Case Studies', href: '/en/case-studies' },
-            { label: 'Trust Center', href: '/en/about' },
+            { label: 'Trust Center', href: '/en#assessment' },
             { label: 'Blog', href: '/en' },
             { label: 'Contact', href: '/en#assessment' },
             { label: 'Team', href: '/en/about' },
@@ -8798,7 +8806,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
-          <span>2025 TraceRemove LLC</span>
+          <span>2026 TraceRemove LLC</span>
           {[
             { label: 'Privacy Policy', href: '/en/privacy' },
             { label: 'Terms of Service', href: '/en/terms' },
@@ -8941,12 +8949,6 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <Footer currentLanguage={currentLanguage} />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
-      <div style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>
-        <div>TRACEREMOVE LLC</div>
-        <div>750 Manhattan Ave</div>
-        <div>Brooklyn, NY 11222, USA</div>
-        <div>support@traceremove.com</div>
-      </div>
     </div>
   )
 }
