@@ -686,7 +686,7 @@ a {
 .tr-nav {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 6px;
   justify-self: center;
   position: relative;
   justify-content: center;
@@ -844,6 +844,13 @@ a {
   justify-content: flex-end;
   align-items: center;
   gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.tr-header__cta a[href^='tel:'] {
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 13px;
 }
 
 .tr-languages {
