@@ -53,6 +53,7 @@ import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
+import ServicesPage from './pages/Services'
 import PartnersLandingPage from './pages/Partners'
 import AboutPage from './pages/About'
 import './App.css'
@@ -8977,7 +8978,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="case-studies" element={<CaseStudiesPage />} />
-        <Route path="services" element={<ServicesPricingPage />} />
+        <Route path="services" element={<ServicesPage />} />
         <Route path="pricing" element={<PricingPage />} />
         <Route path="resources" element={<ResourceLibraryPage />} />
         <Route path="academy" element={<AcademyPage />} />
@@ -9003,7 +9004,8 @@ function App() {
               <Route path={language} element={withNoIndex(<HomePage />)} />
               <Route path={`${language}/about`} element={withNoIndex(<AboutPage />)} />
               <Route path={`${language}/case-studies`} element={withNoIndex(<CaseStudiesPage />)} />
-              <Route path={`${language}/services`} element={withNoIndex(<ServicesPricingPage />)} />
+              <Route path={`${language}/services`} element={withNoIndex(<ServicesPage />)} />
+              <Route path={`${language}/pricing`} element={withNoIndex(<PricingPage />)} />
               <Route path={`${language}/resources`} element={withNoIndex(<ResourceLibraryPage />)} />
               <Route path={`${language}/academy`} element={withNoIndex(<AcademyPage />)} />
               <Route path={`${language}/faq`} element={withNoIndex(<FaqPage />)} />
@@ -9016,6 +9018,7 @@ function App() {
               <Route path={`${language}/contact`} element={withNoIndex(<ContactPage language={language} />)} />
               <Route path={`${language}/blog`} element={withNoIndex(<BlogPage language={language} />)} />
               <Route path={`${language}/blog/:slug`} element={withNoIndex(<BlogArticlePage language={language} />)} />
+              <Route path={`${language}/refund`} element={withNoIndex(<RefundPage />)} />
               <Route
                 path={`${language}/privacy`}
                 element={withNoIndex(<LegalPage language={language} variant="privacy" />)}
