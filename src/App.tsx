@@ -7511,8 +7511,28 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
-            <span>Traceremove</span>
+            <svg width="200" height="48" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="navG" x1="0" y1="0" x2="260" y2="64" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#3EC6F0" />
+                  <stop offset="100%" stopColor="#7B5CFF" />
+                </linearGradient>
+              </defs>
+              <rect x="2" y="2" width="58" height="58" rx="14" stroke="url(#navG)" strokeWidth="2" />
+              <path d="M20 20 H40 M30 20 V40 Q30 50 40 50" stroke="url(#navG)" strokeWidth="3" strokeLinecap="round" />
+              <circle cx="20" cy="20" r="3" fill="#3EC6F0" />
+              <text
+                x="72"
+                y="41"
+                fill="url(#navG)"
+                fontFamily="Inter,Arial,sans-serif"
+                fontSize="24"
+                fontWeight="500"
+                letterSpacing="0.5"
+              >
+                Traceremove
+              </text>
+            </svg>
           </Link>
           <button
             type="button"
@@ -8724,7 +8744,28 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         }}
       >
         <div>
-          <p style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '30px', color: 'var(--white)' }}>Traceremove</p>
+          <svg width="176" height="42" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="footG" x1="0" y1="0" x2="260" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#3EC6F0" />
+                <stop offset="100%" stopColor="#7B5CFF" />
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="58" height="58" rx="14" stroke="url(#footG)" strokeWidth="2" />
+            <path d="M20 20 H40 M30 20 V40 Q30 50 40 50" stroke="url(#footG)" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="20" cy="20" r="3" fill="#3EC6F0" />
+            <text
+              x="72"
+              y="41"
+              fill="url(#footG)"
+              fontFamily="Inter,Arial,sans-serif"
+              fontSize="24"
+              fontWeight="500"
+              letterSpacing="0.5"
+            >
+              Traceremove
+            </text>
+          </svg>
           <p style={{ margin: '12px 0 18px', color: 'rgba(255,255,255,0.72)', lineHeight: 1.6 }}>
             Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
             businesses and agency partners worldwide.
