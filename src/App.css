@@ -15982,3 +15982,101 @@ body,
     font-size: 0.88rem;
   }
 }
+
+/* ═══════════════════════════════════════
+   ANIMATIONS — TraceRemove
+   Standard CSS only — all browsers
+═══════════════════════════════════════ */
+
+@keyframes tr-fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tr-fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes tr-scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Entrance classes — added by JS IntersectionObserver */
+.tr-anim-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.tr-anim-up.tr-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tr-anim-fade {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.tr-anim-fade.tr-visible {
+  opacity: 1;
+}
+
+.tr-anim-scale {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tr-anim-scale.tr-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays for children */
+.tr-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.tr-stagger > *:nth-child(2) { transition-delay: 80ms; }
+.tr-stagger > *:nth-child(3) { transition-delay: 160ms; }
+.tr-stagger > *:nth-child(4) { transition-delay: 240ms; }
+.tr-stagger > *:nth-child(5) { transition-delay: 320ms; }
+.tr-stagger > *:nth-child(6) { transition-delay: 400ms; }
+
+/* Card hover effects — specific classes only */
+.platform-card,
+.case-card,
+.pricing-card,
+.agency-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.platform-card:hover,
+.agency-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(24,84,232,0.14);
+}
+
+.case-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(200,169,110,0.12);
+}
+
+/* CTA button hover */
+.button.primary,
+a.button.primary {
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+              background 0.15s ease;
+}
+
+.button.primary:hover,
+a.button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(24,84,232,0.38);
+}
+
+/* Gold divider animation */
+.hero-divider,
+[class*="divider"] {
+  transition: width 0.8s ease 0.3s;
+}
