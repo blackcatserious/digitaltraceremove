@@ -7581,51 +7581,63 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
-        <div className="tr-megamenu__tools">
-          <input
-            type="search"
-            value={megaSearch}
-            onChange={(event) => setMegaSearch(event.target.value)}
-            placeholder="Search service or industry…"
-            aria-label="Search services"
-          />
-          <p>Live reputation response playbooks, updated for 2026 channels.</p>
-        </div>
         <div className="tr-megamenu__inner">
-          {filteredGroups.map((group) => (
-            <div key={group.serviceName} className="tr-megamenu__column">
-              <h3>{group.serviceName}</h3>
-              <ul>
-                {group.pages.map((page) => (
-                  <li key={page.path}>
-                    <NavLink
-                      to={page.path}
-                      className={({ isActive }: NavLinkRenderArgs) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
-                      onClick={handleServiceClose}
-                    >
-                      {page.industryName}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          {filteredGroups.length === 0 ? (
-            <div className="tr-megamenu__empty">
-              <h3>No matching services</h3>
-              <p>Try another keyword or open our full services overview.</p>
-              <NavLink to={getServicesPricingPath(currentLanguage)} className="button secondary" onClick={handleServiceClose}>
-                Open services page
-              </NavLink>
-            </div>
-          ) : null}
-          <aside className="tr-megamenu__insight">
-            <h3>Reputation pulse</h3>
-            <p>Track removals, reviews, and sentiment risks in one live command layer.</p>
-            <Link className="button ghost" to={getCommandCenterPath(currentLanguage)} onClick={handleServiceClose}>
-              Open command center
-            </Link>
-          </aside>
+          <a
+            href="/en/services#search-results"
+            onClick={() => setMegaOpen(false)}
+            className="tr-megamenu__link"
+            style={{
+              display: 'block',
+              padding: '12px 20px',
+              color: 'rgba(255,255,255,0.8)',
+              textDecoration: 'none',
+              fontSize: '14px',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+            }}
+          >
+            Search Results Management
+          </a>
+          <a
+            href="/en/services#review-platforms"
+            onClick={() => setMegaOpen(false)}
+            style={{
+              display: 'block',
+              padding: '12px 20px',
+              color: 'rgba(255,255,255,0.8)',
+              textDecoration: 'none',
+              fontSize: '14px',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+            }}
+          >
+            Review Platform Resolution
+          </a>
+          <a
+            href="/en/services#monitoring"
+            onClick={() => setMegaOpen(false)}
+            style={{
+              display: 'block',
+              padding: '12px 20px',
+              color: 'rgba(255,255,255,0.8)',
+              textDecoration: 'none',
+              fontSize: '14px',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+            }}
+          >
+            Monitoring & Alerts
+          </a>
+          <a
+            href="/en/services#partner-programme"
+            onClick={() => setMegaOpen(false)}
+            style={{
+              display: 'block',
+              padding: '12px 20px',
+              color: 'rgba(255,255,255,0.8)',
+              textDecoration: 'none',
+              fontSize: '14px',
+            }}
+          >
+            Partner Programme
+          </a>
         </div>
       </div>
 
