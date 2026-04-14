@@ -7327,23 +7327,10 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
 const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [megaSearch, setMegaSearch] = useState('')
   const [mobileExpandedGroup, setMobileExpandedGroup] = useState('')
   const location = useLocation()
   const copy = navCopy[currentLanguage]
   const groups = navigation[currentLanguage] ?? []
-  const filteredGroups = useMemo(() => {
-    const query = megaSearch.trim().toLowerCase()
-    if (!query) return groups
-    return groups
-      .map((group) => ({
-        ...group,
-        pages: group.pages.filter((page) =>
-          `${group.serviceName} ${page.industryName}`.toLowerCase().includes(query)
-        ),
-      }))
-      .filter((group) => group.pages.length > 0)
-  }, [groups, megaSearch])
   const headerRef = useRef<HTMLElement | null>(null)
   const mobileCloseRef = useRef<HTMLButtonElement | null>(null)
 
@@ -7359,7 +7346,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   useEffect(() => {
     setMegaOpen(false)
     setMobileOpen(false)
-    setMegaSearch('')
   }, [location.pathname])
 
   useEffect(() => {
@@ -7478,7 +7464,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   const handleServiceClose = () => {
     setMegaOpen(false)
-    setMegaSearch('')
   }
 
   const handleServiceKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
@@ -7581,51 +7566,48 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
-        <div className="tr-megamenu__tools">
-          <input
-            type="search"
-            value={megaSearch}
-            onChange={(event) => setMegaSearch(event.target.value)}
-            placeholder="Search service or industry…"
-            aria-label="Search services"
-          />
-          <p>Live reputation response playbooks, updated for 2026 channels.</p>
-        </div>
         <div className="tr-megamenu__inner">
-          {filteredGroups.map((group) => (
-            <div key={group.serviceName} className="tr-megamenu__column">
-              <h3>{group.serviceName}</h3>
-              <ul>
-                {group.pages.map((page) => (
-                  <li key={page.path}>
-                    <NavLink
-                      to={page.path}
-                      className={({ isActive }: NavLinkRenderArgs) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
-                      onClick={handleServiceClose}
-                    >
-                      {page.industryName}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          {filteredGroups.length === 0 ? (
-            <div className="tr-megamenu__empty">
-              <h3>No matching services</h3>
-              <p>Try another keyword or open our full services overview.</p>
-              <NavLink to={getServicesPricingPath(currentLanguage)} className="button secondary" onClick={handleServiceClose}>
-                Open services page
-              </NavLink>
-            </div>
-          ) : null}
-          <aside className="tr-megamenu__insight">
-            <h3>Reputation pulse</h3>
-            <p>Track removals, reviews, and sentiment risks in one live command layer.</p>
-            <Link className="button ghost" to={getCommandCenterPath(currentLanguage)} onClick={handleServiceClose}>
-              Open command center
-            </Link>
-          </aside>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              minWidth: '220px',
+              padding: '8px 0',
+            }}
+          >
+            {[
+              ['Search Results Management', '/en/services#search-results'],
+              ['Review Platform Resolution', '/en/services#review-platforms'],
+              ['Monitoring & Alerts', '/en/services#monitoring'],
+              ['Partner Programme', '/en/services#partner-programme'],
+            ].map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                onClick={() => setMegaOpen && setMegaOpen(false)}
+                style={{
+                  display: 'block',
+                  padding: '11px 20px',
+                  color: 'rgba(255,255,255,0.75)',
+                  textDecoration: 'none',
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                  transition: 'color 0.15s, background 0.15s',
+                }}
+                onMouseEnter={(e) => {
+                  ;(e.target as HTMLElement).style.color = '#ffffff'
+                  ;(e.target as HTMLElement).style.background = 'rgba(255,255,255,0.04)'
+                }}
+                onMouseLeave={(e) => {
+                  ;(e.target as HTMLElement).style.color = 'rgba(255,255,255,0.75)'
+                  ;(e.target as HTMLElement).style.background = 'transparent'
+                }}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
