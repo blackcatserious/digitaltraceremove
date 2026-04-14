@@ -6,16 +6,16 @@
       "destination": "https://traceremove.com/:path*",
       "permanent": true
     },
-    { "source": "/index.php", "destination": "/", "permanent": true },
-    { "source": "/process.php", "destination": "/contact", "permanent": true },
-    { "source": "/about.php", "destination": "/about", "permanent": true },
-    { "source": "/contact.php", "destination": "/contact", "permanent": true },
-    { "source": "/privacy.php", "destination": "/privacy", "permanent": true },
-    { "source": "/pricing.php", "destination": "/services", "permanent": true },
-    { "source": "/methodology.php", "destination": "/about", "permanent": true },
-    { "source": "/compliance.php", "destination": "/trust", "permanent": true },
-    { "source": "/ccpa.php", "destination": "/privacy", "permanent": true },
-    { "source": "/guides.php", "destination": "/resources", "permanent": true },
+    { "source": "/index.php", "destination": "/en", "permanent": true },
+    { "source": "/process.php", "destination": "/en", "permanent": true },
+    { "source": "/about.php", "destination": "/en/about", "permanent": true },
+    { "source": "/contact.php", "destination": "/en#assessment", "permanent": true },
+    { "source": "/privacy.php", "destination": "/en/privacy", "permanent": true },
+    { "source": "/pricing.php", "destination": "/en/pricing", "permanent": true },
+    { "source": "/methodology.php", "destination": "/en/about", "permanent": true },
+    { "source": "/compliance.php", "destination": "/en/terms", "permanent": true },
+    { "source": "/ccpa.php", "destination": "/en/privacy", "permanent": true },
+    { "source": "/guides.php", "destination": "/en", "permanent": true },
     { "source": "/fr/services.php", "destination": "/fr/", "permanent": true },
     { "source": "/fr/about.php", "destination": "/fr/", "permanent": true },
     { "source": "/fr/contact.php", "destination": "/fr/", "permanent": true },
@@ -51,22 +51,25 @@
     { "source": "/es/gdpr.php", "destination": "/es/", "permanent": true },
     { "source": "/es/dmca.php", "destination": "/es/", "permanent": true },
     { "source": "/es/ccpa.php", "destination": "/es/", "permanent": true },
-    { "source": "/blog/en/:slug*.php", "destination": "/blog", "permanent": true },
-    { "source": "/blog/fr/:slug*.php", "destination": "/fr/blog", "permanent": true },
-    { "source": "/blog/es/:slug*.php", "destination": "/es/blog", "permanent": true },
-    { "source": "/blog/:slug*.php", "destination": "/blog", "permanent": true },
-    { "source": "/reputation-kit/:path*", "destination": "/", "permanent": true },
-    { "source": "/portfolio-collections/:path*", "destination": "/", "permanent": true },
-    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
-    { "source": "/terms-and-conditions", "destination": "/terms", "permanent": true },
-    { "source": "/accessibility-statement", "destination": "/", "permanent": true },
+    { "source": "/blog/en/:slug*.php", "destination": "/en", "permanent": true },
+    { "source": "/blog/fr/:slug*.php", "destination": "/fr/", "permanent": true },
+    { "source": "/blog/es/:slug*.php", "destination": "/es/", "permanent": true },
+    { "source": "/blog/:slug*.php", "destination": "/en", "permanent": true },
+    { "source": "/reputation-kit/:path*", "destination": "/en", "permanent": true },
+    { "source": "/portfolio-collections/:path*", "destination": "/en", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/en/privacy", "permanent": true },
+    { "source": "/terms-and-conditions", "destination": "/en/terms", "permanent": true },
+    { "source": "/accessibility-statement", "destination": "/en", "permanent": true },
     { "source": "/es/accessibility-statement", "destination": "/es/", "permanent": true },
-    { "source": "/consultation", "destination": "/contact", "permanent": true },
-    { "source": "/resources/guides", "destination": "/resources", "permanent": true },
-    { "source": "/industries/:path*", "destination": "/", "permanent": true }
+    { "source": "/consultation", "destination": "/en#assessment", "permanent": true },
+    { "source": "/resources/guides", "destination": "/en", "permanent": true },
+    { "source": "/industries/:path*", "destination": "/en", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/((?!assets|api|favicon|robots\\.txt|sitemap\\.xml).*)", "destination": "/index.html" }
+    {
+      "source": "/((?!assets|api|favicon|robots\\.txt|sitemap\\.xml).*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
@@ -76,4 +79,3 @@
       ]
     }
   ]
-}
