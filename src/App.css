@@ -16110,3 +16110,119 @@ a.button.primary:hover {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Mobile layout hotfixes */
+@media (max-width: 768px) {
+  /* 1) Cards: single column + no side overflow */
+  .home-grid,
+  .home-services__grid,
+  .home-production__grid,
+  .services-pricing__pillar-grid,
+  .services-pricing__addon-grid,
+  .services-pricing__deliverable-grid,
+  .services-pricing__support-grid,
+  .services-pricing__sla-grid,
+  .services-pricing__reporting-grid,
+  .services-pricing__industry-grid,
+  .services-pricing__transformation-grid,
+  .services-pricing__operations-grid,
+  .services-pricing__resilience-grid,
+  .partners-grid,
+  .partners-programs {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-card,
+  .home-service-card,
+  .services-pricing__pillar-card,
+  .services-pricing__addon-card,
+  .services-pricing__deliverable-card,
+  .services-pricing__support-card,
+  .services-pricing__sla-card,
+  .services-pricing__reporting-card,
+  .services-pricing__industry-card,
+  .services-pricing__transformation-card,
+  .services-pricing__operations-card,
+  .services-pricing__resilience-card,
+  .partners-card,
+  .partners-program {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* 2) Pricing: stack and remove overlap from decorative absolute visuals */
+  .services-pricing__hero,
+  .services-pricing__promise-body,
+  .services-pricing__operations-layout,
+  .services-pricing__resilience-layout,
+  .services-pricing__comparison-head,
+  .services-pricing__comparison-row {
+    grid-template-columns: 1fr !important;
+    flex-direction: column;
+  }
+
+  .services-pricing__comparison-head,
+  .services-pricing__comparison-row {
+    gap: 0.6rem;
+  }
+
+  .services-pricing__operations-visual,
+  .services-pricing__transformation-visual {
+    position: static;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 0.5rem;
+  }
+
+  /* 3) Partners: stack blocks + prevent horizontal overflow */
+  .partners-page,
+  .partners-section,
+  .partners-hero,
+  .partners-grid,
+  .partners-programs,
+  .partners-cta {
+    overflow-x: clip;
+  }
+
+  .partners-hero,
+  .partners-cta {
+    grid-template-columns: 1fr !important;
+  }
+
+  .partners-hero-graph {
+    display: none;
+  }
+
+  /* 4) Widgets: dock at bottom in vertical stack and avoid content overlap */
+  .content {
+    padding-bottom: 12.5rem;
+  }
+
+  .live-chat {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 5.25rem;
+    width: auto;
+    max-width: none;
+  }
+
+  .call-widget {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: auto;
+    justify-content: center;
+    border-radius: 0.95rem;
+    padding: 0.8rem 1rem;
+  }
+
+  /* 5) Footer: single stacked column on mobile */
+  .tr-footer__inner,
+  .tr-footer__links,
+  .tr-footer__details,
+  .footer__grid,
+  [class*="footer__cols"] {
+    grid-template-columns: 1fr !important;
+  }
+}
