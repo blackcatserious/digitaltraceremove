@@ -7371,8 +7371,18 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
-            <span>Traceremove</span>
+            <img
+              src="/traceremove-orbit.svg"
+              alt=""
+              aria-hidden="true"
+              style={{
+                height: '36px',
+                width: 'auto',
+                display: 'block',
+                filter: 'brightness(0) invert(1) contrast(1.06)',
+              }}
+            />
+            <span style={{ marginLeft: '0.2rem' }}>Traceremove</span>
           </Link>
           <button
             type="button"
