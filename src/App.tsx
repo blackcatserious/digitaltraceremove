@@ -2759,7 +2759,10 @@ const HomePage = () => {
               Navigate all {languageLabels[language]} services, from positioning and creative systems to lifecycle
               automation. Each page outlines outcomes, investment levels, and the rituals we run with your team.
             </p>
-            <Link className="button tertiary" to={navigation[language][0]?.pages[0]?.path ?? '/'}>
+            <Link
+              className="button tertiary"
+              to={navigation[language][0]?.pages[0]?.path ?? getServicesPricingPath(language)}
+            >
               {language === 'en' && 'Explore English services'}
               {language === 'fr' && 'Découvrir les services'}
               {language === 'es' && 'Explorar servicios'}
@@ -6244,23 +6247,27 @@ const ContactPage = ({ language }: { language: Language }) => {
   )
 }
 
-const NotFound = () => (
-  <section className="service-page">
-    <header className="service-hero">
-      <div className="service-hero-copy">
-        <p className="service-preheading">Traceremove</p>
-        <h1>We couldn&apos;t find that page.</h1>
-        <p className="service-subheading">Explore our services and choose the program that fits your roadmap.</p>
-        <Link className="button primary" to="/">
-          Back to overview
-        </Link>
-      </div>
-      <div className="service-hero-visual" aria-hidden="true">
-        <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
-      </div>
-    </header>
-  </section>
-)
+const NotFound = () => {
+  const currentLanguage = useCurrentLanguage()
+
+  return (
+    <section className="service-page">
+      <header className="service-hero">
+        <div className="service-hero-copy">
+          <p className="service-preheading">Traceremove</p>
+          <h1>We couldn&apos;t find that page.</h1>
+          <p className="service-subheading">Explore our services and choose the program that fits your roadmap.</p>
+          <Link className="button primary" to={getHomePath(currentLanguage)}>
+            Back to overview
+          </Link>
+        </div>
+        <div className="service-hero-visual" aria-hidden="true">
+          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+        </div>
+      </header>
+    </section>
+  )
+}
 
 const SimpleContactPage = () => (
   <section style={{ padding: '48px 24px' }}>
@@ -8712,6 +8719,40 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
+  const footerLinkStyle: CSSProperties = {
+    display: 'block',
+    marginBottom: '8px',
+    color: 'rgba(255,255,255,0.35)',
+    textDecoration: 'none',
+  }
+
+  const servicesLinks = [
+    { label: 'Monitoring and Alerts', href: getServicesPricingPath(currentLanguage) },
+    { label: 'Workflow Credits', href: getServicesPricingPath(currentLanguage) },
+    { label: 'Managed Programmes', href: getServicesPricingPath(currentLanguage) },
+    { label: 'Cybersecurity Module', href: getServicesPricingPath(currentLanguage) },
+  ]
+
+  const partnerLinks = [
+    { label: 'Partner Overview', href: getPartnersPath(currentLanguage) },
+    { label: 'Silver / Gold / Platinum', href: getPartnersPath(currentLanguage) },
+    { label: 'Apply as Partner', href: getJoinPath(currentLanguage) },
+  ]
+
+  const companyLinks = [
+    { label: 'About', href: getAboutPath(currentLanguage) },
+    { label: 'Case Studies', href: getCaseStudiesPath(currentLanguage) },
+    { label: 'Trust Center', href: getTrustPath(currentLanguage) },
+    { label: 'Blog', href: getBlogBasePath(currentLanguage) },
+    { label: 'Contact', href: getContactPath(currentLanguage) },
+  ]
+
+  const legalLinks = [
+    { label: 'Privacy Policy', href: getPrivacyPath(currentLanguage) },
+    { label: 'Terms of Service', href: getTermsPath(currentLanguage) },
+    { label: 'Refund Policy', href: currentLanguage === 'en' ? '/refund' : `/${currentLanguage}/refund` },
+  ]
+
   return (
     <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
       <div
@@ -8739,11 +8780,11 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
-          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
+          {servicesLinks.map((item) => (
             <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              key={item.label}
+              href={item.href}
+              style={footerLinkStyle}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
               }}
@@ -8751,18 +8792,18 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
-          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
+          {partnerLinks.map((item) => (
             <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              key={item.label}
+              href={item.href}
+              style={footerLinkStyle}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
               }}
@@ -8770,18 +8811,22 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
+          {/* TODO: add a dedicated partner portal route when available. */}
+          <span style={{ ...footerLinkStyle, cursor: 'not-allowed' }} aria-disabled="true">
+            Partner Portal
+          </span>
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
-          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
+          {companyLinks.map((item) => (
             <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+              key={item.label}
+              href={item.href}
+              style={footerLinkStyle}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
               }}
@@ -8789,7 +8834,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
@@ -8810,10 +8855,10 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
           <span>2025 TraceRemove LLC</span>
-          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
+          {legalLinks.map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8822,7 +8867,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
@@ -8833,6 +8878,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
     </footer>
   )
 }
+
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const currentLanguage = useCurrentLanguage()
