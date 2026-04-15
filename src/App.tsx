@@ -2498,12 +2498,6 @@ const serviceCardCta: Record<Language, string> = {
 
 const HomePage = () => {
   const currentLanguage = useCurrentLanguage()
-  const summaries = languages.map((language) => {
-    const count = servicePages.filter((page) => page.language === language).length
-    return { language, count }
-  })
-
-  const heroCta = navCopy[currentLanguage].callToAction
   const heroHeading = homeHeroHeading[currentLanguage]
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
@@ -2592,131 +2586,27 @@ const HomePage = () => {
       </div>
       <ClientsStrip />
       <PlatformsSection />
-      <AgenciesSection />
       <ProcessSection />
       <PricingSection />
-      <ROICalculator />
-      <ScanSection />
       <CaseStudiesSection />
-      <FAQSection />
-      <FinalCTA />
-      <div>
-        <p>{''}</p>
-        <p>
-          Users access structured tools and managed workflows to identify and resolve data exposure issues.
-        </p>
-      </div>
-
-      <section className="home-production" aria-labelledby="home-provides-heading">
-        <header className="home-production__header">
-          <p className="home-production__kicker">What Traceremove Provides</p>
-          <h2 id="home-provides-heading">What Traceremove Provides</h2>
+      <section className="home-production" aria-labelledby="home-services-heading">
+        <header className="home-production__header" style={{ marginBottom: '20px' }}>
+          <p className="home-production__kicker">Core services</p>
+          <h2 id="home-services-heading">Clear options for teams, executives, and agencies</h2>
+          <p style={{ margin: 0, color: 'var(--gray)' }}>
+            For complete partner programme terms, detailed pricing, and full case outcomes, use the dedicated pages
+            below.
+          </p>
         </header>
-        <p>Traceremove provides structured digital solutions for managing online data exposure.</p>
-        <p>
-          Customers access tools and managed workflows to identify, monitor, and resolve data-related risks.
-        </p>
-      </section>
-
-      <section className="home-production" aria-labelledby="home-how-it-works-heading">
-        <header className="home-production__header">
-          <p className="home-production__kicker">How it works</p>
-          <h2 id="home-how-it-works-heading">How it works</h2>
-        </header>
-        <div className="home-production__grid">
-          <article>
-            <h3>1. Identify data exposure</h3>
-          </article>
-          <article>
-            <h3>2. Analyze risk</h3>
-          </article>
-          <article>
-            <h3>3. Resolve through structured workflows</h3>
-          </article>
-        </div>
-      </section>
-
-      <section className="home-production" aria-labelledby="home-pricing-heading">
-        <header className="home-production__header">
-          <p className="home-production__kicker">Simple pricing</p>
-          <h2 id="home-pricing-heading">Simple pricing</h2>
-        </header>
-        <div className="home-production__grid">
-          <article>
-            <h3>Starter</h3>
-            <p>$99/month</p>
-          </article>
-          <article>
-            <h3>Professional</h3>
-            <p>$299/month</p>
-          </article>
-          <article>
-            <h3>Advanced</h3>
-            <p>$799/month</p>
-          </article>
-        </div>
-      </section>
-
-      <MomentumTicker variant="light" />
-
-      <section className="home-reputation" aria-labelledby="home-reputation-heading">
-        <header>
-          <p className="home-reputation__kicker">We help manage and resolve online data exposure</p>
-          <h2 id="home-reputation-heading">Simple monitoring and resolution for online data exposure</h2>
-        </header>
-        <div className="home-reputation__grid">
-          <article>
-            <h3>Data exposure monitoring</h3>
-            <p>We monitor your online data exposure across search, social, and review platforms.</p>
-          </article>
-          <article>
-            <h3>Risk analysis</h3>
-            <p>We analyze risk and prioritize what to fix first.</p>
-          </article>
-          <article>
-            <h3>Structured resolution</h3>
-            <p>We use structured workflows to resolve issues and track progress.</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="home-production" aria-labelledby="home-production-heading">
-        <header className="home-production__header">
-          <p className="home-production__kicker">Simple data exposure operations</p>
-          <h2 id="home-production-heading">From monitoring to resolution in one structured workflow</h2>
-        </header>
-        <div className="home-production__grid">
-          <article>
-            <h3>What we monitor</h3>
-            <ul>
-              <li>Exposed personal or business data</li>
-              <li>Misleading profile and listing content</li>
-              <li>High-risk pages affecting trust</li>
-            </ul>
-          </article>
-          <article>
-            <h3>How we work</h3>
-            <ul>
-              <li>Identify and monitor exposure points</li>
-              <li>Analyze risk and select the best workflow</li>
-              <li>Resolve issues with documented actions and status updates</li>
-            </ul>
-          </article>
-          <article>
-            <h3>Client outcomes</h3>
-            <ul>
-              <li>Clearer visibility into online data exposure</li>
-              <li>Faster risk response with ongoing monitoring</li>
-              <li>Measurable resolution progress across platforms</li>
-            </ul>
-          </article>
-        </div>
-        <div className="home-production__actions">
-          <Link className="button primary" to={getContactPath(currentLanguage)}>
-            Start analysis
+        <div className="home-production__actions" style={{ marginBottom: '20px' }}>
+          <Link className="button tertiary" to={getPartnersPath(currentLanguage)}>
+            Partner programme details
+          </Link>
+          <Link className="button tertiary" to="/pricing">
+            Full pricing
           </Link>
           <Link className="button tertiary" to={getCaseStudiesPath(currentLanguage)}>
-            View resolution examples
+            All case studies
           </Link>
         </div>
       </section>
@@ -2747,59 +2637,7 @@ const HomePage = () => {
           ))}
         </div>
       </section>
-
-      <div className="home-grid">
-        {summaries.map(({ language, count }) => (
-          <article key={language} className="home-card">
-            <header>
-              <h2>{languageLabels[language]}</h2>
-              <p>{count} tailored pages</p>
-            </header>
-            <p>
-              Navigate all {languageLabels[language]} services, from positioning and creative systems to lifecycle
-              automation. Each page outlines outcomes, investment levels, and the rituals we run with your team.
-            </p>
-            <Link className="button tertiary" to={navigation[language][0]?.pages[0]?.path ?? '/'}>
-              {language === 'en' && 'Explore English services'}
-              {language === 'fr' && 'Découvrir les services'}
-              {language === 'es' && 'Explorar servicios'}
-            </Link>
-          </article>
-        ))}
-      </div>
-
-      <div className="home-panels">
-        <article className="home-panel">
-          <h3>Immersive launch playbooks</h3>
-          <p>
-            From narrative strategy to creative operations, every service page details timelines, pricing, and success
-            metrics so stakeholders can align instantly.
-          </p>
-        </article>
-        <article className="home-panel">
-          <h3>Data-synced revenue ops</h3>
-          <p>
-            We stitch dashboards, attribution models, and experimentation cadences to activate multi-market growth with
-            one unified team.
-          </p>
-        </article>
-        <article className="home-panel">
-          <h3>Leadership-level partnership</h3>
-          <p>
-            You work directly with TraceRemove Advisor and our senior partners—no hand-offs, just outcomes delivered with
-            precision.
-          </p>
-        </article>
-      </div>
-
-      <InsightShowcase />
-
-      <div className="home-banner">
-        <p>
-          {heroCta} — <a href="mailto:support@traceremove.com">support@traceremove.com</a> ·{' '}
-          <a href="tel:+16063022958">+1 (472) 248 0235</a>
-        </p>
-      </div>
+      <FinalCTA />
     </section>
   )
 }

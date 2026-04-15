@@ -33,27 +33,27 @@ export default function Footer() {
 
           <div>
             <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Services</h4>
-            <FooterLink href="#">Monitoring & Alerts</FooterLink>
-            <FooterLink href="#">Workflow Credits</FooterLink>
-            <FooterLink href="#">Managed Programmes</FooterLink>
-            <FooterLink href="#">Cybersecurity Module</FooterLink>
+            <FooterLink href="/services">Service overview</FooterLink>
+            <FooterLink href="/pricing">Pricing</FooterLink>
+            <FooterLink href="/trust">Trust center</FooterLink>
+            <FooterLink href="/contact">Contact</FooterLink>
           </div>
 
           <div>
             <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Partners</h4>
-            <FooterLink href="#">Partner Overview</FooterLink>
-            <FooterLink href="#">Silver Gold Platinum</FooterLink>
-            <FooterLink href="#">Apply as Partner</FooterLink>
-            <FooterLink href="#">Partner Portal</FooterLink>
+            <FooterLink href="/partners">Partner overview</FooterLink>
+            <FooterLink href="/partners">Silver · Gold · Platinum</FooterLink>
+            <FooterLink href="/partners#partner-application">Apply as partner</FooterLink>
+            <FooterLink href="/partners">Partner terms</FooterLink>
           </div>
 
           <div>
             <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Company</h4>
-            <FooterLink href="#">About</FooterLink>
-            <FooterLink href="#">Case Studies</FooterLink>
-            <FooterLink href="#">Trust Center</FooterLink>
-            <FooterLink href="#">Blog</FooterLink>
-            <FooterLink href="#">Contact</FooterLink>
+            <FooterLink href="/about">About</FooterLink>
+            <FooterLink href="/case-studies">Case studies</FooterLink>
+            <FooterLink href="/trust">Trust center</FooterLink>
+            <FooterLink href="/resources">Resources</FooterLink>
+            <FooterLink href="/contact">Contact</FooterLink>
           </div>
         </div>
 
