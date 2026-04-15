@@ -335,6 +335,61 @@ body {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    opacity: 0.2;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes auroraGlow {
+  0% {
+    opacity: 0.35;
+    transform: translate3d(-3%, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate3d(3%, -2%, 0) scale(1.04);
+  }
+  100% {
+    opacity: 0.35;
+    transform: translate3d(-3%, 0, 0) scale(1);
+  }
+}
+
+@keyframes floatFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulseBloom {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.96);
+  }
+}
+
 a {
   color: inherit;
 }
