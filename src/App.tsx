@@ -55,6 +55,7 @@ import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
 import PartnersLandingPage from './pages/Partners'
 import AboutPage from './pages/About'
+import traceremoveLogo from './assets/traceremove-logo.svg'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -7511,8 +7512,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
-            <span>Traceremove</span>
+            <img src={traceremoveLogo} alt="Traceremove" />
           </Link>
           <button
             type="button"
