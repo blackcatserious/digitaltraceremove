@@ -1,5 +1,29 @@
 import { FormEvent, useState } from 'react'
 
+const deliveryTracks = [
+  {
+    title: 'Referral',
+    detail: 'You introduce qualified clients. We run delivery and keep you updated through shared reporting.',
+    fit: 'Best for firms that want low operational overhead.',
+  },
+  {
+    title: 'Co-delivery',
+    detail: 'Your team leads client communication while we handle workflows, documentation, and execution.',
+    fit: 'Best for agencies with an active client success team.',
+  },
+  {
+    title: 'White-label',
+    detail: 'We operate behind your brand with agreed playbooks, templates, and response standards.',
+    fit: 'Best for partners building a long-term service line.',
+  },
+]
+
+const slaTiers = [
+  { name: 'Silver', response: '1 business day', cadence: 'Weekly status update', scope: 'Up to 6 active workflows' },
+  { name: 'Gold', response: 'Same day', cadence: 'Twice-weekly status update', scope: 'Up to 15 active workflows' },
+  { name: 'Platinum', response: '< 4 hours', cadence: 'Dedicated channel + live tracker', scope: 'Custom volume and escalation paths' },
+]
+
 export default function PartnersPage() {
   const [formData, setFormData] = useState({
     companyName: '',
@@ -25,67 +49,63 @@ export default function PartnersPage() {
   return (
     <section className="home-production" aria-labelledby="partners-page-heading">
       <header className="home-production__header">
-        <h1 id="partners-page-heading">The Partner Programme</h1>
+        <h1 id="partners-page-heading">Partner Program</h1>
         <p>
-          White-label data exposure management for law firms, PR agencies, and HR consultancies. Your brand. Our
-          infrastructure.
+          Structured delivery support for law firms, PR teams, cybersecurity consultancies, and growth agencies that
+          need confidential, documented execution.
+        </p>
+      </header>
+
+      <section style={{ marginTop: '20px' }}>
+        <h2>Who this is for</h2>
+        <ul style={{ display: 'grid', gap: '8px', paddingLeft: '20px' }}>
+          <li>Advisory firms supporting high-visibility clients.</li>
+          <li>Agencies adding data exposure workflows to existing retainers.</li>
+          <li>In-house teams needing overflow capacity during escalations.</li>
+        </ul>
+      </section>
+
+      <section style={{ marginTop: '20px' }}>
+        <h2>Delivery model</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+          {deliveryTracks.map((track) => (
+            <article key={track.title} style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
+              <h3 style={{ marginTop: 0 }}>{track.title}</h3>
+              <p>{track.detail}</p>
+              <p style={{ marginBottom: 0, color: 'var(--gray)' }}>{track.fit}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ marginTop: '20px' }}>
+        <h2>SLA tiers</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+          {slaTiers.map((tier) => (
+            <article key={tier.name} style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
+              <h3 style={{ marginTop: 0 }}>{tier.name}</h3>
+              <p>
+                <strong>Initial response:</strong> {tier.response}
+              </p>
+              <p>
+                <strong>Reporting:</strong> {tier.cadence}
+              </p>
+              <p style={{ marginBottom: 0 }}>
+                <strong>Capacity:</strong> {tier.scope}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ marginTop: '20px', border: '1px solid var(--border)', borderRadius: '12px', padding: '16px' }}>
+        <h2 style={{ marginTop: 0 }}>Start with a partner readiness review</h2>
+        <p>
+          We map your client profile, recommend the right model, and share a rollout plan within two business days.
         </p>
         <a className="button primary" href="#partner-application">
           Apply to Become a Partner
         </a>
-      </header>
-
-      <section style={{ marginTop: '18px' }}>
-        <h2>How it works</h2>
-        <ol style={{ display: 'grid', gap: '10px', paddingLeft: '20px' }}>
-          <li>Apply and sign partner agreement</li>
-          <li>Receive enablement kit and onboarding sprint</li>
-          <li>Submit client cases, track progress, receive commissions</li>
-        </ol>
-      </section>
-
-      <section style={{ marginTop: '20px' }}>
-        <h2>Commercial models</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
-          <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>White-label capacity</h3>
-            <p>Monthly retainer for sprint credits. You deliver under your brand.</p>
-          </article>
-          <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Revenue share</h3>
-            <p>Margin split 20-30%. Joint delivery with reporting.</p>
-          </article>
-          <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Referral</h3>
-            <p>Fixed bounty per qualified referral. Lightest operational overhead.</p>
-          </article>
-        </div>
-      </section>
-
-      <section style={{ marginTop: '20px' }}>
-        <h2>Capacity tiers</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '14px' }}>
-          <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Silver</h3>
-            <p>$5,000/mo</p>
-            <p>Standard SLA</p>
-            <p>X workflow credits per month</p>
-          </article>
-          <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Gold</h3>
-            <p>$10,000/mo</p>
-            <p>Priority queue</p>
-            <p>More credits</p>
-            <p>Quarterly enablement</p>
-          </article>
-          <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
-            <h3>Platinum</h3>
-            <p>$18,000/mo</p>
-            <p>Dedicated channel</p>
-            <p>Enterprise SLA</p>
-            <p>Custom credits</p>
-          </article>
-        </div>
       </section>
 
       <section id="partner-application" style={{ marginTop: '22px' }}>
@@ -118,7 +138,7 @@ export default function PartnersPage() {
           >
             <option>Law Firm</option>
             <option>PR Agency</option>
-            <option>HR</option>
+            <option>Cybersecurity Consultancy</option>
             <option>Other</option>
           </select>
           <textarea
@@ -132,7 +152,7 @@ export default function PartnersPage() {
             Submit Application
           </button>
         </form>
-        <p style={{ marginTop: '10px', color: 'var(--gray)' }}>We review all applications within 2 business days.</p>
+        <p style={{ marginTop: '10px', color: 'var(--gray)' }}>All applications are reviewed within 2 business days.</p>
         {submitted ? <p style={{ color: 'var(--blue)' }}>Application received. Our partner team will contact you shortly.</p> : null}
       </section>
     </section>
