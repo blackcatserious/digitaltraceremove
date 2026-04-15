@@ -8825,7 +8825,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       </div>
       <Header currentLanguage={currentLanguage} />
       <main className={`content${isRouting ? ' is-routing' : ''}`}>{children}</main>
-      <Footer currentLanguage={currentLanguage} />
+      <Footer />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
       <div style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>

@@ -1,6 +1,4 @@
-import type { Language } from '../data/pages'
-
-const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
+const Footer = () => {
   return (
     <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
       <div
