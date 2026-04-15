@@ -59,20 +59,6 @@ body {
   }
 }
 
-@keyframes fadeSlideRight {
-  0% {
-    opacity: 0;
-    transform: translate3d(-40px, 0, 0);
-  }
-  60% {
-    opacity: 1;
-    transform: translate3d(6px, 0, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
 
 @keyframes softScaleIn {
   0% {
@@ -89,6 +75,7 @@ body {
   }
 }
 
+
 @keyframes floatOrbit {
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg);
@@ -101,239 +88,6 @@ body {
   }
 }
 
-@keyframes shimmerPulse {
-  0% {
-    opacity: 0.35;
-    transform: translate3d(-50%, 0, 0);
-  }
-  50% {
-    opacity: 0.65;
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    opacity: 0.35;
-    transform: translate3d(50%, 0, 0);
-  }
-}
-
-@keyframes pageFade {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 24px, 0);
-  }
-  60% {
-    opacity: 1;
-    transform: translate3d(0, -4px, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes buttonPulse {
-  0% {
-    box-shadow: 0 12px 28px var(--button-glow, rgba(37, 99, 235, 0.16));
-  }
-  50% {
-    box-shadow: 0 18px 36px var(--button-glow, rgba(37, 99, 235, 0.22));
-  }
-  100% {
-    box-shadow: 0 12px 28px var(--button-glow, rgba(37, 99, 235, 0.16));
-  }
-}
-
-@keyframes buttonShine {
-  0% {
-    opacity: 0;
-    transform: translate3d(-60%, 0, 0) scale(0.6);
-  }
-  45% {
-    opacity: 0;
-  }
-  55% {
-    opacity: 0.5;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(60%, 0, 0) scale(0.6);
-  }
-}
-
-@keyframes cardDrift {
-  0% {
-    transform: translate3d(-8%, -6%, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(6%, 8%, 0) scale(1.05);
-  }
-  100% {
-    transform: translate3d(-8%, -6%, 0) scale(1);
-  }
-}
-
-@keyframes cardSheen {
-  0% {
-    transform: translateX(-120%);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.25;
-  }
-  100% {
-    transform: translateX(120%);
-    opacity: 0;
-  }
-}
-
-@keyframes graphGlow {
-  0% {
-    box-shadow: 0 18px 35px rgba(56, 189, 248, 0.18);
-  }
-  50% {
-    box-shadow: 0 26px 50px rgba(59, 130, 246, 0.28);
-  }
-  100% {
-    box-shadow: 0 18px 35px rgba(56, 189, 248, 0.18);
-  }
-}
-
-@keyframes graphBarGrow {
-  0% {
-    transform: scaleY(0);
-  }
-  70% {
-    transform: scaleY(1.05);
-  }
-  100% {
-    transform: scaleY(1);
-  }
-}
-
-@keyframes graphLine {
-  0% {
-    stroke-dashoffset: 320;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes navLift {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 16px, 0);
-  }
-  60% {
-    opacity: 1;
-    transform: translate3d(0, -4px, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes navSweep {
-  0% {
-    transform: translateX(-120%);
-    opacity: 0;
-  }
-  45% {
-    opacity: 0.55;
-  }
-  100% {
-    transform: translateX(120%);
-    opacity: 0;
-  }
-}
-
-@keyframes tickerScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes pulseGlow {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.65;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0.08);
-  }
-  100% {
-    transform: scale(0.9);
-    opacity: 0.65;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
-  }
-}
-
-@keyframes badgeFloat {
-  0% {
-    transform: translate3d(0, 0, 0) scale(0.96);
-  }
-  50% {
-    transform: translate3d(0, -10px, 0) scale(1.02);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(0.96);
-  }
-}
-
-@keyframes metricPulse {
-  0% {
-    box-shadow: 0 12px 24px rgba(56, 189, 248, 0.08);
-    transform: translate3d(0, 18px, 0);
-    opacity: 0;
-  }
-  50% {
-    box-shadow: 0 18px 40px rgba(59, 130, 246, 0.18);
-    opacity: 1;
-  }
-  100% {
-    box-shadow: 0 14px 30px rgba(56, 189, 248, 0.12);
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
-@keyframes methodPulse {
-  0% {
-    opacity: 0;
-    transform: translate3d(-24px, 12px, 0);
-  }
-  70% {
-    opacity: 1;
-    transform: translate3d(4px, -4px, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes orbitGlow {
-  0% {
-    transform: rotate(0deg) scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: rotate(180deg) scale(1.05);
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-    opacity: 0.8;
-  }
-}
 
 a {
   color: inherit;
@@ -371,7 +125,7 @@ a {
 }
 
 .app-route-progress > span.is-active {
-  animation: routeProgress 0.36s ease-out forwards;
+  animation: fadeSlideUp 0.36s ease-out forwards;
 }
 
 .app-layout::before,
@@ -381,7 +135,7 @@ a {
   inset: -40%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent 65%);
   filter: blur(0px);
-  animation: auroraShift 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
   opacity: 0.65;
   pointer-events: none;
 }
@@ -407,7 +161,7 @@ a {
   opacity: 0.45;
   mix-blend-mode: screen;
   filter: blur(0px);
-  animation: orbFloat 28s ease-in-out infinite;
+  animation: floatOrbit 28s ease-in-out infinite;
   background: radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.4), rgba(15, 23, 42, 0));
 }
 
@@ -435,7 +189,6 @@ a {
   top: 45%;
   left: 60%;
   animation-duration: 40s;
-  animation-delay: 4s;
   background: radial-gradient(circle at 50% 50%, rgba(248, 113, 113, 0.28), rgba(15, 23, 42, 0));
 }
 
@@ -451,7 +204,7 @@ a {
   position: relative;
   z-index: 1;
   opacity: 0;
-  animation: pageFade 0.9s var(--motion-ease) forwards;
+  animation: fadeSlideUp 0.9s var(--motion-ease) forwards;
 }
 
 .content > * {
@@ -473,13 +226,11 @@ a {
 .content > section:nth-of-type(2),
 .content > header:nth-of-type(2),
 .content > div[data-page-section]:nth-of-type(2) {
-  animation-delay: 0.12s;
 }
 
 .content > section:nth-of-type(3),
 .content > header:nth-of-type(3),
 .content > div[data-page-section]:nth-of-type(3) {
-  animation-delay: 0.24s;
 }
 
 .button {
@@ -501,7 +252,7 @@ a {
   overflow: hidden;
   --button-glow: rgba(37, 99, 235, 0.18);
   box-shadow: 0 14px 30px var(--button-glow);
-  animation: buttonPulse 7.2s ease-in-out infinite;
+  animation: floatOrbit 7.2s ease-in-out infinite;
   isolation: isolate;
 }
 
@@ -513,7 +264,7 @@ a {
   opacity: 0;
   transform: scale(0.5);
   transition: opacity 0.35s ease, transform 0.35s ease;
-  animation: buttonShine 6s ease-in-out infinite;
+  animation: floatOrbit 6s ease-in-out infinite;
   mix-blend-mode: screen;
 }
 
@@ -584,7 +335,7 @@ a {
   opacity: 0.75;
   pointer-events: none;
   transform-origin: center;
-  animation: headerAurora 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
   z-index: 0;
 }
 
@@ -592,7 +343,7 @@ a {
   inset: -35% -40%;
   background: radial-gradient(circle at 20% 75%, rgba(45, 212, 191, 0.2), transparent 55%),
     radial-gradient(circle at 80% 35%, rgba(191, 219, 254, 0.25), transparent 60%);
-  animation: headerDrift 32s ease-in-out infinite;
+  animation: floatOrbit 32s ease-in-out infinite;
   opacity: 0.6;
 }
 
@@ -739,7 +490,7 @@ a {
   overflow: hidden;
   opacity: 0;
   transform: translate3d(0, 16px, 0);
-  animation: navLift 0.7s var(--motion-ease) forwards;
+  animation: fadeSlideUp 0.7s var(--motion-ease) forwards;
 }
 
 .tr-nav__label {
@@ -782,14 +533,14 @@ a {
 .tr-nav__link:hover::after,
 .tr-nav__link.is-active::after {
   opacity: 1;
-  animation: navSweep 1.6s var(--motion-ease);
+  animation: fadeSlideUp 1.6s var(--motion-ease);
 }
 
 .tr-nav__link:hover .tr-nav__indicator,
 .tr-nav__link.is-active .tr-nav__indicator {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
-  animation: navIndicator 2.4s ease-in-out infinite;
+  animation: floatOrbit 2.4s ease-in-out infinite;
 }
 
 .tr-nav__trigger:hover .tr-nav__indicator,
@@ -797,35 +548,28 @@ a {
 .tr-nav__trigger:focus-visible .tr-nav__indicator {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
-  animation: navIndicator 2.4s ease-in-out infinite;
+  animation: floatOrbit 2.4s ease-in-out infinite;
 }
 
 .tr-nav__trigger {
-  animation-delay: 0.08s;
 }
 
 .tr-nav__link--0 {
-  animation-delay: 0.14s;
 }
 
 .tr-nav__link--1 {
-  animation-delay: 0.18s;
 }
 
 .tr-nav__link--2 {
-  animation-delay: 0.22s;
 }
 
 .tr-nav__link--3 {
-  animation-delay: 0.26s;
 }
 
 .tr-nav__link--4 {
-  animation-delay: 0.3s;
 }
 
 .tr-nav__link--5 {
-  animation-delay: 0.34s;
 }
 
 .tr-nav__trigger.is-open {
@@ -1065,11 +809,9 @@ a {
 }
 
 .tr-mobile-menu.is-open .tr-mobile-section:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .tr-mobile-menu.is-open .tr-mobile-section:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .tr-mobile-section h3 {
@@ -1197,23 +939,18 @@ a {
 }
 
 .home > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .home > *:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .home > *:nth-child(4) {
-  animation-delay: 0.36s;
 }
 
 .home > *:nth-child(5) {
-  animation-delay: 0.48s;
 }
 
 .home > *:nth-child(6) {
-  animation-delay: 0.6s;
 }
 
 .home-hero {
@@ -1251,7 +988,7 @@ a {
   opacity: 0.85;
   pointer-events: none;
   transform: translate3d(0, 0, 0);
-  animation: floatField 42s ease-in-out infinite alternate;
+  animation: floatOrbit 42s ease-in-out infinite alternate;
   z-index: 0;
 }
 
@@ -1262,7 +999,7 @@ a {
   background: radial-gradient(circle at top right, rgba(244, 114, 182, 0.35), transparent 55%),
     radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.2), transparent 55%);
   pointer-events: none;
-  animation: heroPulse 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .home-hero-copy {
@@ -1280,15 +1017,12 @@ a {
 }
 
 .home-hero-copy > *:nth-child(2) {
-  animation-delay: 0.1s;
 }
 
 .home-hero-copy > *:nth-child(3) {
-  animation-delay: 0.2s;
 }
 
 .home-hero-copy > *:nth-child(4) {
-  animation-delay: 0.3s;
 }
 
 .home-badge {
@@ -1331,7 +1065,7 @@ a {
   align-items: center;
   opacity: 0;
   transform: translate3d(38px, 0, 0);
-  animation: fadeSlideRight 1.05s var(--motion-ease) forwards 0.28s;
+  animation: fadeSlideUp 1.05s var(--motion-ease) forwards;
 }
 
 .home-hero-visual__field {
@@ -1342,13 +1076,13 @@ a {
     radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.25), transparent 60%);
   filter: blur(20px);
   opacity: 0.85;
-  animation: floatField 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
 }
 
 .home-hero-visual img {
   width: clamp(200px, 32vw, 360px);
   filter: drop-shadow(0 25px 55px rgba(15, 23, 42, 0.35));
-  animation: orbit 18s linear infinite, floatOrbit 7s ease-in-out infinite;
+  animation: floatOrbit 18s linear infinite, floatOrbit 7s ease-in-out infinite;
   position: relative;
   z-index: 2;
 }
@@ -1378,7 +1112,7 @@ a {
   place-items: center;
   pointer-events: none;
   filter: drop-shadow(0 20px 45px rgba(56, 189, 248, 0.35));
-  animation: float 14s ease-in-out infinite;
+  animation: floatOrbit 14s ease-in-out infinite;
   z-index: 1;
 }
 
@@ -1425,7 +1159,7 @@ a {
   gap: var(--graph-bar-gap, 0.45rem);
   position: relative;
   overflow: hidden;
-  animation: graphGlow 12s ease-in-out infinite;
+  animation: floatOrbit 12s ease-in-out infinite;
 }
 
 .growth-spark__bars::before {
@@ -1434,7 +1168,7 @@ a {
   inset: -40% -25% -20% -35%;
   background: radial-gradient(circle at top, var(--graph-sheen), transparent 65%);
   opacity: 0.65;
-  animation: cardDrift 20s ease-in-out infinite;
+  animation: floatOrbit 20s ease-in-out infinite;
 }
 
 .growth-spark__bar {
@@ -1445,8 +1179,7 @@ a {
   background: linear-gradient(180deg, var(--graph-accent), rgba(255, 255, 255, 0.2));
   transform-origin: bottom;
   transform: scaleY(0);
-  animation: graphBarGrow 1.4s var(--motion-ease) forwards;
-  animation-delay: var(--bar-delay);
+  animation: fadeSlideUp 1.4s var(--motion-ease) forwards;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
   overflow: hidden;
 }
@@ -1476,8 +1209,7 @@ a {
   stroke-dasharray: 320;
   stroke-dashoffset: 320;
   filter: drop-shadow(0 14px 28px rgba(59, 130, 246, 0.35));
-  animation: graphLine 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 0.35s;
+  animation: fadeSlideUp 2.4s cubic-bezier(0.22, fadeSlideUp, fadeSlideUp, fadeSlideUp forwards;
 }
 
 .home-services {
@@ -1499,11 +1231,9 @@ a {
 }
 
 .home-services__header > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .home-services__header > *:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .home-services__header h2 {
@@ -1529,11 +1259,9 @@ a {
 }
 
 .home-services__grid > *:nth-child(odd) {
-  animation-delay: 0.1s;
 }
 
 .home-services__grid > *:nth-child(even) {
-  animation-delay: 0.2s;
 }
 
 .home-service-card {
@@ -1558,7 +1286,7 @@ a {
   position: absolute;
   inset: -40% -20% 30% -20%;
   background: radial-gradient(circle at top, var(--card-accent), transparent 70%);
-  animation: serviceGlow 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .home-service-card::after {
@@ -1566,7 +1294,7 @@ a {
   position: absolute;
   inset: 30% -30% -40% -30%;
   background: radial-gradient(circle at bottom, var(--card-secondary), transparent 75%);
-  animation: serviceGlow 22s ease-in-out infinite reverse;
+  animation: floatOrbit 22s ease-in-out infinite reverse;
 }
 
 .home-service-card:hover {
@@ -1589,15 +1317,12 @@ a {
 }
 
 .home-service-card__inner > *:nth-child(2) {
-  animation-delay: 0.08s;
 }
 
 .home-service-card__inner > *:nth-child(3) {
-  animation-delay: 0.16s;
 }
 
 .home-service-card__inner > *:nth-child(4) {
-  animation-delay: 0.24s;
 }
 
 .home-service-card__badge {
@@ -1713,7 +1438,7 @@ a {
   background: linear-gradient(120deg, rgba(56, 189, 248, 0.35), transparent 60%);
   mix-blend-mode: screen;
   opacity: 0.55;
-  animation: cardSheen 14s linear infinite;
+  animation: floatOrbit 14s linear infinite;
   pointer-events: none;
 }
 
@@ -1739,7 +1464,7 @@ a {
   flex-direction: column;
   gap: 0.75rem;
   box-shadow: 0 25px 55px rgba(2, 11, 33, 0.45);
-  animation: float 6s ease-in-out infinite;
+  animation: floatOrbit 6s ease-in-out infinite;
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
@@ -1776,14 +1501,14 @@ a {
   inset: -45% 45% auto -35%;
   height: 120%;
   background: radial-gradient(circle at center, rgba(59, 130, 246, 0.65), transparent 65%);
-  animation: auroraShift 22s linear infinite;
+  animation: floatOrbit 22s linear infinite;
 }
 
 .insight-showcase::after {
   inset: auto -35% -45% 40%;
   height: 95%;
   background: radial-gradient(circle at center, rgba(20, 184, 166, 0.55), transparent 70%);
-  animation: orbFloat 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .insight-showcase__intro {
@@ -1962,8 +1687,7 @@ a {
   border-radius: 0.85rem 0.85rem 0.35rem 0.35rem;
   background: linear-gradient(180deg, rgba(96, 165, 250, 0.9), rgba(14, 165, 233, 0.55));
   transform-origin: bottom;
-  animation: graphBarGrow 1s var(--motion-ease) both;
-  animation-delay: calc(0.2s + var(--insight-bar-delay, 0s));
+  animation: fadeSlideUp 1s var(--motion-ease) both;
   box-shadow: 0 16px 28px rgba(37, 99, 235, 0.45);
 }
 
@@ -1983,7 +1707,7 @@ a {
 .insight-showcase__chart polyline {
   stroke-dasharray: 320;
   stroke-dashoffset: 320;
-  animation: graphLine 1.6s var(--motion-ease) forwards 0.3s;
+  animation: fadeSlideUp 1.6s var(--motion-ease) forwards;
 }
 
 .insight-showcase__visual-label {
@@ -2127,7 +1851,6 @@ a {
 .blog-page > *:nth-child(2),
 .blog-article > *:nth-child(2),
 .contact-page > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .service-page > *:nth-child(3),
@@ -2137,7 +1860,6 @@ a {
 .blog-page > *:nth-child(3),
 .blog-article > *:nth-child(3),
 .contact-page > *:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .service-hero {
@@ -2175,15 +1897,12 @@ a {
 }
 
 .service-hero-copy > *:nth-child(2) {
-  animation-delay: 0.1s;
 }
 
 .service-hero-copy > *:nth-child(3) {
-  animation-delay: 0.2s;
 }
 
 .service-hero-copy > *:nth-child(4) {
-  animation-delay: 0.3s;
 }
 
 .service-hero-visual {
@@ -2194,12 +1913,12 @@ a {
   align-items: center;
   opacity: 0;
   transform: translate3d(38px, 0, 0);
-  animation: fadeSlideRight 0.95s var(--motion-ease) forwards 0.24s;
+  animation: fadeSlideUp 0.95s var(--motion-ease) forwards;
 }
 
 .service-hero-visual img {
   width: clamp(200px, 28vw, 320px);
-  animation: orbit 16s linear infinite, floatOrbit 6s ease-in-out infinite;
+  animation: floatOrbit 16s linear infinite, floatOrbit 6s ease-in-out infinite;
   filter: drop-shadow(0 25px 55px rgba(59, 130, 246, 0.35));
   position: relative;
   z-index: 2;
@@ -2258,7 +1977,6 @@ a {
 }
 
 .service-two-column > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .service-highlight-list li {
@@ -2268,11 +1986,9 @@ a {
 }
 
 .service-highlight-list li:nth-child(odd) {
-  animation-delay: 0.08s;
 }
 
 .service-highlight-list li:nth-child(even) {
-  animation-delay: 0.18s;
 }
 
 .service-highlight-list {
@@ -2314,11 +2030,9 @@ a {
 }
 
 .package-grid > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .package-grid > *:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .package-card {
@@ -2342,7 +2056,7 @@ a {
   background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.25), transparent 60%),
     radial-gradient(circle at 70% 20%, rgba(37, 99, 235, 0.2), transparent 60%);
   opacity: 0.65;
-  animation: cardDrift 22s ease-in-out infinite;
+  animation: floatOrbit 22s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -2486,7 +2200,7 @@ a {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(96, 165, 250, 0.45), transparent 65%);
   filter: blur(0px);
-  animation: auroraShift 28s ease-in-out infinite;
+  animation: floatOrbit 28s ease-in-out infinite;
   opacity: 0.65;
   z-index: 0;
 }
@@ -2512,15 +2226,12 @@ a {
 }
 
 .about-hero__copy > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .about-hero__copy > *:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .about-hero__copy > *:nth-child(4) {
-  animation-delay: 0.32s;
 }
 
 .about-hero__subtitle {
@@ -2542,7 +2253,7 @@ a {
   gap: 1.25rem;
   opacity: 0;
   transform: translate3d(36px, 0, 0);
-  animation: fadeSlideRight 1s var(--motion-ease) forwards 0.3s;
+  animation: fadeSlideUp 1s var(--motion-ease) forwards;
 }
 
 .about-hero__badge {
@@ -2552,7 +2263,7 @@ a {
   border: 1px solid rgba(191, 219, 254, 0.35);
   font-weight: 600;
   letter-spacing: 0.02em;
-  animation: badgeFloat 6.5s ease-in-out infinite;
+  animation: floatOrbit 6.5s ease-in-out infinite;
 }
 
 .about-hero__graph {
@@ -2593,7 +2304,7 @@ a {
   inset: -40% 40% 60% -30%;
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), transparent 60%);
   opacity: 0.35;
-  animation: cardDrift 28s ease-in-out infinite;
+  animation: floatOrbit 28s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -2643,15 +2354,12 @@ a {
 }
 
 .about-timeline__item:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .about-timeline__item:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .about-timeline__item:nth-child(4) {
-  animation-delay: 0.32s;
 }
 
 .about-timeline__marker {
@@ -2669,14 +2377,14 @@ a {
   border-radius: 50%;
   background: radial-gradient(circle at center, #38bdf8, #0f172a 70%);
   box-shadow: 0 0 18px rgba(56, 189, 248, 0.7);
-  animation: buttonPulse 6s ease-in-out infinite alternate;
+  animation: floatOrbit 6s ease-in-out infinite alternate;
 }
 
 .about-timeline__line {
   flex: 1;
   width: 2px;
   background: linear-gradient(to bottom, rgba(148, 163, 184, 0.6), rgba(148, 163, 184, 0));
-  animation: shimmer 3.2s ease-in-out infinite;
+  animation: floatOrbit 3.2s ease-in-out infinite;
 }
 
 .about-timeline__content {
@@ -2726,11 +2434,9 @@ a {
 }
 
 .about-card:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .about-card:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .about-card h3 {
@@ -2766,11 +2472,9 @@ a {
 }
 
 .about-presence__card:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .about-presence__card:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .about-presence__card header {
@@ -2812,21 +2516,18 @@ a {
   padding: 1.25rem 1.5rem;
   display: grid;
   gap: 0.35rem;
-  animation: metricPulse 0.9s var(--motion-ease) forwards;
+  animation: fadeSlideUp 0.9s var(--motion-ease) forwards;
   opacity: 0;
   transform: translate3d(0, 24px, 0);
 }
 
 .about-presence__signal:nth-child(1) {
-  animation-delay: 0.12s;
 }
 
 .about-presence__signal:nth-child(2) {
-  animation-delay: 0.22s;
 }
 
 .about-presence__signal:nth-child(3) {
-  animation-delay: 0.32s;
 }
 
 .about-presence__value {
@@ -2866,11 +2567,9 @@ a {
 }
 
 .about-testimonial:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .about-testimonial:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .about-testimonial::after {
@@ -2879,7 +2578,7 @@ a {
   inset: -40% 40% 60% -30%;
   background: linear-gradient(120deg, rgba(59, 130, 246, 0.32), transparent 60%);
   opacity: 0.4;
-  animation: cardDrift 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
 }
 
 .about-testimonial blockquote {
@@ -2940,15 +2639,12 @@ a {
 }
 
 .about-culture__card:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .about-culture__card:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .about-culture__card:nth-child(4) {
-  animation-delay: 0.32s;
 }
 
 .about-culture__index {
@@ -2990,19 +2686,16 @@ a {
   display: grid;
   gap: 0.55rem;
   border: 1px solid rgba(125, 211, 252, 0.3);
-  animation: metricPulse 0.95s var(--motion-ease) forwards;
+  animation: fadeSlideUp 0.95s var(--motion-ease) forwards;
 }
 
 .about-metric:nth-child(1) {
-  animation-delay: 0.12s;
 }
 
 .about-metric:nth-child(2) {
-  animation-delay: 0.22s;
 }
 
 .about-metric:nth-child(3) {
-  animation-delay: 0.32s;
 }
 
 .about-metric__value {
@@ -3044,24 +2737,20 @@ a {
   padding: 1.25rem 1.5rem;
   border: 1px solid rgba(148, 163, 184, 0.24);
   box-shadow: 0 18px 36px rgba(15, 23, 42, 0.2);
-  animation: methodPulse 0.9s var(--motion-ease) forwards;
+  animation: fadeSlideUp 0.9s var(--motion-ease) forwards;
   opacity: 0;
 }
 
 .about-method__steps li:nth-child(1) {
-  animation-delay: 0.12s;
 }
 
 .about-method__steps li:nth-child(2) {
-  animation-delay: 0.22s;
 }
 
 .about-method__steps li:nth-child(3) {
-  animation-delay: 0.32s;
 }
 
 .about-method__steps li:nth-child(4) {
-  animation-delay: 0.42s;
 }
 
 .about-method__step-index {
@@ -3108,7 +2797,7 @@ a {
   inset: 0;
   background: radial-gradient(circle at top right, rgba(191, 219, 254, 0.35), transparent 55%);
   opacity: 0.6;
-  animation: heroPulse 14s ease-in-out infinite;
+  animation: floatOrbit 14s ease-in-out infinite;
 }
 
 .about-cta > * {
@@ -3170,11 +2859,9 @@ a {
 }
 
 .team-hero-copy > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .team-hero-copy > *:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .team-subheading {
@@ -3190,12 +2877,12 @@ a {
   align-items: center;
   opacity: 0;
   transform: translate3d(40px, 0, 0);
-  animation: fadeSlideRight 1s var(--motion-ease) forwards 0.28s;
+  animation: fadeSlideUp 1s var(--motion-ease) forwards;
 }
 
 .team-hero-visual img {
   width: clamp(200px, 32vw, 360px);
-  animation: orbit 18s linear infinite, floatOrbit 6.5s ease-in-out infinite;
+  animation: floatOrbit 18s linear infinite, floatOrbit 6.5s ease-in-out infinite;
   position: relative;
   z-index: 2;
 }
@@ -3220,11 +2907,9 @@ a {
 }
 
 .team-grid > *:nth-child(odd) {
-  animation-delay: 0.12s;
 }
 
 .team-grid > *:nth-child(even) {
-  animation-delay: 0.22s;
 }
 
 .team-card {
@@ -3248,7 +2933,7 @@ a {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), transparent 60%),
     radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.2), transparent 60%);
   opacity: 0.55;
-  animation: cardDrift 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -3271,7 +2956,7 @@ a {
   font-weight: 700;
   color: #0f172a;
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
-  animation: float 8s ease-in-out infinite;
+  animation: floatOrbit 8s ease-in-out infinite;
 }
 
 .team-card-body {
@@ -3287,11 +2972,9 @@ a {
 }
 
 .team-card-body > *:nth-child(2) {
-  animation-delay: 0.08s;
 }
 
 .team-card-body > *:nth-child(3) {
-  animation-delay: 0.16s;
 }
 
 .partners-page,
@@ -3351,12 +3034,10 @@ a {
 
 .partners-hero__copy > *:nth-child(2),
 .join-hero__copy > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .partners-hero__copy > *:nth-child(3),
 .join-hero__copy > *:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .partners-kicker,
@@ -3393,7 +3074,7 @@ a {
 .join-hero__card {
   opacity: 0;
   transform: translate3d(32px, 0, 0);
-  animation: fadeSlideRight 0.95s var(--motion-ease) forwards 0.2s, float 12s ease-in-out infinite 1s;
+  animation: fadeSlideUp 0.95s var(--motion-ease) forwards, floatOrbit 12s ease-in-out infinite;
 }
 
 .partners-hero__card:hover,
@@ -3456,12 +3137,10 @@ a {
 
 .partners-grid > *:nth-child(odd),
 .join-values > *:nth-child(odd) {
-  animation-delay: 0.12s;
 }
 
 .partners-grid > *:nth-child(even),
 .join-values > *:nth-child(even) {
-  animation-delay: 0.22s;
 }
 
 .partners-card,
@@ -3486,12 +3165,10 @@ a {
 
 .partners-card > *:nth-child(2),
 .join-value > *:nth-child(2) {
-  animation-delay: 0.08s;
 }
 
 .partners-card > *:nth-child(3),
 .join-value > *:nth-child(3) {
-  animation-delay: 0.16s;
 }
 
 .partners-benefits,
@@ -3535,7 +3212,7 @@ a {
   inset: -10% -40% 50% -40%;
   background: linear-gradient(120deg, rgba(59, 130, 246, 0.2), transparent 65%);
   opacity: 0.45;
-  animation: cardSheen 16s linear infinite;
+  animation: floatOrbit 16s linear infinite;
   pointer-events: none;
 }
 
@@ -3550,13 +3227,11 @@ a {
 .partners-benefits li:nth-child(odd),
 .join-roles li:nth-child(odd),
 .join-perks li:nth-child(odd) {
-  animation-delay: 0.08s;
 }
 
 .partners-benefits li:nth-child(even),
 .join-roles li:nth-child(even),
 .join-perks li:nth-child(even) {
-  animation-delay: 0.18s;
 }
 
 .partners-programs {
@@ -3586,7 +3261,7 @@ a {
   background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.2), transparent 65%),
     radial-gradient(circle at 80% 10%, rgba(244, 114, 182, 0.2), transparent 65%);
   opacity: 0.5;
-  animation: cardDrift 24s ease-in-out infinite;
+  animation: floatOrbit 24s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -3695,7 +3370,7 @@ a {
   background: radial-gradient(circle at 20% 50%, rgba(147, 197, 253, 0.35), transparent 65%),
     radial-gradient(circle at 80% 50%, rgba(125, 211, 252, 0.3), transparent 60%);
   opacity: 0.8;
-  animation: auroraShift 28s ease-in-out infinite;
+  animation: floatOrbit 28s ease-in-out infinite;
   mix-blend-mode: screen;
   pointer-events: none;
 }
@@ -3727,7 +3402,7 @@ a {
   border-radius: 999px;
   background: linear-gradient(135deg, #38bdf8, #a855f7);
   box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.18);
-  animation: pulseGlow 2.6s ease-in-out infinite;
+  animation: floatOrbit 2.6s ease-in-out infinite;
 }
 
 .momentum-ticker__track {
@@ -3743,7 +3418,7 @@ a {
   width: max-content;
   gap: clamp(1.5rem, 4vw, 3rem);
   padding-inline: clamp(1.5rem, 4vw, 3rem);
-  animation: tickerScroll 28s linear infinite;
+  animation: floatOrbit 28s linear infinite;
 }
 
 .momentum-ticker__track.is-paused .momentum-ticker__items {
@@ -3801,12 +3476,12 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
   .momentum-ticker__items {
-    animation: none;
+    animation: fadeSlideUp;
   }
 
   .academy-cohort::after,
   .academy-scholarship::after {
-    animation: none;
+    animation: fadeSlideUp;
   }
 }
 
@@ -4089,7 +3764,7 @@ a {
   width: 60%;
   height: 60%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 70%);
-  animation: detailPulse 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
   opacity: 0.6;
 }
 
@@ -4227,11 +3902,9 @@ a {
 }
 
 .blog-hero > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .blog-hero > *:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .blog-hero::after {
@@ -4537,7 +4210,7 @@ a {
   inset: 20% -35% -40% -25%;
   background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.25), transparent 60%),
     radial-gradient(circle at 80% 40%, rgba(14, 165, 233, 0.22), transparent 65%);
-  animation: cardDrift 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
 }
 
 .blog-featured__badge {
@@ -4661,11 +4334,9 @@ a {
 }
 
 .blog-grid > *:nth-child(odd) {
-  animation-delay: 0.12s;
 }
 
 .blog-grid > *:nth-child(even) {
-  animation-delay: 0.22s;
 }
 
 .blog-card {
@@ -4689,7 +4360,7 @@ a {
   background: radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.18), transparent 60%),
     radial-gradient(circle at 75% 10%, rgba(56, 189, 248, 0.2), transparent 65%);
   opacity: 0.5;
-  animation: cardDrift 24s ease-in-out infinite;
+  animation: floatOrbit 24s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -4700,11 +4371,9 @@ a {
 }
 
 .blog-card > *:nth-child(2) {
-  animation-delay: 0.08s;
 }
 
 .blog-card > *:nth-child(3) {
-  animation-delay: 0.16s;
 }
 
 .blog-card::after {
@@ -4714,7 +4383,7 @@ a {
   height: 120px;
   background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.12));
   pointer-events: none;
-  animation: cardDrift 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .blog-card:hover {
@@ -4828,11 +4497,9 @@ a {
 }
 
 .blog-article__hero > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .blog-article__hero > *:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .blog-article__labels {
@@ -4862,7 +4529,7 @@ a {
   border-radius: 1.5rem;
   background: linear-gradient(135deg, rgba(15, 118, 110, 0.65), rgba(59, 130, 246, 0.65));
   margin-top: 1rem;
-  animation: shimmerPulse 6s ease-in-out infinite;
+  animation: floatOrbit 6s ease-in-out infinite;
 }
 
 .blog-article__author-card {
@@ -4945,7 +4612,7 @@ a {
   inset: -20%;
   opacity: 0.85;
   mix-blend-mode: screen;
-  animation: orbitGlow 18s linear infinite;
+  animation: floatOrbit 18s linear infinite;
 }
 
 .blog-article__author-card--violet .author-card__visual::before {
@@ -5182,23 +4849,18 @@ a {
 }
 
 .blog-article__toc-list li:nth-child(1) {
-  animation-delay: 0.18s;
 }
 
 .blog-article__toc-list li:nth-child(2) {
-  animation-delay: 0.24s;
 }
 
 .blog-article__toc-list li:nth-child(3) {
-  animation-delay: 0.3s;
 }
 
 .blog-article__toc-list li:nth-child(4) {
-  animation-delay: 0.36s;
 }
 
 .blog-article__toc-list li:nth-child(n + 5) {
-  animation-delay: 0.4s;
 }
 
 .blog-article__toc-link {
@@ -5318,7 +4980,6 @@ a {
 }
 
 .blog-article__body section:nth-of-type(n + 2) {
-  animation-delay: 0.1s;
 }
 
 .blog-article__body h2 {
@@ -5492,11 +5153,9 @@ a {
 }
 
 .blog-related-card[data-index='1'] {
-  animation-delay: 0.12s;
 }
 
 .blog-related-card[data-index='2'] {
-  animation-delay: 0.18s;
 }
 
 .blog-related-card__spark {
@@ -5664,11 +5323,9 @@ a {
 }
 
 .contact-hero > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .contact-hero > *:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .contact-hero::after {
@@ -5720,7 +5377,6 @@ a {
 }
 
 .contact-grid > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .contact-form {
@@ -5758,11 +5414,9 @@ a {
 }
 
 .legal-hero > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .legal-hero > *:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .legal-hero::before {
@@ -5774,7 +5428,7 @@ a {
   background: radial-gradient(circle, rgba(96, 165, 250, 0.55), transparent 70%);
   filter: blur(2px);
   opacity: 0.75;
-  animation: float 8s ease-in-out infinite;
+  animation: floatOrbit 8s ease-in-out infinite;
 }
 
 .legal-hero::after {
@@ -5785,7 +5439,7 @@ a {
   height: clamp(200px, 45vw, 360px);
   background: radial-gradient(circle, rgba(79, 70, 229, 0.35), transparent 70%);
   opacity: 0.65;
-  animation: float 10s ease-in-out infinite reverse;
+  animation: floatOrbit 10s ease-in-out infinite reverse;
 }
 
 .legal-kicker {
@@ -5826,7 +5480,7 @@ a {
   filter: drop-shadow(0 18px 45px rgba(15, 23, 42, 0.45));
   pointer-events: none;
   transform-origin: center;
-  animation: orbit 18s linear infinite;
+  animation: floatOrbit 18s linear infinite;
 }
 
 .legal-section {
@@ -5852,7 +5506,7 @@ a {
   height: clamp(240px, 45vw, 420px);
   background: radial-gradient(circle, rgba(56, 189, 248, 0.25), transparent 75%);
   opacity: 0.55;
-  animation: float 12s ease-in-out infinite;
+  animation: floatOrbit 12s ease-in-out infinite;
 }
 
 .legal-section::after {
@@ -5863,7 +5517,7 @@ a {
   height: clamp(200px, 40vw, 360px);
   background: radial-gradient(circle, rgba(129, 140, 248, 0.25), transparent 75%);
   opacity: 0.45;
-  animation: float 14s ease-in-out infinite reverse;
+  animation: floatOrbit 14s ease-in-out infinite reverse;
 }
 
 .legal-section h2 {
@@ -5942,11 +5596,9 @@ a {
 }
 
 .contact-form > *:nth-child(2) {
-  animation-delay: 0.08s;
 }
 
 .contact-form > *:nth-child(3) {
-  animation-delay: 0.16s;
 }
 
 .contact-form h2 {
@@ -6062,11 +5714,9 @@ a {
 }
 
 .contact-details ul li:nth-child(2) {
-  animation-delay: 0.08s;
 }
 
 .contact-details ul li:nth-child(3) {
-  animation-delay: 0.16s;
 }
 
 .contact-details li {
@@ -6086,7 +5736,6 @@ a {
 }
 
 .contact-direct > *:nth-child(2) {
-  animation-delay: 0.08s;
 }
 
 .call-widget {
@@ -6445,15 +6094,12 @@ a {
 }
 
 .case-hero__copy > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .case-hero__copy > *:nth-child(3) {
-  animation-delay: 0.22s;
 }
 
 .case-hero__copy > *:nth-child(4) {
-  animation-delay: 0.32s;
 }
 
 .case-hero__kicker {
@@ -6544,7 +6190,7 @@ a {
   height: 140%;
   background: linear-gradient(120deg, rgba(125, 211, 252, 0), rgba(125, 211, 252, 0.3), rgba(125, 211, 252, 0));
   transform: translate3d(-120%, 0, 0) rotate(8deg);
-  animation: cardSheen 4.5s linear infinite;
+  animation: floatOrbit 4.5s linear infinite;
   z-index: 0;
 }
 
@@ -6594,19 +6240,15 @@ a {
 }
 
 .case-card[data-index='1'] {
-  animation-delay: 0.1s;
 }
 
 .case-card[data-index='2'] {
-  animation-delay: 0.2s;
 }
 
 .case-card[data-index='3'] {
-  animation-delay: 0.3s;
 }
 
 .case-card[data-index='4'] {
-  animation-delay: 0.4s;
 }
 
 .case-card__visual {
@@ -6741,21 +6383,18 @@ a {
   padding: 1.5rem;
   display: grid;
   gap: 0.65rem;
-  animation: pageFade 0.9s var(--motion-ease) forwards;
+  animation: fadeSlideUp 0.9s var(--motion-ease) forwards;
   opacity: 0;
   transform: translate3d(0, 24px, 0);
 }
 
 .case-method__step[data-index='1'] {
-  animation-delay: 0.1s;
 }
 
 .case-method__step[data-index='2'] {
-  animation-delay: 0.2s;
 }
 
 .case-method__step[data-index='3'] {
-  animation-delay: 0.3s;
 }
 
 .case-method__number {
@@ -6953,153 +6592,6 @@ a {
   }
 }
 
-@keyframes headerAurora {
-  0% {
-    transform: rotate(0deg) scale(1.05) translate3d(0, 0, 0);
-    opacity: 0.6;
-  }
-  50% {
-    transform: rotate(8deg) scale(1.08) translate3d(3%, -2%, 0);
-    opacity: 0.85;
-  }
-  100% {
-    transform: rotate(0deg) scale(1.05) translate3d(0, 0, 0);
-    opacity: 0.6;
-  }
-}
-
-@keyframes headerDrift {
-  0% {
-    transform: scale(1) translate3d(0%, 0%, 0);
-  }
-  40% {
-    transform: scale(1.08) translate3d(-4%, 3%, 0);
-  }
-  70% {
-    transform: scale(1.04) translate3d(6%, -4%, 0);
-  }
-  100% {
-    transform: scale(1) translate3d(0%, 0%, 0);
-  }
-}
-
-@keyframes navIndicator {
-  0% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    opacity: 0.75;
-    transform: translate3d(0, -6px, 0) scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes auroraShift {
-  0% {
-    transform: translate3d(-12%, -8%, 0) scale(1.05);
-  }
-  50% {
-    transform: translate3d(10%, 6%, 0) scale(1.18);
-  }
-  100% {
-    transform: translate3d(-12%, -8%, 0) scale(1.05);
-  }
-}
-
-@keyframes orbFloat {
-  0% {
-    transform: translate3d(0%, 0%, 0) scale(1);
-  }
-  45% {
-    transform: translate3d(6%, -4%, 0) scale(1.08);
-  }
-  70% {
-    transform: translate3d(-4%, 5%, 0) scale(1.04);
-  }
-  100% {
-    transform: translate3d(0%, 0%, 0) scale(1);
-  }
-}
-
-@keyframes detailPulse {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.35;
-  }
-  50% {
-    transform: translate3d(18%, 12%, 0) scale(1.2);
-    opacity: 0.65;
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.35;
-  }
-}
-
-@keyframes heroPulse {
-  0% {
-    opacity: 0.65;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 0.65;
-    transform: scale(1);
-  }
-}
-
-@keyframes floatField {
-  0% {
-    transform: translate3d(-3%, -2%, 0) rotate(0deg);
-  }
-  40% {
-    transform: translate3d(2%, 4%, 0) rotate(6deg);
-  }
-  70% {
-    transform: translate3d(3%, -3%, 0) rotate(10deg);
-  }
-  100% {
-    transform: translate3d(-2%, 3%, 0) rotate(14deg);
-  }
-}
-
-@keyframes serviceGlow {
-  0% {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
-  50% {
-    transform: scale(1.05) translate3d(6%, -6%, 0);
-  }
-  100% {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
-}
-
-@keyframes orbit {
-  from {
-    transform: rotate(0deg) scale(1);
-  }
-  to {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
 
 @media (max-width: 960px) {
   .tr-megamenu {
@@ -7598,7 +7090,7 @@ a {
   inset: -30% -20% 30%;
   background: radial-gradient(circle at 20% 20%, rgba(96, 165, 250, 0.35), transparent 55%);
   opacity: 0.4;
-  animation: shimmerPulse 12s ease-in-out infinite;
+  animation: floatOrbit 12s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -7653,7 +7145,7 @@ a {
   background: rgba(14, 19, 36, 0.6);
   border: 1px solid rgba(125, 211, 252, 0.2);
   box-shadow: 0 18px 48px rgba(37, 99, 235, 0.22);
-  animation: floatField 12s var(--motion-snap) infinite alternate;
+  animation: floatOrbit 12s var(--motion-snap) infinite alternate;
 }
 
 .resource-hero__spark-label {
@@ -7689,7 +7181,7 @@ a {
   inset: auto 10% -60%;
   height: 140%;
   background: radial-gradient(circle, rgba(165, 243, 252, 0.25), transparent 70%);
-  animation: shimmerPulse 11s ease-in-out infinite;
+  animation: floatOrbit 11s ease-in-out infinite;
 }
 
 .resource-metric__value {
@@ -7793,7 +7285,7 @@ a {
   height: 70%;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.28), transparent 70%);
   opacity: 0.35;
-  animation: floatField 16s ease-in-out infinite;
+  animation: floatOrbit 16s ease-in-out infinite;
 }
 
 .resource-category__header {
@@ -7918,7 +7410,7 @@ a {
   background: linear-gradient(135deg, #60a5fa, #22d3ee);
   box-shadow: 0 18px 38px rgba(96, 165, 250, 0.35);
   transition: transform 0.3s var(--motion-snap), box-shadow 0.3s var(--motion-snap);
-  animation: buttonPulse 3.5s ease-in-out infinite;
+  animation: floatOrbit 3.5s ease-in-out infinite;
 }
 
 .resource-asset__action:hover {
@@ -8087,7 +7579,7 @@ a {
   width: min(1180px, 100%);
   margin: 0 auto;
   padding: clamp(3.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem) clamp(4rem, 8vw, 6rem);
-  animation: pageFade 0.9s var(--motion-ease);
+  animation: fadeSlideUp 0.9s var(--motion-ease);
 }
 
 .trust-hero {
@@ -8119,19 +7611,15 @@ a {
 }
 
 .trust-hero__copy > *:nth-child(2) {
-  animation-delay: 0.1s;
 }
 
 .trust-hero__copy > *:nth-child(3) {
-  animation-delay: 0.18s;
 }
 
 .trust-hero__copy > *:nth-child(4) {
-  animation-delay: 0.26s;
 }
 
 .trust-hero__copy > *:nth-child(5) {
-  animation-delay: 0.34s;
 }
 
 .trust-hero__kicker {
@@ -8190,7 +7678,7 @@ a {
   inset: 0;
   background: linear-gradient(120deg, rgba(148, 163, 184, 0), rgba(148, 163, 184, 0.25), rgba(148, 163, 184, 0));
   transform: translateX(-100%);
-  animation: cardSheen 5.5s linear infinite;
+  animation: floatOrbit 5.5s linear infinite;
 }
 
 .trust-hero__visual {
@@ -8471,7 +7959,7 @@ a {
 
 .trust-contact__actions .button {
   justify-content: center;
-  animation: buttonPulse 3.6s ease-in-out infinite;
+  animation: floatOrbit 3.6s ease-in-out infinite;
 }
 
 @media (max-width: 960px) {
@@ -8509,7 +7997,7 @@ a {
   padding: 6rem 0 5rem;
   position: relative;
   isolation: isolate;
-  animation: pageFade 0.7s var(--motion-ease) both;
+  animation: fadeSlideUp 0.7s var(--motion-ease) both;
 }
 
 .faq-page::before,
@@ -8559,7 +8047,7 @@ a {
   background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent 70%);
   opacity: 0.35;
   pointer-events: none;
-  animation: shimmerPulse 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .faq-hero::after {
@@ -8632,7 +8120,6 @@ a {
   position: relative;
   overflow: hidden;
   animation: fadeSlideUp 0.9s var(--motion-ease) both;
-  animation-delay: calc(var(--faq-metric-delay, 0) * 0.12s);
 }
 
 .faq-hero__metric::after {
@@ -8642,7 +8129,7 @@ a {
   height: 180%;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.22), transparent 65%);
   opacity: 0.35;
-  animation: shimmerPulse 16s ease-in-out infinite;
+  animation: floatOrbit 16s ease-in-out infinite;
 }
 
 .faq-hero__metric-value {
@@ -8774,7 +8261,7 @@ a {
   height: 190%;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 65%);
   opacity: 0.32;
-  animation: shimmerPulse 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .faq-category__header {
@@ -8829,7 +8316,6 @@ a {
   position: relative;
   overflow: hidden;
   animation: fadeSlideUp 0.8s var(--motion-ease) both;
-  animation-delay: calc(var(--faq-item-delay, 0) * 0.1s);
 }
 
 .faq-item::after {
@@ -8839,7 +8325,7 @@ a {
   height: 180%;
   background: radial-gradient(circle, rgba(167, 139, 250, 0.28), transparent 70%);
   opacity: 0.3;
-  animation: shimmerPulse 20s ease-in-out infinite;
+  animation: floatOrbit 20s ease-in-out infinite;
 }
 
 .faq-item dt {
@@ -8893,7 +8379,6 @@ a {
   overflow: hidden;
   transition: transform 0.35s var(--motion-snap), border-color 0.35s var(--motion-snap);
   animation: fadeSlideUp 0.85s var(--motion-ease) both;
-  animation-delay: calc(var(--faq-guide-delay, 0) * 0.12s);
 }
 
 .faq-guide::after {
@@ -8904,7 +8389,7 @@ a {
   height: 75%;
   background: radial-gradient(circle, rgba(94, 234, 212, 0.28), transparent 65%);
   opacity: 0.32;
-  animation: shimmerPulse 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .faq-guide:hover {
@@ -8968,7 +8453,7 @@ a {
   height: 160%;
   background: radial-gradient(circle, rgba(14, 165, 233, 0.28), transparent 70%);
   opacity: 0.3;
-  animation: shimmerPulse 24s ease-in-out infinite;
+  animation: floatOrbit 24s ease-in-out infinite;
 }
 
 .faq-support__content {
@@ -9021,7 +8506,6 @@ a {
   display: grid;
   gap: 0.2rem;
   animation: fadeSlideUp 0.9s var(--motion-ease) both;
-  animation-delay: calc(var(--faq-channel-delay, 0) * 0.12s);
 }
 
 .faq-support__channels li[data-index='0'] {
@@ -9106,7 +8590,7 @@ a {
   inset: -30% 20% 10% -25%;
   background: radial-gradient(circle at 30% 40%, rgba(34, 211, 238, 0.32), transparent 70%);
   opacity: 0.45;
-  animation: shimmerPulse 15s ease-in-out infinite;
+  animation: floatOrbit 15s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -9156,7 +8640,7 @@ a {
   background: rgba(8, 13, 27, 0.72);
   border: 1px solid rgba(96, 165, 250, 0.22);
   box-shadow: 0 24px 58px rgba(30, 64, 175, 0.38);
-  animation: floatField 14s var(--motion-snap) infinite alternate;
+  animation: floatOrbit 14s var(--motion-snap) infinite alternate;
 }
 
 .media-hero__caption {
@@ -9194,7 +8678,7 @@ a {
   height: 120%;
   background: radial-gradient(circle, rgba(45, 212, 191, 0.28), transparent 70%);
   opacity: 0.4;
-  animation: shimmerPulse 12s ease-in-out infinite;
+  animation: floatOrbit 12s ease-in-out infinite;
 }
 
 .media-hero__metric-value {
@@ -9269,7 +8753,7 @@ a {
   height: 75%;
   background: radial-gradient(circle, rgba(14, 165, 233, 0.28), transparent 70%);
   opacity: 0.35;
-  animation: shimmerPulse 14s ease-in-out infinite;
+  animation: floatOrbit 14s ease-in-out infinite;
 }
 
 .media-coverage__card:hover {
@@ -9327,7 +8811,7 @@ a {
   height: 160%;
   background: radial-gradient(circle, rgba(167, 139, 250, 0.3), transparent 70%);
   opacity: 0.35;
-  animation: shimmerPulse 13s ease-in-out infinite;
+  animation: floatOrbit 13s ease-in-out infinite;
 }
 
 .media-release__date {
@@ -9405,7 +8889,7 @@ a {
   height: 80%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.26), transparent 70%);
   opacity: 0.4;
-  animation: cardSheen 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .media-asset__meta {
@@ -9428,7 +8912,7 @@ a {
   background: linear-gradient(135deg, rgba(96, 165, 250, 0.95), rgba(34, 211, 238, 0.95));
   box-shadow: 0 18px 42px rgba(56, 189, 248, 0.4);
   transition: transform 0.3s var(--motion-snap), box-shadow 0.3s var(--motion-snap);
-  animation: buttonPulse 3.8s ease-in-out infinite;
+  animation: floatOrbit 3.8s ease-in-out infinite;
 }
 
 .media-asset__download:hover {
@@ -9533,7 +9017,7 @@ a {
   height: 90%;
   background: radial-gradient(circle, rgba(37, 99, 235, 0.28), transparent 70%);
   opacity: 0.4;
-  animation: shimmerPulse 16s ease-in-out infinite;
+  animation: floatOrbit 16s ease-in-out infinite;
 }
 
 .media-contact__content {
@@ -9792,7 +9276,7 @@ a {
   .faq-guide,
   .faq-support,
   .faq-support__channels li {
-    animation: none !important;
+    animation: fadeSlideUp !important;
   }
 
   .resource-page::before,
@@ -9820,7 +9304,7 @@ a {
   .faq-item::after,
   .faq-guide::after,
   .faq-support::after {
-    animation: none !important;
+    animation: fadeSlideUp !important;
     transition: none !important;
   }
 }
@@ -9830,7 +9314,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 4.5rem;
-  animation: pageFade 0.8s var(--motion-ease) both;
+  animation: fadeSlideUp 0.8s var(--motion-ease) both;
 }
 
 .services-pricing__hero {
@@ -9912,7 +9396,7 @@ a {
   height: 60%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.38), transparent 70%);
-  animation: shimmerPulse 9s infinite ease-in-out;
+  animation: floatOrbit 9s infinite ease-in-out;
 }
 
 .services-pricing__orb {
@@ -10287,7 +9771,7 @@ a {
   filter: blur(12px);
   opacity: 0.65;
   pointer-events: none;
-  animation: floatField 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .services-pricing__governance-grid {
@@ -10338,7 +9822,7 @@ a {
   width: 50%;
   height: 50%;
   background: radial-gradient(circle, rgba(45, 212, 191, 0.28), transparent 70%);
-  animation: shimmerPulse 16s ease-in-out infinite;
+  animation: floatOrbit 16s ease-in-out infinite;
 }
 
 .services-pricing__governance-card header,
@@ -10453,7 +9937,7 @@ a {
   height: 65%;
   background: radial-gradient(circle, rgba(45, 212, 191, 0.28), transparent 70%);
   opacity: 0.45;
-  animation: auroraGlow 22s ease-in-out infinite;
+  animation: floatOrbit 22s ease-in-out infinite;
 }
 
 .services-pricing__sla-card header {
@@ -10519,7 +10003,7 @@ a {
   height: 65%;
   background: radial-gradient(circle, rgba(129, 140, 248, 0.32), transparent 65%);
   opacity: 0.45;
-  animation: auroraGlow 24s ease-in-out infinite;
+  animation: floatOrbit 24s ease-in-out infinite;
 }
 
 .services-pricing__reporting-card header {
@@ -10587,7 +10071,7 @@ a {
   height: 70%;
   background: radial-gradient(circle, rgba(14, 165, 233, 0.32), transparent 70%);
   opacity: 0.45;
-  animation: auroraGlow 18s infinite ease-in-out;
+  animation: floatOrbit 18s infinite ease-in-out;
 }
 
 .services-pricing__industry-card header {
@@ -10675,7 +10159,7 @@ a {
   aspect-ratio: 1 / 1;
   background: radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.3), transparent 70%);
   opacity: 0.55;
-  animation: floatField 24s ease-in-out infinite;
+  animation: floatOrbit 24s ease-in-out infinite;
 }
 
 .services-pricing__transformation-card::after {
@@ -10686,7 +10170,7 @@ a {
   aspect-ratio: 1 / 1;
   background: radial-gradient(circle at 50% 50%, rgba(129, 140, 248, 0.28), transparent 70%);
   opacity: 0.45;
-  animation: auroraGlow 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
 }
 
 .services-pricing__transformation-card header,
@@ -10784,7 +10268,7 @@ a {
   height: 100%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.3), transparent 70%);
-  animation: shimmerPulse 20s ease-in-out infinite;
+  animation: floatOrbit 20s ease-in-out infinite;
 }
 
 .services-pricing__operations-layout {
@@ -10824,7 +10308,7 @@ a {
   height: 80%;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.26), transparent 70%);
   opacity: 0.6;
-  animation: floatField 22s ease-in-out infinite;
+  animation: floatOrbit 22s ease-in-out infinite;
 }
 
 .services-pricing__operations-card::after {
@@ -10835,7 +10319,7 @@ a {
   height: 65%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 70%);
   opacity: 0.6;
-  animation: shimmerPulse 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .services-pricing__operations-card header,
@@ -10974,7 +10458,7 @@ a {
   width: 160px;
   height: 160px;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent 70%);
-  animation: floatField 24s ease-in-out infinite;
+  animation: floatOrbit 24s ease-in-out infinite;
 }
 
 .services-pricing__resilience {
@@ -11023,7 +10507,7 @@ a {
   width: 70%;
   height: 70%;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%);
-  animation: floatField 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
 }
 
 .services-pricing__resilience-card::after {
@@ -11031,7 +10515,7 @@ a {
   width: 60%;
   height: 60%;
   background: radial-gradient(circle, rgba(165, 243, 252, 0.25), transparent 70%);
-  animation: shimmerPulse 20s ease-in-out infinite;
+  animation: floatOrbit 20s ease-in-out infinite;
 }
 
 .services-pricing__resilience-card header,
@@ -11151,7 +10635,7 @@ a {
   width: 70%;
   height: 70%;
   background: radial-gradient(circle, rgba(147, 197, 253, 0.35), transparent 70%);
-  animation: floatField 28s ease-in-out infinite;
+  animation: floatOrbit 28s ease-in-out infinite;
 }
 
 .services-pricing__resilience-cta p,
@@ -11188,7 +10672,7 @@ a {
   width: 180px;
   height: 180px;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.28), transparent 70%);
-  animation: floatField 26s ease-in-out infinite;
+  animation: floatOrbit 26s ease-in-out infinite;
 }
 
 .services-pricing__executive {
@@ -11238,7 +10722,7 @@ a {
   width: 70%;
   height: 70%;
   background: radial-gradient(circle, rgba(165, 180, 252, 0.4), transparent 70%);
-  animation: floatField 22s ease-in-out infinite;
+  animation: floatOrbit 22s ease-in-out infinite;
 }
 
 .services-pricing__executive-card::after {
@@ -11246,7 +10730,7 @@ a {
   width: 60%;
   height: 60%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.3), transparent 70%);
-  animation: shimmerPulse 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .services-pricing__executive-card header,
@@ -11326,7 +10810,7 @@ a {
   height: 70%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(34, 211, 238, 0.28), transparent 70%);
-  animation: shimmerPulse 20s ease-in-out infinite;
+  animation: floatOrbit 20s ease-in-out infinite;
 }
 
 .services-pricing__executive-indicator header {
@@ -11378,7 +10862,7 @@ a {
   height: 65%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.28), transparent 70%);
-  animation: floatField 24s ease-in-out infinite;
+  animation: floatOrbit 24s ease-in-out infinite;
 }
 
 .services-pricing__executive-cta p,
@@ -11419,7 +10903,7 @@ a {
   height: 200px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(165, 180, 252, 0.32), transparent 70%);
-  animation: floatField 28s ease-in-out infinite;
+  animation: floatOrbit 28s ease-in-out infinite;
 }
 
 .services-pricing__concierge-grid {
@@ -11451,7 +10935,7 @@ a {
   height: 60%;
   background: radial-gradient(circle, rgba(244, 114, 182, 0.25), transparent 70%);
   opacity: 0.55;
-  animation: shimmerPulse 16s infinite ease-in-out;
+  animation: floatOrbit 16s infinite ease-in-out;
 }
 
 .services-pricing__concierge-card header,
@@ -11529,7 +11013,7 @@ a {
   width: 70%;
   height: 70%;
   background: radial-gradient(circle, rgba(96, 165, 250, 0.35), transparent 70%);
-  animation: floatField 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .services-pricing__procurement-card::after {
@@ -11537,7 +11021,7 @@ a {
   width: 55%;
   height: 55%;
   background: radial-gradient(circle, rgba(129, 140, 248, 0.28), transparent 70%);
-  animation: shimmerPulse 14s ease-in-out infinite;
+  animation: floatOrbit 14s ease-in-out infinite;
 }
 
 .services-pricing__procurement-card header,
@@ -11635,7 +11119,7 @@ a {
   background: radial-gradient(circle at top, rgba(94, 234, 212, 0.35), transparent 65%);
   opacity: 0.6;
   transform: translateZ(0);
-  animation: floatField 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .services-pricing__enablement-card::after {
@@ -11646,7 +11130,7 @@ a {
   height: 60%;
   background: radial-gradient(circle at bottom, rgba(45, 212, 191, 0.28), transparent 70%);
   opacity: 0.55;
-  animation: shimmerPulse 14s ease-in-out infinite;
+  animation: floatOrbit 14s ease-in-out infinite;
 }
 
 .services-pricing__enablement-card header,
@@ -11743,7 +11227,7 @@ a {
   width: 70%;
   height: 70%;
   background: radial-gradient(circle, rgba(165, 180, 252, 0.35), transparent 70%);
-  animation: floatField 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .services-pricing__platform-card::after {
@@ -11751,7 +11235,7 @@ a {
   width: 55%;
   height: 55%;
   background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
-  animation: shimmerPulse 16s ease-in-out infinite;
+  animation: floatOrbit 16s ease-in-out infinite;
 }
 
 .services-pricing__platform-card header,
@@ -11854,7 +11338,7 @@ a {
   width: 55%;
   height: 55%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 70%);
-  animation: shimmerPulse 15s ease-in-out infinite;
+  animation: floatOrbit 15s ease-in-out infinite;
 }
 
 .services-pricing__playbook-card header,
@@ -12006,7 +11490,7 @@ a {
   width: 55%;
   height: 55%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 75%);
-  animation: shimmerPulse 14s ease-in-out infinite;
+  animation: floatOrbit 14s ease-in-out infinite;
 }
 
 .services-pricing__integration-card header,
@@ -12073,7 +11557,7 @@ a {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 65%);
   filter: blur(12px);
-  animation: shimmerPulse 12s infinite ease-in-out;
+  animation: floatOrbit 12s infinite ease-in-out;
   pointer-events: none;
 }
 
@@ -12187,7 +11671,7 @@ a {
   height: 50%;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.28), transparent 70%);
   opacity: 0.65;
-  animation: auroraGlow 14s infinite ease-in-out;
+  animation: floatOrbit 14s infinite ease-in-out;
   pointer-events: none;
 }
 
@@ -12572,7 +12056,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  animation: floatFadeIn 0.9s var(--motion-ease) both;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
 }
 
 .services-pricing__compliance-card::before,
@@ -12589,7 +12073,7 @@ a {
   width: 65%;
   height: 65%;
   background: radial-gradient(circle, rgba(34, 197, 94, 0.28), transparent 70%);
-  animation: floatField 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .services-pricing__compliance-card::after {
@@ -12597,7 +12081,7 @@ a {
   width: 58%;
   height: 58%;
   background: radial-gradient(circle, rgba(74, 222, 128, 0.2), transparent 70%);
-  animation: shimmerPulse 16s ease-in-out infinite;
+  animation: floatOrbit 16s ease-in-out infinite;
 }
 
 .services-pricing__compliance-card header,
@@ -13113,7 +12597,7 @@ a {
   flex-direction: column;
   gap: 4rem;
   padding: 6rem clamp(1.5rem, 4vw, 4rem);
-  animation: pageFade 0.9s var(--motion-ease) both;
+  animation: fadeSlideUp 0.9s var(--motion-ease) both;
 }
 
 .academy-hero {
@@ -13165,7 +12649,7 @@ a {
   border: 1px solid rgba(94, 234, 212, 0.18);
   min-height: 420px;
   overflow: hidden;
-  animation: fadeSlideRight 1s var(--motion-ease) both;
+  animation: fadeSlideUp 1s var(--motion-ease) both;
 }
 
 .academy-hero__spark {
@@ -13199,7 +12683,6 @@ a {
   box-shadow: 0 20px 60px rgba(4, 12, 32, 0.4);
   transform: translateZ(0);
   animation: softScaleIn 0.9s var(--motion-ease) both;
-  animation-delay: 0s;
 }
 
 .academy-hero__metric-value {
@@ -13210,15 +12693,12 @@ a {
 }
 
 .academy-hero__metric:nth-child(1) {
-  animation-delay: 0.08s;
 }
 
 .academy-hero__metric:nth-child(2) {
-  animation-delay: 0.16s;
 }
 
 .academy-hero__metric:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 .academy-hero__metric-label {
@@ -13530,7 +13010,7 @@ a {
   inset: auto -40% -65% -40%;
   height: 180px;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%);
-  animation: shimmerPulse 16s ease-in-out infinite;
+  animation: floatOrbit 16s ease-in-out infinite;
 }
 
 .academy-cohort__header,
@@ -13756,7 +13236,7 @@ a {
   height: 160px;
   background: radial-gradient(circle, rgba(94, 234, 212, 0.24), transparent 70%);
   opacity: 0.7;
-  animation: shimmerPulse 12s ease-in-out infinite;
+  animation: floatOrbit 12s ease-in-out infinite;
 }
 
 .academy-mentor__header {
@@ -14075,7 +13555,7 @@ a {
   inset: auto -40% -60% -40%;
   height: 140px;
   background: radial-gradient(circle, rgba(94, 234, 212, 0.26), transparent 70%);
-  animation: shimmerPulse 10s ease-in-out infinite;
+  animation: floatOrbit 10s ease-in-out infinite;
 }
 
 .academy-community__card h3 {
@@ -14128,7 +13608,7 @@ a {
   width: 180px;
   height: 180px;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.26), transparent 70%);
-  animation: floatField 18s ease-in-out infinite;
+  animation: floatOrbit 18s ease-in-out infinite;
 }
 
 .academy-toolkit__header {
@@ -14228,7 +13708,7 @@ a {
   width: 160px;
   height: 160px;
   background: radial-gradient(circle, rgba(94, 234, 212, 0.22), transparent 70%);
-  animation: pulseBloom 14s ease-in-out infinite;
+  animation: floatOrbit 14s ease-in-out infinite;
 }
 
 .academy-alumni__meta {
@@ -14433,7 +13913,7 @@ a {
   width: min(1180px, 100%);
   margin: 0 auto;
   padding: clamp(3.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem) clamp(4rem, 8vw, 6rem);
-  animation: pageFade 0.9s var(--motion-ease);
+  animation: fadeSlideUp 0.9s var(--motion-ease);
 }
 
 .command-hero {
@@ -14476,19 +13956,15 @@ a {
 }
 
 .command-hero__copy > *:nth-child(2) {
-  animation-delay: 0.12s;
 }
 
 .command-hero__copy > *:nth-child(3) {
-  animation-delay: 0.2s;
 }
 
 .command-hero__copy > *:nth-child(4) {
-  animation-delay: 0.28s;
 }
 
 .command-hero__copy > *:nth-child(5) {
-  animation-delay: 0.36s;
 }
 
 .command-hero__eyebrow {
@@ -15522,17 +14998,6 @@ a {
 }
 
 
-@keyframes routeProgress {
-  0% {
-    transform: scaleX(0.08);
-    opacity: 0.2;
-  }
-  100% {
-    transform: scaleX(1);
-    opacity: 0.95;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -15544,7 +15009,7 @@ a {
   }
 
   .app-route-progress > span.is-active {
-    animation: none;
+    animation: fadeSlideUp;
     transform: scaleX(1);
     opacity: 0.7;
   }
@@ -15714,22 +15179,15 @@ a {
   inset: 0;
   background: linear-gradient(90deg, rgba(16, 185, 129, 0), rgba(16, 185, 129, 0.65), rgba(16, 185, 129, 0));
   transform: translateX(-100%);
-  animation: wipeRemove 2.8s ease-in-out infinite;
+  animation: floatOrbit 2.8s ease-in-out infinite;
 }
 
 .data-removal-animation__line:nth-child(2)::after {
-  animation-delay: 0.35s;
 }
 
 .data-removal-animation__line:nth-child(3)::after {
-  animation-delay: 0.7s;
 }
 
-@keyframes wipeRemove {
-  0% { transform: translateX(-100%); }
-  45% { transform: translateX(0%); }
-  100% { transform: translateX(100%); }
-}
 
 @media (max-width: 720px) {
   .data-removal-animation {
