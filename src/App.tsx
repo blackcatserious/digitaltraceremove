@@ -8712,6 +8712,31 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
+  const servicesLinks = [
+    { label: 'Monitoring and Alerts', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Workflow Credits', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Managed Programmes', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Cybersecurity Module', to: getServicesPricingPath(currentLanguage) },
+  ]
+  const partnerLinks = [
+    { label: 'Partner Overview', to: getPartnersPath(currentLanguage) },
+    { label: 'Silver / Gold / Platinum', to: getPartnersPath(currentLanguage) },
+    { label: 'Apply as Partner', to: getJoinPath(currentLanguage) },
+    { label: 'Partner Portal', to: getPartnersPath(currentLanguage) },
+  ]
+  const companyLinks = [
+    { label: 'About', to: getAboutPath(currentLanguage) },
+    { label: 'Case Studies', to: getCaseStudiesPath(currentLanguage) },
+    { label: 'Trust Center', to: getTrustPath(currentLanguage) },
+    { label: 'Blog', to: getBlogBasePath(currentLanguage) },
+    { label: 'Contact', to: getContactPath(currentLanguage) },
+  ]
+  const legalLinks = [
+    { label: 'Privacy Policy', to: getPrivacyPath(currentLanguage) },
+    { label: 'Terms of Service', to: getTermsPath(currentLanguage) },
+    { label: 'Refund Policy', to: currentLanguage === 'en' ? '/refund' : getContactPath(currentLanguage) },
+  ]
+
   return (
     <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
       <div
@@ -8739,10 +8764,10 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
-          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {servicesLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8751,17 +8776,17 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
-          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {partnerLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8770,17 +8795,17 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
-          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {companyLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8789,8 +8814,8 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
       </div>
@@ -8810,10 +8835,10 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
           <span>2025 TraceRemove LLC</span>
-          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {legalLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8822,8 +8847,8 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
         <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.72)' }}>
