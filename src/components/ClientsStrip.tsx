@@ -28,7 +28,7 @@ export default function ClientsStrip() {
           color: 'rgba(255,255,255,0.35)',
         }}
       >
-        Trusted by businesses and agencies across industries
+        Trusted by executive teams, private clients, and specialist advisory firms
       </p>
 
       <div

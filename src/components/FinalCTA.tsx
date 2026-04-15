@@ -16,11 +16,11 @@ export default function FinalCTA() {
 
   return (
     <section className="home-production" style={{ background: 'var(--navy)', textAlign: 'center' }}>
-      <p style={{ color: 'var(--gold)' }}>Every Day Has a Cost</p>
-      <h2 style={{ color: 'var(--white)' }}>Ready to Resolve Your Exposure?</h2>
+      <p style={{ color: 'var(--gold)' }}>When harmful data stays live, risk compounds</p>
+      <h2 style={{ color: 'var(--white)' }}>Request a Confidential Case Review</h2>
       <p style={{ color: 'rgba(255,255,255,0.88)' }}>
-        Book a confidential 30-minute assessment. We will map your exposure surfaces, identify priorities, and give
-        you a clear resolution plan with no obligation.
+        Speak with a senior advisor for a private 30-minute review. We will assess your exposure, prioritize immediate
+        actions, and outline a clear path to removal.
       </p>
       <form
         style={{
@@ -158,10 +158,10 @@ export default function FinalCTA() {
         {submitted ? (
           <div style={{ textAlign: 'center', padding: '20px' }}>
             <div style={{ color: '#22C87A', fontSize: '16px', fontWeight: 500, marginBottom: '8px' }}>
-              Assessment request received.
+              Request received.
             </div>
             <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px' }}>
-              Check your email — an NDA will arrive within 5 minutes.
+              Check your inbox — your NDA and next steps will arrive within 5 minutes.
             </div>
           </div>
         ) : (
@@ -179,11 +179,11 @@ export default function FinalCTA() {
               cursor: 'pointer',
             }}
           >
-            Book Confidential Assessment →
+            Schedule Confidential Review →
           </button>
         )}
         <p style={{ textAlign: 'center', marginTop: '12px', fontSize: '12px', color: 'rgba(255,255,255,0.3)' }}>
-          Full NDA sent within 5 minutes of submission.
+          Full NDA sent within 5 minutes of submission. Information is handled in strict confidence.
         </p>
       </form>
     </section>

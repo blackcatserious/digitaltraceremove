@@ -2485,7 +2485,7 @@ const homeServicesCopy: Record<
 }
 
 const homeHeroHeading: Record<Language, string> = {
-  en: 'Monitor and Manage Online Data Exposure',
+  en: 'Remove Harmful Online Data Before It Damages Decisions',
   fr: 'Des plans de services multilingues conçus pour accélérer votre momentum.',
   es: 'Planos de servicios multilingües diseñados para impulsar tu crecimiento.',
 }
@@ -2533,9 +2533,9 @@ const HomePage = () => {
             }}
           />
           <p>
-            Traceremove provides structured tools and managed workflows to identify, monitor, and resolve online data
-            exposure — for businesses, executives, and agency partners across North America, Europe, Latin America,
-            Asia-Pacific, and Africa.
+            We identify where sensitive or damaging content is exposed, then run the legal, technical, and platform
+            workflows required to remove, suppress, and monitor it. Trusted by leadership teams, private clients, and
+            agencies managing high-stakes reputation risk across five regions.
           </p>
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link
@@ -2543,7 +2543,7 @@ const HomePage = () => {
               to={getContactPath(currentLanguage)}
               style={{ display: 'inline-flex', width: 'auto', padding: '14px 32px' }}
             >
-              Request Confidential Assessment →
+              Start Confidential Review →
             </Link>
             <a
               className="button secondary"
@@ -2559,15 +2559,15 @@ const HomePage = () => {
                 opacity: 1,
               }}
             >
-              View Case Studies
+              Review Client Outcomes
             </a>
           </div>
           <div className="trust-strip" style={{ display: 'flex', alignItems: 'center', gap: '0', flexWrap: 'wrap' }}>
-            <span><strong>500+</strong> cases resolved</span>
+            <span><strong>500+</strong> matters closed</span>
             <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
-            <span><strong>98%</strong> success rate</span>
+            <span><strong>98%</strong> successful removals</span>
             <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
-            <span><strong>30–90 day</strong> results</span>
+            <span><strong>30–90 days</strong> typical resolution window</span>
             <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
             <span><strong>New York, NY</strong></span>
           </div>
@@ -2585,7 +2585,7 @@ const HomePage = () => {
           >
             <span style={{ color: '#C8A96E', fontSize: '14px' }}>🔒</span>
             <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)' }}>
-              <strong style={{ color: '#C8A96E', fontWeight: 500 }}>Full NDA provided</strong>{' '}at first contact. All assessments are strictly confidential.
+              <strong style={{ color: '#C8A96E', fontWeight: 500 }}>Full NDA provided</strong>{' '}before case intake. Every engagement is handled in strict confidence.
             </span>
           </div>
         </div>
@@ -2602,36 +2602,35 @@ const HomePage = () => {
       <FinalCTA />
       <div>
         <p>{''}</p>
-        <p>
-          Users access structured tools and managed workflows to identify and resolve data exposure issues.
-        </p>
+        <p>Clients receive monitored visibility, clear risk prioritization, and direct removal execution.</p>
       </div>
 
       <section className="home-production" aria-labelledby="home-provides-heading">
         <header className="home-production__header">
-          <p className="home-production__kicker">What Traceremove Provides</p>
-          <h2 id="home-provides-heading">What Traceremove Provides</h2>
+          <p className="home-production__kicker">What we do</p>
+          <h2 id="home-provides-heading">Monitoring, Removal, and Ongoing Protection</h2>
         </header>
-        <p>Traceremove provides structured digital solutions for managing online data exposure.</p>
+        <p>We monitor the open web, search results, review platforms, and data broker surfaces for harmful exposure.</p>
         <p>
-          Customers access tools and managed workflows to identify, monitor, and resolve data-related risks.
+          Our team then executes documented removal and suppression workflows for founders, executives, firms, and
+          agency clients that need discreet, measurable results.
         </p>
       </section>
 
       <section className="home-production" aria-labelledby="home-how-it-works-heading">
         <header className="home-production__header">
           <p className="home-production__kicker">How it works</p>
-          <h2 id="home-how-it-works-heading">How it works</h2>
+          <h2 id="home-how-it-works-heading">A Clear 3-Step Process</h2>
         </header>
         <div className="home-production__grid">
           <article>
-            <h3>1. Identify data exposure</h3>
+            <h3>1. Map exposure and legal options</h3>
           </article>
           <article>
-            <h3>2. Analyze risk</h3>
+            <h3>2. Prioritize by business impact</h3>
           </article>
           <article>
-            <h3>3. Resolve through structured workflows</h3>
+            <h3>3. Execute removals and track outcomes</h3>
           </article>
         </div>
       </section>
@@ -2661,62 +2660,62 @@ const HomePage = () => {
 
       <section className="home-reputation" aria-labelledby="home-reputation-heading">
         <header>
-          <p className="home-reputation__kicker">We help manage and resolve online data exposure</p>
-          <h2 id="home-reputation-heading">Simple monitoring and resolution for online data exposure</h2>
+          <p className="home-reputation__kicker">Built for high-stakes reputation risk</p>
+          <h2 id="home-reputation-heading">Complete Data Exposure Operations for Leaders and Firms</h2>
         </header>
         <div className="home-reputation__grid">
           <article>
-            <h3>Data exposure monitoring</h3>
-            <p>We monitor your online data exposure across search, social, and review platforms.</p>
+            <h3>Continuous monitoring</h3>
+            <p>Track sensitive mentions across search, social, review, forum, and publisher surfaces.</p>
           </article>
           <article>
-            <h3>Risk analysis</h3>
-            <p>We analyze risk and prioritize what to fix first.</p>
+            <h3>Risk triage</h3>
+            <p>Rank issues by legal urgency, visibility, and commercial impact so action is immediate.</p>
           </article>
           <article>
-            <h3>Structured resolution</h3>
-            <p>We use structured workflows to resolve issues and track progress.</p>
+            <h3>Removal execution</h3>
+            <p>Run platform-specific takedown, correction, and suppression workflows with audit-ready reporting.</p>
           </article>
         </div>
       </section>
 
       <section className="home-production" aria-labelledby="home-production-heading">
         <header className="home-production__header">
-          <p className="home-production__kicker">Simple data exposure operations</p>
-          <h2 id="home-production-heading">From monitoring to resolution in one structured workflow</h2>
+          <p className="home-production__kicker">For executives, businesses, and agency partners</p>
+          <h2 id="home-production-heading">From Detection to Removal in One Confidential Workflow</h2>
         </header>
         <div className="home-production__grid">
           <article>
             <h3>What we monitor</h3>
             <ul>
-              <li>Exposed personal or business data</li>
-              <li>Misleading profile and listing content</li>
-              <li>High-risk pages affecting trust</li>
+              <li>Doxxing, leaked personal identifiers, and exposed contact data</li>
+              <li>False, defamatory, or manipulative profile and review content</li>
+              <li>High-visibility pages shaping investor, hiring, or buyer decisions</li>
             </ul>
           </article>
           <article>
-            <h3>How we work</h3>
+            <h3>How we execute</h3>
             <ul>
-              <li>Identify and monitor exposure points</li>
-              <li>Analyze risk and select the best workflow</li>
-              <li>Resolve issues with documented actions and status updates</li>
+              <li>Assess jurisdiction, platform policy, and evidence requirements</li>
+              <li>Deploy legal, policy, and technical removal pathways</li>
+              <li>Report progress weekly with clear status and next actions</li>
             </ul>
           </article>
           <article>
             <h3>Client outcomes</h3>
             <ul>
-              <li>Clearer visibility into online data exposure</li>
-              <li>Faster risk response with ongoing monitoring</li>
-              <li>Measurable resolution progress across platforms</li>
+              <li>Fewer harmful search results and public data traces</li>
+              <li>Faster response when new exposure appears</li>
+              <li>Measured protection across executive, brand, and legal priorities</li>
             </ul>
           </article>
         </div>
         <div className="home-production__actions">
           <Link className="button primary" to={getContactPath(currentLanguage)}>
-            Start analysis
+            Request Private Consultation
           </Link>
           <Link className="button tertiary" to={getCaseStudiesPath(currentLanguage)}>
-            View resolution examples
+            View Confidential Case Summaries
           </Link>
         </div>
       </section>
