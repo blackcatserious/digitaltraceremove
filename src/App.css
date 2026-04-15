@@ -15984,20 +15984,31 @@ body,
 }
 /* ── TRACEREMOVE VISUAL FIXES ── */
 
-/* Nav: single row, glass effect */
+/* Nav: solid, readable, and stable over hero */
 .tr-header {
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  background: rgba(10,15,30,0.82) !important;
-  border-bottom: 1px solid rgba(200,169,110,0.10) !important;
-  height: 64px !important;
-  padding: 0 40px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: var(--navy) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  height: auto !important;
+  padding: 16px 40px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   position: sticky !important;
   top: 0 !important;
   z-index: 100 !important;
+}
+
+.tr-header::before,
+.tr-header::after {
+  display: none !important;
+}
+
+.tr-header__inner {
+  width: min(1100px, 100%) !important;
+  padding: 0 !important;
+  align-items: center !important;
 }
 
 .tr-nav__items {
@@ -16017,6 +16028,11 @@ body,
   flex-shrink: 0 !important;
   font-size: 12px !important;
   color: rgba(255,255,255,0.38) !important;
+}
+
+.tr-header__cta .button.primary,
+.tr-header__cta a.button.primary {
+  box-shadow: 0 8px 28px rgba(24,84,232,0.35) !important;
 }
 
 /* Language row: hide separate row */
@@ -16072,7 +16088,7 @@ a.button.primary:hover {
 
 /* Mobile */
 @media (max-width: 768px) {
-  .tr-header { height: 56px !important; padding: 0 16px !important; }
+  .tr-header { height: auto !important; padding: 16px !important; }
   .tr-nav__items { display: none !important; }
   .tr-header__cta { display: none !important; }
   .tr-header__phone { display: none !important; }
