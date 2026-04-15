@@ -565,35 +565,16 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(18px);
+  background: var(--navy);
   color: #e2e8f0;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 14px 28px rgba(2, 6, 23, 0.28);
   overflow: visible;
 }
 
 .tr-header::before,
 .tr-header::after {
-  content: '';
-  position: absolute;
-  inset: -40% -30%;
-  background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.25), transparent 55%),
-    radial-gradient(circle at 70% 80%, rgba(236, 72, 153, 0.2), transparent 60%),
-    linear-gradient(120deg, rgba(226, 232, 240, 0.08), transparent 70%);
-  mix-blend-mode: screen;
-  opacity: 0.75;
-  pointer-events: none;
-  transform-origin: center;
-  animation: headerAurora 26s ease-in-out infinite;
-  z-index: 0;
-}
-
-.tr-header::after {
-  inset: -35% -40%;
-  background: radial-gradient(circle at 20% 75%, rgba(45, 212, 191, 0.2), transparent 55%),
-    radial-gradient(circle at 80% 35%, rgba(191, 219, 254, 0.25), transparent 60%);
-  animation: headerDrift 32s ease-in-out infinite;
-  opacity: 0.6;
+  display: none;
 }
 
 .tr-header__inner {
@@ -603,7 +584,7 @@ a {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1.5rem;
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.5rem;
   position: relative;
   z-index: 1;
 }
@@ -612,6 +593,7 @@ a {
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-height: 44px;
   position: relative;
   z-index: 120;
 }
@@ -851,6 +833,10 @@ a {
   justify-content: flex-end;
   align-items: center;
   gap: 0.65rem;
+}
+
+.tr-header__cta .button.primary {
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.34);
 }
 
 .tr-languages {
@@ -15986,10 +15972,9 @@ body,
 
 /* Nav: single row, glass effect */
 .tr-header {
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  background: rgba(10,15,30,0.82) !important;
-  border-bottom: 1px solid rgba(200,169,110,0.10) !important;
+  background: var(--navy) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 14px 28px rgba(2, 6, 23, 0.28) !important;
   height: 64px !important;
   padding: 0 40px !important;
   display: flex !important;
