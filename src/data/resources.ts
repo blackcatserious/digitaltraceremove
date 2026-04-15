@@ -106,7 +106,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
         eyebrow: 'Playbook vault',
         title: 'Campaign frameworks that neutralise threats and grow pipeline',
         description:
-          'We help manage and resolve online data exposure',
+          'Step-by-step operating systems for suppression, review integrity, and proactive trust storytelling.',
         metricLabel: 'Average adoption speed',
         metricValue: '2.4 weeks',
         metricDelta: '+38% faster',
@@ -175,7 +175,7 @@ export const resourceLibraryCopy: Record<Language, ResourceLibraryContent> = {
           {
             id: 'board-brief',
             format: 'Report · PDF',
-            title: 'We help manage and resolve online data exposure',
+            title: 'Board briefing template for brand risk and recovery',
             summary:
               'Executive-grade packet combining metrics, storyline, and next-quarter focus so leadership teams see impact at a glance.',
             length: '18 pages',

@@ -5986,10 +5986,10 @@ const contactCopy: Record<
 > = {
   en: {
     kicker: 'Contact Traceremove',
-    title: 'We help manage and resolve online data exposure',
+    title: 'Talk with a digital risk and reputation specialist',
     subtitle: 'Share your objectives and we will craft a tailored response within one business day.',
     intro:
-      'We help manage and resolve online data exposure',
+      'Tell us what you are facing — fake reviews, search visibility loss, domain abuse, or coordinated misinformation — and we will recommend a practical next step.',
     formTitle: 'Send us a note',
     detailTitle: 'Prefer a direct line?',
     detailPoints: [
@@ -6006,7 +6006,7 @@ const contactCopy: Record<
       email: { label: 'Work email', placeholder: 'jane@company.com' },
       company: { label: 'Company or team', placeholder: 'Acme Corp' },
       phone: { label: 'Phone (optional)', placeholder: '+1 555 555 5555' },
-      message: { label: 'How can we help?', placeholder: 'We help manage and resolve online data exposure' },
+      message: { label: 'How can we help?', placeholder: 'Describe your goals, urgency, and current blockers…' },
     },
   },
   fr: {
@@ -6264,11 +6264,37 @@ const NotFound = () => (
 
 const SimpleContactPage = () => (
   <section style={{ padding: '48px 24px' }}>
-    <div style={{ maxWidth: 720, margin: '0 auto', fontSize: '14px', lineHeight: 1.7, opacity: 0.8 }}>
-      <div>TRACEREMOVE LLC</div>
-      <div>750 Manhattan Ave</div>
-      <div>Brooklyn, NY 11222, USA</div>
-      <div>support@traceremove.com</div>
+    <div style={{ maxWidth: 760, margin: '0 auto', fontSize: '14px', lineHeight: 1.7, opacity: 0.86 }}>
+      <h1 style={{ marginTop: 0 }}>Contact TraceRemove</h1>
+      <p>
+        Share your context and we will route your request to the right team for partnership, service scoping, incident
+        response, or billing support.
+      </p>
+
+      <h2>General inquiries</h2>
+      <p>
+        Email <a href="mailto:support@traceremove.com">support@traceremove.com</a> for proposals, onboarding
+        questions, and day-to-day account support.
+      </p>
+
+      <h2>Urgent response</h2>
+      <p>
+        For active incidents, call <a href="tel:+16063022958">+1 (472) 248 0235</a>. Include your company name and
+        affected channels so our team can triage quickly.
+      </p>
+
+      <h2>Company details</h2>
+      <p>
+        TRACEREMOVE LLC
+        <br />
+        750 Manhattan Ave
+        <br />
+        Brooklyn, NY 11222, USA
+      </p>
+
+      <p style={{ marginBottom: 0 }}>
+        Prefer the full intake form? <a href="/contact">Go to the contact form</a>.
+      </p>
     </div>
   </section>
 )

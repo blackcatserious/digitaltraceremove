@@ -769,7 +769,7 @@ const serviceConfigs: ServiceConfig[] = [
       es: 'Optimización de conversiones',
     },
     summary: {
-      en: 'We help manage and resolve online data exposure',
+      en: 'We run conversion experimentation programmes that remove friction and grow qualified pipeline.',
       fr: 'Nous pilotons des programmes d’expérimentation qui lèvent les frictions clés.',
       es: 'Dirigimos programas de experimentación que eliminan fricciones clave.',
     },
@@ -803,7 +803,7 @@ const serviceConfigs: ServiceConfig[] = [
       es: 'Automatización de inteligencia de marca',
     },
     summary: {
-      en: 'We help manage and resolve online data exposure',
+      en: 'We connect monitoring, response, and automation to keep brand intelligence always active.',
       fr: 'Nous connectons veille, retrait et réponse pour que vos opérations de réputation restent en éveil permanent.',
       es: 'Conectamos monitorización, retirada y respuesta para mantener tus operaciones de reputación siempre activas.',
     },
