@@ -72,6 +72,7 @@ const buildNavigation = () => {
     Map<
       string,
       {
+        serviceKey: string
         serviceName: string
         pages: ServicePageContent[]
       }
@@ -92,7 +93,7 @@ const buildNavigation = () => {
     serviceGroup.get(page.serviceKey)!.pages.push(page)
   })
 
-  const navigation: Record<Language, { serviceName: string; pages: ServicePageContent[] }[]> = {
+  const navigation: Record<Language, { serviceKey: string; serviceName: string; pages: ServicePageContent[] }[]> = {
     en: [],
     fr: [],
     es: [],
@@ -106,6 +107,7 @@ const buildNavigation = () => {
 
     navigation[language] = Array.from(groups.values())
       .map((group) => ({
+        serviceKey: group.pages[0]?.serviceKey ?? '',
         serviceName: group.serviceName,
         pages: group.pages.sort((a, b) => a.industryName.localeCompare(b.industryName)),
       }))
@@ -7327,39 +7329,120 @@ const BlogArticlePage = ({ language }: { language: Language }) => {
 const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [megaSearch, setMegaSearch] = useState('')
   const [mobileExpandedGroup, setMobileExpandedGroup] = useState('')
   const location = useLocation()
   const copy = navCopy[currentLanguage]
   const groups = navigation[currentLanguage] ?? []
-  const filteredGroups = useMemo(() => {
-    const query = megaSearch.trim().toLowerCase()
-    if (!query) return groups
-    return groups
-      .map((group) => ({
-        ...group,
-        pages: group.pages.filter((page) =>
-          `${group.serviceName} ${page.industryName}`.toLowerCase().includes(query)
-        ),
-      }))
-      .filter((group) => group.pages.length > 0)
-  }, [groups, megaSearch])
   const headerRef = useRef<HTMLElement | null>(null)
   const mobileCloseRef = useRef<HTMLButtonElement | null>(null)
 
-  const navLinks = useMemo(
+  const serviceDescriptions = useMemo(
+    () => ({
+      monitoring: 'Continuous monitoring and exposure alerts across major search surfaces.',
+      reviews: 'Structured review response and suppression workflows for key listings.',
+      search: 'Escalation-first search cleanup with documented progress and proof of work.',
+      social: 'Platform-specific social takedown and impersonation response support.',
+      data: 'Personal and company data broker removals with recurring verification sweeps.',
+      legal: 'Evidence packs and legal-ready documentation for complex disputes.',
+    }),
+    []
+  )
+
+  const coreServiceLinks = useMemo(
+    () =>
+      groups
+        .filter((group) => group.pages.length > 0)
+        .slice(0, 4)
+        .map((group) => ({
+          title: group.serviceName,
+          href: group.pages[0].path,
+          description:
+            serviceDescriptions[group.serviceKey as keyof typeof serviceDescriptions] ??
+            'Managed response workflows built for sensitive online reputation cases.',
+        })),
+    [groups, serviceDescriptions]
+  )
+
+  const caseStudyLinks = useMemo(
+    () => [
+      {
+        title: 'Pipeline recovered in 90 days',
+        description: 'Law firm recovery outcome with multi-market issue resolution.',
+        href: `${getCaseStudiesPath(currentLanguage)}#case-stories-heading`,
+      },
+      {
+        title: '1,200+ malicious pages deindexed',
+        description: 'Coordinated suppression campaign across 14 jurisdictions.',
+        href: `${getCaseStudiesPath(currentLanguage)}#case-stats-heading`,
+      },
+      {
+        title: '89% faster resolution cycles',
+        description: 'White-label partner delivery acceleration with measured SLA gains.',
+        href: `${getCaseStudiesPath(currentLanguage)}#case-method-heading`,
+      },
+    ],
+    [currentLanguage]
+  )
+
+  const agencyLinks = useMemo(
+    () => [
+      {
+        title: 'Partner program overview',
+        description: 'How white-label delivery works for agency teams.',
+        href: getPartnersPath(currentLanguage),
+      },
+      {
+        title: 'Capacity tiers',
+        description: 'Silver, Gold, and Platinum partner throughput options.',
+        href: '/pricing',
+      },
+      {
+        title: 'Co-branded reporting',
+        description: 'Client-ready delivery reports and workflow visibility.',
+        href: getCommandCenterPath(currentLanguage),
+      },
+      {
+        title: 'Apply to partner',
+        description: 'Start onboarding and get a launch plan for your team.',
+        href: getJoinPath(currentLanguage),
+      },
+    ],
+    [currentLanguage]
+  )
+
+  const pricingLinks = useMemo(
+    () => [
+      {
+        title: 'Monitor plan',
+        description: 'Entry-level monitoring and monthly exposure summaries.',
+        href: '/pricing',
+      },
+      {
+        title: 'Protect plan',
+        description: 'Monitoring plus recurring workflow credits each quarter.',
+        href: '/pricing',
+      },
+      {
+        title: 'Business plan',
+        description: 'Team workspace, API reporting, and managed support.',
+        href: '/pricing',
+      },
+    ],
+    []
+  )
+
+  const topNavLinks = useMemo(
     () => [
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
       { label: 'For Agencies', href: getPartnersPath(currentLanguage) },
       { label: 'Pricing', href: '/pricing' },
     ],
-    [copy, currentLanguage]
+    [copy.caseStudies, currentLanguage]
   )
 
   useEffect(() => {
     setMegaOpen(false)
     setMobileOpen(false)
-    setMegaSearch('')
   }, [location.pathname])
 
   useEffect(() => {
@@ -7478,7 +7561,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
 
   const handleServiceClose = () => {
     setMegaOpen(false)
-    setMegaSearch('')
   }
 
   const handleServiceKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
@@ -7541,11 +7623,11 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
             aria-controls="tr-megamenu"
             aria-haspopup="true"
           >
-            <span className="tr-nav__label">{copy.services}</span>
+            <span className="tr-nav__label">Services</span>
             <span className="tr-nav__indicator" aria-hidden="true" />
             <span className="tr-nav__chevron" aria-hidden="true" />
           </button>
-          {navLinks.map((item, index) => (
+          {topNavLinks.map((item, index) => (
             <NavLink
               key={item.href}
               to={item.href}
@@ -7581,51 +7663,72 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div id="tr-megamenu" className={`tr-megamenu ${megaOpen ? 'is-open' : ''}`}>
-        <div className="tr-megamenu__tools">
-          <input
-            type="search"
-            value={megaSearch}
-            onChange={(event) => setMegaSearch(event.target.value)}
-            placeholder="Search service or industry…"
-            aria-label="Search services"
-          />
-          <p>Live reputation response playbooks, updated for 2026 channels.</p>
-        </div>
         <div className="tr-megamenu__inner">
-          {filteredGroups.map((group) => (
-            <div key={group.serviceName} className="tr-megamenu__column">
-              <h3>{group.serviceName}</h3>
-              <ul>
-                {group.pages.map((page) => (
-                  <li key={page.path}>
-                    <NavLink
-                      to={page.path}
-                      className={({ isActive }: NavLinkRenderArgs) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
-                      onClick={handleServiceClose}
-                    >
-                      {page.industryName}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          {filteredGroups.length === 0 ? (
-            <div className="tr-megamenu__empty">
-              <h3>No matching services</h3>
-              <p>Try another keyword or open our full services overview.</p>
-              <NavLink to={getServicesPricingPath(currentLanguage)} className="button secondary" onClick={handleServiceClose}>
-                Open services page
-              </NavLink>
-            </div>
-          ) : null}
-          <aside className="tr-megamenu__insight">
-            <h3>Reputation pulse</h3>
-            <p>Track removals, reviews, and sentiment risks in one live command layer.</p>
-            <Link className="button ghost" to={getCommandCenterPath(currentLanguage)} onClick={handleServiceClose}>
-              Open command center
-            </Link>
-          </aside>
+          <section className="tr-megamenu__column" aria-labelledby="mega-services-heading">
+            <h3 id="mega-services-heading">Services</h3>
+            <ul>
+              {coreServiceLinks.map((item) => (
+                <li key={item.href}>
+                  <NavLink
+                    to={item.href}
+                    className={({ isActive }: NavLinkRenderArgs) => `tr-megamenu__link${isActive ? ' is-active' : ''}`}
+                    onClick={handleServiceClose}
+                  >
+                    <span className="tr-megamenu__link-title">{item.title}</span>
+                    <span className="tr-megamenu__link-description">{item.description}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="tr-megamenu__column" aria-labelledby="mega-case-studies-heading">
+            <h3 id="mega-case-studies-heading">Case Studies</h3>
+            <ul>
+              {caseStudyLinks.map((item) => (
+                <li key={item.title}>
+                  <NavLink to={item.href} className="tr-megamenu__link" onClick={handleServiceClose}>
+                    <span className="tr-megamenu__link-title">{item.title}</span>
+                    <span className="tr-megamenu__link-description">{item.description}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <NavLink to={getCaseStudiesPath(currentLanguage)} className="tr-megamenu__all" onClick={handleServiceClose}>
+              View all case studies
+            </NavLink>
+          </section>
+
+          <section className="tr-megamenu__column" aria-labelledby="mega-agencies-heading">
+            <h3 id="mega-agencies-heading">For Agencies</h3>
+            <ul>
+              {agencyLinks.map((item) => (
+                <li key={item.title}>
+                  <NavLink to={item.href} className="tr-megamenu__link" onClick={handleServiceClose}>
+                    <span className="tr-megamenu__link-title">{item.title}</span>
+                    <span className="tr-megamenu__link-description">{item.description}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="tr-megamenu__column" aria-labelledby="mega-pricing-heading">
+            <h3 id="mega-pricing-heading">Pricing</h3>
+            <ul>
+              {pricingLinks.map((item) => (
+                <li key={item.title}>
+                  <NavLink to={item.href} className="tr-megamenu__link" onClick={handleServiceClose}>
+                    <span className="tr-megamenu__link-title">{item.title}</span>
+                    <span className="tr-megamenu__link-description">{item.description}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <NavLink to="/pricing" className="tr-megamenu__all" onClick={handleServiceClose}>
+              View full pricing
+            </NavLink>
+          </section>
         </div>
       </div>
 
@@ -7658,7 +7761,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           </div>
           <div className="tr-mobile-menu__inner">
             <div className="tr-mobile-section">
-              <h3>{copy.services}</h3>
+              <h3>Services</h3>
               {groups.map((group) => {
                 const isOpen = mobileExpandedGroup === group.serviceName
                 return (
@@ -7702,13 +7805,6 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 {copy.home}
               </NavLink>
               <NavLink
-                to={getAboutPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.about}
-              </NavLink>
-              <NavLink
                 to={getCaseStudiesPath(currentLanguage)}
                 className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
@@ -7716,74 +7812,18 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
                 {copy.caseStudies}
               </NavLink>
               <NavLink
-                to={getServicesPricingPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.servicesPricing}
-              </NavLink>
-              <NavLink
-                to={getResourcesPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.resources}
-              </NavLink>
-              <NavLink
-                to={getAcademyPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.academy}
-              </NavLink>
-              <NavLink
-                to={getMediaPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.media}
-              </NavLink>
-              <NavLink
-                to={getCommandCenterPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.commandCenter}
-              </NavLink>
-              <NavLink
-                to={getTrustPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.trust}
-              </NavLink>
-              <NavLink
-                to={getTeamPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.team}
-              </NavLink>
-              <NavLink
                 to={getPartnersPath(currentLanguage)}
                 className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
-                {copy.partners}
+                For Agencies
               </NavLink>
               <NavLink
-                to={getBlogBasePath(currentLanguage)}
+                to="/pricing"
                 className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
                 onClick={handleCloseMobile}
               >
-                {copy.blog}
-              </NavLink>
-              <NavLink
-                to={getFaqPath(currentLanguage)}
-                className={({ isActive }: NavLinkRenderArgs) => `tr-mobile-link${isActive ? ' is-active' : ''}`}
-                onClick={handleCloseMobile}
-              >
-                {copy.faq}
+                Pricing
               </NavLink>
               <NavLink
                 to={getContactPath(currentLanguage)}
