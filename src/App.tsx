@@ -7439,14 +7439,17 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
           <a className="button ghost" href="tel:+16063022958">
             +1 (472) 248 0235
           </a>
-        </div>
-
-        <div className="tr-languages" aria-label={copy.languageSwitcherLabel}>
-          {languages.map((language) => (
-            <NavLink key={language} to={languageHomes[language]} className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}>
-              {languageLabels[language]}
-            </NavLink>
-          ))}
+          <div className="tr-languages" aria-label={copy.languageSwitcherLabel}>
+            {languages.map((language) => (
+              <NavLink
+                key={language}
+                to={languageHomes[language]}
+                className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}
+              >
+                {languageLabels[language]}
+              </NavLink>
+            ))}
+          </div>
         </div>
       </div>
 

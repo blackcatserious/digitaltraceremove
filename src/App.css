@@ -580,9 +580,10 @@ a {
 .tr-header__inner {
   width: min(1100px, 100%);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   gap: 1.5rem;
   padding: 1rem 1.5rem;
   position: relative;
@@ -592,6 +593,7 @@ a {
 .tr-header__brand {
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
   gap: 1rem;
   min-height: 44px;
   position: relative;
@@ -678,10 +680,11 @@ a {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  justify-self: center;
+  flex: 1 1 auto;
+  min-width: 0;
   position: relative;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .tr-nav::before {
@@ -832,7 +835,10 @@ a {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
   gap: 0.65rem;
+  white-space: nowrap;
 }
 
 .tr-header__cta .button.primary {
@@ -840,10 +846,10 @@ a {
 }
 
 .tr-languages {
-  position: absolute;
-  inset-inline-end: 1.5rem;
-  bottom: -2.25rem;
+  position: static;
   display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   background: rgba(15, 23, 42, 0.8);
   padding: 0.35rem 0.5rem;
@@ -855,6 +861,7 @@ a {
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
   font-size: 0.8rem;
+  white-space: nowrap;
   color: rgba(226, 232, 240, 0.85);
   text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease;
@@ -7093,6 +7100,7 @@ a {
   }
 
   .tr-header__inner {
+    display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1rem 1.25rem;
