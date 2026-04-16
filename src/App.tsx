@@ -7369,86 +7369,92 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   return (
     <header ref={headerRef} className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}>
       <div className="tr-header__inner">
-        <div className="tr-header__brand">
-          <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img
-              src="/traceremove-orbit.svg"
-              alt=""
-              aria-hidden="true"
-              style={{
-                height: '36px',
-                width: 'auto',
-                display: 'block',
-                filter: 'brightness(0) invert(1) contrast(1.06)',
-              }}
-            />
-            <span style={{ marginLeft: '0.2rem' }}>Traceremove</span>
-          </Link>
-          <button
-            type="button"
-            className={`tr-burger ${mobileOpen ? 'is-open' : ''}`}
-            onClick={handleBurgerToggle}
-            aria-expanded={mobileOpen}
-            aria-controls="tr-mobile-menu"
-            aria-haspopup="dialog"
-            aria-label={mobileOpen ? copy.closeMenu : copy.openMenu}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+        <div className="tr-header__left">
+          <div className="tr-header__brand">
+            <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
+              <img
+                src="/traceremove-orbit.svg"
+                alt=""
+                aria-hidden="true"
+                style={{
+                  height: '36px',
+                  width: 'auto',
+                  display: 'block',
+                  filter: 'brightness(0) invert(1) contrast(1.06)',
+                }}
+              />
+              <span>Traceremove</span>
+            </Link>
+            <button
+              type="button"
+              className={`tr-burger ${mobileOpen ? 'is-open' : ''}`}
+              onClick={handleBurgerToggle}
+              aria-expanded={mobileOpen}
+              aria-controls="tr-mobile-menu"
+              aria-haspopup="dialog"
+              aria-label={mobileOpen ? copy.closeMenu : copy.openMenu}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
         </div>
 
-        <nav className="tr-nav" aria-label="Main">
-          <button
-            type="button"
-            className={`tr-nav__trigger ${megaOpen ? 'is-open' : ''}`}
-            onClick={handleServiceToggle}
-            onMouseEnter={handleServiceOpen}
-            onFocus={handleServiceOpen}
-            onKeyDown={handleServiceKeyDown}
-            aria-expanded={megaOpen}
-            aria-controls="tr-megamenu"
-            aria-haspopup="true"
-          >
-            <span className="tr-nav__label">{copy.services}</span>
-            <span className="tr-nav__indicator" aria-hidden="true" />
-            <span className="tr-nav__chevron" aria-hidden="true" />
-          </button>
-          {navLinks.map((item, index) => (
-            <NavLink
-              key={item.href}
-              to={item.href}
-              className={({ isActive }: NavLinkRenderArgs) =>
-                `tr-nav__link${isActive ? ' is-active' : ''}` + ` tr-nav__link--${index}`
-              }
-              onMouseEnter={handleServiceClose}
-              onFocus={handleServiceClose}
-              onClick={handleServiceClose}
+        <div className="tr-header__center">
+          <nav className="tr-nav" aria-label="Main">
+            <button
+              type="button"
+              className={`tr-nav__trigger ${megaOpen ? 'is-open' : ''}`}
+              onClick={handleServiceToggle}
+              onMouseEnter={handleServiceOpen}
+              onFocus={handleServiceOpen}
+              onKeyDown={handleServiceKeyDown}
+              aria-expanded={megaOpen}
+              aria-controls="tr-megamenu"
+              aria-haspopup="true"
             >
-              <span className="tr-nav__label">{item.label}</span>
+              <span className="tr-nav__label">{copy.services}</span>
               <span className="tr-nav__indicator" aria-hidden="true" />
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="tr-header__cta">
-          <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
-            Request Assessment
-          </NavLink>
-          <a className="button ghost" href="tel:+16063022958">
-            +1 (472) 248 0235
-          </a>
-          <div className="tr-languages" aria-label={copy.languageSwitcherLabel}>
-            {languages.map((language) => (
+              <span className="tr-nav__chevron" aria-hidden="true" />
+            </button>
+            {navLinks.map((item, index) => (
               <NavLink
-                key={language}
-                to={languageHomes[language]}
-                className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}
+                key={item.href}
+                to={item.href}
+                className={({ isActive }: NavLinkRenderArgs) =>
+                  `tr-nav__link${isActive ? ' is-active' : ''}` + ` tr-nav__link--${index}`
+                }
+                onMouseEnter={handleServiceClose}
+                onFocus={handleServiceClose}
+                onClick={handleServiceClose}
               >
-                {languageLabels[language]}
+                <span className="tr-nav__label">{item.label}</span>
+                <span className="tr-nav__indicator" aria-hidden="true" />
               </NavLink>
             ))}
+          </nav>
+        </div>
+
+        <div className="tr-header__right">
+          <div className="tr-header__cta">
+            <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
+              Request Assessment
+            </NavLink>
+            <a className="button ghost" href="tel:+16063022958">
+              +1 (472) 248 0235
+            </a>
+            <div className="tr-languages" aria-label={copy.languageSwitcherLabel}>
+              {languages.map((language) => (
+                <NavLink
+                  key={language}
+                  to={languageHomes[language]}
+                  className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}
+                >
+                  {languageLabels[language]}
+                </NavLink>
+              ))}
+            </div>
           </div>
         </div>
       </div>
