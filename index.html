@@ -18,20 +18,78 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://traceremove.com/en" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17638437186"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'AW-17638437186');
-    </script>
+    <!--
+      Analytics (GA4, Google Ads, Meta Pixel) load only after cookie consent
+      via src/lib/analytics.ts — never inline here, and all IDs come from
+      Netlify env vars rather than being hardcoded.
+    -->
     <title>TraceRemove — Monitor and Manage Online Data Exposure</title>
   </head>
   <body>
+    <!--
+      Static hidden forms so Netlify's post-build form detection registers
+      these SPA forms. Field names must match the React forms that POST to "/".
+    -->
+    <form name="business-exposure-scan" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="business-exposure-scan" />
+      <input name="bot-field" />
+      <input name="company" />
+      <input name="email" type="email" />
+    </form>
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="bot-field" />
+      <input name="name" />
+      <input name="email" type="email" />
+      <input name="company" />
+      <input name="phone" />
+      <textarea name="message"></textarea>
+    </form>
+    <form name="assessment" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="assessment" />
+      <input name="bot-field" />
+      <input name="name" />
+      <input name="company" />
+      <input name="email" type="email" />
+      <textarea name="message"></textarea>
+    </form>
+    <form name="partner-application" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="partner-application" />
+      <input name="bot-field" />
+      <input name="companyName" />
+      <input name="contactName" />
+      <input name="email" type="email" />
+      <input name="type" />
+      <textarea name="description"></textarea>
+    </form>
+    <form name="lp-remove-negative-reviews" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="lp-remove-negative-reviews" />
+      <input name="bot-field" />
+      <input name="platform" />
+      <input name="review_url" />
+      <input name="email" type="email" />
+    </form>
+    <form name="lp-serp-suppression" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="lp-serp-suppression" />
+      <input name="bot-field" />
+      <input name="brand" />
+      <input name="result_url" />
+      <input name="email" type="email" />
+    </form>
+    <form name="lp-individuals" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="lp-individuals" />
+      <input name="bot-field" />
+      <input name="full_name" />
+      <input name="result_url" />
+      <input name="email" type="email" />
+    </form>
+    <form name="lp-agencies-white-label" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="lp-agencies-white-label" />
+      <input name="bot-field" />
+      <input name="agency" />
+      <input name="work_needed" />
+      <input name="email" type="email" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
