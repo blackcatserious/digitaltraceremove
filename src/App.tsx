@@ -55,6 +55,11 @@ import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
 import PartnersLandingPage from './pages/Partners'
 import AboutPage from './pages/About'
+import LandingPage from './pages/LandingPage'
+import ConsentBanner from './components/ConsentBanner'
+import { landingSlugs } from './data/landingPages'
+import { submitNetlifyForm } from './lib/netlifyForms'
+import { trackConversion } from './lib/analytics'
 import './App.css'
 
 const useCurrentLanguage = (): Language => {
@@ -175,6 +180,9 @@ const getCaseStudiesPath = (language: Language) =>
 
 const getServicesPricingPath = (language: Language) =>
   language === 'en' ? '/services' : `/${language}/services`
+
+const getPricingPath = (language: Language) =>
+  language === 'en' ? '/pricing' : `/${language}/pricing`
 
 const getResourcesPath = (language: Language) =>
   language === 'en' ? '/resources' : `/${language}/resources`
@@ -6072,33 +6080,6 @@ const ContactPage = ({ language }: { language: Language }) => {
   })
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
-  async function submitToMake(data: {
-    name: string; company: string; email: string; message: string;
-  }): Promise<boolean> {
-    try {
-      const res = await fetch(
-        'WEBHOOK_PLACEHOLDER', // TODO: replace with actual Make.com webhook URL
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: data.name,
-            company: data.company,
-            email: data.email,
-            message: data.message,
-            source: 'traceremove.com',
-            timestamp: new Date().toISOString(),
-            language: navigator.language,
-            page: window.location.pathname,
-          }),
-        }
-      )
-      return res.ok
-    } catch {
-      return false
-    }
-  }
-
   const handleChange = (field: keyof typeof formData) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       if (submitStatus) {
@@ -6113,14 +6094,16 @@ const ContactPage = ({ language }: { language: Language }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const isSubmitted = await submitToMake({
+    const isSubmitted = await submitNetlifyForm('contact', {
       name: formData.name,
-      company: formData.company,
       email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
       message: formData.message,
     })
 
     if (isSubmitted) {
+      trackConversion('contact', { form: 'contact' })
       setSubmitStatus('success')
       setFormData({ name: '', email: '', company: '', phone: '', message: '' })
       return
@@ -6141,7 +6124,21 @@ const ContactPage = ({ language }: { language: Language }) => {
       <MomentumTicker variant="dark" />
 
       <div className="contact-grid">
-        <form className="contact-form" onSubmit={handleSubmit} noValidate>
+        <form
+          className="contact-form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>
+              Don’t fill this out: <input name="bot-field" />
+            </label>
+          </p>
           <h2>{copy.formTitle}</h2>
           <div className="contact-form__fields">
             <div className="contact-field">
@@ -7351,7 +7348,7 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
     () => [
       { label: copy.caseStudies, href: getCaseStudiesPath(currentLanguage) },
       { label: 'For Agencies', href: getPartnersPath(currentLanguage) },
-      { label: 'Pricing', href: '/pricing' },
+      { label: 'Pricing', href: getPricingPath(currentLanguage) },
     ],
     [copy, currentLanguage]
   )
@@ -8711,6 +8708,21 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
   )
 }
 
+const FooterNavLink = ({ to, children }: { to: string; children: ReactNode }) => (
+  <Link
+    to={to}
+    style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
+    onMouseEnter={(event) => {
+      event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+    }}
+    onMouseLeave={(event) => {
+      event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
+    }}
+  >
+    {children}
+  </Link>
+)
+
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   return (
     <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
@@ -8739,58 +8751,44 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
-          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              }}
-            >
-              {item}
-            </a>
+          {[
+            { label: 'Monitoring and Alerts', to: getServicesPricingPath(currentLanguage) },
+            { label: 'Workflow Credits', to: getServicesPricingPath(currentLanguage) },
+            { label: 'Managed Programmes', to: getServicesPricingPath(currentLanguage) },
+            { label: 'Cybersecurity Module', to: getServicesPricingPath(currentLanguage) },
+          ].map((item) => (
+            <FooterNavLink key={item.label} to={item.to}>
+              {item.label}
+            </FooterNavLink>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
-          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              }}
-            >
-              {item}
-            </a>
+          {[
+            { label: 'Partner Overview', to: getPartnersPath(currentLanguage) },
+            { label: 'Silver / Gold / Platinum', to: getPartnersPath(currentLanguage) },
+            { label: 'Apply as Partner', to: getJoinPath(currentLanguage) },
+            { label: 'Partner Portal', to: getPartnersPath(currentLanguage) },
+          ].map((item) => (
+            <FooterNavLink key={item.label} to={item.to}>
+              {item.label}
+            </FooterNavLink>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
-          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              }}
-            >
-              {item}
-            </a>
+          {[
+            { label: 'About', to: getAboutPath(currentLanguage) },
+            { label: 'Case Studies', to: getCaseStudiesPath(currentLanguage) },
+            { label: 'Trust Center', to: getTrustPath(currentLanguage) },
+            { label: 'Blog', to: getBlogBasePath(currentLanguage) },
+            { label: 'Contact', to: getContactPath(currentLanguage) },
+          ].map((item) => (
+            <FooterNavLink key={item.label} to={item.to}>
+              {item.label}
+            </FooterNavLink>
           ))}
         </div>
       </div>
@@ -8810,20 +8808,14 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
           <span>2025 TraceRemove LLC</span>
-          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              }}
-            >
-              {item}
-            </a>
+          {[
+            { label: 'Privacy Policy', to: getPrivacyPath(currentLanguage) },
+            { label: 'Terms of Service', to: getTermsPath(currentLanguage) },
+            { label: 'Refund Policy', to: '/refund' },
+          ].map((item) => (
+            <FooterNavLink key={item.label} to={item.to}>
+              {item.label}
+            </FooterNavLink>
           ))}
         </div>
         <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.72)' }}>
@@ -8848,6 +8840,18 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [location.pathname])
+
+  // Fire a phone-link conversion for any tel: click, site-wide.
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      const anchor = (event.target as HTMLElement | null)?.closest('a[href^="tel:"]')
+      if (anchor) {
+        trackConversion('phone_click', { href: anchor.getAttribute('href') ?? '' })
+      }
+    }
+    document.addEventListener('click', handleClick)
+    return () => document.removeEventListener('click', handleClick)
+  }, [])
 
   useEffect(() => {
     const normalizedPath = location.pathname.endsWith('/') ? location.pathname : `${location.pathname}/`
@@ -8882,6 +8886,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     ensurePropertyMeta('og:type', 'website')
     ensurePropertyMeta('og:url', seo.ogUrl ?? `${window.location.origin}${location.pathname}`)
 
+    // Self-referencing canonical per locale.
     let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
     if (!canonical) {
       canonical = document.createElement('link')
@@ -8889,6 +8894,34 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       document.head.appendChild(canonical)
     }
     canonical.href = `${window.location.origin}${location.pathname}`
+
+    // hreflang alternates (en, fr, es, x-default). Strip any locale prefix to
+    // recover the shared "base" path, then map it back into each locale.
+    const origin = window.location.origin
+    const pathParts = location.pathname.split('/').filter(Boolean)
+    const hasLocalePrefix = pathParts[0] === 'fr' || pathParts[0] === 'es'
+    const basePath = hasLocalePrefix ? `/${pathParts.slice(1).join('/')}` : location.pathname
+    const normalizedBase = basePath === '/' ? '' : basePath.replace(/\/$/, '')
+
+    const alternates: { hreflang: string; href: string }[] = [
+      { hreflang: 'en', href: `${origin}${normalizedBase || '/'}` },
+      { hreflang: 'fr', href: `${origin}/fr${normalizedBase}` },
+      { hreflang: 'es', href: `${origin}/es${normalizedBase}` },
+      { hreflang: 'x-default', href: `${origin}${normalizedBase || '/'}` },
+    ]
+
+    document.head
+      .querySelectorAll('link[rel="alternate"][data-i18n="true"]')
+      .forEach((node) => node.parentNode?.removeChild(node))
+
+    alternates.forEach(({ hreflang, href }) => {
+      const link = document.createElement('link')
+      link.setAttribute('rel', 'alternate')
+      link.setAttribute('hreflang', hreflang)
+      link.setAttribute('href', href)
+      link.setAttribute('data-i18n', 'true')
+      document.head.appendChild(link)
+    })
   }, [currentLanguage, location.pathname])
 
   useEffect(() => {
@@ -8948,6 +8981,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <Footer currentLanguage={currentLanguage} />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
+      <ConsentBanner language={currentLanguage} />
       <div style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>
         <div>TRACEREMOVE LLC</div>
         <div>750 Manhattan Ave</div>
@@ -8994,6 +9028,9 @@ function App() {
         <Route path="privacy" element={<PrivacyPage />} />
         <Route path="terms" element={<TermsPage />} />
         <Route path="refund" element={<RefundPage />} />
+        {landingSlugs.map((slug) => (
+          <Route key={slug} path={slug} element={<LandingPage slug={slug} language="en" />} />
+        ))}
         {languages.map((language) => {
           const withNoIndex = (element: ReactNode) =>
             language === 'ru' ? <RouteNoIndex>{element}</RouteNoIndex> : element
@@ -9004,6 +9041,7 @@ function App() {
               <Route path={`${language}/about`} element={withNoIndex(<AboutPage />)} />
               <Route path={`${language}/case-studies`} element={withNoIndex(<CaseStudiesPage />)} />
               <Route path={`${language}/services`} element={withNoIndex(<ServicesPricingPage />)} />
+              <Route path={`${language}/pricing`} element={withNoIndex(<PricingPage />)} />
               <Route path={`${language}/resources`} element={withNoIndex(<ResourceLibraryPage />)} />
               <Route path={`${language}/academy`} element={withNoIndex(<AcademyPage />)} />
               <Route path={`${language}/faq`} element={withNoIndex(<FaqPage />)} />
@@ -9024,6 +9062,13 @@ function App() {
                 path={`${language}/terms`}
                 element={withNoIndex(<LegalPage language={language} variant="terms" />)}
               />
+              {landingSlugs.map((slug) => (
+                <Route
+                  key={`${language}/${slug}`}
+                  path={`${language}/${slug}`}
+                  element={withNoIndex(<LandingPage slug={slug} language={language} />)}
+                />
+              ))}
             </Fragment>
           )
         })}
