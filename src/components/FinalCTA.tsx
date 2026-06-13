@@ -1,4 +1,8 @@
 import React from 'react'
+import { submitNetlifyForm } from '../lib/netlifyForms'
+import { trackConversion } from '../lib/analytics'
+
+const FORM_NAME = 'assessment'
 
 export default function FinalCTA() {
   const [name, setName] = React.useState('')
@@ -7,11 +11,14 @@ export default function FinalCTA() {
   const [message, setMessage] = React.useState('')
   const [submitted, setSubmitted] = React.useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!name || !email) return
-    setSubmitted(true)
-    // TODO: connect to Make.com webhook (Prompt #24)
+    const ok = await submitNetlifyForm(FORM_NAME, { name, company, email, message })
+    if (ok) {
+      trackConversion('contact', { form: FORM_NAME })
+      setSubmitted(true)
+    }
   }
 
   return (
@@ -23,6 +30,10 @@ export default function FinalCTA() {
         you a clear resolution plan with no obligation.
       </p>
       <form
+        name={FORM_NAME}
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
         style={{
           background: 'rgba(255,255,255,0.04)',
           borderRadius: '12px',
@@ -32,6 +43,12 @@ export default function FinalCTA() {
         }}
         onSubmit={handleSubmit}
       >
+        <input type="hidden" name="form-name" value={FORM_NAME} />
+        <p hidden>
+          <label>
+            Don’t fill this out: <input name="bot-field" />
+          </label>
+        </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
           <div>
             <label
@@ -48,6 +65,7 @@ export default function FinalCTA() {
             </label>
             <input
               type="text"
+              name="name"
               placeholder="Jane Smith"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -78,6 +96,7 @@ export default function FinalCTA() {
             </label>
             <input
               type="text"
+              name="company"
               placeholder="Acme Corp"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
@@ -109,6 +128,7 @@ export default function FinalCTA() {
           </label>
           <input
             type="email"
+            name="email"
             placeholder="you@company.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -138,6 +158,7 @@ export default function FinalCTA() {
             Describe your situation (optional)
           </label>
           <textarea
+            name="message"
             placeholder="What type of content are you dealing with? Which platforms?"
             value={message}
             onChange={(e) => setMessage(e.target.value)}

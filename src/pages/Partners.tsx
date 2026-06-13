@@ -1,4 +1,8 @@
 import { FormEvent, useState } from 'react'
+import { submitNetlifyForm } from '../lib/netlifyForms'
+import { trackConversion } from '../lib/analytics'
+
+const FORM_NAME = 'partner-application'
 
 export default function PartnersPage() {
   const [formData, setFormData] = useState({
@@ -10,8 +14,13 @@ export default function PartnersPage() {
   })
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const ok = await submitNetlifyForm(FORM_NAME, formData)
+    if (!ok) {
+      return
+    }
+    trackConversion('contact', { form: FORM_NAME })
     setSubmitted(true)
     setFormData({
       companyName: '',
@@ -90,9 +99,23 @@ export default function PartnersPage() {
 
       <section id="partner-application" style={{ marginTop: '22px' }}>
         <h2>Application form</h2>
-        <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '10px', maxWidth: '760px' }}>
+        <form
+          name={FORM_NAME}
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
+          style={{ display: 'grid', gap: '10px', maxWidth: '760px' }}
+        >
+          <input type="hidden" name="form-name" value={FORM_NAME} />
+          <p hidden>
+            <label>
+              Don’t fill this out: <input name="bot-field" />
+            </label>
+          </p>
           <input
             type="text"
+            name="companyName"
             placeholder="Company name"
             value={formData.companyName}
             onChange={(event) => setFormData((prev) => ({ ...prev, companyName: event.target.value }))}
@@ -100,6 +123,7 @@ export default function PartnersPage() {
           />
           <input
             type="text"
+            name="contactName"
             placeholder="Contact name"
             value={formData.contactName}
             onChange={(event) => setFormData((prev) => ({ ...prev, contactName: event.target.value }))}
@@ -107,12 +131,14 @@ export default function PartnersPage() {
           />
           <input
             type="email"
+            name="email"
             placeholder="Email"
             value={formData.email}
             onChange={(event) => setFormData((prev) => ({ ...prev, email: event.target.value }))}
             required
           />
           <select
+            name="type"
             value={formData.type}
             onChange={(event) => setFormData((prev) => ({ ...prev, type: event.target.value }))}
           >
@@ -123,6 +149,7 @@ export default function PartnersPage() {
           </select>
           <textarea
             rows={4}
+            name="description"
             placeholder="Brief description of client base"
             value={formData.description}
             onChange={(event) => setFormData((prev) => ({ ...prev, description: event.target.value }))}

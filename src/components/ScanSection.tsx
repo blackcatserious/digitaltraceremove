@@ -1,9 +1,13 @@
 import { useState } from 'react'
+import { submitNetlifyForm } from '../lib/netlifyForms'
+import { trackConversion } from '../lib/analytics'
 
 type FormErrors = {
   companyName?: string
   email?: string
 }
+
+const FORM_NAME = 'business-exposure-scan'
 
 export default function ScanSection() {
   const [companyName, setCompanyName] = useState('')
@@ -11,7 +15,7 @@ export default function ScanSection() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<FormErrors>({})
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
     const nextErrors: FormErrors = {}
@@ -31,7 +35,13 @@ export default function ScanSection() {
       return
     }
 
-    setIsSubmitted(true)
+    const ok = await submitNetlifyForm(FORM_NAME, { company: companyName, email })
+    if (ok) {
+      trackConversion('audit_request', { form: FORM_NAME })
+      setIsSubmitted(true)
+    } else {
+      setErrors({ email: 'Submission failed. Email support@traceremove.com and we’ll pick it up.' })
+    }
   }
 
   return (
@@ -59,7 +69,20 @@ export default function ScanSection() {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} noValidate>
+          <form
+            name={FORM_NAME}
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            onSubmit={handleSubmit}
+            noValidate
+          >
+            <input type="hidden" name="form-name" value={FORM_NAME} />
+            <p hidden>
+              <label>
+                Don’t fill this out: <input name="bot-field" />
+              </label>
+            </p>
             <div
               style={{
                 display: 'grid',
@@ -73,6 +96,7 @@ export default function ScanSection() {
                   Company name or domain
                   <input
                     type="text"
+                    name="company"
                     value={companyName}
                     onChange={(event) => setCompanyName(event.target.value)}
                     placeholder="e.g. acme.com"
@@ -87,6 +111,7 @@ export default function ScanSection() {
                   Work email
                   <input
                     type="email"
+                    name="email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="you@company.com"
