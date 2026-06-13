@@ -7,14 +7,27 @@ const SITEMAP_PATH = join(DIST_DIR, 'sitemap.xml');
 
 const routes = [
   '/',
-  '/contact', '/case-studies', '/resources', '/about', '/services',
+  '/contact', '/case-studies', '/resources', '/about', '/services', '/pricing',
   '/faq', '/blog', '/academy', '/media', '/team', '/partners',
-  '/trust', '/command-center', '/join', '/privacy', '/terms',
+  '/trust', '/command-center', '/join', '/privacy', '/terms', '/refund',
   '/fr/', '/fr/contact', '/fr/case-studies', '/fr/resources',
-  '/fr/about', '/fr/services', '/fr/faq', '/fr/blog',
+  '/fr/about', '/fr/services', '/fr/pricing', '/fr/faq', '/fr/blog',
   '/es/', '/es/contact', '/es/case-studies', '/es/resources',
-  '/es/about', '/es/services', '/es/faq', '/es/blog',
+  '/es/about', '/es/services', '/es/pricing', '/es/faq', '/es/blog',
 ];
+
+// Paid-traffic landing pages (and their FR/ES shells).
+const landingSlugs = [
+  'remove-negative-reviews',
+  'serp-suppression',
+  'individuals',
+  'agencies/white-label',
+];
+for (const slug of landingSlugs) {
+  routes.push(`/${slug}`);
+  routes.push(`/fr/${slug}`);
+  routes.push(`/es/${slug}`);
+}
 
 const services = [
   'analytics-setup', 'brand-identity', 'brand-intelligence',

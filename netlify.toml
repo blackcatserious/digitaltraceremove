@@ -1,0 +1,41 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Single-page-app fallback: every unknown path is served index.html so the
+# React Router routes (including /fr/* and /es/*) resolve on hard navigation.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security headers applied to every response.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    # CSP intentionally permissive for the third-party tags we load
+    # (GA4, Google Ads, Meta Pixel, Vercel). Tighten per-domain once the
+    # final tag list is confirmed.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://*.vercel-insights.com https://*.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://*.facebook.com https://*.vercel-insights.com; frame-src https://td.doubleclick.net https://www.facebook.com; font-src 'self' data:;"
+
+# Long cache for fingerprinted static assets (Vite emits hashed filenames).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML should always be revalidated so deploys take effect immediately.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
