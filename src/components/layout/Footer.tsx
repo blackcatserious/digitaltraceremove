@@ -1,70 +1,98 @@
 "use client";
-import { useState } from 'react'
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
-  const [hover, setHover] = useState(false)
   return (
-    <a
-      href={href}
-      style={{ display: 'block', color: hover ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', textDecoration: 'none', padding: '4px 0', fontSize: 13 }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
-      {children}
+    <a href={href} className="tr-footer__menu-link">
+      <span>{children}</span>
     </a>
   )
 }
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#070B16', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-      <div style={{ maxWidth: 1152, margin: '0 auto', padding: '64px 24px 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 32, marginBottom: 32 }}>
-          <div>
-            <span style={{ fontFamily: "'Instrument Serif',Georgia,serif", fontStyle: 'italic', fontSize: '1.2rem', color: '#f0f0f3' }}>Traceremove</span>
-            <p style={{ marginTop: 12, color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, fontSize: 13 }}>
-              Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
-              businesses and agency partners worldwide.
-            </p>
-            <p style={{ marginTop: 14, whiteSpace: 'pre-line', fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.62)', fontSize: 12, lineHeight: 1.6 }}>
-              {"TRACEREMOVE LLC\n750 Manhattan Ave\nBrooklyn, NY 11222, USA\nsupport@traceremove.com"}
-            </p>
-          </div>
-
-          <div>
-            <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Services</h4>
-            <FooterLink href="#">Monitoring & Alerts</FooterLink>
-            <FooterLink href="#">Workflow Credits</FooterLink>
-            <FooterLink href="#">Managed Programmes</FooterLink>
-            <FooterLink href="#">Cybersecurity Module</FooterLink>
-          </div>
-
-          <div>
-            <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Partners</h4>
-            <FooterLink href="#">Partner Overview</FooterLink>
-            <FooterLink href="#">Silver Gold Platinum</FooterLink>
-            <FooterLink href="#">Apply as Partner</FooterLink>
-            <FooterLink href="#">Partner Portal</FooterLink>
-          </div>
-
-          <div>
-            <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Company</h4>
-            <FooterLink href="#">About</FooterLink>
-            <FooterLink href="#">Case Studies</FooterLink>
-            <FooterLink href="#">Trust Center</FooterLink>
-            <FooterLink href="#">Blog</FooterLink>
-            <FooterLink href="#">Contact</FooterLink>
-          </div>
+    <footer className="tr-footer">
+      <div className="tr-footer__inner">
+        <div className="tr-footer__contact">
+          <h3 className="tr-footer__title">Traceremove</h3>
+          <p className="tr-footer__tagline">
+            Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
+            businesses and agency partners worldwide.
+          </p>
+          <p className="tr-footer__hotline">
+            TRACEREMOVE LLC
+            <br />
+            750 Manhattan Ave
+            <br />
+            Brooklyn, NY 11222, USA
+            <br />
+            support@traceremove.com
+          </p>
         </div>
 
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 16, display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12 }}>
-            © 2025 TraceRemove LLC · Privacy Policy · Terms of Service · Refund Policy
-          </span>
-          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, fontFamily: 'var(--font-mono)' }}>
-            New York, NY · Serving clients globally
-          </span>
+        <div className="tr-footer__details">
+          <div className="tr-footer__detail">
+            <h3>Services</h3>
+            <ul>
+              <li>
+                <FooterLink href="#">Monitoring & Alerts</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Workflow Credits</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Managed Programmes</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Cybersecurity Module</FooterLink>
+              </li>
+            </ul>
+          </div>
+
+          <div className="tr-footer__detail">
+            <h3>Partners</h3>
+            <ul>
+              <li>
+                <FooterLink href="#">Partner Overview</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Silver Gold Platinum</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Apply as Partner</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Partner Portal</FooterLink>
+              </li>
+            </ul>
+          </div>
+
+          <div className="tr-footer__detail">
+            <h3>Company</h3>
+            <ul>
+              <li>
+                <FooterLink href="#">About</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Case Studies</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Trust Center</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Blog</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="#">Contact</FooterLink>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
+
+      <div className="tr-footer__rights">
+        © 2025 TraceRemove LLC · Privacy Policy · Terms of Service · Refund Policy
+        <br />
+        New York, NY · Serving clients globally
       </div>
     </footer>
   )
