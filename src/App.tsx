@@ -2749,23 +2749,35 @@ const HomePage = () => {
       </section>
 
       <div className="home-grid">
-        {summaries.map(({ language, count }) => (
-          <article key={language} className="home-card">
-            <header>
-              <h2>{languageLabels[language]}</h2>
-              <p>{count} tailored pages</p>
-            </header>
-            <p>
-              Navigate all {languageLabels[language]} services, from positioning and creative systems to lifecycle
-              automation. Each page outlines outcomes, investment levels, and the rituals we run with your team.
-            </p>
-            <Link className="button tertiary" to={navigation[language][0]?.pages[0]?.path ?? '/'}>
-              {language === 'en' && 'Explore English services'}
-              {language === 'fr' && 'Découvrir les services'}
-              {language === 'es' && 'Explorar servicios'}
-            </Link>
-          </article>
-        ))}
+        {summaries.map(({ language, count }) => {
+          const firstServicePath = navigation[language][0]?.pages[0]?.path
+
+          return (
+            <article key={language} className="home-card">
+              <header>
+                <h2>{languageLabels[language]}</h2>
+                <p>{count} tailored pages</p>
+              </header>
+              <p>
+                Navigate all {languageLabels[language]} services, from positioning and creative systems to lifecycle
+                automation. Each page outlines outcomes, investment levels, and the rituals we run with your team.
+              </p>
+              {firstServicePath ? (
+                <Link className="button tertiary" to={firstServicePath}>
+                  {language === 'en' && 'Explore English services'}
+                  {language === 'fr' && 'Découvrir les services'}
+                  {language === 'es' && 'Explorar servicios'}
+                </Link>
+              ) : (
+                <p className="home-services__empty">
+                  {language === 'en' && 'Service pages are being updated. Please check back soon.'}
+                  {language === 'fr' && 'Les pages de service sont en cours de mise à jour. Revenez bientôt.'}
+                  {language === 'es' && 'Las páginas de servicio se están actualizando. Vuelve pronto.'}
+                </p>
+              )}
+            </article>
+          )
+        })}
       </div>
 
       <div className="home-panels">
