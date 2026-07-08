@@ -6244,23 +6244,27 @@ const ContactPage = ({ language }: { language: Language }) => {
   )
 }
 
-const NotFound = () => (
-  <section className="service-page">
-    <header className="service-hero">
-      <div className="service-hero-copy">
-        <p className="service-preheading">Traceremove</p>
-        <h1>We couldn&apos;t find that page.</h1>
-        <p className="service-subheading">Explore our services and choose the program that fits your roadmap.</p>
-        <Link className="button primary" to="/">
-          Back to overview
-        </Link>
-      </div>
-      <div className="service-hero-visual" aria-hidden="true">
-        <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
-      </div>
-    </header>
-  </section>
-)
+const NotFound = () => {
+  const currentLanguage = useCurrentLanguage()
+
+  return (
+    <section className="service-page">
+      <header className="service-hero">
+        <div className="service-hero-copy">
+          <p className="service-preheading">Traceremove</p>
+          <h1>We couldn&apos;t find that page.</h1>
+          <p className="service-subheading">The page you requested doesn&apos;t exist or has moved.</p>
+          <Link className="button primary" to={getServicesPricingPath(currentLanguage)}>
+            Explore services
+          </Link>
+        </div>
+        <div className="service-hero-visual" aria-hidden="true">
+          <img src="/traceremove-orbit.svg" alt="" loading="lazy" />
+        </div>
+      </header>
+    </section>
+  )
+}
 
 const SimpleContactPage = () => (
   <section style={{ padding: '48px 24px' }}>
