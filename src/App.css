@@ -15875,11 +15875,6 @@ body,
     min-width: 0;
   }
 
-  .content [class*='grid'],
-  .content [class*='__grid'] {
-    grid-template-columns: 1fr !important;
-  }
-
   .content section > div,
   .content section > header {
     width: 100%;
