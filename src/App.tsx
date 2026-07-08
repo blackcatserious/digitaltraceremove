@@ -8712,6 +8712,15 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
+  const linkStyle: React.CSSProperties = {
+    display: 'block',
+    padding: '5px 0',
+    color: 'rgba(255,255,255,0.45)',
+    textDecoration: 'none',
+    fontSize: '14px',
+    lineHeight: 1.7,
+  }
+
   return (
     <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
       <div
@@ -8739,59 +8748,22 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
-          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              }}
-            >
-              {item}
-            </a>
-          ))}
+          <a href="/en/services" style={linkStyle}>All Services</a>
+          <a href="/en/pricing" style={linkStyle}>Pricing</a>
+          <a href="/en#assessment" style={linkStyle}>Request Assessment</a>
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
-          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              }}
-            >
-              {item}
-            </a>
-          ))}
+          <a href="/en/partners" style={linkStyle}>Partner Programme</a>
+          <a href="/en/partners" style={linkStyle}>Apply as Partner</a>
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
-          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              }}
-            >
-              {item}
-            </a>
-          ))}
+          <a href="/en/about" style={linkStyle}>About</a>
+          <a href="/en/case-studies" style={linkStyle}>Case Studies</a>
+          <a href="/en#assessment" style={linkStyle}>Contact</a>
         </div>
       </div>
 
@@ -8810,21 +8782,9 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
           <span>2025 TraceRemove LLC</span>
-          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
-              onMouseEnter={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
-              }}
-            >
-              {item}
-            </a>
-          ))}
+          <a href="/en/privacy" style={linkStyle}>Privacy Policy</a>
+          <a href="/en/terms" style={linkStyle}>Terms of Service</a>
+          <a href="/en/refund" style={linkStyle}>Refund Policy</a>
         </div>
         <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.72)' }}>
           New York, NY / Serving clients globally
