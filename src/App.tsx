@@ -2537,7 +2537,7 @@ const HomePage = () => {
             exposure — for businesses, executives, and agency partners across North America, Europe, Latin America,
             Asia-Pacific, and Africa.
           </p>
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div className="home-hero-cta" style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link
               className="button primary"
               to={getContactPath(currentLanguage)}
@@ -2572,6 +2572,7 @@ const HomePage = () => {
             <span><strong>New York, NY</strong></span>
           </div>
           <div
+            className="home-hero-nda"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -8713,8 +8714,9 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
   return (
-    <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
+    <footer className="site-footer" style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
       <div
+        className="site-footer__grid"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
@@ -8796,6 +8798,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       </div>
 
       <div
+        className="site-footer__legal-row"
         style={{
           maxWidth: '1200px',
           margin: '28px auto 0',
@@ -8808,7 +8811,7 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
           alignItems: 'center',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
+        <div className="site-footer__legal-links" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
           <span>2025 TraceRemove LLC</span>
           {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
             <a
@@ -8948,7 +8951,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
       <Footer currentLanguage={currentLanguage} />
       <LiveChatbot currentLanguage={currentLanguage} />
       <CallWidget currentLanguage={currentLanguage} />
-      <div style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>
+      <div className="layout-address-block" style={{ fontSize: '11px', opacity: 0.55, padding: '8px 16px 16px' }}>
         <div>TRACEREMOVE LLC</div>
         <div>750 Manhattan Ave</div>
         <div>Brooklyn, NY 11222, USA</div>
