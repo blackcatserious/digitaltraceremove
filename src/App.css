@@ -565,55 +565,59 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(18px);
+  background: var(--navy);
   color: #e2e8f0;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 14px 28px rgba(2, 6, 23, 0.28);
   overflow: visible;
 }
 
 .tr-header::before,
 .tr-header::after {
-  content: '';
-  position: absolute;
-  inset: -40% -30%;
-  background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.25), transparent 55%),
-    radial-gradient(circle at 70% 80%, rgba(236, 72, 153, 0.2), transparent 60%),
-    linear-gradient(120deg, rgba(226, 232, 240, 0.08), transparent 70%);
-  mix-blend-mode: screen;
-  opacity: 0.75;
-  pointer-events: none;
-  transform-origin: center;
-  animation: headerAurora 26s ease-in-out infinite;
-  z-index: 0;
-}
-
-.tr-header::after {
-  inset: -35% -40%;
-  background: radial-gradient(circle at 20% 75%, rgba(45, 212, 191, 0.2), transparent 55%),
-    radial-gradient(circle at 80% 35%, rgba(191, 219, 254, 0.25), transparent 60%);
-  animation: headerDrift 32s ease-in-out infinite;
-  opacity: 0.6;
+  display: none;
 }
 
 .tr-header__inner {
   width: min(1100px, 100%);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   gap: 1.5rem;
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.5rem;
   position: relative;
   z-index: 1;
+}
+
+.tr-header__left,
+.tr-header__center,
+.tr-header__right {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.tr-header__center {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.tr-header__left,
+.tr-header__right {
+  flex: 0 0 auto;
+}
+
+.tr-header__right {
+  justify-content: flex-end;
 }
 
 .tr-header__brand {
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
   gap: 1rem;
-  position: relative;
-  z-index: 120;
+  min-height: 44px;
 }
 
 .tr-logo {
@@ -695,29 +699,11 @@ a {
 .tr-nav {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  justify-self: center;
-  position: relative;
+  gap: 20px;
+  flex: 1 1 auto;
+  min-width: 0;
   justify-content: center;
-  flex-wrap: wrap;
-}
-
-.tr-nav::before {
-  content: '';
-  position: absolute;
-  inset: auto 0 -1.25rem 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.35), transparent);
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: opacity 0.6s var(--motion-ease), transform 0.6s var(--motion-ease);
-}
-
-.tr-nav:hover::before,
-.tr-nav:focus-within::before {
-  opacity: 1;
-  transform: scaleX(1);
+  flex-wrap: nowrap;
 }
 
 .tr-nav__trigger,
@@ -734,12 +720,13 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  transition: background 0.3s ease, color 0.3s ease;
   position: relative;
   overflow: hidden;
-  opacity: 0;
-  transform: translate3d(0, 16px, 0);
-  animation: navLift 0.7s var(--motion-ease) forwards;
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 
 .tr-nav__label {
@@ -763,7 +750,6 @@ a {
 .tr-nav__link.is-active {
   background: rgba(59, 130, 246, 0.25);
   color: #f8fafc;
-  transform: translateY(-2px);
 }
 
 .tr-nav__trigger::after,
@@ -850,14 +836,21 @@ a {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.65rem;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+.tr-header__cta .button.primary {
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.34);
 }
 
 .tr-languages {
-  position: absolute;
-  inset-inline-end: 1.5rem;
-  bottom: -2.25rem;
+  position: static;
   display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   background: rgba(15, 23, 42, 0.8);
   padding: 0.35rem 0.5rem;
@@ -869,6 +862,7 @@ a {
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
   font-size: 0.8rem;
+  white-space: nowrap;
   color: rgba(226, 232, 240, 0.85);
   text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease;
@@ -7106,7 +7100,15 @@ a {
     display: none;
   }
 
+  .tr-header__left,
+  .tr-header__center,
+  .tr-header__right {
+    flex: initial;
+    width: 100%;
+  }
+
   .tr-header__inner {
+    display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1rem 1.25rem;
@@ -15986,10 +15988,9 @@ body,
 
 /* Nav: single row, glass effect */
 .tr-header {
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  background: rgba(10,15,30,0.82) !important;
-  border-bottom: 1px solid rgba(200,169,110,0.10) !important;
+  background: var(--navy) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 14px 28px rgba(2, 6, 23, 0.28) !important;
   height: 64px !important;
   padding: 0 40px !important;
   display: flex !important;
@@ -16105,6 +16106,122 @@ a.button.primary:hover {
 }
 
 @media (max-width: 480px) {
+  .footer__grid,
+  [class*="footer__cols"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mobile layout hotfixes */
+@media (max-width: 768px) {
+  /* 1) Cards: single column + no side overflow */
+  .home-grid,
+  .home-services__grid,
+  .home-production__grid,
+  .services-pricing__pillar-grid,
+  .services-pricing__addon-grid,
+  .services-pricing__deliverable-grid,
+  .services-pricing__support-grid,
+  .services-pricing__sla-grid,
+  .services-pricing__reporting-grid,
+  .services-pricing__industry-grid,
+  .services-pricing__transformation-grid,
+  .services-pricing__operations-grid,
+  .services-pricing__resilience-grid,
+  .partners-grid,
+  .partners-programs {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-card,
+  .home-service-card,
+  .services-pricing__pillar-card,
+  .services-pricing__addon-card,
+  .services-pricing__deliverable-card,
+  .services-pricing__support-card,
+  .services-pricing__sla-card,
+  .services-pricing__reporting-card,
+  .services-pricing__industry-card,
+  .services-pricing__transformation-card,
+  .services-pricing__operations-card,
+  .services-pricing__resilience-card,
+  .partners-card,
+  .partners-program {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* 2) Pricing: stack and remove overlap from decorative absolute visuals */
+  .services-pricing__hero,
+  .services-pricing__promise-body,
+  .services-pricing__operations-layout,
+  .services-pricing__resilience-layout,
+  .services-pricing__comparison-head,
+  .services-pricing__comparison-row {
+    grid-template-columns: 1fr !important;
+    flex-direction: column;
+  }
+
+  .services-pricing__comparison-head,
+  .services-pricing__comparison-row {
+    gap: 0.6rem;
+  }
+
+  .services-pricing__operations-visual,
+  .services-pricing__transformation-visual {
+    position: static;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 0.5rem;
+  }
+
+  /* 3) Partners: stack blocks + prevent horizontal overflow */
+  .partners-page,
+  .partners-section,
+  .partners-hero,
+  .partners-grid,
+  .partners-programs,
+  .partners-cta {
+    overflow-x: clip;
+  }
+
+  .partners-hero,
+  .partners-cta {
+    grid-template-columns: 1fr !important;
+  }
+
+  .partners-hero-graph {
+    display: none;
+  }
+
+  /* 4) Widgets: dock at bottom in vertical stack and avoid content overlap */
+  .content {
+    padding-bottom: 12.5rem;
+  }
+
+  .live-chat {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 5.25rem;
+    width: auto;
+    max-width: none;
+  }
+
+  .call-widget {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: auto;
+    justify-content: center;
+    border-radius: 0.95rem;
+    padding: 0.8rem 1rem;
+  }
+
+  /* 5) Footer: single stacked column on mobile */
+  .tr-footer__inner,
+  .tr-footer__links,
+  .tr-footer__details,
   .footer__grid,
   [class*="footer__cols"] {
     grid-template-columns: 1fr !important;

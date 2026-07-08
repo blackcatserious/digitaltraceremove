@@ -38,17 +38,9 @@ import { resourceLibraryCopy } from './data/resources'
 import { faqCopy, type FaqGuideTarget } from './data/faqs'
 import { trustCenterCopy } from './data/trust'
 import { academyCopy, type AcademyHeroSecondaryTarget } from './data/academy'
-import PricingSection from './components/PricingSection'
-import PlatformsSection from './components/PlatformsSection'
-import AgenciesSection from './components/AgenciesSection'
 import ProcessSection from './components/ProcessSection'
-import ROICalculator from './components/ROICalculator'
-import ScanSection from './components/ScanSection'
-import CaseStudiesSection from './components/CaseStudiesSection'
-import FAQSection from './components/FAQSection'
 import FinalCTA from './components/FinalCTA'
 import HeroCanvas from './components/HeroCanvas'
-import ClientsStrip from './components/ClientsStrip'
 import TermsPage from './pages/Terms'
 import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
@@ -2498,21 +2490,15 @@ const serviceCardCta: Record<Language, string> = {
 
 const HomePage = () => {
   const currentLanguage = useCurrentLanguage()
-  const summaries = languages.map((language) => {
-    const count = servicePages.filter((page) => page.language === language).length
-    return { language, count }
-  })
-
-  const heroCta = navCopy[currentLanguage].callToAction
   const heroHeading = homeHeroHeading[currentLanguage]
   const serviceIntro = homeServicesCopy[currentLanguage]
   const serviceCta = serviceCardCta[currentLanguage]
-  const localizedServices = primaryServices.map((service) => ({
+  const localizedServices = primaryServices.slice(0, 3).map((service) => ({
     key: service.key,
     accent: service.accent,
     badge: service.badge[currentLanguage],
     title: service.title[currentLanguage],
-    description: service.description[currentLanguage],
+    description: service.description[currentLanguage].split('. ')[0] ?? service.description[currentLanguage],
     price: service.price[currentLanguage],
     bullets: service.bullets[currentLanguage],
     contactHref: `mailto:support@traceremove.com?subject=${encodeURIComponent(service.title[currentLanguage])}`,
@@ -2562,15 +2548,6 @@ const HomePage = () => {
               View Case Studies
             </a>
           </div>
-          <div className="trust-strip" style={{ display: 'flex', alignItems: 'center', gap: '0', flexWrap: 'wrap' }}>
-            <span><strong>500+</strong> cases resolved</span>
-            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
-            <span><strong>98%</strong> success rate</span>
-            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
-            <span><strong>30–90 day</strong> results</span>
-            <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
-            <span><strong>New York, NY</strong></span>
-          </div>
           <div
             style={{
               display: 'inline-flex',
@@ -2590,136 +2567,29 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <ClientsStrip />
-      <PlatformsSection />
-      <AgenciesSection />
-      <ProcessSection />
-      <PricingSection />
-      <ROICalculator />
-      <ScanSection />
-      <CaseStudiesSection />
-      <FAQSection />
-      <FinalCTA />
-      <div>
-        <p>{''}</p>
-        <p>
-          Users access structured tools and managed workflows to identify and resolve data exposure issues.
-        </p>
+
+      <div className="trust-strip" style={{ display: 'flex', alignItems: 'center', gap: '0', flexWrap: 'wrap' }}>
+        <span><strong>500+</strong> cases resolved</span>
+        <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
+        <span><strong>98%</strong> success rate</span>
+        <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
+        <span><strong>30–90 day</strong> results</span>
+        <span style={{ color: 'rgba(255,255,255,0.25)', margin: '0 8px' }}>·</span>
+        <span><strong>New York, NY</strong></span>
       </div>
 
-      <section className="home-production" aria-labelledby="home-provides-heading">
+      <section className="home-production" aria-labelledby="home-what-we-do-heading">
         <header className="home-production__header">
-          <p className="home-production__kicker">What Traceremove Provides</p>
-          <h2 id="home-provides-heading">What Traceremove Provides</h2>
+          <p className="home-production__kicker">What we do</p>
+          <h2 id="home-what-we-do-heading">We identify, monitor, and resolve online data exposure</h2>
         </header>
-        <p>Traceremove provides structured digital solutions for managing online data exposure.</p>
         <p>
-          Customers access tools and managed workflows to identify, monitor, and resolve data-related risks.
+          Traceremove combines analyst workflows and operational tooling to remove high-risk exposure quickly and keep
+          brands protected over time.
         </p>
       </section>
 
-      <section className="home-production" aria-labelledby="home-how-it-works-heading">
-        <header className="home-production__header">
-          <p className="home-production__kicker">How it works</p>
-          <h2 id="home-how-it-works-heading">How it works</h2>
-        </header>
-        <div className="home-production__grid">
-          <article>
-            <h3>1. Identify data exposure</h3>
-          </article>
-          <article>
-            <h3>2. Analyze risk</h3>
-          </article>
-          <article>
-            <h3>3. Resolve through structured workflows</h3>
-          </article>
-        </div>
-      </section>
-
-      <section className="home-production" aria-labelledby="home-pricing-heading">
-        <header className="home-production__header">
-          <p className="home-production__kicker">Simple pricing</p>
-          <h2 id="home-pricing-heading">Simple pricing</h2>
-        </header>
-        <div className="home-production__grid">
-          <article>
-            <h3>Starter</h3>
-            <p>$99/month</p>
-          </article>
-          <article>
-            <h3>Professional</h3>
-            <p>$299/month</p>
-          </article>
-          <article>
-            <h3>Advanced</h3>
-            <p>$799/month</p>
-          </article>
-        </div>
-      </section>
-
-      <MomentumTicker variant="light" />
-
-      <section className="home-reputation" aria-labelledby="home-reputation-heading">
-        <header>
-          <p className="home-reputation__kicker">We help manage and resolve online data exposure</p>
-          <h2 id="home-reputation-heading">Simple monitoring and resolution for online data exposure</h2>
-        </header>
-        <div className="home-reputation__grid">
-          <article>
-            <h3>Data exposure monitoring</h3>
-            <p>We monitor your online data exposure across search, social, and review platforms.</p>
-          </article>
-          <article>
-            <h3>Risk analysis</h3>
-            <p>We analyze risk and prioritize what to fix first.</p>
-          </article>
-          <article>
-            <h3>Structured resolution</h3>
-            <p>We use structured workflows to resolve issues and track progress.</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="home-production" aria-labelledby="home-production-heading">
-        <header className="home-production__header">
-          <p className="home-production__kicker">Simple data exposure operations</p>
-          <h2 id="home-production-heading">From monitoring to resolution in one structured workflow</h2>
-        </header>
-        <div className="home-production__grid">
-          <article>
-            <h3>What we monitor</h3>
-            <ul>
-              <li>Exposed personal or business data</li>
-              <li>Misleading profile and listing content</li>
-              <li>High-risk pages affecting trust</li>
-            </ul>
-          </article>
-          <article>
-            <h3>How we work</h3>
-            <ul>
-              <li>Identify and monitor exposure points</li>
-              <li>Analyze risk and select the best workflow</li>
-              <li>Resolve issues with documented actions and status updates</li>
-            </ul>
-          </article>
-          <article>
-            <h3>Client outcomes</h3>
-            <ul>
-              <li>Clearer visibility into online data exposure</li>
-              <li>Faster risk response with ongoing monitoring</li>
-              <li>Measurable resolution progress across platforms</li>
-            </ul>
-          </article>
-        </div>
-        <div className="home-production__actions">
-          <Link className="button primary" to={getContactPath(currentLanguage)}>
-            Start analysis
-          </Link>
-          <Link className="button tertiary" to={getCaseStudiesPath(currentLanguage)}>
-            View resolution examples
-          </Link>
-        </div>
-      </section>
+      <ProcessSection />
 
       <section className="home-services">
         <header className="home-services__header">
@@ -2734,11 +2604,7 @@ const HomePage = () => {
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
                 <p className="home-service-card__price">{service.price}</p>
-                <ul>
-                  {service.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
+                <ul>{service.bullets.slice(0, 2).map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
               </div>
               <a className="button primary" href={service.contactHref}>
                 {serviceCta}
@@ -2748,58 +2614,52 @@ const HomePage = () => {
         </div>
       </section>
 
-      <div className="home-grid">
-        {summaries.map(({ language, count }) => (
-          <article key={language} className="home-card">
-            <header>
-              <h2>{languageLabels[language]}</h2>
-              <p>{count} tailored pages</p>
-            </header>
-            <p>
-              Navigate all {languageLabels[language]} services, from positioning and creative systems to lifecycle
-              automation. Each page outlines outcomes, investment levels, and the rituals we run with your team.
-            </p>
-            <Link className="button tertiary" to={navigation[language][0]?.pages[0]?.path ?? '/'}>
-              {language === 'en' && 'Explore English services'}
-              {language === 'fr' && 'Découvrir les services'}
-              {language === 'es' && 'Explorar servicios'}
-            </Link>
+      <section className="home-production" aria-labelledby="home-case-preview-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">Case studies preview</p>
+          <h2 id="home-case-preview-heading">Recent outcomes in brief</h2>
+        </header>
+        <p>See concise before/after snapshots, turnaround windows, and remediation pathways across industries.</p>
+        <div className="home-production__actions">
+          <Link className="button tertiary" to={getCaseStudiesPath(currentLanguage)}>
+            View all case studies
+          </Link>
+          <Link className="button ghost" to={getResourcesPath(currentLanguage)}>
+            Read methodology resources
+          </Link>
+        </div>
+      </section>
+
+      <section className="home-production" aria-labelledby="home-pricing-preview-heading">
+        <header className="home-production__header">
+          <p className="home-production__kicker">Pricing preview</p>
+          <h2 id="home-pricing-preview-heading">Simple plan ranges for quick qualification</h2>
+        </header>
+        <div className="home-production__grid">
+          <article>
+            <h3>Starter</h3>
+            <p>From $99/month</p>
           </article>
-        ))}
-      </div>
+          <article>
+            <h3>Professional</h3>
+            <p>From $299/month</p>
+          </article>
+          <article>
+            <h3>Advanced</h3>
+            <p>From $799/month</p>
+          </article>
+        </div>
+        <div className="home-production__actions">
+          <Link className="button tertiary" to={getServicesPricingPath(currentLanguage)}>
+            View full pricing
+          </Link>
+          <Link className="button ghost" to={getPartnersPath(currentLanguage)}>
+            Partner programme details
+          </Link>
+        </div>
+      </section>
 
-      <div className="home-panels">
-        <article className="home-panel">
-          <h3>Immersive launch playbooks</h3>
-          <p>
-            From narrative strategy to creative operations, every service page details timelines, pricing, and success
-            metrics so stakeholders can align instantly.
-          </p>
-        </article>
-        <article className="home-panel">
-          <h3>Data-synced revenue ops</h3>
-          <p>
-            We stitch dashboards, attribution models, and experimentation cadences to activate multi-market growth with
-            one unified team.
-          </p>
-        </article>
-        <article className="home-panel">
-          <h3>Leadership-level partnership</h3>
-          <p>
-            You work directly with TraceRemove Advisor and our senior partners—no hand-offs, just outcomes delivered with
-            precision.
-          </p>
-        </article>
-      </div>
-
-      <InsightShowcase />
-
-      <div className="home-banner">
-        <p>
-          {heroCta} — <a href="mailto:support@traceremove.com">support@traceremove.com</a> ·{' '}
-          <a href="tel:+16063022958">+1 (472) 248 0235</a>
-        </p>
-      </div>
+      <FinalCTA />
     </section>
   )
 }
@@ -7509,74 +7369,93 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
   return (
     <header ref={headerRef} className={`tr-header ${mobileOpen ? 'is-mobile-open' : ''}`}>
       <div className="tr-header__inner">
-        <div className="tr-header__brand">
-          <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
-            <span>Traceremove</span>
-          </Link>
-          <button
-            type="button"
-            className={`tr-burger ${mobileOpen ? 'is-open' : ''}`}
-            onClick={handleBurgerToggle}
-            aria-expanded={mobileOpen}
-            aria-controls="tr-mobile-menu"
-            aria-haspopup="dialog"
-            aria-label={mobileOpen ? copy.closeMenu : copy.openMenu}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-
-        <nav className="tr-nav" aria-label="Main">
-          <button
-            type="button"
-            className={`tr-nav__trigger ${megaOpen ? 'is-open' : ''}`}
-            onClick={handleServiceToggle}
-            onMouseEnter={handleServiceOpen}
-            onFocus={handleServiceOpen}
-            onKeyDown={handleServiceKeyDown}
-            aria-expanded={megaOpen}
-            aria-controls="tr-megamenu"
-            aria-haspopup="true"
-          >
-            <span className="tr-nav__label">{copy.services}</span>
-            <span className="tr-nav__indicator" aria-hidden="true" />
-            <span className="tr-nav__chevron" aria-hidden="true" />
-          </button>
-          {navLinks.map((item, index) => (
-            <NavLink
-              key={item.href}
-              to={item.href}
-              className={({ isActive }: NavLinkRenderArgs) =>
-                `tr-nav__link${isActive ? ' is-active' : ''}` + ` tr-nav__link--${index}`
-              }
-              onMouseEnter={handleServiceClose}
-              onFocus={handleServiceClose}
-              onClick={handleServiceClose}
+        <div className="tr-header__left">
+          <div className="tr-header__brand">
+            <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
+              <img
+                src="/traceremove-orbit.svg"
+                alt=""
+                aria-hidden="true"
+                style={{
+                  height: '36px',
+                  width: 'auto',
+                  display: 'block',
+                  filter: 'brightness(0) invert(1) contrast(1.06)',
+                }}
+              />
+              <span>Traceremove</span>
+            </Link>
+            <button
+              type="button"
+              className={`tr-burger ${mobileOpen ? 'is-open' : ''}`}
+              onClick={handleBurgerToggle}
+              aria-expanded={mobileOpen}
+              aria-controls="tr-mobile-menu"
+              aria-haspopup="dialog"
+              aria-label={mobileOpen ? copy.closeMenu : copy.openMenu}
             >
-              <span className="tr-nav__label">{item.label}</span>
-              <span className="tr-nav__indicator" aria-hidden="true" />
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="tr-header__cta">
-          <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
-            Request Assessment
-          </NavLink>
-          <a className="button ghost" href="tel:+16063022958">
-            +1 (472) 248 0235
-          </a>
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
         </div>
 
-        <div className="tr-languages" aria-label={copy.languageSwitcherLabel}>
-          {languages.map((language) => (
-            <NavLink key={language} to={languageHomes[language]} className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}>
-              {languageLabels[language]}
+        <div className="tr-header__center">
+          <nav className="tr-nav" aria-label="Main">
+            <button
+              type="button"
+              className={`tr-nav__trigger ${megaOpen ? 'is-open' : ''}`}
+              onClick={handleServiceToggle}
+              onMouseEnter={handleServiceOpen}
+              onFocus={handleServiceOpen}
+              onKeyDown={handleServiceKeyDown}
+              aria-expanded={megaOpen}
+              aria-controls="tr-megamenu"
+              aria-haspopup="true"
+            >
+              <span className="tr-nav__label">{copy.services}</span>
+              <span className="tr-nav__indicator" aria-hidden="true" />
+              <span className="tr-nav__chevron" aria-hidden="true" />
+            </button>
+            {navLinks.map((item, index) => (
+              <NavLink
+                key={item.href}
+                to={item.href}
+                className={({ isActive }: NavLinkRenderArgs) =>
+                  `tr-nav__link${isActive ? ' is-active' : ''}` + ` tr-nav__link--${index}`
+                }
+                onMouseEnter={handleServiceClose}
+                onFocus={handleServiceClose}
+                onClick={handleServiceClose}
+              >
+                <span className="tr-nav__label">{item.label}</span>
+                <span className="tr-nav__indicator" aria-hidden="true" />
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+
+        <div className="tr-header__right">
+          <div className="tr-header__cta">
+            <NavLink className="button primary" to={getJoinPath(currentLanguage)}>
+              Request Assessment
             </NavLink>
-          ))}
+            <a className="button ghost" href="tel:+16063022958">
+              +1 (472) 248 0235
+            </a>
+            <div className="tr-languages" aria-label={copy.languageSwitcherLabel}>
+              {languages.map((language) => (
+                <NavLink
+                  key={language}
+                  to={languageHomes[language]}
+                  className={`tr-language ${language === currentLanguage ? 'is-active' : ''}`}
+                >
+                  {languageLabels[language]}
+                </NavLink>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -8712,6 +8591,31 @@ const LiveChatbot = ({ currentLanguage }: { currentLanguage: Language }) => {
 }
 
 const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
+  const servicesLinks = [
+    { label: 'Monitoring and Alerts', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Workflow Credits', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Managed Programmes', to: getServicesPricingPath(currentLanguage) },
+    { label: 'Cybersecurity Module', to: getServicesPricingPath(currentLanguage) },
+  ]
+  const partnerLinks = [
+    { label: 'Partner Overview', to: getPartnersPath(currentLanguage) },
+    { label: 'Silver / Gold / Platinum', to: getPartnersPath(currentLanguage) },
+    { label: 'Apply as Partner', to: getJoinPath(currentLanguage) },
+    { label: 'Partner Portal', to: getPartnersPath(currentLanguage) },
+  ]
+  const companyLinks = [
+    { label: 'About', to: getAboutPath(currentLanguage) },
+    { label: 'Case Studies', to: getCaseStudiesPath(currentLanguage) },
+    { label: 'Trust Center', to: getTrustPath(currentLanguage) },
+    { label: 'Blog', to: getBlogBasePath(currentLanguage) },
+    { label: 'Contact', to: getContactPath(currentLanguage) },
+  ]
+  const legalLinks = [
+    { label: 'Privacy Policy', to: getPrivacyPath(currentLanguage) },
+    { label: 'Terms of Service', to: getTermsPath(currentLanguage) },
+    { label: 'Refund Policy', to: currentLanguage === 'en' ? '/refund' : getContactPath(currentLanguage) },
+  ]
+
   return (
     <footer style={{ background: '#070B16', color: '#fff', padding: '56px 24px 22px' }}>
       <div
@@ -8739,10 +8643,10 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Services</p>
-          {['Monitoring and Alerts', 'Workflow Credits', 'Managed Programmes', 'Cybersecurity Module'].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {servicesLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8751,17 +8655,17 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Partners</p>
-          {['Partner Overview', 'Silver / Gold / Platinum', 'Apply as Partner', 'Partner Portal'].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {partnerLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8770,17 +8674,17 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
 
         <div>
           <p style={{ margin: '0 0 12px', fontWeight: 700, color: 'var(--white)' }}>Company</p>
-          {['About', 'Case Studies', 'Trust Center', 'Blog', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {companyLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               style={{ display: 'block', marginBottom: '8px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8789,8 +8693,8 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
       </div>
@@ -8810,10 +8714,10 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '12px', color: 'rgba(255,255,255,0.7)' }}>
           <span>2025 TraceRemove LLC</span>
-          {['Privacy Policy', 'Terms of Service', 'Refund Policy'].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {legalLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               style={{ color: 'rgba(255,255,255,0.35)', textDecoration: 'none' }}
               onMouseEnter={(event) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.7)'
@@ -8822,8 +8726,8 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
                 event.currentTarget.style.color = 'rgba(255,255,255,0.35)'
               }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
         <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.72)' }}>

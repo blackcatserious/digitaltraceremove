@@ -1,21 +1,42 @@
 "use client";
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
   const [hover, setHover] = useState(false)
   return (
-    <a
-      href={href}
+    <Link
+      to={to}
       style={{ display: 'block', color: hover ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', textDecoration: 'none', padding: '4px 0', fontSize: 13 }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
       {children}
-    </a>
+    </Link>
   )
 }
 
 export default function Footer() {
+  const location = useLocation()
+  const languagePrefix = location.pathname.startsWith('/fr/')
+    ? '/fr'
+    : location.pathname === '/fr'
+      ? '/fr'
+      : location.pathname.startsWith('/es/')
+        ? '/es'
+        : location.pathname === '/es'
+          ? '/es'
+          : ''
+
+  const servicesPath = `${languagePrefix}/services` || '/services'
+  const partnersPath = `${languagePrefix}/partners` || '/partners'
+  const joinPath = `${languagePrefix}/join` || '/join'
+  const aboutPath = `${languagePrefix}/about` || '/about'
+  const caseStudiesPath = `${languagePrefix}/case-studies` || '/case-studies'
+  const trustPath = `${languagePrefix}/trust` || '/trust'
+  const blogPath = `${languagePrefix}/blog` || '/blog'
+  const contactPath = `${languagePrefix}/contact` || '/contact'
+
   return (
     <footer style={{ background: '#070B16', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
       <div style={{ maxWidth: 1152, margin: '0 auto', padding: '64px 24px 24px' }}>
@@ -33,27 +54,27 @@ export default function Footer() {
 
           <div>
             <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Services</h4>
-            <FooterLink href="#">Monitoring & Alerts</FooterLink>
-            <FooterLink href="#">Workflow Credits</FooterLink>
-            <FooterLink href="#">Managed Programmes</FooterLink>
-            <FooterLink href="#">Cybersecurity Module</FooterLink>
+            <FooterLink to={servicesPath}>Monitoring & Alerts</FooterLink>
+            <FooterLink to={servicesPath}>Workflow Credits</FooterLink>
+            <FooterLink to={servicesPath}>Managed Programmes</FooterLink>
+            <FooterLink to={servicesPath}>Cybersecurity Module</FooterLink>
           </div>
 
           <div>
             <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Partners</h4>
-            <FooterLink href="#">Partner Overview</FooterLink>
-            <FooterLink href="#">Silver Gold Platinum</FooterLink>
-            <FooterLink href="#">Apply as Partner</FooterLink>
-            <FooterLink href="#">Partner Portal</FooterLink>
+            <FooterLink to={partnersPath}>Partner Overview</FooterLink>
+            <FooterLink to={partnersPath}>Silver Gold Platinum</FooterLink>
+            <FooterLink to={joinPath}>Apply as Partner</FooterLink>
+            <FooterLink to={partnersPath}>Partner Portal</FooterLink>
           </div>
 
           <div>
             <h4 style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>Company</h4>
-            <FooterLink href="#">About</FooterLink>
-            <FooterLink href="#">Case Studies</FooterLink>
-            <FooterLink href="#">Trust Center</FooterLink>
-            <FooterLink href="#">Blog</FooterLink>
-            <FooterLink href="#">Contact</FooterLink>
+            <FooterLink to={aboutPath}>About</FooterLink>
+            <FooterLink to={caseStudiesPath}>Case Studies</FooterLink>
+            <FooterLink to={trustPath}>Trust Center</FooterLink>
+            <FooterLink to={blogPath}>Blog</FooterLink>
+            <FooterLink to={contactPath}>Contact</FooterLink>
           </div>
         </div>
 
