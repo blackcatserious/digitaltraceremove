@@ -7511,8 +7511,32 @@ const Header = ({ currentLanguage }: { currentLanguage: Language }) => {
       <div className="tr-header__inner">
         <div className="tr-header__brand">
           <Link to={getHomePath(currentLanguage)} className="tr-logo" aria-label="Traceremove home">
-            <img src="/traceremove-mark.svg" alt="" aria-hidden="true" />
-            <span>Traceremove</span>
+            <svg
+              width="180"
+              height="52"
+              viewBox="0 0 220 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="Traceremove"
+            >
+              <defs>
+                <linearGradient id="navGrad" x1="0" y1="0" x2="220" y2="64" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#3EC6F0" />
+                  <stop offset="100%" stopColor="#7B5CFF" />
+                </linearGradient>
+              </defs>
+              <rect x="2" y="2" width="60" height="60" rx="16" stroke="url(#navGrad)" strokeWidth="2" />
+              <path
+                d="M22 22 H42 M32 22 V42 Q32 50 42 50"
+                stroke="url(#navGrad)"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              <circle cx="22" cy="22" r="3" fill="#3EC6F0" />
+              <text x="75" y="42" fill="url(#navGrad)" fontFamily="Inter, Arial, sans-serif" fontSize="26" fontWeight="500">
+                Traceremove
+              </text>
+            </svg>
           </Link>
           <button
             type="button"
@@ -8724,7 +8748,32 @@ const Footer = ({ currentLanguage }: { currentLanguage: Language }) => {
         }}
       >
         <div>
-          <p style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '30px', color: 'var(--white)' }}>Traceremove</p>
+          <svg
+            width="154"
+            height="44"
+            viewBox="0 0 220 64"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Traceremove"
+          >
+            <defs>
+              <linearGradient id="footGrad" x1="0" y1="0" x2="220" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#3EC6F0" />
+                <stop offset="100%" stopColor="#7B5CFF" />
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="60" height="60" rx="16" stroke="url(#footGrad)" strokeWidth="2" />
+            <path
+              d="M22 22 H42 M32 22 V42 Q32 50 42 50"
+              stroke="url(#footGrad)"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            <circle cx="22" cy="22" r="3" fill="#3EC6F0" />
+            <text x="75" y="42" fill="url(#footGrad)" fontFamily="Inter, Arial, sans-serif" fontSize="26" fontWeight="500">
+              Traceremove
+            </text>
+          </svg>
           <p style={{ margin: '12px 0 18px', color: 'rgba(255,255,255,0.72)', lineHeight: 1.6 }}>
             Structured tools and managed workflows to identify, monitor, and resolve online data exposure for
             businesses and agency partners worldwide.
