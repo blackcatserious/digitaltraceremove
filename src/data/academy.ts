@@ -219,7 +219,7 @@ export const academyCopy: Record<
         {
           label: 'Playbooks shipped',
           value: '180+',
-          annotation: 'We help manage and resolve online data exposure',
+          annotation: 'Battle-tested response systems deployed across trust, SEO, and communications teams.',
         },
         {
           label: 'Markets covered',
@@ -275,8 +275,8 @@ export const academyCopy: Record<
         ],
       },
       {
-        id: 'We help manage and resolve online data exposure',
-        title: 'We help manage and resolve online data exposure',
+        id: 'trust-operations-mastery',
+        title: 'Trust operations mastery',
         description:
           'Customer experience and community teams master authenticity verification, review takedowns, and escalation choreography.',
         duration: '4 weeks',
@@ -486,7 +486,7 @@ export const academyCopy: Record<
     officeHoursTakeawayLabel: 'You will leave with',
     officeHours: [
       {
-        title: 'We help manage and resolve online data exposure',
+        title: 'Rapid triage command clinic',
         facilitator: 'Clara Martel',
         cadence: 'Weekly',
         format: 'Live working session',
@@ -571,7 +571,7 @@ export const academyCopy: Record<
     ],
     scholarshipsHeading: 'Scholarships & sponsorships',
     scholarshipsSubtitle:
-      'We help manage and resolve online data exposure',
+      'Funding pathways for teams facing critical reputation and trust incidents.',
     scholarshipValueLabel: 'Coverage',
     scholarshipEligibilityLabel: 'Eligibility',
     scholarshipSupportLabel: 'Support included',
@@ -581,7 +581,7 @@ export const academyCopy: Record<
         id: 'essential-services',
         title: 'Essential services fellowship',
         description:
-          'We help manage and resolve online data exposure',
+          'Supports public-trust organizations that need immediate response and capability-building.',
         value: '100% tuition covered',
         eligibility: [
           'Operate in a critical infrastructure or public trust sector.',
@@ -603,7 +603,7 @@ export const academyCopy: Record<
         value: '50% tuition covered + travel stipend',
         eligibility: [
           'Founder-led company under 50 employees.',
-          'We help manage and resolve online data exposure',
+          'Demonstrable recovery need after defamation, spoofing, or review fraud.',
           'Ability to attend at least three live sessions.',
         ],
         support: [
@@ -625,7 +625,7 @@ export const academyCopy: Record<
           'Commitment to publish public impact summary within 90 days.',
         ],
         support: [
-          'We help manage and resolve online data exposure',
+          'Emergency response office hours for moderators and communications leads.',
           'Template pack translated across English, French, Spanish.',
           'Quarterly office hour passes for volunteer leads.',
         ],
@@ -634,7 +634,7 @@ export const academyCopy: Record<
     ],
     communityHeading: 'Community & support',
     communitySubtitle:
-      'We help manage and resolve online data exposure',
+      'Members stay connected through live clinics, signal briefings, and continuously updated toolkits.',
     communityHighlights: [
       {
         label: 'Office hours',
@@ -832,7 +832,7 @@ export const academyCopy: Record<
         ],
       },
       {
-        id: 'We help manage and resolve online data exposure',
+        id: 'pods-operations-reputation-fr',
         title: 'Pods opérations réputation',
         description:
           'Équipes relation client et communautés maîtrisent la vérification d’authenticité, les retraits d’avis et la chorégraphie des escalades.',
@@ -1389,7 +1389,7 @@ export const academyCopy: Record<
         ],
       },
       {
-        id: 'We help manage and resolve online data exposure',
+        id: 'pods-operaciones-reputacion-es',
         title: 'Pods de operaciones de reputación',
         description:
           'Equipos de experiencia cliente y comunidad dominan la verificación de autenticidad, retiros de reseñas y coreografía de escaladas.',

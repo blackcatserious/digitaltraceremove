@@ -3,8 +3,12 @@ export default function TermsPage() {
     <main className="legal-page">
       <section className="legal-content">
         <h1>Terms of Service</h1>
+        <p>
+          These terms govern access to and use of TraceRemove services. By using the platform, you agree to the
+          conditions below and any order forms or statements of work signed with your organization.
+        </p>
 
-        <h2>1. Company identity</h2>
+        <h2>1. Company identity and agreement scope</h2>
         <p>
           TRACEREMOVE LLC (Wyoming LLC)
           <br />
@@ -12,8 +16,12 @@ export default function TermsPage() {
           <br />
           support@traceremove.com
         </p>
+        <p>
+          Services may include monitoring, investigation support, workflow execution, and periodic reporting as
+          described in your selected package.
+        </p>
 
-        <h2>2. Definitions</h2>
+        <h2>2. Service terms and acceptable use</h2>
         <ul>
           <li>
             <strong>Workspace</strong> — the client&apos;s account and associated settings.
@@ -28,37 +36,30 @@ export default function TermsPage() {
             <strong>Sprint</strong> — a single workflow credit cycle.
           </li>
         </ul>
-
-        <h2>3. Service description</h2>
         <p>
-          Traceremove provides a digital platform for monitoring and managing online data exposure. Services include
-          monitoring alerts, dashboard reporting, and time-boxed workflow cycles.
+          You agree not to misuse the platform, interfere with service operations, or submit unlawful content.
+          TraceRemove may suspend access for abuse, security risks, or non-payment.
         </p>
 
-        <h2>4. Best-efforts delivery</h2>
+        <h2>3. Delivery, billing, and limitations</h2>
         <p>
-          Outcomes depend on third-party systems and sources outside Traceremove&apos;s control. Traceremove provides
-          best-efforts execution and transparency through reporting. No specific outcome is guaranteed.
+          Workflow credits activate within three business days of completed intake. Outcomes depend on third-party
+          platforms and external systems, so services are delivered on a best-effort basis with no guaranteed removal
+          or ranking result.
+        </p>
+        <p>
+          Subscriptions require 30 days written notice for cancellation. Unless otherwise stated in a signed agreement,
+          fees already billed for the active period are non-refundable.
         </p>
 
-        <h2>5. Fulfilment timelines</h2>
-        <p>Workflow credits activate within 3 business days of completed intake.</p>
-
-        <h2>6. Subscription cancellation</h2>
-        <p>30 days written notice required. No refund of current billing period.</p>
-
-        <h2>7. Limitation of liability</h2>
+        <h2>4. Liability, governing law, and support</h2>
         <p>
           Traceremove&apos;s total liability is limited to the fees paid by the client in the 3 months before the claim.
         </p>
-
-        <h2>8. Governing law</h2>
         <p>This agreement is governed by the laws of the State of New York, USA.</p>
-
-        <h2>9. GDPR addendum</h2>
         <p>
-          For EU/EEA users: you have rights to access, correction, and erasure under GDPR. Contact
-          support@traceremove.com for requests.
+          Questions about legal terms, enterprise addendums, or compliance requirements can be sent via our{' '}
+          <a href="/contact">contact page</a>.
         </p>
 
         <p

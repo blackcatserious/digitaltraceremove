@@ -3,27 +3,40 @@ export default function PrivacyPage() {
     <main className="legal-page">
       <section className="legal-content">
         <h1>Privacy Policy</h1>
+        <p>
+          This policy explains what information TraceRemove collects, why we collect it, and how you can manage your
+          privacy rights when using our services.
+        </p>
 
-        <h2>Data collected</h2>
-        <p>We collect email address, company details, and usage data from your workspace activity and reports.</p>
+        <h2>Information we collect</h2>
+        <p>
+          We collect account details (such as name, work email, and company), service usage telemetry, and support
+          communications required to provide monitoring, workflows, and reporting.
+        </p>
 
-        <h2>How data is used</h2>
-        <p>We use this data for service delivery, monitoring, workflows, resolution cycle reporting, and support.</p>
+        <h2>How we use your data</h2>
+        <p>
+          Data is used to operate the platform, investigate incidents, improve service quality, prevent abuse, and
+          communicate updates related to your account and active engagements.
+        </p>
 
-        <h2>Third parties</h2>
-        <p>We do not share personal data with third parties except where required for payment processing.</p>
+        <h2>Sharing, retention, and security</h2>
+        <p>
+          We share data only with essential processors (for example, payment and infrastructure providers), apply
+          access controls and encryption safeguards, and retain records according to contractual and legal obligations.
+        </p>
 
-        <h2>GDPR rights (EU users)</h2>
-        <p>EU users can request access, correction, and erasure under GDPR.</p>
+        <h2>Your privacy rights and requests</h2>
+        <p>
+          Depending on your location (including GDPR and CCPA jurisdictions), you may request access, correction,
+          deletion, portability, or restriction of processing. Contact us to submit a privacy request.
+        </p>
 
-        <h2>CCPA rights (California users)</h2>
-        <p>California users can request disclosure, deletion where applicable, and information about data handling.</p>
-
-        <h2>Data retention</h2>
-        <p>We retain account and workflow records for 2 years after account closure.</p>
-
-        <h2>Privacy requests</h2>
-        <p>For privacy requests, contact support@traceremove.com.</p>
+        <p>
+          Need help with a privacy-related question?{' '}
+          <a href="/contact">Contact our team</a>
+          .
+        </p>
 
         <p>
           TRACEREMOVE LLC
