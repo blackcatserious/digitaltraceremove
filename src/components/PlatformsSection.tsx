@@ -75,13 +75,13 @@ export default function PlatformsSection() {
             id="platforms-section-heading"
             style={{ margin: 0, fontFamily: 'var(--font-display)', color: 'var(--navy)' }}
           >
-            Across Every Platform That Matters
+            Where Exposure Creates Real Risk
           </h2>
         </header>
 
         <p style={{ color: 'var(--blue)', margin: 0, maxWidth: '520px' }}>
-          From search surfaces and review sites to forums, video, and news publications — we manage data exposure with
-          monitoring, workflows, and documented resolution operations.
+          We handle search listings, reviews, forums, video, and news references where reputation harm affects
+          financing, hiring, partnerships, or legal posture.
         </p>
       </div>
 

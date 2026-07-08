@@ -37,16 +37,16 @@ export default function ScanSection() {
   return (
     <section className="home-production" aria-labelledby="scan-heading">
       <header className="home-production__header">
-        <h2 id="scan-heading">Run a Free Business Exposure Scan</h2>
+        <h2 id="scan-heading">Run a Confidential Exposure Scan</h2>
         <p>
-          Enter your company name or domain. We&apos;ll generate a report showing your current online data exposure
-          across major platforms.
+          Enter your company name or domain to receive a private snapshot of visible data and reputation risk across
+          major online surfaces.
         </p>
       </header>
 
       <div style={{ background: '#ffffff', borderRadius: '12px', padding: '24px', border: '1px solid var(--border)' }}>
-        <h3 style={{ marginTop: 0 }}>Business Exposure Report</h3>
-        <p>60 seconds. No credit card required. Report delivered to your email.</p>
+        <h3 style={{ marginTop: 0 }}>Exposure Snapshot</h3>
+        <p>60 seconds. No credit card required. Report delivered to your work email.</p>
 
         {isSubmitted ? (
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '10px' }}>
@@ -55,7 +55,7 @@ export default function ScanSection() {
               <path d="M7 12.5L10.2 15.5L17 8.8" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <p style={{ margin: 0, color: 'var(--blue)' }}>
-              Your exposure report is being generated. Check your email within 5 minutes.
+              Your report is being generated. Check your email within 5 minutes.
             </p>
           </div>
         ) : (
@@ -98,7 +98,7 @@ export default function ScanSection() {
 
               <div>
                 <button type="submit" className="button primary" style={{ width: '100%', marginTop: '24px' }}>
-                  Generate Report
+                  Generate Confidential Report
                 </button>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function ScanSection() {
         )}
 
         <p style={{ marginTop: '12px' }}>
-          Confidential. Your data is never shared beyond report generation.
+          Confidential by default. Your information is used only to generate this report.
         </p>
       </div>
     </section>

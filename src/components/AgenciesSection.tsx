@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom'
 const partnerTypes = [
   {
     title: 'Law Firms',
-    text: 'Confidential data exposure management for your clients. Fully DMCA and GDPR compliant methodology.',
+    text: 'Confidential removal support for client matters requiring documented legal and platform workflows.',
   },
   {
     title: 'PR Agencies',
-    text: 'White-label execution. Your brand, our infrastructure. Revenue share or retainer models available.',
+    text: 'White-label execution under your brand, with senior operators and clear SLA-backed delivery.',
   },
   {
     title: 'Executive Search',
-    text: 'Help candidates pass online background checks. Add high-margin services to your retainer.',
+    text: 'Protect candidate credibility before placement by addressing high-visibility search and profile risks.',
   },
   {
     title: 'HR Consultancies',
-    text: 'Protect executive placements. Proactive monitoring for C-suite and board-level candidates.',
+    text: 'Support board and C-suite transitions with proactive monitoring and discreet risk mitigation.',
   },
 ]
 
@@ -30,16 +30,16 @@ export default function AgenciesSection() {
     <section className="home-production" style={{ background: 'var(--navy)' }} aria-labelledby="agencies-heading">
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '24px' }}>
         <div>
-          <p style={{ color: 'var(--gold)', margin: '0 0 8px', fontWeight: 600 }}>Partner Program</p>
+          <p style={{ color: 'var(--gold)', margin: '0 0 8px', fontWeight: 600 }}>Partner program</p>
           <h2 id="agencies-heading" style={{ margin: 0, fontFamily: 'var(--font-display)', color: 'var(--white)' }}>
-            White-Label Services for Agencies
+            White-Label Delivery for Advisory Firms
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.86)' }}>
-            Law firms, PR agencies, and HR consultancies partner with Traceremove to offer managed data exposure
-            services under their own brand.
+            We support law firms, agencies, and advisory teams that need discreet execution capacity for sensitive
+            reputation and data exposure matters.
           </p>
           <Link className="button primary" to="/partners">
-            Become a Partner
+            Discuss Partnership Options
           </Link>
 
           <div style={{ marginTop: '20px', display: 'grid', gap: '10px' }}>

@@ -2,17 +2,17 @@ const steps = [
   {
     label: '01',
     title: 'Confidential Assessment',
-    body: 'You describe the exposure. We map every surface, classify risk, and identify the optimal resolution pathway. Full NDA signed before any discussion.',
+    body: 'You brief us on the issue. We map visible and latent exposure points, define legal/policy options, and lock scope under NDA before work begins.',
   },
   {
     label: '02',
     title: 'Custom Resolution Strategy',
-    body: 'We build a sprint plan with defined targets, timeline, and success criteria. Proposal delivered within 6 hours of the assessment call.',
+    body: 'You receive a tailored action plan with priority targets, ownership, timeline, and measurable success criteria. Initial plan delivered within one business day.',
   },
   {
     label: '03',
     title: 'Execution and Reporting',
-    body: 'Our team executes using documented workflows. You receive weekly progress reports and a live dashboard tracking every resolution milestone.',
+    body: 'Our operators run the removals, escalations, and follow-through. You receive weekly reporting and a live status view for each active item.',
   },
 ]
 
@@ -21,10 +21,10 @@ export default function ProcessSection() {
     <section className="home-production" style={{ background: '#ffffff' }} aria-labelledby="process-heading">
       <header className="home-production__header" style={{ textAlign: 'center' }}>
         <h2 id="process-heading" style={{ color: 'var(--text)' }}>
-          Three Steps to Resolution
+          Three Steps to Controlled Resolution
         </h2>
         <p style={{ color: 'var(--gray)' }}>
-          A structured, confidential process from initial assessment to ongoing monitoring and reporting.
+          A discreet process designed for high-stakes matters, from first assessment through verified resolution.
         </p>
       </header>
 

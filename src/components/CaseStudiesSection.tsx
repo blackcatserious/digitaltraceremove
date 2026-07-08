@@ -38,10 +38,10 @@ export default function CaseStudiesSection() {
         }}
       >
         <h2 id="case-studies-heading" style={{ margin: 0 }}>
-          Outcomes That Move the Needle
+          Representative Outcomes Across High-Risk Cases
         </h2>
         <p style={{ margin: 0, color: 'var(--gray)' }}>
-          All cases anonymised by industry and jurisdiction. Client identities protected by NDA.
+          Every case is anonymized by sector and region. Client identities remain protected under NDA.
         </p>
       </header>
 
