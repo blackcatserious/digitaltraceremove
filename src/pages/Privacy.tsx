@@ -3,27 +3,40 @@ export default function PrivacyPage() {
     <main className="legal-page">
       <section className="legal-content">
         <h1>Privacy Policy</h1>
+        <p>
+          This policy explains what data we collect, why we collect it, and how we protect it when you use Traceremove
+          services.
+        </p>
 
-        <h2>Data collected</h2>
-        <p>We collect email address, company details, and usage data from your workspace activity and reports.</p>
+        <h2>1) Data we collect</h2>
+        <p>
+          We collect account information (name, email, company), billing details, and service activity data needed to
+          deliver monitoring, workflows, and support.
+        </p>
 
-        <h2>How data is used</h2>
-        <p>We use this data for service delivery, monitoring, workflows, resolution cycle reporting, and support.</p>
+        <h2>2) How we use your data</h2>
+        <p>
+          We use data to operate the platform, respond to incidents, provide reports, and improve service reliability.
+          We do not sell personal data.
+        </p>
 
-        <h2>Third parties</h2>
-        <p>We do not share personal data with third parties except where required for payment processing.</p>
+        <h2>3) Retention and security</h2>
+        <p>
+          We retain account and workflow records for up to 24 months after account closure unless a longer period is
+          required by law or contract. Access is limited to authorized personnel with role-based controls.
+        </p>
 
-        <h2>GDPR rights (EU users)</h2>
-        <p>EU users can request access, correction, and erasure under GDPR.</p>
+        <h2>4) Your rights</h2>
+        <p>
+          You may request access, correction, or deletion of eligible personal data. EU/EEA users may exercise GDPR
+          rights. California residents may request disclosures under applicable state law.
+        </p>
 
-        <h2>CCPA rights (California users)</h2>
-        <p>California users can request disclosure, deletion where applicable, and information about data handling.</p>
-
-        <h2>Data retention</h2>
-        <p>We retain account and workflow records for 2 years after account closure.</p>
-
-        <h2>Privacy requests</h2>
-        <p>For privacy requests, contact support@traceremove.com.</p>
+        <h2>5) Contact for privacy requests</h2>
+        <p>
+          Email <a href="mailto:support@traceremove.com">support@traceremove.com</a> with subject line “Privacy
+          Request”. We acknowledge requests within 5 business days.
+        </p>
 
         <p>
           TRACEREMOVE LLC
