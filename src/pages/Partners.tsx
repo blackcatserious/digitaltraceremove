@@ -53,7 +53,7 @@ export default function PartnersPage() {
           </article>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
             <h3>Revenue share</h3>
-            <p>Margin split 20-30%. Joint delivery with reporting.</p>
+            <p>Commercial terms are agreed in the partner agreement. Joint delivery and white-label reporting are available.</p>
           </article>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
             <h3>Referral</h3>
@@ -69,13 +69,13 @@ export default function PartnersPage() {
             <h3>Silver</h3>
             <p>$5,000/mo</p>
             <p>Standard SLA</p>
-            <p>X workflow credits per month</p>
+            <p>Reserved monthly execution capacity</p>
           </article>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
             <h3>Gold</h3>
             <p>$10,000/mo</p>
             <p>Priority queue</p>
-            <p>More credits</p>
+            <p>Expanded monthly execution capacity</p>
             <p>Quarterly enablement</p>
           </article>
           <article style={{ border: '1px solid var(--border)', borderRadius: '10px', padding: '14px' }}>
@@ -83,7 +83,7 @@ export default function PartnersPage() {
             <p>$18,000/mo</p>
             <p>Dedicated channel</p>
             <p>Enterprise SLA</p>
-            <p>Custom credits</p>
+            <p>Custom high-volume execution capacity</p>
           </article>
         </div>
       </section>
