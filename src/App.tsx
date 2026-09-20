@@ -54,6 +54,7 @@ import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
 import PartnersLandingPage from './pages/Partners'
+import EnterprisePage from './pages/Enterprise'
 import AboutPage from './pages/About'
 import './App.css'
 
@@ -142,6 +143,12 @@ const routeSeo: Record<string, { title: string; description: string; ogUrl?: str
     title: 'Partner Programme — TraceRemove',
     description:
       'White-label data exposure management for law firms, PR agencies, and HR consultancies. Silver, Gold, and Platinum capacity tiers.',
+  },
+  '/enterprise': {
+    title: 'Enterprise Reputation Operations — TraceRemove',
+    description:
+      'Monitoring, evidence, removal workflows, search response, executive protection, and crisis escalation for high-exposure organizations.',
+    ogUrl: 'https://traceremove.com/enterprise',
   },
   '/en/terms': {
     title: 'Terms — TraceRemove LLC',
@@ -337,33 +344,33 @@ const momentumTickerCopy: Record<
   en: {
     eyebrow: 'Momentum signals',
     highlights: [
-      'Deindexed 1,200+ malicious pages across 14 jurisdictions',
-      'Recovered $18.4M in pipeline by reversing fake-review attacks',
-      '60-day brand vault protecting 80+ executive identities',
-      'Live sentiment command center in English, French, and Spanish',
-      '24/7 escalation team orchestrated by Founder & CEO TraceRemove Advisor',
+      'Source-level removal and deindexing workflows for complex online exposure',
+      'Search, review, and platform escalation coordinated in one operating workflow',
+      'Executive and company exposure monitoring with documented evidence trails',
+      'Multilingual operations across English, French, and Spanish',
+      'Escalation workflows designed for legal, communications, and executive teams',
     ],
     cta: 'Activate a protection sprint',
   },
   fr: {
     eyebrow: 'Signaux de momentum',
     highlights: [
-      'Plus de 1 200 pages malveillantes déréférencées dans 14 juridictions',
-      '18,4 M $ de pipeline récupérés après des attaques de faux avis',
-      'Coffre-fort de marque sur 60 jours couvrant plus de 80 dirigeants',
-      'Centre de commande du sentiment en français, anglais et espagnol',
-      'Équipe d’escalade 24/7 pilotée par TraceRemove Advisor, Founder & CEO',
+      'Workflows de suppression à la source et de déréférencement pour les expositions complexes',
+      'Escalades search, avis et plateformes coordonnées dans un même workflow',
+      'Monitoring des dirigeants et entreprises avec preuves documentées',
+      'Opérations multilingues en français, anglais et espagnol',
+      'Workflows d’escalade pour équipes juridiques, communication et direction',
     ],
     cta: 'Activer un sprint de protection',
   },
   es: {
     eyebrow: 'Señales de momentum',
     highlights: [
-      'Más de 1 200 páginas maliciosas dadas de baja en 14 jurisdicciones',
-      'Recuperamos 18,4 M USD de pipeline tras ataques de reseñas falsas',
-      'Bóveda de marca de 60 días cubriendo a más de 80 ejecutivos',
-      'Centro de comando de sentimiento en inglés, francés y español',
-      'Equipo de escalación 24/7 liderado por el Founder & CEO TraceRemove Advisor',
+      'Flujos de retirada en origen y desindexación para exposición online compleja',
+      'Escalaciones de búsqueda, reseñas y plataformas coordinadas en un solo flujo',
+      'Monitorización de ejecutivos y empresas con evidencias documentadas',
+      'Operaciones multilingües en inglés, francés y español',
+      'Flujos de escalación para equipos legales, comunicación y dirección',
     ],
     cta: 'Activar un sprint de protección',
   },
@@ -8987,6 +8994,7 @@ function App() {
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersLandingPage />} />
+        <Route path="enterprise" element={<EnterprisePage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />

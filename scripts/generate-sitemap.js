@@ -7,6 +7,7 @@ const SITEMAP_PATH = join(DIST_DIR, 'sitemap.xml');
 
 const routes = [
   '/',
+  '/enterprise',
   '/contact', '/case-studies', '/resources', '/about', '/services',
   '/faq', '/blog', '/academy', '/media', '/team', '/partners',
   '/trust', '/command-center', '/join', '/privacy', '/terms',
