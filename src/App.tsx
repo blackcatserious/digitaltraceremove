@@ -54,6 +54,7 @@ import PrivacyPage from './pages/Privacy'
 import RefundPage from './pages/Refund'
 import PricingPage from './pages/Pricing'
 import PartnersLandingPage from './pages/Partners'
+import EnterprisePage from './pages/Enterprise'
 import AboutPage from './pages/About'
 import './App.css'
 
@@ -142,6 +143,12 @@ const routeSeo: Record<string, { title: string; description: string; ogUrl?: str
     title: 'Partner Programme — TraceRemove',
     description:
       'White-label data exposure management for law firms, PR agencies, and HR consultancies. Silver, Gold, and Platinum capacity tiers.',
+  },
+  '/enterprise': {
+    title: 'Enterprise Reputation Operations — TraceRemove',
+    description:
+      'Monitoring, evidence, removal workflows, search response, executive protection, and crisis escalation for high-exposure organizations.',
+    ogUrl: 'https://traceremove.com/enterprise',
   },
   '/en/terms': {
     title: 'Terms — TraceRemove LLC',
@@ -8987,6 +8994,7 @@ function App() {
         <Route path="trust" element={<TrustCenterPage />} />
         <Route path="team" element={<TeamPage />} />
         <Route path="partners" element={<PartnersLandingPage />} />
+        <Route path="enterprise" element={<EnterprisePage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="contact" element={<SimpleContactPage />} />
         <Route path="blog" element={<BlogPage language="en" />} />
