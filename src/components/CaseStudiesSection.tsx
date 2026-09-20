@@ -17,10 +17,10 @@ const caseStudies = [
   },
   {
     industry: 'PR Agency / Asia-Pacific',
-    metric: '89%',
-    label: 'Faster resolution cycles',
+    metric: 'Partner',
+    label: 'White-label execution capacity',
     description:
-      "A leading PR agency white-labelled Traceremove's workflow infrastructure. Result: 89% improvement in average resolution cycle time.",
+      "A PR agency used Traceremove's workflow infrastructure for white-label execution, shared case tracking, and structured delivery.",
     tag: 'White-label Partner Programme',
   },
 ]
